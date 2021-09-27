@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using OPM.ExcelHandler;
 using System.Data.OleDb;
 using System.Data.Common;
+using OPM.DBHandler;
 
 namespace OPM.GUI
 {
@@ -40,6 +41,10 @@ namespace OPM.GUI
         public delegate void RequestDaskboardOpenDP(string idpo, string idcontract);
         public RequestDaskboardOpenDP requestDaskboardOpenDP;
 
+        //Khai báo POCurrent
+        public Contract contract;
+        public PO_Thanh po;
+
         public PurchaseOderInfor()
         {
             InitializeComponent();
@@ -47,103 +52,20 @@ namespace OPM.GUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            /*Check PO in DB*/
-            int ret = 0;
-            /*Save The Edited Contract Info */
-            PO newPO = new PO();
-            newPO.IDContract = txbIDContract.Text ;
-            newPO.IDPO = txbPOCode.Text;
-            newPO.PONumber = txbPOName.Text;
-            newPO.NumberOfDevice = float.Parse(txbNumberDevice.Text);
-            newPO.DateCreatedPO = TimePickerDateCreatedPO.Value.ToString("yyyy-MM-dd");
-            newPO.DurationConfirmPO = TimePickerDateConfirmPO.Value.ToString("yyyy-MM-dd");
-            newPO.DefaultActiveDatePO = TimepickerDefaultActive.Value.ToString("yyyy-MM-dd");
-            newPO.DeadLinePO = TimePickerDeadLinePO.Value.ToString("yyyy-MM-dd");
-            newPO.TotalValuePO = float.Parse(txbValuePO.Text);
-
-            /*Create Folder Contract on F Disk*/
-            string strContractDirectory = txbIDContract.Text.Replace('/', '_');
-            strContractDirectory = strContractDirectory.Replace('-', '_');
-            string strPODirectory = "F:\\OPM\\" + strContractDirectory + "\\" + txbPOName.Text;
-
-            ret = newPO.GetDetailPO(txbPOCode.Text);
-            if (0 == ret)
-            {
-                if (!Directory.Exists(strPODirectory))
-                {
-                    Directory.CreateDirectory(strPODirectory);
-                    MessageBox.Show("Folder have been created!!!");
-                }
-
-                else
-                {
-                    MessageBox.Show("Folder already exist!!!");
-
-                }
-                
-                ret = newPO.InsertNewPO(newPO);
-                if (0 == ret)
-                {
-                    MessageBox.Show(ConstantVar.CreateNewPOFail);
-                }
-                else
-                {
-                    MessageBox.Show(ConstantVar.CreateNewPOSuccess);
-                    UpdateCatalogPanel(txbPOName.Text);
-                    /*Create Bao Lanh Thuc Hien Hop Dong*/
-                    string fileBLTUPO_temp = @"F:\LP\BLPO_Template.docx";
-                    string strBLTUPOName = strPODirectory + "\\De nghi Bao lanh thuc hien & tam ung PO MSTT.docx";
-                    /*truy Suất thông tin của Contract*/
-                    ContractObj contractObj = new ContractObj();
-                    ContractObj.GetObjectContract(txbIDContract.Text, ref contractObj);
-                    this.Cursor = Cursors.WaitCursor;
-                    OpmWordHandler.Create_BLTU_PO(fileBLTUPO_temp, strBLTUPOName, txbPOName.Text, txbIDContract.Text, contractObj.NameContract, contractObj.DateSigned, TimePickerDateCreatedPO.Value.ToString("yyyy-MM-dd"),txbValuePO.Text, txbTUPO.Text, contractObj.SiteB, TimepickerDefaultActive.Value.ToString("yyyy-MM-dd"));
-                    /*Send Email To DF*/
-
-                    OPMEmailHandler.fSendEmail("Mail From DoanTD Gmail", strBLTUPOName);
-                    this.Cursor = Cursors.Default;
-                }
-
-                /*Create Bao Lanh Thuc Hien Hop Dong*/
-                //string filename = @"F:\LP\MSTT_Template.docx";
-                //string strBLHPName = strContractDirectory + "\\Bao_Lanh_Hop_Dong.docx";
-
-                //OpmWordHandler.CreateBLTH_Contract(filename, strBLHPName, tbContract.Text, tbBidName.Text, tbxDateSigned.Text, tbxSiteB.Text, txbGaranteeValue.Text, txbGaranteeActiveDate.Text);
-
-                /*Send Email To DF*/
-                //OPMEmailHandler.fSendEmail("Mail From DoanTD Gmail", strBLHPName);
-
-                //UpdateCatalogPanel(txbPOCode.Text);
-            }
-            //đọc file excel--Dưỡng
-            List<ListExpPO> listExpPOs = new List<ListExpPO>();
-            if(txbnamefilePO.Text!= null)
-            {
-                int retEx = OpmExcelHandler.fReadExcelFilePO(txbnamefilePO.Text,txbPOCode.Text,ref listExpPOs);
-                if(retEx == 1){
-                    ListExpPO listExpPO = new ListExpPO();
-                    int retInsert = listExpPO.InsertMultiListPO(listExpPOs);
-                    if(retInsert == 1)
-                    {
-
-                        MessageBox.Show("thông tin trong File PO đã lưu thành công");
-                    }
-                    else
-                    {
-                        MessageBox.Show("thông tin trong File PO không lưu được");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Đọc file không thành công");
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("chưa import file PO");
-            }
-            
+            PO_Thanh po = new PO_Thanh();
+            po.Id = txbPOCode.Text;
+            po.Po_number = txbPOName.Text;
+            po.Datecreated = TimePickerDateCreatedPO.Value;
+            po.Numberofdevice = double.Parse(txbNumberDevice.Text);
+            po.Dateconfirm = TimePickerDateConfirmPO.Value;
+            po.Dateperform = TimepickerDefaultActive.Value;
+            po.Dateline = TimePickerDeadLinePO.Value;
+            po.Totalvalue = double.Parse(txbValuePO.Text);
+            po.Tupo = int.Parse(txbTUPO.Text);
+            po.Id_contract = txbIDContract.Text;
+            if (Contract.Exist(txbIDContract.Text.Trim())) po.InsertOrUpdate();
+            else MessageBox.Show(string.Format("Không tồn tại hợp đồng {0}", txbIDContract.Text));
+            UpdateCatalogPanel("");
         }
 
         public void SetValueItemForPO(string idPO)
@@ -237,6 +159,25 @@ namespace OPM.GUI
         private void PurchaseOderInfor_Load(object sender, EventArgs e)
         {
             txbnamefilePO.ReadOnly = true;
+            txbKHMS.Enabled = false;
+            if (contract != null)
+            {
+                txbKHMS.Text = contract.KHMS;
+                txbIDContract.Text = contract.Id;
+                txbIDContract.Enabled = false;
+                if (po != null)
+                {
+                    txbPOCode.Text = po.Id;
+                    txbPOName.Text = po.Po_number;
+                    TimePickerDateCreatedPO.Value = po.Datecreated;
+                    txbNumberDevice.Text = po.Numberofdevice.ToString();
+                    TimePickerDateConfirmPO.Value = po.Dateconfirm;
+                    TimepickerDefaultActive.Value = po.Dateperform;
+                    TimePickerDeadLinePO.Value = po.Dateline;
+                    txbValuePO.Text = po.Totalvalue.ToString();
+                    txbTUPO.Text = po.Tupo.ToString();
+                }
+            }
         }
         public OpenFileDialog openFileExcel = new OpenFileDialog();
         public string sConnectionString= null;

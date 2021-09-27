@@ -70,10 +70,10 @@ namespace OPM.OPMEnginee
             Id = row["id"].ToString();
             Namecontract = row["namecontract"].ToString();
             Codeaccouting = row["codeaccouting"].ToString();
-            Datesigned = (row["datesigned"] == DBNull.Value) ? DateTime.Now : (DateTime)row["datesigned"];
+            Datesigned = (DateTime)row["datesigned"];
             Typecontract = row["typecontract"].ToString();
             Durationcontract = (int)row["durationcontract"];
-            Activedate = (row["activedate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["activedate"];
+            Activedate = (DateTime)row["activedate"];
             Valuecontract = (double)row["valuecontract"];
             Durationpo = (int)row["durationpo"];
             Id_siteA = row["id_siteA"].ToString();
@@ -81,7 +81,7 @@ namespace OPM.OPMEnginee
             Phuluc = row["phuluc"].ToString();
             Vbgurantee = row["vbgurantee"].ToString();
             KHMS = row["kHMS"].ToString();
-            ExperationDate = (row["experationDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["experationDate"];
+            ExperationDate = (DateTime)row["experationDate"];
             Blvalue = (int)row["blvalue"];
         }
         public Contract(string id)
@@ -94,10 +94,10 @@ namespace OPM.OPMEnginee
                 DataRow row = table.Rows[0];
                 Namecontract = row["namecontract"].ToString();
                 Codeaccouting = row["codeaccouting"].ToString();
-                Datesigned = (row["datesigned"]==DBNull.Value)? DateTime.Now:(DateTime)row["datesigned"];
+                Datesigned = (DateTime)row["datesigned"];
                 Typecontract = row["typecontract"].ToString();
                 Durationcontract = (int)row["durationcontract"];
-                Activedate = (row["activedate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["activedate"];
+                Activedate = (DateTime)row["activedate"];
                 Valuecontract = (double)row["valuecontract"];
                 Durationpo = (int)row["durationpo"];
                 Id_siteA = row["id_siteA"].ToString();
@@ -105,7 +105,7 @@ namespace OPM.OPMEnginee
                 Phuluc = row["phuluc"].ToString();
                 Vbgurantee = row["vbgurantee"].ToString();
                 KHMS = row["kHMS"].ToString();
-                ExperationDate = (row["experationDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["experationDate"];
+                ExperationDate = (DateTime)row["experationDate"];
                 Blvalue = (row["blvalue"]==DBNull.Value)?0:(int)row["blvalue"];
             }
         }
@@ -186,10 +186,6 @@ namespace OPM.OPMEnginee
                                     ref missing, ref missing, ref missing,
                                     ref missing, ref missing, ref missing, ref missing);
                 myDoc.Activate();
-                //Tạo thư mục
-                string folder = string.Format(@"D:\OPM\{0}", id.Trim().Replace('/', '-'));
-                Directory.CreateDirectory(folder);
-
                 //find and replace
                 OpmWordHandler.FindAndReplace(wordApp, "<Contract_Code>", id.Trim());
                 OpmWordHandler.FindAndReplace(wordApp, "<Now>", activedate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
@@ -199,6 +195,8 @@ namespace OPM.OPMEnginee
                 OpmWordHandler.FindAndReplace(wordApp, "<blvalue>", blvalue);
                 OpmWordHandler.FindAndReplace(wordApp, "<durationpo>", durationpo);
                 //Tạo file BLHĐ trong thư mục D:\OPM
+                string folder = string.Format(@"D:\OPM\{0}", id.Trim().Replace('/', '-'));
+                Directory.CreateDirectory(folder);
                 try
                 {
                     myDoc.SaveAs2(ref filename);
