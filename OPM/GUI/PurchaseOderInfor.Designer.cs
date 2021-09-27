@@ -228,6 +228,7 @@ namespace OPM.GUI
             this.txbDeadLine.Name = "txbDeadLine";
             this.txbDeadLine.Size = new System.Drawing.Size(80, 23);
             this.txbDeadLine.TabIndex = 1;
+            this.txbDeadLine.Text = "0";
             // 
             // label11
             // 
@@ -297,6 +298,7 @@ namespace OPM.GUI
             this.txbActiveAfter.Name = "txbActiveAfter";
             this.txbActiveAfter.Size = new System.Drawing.Size(80, 23);
             this.txbActiveAfter.TabIndex = 1;
+            this.txbActiveAfter.Text = "0";
             this.txbActiveAfter.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label15
