@@ -41,13 +41,11 @@ namespace OPM.GUI
             this.label5 = new System.Windows.Forms.Label();
             this.txbNumberDevice = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txbDurationConfirm = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.TimePickerDateConfirmPO = new System.Windows.Forms.DateTimePicker();
             this.TimepickerDefaultActive = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
             this.TimePickerDeadLinePO = new System.Windows.Forms.DateTimePicker();
-            this.txbDeadLine = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txbValuePO = new System.Windows.Forms.TextBox();
             this.dataGridViewPO = new System.Windows.Forms.DataGridView();
@@ -55,7 +53,6 @@ namespace OPM.GUI
             this.txbTUPO = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.txbActiveAfter = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.txbKHMS = new System.Windows.Forms.TextBox();
             this.btnNTKT = new System.Windows.Forms.Button();
@@ -71,7 +68,7 @@ namespace OPM.GUI
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(8, 515);
+            this.btnSave.Location = new System.Drawing.Point(8, 467);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(41, 23);
             this.btnSave.TabIndex = 0;
@@ -98,7 +95,7 @@ namespace OPM.GUI
             // 
             // btnNewDP
             // 
-            this.btnNewDP.Location = new System.Drawing.Point(380, 515);
+            this.btnNewDP.Location = new System.Drawing.Point(380, 467);
             this.btnNewDP.Name = "btnNewDP";
             this.btnNewDP.Size = new System.Drawing.Size(75, 23);
             this.btnNewDP.TabIndex = 3;
@@ -175,14 +172,6 @@ namespace OPM.GUI
             this.label6.TabIndex = 2;
             this.label6.Text = "Thời Hạn Confirm";
             // 
-            // txbDurationConfirm
-            // 
-            this.txbDurationConfirm.Location = new System.Drawing.Point(132, 190);
-            this.txbDurationConfirm.Name = "txbDurationConfirm";
-            this.txbDurationConfirm.Size = new System.Drawing.Size(80, 23);
-            this.txbDurationConfirm.TabIndex = 1;
-            this.txbDurationConfirm.Text = "2";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -194,16 +183,18 @@ namespace OPM.GUI
             // 
             // TimePickerDateConfirmPO
             // 
-            this.TimePickerDateConfirmPO.Location = new System.Drawing.Point(244, 190);
+            this.TimePickerDateConfirmPO.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.TimePickerDateConfirmPO.Location = new System.Drawing.Point(132, 190);
             this.TimePickerDateConfirmPO.Name = "TimePickerDateConfirmPO";
-            this.TimePickerDateConfirmPO.Size = new System.Drawing.Size(200, 23);
+            this.TimePickerDateConfirmPO.Size = new System.Drawing.Size(312, 23);
             this.TimePickerDateConfirmPO.TabIndex = 4;
             // 
             // TimepickerDefaultActive
             // 
-            this.TimepickerDefaultActive.Location = new System.Drawing.Point(244, 220);
+            this.TimepickerDefaultActive.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.TimepickerDefaultActive.Location = new System.Drawing.Point(132, 220);
             this.TimepickerDefaultActive.Name = "TimepickerDefaultActive";
-            this.TimepickerDefaultActive.Size = new System.Drawing.Size(200, 23);
+            this.TimepickerDefaultActive.Size = new System.Drawing.Size(312, 23);
             this.TimepickerDefaultActive.TabIndex = 4;
             // 
             // label9
@@ -217,18 +208,11 @@ namespace OPM.GUI
             // 
             // TimePickerDeadLinePO
             // 
-            this.TimePickerDeadLinePO.Location = new System.Drawing.Point(244, 250);
+            this.TimePickerDeadLinePO.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.TimePickerDeadLinePO.Location = new System.Drawing.Point(132, 250);
             this.TimePickerDeadLinePO.Name = "TimePickerDeadLinePO";
-            this.TimePickerDeadLinePO.Size = new System.Drawing.Size(200, 23);
+            this.TimePickerDeadLinePO.Size = new System.Drawing.Size(312, 23);
             this.TimePickerDeadLinePO.TabIndex = 4;
-            // 
-            // txbDeadLine
-            // 
-            this.txbDeadLine.Location = new System.Drawing.Point(132, 250);
-            this.txbDeadLine.Name = "txbDeadLine";
-            this.txbDeadLine.Size = new System.Drawing.Size(80, 23);
-            this.txbDeadLine.TabIndex = 1;
-            this.txbDeadLine.Text = "0";
             // 
             // label11
             // 
@@ -250,18 +234,19 @@ namespace OPM.GUI
             // dataGridViewPO
             // 
             this.dataGridViewPO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPO.Location = new System.Drawing.Point(12, 367);
+            this.dataGridViewPO.Location = new System.Drawing.Point(13, 380);
             this.dataGridViewPO.Name = "dataGridViewPO";
             this.dataGridViewPO.RowHeadersWidth = 62;
             this.dataGridViewPO.RowTemplate.Height = 25;
-            this.dataGridViewPO.Size = new System.Drawing.Size(431, 142);
+            this.dataGridViewPO.Size = new System.Drawing.Size(442, 81);
             this.dataGridViewPO.TabIndex = 5;
             // 
             // TimePickerDateCreatedPO
             // 
-            this.TimePickerDateCreatedPO.Location = new System.Drawing.Point(244, 130);
+            this.TimePickerDateCreatedPO.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.TimePickerDateCreatedPO.Location = new System.Drawing.Point(132, 130);
             this.TimePickerDateCreatedPO.Name = "TimePickerDateCreatedPO";
-            this.TimePickerDateCreatedPO.Size = new System.Drawing.Size(200, 23);
+            this.TimePickerDateCreatedPO.Size = new System.Drawing.Size(312, 23);
             this.TimePickerDateCreatedPO.TabIndex = 4;
             // 
             // txbTUPO
@@ -292,15 +277,6 @@ namespace OPM.GUI
             this.label13.TabIndex = 2;
             this.label13.Text = "%";
             // 
-            // txbActiveAfter
-            // 
-            this.txbActiveAfter.Location = new System.Drawing.Point(132, 220);
-            this.txbActiveAfter.Name = "txbActiveAfter";
-            this.txbActiveAfter.Size = new System.Drawing.Size(80, 23);
-            this.txbActiveAfter.TabIndex = 1;
-            this.txbActiveAfter.Text = "0";
-            this.txbActiveAfter.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -321,7 +297,7 @@ namespace OPM.GUI
             // 
             // btnNTKT
             // 
-            this.btnNTKT.Location = new System.Drawing.Point(299, 515);
+            this.btnNTKT.Location = new System.Drawing.Point(299, 467);
             this.btnNTKT.Name = "btnNTKT";
             this.btnNTKT.Size = new System.Drawing.Size(75, 23);
             this.btnNTKT.TabIndex = 9;
@@ -331,7 +307,7 @@ namespace OPM.GUI
             // 
             // btnBaoHiem
             // 
-            this.btnBaoHiem.Location = new System.Drawing.Point(218, 515);
+            this.btnBaoHiem.Location = new System.Drawing.Point(218, 467);
             this.btnBaoHiem.Name = "btnBaoHiem";
             this.btnBaoHiem.Size = new System.Drawing.Size(75, 23);
             this.btnBaoHiem.TabIndex = 10;
@@ -341,7 +317,7 @@ namespace OPM.GUI
             // 
             // btnConfirmPO
             // 
-            this.btnConfirmPO.Location = new System.Drawing.Point(137, 515);
+            this.btnConfirmPO.Location = new System.Drawing.Point(137, 467);
             this.btnConfirmPO.Name = "btnConfirmPO";
             this.btnConfirmPO.Size = new System.Drawing.Size(75, 23);
             this.btnConfirmPO.TabIndex = 11;
@@ -351,7 +327,7 @@ namespace OPM.GUI
             // 
             // btnKTKT
             // 
-            this.btnKTKT.Location = new System.Drawing.Point(55, 515);
+            this.btnKTKT.Location = new System.Drawing.Point(55, 467);
             this.btnKTKT.Name = "btnKTKT";
             this.btnKTKT.Size = new System.Drawing.Size(76, 23);
             this.btnKTKT.TabIndex = 12;
@@ -400,7 +376,7 @@ namespace OPM.GUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Yellow;
-            this.ClientSize = new System.Drawing.Size(476, 473);
+            this.ClientSize = new System.Drawing.Size(476, 544);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.importPO);
             this.Controls.Add(this.txbnamefilePO);
@@ -428,9 +404,6 @@ namespace OPM.GUI
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txbDeadLine);
-            this.Controls.Add(this.txbActiveAfter);
-            this.Controls.Add(this.txbDurationConfirm);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txbValuePO);
             this.Controls.Add(this.txbNumberDevice);
@@ -462,13 +435,11 @@ namespace OPM.GUI
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txbNumberDevice;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txbDurationConfirm;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker TimePickerDateConfirmPO;
         private System.Windows.Forms.DateTimePicker TimepickerDefaultActive;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DateTimePicker TimePickerDeadLinePO;
-        private System.Windows.Forms.TextBox txbDeadLine;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txbValuePO;
         private System.Windows.Forms.DataGridView dataGridViewPO;
@@ -476,7 +447,6 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox txbTUPO;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txbActiveAfter;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txbKHMS;
         private System.Windows.Forms.Button btnNTKT;

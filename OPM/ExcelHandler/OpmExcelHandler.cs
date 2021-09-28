@@ -440,7 +440,7 @@ namespace OPM.ExcelHandler
         }
         //show data on datagridview
         public static int fReadExcelFilePO2(string fname,ref System.Data.DataTable dt)
-        {   
+        {
             ExcelOffice.Range xlRange = null;
             ExcelOffice.Workbook xlWorkbook = null;
             ExcelOffice.Application xlApp = null;
@@ -458,9 +458,9 @@ namespace OPM.ExcelHandler
                 int rowCount = xlRange.Rows.Count;
                 int colCount = xlRange.Columns.Count;
                 int[] arrcolum = { 1, 2, 11 };
-                
-                int rowCounter ;
-                
+
+                int rowCounter;
+
                 dt.Columns.Add("STT");
                 dt.Columns.Add("Tên tỉnh");
                 dt.Columns.Add("Số lượng thiết bị");
@@ -468,11 +468,11 @@ namespace OPM.ExcelHandler
                 {
                     row = dt.NewRow();
                     rowCounter = 0;
-                    foreach(int j in arrcolum)
+                    foreach (int j in arrcolum)
                     {
-                        if(xlRange.Cells[i,j] != null)
+                        if (xlRange.Cells[i, j] != null)
                         {
-                          row[rowCounter] = (xlRange.Cells[i, j] as ExcelOffice.Range).Text;
+                            row[rowCounter] = (xlRange.Cells[i, j] as ExcelOffice.Range).Text;
                         }
                         else
                         {

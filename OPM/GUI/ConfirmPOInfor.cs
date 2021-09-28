@@ -7,7 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-
+using System.IO;
 namespace OPM.GUI
 {
     public partial class ConfirmPOInfor : Form
@@ -54,10 +54,31 @@ namespace OPM.GUI
 
             int ret = 0;
             /*Create Folder NTKT*/
-            string strContractDirectory = txbIDContract.Text.Replace('/', '_');
-            strContractDirectory = strContractDirectory.Replace('-', '_');
-            string strPODirectory = "F:\\OPM\\" + strContractDirectory + "\\" + txbPONumber.Text;
+            string DriveName = "";
+            DriveInfo[] driveInfos = DriveInfo.GetDrives();
+            foreach (DriveInfo driveInfo in driveInfos)
+            {
+                //MessageBox.Show(driveInfo.Name.ToString());
+                if (String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"D:\") == 0 || String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"E:\") == 0)
+                {
+                    //MessageBox.Show(driveInfo.Name.ToString().Substring(0, 1));
+                    DriveName = driveInfo.Name.ToString().Substring(0, 3);
+                    break;
+                }
+            }
+            //Check xem Forder đã đc tạo hay chưa? nếu chưa tạo hì tạo, còn nếu đã tạo rồi thì thôi
+            //
+            string strPODirectory = DriveName + "OPM\\" + txbPONumber.Text;
+            if (!Directory.Exists(strPODirectory))
+            {
+                Directory.CreateDirectory(strPODirectory);
+                MessageBox.Show("Folder have been created!!!");
+            }
 
+            else
+            {
+                MessageBox.Show("Folder already exist!!!");
+            }
             ret = newConfirmPOObj.CheckExistConfirmPO(txbConfirmPOID.Text);
             if (0 == ret)
             {
@@ -69,10 +90,8 @@ namespace OPM.GUI
                 else
                 {
                     MessageBox.Show(ConstantVar.CreateNewConfirmPOSuccess);
-                    /*Create Bao Lanh Thuc Hien Hop Dong*/
-                    string fileCVXNDH_temp = @"F:\LP\CV_XNDH_Template.docx";
-                    string strCVXNDHName = strPODirectory + "\\CV Xác Nhận Đơn Hàng_" + txbPONumber.Text + "_" + txbIDContract.Text + ".docx";
-                    strCVXNDHName = strCVXNDHName.Replace("/", "_");
+                    string fileCVXNDH_temp = DriveName + @"LP\BVXNHLDH.docx";
+                    string strCVXNDHName = strPODirectory + @"\Xac nhan don hang.docx";// + txbPONumber.Text + "_" + txbIDContract.Text + ".docx";
                     ContractObj contractObj = new ContractObj();
                     ret = ContractObj.GetObjectContract(txbIDContract.Text, ref contractObj);
                     PO pO = new PO();
@@ -81,9 +100,10 @@ namespace OPM.GUI
                     OpmWordHandler.Create_VBConfirm_PO(fileCVXNDH_temp, strCVXNDHName, newConfirmPOObj, pO, contractObj);
                     this.Cursor = Cursors.Default;
                 }
-                /*Create File Nghiệm Thu Kỹ Thuật*/
-                /*Request Update Catalog Admin*/
             }
+            //requestDashBoardPurchaseOderForm(txbPOID.Text, txbKHMS.Text);
+            //PurchaseOderInfor purchaseOderInfor = new PurchaseOderInfor();
+            //return;
         }
-        }
+    }
 }

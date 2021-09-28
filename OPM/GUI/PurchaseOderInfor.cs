@@ -27,7 +27,7 @@ namespace OPM.GUI
         public RequestDashBoardOpenNTKTForm requestDashBoardOpenNTKTForm;
 
         /*Delegate Request Dashboard Open Confirm form*/
-        public delegate void RequestDashBoardOpenConfirmForm(string strIDContract, string strKHMS, string strPONumber, string strPOID);
+        public delegate void RequestDashBoardOpenConfirmForm(string strKHMS, string strIDContract, string strPONumber, string strPOID);
         public RequestDashBoardOpenConfirmForm requestDashBoardOpenConfirmPOForm;
 
         public delegate void RequestDashBoardPurchaseOderForm(string strIDPO, string strKHMS);
@@ -66,6 +66,81 @@ namespace OPM.GUI
             if (Contract.Exist(txbIDContract.Text.Trim())) po.InsertOrUpdate();
             else MessageBox.Show(string.Format("Không tồn tại hợp đồng {0}", txbIDContract.Text));
             UpdateCatalogPanel("");
+            //Export ra file Word - Check và tạo forder theo mẫu
+            int ret = 0;
+            string DriveName = "";
+            DriveInfo[] driveInfos = DriveInfo.GetDrives();
+            foreach (DriveInfo driveInfo in driveInfos)
+            {
+                //MessageBox.Show(driveInfo.Name.ToString());
+                if (String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"D:\") == 0 || String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"E:\") == 0)
+                {
+                    //MessageBox.Show(driveInfo.Name.ToString().Substring(0, 1));
+                    DriveName = driveInfo.Name.ToString().Substring(0, 3);
+                    break;
+                }
+            }
+            string strPODirectory = DriveName + "OPM\\" + txbPOName.Text;
+            ret = po.GetDetailPO(txbPOCode.Text);
+            if (0 == ret)
+            {
+                if (!Directory.Exists(strPODirectory))
+                {
+                    Directory.CreateDirectory(strPODirectory);
+                }
+                MessageBox.Show(ConstantVar.CreateNewPOSuccess);
+                UpdateCatalogPanel(txbPOName.Text);
+                /*Create Bao Lanh Thuc Hien Hop Dong*/
+                Directory.CreateDirectory(DriveName + "LP");
+                string fileBLTUPO_temp = DriveName + @"LP\BLPO_Template.docx";
+                //string fileBLTUPO_temp = @"F:\LP\BLPO_Template.docx";
+                string strBLTUPOName = strPODirectory + "\\De nghi Bao lanh thuc hien & tam ung.docx";
+                /*truy Suất thông tin của Contract*/
+                ContractObj contractObj = new ContractObj();
+                ContractObj.GetObjectContract(txbIDContract.Text, ref contractObj);
+                this.Cursor = Cursors.WaitCursor;
+                OpmWordHandler.Create_BLTU_PO(fileBLTUPO_temp, strBLTUPOName, txbPOName.Text, txbIDContract.Text, contractObj.NameContract, contractObj.DateSigned, TimePickerDateCreatedPO.Value.ToString("yyyy-MM-dd"), txbValuePO.Text, txbTUPO.Text, contractObj.SiteB, TimepickerDefaultActive.Value.ToString("yyyy-MM-dd"));
+                /*Send Email To DF*/
+                string fileBLTUPO_temp1 = DriveName + @"LP\VBDNTU.docx";
+                //string fileBLTUPO_temp = @"F:\LP\BLPO_Template.docx";
+                string strBLTUPOName1 = strPODirectory + "\\Van ban de nghi tam ung.docx";
+                /*truy Suất thông tin của Contract*/
+                ContractObj contractObj1 = new ContractObj();
+                ContractObj.GetObjectContract(txbIDContract.Text, ref contractObj1);
+                this.Cursor = Cursors.WaitCursor;
+                OpmWordHandler.Create_VBTUHD(fileBLTUPO_temp1, strBLTUPOName1, txbPOName.Text, txbIDContract.Text, contractObj1.NameContract, contractObj1.DateSigned, TimePickerDateCreatedPO.Value.ToString("yyyy-MM-dd"), txbValuePO.Text, txbTUPO.Text, contractObj1.SiteB, TimepickerDefaultActive.Value.ToString("yyyy-MM-dd"));
+                /*Send Email To DF*/
+                this.Cursor = Cursors.Default;
+            }
+            List<ListExpPO> listExpPOs = new List<ListExpPO>();
+            //Đang xử lý
+            if (1 =! 1)
+            {
+                int retEx = OpmExcelHandler.fReadExcelFilePO(txbnamefilePO.Text, txbPOCode.Text, ref listExpPOs);
+                if (retEx == 1)
+                {
+                    ListExpPO listExpPO = new ListExpPO();
+                    int retInsert = listExpPO.InsertMultiListPO(listExpPOs);
+                    if (retInsert == 1)
+                    {
+
+                        MessageBox.Show("thông tin trong File PO đã lưu thành công");
+                    }
+                    else
+                    {
+                        MessageBox.Show("thông tin trong File PO không lưu được");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Đọc file không thành công");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Chưa import file Phan bo hop dong");
+            }
         }
 
         public void SetValueItemForPO(string idPO)
@@ -184,7 +259,7 @@ namespace OPM.GUI
         private void importPO_Click(object sender, EventArgs e)
         {
            // openFileExcel.Multiselect = true;
-             openFileExcel.Filter = "Excel Files(.xls)|*.xls| Excel Files(.xlsx)| *.xlsx | Excel Files(*.xlsm) | *.xlsm";
+           //  openFileExcel.Filter = "Excel Files(.xls)|*.xls| Excel Files(.xlsx)| *.xlsx | Excel Files(*.xlsm) | *.xlsm";
             if (openFileExcel.ShowDialog() == DialogResult.OK)
             {
                 if (File.Exists(openFileExcel.FileName))
