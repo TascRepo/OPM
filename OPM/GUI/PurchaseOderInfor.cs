@@ -114,7 +114,7 @@ namespace OPM.GUI
             }
             List<ListExpPO> listExpPOs = new List<ListExpPO>();
             //Đang xử lý
-            if (1 =! 1)
+            if (1 != 1)
             {
                 int retEx = OpmExcelHandler.fReadExcelFilePO(txbnamefilePO.Text, txbPOCode.Text, ref listExpPOs);
                 if (retEx == 1)
