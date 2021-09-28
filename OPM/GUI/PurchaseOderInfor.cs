@@ -52,6 +52,22 @@ namespace OPM.GUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            List<ListExpPO> listExpPOs = new List<ListExpPO>();
+            //Đang xử lý
+            if (txbnamefilePO.Text != null)
+            {
+                for(int i=0; i < dataGridViewPO.Rows.Count;i++)
+                {
+                    ListExpPO listExpPO = new ListExpPO();
+                    int retInsert = listExpPO.InsertListPO(txbPOCode.Text, dataGridViewPO.Rows[i].Cells[2].ToString(), int.Parse(txbNumberDevice.Text), txbKHMS.Text);
+                }
+                MessageBox.Show("Thông tin trong File PO đã lưu thành công");
+            }
+            else
+            {
+                MessageBox.Show("Xử lý thông tin trong file không thành công");
+            }
+            ////
             PO_Thanh po = new PO_Thanh();
             po.Id = txbPOCode.Text;
             po.Po_number = txbPOName.Text;
@@ -112,35 +128,7 @@ namespace OPM.GUI
                 /*Send Email To DF*/
                 this.Cursor = Cursors.Default;
             }
-            List<ListExpPO> listExpPOs = new List<ListExpPO>();
-            //Đang xử lý
-            if (1 != 1)
-            {
-                int retEx = OpmExcelHandler.fReadExcelFilePO(txbnamefilePO.Text, txbPOCode.Text, ref listExpPOs);
-                if (retEx == 1)
-                {
-                    ListExpPO listExpPO = new ListExpPO();
-                    int retInsert = listExpPO.InsertMultiListPO(listExpPOs);
-                    if (retInsert == 1)
-                    {
-
-                        MessageBox.Show("thông tin trong File PO đã lưu thành công");
-                    }
-                    else
-                    {
-                        MessageBox.Show("thông tin trong File PO không lưu được");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Đọc file không thành công");
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Chưa import file Phan bo hop dong");
-            }
+            
         }
 
         public void SetValueItemForPO(string idPO)
