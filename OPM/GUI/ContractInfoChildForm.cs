@@ -240,6 +240,7 @@ namespace OPM.GUI
             btnRemove.Enabled = true;
             btnNewPO.Enabled = true;
             //Cập nhật trên TreeView
+            OpmWordHandler.Temp1_CreatContractGuarantee(tbContract.Text.Trim());
             UpdateCatalogPanel(tbContract.Text.Trim());
         }
     }

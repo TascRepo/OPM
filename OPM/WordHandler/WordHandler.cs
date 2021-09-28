@@ -7,6 +7,9 @@ using WordOffice = Microsoft.Office.Interop.Word;
 using System.Reflection;
 using OPM.OPMEnginee;
 using OPM.GUI;
+using System.Globalization;
+using OPM.DBHandler;
+
 namespace OPM.WordHandler
 {
     class OpmWordHandler
@@ -23,6 +26,176 @@ namespace OPM.WordHandler
             set { _nameWordfile = value; }
             get { return _nameWordfile; }
         }
+        //Tạo mẫu 8
+        public static string Temp8_NTKTRequest(string id)
+        {
+            PO_Thanh po = new PO_Thanh(id);
+            Contract contract = new Contract(po.Id_contract);
+            object filename = string.Format(@"D:\OPM\{0}\{1}\XacnhanPO_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
+            object path = @"D:\OPM\Template\Mẫu 3. VB xác nhận hiệu lực đơn hàng.docx";
+            if (File.Exists(path.ToString()))
+            {
+                object readOnly = true;
+                //object isVisible = false;
+                wordApp.Visible = false;
+
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                //find and replace
+                OpmWordHandler.FindAndReplace(wordApp, "<Ngày tháng năm>", string.Format("ngày {0} tháng {1} năm {2}", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year));
+                //OpmWordHandler.FindAndReplace(wordApp, "<Now>", contract.Activedate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<ConfirmPO_Number>", po.Confirmpo_number);
+                //OpmWordHandler.FindAndReplace(wordApp, "<Signed_Date>", contract.Datesigned.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<SiteA>", contract.Id_siteA);
+                OpmWordHandler.FindAndReplace(wordApp, "<PO_Number>", po.Po_number);
+                OpmWordHandler.FindAndReplace(wordApp, "<Contract_ID>", contract.Id);
+                OpmWordHandler.FindAndReplace(wordApp, "<Contract_Name>", contract.Namecontract);
+                OpmWordHandler.FindAndReplace(wordApp, "<KHMS>", contract.KHMS);
+                OpmWordHandler.FindAndReplace(wordApp, "<Contract_DateCreated>", contract.Datesigned.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<PO_ID>", po.Id);
+                OpmWordHandler.FindAndReplace(wordApp, "<PO_DateCreated>", po.Datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<PO_ConfirmDateActive>", po.Confirmpo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+
+                //Tạo file BLHĐ trong thư mục D:\OPM
+                string folder = string.Format(@"D:\OPM\{0}\{1}", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'));
+                Directory.CreateDirectory(folder);
+                try
+                {
+                    myDoc.SaveAs2(ref filename);
+                    MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+                myDoc.Close();
+                wordApp.Quit();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy bản mẫu 3.docx! ");
+            }
+            return filename.ToString();
+        }
+
+        //Tạo mẫu 3
+        public static string Temp3_CreatPOConfirm(string id)
+        {
+            PO_Thanh po = new PO_Thanh(id);
+            Contract contract = new Contract(po.Id_contract);
+            object filename = string.Format(@"D:\OPM\{0}\{1}\XacnhanPO_{2}.docx", contract.Id.Trim().Replace('/', '-'),po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
+            object path = @"D:\OPM\Template\Mẫu 3. VB xác nhận hiệu lực đơn hàng.docx";
+            if (File.Exists(path.ToString()))
+            {
+                object readOnly = true;
+                //object isVisible = false;
+                wordApp.Visible = false;
+
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                //find and replace
+                OpmWordHandler.FindAndReplace(wordApp, "<Ngày tháng năm>", string.Format("ngày {0} tháng {1} năm {2}",DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year));
+                //OpmWordHandler.FindAndReplace(wordApp, "<Now>", contract.Activedate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<ConfirmPO_Number>", po.Confirmpo_number);
+                //OpmWordHandler.FindAndReplace(wordApp, "<Signed_Date>", contract.Datesigned.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<SiteA>", contract.Id_siteA);
+                OpmWordHandler.FindAndReplace(wordApp, "<PO_Number>", po.Po_number);
+                OpmWordHandler.FindAndReplace(wordApp, "<Contract_ID>", contract.Id);
+                OpmWordHandler.FindAndReplace(wordApp, "<Contract_Name>", contract.Namecontract);
+                OpmWordHandler.FindAndReplace(wordApp, "<KHMS>", contract.KHMS);
+                OpmWordHandler.FindAndReplace(wordApp, "<Contract_DateCreated>", contract.Datesigned.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<PO_ID>", po.Id);
+                OpmWordHandler.FindAndReplace(wordApp, "<PO_DateCreated>", po.Datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<PO_ConfirmDateActive>", po.Confirmpo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+
+                //Tạo file BLHĐ trong thư mục D:\OPM
+                string folder = string.Format(@"D:\OPM\{0}\{1}", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'));
+                Directory.CreateDirectory(folder);
+                try
+                {
+                    myDoc.SaveAs2(ref filename);
+                    MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+                myDoc.Close();
+                wordApp.Quit();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy bản mẫu 3.docx! ");
+            }
+            return filename.ToString();
+        }
+
+
+        //Tạo mẫu 1
+        public static string Temp1_CreatContractGuarantee(string id)
+        {
+            Contract contract = new Contract(id);
+            object filename = string.Format(@"D:\OPM\{0}\BLHD_{0}.docx", id.Trim().Replace('/', '-'));
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
+            object path = @"D:\OPM\Template\Mẫu 1. Đề nghị mở bảo lãnh thực hiện HĐ.docx";
+            if (File.Exists(path.ToString()))
+            {
+                object readOnly = true;
+                //object isVisible = false;
+                wordApp.Visible = false;
+
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                //find and replace
+                OpmWordHandler.FindAndReplace(wordApp, "<Contract_Code>", id.Trim());
+                OpmWordHandler.FindAndReplace(wordApp, "<Now>", contract.Activedate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<Contract_Name>", contract.Namecontract);
+                OpmWordHandler.FindAndReplace(wordApp, "<Signed_Date>", contract.Datesigned.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<Site_A>", contract.Id_siteA);
+                OpmWordHandler.FindAndReplace(wordApp, "<blvalue>", contract.Blvalue);
+                OpmWordHandler.FindAndReplace(wordApp, "<durationpo>", contract.Durationpo);
+                //Tạo file BLHĐ trong thư mục D:\OPM
+                string folder = string.Format(@"D:\OPM\{0}", id.Trim().Replace('/', '-'));
+                Directory.CreateDirectory(folder);
+                try
+                {
+                    myDoc.SaveAs2(ref filename);
+                    MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+                myDoc.Close();
+                wordApp.Quit();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy bản mẫu 1! ");
+            }
+            return filename.ToString();
+        }
+
         public static void FindAndReplace(WordOffice.Application wordApp, object ToFindText, object replaceWithText)
         {
             object matchCase = true;
