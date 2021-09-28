@@ -361,14 +361,14 @@ namespace OPM.ExcelHandler
 
                 xlApp = new ExcelOffice.Application();
                 xlWorkbook = xlApp.Workbooks.Open(fname);
-                xlWorksheet = (ExcelOffice._Worksheet)xlWorkbook.Sheets[3];
+                xlWorksheet = (ExcelOffice._Worksheet)xlWorkbook.Sheets[1];
                 xlRange = xlWorksheet.UsedRange;
 
                 string xName = xlWorksheet.Name.ToString();
                 int rowCount = xlRange.Rows.Count;
                 int colCount = xlRange.Columns.Count;
-                string nameOfD= Convert.ToString((xlRange.Cells[5, 9] as ExcelOffice.Range).Text);
-                for (int i = 6; i <= rowCount; i++)
+                string nameOfD= Convert.ToString((xlRange.Cells[3, 11] as ExcelOffice.Range).Text);
+                for (int i = 11; i <= rowCount; i++)
                 {
                     string index = Convert.ToString((xlRange.Cells[i, 1] as ExcelOffice.Range).Text);
                     if (string.Empty != index )
@@ -440,7 +440,7 @@ namespace OPM.ExcelHandler
         }
         //show data on datagridview
         public static int fReadExcelFilePO2(string fname,ref System.Data.DataTable dt)
-        {   
+        {
             ExcelOffice.Range xlRange = null;
             ExcelOffice.Workbook xlWorkbook = null;
             ExcelOffice.Application xlApp = null;
@@ -448,31 +448,52 @@ namespace OPM.ExcelHandler
             DataRow row;
             try
             {
-
                 xlApp = new ExcelOffice.Application();
                 xlWorkbook = xlApp.Workbooks.Open(fname);
-                xlWorksheet = (ExcelOffice._Worksheet)xlWorkbook.Sheets[3];
+                //xlWorksheet = (ExcelOffice._Worksheet)xlWorkbook.Sheets[3];
+                //Hiện giờ chỉ có 1 sheet đầu tiên nên Sheet[1]
+                xlWorksheet = (ExcelOffice._Worksheet)xlWorkbook.Sheets[1];
                 xlRange = xlWorksheet.UsedRange;
 
                 string xName = xlWorksheet.Name.ToString();
                 int rowCount = xlRange.Rows.Count;
+                //Hiển thị xem có tổng cộng bao nhiêu hàng
+                //MessageBox.Show(rowCount.ToString()); 72
                 int colCount = xlRange.Columns.Count;
-                int[] arrcolum = { 1, 2, 11 };
-                
-                int rowCounter ;
-                
+                //Hiển thị xem có tổng cộng bao nhiêu cột
+                //MessageBox.Show(colCount.ToString()); 82
+                int[] arrcolum = { 1, 3, 4 };
+                int rowCounter;
+                int StartCells = 0;
                 dt.Columns.Add("STT");
-                dt.Columns.Add("Tên tỉnh");
-                dt.Columns.Add("Số lượng thiết bị");
-                for (int i = 6; i <= rowCount; i++)
+                dt.Columns.Add("VNPT tỉnh");
+                dt.Columns.Add("Số lượng ONT");
+                //Tìm hàng bắt đầy chạy STT
+                for (int i = 1; i <= rowCount; i++)
+                {
+                    row = dt.NewRow();
+                    if (xlRange.Cells[i, 1] != null)
+                    {
+                        row[1] = (xlRange.Cells[i, 1] as ExcelOffice.Range).Text;
+                        if (row[1].ToString() == "STT")
+                        {
+                            StartCells = i;
+                            break;
+                        }
+                    }
+                }
+                //
+                //for (int i = 6; i <= rowCount; i++)
+                //MessageBox.Show(StartCells.ToString());
+                for (int i = StartCells + 2; i <= rowCount; i++)
                 {
                     row = dt.NewRow();
                     rowCounter = 0;
-                    foreach(int j in arrcolum)
+                    foreach (int j in arrcolum)
                     {
-                        if(xlRange.Cells[i,j] != null)
+                        if (xlRange.Cells[i, j] != null)
                         {
-                          row[rowCounter] = (xlRange.Cells[i, j] as ExcelOffice.Range).Text;
+                            row[rowCounter] = (xlRange.Cells[i, j] as ExcelOffice.Range).Text;
                         }
                         else
                         {

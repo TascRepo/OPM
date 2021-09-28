@@ -73,6 +73,22 @@ namespace OPM.DBHandler
             Bltupo_datecreated = bltupo_datecreated;
             Confirmpo_dateactive = confirmpo_dateactive;
         }
+        public int GetDetailPO(string strQueryOne)
+        {
+            string strQuery = "select * from PO where id=" + "/'" + strQueryOne + "/'";
+            PO_Thanh newPO = new PO_Thanh();
+            DataSet ds = new DataSet();
+            int ret = OPMDBHandler.fQuerryData(strQuery, ref ds);
+            if (0 != ds.Tables.Count)
+            {
+                newPO.Id = (string)ds.Tables[0].Rows[0].ItemArray[0];
+            }
+            else
+            {
+                return 0;
+            }
+            return 1;
+        }
         public PO_Thanh(DataRow row)
         {
             Id = row["id"].ToString();

@@ -15,6 +15,14 @@ namespace OPM.OPMEnginee
         public string IdProvince { get => idProvince; set => idProvince = value; }
         public int NumberOfDevice { get => numberOfDevice; set => numberOfDevice = value; }
         public string NameOfDevice { get => nameOfDevice; set => nameOfDevice = value; }
+        public ListExpPO () { }
+        public ListExpPO(string _idPO, string _idProvince, int _numberOfDevice, string _nameOfDevice) 
+        {
+            this.idPO = _idPO;
+            this.idProvince = _idProvince;
+            this.numberOfDevice = _numberOfDevice;
+            this.nameOfDevice = _nameOfDevice;
+        }
         public int InsertListPO(ListExpPO listExpPO)
         {
             string strInsertListpo = "INSERT INTO ListExpected_PO VALUES (";
@@ -32,6 +40,26 @@ namespace OPM.OPMEnginee
             {
                 return 0;
             }else
+                return 1;
+        }
+        public int InsertListPO(string _idPO, string _idProvince, int _numberOfDevice, string _nameOfDevice)
+        {
+            string strInsertListpo = "INSERT INTO ListExpected_PO VALUES (";
+            strInsertListpo += "'";
+            strInsertListpo += _idPO;
+            strInsertListpo += "','";
+            strInsertListpo += _idProvince;
+            strInsertListpo += "','";
+            strInsertListpo += _numberOfDevice;
+            strInsertListpo += "','";
+            strInsertListpo += _nameOfDevice;
+            strInsertListpo += "')";
+            int ret = OPM.DBHandler.OPMDBHandler.fInsertData(strInsertListpo);
+            if (ret == 0)
+            {
+                return 0;
+            }
+            else
                 return 1;
         }
         public int InsertMultiListPO(List<ListExpPO> listExpPOs)

@@ -180,6 +180,9 @@ namespace OPM.GUI
                     purchaseOderInfor.requestDashBoardOpenNTKTForm = new PurchaseOderInfor.RequestDashBoardOpenNTKTForm(OpenNTKTForm);
                     //purchaseOderInfor.SetValueItemForPO(temp[1]);
                     purchaseOderInfor.requestDaskboardOpenDP = new PurchaseOderInfor.RequestDaskboardOpenDP(OpenDpForm);
+                    //Click vao ComfirmPO
+                    purchaseOderInfor.requestDashBoardOpenConfirmPOForm = new PurchaseOderInfor.RequestDashBoardOpenConfirmForm(OpenConfirmPOForm);
+                    //
                     OpenChidForm(purchaseOderInfor);
                     break;
                 case ConstantVar.DPType:
