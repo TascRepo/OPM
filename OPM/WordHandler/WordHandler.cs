@@ -6,10 +6,11 @@ using System.Windows.Forms;
 using WordOffice = Microsoft.Office.Interop.Word;
 using System.Reflection;
 using OPM.OPMEnginee;
+using OPM.WordHandler;
 using OPM.GUI;
 using System.Globalization;
 using OPM.DBHandler;
-
+using System.IO;
 namespace OPM.WordHandler
 {
     class OpmWordHandler
@@ -86,6 +87,215 @@ namespace OPM.WordHandler
         }
 
         //Tạo mẫu 3
+        public static void Word_POConfirm(string id)
+        {
+            PO_Thanh po = new PO_Thanh(id);
+            Contract contract = new Contract(po.Id_contract);
+            //Khởi tạo vào check forder
+            string DriveName = "";
+            DriveInfo[] driveInfos = DriveInfo.GetDrives();
+            foreach (DriveInfo driveInfo in driveInfos)
+            {
+                if (String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"D:\") == 0 || String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"E:\") == 0)
+                {
+                    DriveName = driveInfo.Name.ToString().Substring(0, 3);
+                    break;
+                }
+            }
+            //Check xem forder đã đc khởi tạo hay chưa?
+            //Nếu chưa khởi tạo thì tiên hành khởi tạo
+            string FoderName = String.Format(po.Id);
+            string strPODirectory = DriveName + "OPM\\" + po.Po_number + "\\" + FoderName; 
+            if (!Directory.Exists(strPODirectory))
+            {
+                Directory.CreateDirectory(strPODirectory);
+                MessageBox.Show("Folder đã được khởi tạo, có thể bắt đầu lưu trữ");
+            }
+            object filename = strPODirectory + @"\Xac nhan don hang.docx";
+            //object filename = string.Format(DriveName + @"\OPM\{0}\{1}\XacnhanPO_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
+            //
+            object path = DriveName + @"LP\Mau 3. VB xac nhan hieu luc don hang.docx";
+            if (File.Exists(path.ToString()))
+            {
+                object readOnly = false;
+                object isVisible = false;
+                wordApp.Visible = false;
+
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                OpmWordHandler.FindAndReplace(wordApp, "<dd>", " " + DateTime.Now.ToString("dd") + " ");
+                OpmWordHandler.FindAndReplace(wordApp, "<MM>", " " + DateTime.Now.ToString("MM") + " ");
+                OpmWordHandler.FindAndReplace(wordApp, "<yyyy>", " " + DateTime.Now.ToString("yyyy") + " ");
+                OpmWordHandler.FindAndReplace(wordApp, "<ConfirmPO_Number>", po.Confirmpo_number);
+                //OpmWordHandler.FindAndReplace(wordApp, "<Signed_Date>", contract.Datesigned.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<SiteA>", contract.Id_siteA);
+                OpmWordHandler.FindAndReplace(wordApp, "<PO_Number>", po.Po_number);
+                OpmWordHandler.FindAndReplace(wordApp, "<Contract_ID>", contract.Id);
+                OpmWordHandler.FindAndReplace(wordApp, "<Contract_Name>", contract.Namecontract);
+                OpmWordHandler.FindAndReplace(wordApp, "<KHMS>", contract.KHMS);
+                OpmWordHandler.FindAndReplace(wordApp, "<Contract_DateCreated>", contract.Datesigned.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<PO_ID>", po.Id);
+                OpmWordHandler.FindAndReplace(wordApp, "<PO_DateCreated>", po.Datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<PO_ConfirmDateActive>", po.Confirmpo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                //
+                //Save as
+                myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing);
+                MessageBox.Show(string.Format("Đã tạo file xac nhan hieu luc dh thành công"));
+                myDoc.Close();
+                wordApp.Quit();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy bản mẫu");
+            }
+        }
+        //Tạo mẫu 4 + 5
+        public static void Word_POTamUng(string id)
+        {
+            PO_Thanh po = new PO_Thanh(id);
+            Contract contract = new Contract(po.Id_contract);
+            //Khởi tạo vào check forder
+            string DriveName = "";
+            DriveInfo[] driveInfos = DriveInfo.GetDrives();
+            foreach (DriveInfo driveInfo in driveInfos)
+            {
+                if (String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"D:\") == 0 || String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"E:\") == 0)
+                {
+                    DriveName = driveInfo.Name.ToString().Substring(0, 3);
+                    break;
+                }
+            }
+            //Check xem forder đã đc khởi tạo hay chưa?
+            //Nếu chưa khởi tạo thì tiên hành khởi tạo
+            string FoderName = String.Format(po.Id);
+            string strPODirectory = DriveName + "OPM\\" + po.Po_number + "\\" + FoderName;
+            if (!Directory.Exists(strPODirectory))
+            {
+                Directory.CreateDirectory(strPODirectory);
+                MessageBox.Show("Folder đã được khởi tạo, có thể bắt đầu lưu trữ");
+            }
+            object filename = strPODirectory + @"\Van ban de nghi tam ung.docx";
+            //object filename = string.Format(DriveName + @"\OPM\{0}\{1}\XacnhanPO_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
+            //
+            object path = DriveName + @"LP\Mau 5. Van ban mo tam ung PO.docx";
+            if (File.Exists(path.ToString()))
+            {
+                object readOnly = false;
+                object isVisible = false;
+                wordApp.Visible = false;
+
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                FindAndReplace(wordApp, "<PO_Name>", " " + po.Po_number);
+                FindAndReplace(wordApp, "<Contract_ID>", " " + contract.Id);
+                FindAndReplace(wordApp, "<Contract_Name>", " " + contract.Namecontract);
+                FindAndReplace(wordApp, "<Signed_DateContract>", " " + po.Dateconfirm.ToString());
+                FindAndReplace(wordApp, "<Signed_DatePO>", " " + po.Datecreated.ToString());
+                FindAndReplace(wordApp, "<Total_Value>", " " + po.Totalvalue);
+                FindAndReplace(wordApp, "<Value_Tamung>", " " + po.Tupo);
+                FindAndReplace(wordApp, "<Site_B>", " " + contract.Id_siteB);
+                FindAndReplace(wordApp, "<Active_Date>", " " + po.Datecreated.ToString());
+                //Save as
+                myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing);
+                MessageBox.Show(string.Format("Đã tạo file bảo lãnh thành công"));
+                myDoc.Close();
+                wordApp.Quit();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy bản mẫu");
+            }
+        }
+        //Tạo mẫu 6
+        public static void Word_POBaoLanh(string id)
+        {
+            PO_Thanh po = new PO_Thanh(id);
+            Contract contract = new Contract(po.Id_contract);
+            //Khởi tạo vào check forder
+            string DriveName = "";
+            DriveInfo[] driveInfos = DriveInfo.GetDrives();
+            foreach (DriveInfo driveInfo in driveInfos)
+            {
+                if (String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"D:\") == 0 || String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"E:\") == 0)
+                {
+                    DriveName = driveInfo.Name.ToString().Substring(0, 3);
+                    break;
+                }
+            }
+            //Check xem forder đã đc khởi tạo hay chưa?
+            //Nếu chưa khởi tạo thì tiên hành khởi tạo
+            string FoderName = String.Format(po.Id);
+            string strPODirectory = DriveName + "OPM\\" + po.Po_number + "\\" + FoderName;
+            if (!Directory.Exists(strPODirectory))
+            {
+                Directory.CreateDirectory(strPODirectory);
+                MessageBox.Show("Folder đã được khởi tạo, có thể bắt đầu lưu trữ");
+            }
+            object filename = strPODirectory + @"\Bao lanh PO.docx";
+            //object filename = string.Format(DriveName + @"\OPM\{0}\{1}\XacnhanPO_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
+            //
+            object path = DriveName + @"LP\Mau 4. Van ban mo thuc hien bao lanh PO.docx";
+            if (File.Exists(path.ToString()))
+            {
+                object readOnly = false;
+                object isVisible = false;
+                wordApp.Visible = false;
+
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                FindAndReplace(wordApp, "<PO_Name>", " " + po.Po_number);
+                FindAndReplace(wordApp, "<Contract_ID>", " " + contract.Id);
+                FindAndReplace(wordApp, "<Contract_Name>", " " + contract.Namecontract);
+                FindAndReplace(wordApp, "<Signed_DateContract>", " " + contract.Datesigned.ToString());
+                FindAndReplace(wordApp, "<Signed_DatePO>", " " + contract.Datesigned.ToString());
+                FindAndReplace(wordApp, "<Total_Value>", " " + contract.Valuecontract);
+                FindAndReplace(wordApp, "<Value_Tamung>", " " + po.Tupo);
+                FindAndReplace(wordApp, "<Site_B>", " " + contract.Id_siteB);
+                FindAndReplace(wordApp, "<Active_Date>", " " + po.Dateconfirm.ToString());
+                //Save as
+                myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing);
+                MessageBox.Show(string.Format("Đã tạo file bảo lãnh thành công"));
+                myDoc.Close();
+                wordApp.Quit();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy bản mẫu");
+            }
+        }
         public static string Temp3_CreatPOConfirm(string id)
         {
             PO_Thanh po = new PO_Thanh(id);

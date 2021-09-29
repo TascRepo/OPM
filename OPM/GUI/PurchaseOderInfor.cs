@@ -119,12 +119,18 @@ namespace OPM.GUI
             if (Contract.Exist(txbIDContract.Text.Trim())) 
             {
                 po.InsertOrUpdate();
-                OpmWordHandler.Temp3_CreatPOConfirm(po.Id);
+                //Lưu mẫu Comfirm Po vào database
+                po.InsertOrUpdate_VBConfirmPO(po.Id);
+                //Tạo file xác nhận hợp đồng
+                OpmWordHandler.Word_POConfirm(po.Id);
+                //Tạo 3 mẫu văn bản m4,m5,m6
+                OpmWordHandler.Word_POTamUng(po.Id);
+                OpmWordHandler.Word_POBaoLanh(po.Id);
             }
             else MessageBox.Show(string.Format("Không tồn tại hợp đồng {0}", txbIDContract.Text));
             UpdateCatalogPanel(txbIDContract.Text);
+            this.Cursor = Cursors.Default;
         }
-
         public void SetValueItemForPO(string idPO)
         {
             PO pO = new PO();
@@ -247,7 +253,7 @@ namespace OPM.GUI
         private void importPO_Click(object sender, EventArgs e)
         {
            // openFileExcel.Multiselect = true;
-             openFileExcel.Filter = "Excel Files(.xls)|*.xls| Excel Files(.xlsx)| *.xlsx | Excel Files(*.xlsm) | *.xlsm";
+           //  openFileExcel.Filter = "Excel Files(.xls)|*.xls| Excel Files(.xlsx)| *.xlsx | Excel Files(*.xlsm) | *.xlsm";
             if (openFileExcel.ShowDialog() == DialogResult.OK)
             {
                 if (File.Exists(openFileExcel.FileName))
