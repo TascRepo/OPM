@@ -92,25 +92,25 @@ namespace OPM.DBHandler
         public PO_Thanh(DataRow row)
         {
             Id = row["id"].ToString();
-            Id_contract = row["id_contract"].ToString();
-            Po_number = row["po_number"].ToString();
-            Numberofdevice = (double)row["numberofdevice"];
-            Datecreated = (DateTime)row["datecreated"];
-            Priceunit = (int)row["priceunit"];
-            Dateconfirm = (DateTime)row["dateconfirm"];
-            Dateperform = (DateTime)row["dateperform"];
-            Dateline = (DateTime)row["dateline"];
-            Targetdeliveradd = row["targetdeliveradd"].ToString();
-            Email_BLBH_status = row["email_BLBH_status"].ToString();
-            Email_BLTH_status = row["email_BLTH_status"].ToString();
-            Totalvalue = (double)row["totalvalue"];
-            Tupo = (int)row["tupo"];
-            Tupo_datecreated = (DateTime)row["tupo_datecreated"];
-            Confirmpo_number = row["confirmpo_number"].ToString();
-            Confirmpo_datecreated = (DateTime)row["confirmpo_datecreated"];
-            Bltupo = (int)row["bltupo"];
-            Bltupo_datecreated = (DateTime)row["bltupo_datecreated"];
-            Confirmpo_dateactive= (DateTime)row["confirmpo_dateactive"];
+            Id_contract = (row["id_contract"] == null || row["id_contract"] == DBNull.Value) ? "" : row["id_contract"].ToString();
+            Po_number = (row["po_number"] == null || row["po_number"] == DBNull.Value) ? "" : row["po_number"].ToString();
+            Numberofdevice = (row["numberofdevice"] == null || row["numberofdevice"] == DBNull.Value) ? 0 : (double)row["numberofdevice"];
+            Datecreated = (row["datecreated"] == null || row["datecreated"] == DBNull.Value) ? DateTime.Now : (DateTime)row["datecreated"];
+            Priceunit = (row["priceunit"] == null || row["priceunit"] == DBNull.Value) ? 0 : (int)row["priceunit"];
+            Dateconfirm = (row["dateconfirm"] == null || row["dateconfirm"] == DBNull.Value) ? DateTime.Now : (DateTime)row["dateconfirm"];
+            Dateperform = (row["dateperform"] == null || row["dateperform"] == DBNull.Value) ? DateTime.Now : (DateTime)row["dateperform"];
+            Dateline = (row["dateline"] == null || row["dateline"] == DBNull.Value) ? DateTime.Now : (DateTime)row["dateline"];
+            Targetdeliveradd = (row["targetdeliveradd"] == null || row["targetdeliveradd"] == DBNull.Value) ? "" : row["targetdeliveradd"].ToString();
+            Email_BLBH_status = (row["email_BLBH_status"] == null || row["email_BLBH_status"] == DBNull.Value) ? "" : row["email_BLBH_status"].ToString();
+            Email_BLTH_status = (row["email_BLTH_status"] == null || row["email_BLTH_status"] == DBNull.Value) ? "" : row["email_BLTH_status"].ToString();
+            Totalvalue = (row["totalvalue"] == null || row["totalvalue"] == DBNull.Value) ? 0 : (double)row["totalvalue"];
+            Tupo = (row["tupo"] == null || row["tupo"] == DBNull.Value) ? 0 : (int)row["tupo"];
+            Tupo_datecreated = (row["tupo_datecreated"] == null || row["tupo_datecreated"] == DBNull.Value) ? DateTime.Now : (DateTime)row["tupo_datecreated"];
+            Confirmpo_number = (row["confirmpo_number"] == null || row["confirmpo_number"] == DBNull.Value) ? "" : row["confirmpo_number"].ToString();
+            Confirmpo_datecreated = (row["confirmpo_datecreated"] == null || row["confirmpo_datecreated"] == DBNull.Value) ? DateTime.Now : (DateTime)row["confirmpo_datecreated"];
+            Bltupo = (row["bltupo"] == null || row["bltupo"] == DBNull.Value) ? 0 : (int)row["bltupo"];
+            Bltupo_datecreated = (row["bltupo_datecreated"] == null || row["bltupo_datecreated"] == DBNull.Value) ? DateTime.Now : (DateTime)row["bltupo_datecreated"];
+            Confirmpo_dateactive= (row["confirmpo_dateactive"] == null || row["confirmpo_dateactive"] == DBNull.Value) ? DateTime.Now : (DateTime)row["confirmpo_dateactive"];
         }
         public PO_Thanh(string id)
         {
@@ -120,25 +120,25 @@ namespace OPM.DBHandler
             if (table.Rows.Count > 0)
             {
                 DataRow row = table.Rows[0];
-                Id_contract = row["id_contract"].ToString();
-                Po_number = row["po_number"].ToString();
-                Numberofdevice = (double)row["numberofdevice"];
-                Datecreated = (DateTime)row["datecreated"];
-                Priceunit = (int)row["priceunit"];
-                Dateconfirm = (DateTime)row["dateconfirm"];
-                Dateperform = (DateTime)row["dateperform"];
-                Dateline = (DateTime)row["dateline"];
-                Targetdeliveradd = row["targetdeliveradd"].ToString();
-                Email_BLBH_status = row["email_BLBH_status"].ToString();
-                Email_BLTH_status = row["email_BLTH_status"].ToString();
-                Totalvalue = (double)row["totalvalue"];
-                Tupo = (row["tupo"]==null)||(DBNull.Value==row["tupo"])?0: (int)row["tupo"];
-                Tupo_datecreated = (DateTime)row["tupo_datecreated"];
-                Confirmpo_number = row["confirmpo_number"].ToString();
-                Confirmpo_datecreated = (DateTime)row["confirmpo_datecreated"];
-                Bltupo = (int)row["bltupo"];
-                Bltupo_datecreated = (DateTime)row["bltupo_datecreated"];
-                Confirmpo_dateactive = (DateTime)row["confirmpo_dateactive"];
+                Id_contract = (row["id_contract"] == null || row["id_contract"] == DBNull.Value) ? "" : row["id_contract"].ToString();
+                Po_number = (row["po_number"] == null || row["po_number"] == DBNull.Value) ? "" : row["po_number"].ToString();
+                Numberofdevice = (row["numberofdevice"] == null || row["numberofdevice"] == DBNull.Value) ? 0 : (double)row["numberofdevice"];
+                Datecreated = (row["datecreated"] == null || row["datecreated"] == DBNull.Value) ? DateTime.Now : (DateTime)row["datecreated"];
+                Priceunit = (row["priceunit"] == null || row["priceunit"] == DBNull.Value) ? 0 : (int)row["priceunit"];
+                Dateconfirm = (row["dateconfirm"] == null || row["dateconfirm"] == DBNull.Value) ? DateTime.Now : (DateTime)row["dateconfirm"];
+                Dateperform = (row["dateperform"] == null || row["dateperform"] == DBNull.Value) ? DateTime.Now : (DateTime)row["dateperform"];
+                Dateline = (row["dateline"] == null || row["dateline"] == DBNull.Value) ? DateTime.Now : (DateTime)row["dateline"];
+                Targetdeliveradd = (row["targetdeliveradd"] == null || row["targetdeliveradd"] == DBNull.Value) ? "" : row["targetdeliveradd"].ToString();
+                Email_BLBH_status = (row["email_BLBH_status"] == null || row["email_BLBH_status"] == DBNull.Value) ? "" : row["email_BLBH_status"].ToString();
+                Email_BLTH_status = (row["email_BLTH_status"] == null || row["email_BLTH_status"] == DBNull.Value) ? "" : row["email_BLTH_status"].ToString();
+                Totalvalue = (row["totalvalue"] == null || row["totalvalue"] == DBNull.Value) ? 0 : (double)row["totalvalue"];
+                Tupo = (row["tupo"] == null || row["tupo"] == DBNull.Value) ? 0 : (int)row["tupo"];
+                Tupo_datecreated = (row["tupo_datecreated"] == null || row["tupo_datecreated"] == DBNull.Value) ? DateTime.Now : (DateTime)row["tupo_datecreated"];
+                Confirmpo_number = (row["confirmpo_number"] == null || row["confirmpo_number"] == DBNull.Value) ? "" : row["confirmpo_number"].ToString();
+                Confirmpo_datecreated = (row["confirmpo_datecreated"] == null || row["confirmpo_datecreated"] == DBNull.Value) ? DateTime.Now : (DateTime)row["confirmpo_datecreated"];
+                Bltupo = (row["bltupo"] == null || row["bltupo"] == DBNull.Value) ? 0 : (int)row["bltupo"];
+                Bltupo_datecreated = (row["bltupo_datecreated"] == null || row["bltupo_datecreated"] == DBNull.Value) ? DateTime.Now : (DateTime)row["bltupo_datecreated"];
+                Confirmpo_dateactive = (row["confirmpo_dateactive"] == null || row["confirmpo_dateactive"] == DBNull.Value) ? DateTime.Now : (DateTime)row["confirmpo_dateactive"];
             }
         }
         public bool Exist()
@@ -174,14 +174,28 @@ namespace OPM.DBHandler
                 if (Exist(id))
                 {
                     string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.PO SET id_contract = '{1}', po_number = '{2}', numberofdevice = {3}, datecreated = '{4}', priceunit = {5},dateconfirm = '{6}',dateperform = '{7}',dateline = '{8}',targetdeliveradd = N'{9}',email_BLBH_status = '{10}',email_BLTH_status = '{11}',totalvalue = {12},tupo = {13}, tupo_datecreated = '{14}', confirmpo_number = '{15}', confirmpo_datecreated = '{16}', bltupo = {17}, bltupo_datecreated= '{18}', confirmpo_dateactive = '{19}'  WHERE id = '{0}'", id, id_contract, po_number, numberofdevice, datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), priceunit, dateconfirm.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), dateperform.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), dateline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), targetdeliveradd, email_BLBH_status, email_BLTH_status, totalvalue, tupo, tupo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), confirmpo_number, confirmpo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), bltupo, bltupo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), confirmpo_dateactive.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-                    OPMDBHandler.ExecuteNonQuery(query);
-                    MessageBox.Show(string.Format("Cập nhật thành công PO {0} !", id));
+                    try
+                    {
+                        OPMDBHandler.ExecuteNonQuery(query);
+                        MessageBox.Show(string.Format("Cập nhật thành công PO {0} !", id));
+                    }
+                    catch
+                    {
+                        MessageBox.Show(string.Format("Cập nhật thất bại PO {0} !", id));
+                    }
                 }
                 else
                 {
                     string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.PO(id, id_contract, po_number, numberofdevice, datecreated, priceunit, dateconfirm, dateperform, dateline, targetdeliveradd, email_BLBH_status, email_BLTH_status, totalvalue, tupo, tupo_datecreated, confirmpo_number, confirmpo_datecreated, bltupo, bltupo_datecreated, confirmpo_dateactive) VALUES('{0}','{1}','{2}',{3},'{4}',{5},'{6}','{7}','{8}',N'{9}','{10}','{11}','{12}',{13},'{14}','{15}','{16}',{17},'{18}','{19}')  --INSERT INTO dbo.CatalogAdmin(ctlID,ctlname,ctlparent) VALUES('PO_{0}','{2}','Contract_{1}')", id, id_contract, po_number, numberofdevice, datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), priceunit, dateconfirm.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), dateperform.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), dateline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), targetdeliveradd, email_BLBH_status, email_BLTH_status, totalvalue, tupo, tupo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), confirmpo_number, confirmpo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), bltupo, bltupo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), confirmpo_dateactive.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-                    OPMDBHandler.ExecuteNonQuery(query);
-                    MessageBox.Show(string.Format("Tạo mới thành công PO {0} !", id));
+                    try
+                    {
+                        OPMDBHandler.ExecuteNonQuery(query);
+                        MessageBox.Show(string.Format("Tạo mới thành công PO {0} !", id));
+                    }
+                    catch
+                    {
+                        MessageBox.Show(string.Format("Tạo mới thất bại PO {0} !", id));
+                    }
                 }
             }
         }
@@ -194,14 +208,28 @@ namespace OPM.DBHandler
                 if (Exist(id))
                 {
                     string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.PO SET id_contract = '{1}', po_number = '{2}', numberofdevice = {3}, datecreated = '{4}', priceunit = {5},dateconfirm = '{6}',dateperform = '{7}',dateline = '{8}',targetdeliveradd = N'{9}',email_BLBH_status = '{10}',email_BLTH_status = '{11}',totalvalue = {12},tupo = {13}, tupo_datecreated = '{14}', confirmpo_number = '{15}', confirmpo_datecreated = '{16}', bltupo = {17}, bltupo_datecreated= '{18}', confirmpo_dateactive = '{19}'  WHERE id = '{0}'", id, id_contract, po_number, numberofdevice, datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), priceunit, dateconfirm.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), dateperform.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), dateline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), targetdeliveradd, email_BLBH_status, email_BLTH_status, totalvalue, tupo, tupo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), confirmpo_number, confirmpo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), bltupo, bltupo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), confirmpo_dateactive.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-                    OPMDBHandler.ExecuteNonQuery(query);
-                    MessageBox.Show(string.Format("Cập nhật thành công PO {0} !", id));
+                    try
+                    {
+                        OPMDBHandler.ExecuteNonQuery(query);
+                        MessageBox.Show(string.Format("Cập nhật thành công PO {0} !", id));
+                    }
+                    catch
+                    {
+                        MessageBox.Show(string.Format("Cập nhật thất bại PO {0} !", id));
+                    }
                 }
                 else
                 {
                     string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.PO(id, id_contract, po_number, numberofdevice, datecreated, priceunit, dateconfirm, dateperform, dateline, targetdeliveradd, email_BLBH_status, email_BLTH_status, totalvalue, tupo, tupo_datecreated, confirmpo_number, confirmpo_datecreated, bltupo, bltupo_datecreated, confirmpo_dateactive) VALUES('{0}','{1}','{2}',{3},'{4}',{5},'{6}','{7}','{8}',N'{9}','{10}','{11}','{12}',{13},'{14}','{15}','{16}',{17},'{18}','{19}')  --INSERT INTO dbo.CatalogAdmin(ctlID,ctlname,ctlparent) VALUES('PO_{0}','{2}','Contract_{1}')", id, id_contract, po_number, numberofdevice, datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), priceunit, dateconfirm.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), dateperform.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), dateline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), targetdeliveradd, email_BLBH_status, email_BLTH_status, totalvalue, tupo, tupo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), confirmpo_number, confirmpo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), bltupo, bltupo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), confirmpo_dateactive.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-                    OPMDBHandler.ExecuteNonQuery(query);
-                    MessageBox.Show(string.Format("Tạo mới thành công PO {0} !", id));
+                    try
+                    {
+                        OPMDBHandler.ExecuteNonQuery(query);
+                        MessageBox.Show(string.Format("Tạo mới thành công PO {0} !", id));
+                    }
+                    catch
+                    {
+                        MessageBox.Show(string.Format("Tạo mới thất bại PO {0} !", id));
+                    }
                 }
             }
         }

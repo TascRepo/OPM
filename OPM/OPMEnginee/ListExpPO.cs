@@ -1,6 +1,8 @@
-﻿using System;
+﻿using OPM.DBHandler;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace OPM.OPMEnginee
 {
@@ -85,6 +87,44 @@ namespace OPM.OPMEnginee
             }
             else
                 return 1;
+        }
+        public void Insert()
+        {
+            string query = string.Format(@"INSERT INTO dbo.ListExpected_PO(id_po,id_province,numberofdevice,nameofdevice) VALUES('{0}','{1}',{2},'{3}'", idPO, idProvince, numberOfDevice, nameOfDevice);
+            try
+            {
+                OPMDBHandler.ExecuteNonQuery(query);
+            }
+            catch
+            {
+                MessageBox.Show("Thêm mới thất bại!");
+            }
+        }
+        public void Update()
+        {
+            string query = string.Format("UPDATE dbo.ListExpected_PO SET numberofdevice =  {2}, nameofdevice = N'{3}' WHERE id_po = '{0}' and id_province = {1}", idPO, idProvince, numberOfDevice, nameOfDevice);
+            try
+            {
+                OPMDBHandler.ExecuteNonQuery(query);
+            }
+            catch
+            {
+                MessageBox.Show("cập nhật thất bại!");
+            }
+        }
+        public static void Delete(string id_po, string id_province)
+        {
+            if (MessageBox.Show(string.Format("Có chắc chắn xoá không?"), "Thông báo!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel) return;
+
+            string query = string.Format(" DELETE FROM dbo.ListExpected_PO WHERE id_po = '{0}' and id_province = '{1}'", id_po, id_province);
+            try
+            {
+                OPMDBHandler.ExecuteNonQuery(query);
+            }
+            catch
+            {
+                MessageBox.Show("Xoá thất bại!");
+            }
         }
     }
 

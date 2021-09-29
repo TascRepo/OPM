@@ -68,21 +68,21 @@ namespace OPM.OPMEnginee
         public Contract(DataRow row)
         {
             Id = row["id"].ToString();
-            Namecontract = row["namecontract"].ToString();
-            Codeaccouting = row["codeaccouting"].ToString();
-            Datesigned = (DateTime)row["datesigned"];
-            Typecontract = row["typecontract"].ToString();
-            Durationcontract = (int)row["durationcontract"];
-            Activedate = (DateTime)row["activedate"];
-            Valuecontract = (double)row["valuecontract"];
-            Durationpo = (int)row["durationpo"];
-            Id_siteA = row["id_siteA"].ToString();
-            Id_siteB = row["id_siteB"].ToString();
-            Phuluc = row["phuluc"].ToString();
-            Vbgurantee = row["vbgurantee"].ToString();
-            KHMS = row["kHMS"].ToString();
-            ExperationDate = (DateTime)row["experationDate"];
-            Blvalue = (int)row["blvalue"];
+            Namecontract =(row["namecontract"]==null|| row["namecontract"]==DBNull.Value)?"":row["namecontract"].ToString();
+            Codeaccouting = (row["codeaccouting"] ==null|| row["codeaccouting"] ==DBNull.Value)?"":row["codeaccouting"].ToString();
+            Datesigned = (row["datesigned"] == null || row["datesigned"] == DBNull.Value) ? DateTime.Now : (DateTime)row["datesigned"];
+            Typecontract = (row["typecontract"] == null || row["typecontract"] == DBNull.Value) ? "":row["typecontract"].ToString();
+            Durationcontract = (row["durationcontract"] == null || row["durationcontract"] == DBNull.Value) ? 0 : (int)row["durationcontract"];
+            Activedate = (row["activedate"] == null || row["activedate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["activedate"];
+            Valuecontract = (row["valuecontract"] == null || row["valuecontract"] == DBNull.Value) ? 0 : (double)row["valuecontract"];
+            Durationpo = (row["durationpo"] == null || row["durationpo"] == DBNull.Value) ? 0 : (int)row["durationpo"];
+            Id_siteA = (row["id_siteA"] == null || row["id_siteA"] == DBNull.Value) ? "" : row["id_siteA"].ToString();
+            Id_siteB = (row["id_siteB"] == null || row["id_siteB"] == DBNull.Value) ? "" : row["id_siteB"].ToString();
+            Phuluc = (row["phuluc"] == null || row["phuluc"] == DBNull.Value) ? "" : row["phuluc"].ToString();
+            Vbgurantee = (row["vbgurantee"] == null || row["vbgurantee"] == DBNull.Value) ? "" : row["vbgurantee"].ToString();
+            KHMS = (row["kHMS"] == null || row["kHMS"] == DBNull.Value) ? "" : row["kHMS"].ToString();
+            ExperationDate = (row["experationDate"] == null || row["experationDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["experationDate"];
+            Blvalue = (row["blvalue"] == null || row["blvalue"] == DBNull.Value) ? 0 : (int)row["blvalue"];
         }
         public Contract(string id)
         {
@@ -92,21 +92,21 @@ namespace OPM.OPMEnginee
             if (table.Rows.Count>0)
             {
                 DataRow row = table.Rows[0];
-                Namecontract = row["namecontract"].ToString();
-                Codeaccouting = row["codeaccouting"].ToString();
-                Datesigned = (DateTime)row["datesigned"];
-                Typecontract = row["typecontract"].ToString();
-                Durationcontract = (int)row["durationcontract"];
-                Activedate = (DateTime)row["activedate"];
-                Valuecontract = (double)row["valuecontract"];
-                Durationpo = (int)row["durationpo"];
-                Id_siteA = row["id_siteA"].ToString();
-                Id_siteB = row["id_siteB"].ToString();
-                Phuluc = row["phuluc"].ToString();
-                Vbgurantee = row["vbgurantee"].ToString();
-                KHMS = row["kHMS"].ToString();
-                ExperationDate = (DateTime)row["experationDate"];
-                Blvalue = (row["blvalue"]==DBNull.Value)?0:(int)row["blvalue"];
+                Namecontract = (row["namecontract"] == null || row["namecontract"] == DBNull.Value) ? "" : row["namecontract"].ToString();
+                Codeaccouting = (row["codeaccouting"] == null || row["codeaccouting"] == DBNull.Value) ? "" : row["codeaccouting"].ToString();
+                Datesigned = (row["datesigned"] == null || row["datesigned"] == DBNull.Value) ? DateTime.Now : (DateTime)row["datesigned"];
+                Typecontract = (row["typecontract"] == null || row["typecontract"] == DBNull.Value) ? "" : row["typecontract"].ToString();
+                Durationcontract = (row["durationcontract"] == null || row["durationcontract"] == DBNull.Value) ? 0 : (int)row["durationcontract"];
+                Activedate = (row["activedate"] == null || row["activedate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["activedate"];
+                Valuecontract = (row["valuecontract"] == null || row["valuecontract"] == DBNull.Value) ? 0 : (double)row["valuecontract"];
+                Durationpo = (row["durationpo"] == null || row["durationpo"] == DBNull.Value) ? 0 : (int)row["durationpo"];
+                Id_siteA = (row["id_siteA"] == null || row["id_siteA"] == DBNull.Value) ? "" : row["id_siteA"].ToString();
+                Id_siteB = (row["id_siteB"] == null || row["id_siteB"] == DBNull.Value) ? "" : row["id_siteB"].ToString();
+                Phuluc = (row["phuluc"] == null || row["phuluc"] == DBNull.Value) ? "" : row["phuluc"].ToString();
+                Vbgurantee = (row["vbgurantee"] == null || row["vbgurantee"] == DBNull.Value) ? "" : row["vbgurantee"].ToString();
+                KHMS = (row["kHMS"] == null || row["kHMS"] == DBNull.Value) ? "" : row["kHMS"].ToString();
+                ExperationDate = (row["experationDate"] == null || row["experationDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["experationDate"];
+                Blvalue = (row["blvalue"] == null || row["blvalue"] == DBNull.Value) ? 0 : (int)row["blvalue"];
             }
         }
         public List<Contract> GetList()

@@ -196,7 +196,10 @@ namespace OPM.GUI
                     NTKTInfor nTKTInfor = new NTKTInfor();
                     nTKTInfor.UpdateCatalogPanel = new NTKTInfor.UpdateCatalogDelegate(GetCatalogvalue);
                     nTKTInfor.requestDashBoardPurchaseOderForm = new NTKTInfor.RequestDashBoardPurchaseOderForm(OpenPOForm);
-                    nTKTInfor.setValueItemForNTKT(temp[1]);
+                    //nTKTInfor.setValueItemForNTKT(temp[1]);
+                    //Lấy NTKT hiện tại
+                    nTKTInfor.ntkt = new NTKT_Thanh(temp[1]);
+                    nTKTInfor.po = new DBHandler.PO_Thanh(nTKTInfor.ntkt.Id_po);
                     OpenChidForm(nTKTInfor);
                     break;
                 case ConstantVar.PLType:
@@ -407,6 +410,7 @@ namespace OPM.GUI
             //nTKTInfor.SetContractID(strContractID);
             //nTKTInfor.SetPOID(strPOID);
             // nTKTInfor.SetPONumber(strPONumber);
+            nTKTInfor.po = new DBHandler.PO_Thanh(strPOID);
             OpenChidForm(nTKTInfor);
             return;
         }
