@@ -153,6 +153,12 @@ namespace OPM.DBHandler
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table.Rows.Count > 0;
         }
+        public bool Check_VBConfirmPO(string id)
+        {
+            string query = string.Format("SELECT * FROM dbo.VBConfirmPO WHERE id_po = '{0}'", id);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            return table.Rows.Count > 0;
+        }
         public List<PO_Thanh> GetList()
         {
             List<PO_Thanh> list = new List<PO_Thanh>();
@@ -230,6 +236,26 @@ namespace OPM.DBHandler
                     {
                         MessageBox.Show(string.Format("Tạo mới thất bại PO {0} !", id));
                     }
+                }
+            }
+        }
+        public void InsertOrUpdate_VBConfirmPO(string id)
+        {
+            if (id == null)
+                MessageBox.Show("Id chưa khởi tạo!");
+            else
+            {
+                if (Check_VBConfirmPO(id))
+                {
+                    string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.VBConfirmPO SET id_ConfirmPO = '{1}' where id_po = '{3}'", Confirmpo_number,id);
+                    OPMDBHandler.ExecuteNonQuery(query);
+                    MessageBox.Show(string.Format("Cập nhật thành công PO {0} !", id));
+                }
+                else
+                {
+                    string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.VBConfirmPO(id_ConfirmPO, id_po, vb_ConfirmPO) VALUES('{0}','{1}','{2}')", Confirmpo_number,id, ' ');
+                    OPMDBHandler.ExecuteNonQuery(query);
+                    MessageBox.Show(string.Format("Tạo mới thành công PO {0} !", id));
                 }
             }
         }

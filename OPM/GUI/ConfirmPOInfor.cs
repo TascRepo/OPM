@@ -51,7 +51,6 @@ namespace OPM.GUI
             newConfirmPOObj.MrGD_CSKH_mobile = txbMobileGDCSKH.Text;
             newConfirmPOObj.MrGD_CSKH_Landline = txbLandLineGDCSKH.Text;
             newConfirmPOObj.MrrGD_CSKH_LandlineExt = txbExt.Text;
-
             int ret = 0;
             /*Create Folder NTKT*/
             string DriveName = "";
@@ -66,6 +65,9 @@ namespace OPM.GUI
                     break;
                 }
             }
+            //Phần xử lý file phụ lục đính kèm ở mẫu 3, do đối tác cung cấp, không cần kiểm tra, chỉ cần có thông tin rồi đính kèm vòa mẫu 3
+                string Src_Excel = DriveName + "OPM\\teamplate_PBGHDK.";
+            //
             //Check xem Forder đã đc tạo hay chưa? nếu chưa tạo hì tạo, còn nếu đã tạo rồi thì thôi
             //
             string strPODirectory = DriveName + "OPM\\" + txbPONumber.Text;

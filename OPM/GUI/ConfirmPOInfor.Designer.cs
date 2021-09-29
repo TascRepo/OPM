@@ -125,7 +125,7 @@ namespace OPM.GUI
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 182);
+            this.label5.Location = new System.Drawing.Point(3, 187);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(103, 15);
             this.label5.TabIndex = 18;
@@ -133,9 +133,9 @@ namespace OPM.GUI
             // 
             // txbConfirmPOID
             // 
-            this.txbConfirmPOID.Location = new System.Drawing.Point(122, 179);
+            this.txbConfirmPOID.Location = new System.Drawing.Point(110, 179);
             this.txbConfirmPOID.Name = "txbConfirmPOID";
-            this.txbConfirmPOID.Size = new System.Drawing.Size(275, 23);
+            this.txbConfirmPOID.Size = new System.Drawing.Size(287, 23);
             this.txbConfirmPOID.TabIndex = 19;
             // 
             // gbContact
@@ -291,7 +291,7 @@ namespace OPM.GUI
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // ConfirmPO
+            // ConfirmPOInfor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -309,7 +309,7 @@ namespace OPM.GUI
             this.Controls.Add(this.txbKHMS);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ConfirmPO";
+            this.Name = "ConfirmPOInfor";
             this.Text = "ConfirmPO";
             this.gbContact.ResumeLayout(false);
             this.gbContact.PerformLayout();
