@@ -77,7 +77,7 @@ namespace OPM.GUI
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.tbxGaranteeValue = new System.Windows.Forms.TextBox();
-            this.btnCreateGarantee = new System.Windows.Forms.Button();
+            this.btnContractAnnex = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -516,16 +516,15 @@ namespace OPM.GUI
             this.tbxGaranteeValue.Text = "0";
             this.tbxGaranteeValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // btnCreateGarantee
+            // btnContractAnnex
             // 
-            this.btnCreateGarantee.Enabled = false;
-            this.btnCreateGarantee.Location = new System.Drawing.Point(11, 483);
-            this.btnCreateGarantee.Name = "btnCreateGarantee";
-            this.btnCreateGarantee.Size = new System.Drawing.Size(75, 23);
-            this.btnCreateGarantee.TabIndex = 6;
-            this.btnCreateGarantee.Text = "Phụ lục HĐ";
-            this.btnCreateGarantee.UseVisualStyleBackColor = true;
-            this.btnCreateGarantee.Click += new System.EventHandler(this.btnCreateGarantee_Click);
+            this.btnContractAnnex.Location = new System.Drawing.Point(11, 483);
+            this.btnContractAnnex.Name = "btnContractAnnex";
+            this.btnContractAnnex.Size = new System.Drawing.Size(75, 23);
+            this.btnContractAnnex.TabIndex = 6;
+            this.btnContractAnnex.Text = "Phụ lục HĐ";
+            this.btnContractAnnex.UseVisualStyleBackColor = true;
+            this.btnContractAnnex.Click += new System.EventHandler(this.btnContractAnnex_Click);
             // 
             // ContractInfoChildForm
             // 
@@ -542,7 +541,7 @@ namespace OPM.GUI
             this.Controls.Add(this.dateTimePickerActiveDateContract);
             this.Controls.Add(this.dateTimePickerDurationDateContract);
             this.Controls.Add(this.dateTimePickerDateSignedPO);
-            this.Controls.Add(this.btnCreateGarantee);
+            this.Controls.Add(this.btnContractAnnex);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnEdit);
@@ -627,7 +626,7 @@ namespace OPM.GUI
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox tbxGaranteeValue;
-        private System.Windows.Forms.Button btnCreateGarantee;
+        private System.Windows.Forms.Button btnContractAnnex;
         private System.Windows.Forms.DateTimePicker dtpGaranteeCreatedDate;
         private System.Windows.Forms.Label label20;
     }

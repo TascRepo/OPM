@@ -4,6 +4,8 @@ using OPM.WordHandler;
 using OPM.OPMEnginee;
 using OPM.EmailHandler;
 using System.IO;
+using System.Data;
+using System.Data.OleDb;
 
 namespace OPM.GUI
 {
@@ -82,7 +84,7 @@ namespace OPM.GUI
                 txbGaranteeActiveDate.Text = (contract.ExperationDate - contract.Activedate).TotalDays.ToString();
                 txbGaranteeValue.Text = contract.Blvalue.ToString();
                 dtpGaranteeCreatedDate.Value = contract.GaranteeCreatedDate;
-                btnCreateGarantee.Enabled = true;
+                btnContractAnnex.Enabled = true;
                 btnRemove.Enabled = true;
                 btnEdit.Enabled = true;
                 btnSave.Enabled = false;
@@ -113,7 +115,7 @@ namespace OPM.GUI
             tbxSiteA.Text = "Trung tâm cung ứng vật tư - Viễn thông TP.HCM";
             tbxSiteB.Text = "Công ty TNHH thiết bị viễn thông ANSV";
             dtpGaranteeCreatedDate.Value = DateTime.Now;
-            btnCreateGarantee.Enabled = false;
+            btnContractAnnex.Enabled = false;
             btnRemove.Enabled = false;
             btnEdit.Enabled = true;
             btnSave.Enabled = true;
@@ -182,15 +184,6 @@ namespace OPM.GUI
             }
         }
         //Tạo File bảo lãnh thực hiện hợp đồng .docx
-        private void btnCreateGarantee_Click(object sender, EventArgs e)
-        {
-            if (Contract.Exist(tbContract.Text.Trim()))
-            {
-                Contract contract = new Contract(tbContract.Text.Trim());
-                contract.CreatContractGuarantee();
-            }
-            else MessageBox.Show("Chưa có hợp đồng {0}", tbContract.Text);
-        }
         //Chuyển sang dạng có thể chỉnh sửa Form
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -204,7 +197,7 @@ namespace OPM.GUI
             UpdateCatalogPanel(tbContract.Text);
             SetItemValue_Default();
             btnEdit.Enabled = true;
-            btnCreateGarantee.Enabled = false;
+            btnContractAnnex.Enabled = false;
             btnSave.Enabled = true;
             State(false);
         }
@@ -231,7 +224,7 @@ namespace OPM.GUI
             if (contract.Exist()) contract.Update();
             else contract.Insert();
             State(true);
-            btnCreateGarantee.Enabled = true;
+            btnContractAnnex.Enabled = true;
             btnRemove.Enabled = true;
             btnNewPO.Enabled = true;
             //Cập nhật trên TreeView
@@ -272,6 +265,27 @@ namespace OPM.GUI
             catch
             {
                 MessageBox.Show("Cần nhập đúng định dạng số!");
+            }
+        }
+
+        private void btnContractAnnex_Click(object sender, EventArgs e)
+        {
+            string connectionSTR = @"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = D:\OPM\Template\Thanh.xlsx; Extended Properties = 'Excel 8.0;HDR=YES'";
+            DataTable data = new DataTable();
+            //set up connection string
+            using (OleDbConnection connection = new OleDbConnection(connectionSTR))
+            {
+                try
+                {
+                    OleDbCommand command = new OleDbCommand("select * from [$Sheet1]", connection);
+
+                    MessageBox.Show("Kết nối được CSDL Excel!");
+                    //OleDbParameter param0 = new OleDbParameter("@login", OleDbType.VarChar);
+                }
+                catch
+                {
+                    MessageBox.Show("Không kết nối được CSDL Excel!");
+                }
             }
         }
     }
