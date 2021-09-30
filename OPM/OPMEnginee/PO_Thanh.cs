@@ -291,6 +291,18 @@ namespace OPM.DBHandler
             if (result != 0) MessageBox.Show("Bạn đã xoá thành công!");
             return result;
         }
-
+        public int InsertImportFilePO(string id_po, string id_province, string numberofdevice, string namefdevice)
+        {
+            int result = 0;
+            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.ListExpected_PO(id_po, id_province, numberofdevice, nameofdevice) VALUES('{0}',N'{1}',{2},N'{3}')", id_po, id_province, numberofdevice, namefdevice);
+            result = OPMDBHandler.fInsertData(query);
+            return result;
+        }
+        public bool CheckListExpected_PO(string id)
+        {
+            string query = string.Format("SELECT * FROM dbo.ListExpected_PO WHERE id_po = '{0}'", id);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            return table.Rows.Count > 0;
+        }
     }
 }

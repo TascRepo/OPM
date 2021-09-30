@@ -465,6 +465,7 @@ namespace OPM.ExcelHandler
                 int[] arrcolum = { 1, 3, 4 };
                 int rowCounter;
                 int StartCells = 0;
+                int CountCells = 0;
                 dt.Columns.Add("STT");
                 dt.Columns.Add("VNPT tỉnh");
                 dt.Columns.Add("Số lượng ONT");
@@ -482,10 +483,22 @@ namespace OPM.ExcelHandler
                         }
                     }
                 }
-                //
-                //for (int i = 6; i <= rowCount; i++)
-                //MessageBox.Show(StartCells.ToString());
+                //Tim tong so hang can hien thi len man hinh
                 for (int i = StartCells + 2; i <= rowCount; i++)
+                {
+                    row = dt.NewRow();
+                    if (xlRange.Cells[i, 1] != null)
+                    {
+                        row[1] = (xlRange.Cells[i, 1] as ExcelOffice.Range).Text;
+                        if (row[1].ToString() == "TỔNG CỘNG")
+                        {
+                            CountCells = i - 1;
+                            break;
+                        }
+                    }
+                }
+                //
+                for (int i = StartCells + 2; i <= CountCells; i++)
                 {
                     row = dt.NewRow();
                     rowCounter = 0;
