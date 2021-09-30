@@ -633,5 +633,127 @@ namespace OPM.ExcelHandler
                 return 0;
             }
         }
+        //Save file excel in SQL
+        public static int SaveFileInDelivery_PO(string fname, ref System.Data.DataTable dt)
+        {
+            ExcelOffice.Range xlRange = null;
+            ExcelOffice.Workbook xlWorkbook = null;
+            ExcelOffice.Application xlApp = null;
+            ExcelOffice._Worksheet xlWorksheet = null;
+            DataRow row;
+            try
+            {
+                xlApp = new ExcelOffice.Application();
+                xlWorkbook = xlApp.Workbooks.Open(fname);
+                //xlWorksheet = (ExcelOffice._Worksheet)xlWorkbook.Sheets[3];
+                //Hiện giờ chỉ có 1 sheet đầu tiên nên Sheet[1]
+                xlWorksheet = (ExcelOffice._Worksheet)xlWorkbook.Sheets[1];
+                xlRange = xlWorksheet.UsedRange;
+
+                string xName = xlWorksheet.Name.ToString();
+                int rowCount = xlRange.Rows.Count;
+                //Hiển thị xem có tổng cộng bao nhiêu hàng
+                //MessageBox.Show(rowCount.ToString()); 72
+                int colCount = xlRange.Columns.Count;
+                //Hiển thị xem có tổng cộng bao nhiêu cột
+                //MessageBox.Show(colCount.ToString()); 82
+                int[] arrcolum = { 1, 2, 3, 4, 5 };
+                int rowCounter;
+                int StartCells = 0;
+                int CountCells = 0;
+                dt.Columns.Add("STT");
+                dt.Columns.Add("VNPT Tỉnh/ Thành phố");
+                dt.Columns.Add("Tổng số PO");
+                dt.Columns.Add("Số lượng");
+                dt.Columns.Add("Ngày giao hàng");
+                //Tìm hàng bắt đầy chạy STT
+                for (int i = 1; i <= rowCount; i++)
+                {
+                    row = dt.NewRow();
+                    if (xlRange.Cells[i, 1] != null)
+                    {
+                        row[1] = (xlRange.Cells[i, 1] as ExcelOffice.Range).Text;
+                        if (row[1].ToString() == "STT")
+                        {
+                            StartCells = i;
+                            break;
+                        }
+                    }
+                }
+                //Tim tong so hang can hien thi len man hinh
+                for (int i = StartCells + 2; i <= rowCount; i++)
+                {
+                    row = dt.NewRow();
+                    if (xlRange.Cells[i, 1] != null)
+                    {
+                        row[1] = (xlRange.Cells[i, 1] as ExcelOffice.Range).Text;
+                        if (row[1].ToString() == "Tổng số")
+                        {
+                            CountCells = i - 1;
+                            break;
+                        }
+                    }
+                }
+                //
+                for (int i = StartCells + 2; i <= CountCells; i++)
+                {
+                    row = dt.NewRow();
+                    rowCounter = 0;
+                    foreach (int j in arrcolum)
+                    {
+                        if (xlRange.Cells[i, j] != null)
+                        {
+                            row[rowCounter] = (xlRange.Cells[i, j] as ExcelOffice.Range).Text;
+                        }
+                        else
+                        {
+                            row[i] = "";
+                        }
+                        rowCounter++;
+                    }
+                    dt.Rows.Add(row);
+                }
+                //cleanup  
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                //rule of thumb for releasing com objects:  
+                //  never use two dots, all COM objects must be referenced and released individually  
+                //  ex: [somthing].[something].[something] is bad  
+
+                //release com objects to fully kill excel process from running in the background  
+                Marshal.ReleaseComObject(xlRange);
+                Marshal.ReleaseComObject(xlWorksheet);
+
+                //close and release  
+                xlWorkbook.Close();
+                Marshal.ReleaseComObject(xlWorkbook);
+
+                //quit and release  
+                xlApp.Quit();
+                Marshal.ReleaseComObject(xlApp);
+                return 1;
+            }
+            catch (Exception)
+            {
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                //rule of thumb for releasing com objects:  
+                //  never use two dots, all COM objects must be referenced and released individually  
+                //  ex: [somthing].[something].[something] is bad  
+
+                //release com objects to fully kill excel process from running in the background  
+                Marshal.ReleaseComObject(xlRange);
+                Marshal.ReleaseComObject(xlWorksheet);
+
+                //close and release  
+                xlWorkbook.Close();
+                Marshal.ReleaseComObject(xlWorkbook);
+
+                //quit and release  
+                xlApp.Quit();
+                Marshal.ReleaseComObject(xlApp);
+                return 0;
+            }
+        }
     }
 }

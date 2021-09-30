@@ -82,12 +82,15 @@ namespace OPM.GUI
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label22 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.txbnamefileKHGH = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPO)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(4, 562);
+            this.btnSave.Location = new System.Drawing.Point(5, 610);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(56, 23);
             this.btnSave.TabIndex = 0;
@@ -114,7 +117,7 @@ namespace OPM.GUI
             // 
             // btnNewDP
             // 
-            this.btnNewDP.Location = new System.Drawing.Point(390, 562);
+            this.btnNewDP.Location = new System.Drawing.Point(391, 610);
             this.btnNewDP.Name = "btnNewDP";
             this.btnNewDP.Size = new System.Drawing.Size(75, 23);
             this.btnNewDP.TabIndex = 3;
@@ -273,11 +276,11 @@ namespace OPM.GUI
             // dataGridViewPO
             // 
             this.dataGridViewPO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPO.Location = new System.Drawing.Point(23, 389);
+            this.dataGridViewPO.Location = new System.Drawing.Point(24, 439);
             this.dataGridViewPO.Name = "dataGridViewPO";
             this.dataGridViewPO.RowHeadersWidth = 62;
             this.dataGridViewPO.RowTemplate.Height = 25;
-            this.dataGridViewPO.Size = new System.Drawing.Size(420, 167);
+            this.dataGridViewPO.Size = new System.Drawing.Size(440, 165);
             this.dataGridViewPO.TabIndex = 5;
             // 
             // TimePickerDateCreatedPO
@@ -346,7 +349,7 @@ namespace OPM.GUI
             // 
             // btnNTKT
             // 
-            this.btnNTKT.Location = new System.Drawing.Point(312, 562);
+            this.btnNTKT.Location = new System.Drawing.Point(313, 610);
             this.btnNTKT.Name = "btnNTKT";
             this.btnNTKT.Size = new System.Drawing.Size(75, 23);
             this.btnNTKT.TabIndex = 9;
@@ -356,7 +359,7 @@ namespace OPM.GUI
             // 
             // btnBaoHiem
             // 
-            this.btnBaoHiem.Location = new System.Drawing.Point(233, 562);
+            this.btnBaoHiem.Location = new System.Drawing.Point(234, 610);
             this.btnBaoHiem.Name = "btnBaoHiem";
             this.btnBaoHiem.Size = new System.Drawing.Size(75, 23);
             this.btnBaoHiem.TabIndex = 10;
@@ -366,7 +369,7 @@ namespace OPM.GUI
             // 
             // btnKTKT
             // 
-            this.btnKTKT.Location = new System.Drawing.Point(153, 562);
+            this.btnKTKT.Location = new System.Drawing.Point(154, 610);
             this.btnKTKT.Name = "btnKTKT";
             this.btnKTKT.Size = new System.Drawing.Size(76, 23);
             this.btnKTKT.TabIndex = 12;
@@ -376,7 +379,7 @@ namespace OPM.GUI
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(64, 562);
+            this.button1.Location = new System.Drawing.Point(65, 610);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(86, 23);
             this.button1.TabIndex = 13;
@@ -386,16 +389,16 @@ namespace OPM.GUI
             // 
             // txbnamefilePO
             // 
-            this.txbnamefilePO.Location = new System.Drawing.Point(158, 362);
+            this.txbnamefilePO.Location = new System.Drawing.Point(159, 410);
             this.txbnamefilePO.Name = "txbnamefilePO";
             this.txbnamefilePO.Size = new System.Drawing.Size(187, 23);
             this.txbnamefilePO.TabIndex = 14;
             // 
             // importPO
             // 
-            this.importPO.Location = new System.Drawing.Point(352, 360);
+            this.importPO.Location = new System.Drawing.Point(352, 410);
             this.importPO.Name = "importPO";
-            this.importPO.Size = new System.Drawing.Size(91, 23);
+            this.importPO.Size = new System.Drawing.Size(112, 23);
             this.importPO.TabIndex = 15;
             this.importPO.Text = "Import file PO";
             this.importPO.UseVisualStyleBackColor = true;
@@ -404,7 +407,7 @@ namespace OPM.GUI
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 362);
+            this.label8.Location = new System.Drawing.Point(13, 410);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(130, 15);
             this.label8.TabIndex = 16;
@@ -553,12 +556,41 @@ namespace OPM.GUI
             this.panel3.Size = new System.Drawing.Size(456, 25);
             this.panel3.TabIndex = 18;
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(13, 384);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(132, 15);
+            this.label22.TabIndex = 21;
+            this.label22.Text = "File kế hoạch giao hàng";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(353, 381);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(111, 23);
+            this.button3.TabIndex = 20;
+            this.button3.Text = "Import file KHGH";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // txbnamefileKHGH
+            // 
+            this.txbnamefileKHGH.Location = new System.Drawing.Point(160, 381);
+            this.txbnamefileKHGH.Name = "txbnamefileKHGH";
+            this.txbnamefileKHGH.Size = new System.Drawing.Size(187, 23);
+            this.txbnamefileKHGH.TabIndex = 19;
+            // 
             // PurchaseOderInfor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Yellow;
-            this.ClientSize = new System.Drawing.Size(476, 596);
+            this.ClientSize = new System.Drawing.Size(498, 644);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.txbnamefileKHGH);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.importPO);
@@ -678,5 +710,8 @@ namespace OPM.GUI
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox txbnamefileKHGH;
     }
 }

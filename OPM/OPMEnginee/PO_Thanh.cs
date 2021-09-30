@@ -298,9 +298,22 @@ namespace OPM.DBHandler
             result = OPMDBHandler.fInsertData(query);
             return result;
         }
+        public int InsertImportFileKHGH(string NumberConfirmPO, string Province, string Count_PO, string Number_PO, string Date_Delivery)
+        {
+            int result = 0;
+            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.Delivery_PO(NumberConfirmPO, Province, Count_PO, Number_PO, Date_Delivery) VALUES('{0}','{1}',{2},{3},'{4}')", NumberConfirmPO, Province, Int64.Parse(Count_PO), Int64.Parse(Number_PO), Date_Delivery);
+            result = OPMDBHandler.fInsertData(query);
+            return result;
+        }
         public bool CheckListExpected_PO(string id)
         {
             string query = string.Format("SELECT * FROM dbo.ListExpected_PO WHERE id_po = '{0}'", id);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            return table.Rows.Count > 0;
+        }
+        public bool CheckListDelivery_PO(string Confirmpo_number)
+        {
+            string query = string.Format("SELECT * FROM dbo.Delivery_PO WHERE NumberConfirm_PO = '{0}'", Confirmpo_number);
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table.Rows.Count > 0;
         }
