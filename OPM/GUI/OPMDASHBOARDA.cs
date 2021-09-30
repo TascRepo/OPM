@@ -338,7 +338,11 @@ namespace OPM.GUI
             //usrCtltabHeader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)
             //| System.Windows.Forms.AnchorStyles.Left)
             //| System.Windows.Forms.AnchorStyles.Right)));
-
+            ContractInfoChildForm contractInfoChildForm = new ContractInfoChildForm();
+            contractInfoChildForm.UpdateCatalogPanel = new ContractInfoChildForm.UpdateCatalogDelegate(GetCatalogvalue);
+            contractInfoChildForm.RequestDashBoardOpenPOForm = new ContractInfoChildForm.RequestDashBoardOpenChildForm(OpenPOForm);
+            contractInfoChildForm.requestDashBoardOpendescriptionForm = new ContractInfoChildForm.RequestDashBoardOpenDescriptionForm(OpenDescription);
+            OpenChidForm(contractInfoChildForm);
         }
         /*OK Important for Comunicate*/
         public void GetCatalogvalue(string strvalue)

@@ -58,6 +58,7 @@ namespace OPM.GUI
             tbxSiteB.ReadOnly = state;
             dateTimePickerActiveDateContract.Enabled = !state;
             dateTimePickerDateSignedPO.Enabled = !state;
+            dtpGaranteeCreatedDate.Enabled = !state;
         }
         private void SetValueItemForm(string idContract)
         {
@@ -80,6 +81,7 @@ namespace OPM.GUI
                 ExpirationDate.Value = contract.ExperationDate;
                 txbGaranteeActiveDate.Text = (contract.ExperationDate - contract.Activedate).TotalDays.ToString();
                 txbGaranteeValue.Text = contract.Blvalue.ToString();
+                dtpGaranteeCreatedDate.Value = contract.GaranteeCreatedDate;
                 btnCreateGarantee.Enabled = true;
                 btnRemove.Enabled = true;
                 btnEdit.Enabled = true;
@@ -110,6 +112,7 @@ namespace OPM.GUI
             ExpirationDate.Enabled = false;
             tbxSiteA.Text = "Trung tâm cung ứng vật tư - Viễn thông TP.HCM";
             tbxSiteB.Text = "Công ty TNHH thiết bị viễn thông ANSV";
+            dtpGaranteeCreatedDate.Value = DateTime.Now;
             btnCreateGarantee.Enabled = false;
             btnRemove.Enabled = false;
             btnEdit.Enabled = true;
@@ -177,15 +180,6 @@ namespace OPM.GUI
             {
                 MessageBox.Show("Bạn phải nhập đúng số lượng (bằng số) ngày trong hợp đồng!", "Thông báo");
             }
-            //TextBox textBox = sender as TextBox;
-            //if (isNumber(tbxDurationContract.Text) != true && (tbxDurationContract.Text) !=null)
-            //{
-            //    dateTimePickerDurationDateContract.Value= dateTimePickerDateSignedPO.Value.AddDays(Convert.ToInt32(tbxDurationContract.Text));
-            //} else
-            //{
-            //    MessageBox.Show("only allow input numbers");
-            //    tbxDurationContract.Text = "";
-            //}
         }
         //Tạo File bảo lãnh thực hiện hợp đồng .docx
         private void btnCreateGarantee_Click(object sender, EventArgs e)
@@ -233,6 +227,7 @@ namespace OPM.GUI
             contract.ExperationDate = ExpirationDate.Value;
             contract.Durationcontract = int.Parse(tbxDurationContract.Text);
             contract.Durationpo = int.Parse(tbxDurationPO.Text);
+            contract.GaranteeCreatedDate = dtpGaranteeCreatedDate.Value;
             if (contract.Exist()) contract.Update();
             else contract.Insert();
             State(true);
@@ -242,6 +237,42 @@ namespace OPM.GUI
             //Cập nhật trên TreeView
             OpmWordHandler.Temp1_CreatContractGuarantee(tbContract.Text.Trim());
             UpdateCatalogPanel(tbContract.Text.Trim());
+        }
+
+        private void txbGaranteeValue_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                tbxGaranteeValue.Text = (int.Parse(txbGaranteeValue.Text) * int.Parse(tbxValueContract.Text) / 100).ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Cần nhập đúng định dạng giá trị bảo lãnh!");
+            }
+        }
+
+        private void ContractInfoChildForm_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                tbxGaranteeValue.Text = (int.Parse(txbGaranteeValue.Text) * int.Parse(tbxValueContract.Text) / 100).ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Cần nhập đúng định dạng giá trị bảo lãnh!");
+            }
+        }
+
+        private void tbxValueContract_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                tbxGaranteeValue.Text = (int.Parse(txbGaranteeValue.Text) * int.Parse(tbxValueContract.Text) / 100).ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Cần nhập đúng định dạng số!");
+            }
         }
     }
 }

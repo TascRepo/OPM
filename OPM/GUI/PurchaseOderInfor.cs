@@ -62,7 +62,7 @@ namespace OPM.GUI
             }
             catch (Exception)
             {
-                MessageBox.Show("Nhập lại dạng sô thiết bị!");
+                MessageBox.Show("Nhập lại dạng số thiết bị!");
                 return;
             }
             po.Dateconfirm = TimePickerDateConfirmPO.Value;

@@ -380,12 +380,12 @@ namespace OPM.WordHandler
                 myDoc.Activate();
                 //find and replace
                 OpmWordHandler.FindAndReplace(wordApp, "<Contract_Code>", id.Trim());
-                OpmWordHandler.FindAndReplace(wordApp, "<Now>", contract.Activedate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<Date_Created>", contract.GaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 OpmWordHandler.FindAndReplace(wordApp, "<Contract_Name>", contract.Namecontract);
                 OpmWordHandler.FindAndReplace(wordApp, "<Signed_Date>", contract.Datesigned.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 OpmWordHandler.FindAndReplace(wordApp, "<Site_A>", contract.Id_siteA);
                 OpmWordHandler.FindAndReplace(wordApp, "<blvalue>", contract.Blvalue);
-                OpmWordHandler.FindAndReplace(wordApp, "<durationpo>", contract.Durationpo);
+                OpmWordHandler.FindAndReplace(wordApp, "<DurationPO>", contract.Durationpo);
                 //Tạo file BLHĐ trong thư mục D:\OPM
                 string folder = string.Format(@"D:\OPM\{0}", id.Trim().Replace('/', '-'));
                 Directory.CreateDirectory(folder);
@@ -393,13 +393,13 @@ namespace OPM.WordHandler
                 {
                     myDoc.SaveAs2(ref filename);
                     MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                    myDoc.Close();
+                    wordApp.Quit();
                 }
                 catch (Exception e)
                 {
                     MessageBox.Show(e.Message);
                 }
-                myDoc.Close();
-                wordApp.Quit();
             }
             else
             {

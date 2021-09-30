@@ -1,36 +1,44 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace OPM.DBHandler
 {
     public static class OPMDBHandler
     {
-        //static string connectionSTR = @"Data Source = LEXUANTHANH\SQLEXPRESS;Initial Catalog = OpmDB; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        static string connectionSTR = @"Data Source=THANH\SQLEXPRESS;Initial Catalog=OpmDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        static string connectionSTR = @"Data Source = LEXUANTHANH\SQLEXPRESS;Initial Catalog = OpmDB; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        //static string connectionSTR = @"Data Source=THANH\SQLEXPRESS;Initial Catalog=OpmDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public static DataTable ExecuteQuery(string query, object[] parameter = null)
         {
             DataTable data = new DataTable();
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                if (parameter != null)
+                try
                 {
-                    string[] listPara = query.Split(' ');
-                    int i = 0;
-                    foreach (string item in listPara)
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    if (parameter != null)
                     {
-                        if (item.Contains('@'))
+                        string[] listPara = query.Split(' ');
+                        int i = 0;
+                        foreach (string item in listPara)
                         {
-                            command.Parameters.AddWithValue(item, parameter[i]);
-                            i++;
+                            if (item.Contains('@'))
+                            {
+                                command.Parameters.AddWithValue(item, parameter[i]);
+                                i++;
+                            }
                         }
                     }
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(data);
+                    connection.Close();
                 }
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
-                adapter.Fill(data);
-                connection.Close();
+                catch
+                {
+                    MessageBox.Show("Không kết nối được CSDL");
+                }
             }
             return data;
         }
@@ -39,23 +47,30 @@ namespace OPM.DBHandler
             object data = 0;
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                if (parameter != null)
+                try
                 {
-                    string[] listPara = query.Split(' ');
-                    int i = 0;
-                    foreach (string item in listPara)
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    if (parameter != null)
                     {
-                        if (item.Contains('@'))
+                        string[] listPara = query.Split(' ');
+                        int i = 0;
+                        foreach (string item in listPara)
                         {
-                            command.Parameters.AddWithValue(item, parameter[i]);
-                            i++;
+                            if (item.Contains('@'))
+                            {
+                                command.Parameters.AddWithValue(item, parameter[i]);
+                                i++;
+                            }
                         }
                     }
+                    data = command.ExecuteScalar();
+                    connection.Close();
                 }
-                data = command.ExecuteScalar();
-                connection.Close();
+                catch
+                {
+                    MessageBox.Show("Không kết nối được CSDL");
+                }
             }
             return data;
         }
@@ -64,23 +79,30 @@ namespace OPM.DBHandler
             int data = 0;
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                if (parameter != null)
+                try
                 {
-                    string[] listPara = query.Split(' ');
-                    int i = 0;
-                    foreach (string item in listPara)
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    if (parameter != null)
                     {
-                        if (item.Contains('@'))
+                        string[] listPara = query.Split(' ');
+                        int i = 0;
+                        foreach (string item in listPara)
                         {
-                            command.Parameters.AddWithValue(item, parameter[i]);
-                            i++;
+                            if (item.Contains('@'))
+                            {
+                                command.Parameters.AddWithValue(item, parameter[i]);
+                                i++;
+                            }
                         }
                     }
+                    data = command.ExecuteNonQuery();
+                    connection.Close();
                 }
-                data = command.ExecuteNonQuery();
-                connection.Close();
+                catch
+                {
+                    MessageBox.Show("Không kết nối được CSDL");
+                }
             }
             return data;
         }
@@ -96,11 +118,9 @@ namespace OPM.DBHandler
                 return 0;
             }
         }
-
         public static int fInsertData(string strSqlCommand)
         {
             SqlConnection con = new SqlConnection(connectionSTR);
-
             try
             {
                 con.Open();
@@ -117,7 +137,6 @@ namespace OPM.DBHandler
                 CloseConnection(con);
                 return 0;
             }
-
         }
         public static int fQuerryData1(string strQuerry)
         {
