@@ -13,7 +13,6 @@ using OPM.ExcelHandler;
 using System.Data.OleDb;
 using System.Data.Common;
 using OPM.DBHandler;
-
 namespace OPM.GUI
 {
     public partial class PurchaseOderInfor : Form
@@ -128,6 +127,36 @@ namespace OPM.GUI
                 OpmWordHandler.Word_POBaoLanh(po.Id);
             }
             else MessageBox.Show(string.Format("Không tồn tại hợp đồng {0}", txbIDContract.Text));
+            if (txbnamefilePO.Text != "")
+            {
+                int returnValue = 0;
+                if (po.CheckListExpected_PO(po.Id))
+                {
+                    MessageBox.Show(po.Id + "Đã có file phẩn bổ, không cần import thêm!");
+                }
+                else
+                {
+                    for (int i = 0; i < dataGridViewPO.Rows.Count - 1; i++)
+                    {
+                        returnValue = po.InsertImportFilePO(po.Id, dataGridViewPO.Rows[i].Cells[1].Value.ToString(), dataGridViewPO.Rows[i].Cells[2].Value.ToString(), contract.Namecontract);
+                    }
+                    if (returnValue == 1)
+                    {
+                        MessageBox.Show("Lưu trữ thông tin file phân bổ thành công");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lưu trữ thông tin file phân bổ thất bại");
+                    }
+                }
+            }
+            else
+            {
+                if (po.CheckListExpected_PO(po.Id))
+                {
+                    MessageBox.Show(po.Id + "đã có file phẩn bổ, không cần import thêm!");
+                }
+            }
             UpdateCatalogPanel(txbIDContract.Text);
             this.Cursor = Cursors.Default;
         }

@@ -107,7 +107,7 @@ namespace OPM.WordHandler
             //Check xem forder đã đc khởi tạo hay chưa?
             //Nếu chưa khởi tạo thì tiên hành khởi tạo
             string FoderName = String.Format(po.Id);
-            string strPODirectory = DriveName + "OPM\\" + po.Po_number + "\\" + FoderName; 
+            string strPODirectory = DriveName + "OPM\\" + po.Po_number + "-" + FoderName; 
             if (!Directory.Exists(strPODirectory))
             {
                 Directory.CreateDirectory(strPODirectory);
@@ -119,7 +119,7 @@ namespace OPM.WordHandler
             object missing = Missing.Value;
             WordOffice.Document myDoc = null;
             //
-            object path = DriveName + @"LP\Mau 3. VB xac nhan hieu luc don hang.docx";
+            object path = DriveName + @"LP\Mau 3. van ban xac nhan hieu luc don hang.docx";
             if (File.Exists(path.ToString()))
             {
                 object readOnly = false;
@@ -181,7 +181,7 @@ namespace OPM.WordHandler
             //Check xem forder đã đc khởi tạo hay chưa?
             //Nếu chưa khởi tạo thì tiên hành khởi tạo
             string FoderName = String.Format(po.Id);
-            string strPODirectory = DriveName + "OPM\\" + po.Po_number + "\\" + FoderName;
+            string strPODirectory = DriveName + "OPM\\" + po.Po_number + "-" + FoderName;
             if (!Directory.Exists(strPODirectory))
             {
                 Directory.CreateDirectory(strPODirectory);
@@ -206,6 +206,10 @@ namespace OPM.WordHandler
                                     ref missing, ref missing, ref missing,
                                     ref missing, ref missing, ref missing, ref missing);
                 myDoc.Activate();
+                FindAndReplace(wordApp, "<dd>", " " + DateTime.Now.ToString("dd") + " ");
+                FindAndReplace(wordApp, "<MM>", " " + DateTime.Now.ToString("MM") + " ");
+                FindAndReplace(wordApp, "<yyyy>", " " + DateTime.Now.ToString("yyyy") + " ");
+                FindAndReplace(wordApp, "<Number>", " " + po.Confirmpo_number);
                 FindAndReplace(wordApp, "<PO_Name>", " " + po.Po_number);
                 FindAndReplace(wordApp, "<Contract_ID>", " " + contract.Id);
                 FindAndReplace(wordApp, "<Contract_Name>", " " + contract.Namecontract);
@@ -249,7 +253,7 @@ namespace OPM.WordHandler
             //Check xem forder đã đc khởi tạo hay chưa?
             //Nếu chưa khởi tạo thì tiên hành khởi tạo
             string FoderName = String.Format(po.Id);
-            string strPODirectory = DriveName + "OPM\\" + po.Po_number + "\\" + FoderName;
+            string strPODirectory = DriveName + "OPM\\" + po.Po_number + "-" + FoderName;
             if (!Directory.Exists(strPODirectory))
             {
                 Directory.CreateDirectory(strPODirectory);
