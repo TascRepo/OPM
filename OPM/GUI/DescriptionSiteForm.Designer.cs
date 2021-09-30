@@ -51,143 +51,128 @@ namespace OPM.GUI
             // 
             // txbID
             // 
-            this.txbID.Location = new System.Drawing.Point(153, 62);
-            this.txbID.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txbID.Location = new System.Drawing.Point(107, 37);
             this.txbID.Name = "txbID";
-            this.txbID.Size = new System.Drawing.Size(184, 31);
+            this.txbID.Size = new System.Drawing.Size(130, 23);
             this.txbID.TabIndex = 0;
             this.txbID.Text = "Công ty TNHH thiết bị Viễn thông ANSV";
             // 
             // txbhead
             // 
-            this.txbhead.Location = new System.Drawing.Point(153, 152);
-            this.txbhead.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txbhead.Location = new System.Drawing.Point(107, 91);
             this.txbhead.Name = "txbhead";
-            this.txbhead.Size = new System.Drawing.Size(184, 31);
+            this.txbhead.Size = new System.Drawing.Size(130, 23);
             this.txbhead.TabIndex = 1;
             this.txbhead.Text = "124 Hoàng Quốc Việt, Phường Nghĩa Tân, Quận Cầu Giấy, TP.Hà Nội";
             // 
             // txbAddress
             // 
-            this.txbAddress.Location = new System.Drawing.Point(154, 242);
-            this.txbAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txbAddress.Location = new System.Drawing.Point(108, 145);
             this.txbAddress.Name = "txbAddress";
-            this.txbAddress.Size = new System.Drawing.Size(184, 31);
+            this.txbAddress.Size = new System.Drawing.Size(130, 23);
             this.txbAddress.TabIndex = 2;
             this.txbAddress.Text = "124 Hoàng Quốc Việt, Phường Nghĩa Tân, Quận Cầu Giấy, TP.Hà Nội";
             // 
             // txbPhone
             // 
-            this.txbPhone.Location = new System.Drawing.Point(153, 332);
-            this.txbPhone.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txbPhone.Location = new System.Drawing.Point(107, 199);
             this.txbPhone.Name = "txbPhone";
-            this.txbPhone.Size = new System.Drawing.Size(184, 31);
+            this.txbPhone.Size = new System.Drawing.Size(130, 23);
             this.txbPhone.TabIndex = 3;
             this.txbPhone.Text = "02438362094";
             // 
             // txbFax
             // 
-            this.txbFax.Location = new System.Drawing.Point(153, 427);
-            this.txbFax.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txbFax.Location = new System.Drawing.Point(107, 256);
             this.txbFax.Name = "txbFax";
-            this.txbFax.Size = new System.Drawing.Size(184, 31);
+            this.txbFax.Size = new System.Drawing.Size(130, 23);
             this.txbFax.TabIndex = 4;
             this.txbFax.Text = "02433861195";
             // 
             // txbAccount
             // 
-            this.txbAccount.Location = new System.Drawing.Point(154, 602);
-            this.txbAccount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txbAccount.Location = new System.Drawing.Point(108, 361);
             this.txbAccount.Name = "txbAccount";
-            this.txbAccount.Size = new System.Drawing.Size(184, 31);
+            this.txbAccount.Size = new System.Drawing.Size(130, 23);
             this.txbAccount.TabIndex = 6;
             this.txbAccount.Text = "26010000554593";
             // 
             // ID
             // 
             this.ID.AutoSize = true;
-            this.ID.Location = new System.Drawing.Point(10, 67);
-            this.ID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ID.Location = new System.Drawing.Point(7, 40);
             this.ID.Name = "ID";
-            this.ID.Size = new System.Drawing.Size(38, 25);
+            this.ID.Size = new System.Drawing.Size(25, 15);
             this.ID.TabIndex = 0;
             this.ID.Text = "Tên";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 157);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(7, 94);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 25);
+            this.label1.Size = new System.Drawing.Size(71, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "Trụ sở chính";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 247);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(7, 148);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 25);
+            this.label2.Size = new System.Drawing.Size(43, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "Địa chỉ";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 337);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(7, 202);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 25);
+            this.label3.Size = new System.Drawing.Size(61, 15);
             this.label3.TabIndex = 3;
             this.label3.Text = "Điện thoại";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 427);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(7, 256);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 25);
+            this.label4.Size = new System.Drawing.Size(25, 15);
             this.label4.TabIndex = 4;
             this.label4.Text = "Fax";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 607);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(7, 364);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(117, 25);
+            this.label5.Size = new System.Drawing.Size(78, 15);
             this.label5.TabIndex = 6;
             this.label5.Text = "Tài khoản NH";
             // 
             // Representative
             // 
             this.Representative.AutoSize = true;
-            this.Representative.Location = new System.Drawing.Point(10, 697);
-            this.Representative.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Representative.Location = new System.Drawing.Point(7, 418);
             this.Representative.Name = "Representative";
-            this.Representative.Size = new System.Drawing.Size(77, 25);
+            this.Representative.Size = new System.Drawing.Size(50, 15);
             this.Representative.TabIndex = 7;
             this.Representative.Text = "Đại diện";
             // 
             // txbRepresen
             // 
-            this.txbRepresen.Location = new System.Drawing.Point(153, 692);
-            this.txbRepresen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txbRepresen.Location = new System.Drawing.Point(107, 415);
             this.txbRepresen.Name = "txbRepresen";
-            this.txbRepresen.Size = new System.Drawing.Size(184, 31);
+            this.txbRepresen.Size = new System.Drawing.Size(130, 23);
             this.txbRepresen.TabIndex = 7;
             this.txbRepresen.Text = "Nguyễn Văn Nam";
             // 
             // edit
             // 
-            this.edit.Location = new System.Drawing.Point(36, 790);
-            this.edit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.edit.Location = new System.Drawing.Point(25, 474);
             this.edit.Name = "edit";
-            this.edit.Size = new System.Drawing.Size(107, 38);
+            this.edit.Size = new System.Drawing.Size(75, 23);
             this.edit.TabIndex = 0;
             this.edit.Text = "Edit";
             this.edit.UseVisualStyleBackColor = true;
@@ -195,10 +180,9 @@ namespace OPM.GUI
             // 
             // save
             // 
-            this.save.Location = new System.Drawing.Point(211, 790);
-            this.save.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.save.Location = new System.Drawing.Point(148, 474);
             this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(107, 38);
+            this.save.Size = new System.Drawing.Size(75, 23);
             this.save.TabIndex = 0;
             this.save.Text = "Save";
             this.save.UseVisualStyleBackColor = true;
@@ -206,28 +190,26 @@ namespace OPM.GUI
             // 
             // textBoxTaxCode
             // 
-            this.textBoxTaxCode.Location = new System.Drawing.Point(153, 512);
-            this.textBoxTaxCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxTaxCode.Location = new System.Drawing.Point(107, 307);
             this.textBoxTaxCode.Name = "textBoxTaxCode";
-            this.textBoxTaxCode.Size = new System.Drawing.Size(184, 31);
+            this.textBoxTaxCode.Size = new System.Drawing.Size(130, 23);
             this.textBoxTaxCode.TabIndex = 5;
             this.textBoxTaxCode.Text = "0100113871";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 517);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(7, 310);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(101, 25);
+            this.label6.Size = new System.Drawing.Size(66, 15);
             this.label6.TabIndex = 5;
             this.label6.Text = "Mã số thuế";
             // 
             // DescriptionSiteForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(356, 857);
+            this.ClientSize = new System.Drawing.Size(249, 512);
             this.Controls.Add(this.save);
             this.Controls.Add(this.edit);
             this.Controls.Add(this.txbRepresen);
@@ -246,7 +228,6 @@ namespace OPM.GUI
             this.Controls.Add(this.txbAddress);
             this.Controls.Add(this.txbhead);
             this.Controls.Add(this.txbID);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "DescriptionSiteForm";
             this.Text = "DesscriptionSiteFormcs";
             this.Load += new System.EventHandler(this.DescriptionSiteForm_Load);

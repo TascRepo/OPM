@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace OPM.OPMEnginee
 {
-    class Site_Info
+    public class Site_Info
     {
         string id = "Công ty TNHH thiết bị viễn thông ANSV";
         string type = "0300954529";
@@ -55,7 +55,7 @@ namespace OPM.OPMEnginee
         public Site_Info(string id)
         {
             Id = id;
-            string query = string.Format("SELECT * FROM dbo.Site_Info WHERE id = '{0}'", id);
+            string query = string.Format("SELECT * FROM dbo.Site_Info WHERE id = N'{0}'", id);
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             if (table.Rows.Count > 0)
             {
@@ -145,10 +145,10 @@ namespace OPM.OPMEnginee
                 MessageBox.Show("Xoá thất bại!");
             }
         }
-        public static void Delete(int stt)
+        public static void Delete(int id)
         {
             if (MessageBox.Show(string.Format("Có chắc chắn xoá không?"), "Thông báo!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel) return;
-            string query = string.Format("DELETE FROM dbo.Site_Info WHERE stt = {0}", stt);
+            string query = string.Format("DELETE FROM dbo.Site_Info WHERE id = {0}", id);
             try
             {
                 OPMDBHandler.ExecuteNonQuery(query);

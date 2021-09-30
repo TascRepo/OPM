@@ -20,7 +20,7 @@ namespace OPM.GUI
         //Truyền giá trị của Id_Site về Form Contract
         public delegate void SetIdSite(string idSite);
         public SetIdSite setIdSite;
-
+        public Site_Info site;
 
         //private void SetDefaultValues()
         //{
