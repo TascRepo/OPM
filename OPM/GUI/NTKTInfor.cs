@@ -40,6 +40,7 @@ namespace OPM.GUI
             nTKT.Date_BBNTKT = dtpDate_BBNTKT.Value;
             nTKT.InsertOrUpdate();
             OpmWordHandler.Temp8_NTKTRequest(nTKT.Id);
+            OpmWordHandler.Temp11_BBNTKT(nTKT.Id);
             UpdateCatalogPanel("NTKT_" + nTKT.Number.ToString());
             //- Tạo file D:\OPM\''Tên HĐ''\"Tên PO"\"Tên NTKT".docx
             //- tạo và thông báo tạo thành công hay không file Yêu cầu NTKT
