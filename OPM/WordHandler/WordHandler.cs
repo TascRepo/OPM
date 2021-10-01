@@ -168,7 +168,7 @@ namespace OPM.WordHandler
         }
 
         //Tạo mẫu 3
-        public static void Word_POConfirm(string id)
+        public static void Word_POConfirm(string id,string ConfirmPO_Number)
         {
             PO_Thanh po = new PO_Thanh(id);
             Contract contract = new Contract(po.Id_contract);
@@ -225,7 +225,7 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<PO_ID>", po.Id);
                 OpmWordHandler.FindAndReplace(wordApp, "<PO_DateCreated>", po.Datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 OpmWordHandler.FindAndReplace(wordApp, "<PO_ConfirmDateActive>", po.Confirmpo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-                //
+                //FileLocation = path
                 //Save as
                 myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing,

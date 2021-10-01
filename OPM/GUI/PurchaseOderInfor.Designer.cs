@@ -456,7 +456,7 @@ namespace OPM.GUI
             this.confirmpo_number.Name = "confirmpo_number";
             this.confirmpo_number.Size = new System.Drawing.Size(80, 23);
             this.confirmpo_number.TabIndex = 6;
-            this.confirmpo_number.Text = "1234";
+            this.confirmpo_number.Text = "/ANSV-DO";
             this.confirmpo_number.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label17

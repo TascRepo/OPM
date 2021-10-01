@@ -115,21 +115,11 @@ namespace OPM.GUI
             }
             po.Bltupo_datecreated=bltupo_datecreated.Value;
             po.Confirmpo_dateactive = confirmpo_dateactive.Value;
-            if (Contract.Exist(txbIDContract.Text.Trim())) 
-            {
-                po.InsertOrUpdate();
-                //Lưu mẫu Comfirm Po vào database
-                po.InsertOrUpdate_VBConfirmPO(po.Id);
-                //Tạo file xác nhận hợp đồng
-                OpmWordHandler.Word_POConfirm(po.Id);
-                //Tạo 3 mẫu văn bản m4,m5,m6
-                OpmWordHandler.Word_POTamUng(po.Id);
-                OpmWordHandler.Word_POBaoLanh(po.Id);
-            }
-            else MessageBox.Show(string.Format("Không tồn tại hợp đồng {0}", txbIDContract.Text));
             if (txbnamefileKHGH.Text != "")
             {
-                if (po.CheckListDelivery_PO(po.Confirmpo_number))
+                //Lưu mẫu Comfirm Po vào database
+                po.InsertOrUpdate_VBConfirmPO(po.Id);
+                if (po.CheckListDelivery_PO(string.Format(po.Confirmpo_number)))
                 {
                     MessageBox.Show(po.Confirmpo_number + "File giao hàng đã tồn tại, không cần import vào");
                 }
@@ -138,7 +128,10 @@ namespace OPM.GUI
                     int returnValue = 0;
                     for (int i = 0; i < dt.Rows.Count - 1; i++)
                     {
-                        returnValue = po.InsertImportFileKHGH(po.Confirmpo_number, dt.Rows[i][1].ToString(), dt.Rows[i][2].ToString(), dt.Rows[i][3].ToString(), dt.Rows[i][4].ToString());
+                        if(dt.Rows[i][2].ToString() != "")
+                        {
+                            returnValue = po.InsertImportFileKHGH(po.Confirmpo_number, dt.Rows[i][1].ToString(), dt.Rows[i][2].ToString(), dt.Rows[i][3].ToString(), dt.Rows[i][4].ToString());
+                        }
                     }
                     if (returnValue == 1)
                     {
@@ -146,7 +139,7 @@ namespace OPM.GUI
                     }
                     else
                     {
-                        MessageBox.Show("Lưu trữ thông tin file giao hàngổ thất bại");
+                        MessageBox.Show("Lưu trữ thông tin file giao hàng thất bại");
                     }
                 }
             }
@@ -196,6 +189,16 @@ namespace OPM.GUI
                     MessageBox.Show(po.Confirmpo_number + "chưa có file giao hàng, bạn phải bổ sung sau");
                 }
             }
+            if (Contract.Exist(txbIDContract.Text.Trim()))
+            {
+                po.InsertOrUpdate();
+                //Tạo file xác nhận hợp đồng
+                OpmWordHandler.Word_POConfirm(po.Id, po.Confirmpo_number);
+                //Tạo 3 mẫu văn bản m4,m5,m6
+                OpmWordHandler.Word_POTamUng(po.Id);
+                OpmWordHandler.Word_POBaoLanh(po.Id);
+            }
+            else MessageBox.Show(string.Format("Không tồn tại hợp đồng {0}", txbIDContract.Text));
             UpdateCatalogPanel(txbIDContract.Text);
             this.Cursor = Cursors.Default;
         }
@@ -406,14 +409,14 @@ namespace OPM.GUI
                 {
                     txbnamefileKHGH.Text = openFileExcel.FileName;
                     string filename = openFileExcel.FileName;
-                    int ret = OpmExcelHandler.SaveFileInDelivery_PO(filename, ref dt);
+                    int ret = OpmExcelHandler.SaveFileInDelivery_PO(filename,ref dt);
                     if (ret == 1)
                     {
-                        MessageBox.Show("Luu thong tin thanh cong");
+                        MessageBox.Show("Import thành công");
                     }
                     else
                     {
-                        MessageBox.Show("Luu thong tin that bai");
+                        MessageBox.Show("Import thất bại");
                     }
                 }
 
