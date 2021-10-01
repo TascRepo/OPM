@@ -5,8 +5,6 @@ using OPM.OPMEnginee;
 using OPM.EmailHandler;
 using System.IO;
 using System.Data;
-using System.Data.OleDb;
-
 namespace OPM.GUI
 {
     
@@ -270,23 +268,6 @@ namespace OPM.GUI
 
         private void btnContractAnnex_Click(object sender, EventArgs e)
         {
-            string connectionSTR = @"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = D:\OPM\Template\Thanh.xlsx; Extended Properties = 'Excel 8.0;HDR=YES'";
-            DataTable data = new DataTable();
-            //set up connection string
-            using (OleDbConnection connection = new OleDbConnection(connectionSTR))
-            {
-                try
-                {
-                    OleDbCommand command = new OleDbCommand("select * from [$Sheet1]", connection);
-
-                    MessageBox.Show("Kết nối được CSDL Excel!");
-                    //OleDbParameter param0 = new OleDbParameter("@login", OleDbType.VarChar);
-                }
-                catch
-                {
-                    MessageBox.Show("Không kết nối được CSDL Excel!");
-                }
-            }
         }
     }
 }
