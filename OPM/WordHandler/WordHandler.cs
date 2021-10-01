@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Data;
 using System.Windows.Forms;
 using WordOffice = Microsoft.Office.Interop.Word;
 using System.Reflection;
@@ -226,7 +227,24 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<PO_DateCreated>", po.Datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 OpmWordHandler.FindAndReplace(wordApp, "<PO_ConfirmDateActive>", po.Confirmpo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 //FileLocation = path
-                //Save as
+                Microsoft.Office.Interop.Word.Table tab = myDoc.Tables[3];
+                Object objMiss = Missing.Value;
+                Delivery_PO po1 = new Delivery_PO();
+                DataTable dt_PO = new DataTable();
+                if(po1.CheckDelivery_PO(ConfirmPO_Number) == 1)
+                {
+                    string sql = po1.querySQL(ConfirmPO_Number);
+                    DataTable table1 = OPMDBHandler.ExecuteQuery(sql);
+                    tab.Rows.Add(ref objMiss);
+                    for (int i = 1; i < 62 ; i++)
+                    {
+                        tab.Cell(i, 1).Range.Text = table1.Rows[i][1].ToString();
+                        tab.Cell(i, 2).Range.Text = table1.Rows[i][2].ToString();
+                        tab.Cell(i, 3).Range.Text = table1.Rows[i][3].ToString();
+                        tab.Cell(i, 4).Range.Text = table1.Rows[i][4].ToString();
+                        tab.Cell(i, 5).Range.Text = table1.Rows[i][5].ToString();
+                    }
+                }
                 myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing,
@@ -241,6 +259,8 @@ namespace OPM.WordHandler
                 MessageBox.Show("Không tìm thấy bản mẫu");
             }
         }
+        //
+
         //Tạo mẫu 4 + 5
         public static void Word_POTamUng(string id)
         {

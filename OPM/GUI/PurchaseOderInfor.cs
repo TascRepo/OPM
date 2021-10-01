@@ -324,6 +324,7 @@ namespace OPM.GUI
         private void importPO_Click(object sender, EventArgs e)
         {
            openFileExcel.Multiselect = true;
+           openFileExcel.Multiselect = true;
            openFileExcel.Filter = "Excel Files(.xls)|*.xls| Excel Files(.xlsx)| *.xlsx | Excel Files(*.xlsm) | *.xlsm";
             if (openFileExcel.ShowDialog() == DialogResult.OK)
             {
@@ -332,6 +333,11 @@ namespace OPM.GUI
                     txbnamefilePO.Text = openFileExcel.FileName;
                     string filename = openFileExcel.FileName;
                     DataTable dt = new DataTable();
+                    dt.Columns.Add("1");
+                    dt.Columns.Add("2");
+                    dt.Columns.Add("3");
+                    dt.Columns.Add("4");
+                    dt.Columns.Add("5");
                     int ret = OpmExcelHandler.fReadExcelFilePO2(filename, ref dt);
                     if(ret==1)
                     {
@@ -421,6 +427,11 @@ namespace OPM.GUI
                 }
 
             }
+        }
+
+        private void TimepickerDefaultActive_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

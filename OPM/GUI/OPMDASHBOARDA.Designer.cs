@@ -201,7 +201,7 @@ namespace OPM.GUI
             this.panContent.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panContent.Location = new System.Drawing.Point(261, 5);
             this.panContent.Name = "panContent";
-            this.panContent.Size = new System.Drawing.Size(488, 599);
+            this.panContent.Size = new System.Drawing.Size(478, 599);
             this.panContent.TabIndex = 2;
             // 
             // panDescription
@@ -211,14 +211,14 @@ namespace OPM.GUI
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panDescription.Location = new System.Drawing.Point(738, 5);
             this.panDescription.Name = "panDescription";
-            this.panDescription.Size = new System.Drawing.Size(262, 599);
+            this.panDescription.Size = new System.Drawing.Size(252, 599);
             this.panDescription.TabIndex = 3;
             // 
             // OPMDASHBOARDA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1001, 610);
+            this.ClientSize = new System.Drawing.Size(991, 610);
             this.Controls.Add(this.panDescription);
             this.Controls.Add(this.panContent);
             this.Controls.Add(this.panCatalog);
