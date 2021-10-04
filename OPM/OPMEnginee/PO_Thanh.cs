@@ -249,13 +249,13 @@ namespace OPM.DBHandler
                 {
                     string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.VBConfirmPO SET id_ConfirmPO = '{1}' where id_po = '{3}'", Confirmpo_number,id);
                     OPMDBHandler.ExecuteNonQuery(query);
-                    MessageBox.Show(string.Format("Cập nhật thành công PO {0} !", id));
+                    MessageBox.Show(string.Format("Cập nhật thành công văn bản số hiệu {0} trong CSDL!", id));
                 }
                 else
                 {
                     string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.VBConfirmPO(id_ConfirmPO, id_po, vb_ConfirmPO) VALUES('{0}','{1}','{2}')", Confirmpo_number,id, ' ');
                     OPMDBHandler.ExecuteNonQuery(query);
-                    MessageBox.Show(string.Format("Tạo mới thành công PO {0} !", id));
+                    MessageBox.Show(string.Format("Tạo mới thành công văn bản số hiệu {0} trong CSDL!", id));
                 }
             }
         }
@@ -298,10 +298,10 @@ namespace OPM.DBHandler
             result = OPMDBHandler.fInsertData(query);
             return result;
         }
-        public int InsertImportFileKHGH(string NumberConfirmPO, string Province, string Count_PO, string Number_PO, string Date_Delivery)
+        public int InsertImportFileKHGH(string NumberConfirmPO, string Province, string Count_PO, string Number_PO, string Date_Delivery, string id_po)
         {
             int result = 0;
-            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.Delivery_PO(NumberConfirmPO, Province, Count_PO, Number_PO, Date_Delivery) VALUES('{0}',N'{1}',{2},{3},N'{4}')", NumberConfirmPO, Province, Int64.Parse(Count_PO), Int64.Parse(Number_PO), Date_Delivery);
+            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.Delivery_PO(NumberConfirmPO, Province, Count_PO, Number_PO, Date_Delivery,id_po) VALUES('{0}',N'{1}',{2},{3},N'{4}',N'{5}')", NumberConfirmPO, Province, Int64.Parse(Count_PO), Int64.Parse(Number_PO), Date_Delivery, id_po);
             result = OPMDBHandler.fInsertData(query);
             return result;
         }
