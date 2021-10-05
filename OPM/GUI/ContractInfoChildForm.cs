@@ -238,7 +238,7 @@ namespace OPM.GUI
         {
             try
             {
-                tbxGaranteeValue.Text = (int.Parse(txbGaranteeValue.Text) * int.Parse(tbxValueContract.Text) / 100).ToString();
+                tbxGaranteeValue.Text = ((0.01*int.Parse(txbGaranteeValue.Text)) * double.Parse(tbxValueContract.Text)).ToString();
             }
             catch
             {
@@ -250,7 +250,7 @@ namespace OPM.GUI
         {
             try
             {
-                tbxGaranteeValue.Text = (int.Parse(txbGaranteeValue.Text) * int.Parse(tbxValueContract.Text) / 100).ToString();
+                tbxGaranteeValue.Text = ((0.01 * int.Parse(txbGaranteeValue.Text)) * double.Parse(tbxValueContract.Text)).ToString();
             }
             catch
             {
@@ -261,7 +261,7 @@ namespace OPM.GUI
         {
             try
             {
-                tbxGaranteeValue.Text = ((0.01 * int.Parse(txbGaranteeValue.Text)) * int.Parse(tbxValueContract.Text)).ToString();
+                tbxGaranteeValue.Text = ((0.01 * int.Parse(txbGaranteeValue.Text)) * double.Parse(tbxValueContract.Text)).ToString();
             }
             catch
             {

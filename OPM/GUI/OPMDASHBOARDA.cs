@@ -143,74 +143,80 @@ namespace OPM.GUI
 
             /*Check What Label Checked and it's parent Checked*/
             //MessageBox.Show(treeView1.SelectedNode.Name.ToString());
-
-            string strNodeID = treeView1.SelectedNode.Name.ToString();
-            if (null != treeView1.SelectedNode.Parent)
+            try
             {
-                string strParentNodeID = treeView1.SelectedNode.Parent.Name.ToString();
-                //MessageBox.Show(treeView1.SelectedNode.Parent.Text);
-            }    
-            else
-            {
-                //MessageBox.Show("No Parent Node");
+                string strNodeID = treeView1.SelectedNode.Name.ToString();
+                if (null != treeView1.SelectedNode.Parent)
+                {
+                    string strParentNodeID = treeView1.SelectedNode.Parent.Name.ToString();
+                    //MessageBox.Show(treeView1.SelectedNode.Parent.Text);
+                }
+                else
+                {
+                    //MessageBox.Show("No Parent Node");
+                }
+                string[] temp = strNodeID.Split('_');
+                temp[0] += "_";
+                /*Get Detail Infor On Database*/
+                switch (temp[0])
+                {
+                    case ConstantVar.ContractType:
+                        //Khai báo contractInfoChildForm ứng với IdContract
+                        ContractInfoChildForm contractInfoChildForm = new ContractInfoChildForm(temp[1]);
+                        contractInfoChildForm.UpdateCatalogPanel = new ContractInfoChildForm.UpdateCatalogDelegate(GetCatalogvalue);
+                        //DASHBOAD nhận yêu cầu mở PurchaseOderInfor từ ContractInfoChildForm
+                        contractInfoChildForm.RequestDashBoardOpenPOForm = new ContractInfoChildForm.RequestDashBoardOpenChildForm(OpenPOForm);
+                        //DASHBOAD nhận yêu cầu mở DescriptionSiteForm từ ContractInfoChildForm
+                        contractInfoChildForm.requestDashBoardOpendescriptionForm = new ContractInfoChildForm.RequestDashBoardOpenDescriptionForm(OpenDescription);
+                        //Mở ContractInfoChildForm
+                        OpenChidForm(contractInfoChildForm);
+                        break;
+                    case ConstantVar.POType:
+                        /*Display PO */
+                        PurchaseOderInfor purchaseOderInfor = new PurchaseOderInfor();
+                        purchaseOderInfor.UpdateCatalogPanel = new PurchaseOderInfor.UpdateCatalogDelegate(GetCatalogvalue);
+                        purchaseOderInfor.po = new DBHandler.PO_Thanh(temp[1]);
+                        purchaseOderInfor.contract = new Contract(treeView1.SelectedNode.Parent.Text);
+                        //MessageBox.Show(temp[1]);
+                        purchaseOderInfor.requestDashBoardOpenNTKTForm = new PurchaseOderInfor.RequestDashBoardOpenNTKTForm(OpenNTKTForm);
+                        //purchaseOderInfor.SetValueItemForPO(temp[1]);
+                        purchaseOderInfor.requestDaskboardOpenDP = new PurchaseOderInfor.RequestDaskboardOpenDP(OpenDpForm);
+                        //Click vao ComfirmPO
+                        purchaseOderInfor.requestDashBoardOpenConfirmPOForm = new PurchaseOderInfor.RequestDashBoardOpenConfirmForm(OpenConfirmPOForm);
+                        //
+                        OpenChidForm(purchaseOderInfor);
+                        break;
+                    case ConstantVar.DPType:
+                        /*Display DP */
+                        DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
+                        deliverPartInforDetail.UpdateCatalogPanel = new DeliverPartInforDetail.UpdateCatalogDelegate(GetCatalogvalue);
+                        OpenChidForm(deliverPartInforDetail);
+                        break;
+                    case ConstantVar.NTKTType:
+                        /*Display NTKT */
+                        NTKTInfor nTKTInfor = new NTKTInfor();
+                        nTKTInfor.UpdateCatalogPanel = new NTKTInfor.UpdateCatalogDelegate(GetCatalogvalue);
+                        nTKTInfor.requestDashBoardPurchaseOderForm = new NTKTInfor.RequestDashBoardPurchaseOderForm(OpenPOForm);
+                        //nTKTInfor.setValueItemForNTKT(temp[1]);
+                        //Lấy NTKT hiện tại
+                        nTKTInfor.ntkt = new NTKT_Thanh(temp[1]);
+                        nTKTInfor.po = new DBHandler.PO_Thanh(nTKTInfor.ntkt.Id_po);
+                        OpenChidForm(nTKTInfor);
+                        break;
+                    case ConstantVar.PLType:
+                        /*Display PL */
+                        PackageListInfor packageListInfor = new PackageListInfor();
+                        packageListInfor.UpdateCatalogPanel = new PackageListInfor.UpdateCatalogDelegate(GetCatalogvalue);
+                        OpenChidForm(packageListInfor);
+                        break;
+                    default:
+                        Console.WriteLine("Invalid grade");
+                        break;
+                }
             }
-            string[] temp = strNodeID.Split('_');
-            temp[0] += "_";
-            /*Get Detail Infor On Database*/
-            switch (temp[0])
+            catch
             {
-                case ConstantVar.ContractType:
-                    //Khai báo contractInfoChildForm ứng với IdContract
-                    ContractInfoChildForm contractInfoChildForm = new ContractInfoChildForm(temp[1]);
-                    contractInfoChildForm.UpdateCatalogPanel = new ContractInfoChildForm.UpdateCatalogDelegate(GetCatalogvalue);
-                    //DASHBOAD nhận yêu cầu mở PurchaseOderInfor từ ContractInfoChildForm
-                    contractInfoChildForm.RequestDashBoardOpenPOForm = new ContractInfoChildForm.RequestDashBoardOpenChildForm(OpenPOForm);
-                    //DASHBOAD nhận yêu cầu mở DescriptionSiteForm từ ContractInfoChildForm
-                    contractInfoChildForm.requestDashBoardOpendescriptionForm = new ContractInfoChildForm.RequestDashBoardOpenDescriptionForm(OpenDescription);
-                    //Mở ContractInfoChildForm
-                    OpenChidForm(contractInfoChildForm);
-                    break;
-                case ConstantVar.POType:
-                    /*Display PO */
-                    PurchaseOderInfor purchaseOderInfor  = new PurchaseOderInfor();
-                    purchaseOderInfor.UpdateCatalogPanel = new PurchaseOderInfor.UpdateCatalogDelegate(GetCatalogvalue);
-                    purchaseOderInfor.po = new DBHandler.PO_Thanh(temp[1]);
-                    purchaseOderInfor.contract = new Contract(treeView1.SelectedNode.Parent.Text);
-                    //MessageBox.Show(temp[1]);
-                    purchaseOderInfor.requestDashBoardOpenNTKTForm = new PurchaseOderInfor.RequestDashBoardOpenNTKTForm(OpenNTKTForm);
-                    //purchaseOderInfor.SetValueItemForPO(temp[1]);
-                    purchaseOderInfor.requestDaskboardOpenDP = new PurchaseOderInfor.RequestDaskboardOpenDP(OpenDpForm);
-                    //Click vao ComfirmPO
-                    purchaseOderInfor.requestDashBoardOpenConfirmPOForm = new PurchaseOderInfor.RequestDashBoardOpenConfirmForm(OpenConfirmPOForm);
-                    //
-                    OpenChidForm(purchaseOderInfor);
-                    break;
-                case ConstantVar.DPType:
-                    /*Display DP */
-                    DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
-                    deliverPartInforDetail.UpdateCatalogPanel = new DeliverPartInforDetail.UpdateCatalogDelegate(GetCatalogvalue);
-                    OpenChidForm(deliverPartInforDetail);
-                    break;
-                case ConstantVar.NTKTType:
-                    /*Display NTKT */
-                    NTKTInfor nTKTInfor = new NTKTInfor();
-                    nTKTInfor.UpdateCatalogPanel = new NTKTInfor.UpdateCatalogDelegate(GetCatalogvalue);
-                    nTKTInfor.requestDashBoardPurchaseOderForm = new NTKTInfor.RequestDashBoardPurchaseOderForm(OpenPOForm);
-                    //nTKTInfor.setValueItemForNTKT(temp[1]);
-                    //Lấy NTKT hiện tại
-                    nTKTInfor.ntkt = new NTKT_Thanh(temp[1]);
-                    nTKTInfor.po = new DBHandler.PO_Thanh(nTKTInfor.ntkt.Id_po);
-                    OpenChidForm(nTKTInfor);
-                    break;
-                case ConstantVar.PLType:
-                    /*Display PL */
-                    PackageListInfor packageListInfor = new PackageListInfor();
-                    packageListInfor.UpdateCatalogPanel = new PackageListInfor.UpdateCatalogDelegate(GetCatalogvalue);
-                    OpenChidForm(packageListInfor);
-                    break;
-                default:
-                    Console.WriteLine("Invalid grade");
-                    break;
+
             }
         }
 

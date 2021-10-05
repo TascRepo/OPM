@@ -39,7 +39,8 @@ namespace OPM.GUI
             nTKT.Date_BBKTKT = dtpDate_BBKTKT.Value;
             nTKT.Date_BBNTKT = dtpDate_BBNTKT.Value;
             nTKT.InsertOrUpdate();
-            OpmWordHandler.Temp8_NTKTRequest(nTKT.Id);
+            OpmWordHandler.Temp08_NTKTRequest(nTKT.Id);
+            OpmWordHandler.Temp09_BBKTKT(nTKT.Id);
             OpmWordHandler.Temp11_BBNTKT(nTKT.Id);
             UpdateCatalogPanel("NTKT_" + nTKT.Number.ToString());
             //- Tạo file D:\OPM\''Tên HĐ''\"Tên PO"\"Tên NTKT".docx
@@ -102,5 +103,16 @@ namespace OPM.GUI
 
         }
 
+        private void txbNumberOfDevice_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                txbNumberOfDevice2.Text = Math.Round(double.Parse(txbNumberOfDevice.Text) / 50, 0, MidpointRounding.AwayFromZero).ToString();
+            }
+            catch
+            {
+                MessageBox.Show("Nhập đúng dạng số!");
+            }
+        }
     }
 }

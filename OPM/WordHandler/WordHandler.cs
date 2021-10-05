@@ -73,7 +73,7 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Number>", ntkt.Number);
                 OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Numberofdevice>", ntkt.Numberofdevice);
                 OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Numberofdevice2>", ntkt.Numberofdevice2);
-                OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Create_date>", ntkt.Create_date);
+                OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Create_date>", ntkt.Create_date.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Date_BBNTKT>", ntkt.Date_BBNTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Date_BBKTKT>", ntkt.Date_BBKTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Deliver_date_expected>", ntkt.Deliver_date_expected.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
@@ -103,12 +103,94 @@ namespace OPM.WordHandler
             }
             else
             {
-                MessageBox.Show("Không tìm thấy bản mẫu 3.docx! ");
+                MessageBox.Show("Mẫu 11. Biên bản nghiệm thu kỹ thuật.docx!");
+            }
+            return filename.ToString();
+        }
+        //Tạo mẫu 9
+        public static string Temp09_BBKTKT(string id)
+        {
+            NTKT_Thanh ntkt = new NTKT_Thanh(id);
+            PO_Thanh po = new PO_Thanh(ntkt.Id);
+            Contract contract = new Contract(po.Id_contract);
+            Site_Info site = new Site_Info(contract.Id_siteA);
+            object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\BBKTKT_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number, ntkt.Id.Replace('/', '-'));
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
+            object path = @"D:\OPM\Template\Mẫu 9. Biên bản kiểm tra kỹ thuật.docx";
+            if (File.Exists(path.ToString()))
+            {
+                object readOnly = true;
+                //object isVisible = false;
+                wordApp.Visible = false;
+
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                //find and replace
+                OpmWordHandler.FindAndReplace(wordApp, "<ngày tháng năm>", string.Format("ngày {0} tháng {1} năm {2}", ntkt.Create_date.Day, ntkt.Create_date.Month, ntkt.Create_date.Year));
+                OpmWordHandler.FindAndReplace(wordApp, "<contract.Activedate>", contract.Activedate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<contract.Datesigned>", contract.Datesigned.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<contract.Datesigned>", contract.Datesigned.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<contract.Id>", contract.Id);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract.KHMS>", contract.KHMS);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract.Namecontract>", contract.Namecontract);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract.Id_siteA>", contract.Id_siteA);
+
+                OpmWordHandler.FindAndReplace(wordApp, "<po.Po_number>", po.Po_number);
+                OpmWordHandler.FindAndReplace(wordApp, "<po.Id>", po.Id);
+                OpmWordHandler.FindAndReplace(wordApp, "<po.Datecreated>", po.Datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<po.Confirmpo_datecreated>", po.Confirmpo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<po.Confirmpo_number>", po.Confirmpo_number);
+                OpmWordHandler.FindAndReplace(wordApp, "<po.Numberofdevice>", po.Numberofdevice);
+
+                OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Id>", ntkt.Id);
+                OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Number>", ntkt.Number);
+                OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Numberofdevice>", ntkt.Numberofdevice);
+                OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Numberofdevice2>", ntkt.Numberofdevice2);
+                OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Create_date>", ntkt.Create_date.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<ntkt.KT2%>", Math.Round((ntkt.Numberofdevice+ ntkt.Numberofdevice2)*0.02, 0, MidpointRounding.AwayFromZero));
+                OpmWordHandler.FindAndReplace(wordApp, "<ntkt.KT0.2%>", Math.Round((ntkt.Numberofdevice + ntkt.Numberofdevice2) * 0.002, 0, MidpointRounding.AwayFromZero));
+
+                OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Date_BBNTKT>", ntkt.Date_BBNTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Date_BBKTKT>", ntkt.Date_BBKTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Deliver_date_expected>", ntkt.Deliver_date_expected.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<site.Phonenumber>", site.Phonenumber);
+                OpmWordHandler.FindAndReplace(wordApp, "<site.Representative>", site.Representative);
+                OpmWordHandler.FindAndReplace(wordApp, "<site.Tin>", site.Tin);
+                OpmWordHandler.FindAndReplace(wordApp, "<site.Id>", site.Id);
+                OpmWordHandler.FindAndReplace(wordApp, "<site.Type>", site.Type);
+                OpmWordHandler.FindAndReplace(wordApp, "<site.Headquater_info>", site.Headquater_info);
+                OpmWordHandler.FindAndReplace(wordApp, "<site.Address>", site.Address);
+                OpmWordHandler.FindAndReplace(wordApp, "<site.Account>", site.Account);
+
+                //Tạo file BLHĐ trong thư mục D:\OPM
+                string folder = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number);
+                Directory.CreateDirectory(folder);
+                try
+                {
+                    myDoc.SaveAs2(ref filename);
+                    MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                    myDoc.Close();
+                    wordApp.Quit();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy Mẫu 9. Biên bản kiểm tra kỹ thuật.doc! ");
             }
             return filename.ToString();
         }
         //Tạo mẫu 8
-        public static string Temp8_NTKTRequest(string id)
+        public static string Temp08_NTKTRequest(string id)
         {
             NTKT_Thanh ntkt = new NTKT_Thanh(id);
             PO_Thanh po = new PO_Thanh(ntkt.Id);
@@ -163,7 +245,7 @@ namespace OPM.WordHandler
             }
             else
             {
-                MessageBox.Show("Không tìm thấy bản mẫu 3.docx! ");
+                MessageBox.Show("Mẫu 8. De nghi NTKT.docx! ");
             }
             return filename.ToString();
         }
