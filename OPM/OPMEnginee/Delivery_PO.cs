@@ -27,9 +27,9 @@ namespace OPM.DBHandler
             number_PO = _number_PO;
             date_Delivery = _date_Delivery;
         }
-        public int CheckDelivery_PO(string strQueryOne)
+        public int CheckDelivery_PO(string strQueryOne, string id_po)
         {
-            string strQuery = string.Format("SELECT * FROM dbo.Delivery_PO WHERE NumberConfirmPO = '{0}'", strQueryOne);
+            string strQuery = string.Format("SELECT * FROM dbo.Delivery_PO WHERE NumberConfirmPO = '{0}' and id_po = '{0}'", strQueryOne, id_po);
             Delivery_PO newPO = new Delivery_PO();
             DataSet ds = new DataSet();
             int ret = OPMDBHandler.fQuerryData(strQuery, ref ds);

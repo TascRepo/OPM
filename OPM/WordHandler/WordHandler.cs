@@ -228,17 +228,17 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<PO_ConfirmDateActive>", po.Confirmpo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 //FileLocation = path
                 Microsoft.Office.Interop.Word.Table tab = myDoc.Tables[3];
-                Object objMiss = Missing.Value;
                 Delivery_PO po1 = new Delivery_PO();
                 DataTable dt_PO = new DataTable();
-                if(po1.CheckDelivery_PO(ConfirmPO_Number) == 1)
+                if(po1.CheckDelivery_PO(ConfirmPO_Number, id) == 1)
                 {
                     string sql = po1.querySQL(ConfirmPO_Number);
                     DataTable table1 = OPMDBHandler.ExecuteQuery(sql);
-                    tab.Rows.Add(ref objMiss);
-                    for (int i = 1; i < 62 ; i++)
+                    for (int i = 2; i < table1.Rows.Count - 1 ; i++)
                     {
-                        tab.Cell(i, 1).Range.Text = table1.Rows[i][1].ToString();
+                        Object objMiss = Missing.Value;
+                        tab.Rows.Add(ref objMiss);
+                        tab.Cell(i, 1).Range.Text = (i - 1).ToString();
                         tab.Cell(i, 2).Range.Text = table1.Rows[i][2].ToString();
                         tab.Cell(i, 3).Range.Text = table1.Rows[i][3].ToString();
                         tab.Cell(i, 4).Range.Text = table1.Rows[i][4].ToString();
