@@ -258,7 +258,7 @@ namespace OPM.GUI
         {
             try
             {
-                tbxGaranteeValue.Text = (int.Parse(txbGaranteeValue.Text) * int.Parse(tbxValueContract.Text) / 100).ToString();
+                tbxGaranteeValue.Text = ((0.01 * int.Parse(txbGaranteeValue.Text)) * int.Parse(tbxValueContract.Text)).ToString();
             }
             catch
             {
@@ -268,6 +268,9 @@ namespace OPM.GUI
 
         private void btnContractAnnex_Click(object sender, EventArgs e)
         {
+            Contract_Goods_Form contract_Goods_Form = new Contract_Goods_Form();
+            contract_Goods_Form.Tag = tbContract.Text.Trim();
+            contract_Goods_Form.ShowDialog();
         }
     }
 }
