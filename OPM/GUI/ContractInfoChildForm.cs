@@ -50,7 +50,7 @@ namespace OPM.GUI
             tbxAccountingCode.ReadOnly = state;
             tbxDurationContract.ReadOnly = state;
             txbTypeContract.ReadOnly = state;
-            tbxValueContract.ReadOnly = state;
+            //tbxValueContract.ReadOnly = state;
             tbxDurationPO.ReadOnly = state;
             txbGaranteeValue.ReadOnly = state;
             txbGaranteeActiveDate.ReadOnly = state;
@@ -205,7 +205,7 @@ namespace OPM.GUI
         {
             Contract contract = new Contract();
             contract.KHMS = txbKHMS.Text;
-            contract.Id = tbContract.Text;
+            contract.Id = tbContract.Text.Trim();
             contract.Namecontract = tbBidName.Text;
             contract.Codeaccouting = tbxAccountingCode.Text;
             contract.Typecontract = txbTypeContract.Text;
@@ -219,8 +219,12 @@ namespace OPM.GUI
             contract.Durationcontract = int.Parse(tbxDurationContract.Text);
             contract.Durationpo = int.Parse(tbxDurationPO.Text);
             contract.GaranteeCreatedDate = dtpGaranteeCreatedDate.Value;
-            if (contract.Exist()) contract.Update();
-            else contract.Insert();
+            if (!contract.Exist())
+            {
+                MessageBox.Show("Cần nhập bảng giá hợp đồng trước!");
+                return;
+            }
+            contract.Update();
             State(true);
             btnContractAnnex.Enabled = true;
             btnRemove.Enabled = true;
@@ -253,7 +257,6 @@ namespace OPM.GUI
                 MessageBox.Show("Cần nhập đúng định dạng giá trị bảo lãnh!");
             }
         }
-
         private void tbxValueContract_TextChanged(object sender, EventArgs e)
         {
             try
@@ -265,10 +268,22 @@ namespace OPM.GUI
                 MessageBox.Show("Cần nhập đúng định dạng số!");
             }
         }
-
+        void SetValueContract(string vl)
+        {
+            tbxValueContract.Text = vl;
+        }
         private void btnContractAnnex_Click(object sender, EventArgs e)
         {
+            
+            Contract contract = new Contract();
+            contract.Id = tbContract.Text;
+            if (!Contract.Exist(tbContract.Text.Trim()))
+            {
+                contract.Insert();
+                UpdateCatalogPanel(tbContract.Text.Trim());
+            }
             Contract_Goods_Form contract_Goods_Form = new Contract_Goods_Form();
+            contract_Goods_Form.setValueContractForm = SetValueContract;
             contract_Goods_Form.Tag = tbContract.Text.Trim();
             contract_Goods_Form.ShowDialog();
         }

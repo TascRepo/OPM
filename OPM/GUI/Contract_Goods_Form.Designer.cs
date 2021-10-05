@@ -35,7 +35,7 @@ namespace OPM.GUI
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBoxQuantity = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelQuantity = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBoxPriceUnit = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,10 +50,8 @@ namespace OPM.GUI
             this.lblFoodTableID = new System.Windows.Forms.Label();
             this.dtgvGoods = new System.Windows.Forms.DataGridView();
             this.panel31 = new System.Windows.Forms.Panel();
-            this.btnFoodTableView = new System.Windows.Forms.Button();
-            this.btnFoodTableUpdate = new System.Windows.Forms.Button();
-            this.btnFoodTableDelete = new System.Windows.Forms.Button();
-            this.btnFoodTableAdd = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnAddOrUpdate = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.textBoxTotalTax = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -62,7 +60,7 @@ namespace OPM.GUI
             this.label5 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.textBoxtextBoxTotalPricePreTax = new System.Windows.Forms.TextBox();
+            this.textBoxTotalPricePreTax = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel24.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -106,8 +104,9 @@ namespace OPM.GUI
             // 
             this.textBoxPricePreTax.Location = new System.Drawing.Point(190, 15);
             this.textBoxPricePreTax.Name = "textBoxPricePreTax";
-            this.textBoxPricePreTax.Size = new System.Drawing.Size(332, 31);
+            this.textBoxPricePreTax.Size = new System.Drawing.Size(331, 31);
             this.textBoxPricePreTax.TabIndex = 2;
+            this.textBoxPricePreTax.Text = "1000000000";
             // 
             // label3
             // 
@@ -115,14 +114,14 @@ namespace OPM.GUI
             this.label3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.Location = new System.Drawing.Point(7, 16);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 23);
+            this.label3.Size = new System.Drawing.Size(100, 23);
             this.label3.TabIndex = 1;
-            this.label3.Text = "Tổng cộng";
+            this.label3.Text = "Thành tiền";
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.textBoxQuantity);
-            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.labelQuantity);
             this.panel2.Location = new System.Drawing.Point(10, 488);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(543, 61);
@@ -134,16 +133,18 @@ namespace OPM.GUI
             this.textBoxQuantity.Name = "textBoxQuantity";
             this.textBoxQuantity.Size = new System.Drawing.Size(332, 31);
             this.textBoxQuantity.TabIndex = 2;
+            this.textBoxQuantity.Text = "1000";
+            this.textBoxQuantity.TextChanged += new System.EventHandler(this.textBoxQuantity_TextChanged);
             // 
-            // label2
+            // labelQuantity
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(7, 18);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 23);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Số lượng";
+            this.labelQuantity.AutoSize = true;
+            this.labelQuantity.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelQuantity.Location = new System.Drawing.Point(7, 18);
+            this.labelQuantity.Name = "labelQuantity";
+            this.labelQuantity.Size = new System.Drawing.Size(91, 23);
+            this.labelQuantity.TabIndex = 1;
+            this.labelQuantity.Text = "Số lượng";
             // 
             // panel1
             // 
@@ -160,6 +161,8 @@ namespace OPM.GUI
             this.textBoxPriceUnit.Name = "textBoxPriceUnit";
             this.textBoxPriceUnit.Size = new System.Drawing.Size(332, 31);
             this.textBoxPriceUnit.TabIndex = 2;
+            this.textBoxPriceUnit.Text = "1000000";
+            this.textBoxPriceUnit.TextChanged += new System.EventHandler(this.textBoxPriceUnit_TextChanged);
             // 
             // label1
             // 
@@ -186,6 +189,8 @@ namespace OPM.GUI
             this.textBoxUnit.Name = "textBoxUnit";
             this.textBoxUnit.Size = new System.Drawing.Size(332, 31);
             this.textBoxUnit.TabIndex = 2;
+            this.textBoxUnit.Text = "Bộ";
+            this.textBoxUnit.TextChanged += new System.EventHandler(this.textBoxUnit_TextChanged);
             // 
             // lblFoodTableSatus
             // 
@@ -213,6 +218,7 @@ namespace OPM.GUI
             this.tbxCode.Name = "tbxCode";
             this.tbxCode.Size = new System.Drawing.Size(336, 100);
             this.tbxCode.TabIndex = 4;
+            this.tbxCode.Text = "Việt Nam/VNPT Technology/iGate GW020-H";
             this.tbxCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblFoodTableName
@@ -241,6 +247,9 @@ namespace OPM.GUI
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(336, 150);
             this.tbxName.TabIndex = 4;
+            this.tbxName.Text = "Thiết bị đầu cuối ONT loại  (2FE/GE + Wifi Dualband) tương thích hệ thống GPON cù" +
+    "ng đầy đủ license và phụ kiện kèm theo (không bao gồm dây nhảy quang, bản quyền " +
+    "Multicast)";
             this.tbxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblFoodTableID
@@ -266,50 +275,32 @@ namespace OPM.GUI
             // 
             // panel31
             // 
-            this.panel31.Controls.Add(this.btnFoodTableView);
-            this.panel31.Controls.Add(this.btnFoodTableUpdate);
-            this.panel31.Controls.Add(this.btnFoodTableDelete);
-            this.panel31.Controls.Add(this.btnFoodTableAdd);
+            this.panel31.Controls.Add(this.btnDelete);
+            this.panel31.Controls.Add(this.btnAddOrUpdate);
             this.panel31.Location = new System.Drawing.Point(24, 12);
             this.panel31.Name = "panel31";
             this.panel31.Size = new System.Drawing.Size(1000, 82);
             this.panel31.TabIndex = 0;
             // 
-            // btnFoodTableView
+            // btnDelete
             // 
-            this.btnFoodTableView.Location = new System.Drawing.Point(786, 13);
-            this.btnFoodTableView.Name = "btnFoodTableView";
-            this.btnFoodTableView.Size = new System.Drawing.Size(116, 60);
-            this.btnFoodTableView.TabIndex = 3;
-            this.btnFoodTableView.Text = "Xem";
-            this.btnFoodTableView.UseVisualStyleBackColor = true;
+            this.btnDelete.Location = new System.Drawing.Point(568, 13);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(220, 60);
+            this.btnDelete.TabIndex = 1;
+            this.btnDelete.Text = "Xoá";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnFoodTableDelete_Click);
             // 
-            // btnFoodTableUpdate
+            // btnAddOrUpdate
             // 
-            this.btnFoodTableUpdate.Location = new System.Drawing.Point(560, 13);
-            this.btnFoodTableUpdate.Name = "btnFoodTableUpdate";
-            this.btnFoodTableUpdate.Size = new System.Drawing.Size(116, 60);
-            this.btnFoodTableUpdate.TabIndex = 2;
-            this.btnFoodTableUpdate.Text = "Sửa";
-            this.btnFoodTableUpdate.UseVisualStyleBackColor = true;
-            // 
-            // btnFoodTableDelete
-            // 
-            this.btnFoodTableDelete.Location = new System.Drawing.Point(334, 13);
-            this.btnFoodTableDelete.Name = "btnFoodTableDelete";
-            this.btnFoodTableDelete.Size = new System.Drawing.Size(116, 60);
-            this.btnFoodTableDelete.TabIndex = 1;
-            this.btnFoodTableDelete.Text = "Xoá";
-            this.btnFoodTableDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnFoodTableAdd
-            // 
-            this.btnFoodTableAdd.Location = new System.Drawing.Point(108, 13);
-            this.btnFoodTableAdd.Name = "btnFoodTableAdd";
-            this.btnFoodTableAdd.Size = new System.Drawing.Size(116, 60);
-            this.btnFoodTableAdd.TabIndex = 0;
-            this.btnFoodTableAdd.Text = "Thêm";
-            this.btnFoodTableAdd.UseVisualStyleBackColor = true;
+            this.btnAddOrUpdate.Location = new System.Drawing.Point(173, 13);
+            this.btnAddOrUpdate.Name = "btnAddOrUpdate";
+            this.btnAddOrUpdate.Size = new System.Drawing.Size(220, 60);
+            this.btnAddOrUpdate.TabIndex = 0;
+            this.btnAddOrUpdate.Text = "Thêm hoặc sửa";
+            this.btnAddOrUpdate.UseVisualStyleBackColor = true;
+            this.btnAddOrUpdate.Click += new System.EventHandler(this.btnFoodTableAdd_Click);
             // 
             // panel4
             // 
@@ -322,8 +313,10 @@ namespace OPM.GUI
             // 
             // textBoxTotalTax
             // 
+            this.textBoxTotalTax.Enabled = false;
             this.textBoxTotalTax.Location = new System.Drawing.Point(190, 15);
             this.textBoxTotalTax.Name = "textBoxTotalTax";
+            this.textBoxTotalTax.ReadOnly = true;
             this.textBoxTotalTax.Size = new System.Drawing.Size(332, 31);
             this.textBoxTotalTax.TabIndex = 2;
             // 
@@ -348,8 +341,10 @@ namespace OPM.GUI
             // 
             // textBoxTotalPriceAfterTax
             // 
+            this.textBoxTotalPriceAfterTax.Enabled = false;
             this.textBoxTotalPriceAfterTax.Location = new System.Drawing.Point(190, 15);
             this.textBoxTotalPriceAfterTax.Name = "textBoxTotalPriceAfterTax";
+            this.textBoxTotalPriceAfterTax.ReadOnly = true;
             this.textBoxTotalPriceAfterTax.Size = new System.Drawing.Size(332, 31);
             this.textBoxTotalPriceAfterTax.TabIndex = 2;
             // 
@@ -376,19 +371,22 @@ namespace OPM.GUI
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.textBoxtextBoxTotalPricePreTax);
+            this.panel7.Controls.Add(this.textBoxTotalPricePreTax);
             this.panel7.Controls.Add(this.label6);
             this.panel7.Location = new System.Drawing.Point(9, 24);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(543, 61);
             this.panel7.TabIndex = 3;
             // 
-            // textBoxtextBoxTotalPricePreTax
+            // textBoxTotalPricePreTax
             // 
-            this.textBoxtextBoxTotalPricePreTax.Location = new System.Drawing.Point(190, 15);
-            this.textBoxtextBoxTotalPricePreTax.Name = "textBoxtextBoxTotalPricePreTax";
-            this.textBoxtextBoxTotalPricePreTax.Size = new System.Drawing.Size(332, 31);
-            this.textBoxtextBoxTotalPricePreTax.TabIndex = 2;
+            this.textBoxTotalPricePreTax.Enabled = false;
+            this.textBoxTotalPricePreTax.Location = new System.Drawing.Point(190, 15);
+            this.textBoxTotalPricePreTax.Name = "textBoxTotalPricePreTax";
+            this.textBoxTotalPricePreTax.ReadOnly = true;
+            this.textBoxTotalPricePreTax.Size = new System.Drawing.Size(332, 31);
+            this.textBoxTotalPricePreTax.TabIndex = 2;
+            this.textBoxTotalPricePreTax.TextChanged += new System.EventHandler(this.textBoxTotalPricePreTax_TextChanged);
             // 
             // label6
             // 
@@ -449,14 +447,12 @@ namespace OPM.GUI
         private System.Windows.Forms.Label lblFoodTableID;
         private System.Windows.Forms.DataGridView dtgvGoods;
         private System.Windows.Forms.Panel panel31;
-        private System.Windows.Forms.Button btnFoodTableView;
-        private System.Windows.Forms.Button btnFoodTableUpdate;
-        private System.Windows.Forms.Button btnFoodTableDelete;
-        private System.Windows.Forms.Button btnFoodTableAdd;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnAddOrUpdate;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelQuantity;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbxName;
@@ -472,7 +468,7 @@ namespace OPM.GUI
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.TextBox textBoxtextBoxTotalPricePreTax;
+        private System.Windows.Forms.TextBox textBoxTotalPricePreTax;
         private System.Windows.Forms.Label label6;
     }
 }

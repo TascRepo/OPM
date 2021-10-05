@@ -158,7 +158,7 @@ namespace OPM.OPMEnginee
         public static List<Contract_Goods> GetListByIdContract(string idContract)
         {
             List<Contract_Goods> list = new List<Contract_Goods>();
-            string query = string.Format("SELECT * FROM dbo.Contract_Goods where idContract = '{0}'", idContract);
+            string query = string.Format("SELECT * FROM dbo.Contract_Goods where idContract = '{0}' ORDER BY code", idContract);
             DataTable dataTable = OPMDBHandler.ExecuteQuery(query);
             foreach (DataRow row in dataTable.Rows)
             {
@@ -187,6 +187,12 @@ namespace OPM.OPMEnginee
             string query = string.Format(@"DELETE FROM dbo.Contract_Goods WHERE idContract = '{0}' and code = N'{1}' and name = N'{2}'", idContract, code, name);
             OPMDBHandler.ExecuteNonQuery(query);
         }
-
+        public static double TotalPricePreTax(string idContract)
+        {
+            string query = string.Format("SELECT SUM(priceUnit*quantity) FROM dbo.Contract_Goods where idContract = '{0}'", idContract);
+            object tam = OPMDBHandler.ExecuteScalar(query);
+            double ret = (tam == null||tam==DBNull.Value) ? 0 : (double)tam;
+            return ret;
+        }
     }
 }
