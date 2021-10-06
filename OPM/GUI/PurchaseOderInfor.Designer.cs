@@ -61,7 +61,7 @@ namespace OPM.GUI
             this.btnNTKT = new System.Windows.Forms.Button();
             this.btnBaoHiem = new System.Windows.Forms.Button();
             this.btnKTKT = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.deletePO = new System.Windows.Forms.Button();
             this.txbnamefilePO = new System.Windows.Forms.TextBox();
             this.importPO = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
@@ -92,9 +92,9 @@ namespace OPM.GUI
             // 
             this.btnSave.Location = new System.Drawing.Point(6, 550);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(56, 23);
+            this.btnSave.Size = new System.Drawing.Size(105, 23);
             this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Lưu PO";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -117,7 +117,7 @@ namespace OPM.GUI
             // 
             // btnNewDP
             // 
-            this.btnNewDP.Location = new System.Drawing.Point(393, 550);
+            this.btnNewDP.Location = new System.Drawing.Point(417, 550);
             this.btnNewDP.Name = "btnNewDP";
             this.btnNewDP.Size = new System.Drawing.Size(75, 23);
             this.btnNewDP.TabIndex = 3;
@@ -276,15 +276,16 @@ namespace OPM.GUI
             // dataGridViewPO
             // 
             this.dataGridViewPO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPO.Location = new System.Drawing.Point(24, 439);
+            this.dataGridViewPO.Location = new System.Drawing.Point(13, 439);
             this.dataGridViewPO.Name = "dataGridViewPO";
             this.dataGridViewPO.RowHeadersWidth = 62;
             this.dataGridViewPO.RowTemplate.Height = 25;
-            this.dataGridViewPO.Size = new System.Drawing.Size(440, 97);
+            this.dataGridViewPO.Size = new System.Drawing.Size(451, 97);
             this.dataGridViewPO.TabIndex = 5;
             // 
             // TimePickerDateCreatedPO
             // 
+            this.TimePickerDateCreatedPO.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.TimePickerDateCreatedPO.Location = new System.Drawing.Point(264, 91);
             this.TimePickerDateCreatedPO.Name = "TimePickerDateCreatedPO";
             this.TimePickerDateCreatedPO.Size = new System.Drawing.Size(180, 23);
@@ -349,7 +350,7 @@ namespace OPM.GUI
             // 
             // btnNTKT
             // 
-            this.btnNTKT.Location = new System.Drawing.Point(314, 550);
+            this.btnNTKT.Location = new System.Drawing.Point(338, 550);
             this.btnNTKT.Name = "btnNTKT";
             this.btnNTKT.Size = new System.Drawing.Size(75, 23);
             this.btnNTKT.TabIndex = 9;
@@ -359,7 +360,7 @@ namespace OPM.GUI
             // 
             // btnBaoHiem
             // 
-            this.btnBaoHiem.Location = new System.Drawing.Point(235, 550);
+            this.btnBaoHiem.Location = new System.Drawing.Point(259, 550);
             this.btnBaoHiem.Name = "btnBaoHiem";
             this.btnBaoHiem.Size = new System.Drawing.Size(75, 23);
             this.btnBaoHiem.TabIndex = 10;
@@ -369,7 +370,7 @@ namespace OPM.GUI
             // 
             // btnKTKT
             // 
-            this.btnKTKT.Location = new System.Drawing.Point(155, 550);
+            this.btnKTKT.Location = new System.Drawing.Point(179, 550);
             this.btnKTKT.Name = "btnKTKT";
             this.btnKTKT.Size = new System.Drawing.Size(76, 23);
             this.btnKTKT.TabIndex = 12;
@@ -377,15 +378,15 @@ namespace OPM.GUI
             this.btnKTKT.UseVisualStyleBackColor = true;
             this.btnKTKT.Click += new System.EventHandler(this.btnKTKT_Click);
             // 
-            // button1
+            // deletePO
             // 
-            this.button1.Location = new System.Drawing.Point(66, 550);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Import Excel";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.deletePO.Location = new System.Drawing.Point(117, 550);
+            this.deletePO.Name = "deletePO";
+            this.deletePO.Size = new System.Drawing.Size(56, 23);
+            this.deletePO.TabIndex = 13;
+            this.deletePO.Text = "Xóa PO";
+            this.deletePO.UseVisualStyleBackColor = true;
+            this.deletePO.Click += new System.EventHandler(this.button1_Click);
             // 
             // txbnamefilePO
             // 
@@ -535,7 +536,7 @@ namespace OPM.GUI
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(4, 246);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(456, 59);
             this.panel1.TabIndex = 18;
@@ -543,7 +544,7 @@ namespace OPM.GUI
             // panel2
             // 
             this.panel2.Location = new System.Drawing.Point(4, 308);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(456, 25);
             this.panel2.TabIndex = 18;
@@ -551,7 +552,7 @@ namespace OPM.GUI
             // panel3
             // 
             this.panel3.Location = new System.Drawing.Point(4, 334);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(456, 25);
             this.panel3.TabIndex = 18;
@@ -595,7 +596,7 @@ namespace OPM.GUI
             this.Controls.Add(this.label8);
             this.Controls.Add(this.importPO);
             this.Controls.Add(this.txbnamefilePO);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.deletePO);
             this.Controls.Add(this.btnKTKT);
             this.Controls.Add(this.btnBaoHiem);
             this.Controls.Add(this.btnNTKT);
@@ -688,7 +689,7 @@ namespace OPM.GUI
         private System.Windows.Forms.Button btnNTKT;
         private System.Windows.Forms.Button btnBaoHiem;
         private System.Windows.Forms.Button btnKTKT;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button deletePO;
         private System.Windows.Forms.TextBox txbnamefilePO;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button importPO;

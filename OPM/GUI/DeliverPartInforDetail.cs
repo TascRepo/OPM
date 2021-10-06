@@ -53,27 +53,29 @@ namespace OPM.GUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            DP dp = new DP();
+            //DP dp = new DP();
             //Thêm mới 1 DP vào database
-            dp.InsertDP(txbIdDP.Text,txbPOCode.Text,txbIDContract.Text);
+            //dp.InsertDP(txbIdDP.Text, txbPOCode.Text, txbIDContract.Text);
             //Lưu trữ thông tin vào database với các tỉnh và file phân bổ
-            for (int i = 1; i < dataGridViewProvince.Rows.Count - 1; i++)
-            {
-                bool IsCheck = Convert.ToBoolean(dataGridViewProvince.Rows[i].Cells[0].Value);
-                if (IsCheck == true && dataGridViewProvince.Rows[i].Cells[0].ToString().Length > 0)
-                {
-                     dp.InsertListExpected_DP(dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), txbIdDP.Text.ToString());
-                }
-            }
-            MessageBox.Show("Thêm mới thành công!");
-            //Xuất excel file mẫu 12
+            //for (int i = 1; i < dataGridViewProvince.Rows.Count - 1; i++)
+            //{
+                //bool IsCheck = Convert.ToBoolean(dataGridViewProvince.Rows[i].Cells[0].Value);
+                //if (IsCheck == true && dataGridViewProvince.Rows[i].Cells[0].ToString().Length > 0)
+                //{
+                    //dp.InsertListExpected_DP(dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), txbIdDP.Text.ToString());
+                //}
+            //}
+            //MessageBox.Show("Thêm mới thành công!");
+            //Xuất mẫu 19
+            //ExcelHandler_Thanh.FindExcel_Teamplate12(txbIdDP.Text);
+            //MessageBox.Show("Tạo file thành công!");
+            //Xuất file mẫu 19 - 20
         }
-
         private void DeliverPartInforDetail_Load(object sender, EventArgs e)
         {
             Dictionary<int, string> comboSource = new Dictionary<int, string>();
-            comboSource.Add(1, "chính");
-            comboSource.Add(2, "bảo hành");
+            comboSource.Add(1, "Hàng chính");
+            comboSource.Add(2, "Hàng bảo hành");
             cbbType.DataSource = new BindingSource(comboSource, null);
             cbbType.DisplayMember = "Value";
             cbbType.ValueMember = "Key";
