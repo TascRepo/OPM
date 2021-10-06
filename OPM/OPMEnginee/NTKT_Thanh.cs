@@ -22,6 +22,8 @@ namespace OPM.OPMEnginee
         private int number = 1;
         private DateTime date_BBKTKT = DateTime.Now;
         private DateTime date_BBNTKT = DateTime.Now;
+        private DateTime date_CNBQPM = DateTime.Now;
+
         public string Id { get => id; set => id = value; }
         public string Id_po { get => id_po; set => id_po = value; }
         public int Numberofdevice { get => numberofdevice; set => numberofdevice = value; }
@@ -32,8 +34,9 @@ namespace OPM.OPMEnginee
         public int Number { get => number; set => number = value; }
         public DateTime Date_BBKTKT { get => date_BBKTKT; set => date_BBKTKT = value; }
         public DateTime Date_BBNTKT { get => date_BBNTKT; set => date_BBNTKT = value; }
+        public DateTime Date_CNBQPM { get => date_CNBQPM; set => date_CNBQPM = value; }
 
-        public NTKT_Thanh(string id, string id_po, int numberofdevice, DateTime deliver_date_expected, string email_request_status, DateTime create_date, int numberofdevice2, int number, DateTime date_BBKTKT, DateTime date_BBNTKT)
+        public NTKT_Thanh(string id, string id_po, int numberofdevice, DateTime deliver_date_expected, string email_request_status, DateTime create_date, int numberofdevice2, int number, DateTime date_BBKTKT, DateTime date_BBNTKT, DateTime date_CNBQPM)
         {
             Id = id;
             Id_po = id_po;
@@ -45,6 +48,7 @@ namespace OPM.OPMEnginee
             Number = number;
             Date_BBKTKT = date_BBKTKT;
             Date_BBNTKT = date_BBNTKT;
+            Date_CNBQPM = date_CNBQPM;
         }
         public NTKT_Thanh(DataRow row)
         {
@@ -58,6 +62,7 @@ namespace OPM.OPMEnginee
             Number = (row["number"] == null || row["number"] == DBNull.Value) ? 0 : (int)row["number"];
             Date_BBKTKT = (row["date_BBKTKT"] == null || row["date_BBKTKT"] == DBNull.Value) ? DateTime.Now : (DateTime)row["date_BBKTKT"];
             Date_BBNTKT = (row["date_BBNTKT"] == null || row["date_BBNTKT"] == DBNull.Value) ? DateTime.Now : (DateTime)row["date_BBNTKT"];
+            Date_CNBQPM = (row["date_CNBQPM"] == null || row["date_CNBQPM"] == DBNull.Value) ? DateTime.Now : (DateTime)row["date_CNBQPM"];
         }
         public NTKT_Thanh(string id)
         {
@@ -76,6 +81,7 @@ namespace OPM.OPMEnginee
                 Number = (row["number"] == null || row["number"] == DBNull.Value) ? 0 : (int)row["number"];
                 Date_BBKTKT = (row["date_BBKTKT"] == null || row["date_BBKTKT"] == DBNull.Value) ? DateTime.Now : (DateTime)row["date_BBKTKT"];
                 Date_BBNTKT = (row["date_BBNTKT"] == null || row["date_BBNTKT"] == DBNull.Value) ? DateTime.Now : (DateTime)row["date_BBNTKT"];
+                Date_CNBQPM = (row["date_CNBQPM"] == null || row["date_CNBQPM"] == DBNull.Value) ? DateTime.Now : (DateTime)row["date_CNBQPM"];
             }
         }
         public NTKT_Thanh() { }
@@ -99,7 +105,7 @@ namespace OPM.OPMEnginee
             {
                 if (Exist(id))
                 {
-                    string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.NTKT SET  id_po = '{1}', numberofdevice = {2}, deliver_date_expected = '{3}', email_request_status = '{4}', create_date = '{5}', Numberofdevice2 = {6}, number = {7}, date_BBNTKT = '{8}', date_BBKTKT = '{9}' Where id = '{0}'", id, id_po, numberofdevice, deliver_date_expected.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), email_request_status, create_date.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), Numberofdevice2, number, date_BBNTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), date_BBKTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                    string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.NTKT SET  id_po = '{1}', numberofdevice = {2}, deliver_date_expected = '{3}', email_request_status = '{4}', create_date = '{5}', Numberofdevice2 = {6}, number = {7}, date_BBNTKT = '{8}', date_BBKTKT = '{9}',date_CNBQPM = '{10}' Where id = '{0}'", id, id_po, numberofdevice, deliver_date_expected.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), email_request_status, create_date.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), Numberofdevice2, number, date_BBNTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), date_BBKTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), date_CNBQPM.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                     try
                     {
                         OPMDBHandler.ExecuteNonQuery(query);
@@ -112,7 +118,7 @@ namespace OPM.OPMEnginee
                 }
                 else
                 {
-                    string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.NTKT(id,id_po,numberofdevice,deliver_date_expected,email_request_status,create_date,numberofdevice2,number,date_BBNTKT,date_BBKTKT)VALUES('{0}','{1}', {2}, '{3}', '{4}', '{5}', {6}, {7}, '{8}', '{9}')", id, id_po, numberofdevice, deliver_date_expected.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), email_request_status, create_date.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), Numberofdevice2, number, date_BBNTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), date_BBKTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                    string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.NTKT(id,id_po,numberofdevice,deliver_date_expected,email_request_status,create_date,numberofdevice2,number,date_BBNTKT,date_BBKTKT,date_CNBQPM)VALUES('{0}','{1}', {2}, '{3}', '{4}', '{5}', {6}, {7}, '{8}', '{9}')", id, id_po, numberofdevice, deliver_date_expected.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), email_request_status, create_date.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), Numberofdevice2, number, date_BBNTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), date_BBKTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), date_CNBQPM.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                     try
                     {
                         OPMDBHandler.ExecuteNonQuery(query);

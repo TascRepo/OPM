@@ -84,12 +84,12 @@ namespace OPM.GUI
             // 
             // btnDescriptionA
             // 
-            this.btnDescriptionA.Location = new System.Drawing.Point(530, 457);
+            this.btnDescriptionA.Location = new System.Drawing.Point(498, 454);
             this.btnDescriptionA.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDescriptionA.Name = "btnDescriptionA";
-            this.btnDescriptionA.Size = new System.Drawing.Size(107, 38);
+            this.btnDescriptionA.Size = new System.Drawing.Size(141, 38);
             this.btnDescriptionA.TabIndex = 0;
-            this.btnDescriptionA.Text = "Desc...";
+            this.btnDescriptionA.Text = "Chi tiết bên A";
             this.btnDescriptionA.UseVisualStyleBackColor = true;
             this.btnDescriptionA.Click += new System.EventHandler(this.IdSiteA_Click);
             // 
@@ -124,12 +124,12 @@ namespace OPM.GUI
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(530, 507);
+            this.button2.Location = new System.Drawing.Point(498, 504);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(107, 38);
+            this.button2.Size = new System.Drawing.Size(141, 38);
             this.button2.TabIndex = 2;
-            this.button2.Text = "Desc...";
+            this.button2.Text = "Chi tiết bên B";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.IdSiteB_Click);
             // 
@@ -308,23 +308,23 @@ namespace OPM.GUI
             // btnNewPO
             // 
             this.btnNewPO.Enabled = false;
-            this.btnNewPO.Location = new System.Drawing.Point(523, 805);
+            this.btnNewPO.Location = new System.Drawing.Point(487, 805);
             this.btnNewPO.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnNewPO.Name = "btnNewPO";
-            this.btnNewPO.Size = new System.Drawing.Size(107, 38);
+            this.btnNewPO.Size = new System.Drawing.Size(141, 38);
             this.btnNewPO.TabIndex = 4;
-            this.btnNewPO.Text = "New PO";
+            this.btnNewPO.Text = "Quản lý PO";
             this.btnNewPO.UseVisualStyleBackColor = true;
             this.btnNewPO.Click += new System.EventHandler(this.btnNewPO_Click);
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(181, 805);
+            this.btnEdit.Location = new System.Drawing.Point(169, 805);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(107, 38);
+            this.btnEdit.Size = new System.Drawing.Size(141, 38);
             this.btnEdit.TabIndex = 4;
-            this.btnEdit.Text = "Edit";
+            this.btnEdit.Text = "Chỉnh sửa";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
@@ -334,18 +334,18 @@ namespace OPM.GUI
             this.btnRemove.Location = new System.Drawing.Point(10, 805);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(107, 38);
+            this.btnRemove.Size = new System.Drawing.Size(141, 38);
             this.btnRemove.TabIndex = 4;
-            this.btnRemove.Text = "Remove";
+            this.btnRemove.Text = "Xoá";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(352, 805);
+            this.btnSave.Location = new System.Drawing.Point(328, 805);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(107, 38);
+            this.btnSave.Size = new System.Drawing.Size(141, 38);
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -506,10 +506,10 @@ namespace OPM.GUI
             // 
             // btnContractAnnex
             // 
-            this.btnContractAnnex.Location = new System.Drawing.Point(518, 403);
+            this.btnContractAnnex.Location = new System.Drawing.Point(486, 403);
             this.btnContractAnnex.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnContractAnnex.Name = "btnContractAnnex";
-            this.btnContractAnnex.Size = new System.Drawing.Size(107, 38);
+            this.btnContractAnnex.Size = new System.Drawing.Size(141, 38);
             this.btnContractAnnex.TabIndex = 6;
             this.btnContractAnnex.Text = "Bảng giá";
             this.btnContractAnnex.UseVisualStyleBackColor = true;

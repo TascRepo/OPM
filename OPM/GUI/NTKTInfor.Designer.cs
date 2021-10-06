@@ -54,11 +54,13 @@ namespace OPM.GUI
             this.dtpDate_BBNTKT = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.tbxContract = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dateTimePickerCNBQPM = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(506, 798);
+            this.btnSave.Location = new System.Drawing.Point(501, 798);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(110, 40);
@@ -70,7 +72,7 @@ namespace OPM.GUI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 107);
+            this.label1.Location = new System.Drawing.Point(16, 108);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 25);
@@ -80,7 +82,7 @@ namespace OPM.GUI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 177);
+            this.label2.Location = new System.Drawing.Point(16, 169);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 25);
@@ -90,7 +92,7 @@ namespace OPM.GUI
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 317);
+            this.label3.Location = new System.Drawing.Point(16, 291);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 25);
@@ -100,7 +102,7 @@ namespace OPM.GUI
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 590);
+            this.label4.Location = new System.Drawing.Point(16, 596);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(177, 25);
@@ -110,7 +112,7 @@ namespace OPM.GUI
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 387);
+            this.label6.Location = new System.Drawing.Point(16, 352);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(167, 25);
@@ -119,34 +121,34 @@ namespace OPM.GUI
             // 
             // tbxId_po
             // 
-            this.tbxId_po.Location = new System.Drawing.Point(211, 103);
+            this.tbxId_po.Location = new System.Drawing.Point(206, 107);
             this.tbxId_po.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbxId_po.Name = "tbxId_po";
-            this.tbxId_po.Size = new System.Drawing.Size(403, 31);
+            this.tbxId_po.Size = new System.Drawing.Size(410, 31);
             this.tbxId_po.TabIndex = 9;
             this.tbxId_po.Text = "5120/CUVT-KV";
             // 
             // tbxId
             // 
-            this.tbxId.Location = new System.Drawing.Point(211, 173);
+            this.tbxId.Location = new System.Drawing.Point(206, 169);
             this.tbxId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbxId.Name = "tbxId";
-            this.tbxId.Size = new System.Drawing.Size(403, 31);
+            this.tbxId.Size = new System.Drawing.Size(410, 31);
             this.tbxId.TabIndex = 9;
             this.tbxId.Text = "1320/ANSV-DO";
             // 
             // tbxNumber
             // 
-            this.tbxNumber.Location = new System.Drawing.Point(211, 312);
+            this.tbxNumber.Location = new System.Drawing.Point(206, 293);
             this.tbxNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbxNumber.Name = "tbxNumber";
-            this.tbxNumber.Size = new System.Drawing.Size(403, 31);
+            this.tbxNumber.Size = new System.Drawing.Size(410, 31);
             this.tbxNumber.TabIndex = 9;
             this.tbxNumber.Text = "1";
             // 
             // txbNumberOfDevice
             // 
-            this.txbNumberOfDevice.Location = new System.Drawing.Point(206, 587);
+            this.txbNumberOfDevice.Location = new System.Drawing.Point(206, 603);
             this.txbNumberOfDevice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbNumberOfDevice.Name = "txbNumberOfDevice";
             this.txbNumberOfDevice.Size = new System.Drawing.Size(410, 31);
@@ -157,16 +159,16 @@ namespace OPM.GUI
             // 
             // dtpDeliver_Date_Expected
             // 
-            this.dtpDeliver_Date_Expected.Location = new System.Drawing.Point(211, 380);
+            this.dtpDeliver_Date_Expected.Location = new System.Drawing.Point(206, 355);
             this.dtpDeliver_Date_Expected.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpDeliver_Date_Expected.Name = "dtpDeliver_Date_Expected";
-            this.dtpDeliver_Date_Expected.Size = new System.Drawing.Size(403, 31);
+            this.dtpDeliver_Date_Expected.Size = new System.Drawing.Size(410, 31);
             this.dtpDeliver_Date_Expected.TabIndex = 10;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 737);
+            this.label7.Location = new System.Drawing.Point(16, 728);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(187, 25);
@@ -175,7 +177,7 @@ namespace OPM.GUI
             // 
             // textBox11
             // 
-            this.textBox11.Location = new System.Drawing.Point(206, 737);
+            this.textBox11.Location = new System.Drawing.Point(206, 727);
             this.textBox11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(263, 31);
@@ -205,7 +207,7 @@ namespace OPM.GUI
             // 
             // txbNumberOfDevice2
             // 
-            this.txbNumberOfDevice2.Location = new System.Drawing.Point(206, 657);
+            this.txbNumberOfDevice2.Location = new System.Drawing.Point(206, 665);
             this.txbNumberOfDevice2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbNumberOfDevice2.Name = "txbNumberOfDevice2";
             this.txbNumberOfDevice2.Size = new System.Drawing.Size(410, 31);
@@ -216,7 +218,7 @@ namespace OPM.GUI
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(16, 660);
+            this.label16.Location = new System.Drawing.Point(16, 657);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(160, 25);
@@ -226,7 +228,7 @@ namespace OPM.GUI
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(16, 247);
+            this.label17.Location = new System.Drawing.Point(16, 230);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(130, 25);
@@ -235,16 +237,16 @@ namespace OPM.GUI
             // 
             // dtpCreate_date
             // 
-            this.dtpCreate_date.Location = new System.Drawing.Point(211, 242);
+            this.dtpCreate_date.Location = new System.Drawing.Point(206, 231);
             this.dtpCreate_date.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpCreate_date.Name = "dtpCreate_date";
-            this.dtpCreate_date.Size = new System.Drawing.Size(403, 31);
+            this.dtpCreate_date.Size = new System.Drawing.Size(410, 31);
             this.dtpCreate_date.TabIndex = 10;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 457);
+            this.label8.Location = new System.Drawing.Point(16, 413);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(170, 25);
@@ -253,16 +255,16 @@ namespace OPM.GUI
             // 
             // dtpDate_BBKTKT
             // 
-            this.dtpDate_BBKTKT.Location = new System.Drawing.Point(211, 448);
+            this.dtpDate_BBKTKT.Location = new System.Drawing.Point(206, 417);
             this.dtpDate_BBKTKT.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpDate_BBKTKT.Name = "dtpDate_BBKTKT";
-            this.dtpDate_BBKTKT.Size = new System.Drawing.Size(403, 31);
+            this.dtpDate_BBKTKT.Size = new System.Drawing.Size(410, 31);
             this.dtpDate_BBKTKT.TabIndex = 10;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 527);
+            this.label9.Location = new System.Drawing.Point(16, 535);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(173, 25);
@@ -271,16 +273,16 @@ namespace OPM.GUI
             // 
             // dtpDate_BBNTKT
             // 
-            this.dtpDate_BBNTKT.Location = new System.Drawing.Point(211, 518);
+            this.dtpDate_BBNTKT.Location = new System.Drawing.Point(206, 541);
             this.dtpDate_BBNTKT.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpDate_BBNTKT.Name = "dtpDate_BBNTKT";
-            this.dtpDate_BBNTKT.Size = new System.Drawing.Size(403, 31);
+            this.dtpDate_BBNTKT.Size = new System.Drawing.Size(410, 31);
             this.dtpDate_BBNTKT.TabIndex = 10;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 47);
+            this.label5.Location = new System.Drawing.Point(16, 47);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(121, 25);
@@ -289,12 +291,30 @@ namespace OPM.GUI
             // 
             // tbxContract
             // 
-            this.tbxContract.Location = new System.Drawing.Point(214, 45);
+            this.tbxContract.Location = new System.Drawing.Point(206, 45);
             this.tbxContract.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbxContract.Name = "tbxContract";
-            this.tbxContract.Size = new System.Drawing.Size(403, 31);
+            this.tbxContract.Size = new System.Drawing.Size(410, 31);
             this.tbxContract.TabIndex = 9;
             this.tbxContract.Text = "111-2020/CUVT-ANSV/DTRR-KHMS";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 474);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(138, 25);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "Ngày CN BQPM";
+            // 
+            // dateTimePickerCNBQPM
+            // 
+            this.dateTimePickerCNBQPM.Location = new System.Drawing.Point(206, 479);
+            this.dateTimePickerCNBQPM.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateTimePickerCNBQPM.Name = "dateTimePickerCNBQPM";
+            this.dateTimePickerCNBQPM.Size = new System.Drawing.Size(410, 31);
+            this.dateTimePickerCNBQPM.TabIndex = 10;
             // 
             // NTKTInfor
             // 
@@ -307,6 +327,7 @@ namespace OPM.GUI
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnChoose);
             this.Controls.Add(this.dtpCreate_date);
+            this.Controls.Add(this.dateTimePickerCNBQPM);
             this.Controls.Add(this.dtpDate_BBNTKT);
             this.Controls.Add(this.dtpDate_BBKTKT);
             this.Controls.Add(this.dtpDeliver_Date_Expected);
@@ -315,6 +336,7 @@ namespace OPM.GUI
             this.Controls.Add(this.tbxNumber);
             this.Controls.Add(this.tbxId);
             this.Controls.Add(this.tbxContract);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.tbxId_po);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
@@ -364,5 +386,7 @@ namespace OPM.GUI
         private System.Windows.Forms.DateTimePicker dtpDate_BBNTKT;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbxContract;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DateTimePicker dateTimePickerCNBQPM;
     }
 }

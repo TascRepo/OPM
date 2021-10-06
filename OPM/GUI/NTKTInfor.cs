@@ -38,9 +38,11 @@ namespace OPM.GUI
             nTKT.Deliver_date_expected = dtpDeliver_Date_Expected.Value;
             nTKT.Date_BBKTKT = dtpDate_BBKTKT.Value;
             nTKT.Date_BBNTKT = dtpDate_BBNTKT.Value;
+            nTKT.Date_CNBQPM = dateTimePickerCNBQPM.Value;
             nTKT.InsertOrUpdate();
             OpmWordHandler.Temp08_NTKTRequest(nTKT.Id);
             OpmWordHandler.Temp09_BBKTKT(nTKT.Id);
+            OpmWordHandler.Temp10_CNBQPM(nTKT.Id);
             OpmWordHandler.Temp11_BBNTKT(nTKT.Id);
             UpdateCatalogPanel("NTKT_" + nTKT.Number.ToString());
             //- Tạo file D:\OPM\''Tên HĐ''\"Tên PO"\"Tên NTKT".docx
@@ -94,6 +96,7 @@ namespace OPM.GUI
             dtpDeliver_Date_Expected.Value = ntkt.Deliver_date_expected;
             dtpDate_BBKTKT.Value = ntkt.Date_BBKTKT;
             dtpDate_BBNTKT.Value = ntkt.Date_BBNTKT;
+            dateTimePickerCNBQPM.Value = ntkt.Date_CNBQPM;
             txbNumberOfDevice.Text = ntkt.Numberofdevice.ToString();
             txbNumberOfDevice2.Text = ntkt.Numberofdevice2.ToString();
         }
