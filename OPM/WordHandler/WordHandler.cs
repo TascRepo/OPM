@@ -32,7 +32,7 @@ namespace OPM.WordHandler
         public static string Temp11_BBNTKT(string id)
         {
             NTKT_Thanh ntkt = new NTKT_Thanh(id);
-            PO_Thanh po = new PO_Thanh(ntkt.Id);
+            PO_Thanh po = new PO_Thanh(ntkt.Id_po);
             Contract contract = new Contract(po.Id_contract);
             Site_Info site = new Site_Info(contract.Id_siteA);
             object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\BBNTKT_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number, ntkt.Id.Replace('/', '-'));
@@ -111,7 +111,7 @@ namespace OPM.WordHandler
         public static string Temp10_CNBQPM(string id)
         {
             NTKT_Thanh ntkt = new NTKT_Thanh(id);
-            PO_Thanh po = new PO_Thanh(ntkt.Id);
+            PO_Thanh po = new PO_Thanh(ntkt.Id_po);
             Contract contract = new Contract(po.Id_contract);
             Site_Info site = new Site_Info(contract.Id_siteA);
             object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\CNBQPM_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number, ntkt.Id.Replace('/', '-'));
@@ -194,7 +194,7 @@ namespace OPM.WordHandler
         public static string Temp09_BBKTKT(string id)
         {
             NTKT_Thanh ntkt = new NTKT_Thanh(id);
-            PO_Thanh po = new PO_Thanh(ntkt.Id);
+            PO_Thanh po = new PO_Thanh(ntkt.Id_po);
             Contract contract = new Contract(po.Id_contract);
             Site_Info site = new Site_Info(contract.Id_siteA);
             object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\BBKTKT_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number, ntkt.Id.Replace('/', '-'));
@@ -276,7 +276,7 @@ namespace OPM.WordHandler
         public static string Temp08_NTKTRequest(string id)
         {
             NTKT_Thanh ntkt = new NTKT_Thanh(id);
-            PO_Thanh po = new PO_Thanh(ntkt.Id);
+            PO_Thanh po = new PO_Thanh(ntkt.Id_po);
             Contract contract = new Contract(po.Id_contract);
             Site_Info site = new Site_Info(contract.Id_siteA);
             object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\YCNTKT_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number,ntkt.Id.Replace('/', '-'));

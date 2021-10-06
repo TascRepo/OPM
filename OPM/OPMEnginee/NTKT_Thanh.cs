@@ -118,7 +118,7 @@ namespace OPM.OPMEnginee
                 }
                 else
                 {
-                    string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.NTKT(id,id_po,numberofdevice,deliver_date_expected,email_request_status,create_date,numberofdevice2,number,date_BBNTKT,date_BBKTKT,date_CNBQPM)VALUES('{0}','{1}', {2}, '{3}', '{4}', '{5}', {6}, {7}, '{8}', '{9}')", id, id_po, numberofdevice, deliver_date_expected.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), email_request_status, create_date.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), Numberofdevice2, number, date_BBNTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), date_BBKTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), date_CNBQPM.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                    string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.NTKT(id,id_po,numberofdevice,deliver_date_expected,email_request_status,create_date,numberofdevice2,number,date_BBNTKT,date_BBKTKT,date_CNBQPM)VALUES('{0}','{1}', {2}, '{3}', '{4}', '{5}', {6}, {7}, '{8}', '{9}','{10}')", id, id_po, numberofdevice, deliver_date_expected.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), email_request_status, create_date.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), Numberofdevice2, number, date_BBNTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), date_BBKTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), date_CNBQPM.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                     try
                     {
                         OPMDBHandler.ExecuteNonQuery(query);
