@@ -151,6 +151,7 @@ namespace OPM.GUI
             this.txbIdDP.Name = "txbIdDP";
             this.txbIdDP.Size = new System.Drawing.Size(328, 23);
             this.txbIdDP.TabIndex = 18;
+            this.txbIdDP.Text = "/2021";
             // 
             // label5
             // 
@@ -343,7 +344,7 @@ namespace OPM.GUI
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 315);
+            this.label9.Location = new System.Drawing.Point(14, 413);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(162, 15);
             this.label9.TabIndex = 44;
@@ -357,10 +358,10 @@ namespace OPM.GUI
             this.dataGridViewProvince.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Checked,
             this.soLuong});
-            this.dataGridViewProvince.Location = new System.Drawing.Point(6, 333);
+            this.dataGridViewProvince.Location = new System.Drawing.Point(11, 431);
             this.dataGridViewProvince.Name = "dataGridViewProvince";
             this.dataGridViewProvince.RowTemplate.Height = 25;
-            this.dataGridViewProvince.Size = new System.Drawing.Size(426, 269);
+            this.dataGridViewProvince.Size = new System.Drawing.Size(426, 171);
             this.dataGridViewProvince.TabIndex = 45;
             this.dataGridViewProvince.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewProvince_DefaultValuesNeeded);
             // 

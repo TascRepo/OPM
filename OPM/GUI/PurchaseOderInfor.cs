@@ -155,7 +155,7 @@ namespace OPM.GUI
                         MessageBox.Show(po.Confirmpo_number + "đã có file giao hàng dự kiến, không cần import thêm!");
                     }
                 }
-                OpmWordHandler.Word_POConfirm(po.Id, po.Confirmpo_number);
+                OpmWordHandler.Word_POConfirm(po.Id, po.Confirmpo_number,po.Id_contract);
                 //Tạo 3 mẫu văn bản m4,m5,m6
                 if (txbnamefilePO.Text != "")
                 {
@@ -192,8 +192,11 @@ namespace OPM.GUI
             }
             else MessageBox.Show(string.Format("Không tồn tại hợp đồng {0}", txbIDContract.Text));
             UpdateCatalogPanel(txbIDContract.Text);
+
             OpmWordHandler.Temp23_CNCL_TongHop(po.Id);
             OpmWordHandler.Temp24_CNCLNMTongHop(po.Id);
+
+
             this.Cursor = Cursors.Default;
         }
         public void SetValueItemForPO(string idPO)
@@ -281,7 +284,16 @@ namespace OPM.GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            requestDasckboardOpenExcel();
+            //requestDasckboardOpenExcel();
+            DialogResult d;
+            d = MessageBox.Show("Bạn có chắc chắn muốn xóa PO", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (d == DialogResult.Yes)
+            {
+                PO p1 = new PO();
+                p1.DeleteInforPO(po.Id);
+                Close();
+            }
+            MessageBox.Show("Xóa PO " + po.Id + " thành công!");
         }
 
         private void PurchaseOderInfor_Load(object sender, EventArgs e)

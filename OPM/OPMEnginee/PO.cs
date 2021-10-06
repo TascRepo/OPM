@@ -87,7 +87,17 @@ namespace OPM.OPMEnginee
             }
             return 1;
         }
-
+        public void DeleteInforPO(string ip_po)
+        {
+            string strQuery1 = "delete from dbo.DP where id_po = N'" + ip_po + "'";
+            string strQuery2 = "delete from dbo.ListExpected_DP where id = N'" + ip_po + "'";
+            string strQuery3 = "delete from dbo.VBConfirmPO where id_po = N'" + ip_po + "'";
+            string strQuery4 = "delete from dbo.PO where id = N'" + ip_po + "'";
+            OPMDBHandler.fInsertData(strQuery1);
+            OPMDBHandler.fInsertData(strQuery2);
+            OPMDBHandler.fInsertData(strQuery3);
+            OPMDBHandler.fInsertData(strQuery4);
+        }
 
         public static int GetObjectPO(string strIdPO, ref PO objPO)
         {
