@@ -220,9 +220,9 @@ namespace OPM.GUI
             this.label9.Location = new System.Drawing.Point(3, 128);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(149, 25);
+            this.label9.Size = new System.Drawing.Size(146, 25);
             this.label9.TabIndex = 3;
-            this.label9.Text = "Thời Hạn hiệu lực";
+            this.label9.Text = "Thời hạn hiệu lực";
             // 
             // label10
             // 
@@ -285,7 +285,7 @@ namespace OPM.GUI
             this.tbxDurationPO.Size = new System.Drawing.Size(65, 31);
             this.tbxDurationPO.TabIndex = 1;
             this.tbxDurationPO.Text = "5";
-            this.tbxDurationPO.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxDurationPO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbxSiteA
             // 

@@ -39,6 +39,7 @@ namespace OPM.DBHandler
                 }
                 catch
                 {
+                    connection.Close();
                     MessageBox.Show("Không kết nối được CSDL");
                 }
             }
@@ -71,6 +72,7 @@ namespace OPM.DBHandler
                 }
                 catch
                 {
+                    connection.Close();
                     MessageBox.Show("Không kết nối được CSDL");
                 }
             }
@@ -103,6 +105,7 @@ namespace OPM.DBHandler
                 }
                 catch
                 {
+                    connection.Close();
                     MessageBox.Show("Không kết nối được CSDL");
                 }
             }
