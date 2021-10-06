@@ -192,10 +192,11 @@ namespace OPM.GUI
             }
             else MessageBox.Show(string.Format("Không tồn tại hợp đồng {0}", txbIDContract.Text));
             UpdateCatalogPanel(txbIDContract.Text);
-
+            //Tạo các mẫu 23,24,36,37
             OpmWordHandler.Temp23_CNCL_TongHop(po.Id);
             OpmWordHandler.Temp24_CNCLNMTongHop(po.Id);
-
+            OpmWordHandler.Temp36_BBNTLicense(po.Id);
+            OpmWordHandler.Temp37_BBXNCDLicense(po.Id);
 
             this.Cursor = Cursors.Default;
         }
