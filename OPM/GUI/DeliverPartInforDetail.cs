@@ -7,7 +7,9 @@ using System.Text;
 using System.Windows.Forms;
 using OPM.OPMEnginee;
 using System.IO;
-
+using OPM.WordHandler;
+using OPM.ExcelHandler;
+using OPM.DBHandler;
 namespace OPM.GUI
 {
     public partial class DeliverPartInforDetail : Form
@@ -44,7 +46,6 @@ namespace OPM.GUI
             txbIdDP.Text = value;
             return;
         }
-        
         private void txbPurpose_TextChanged(object sender, EventArgs e)
         {
 
@@ -52,46 +53,20 @@ namespace OPM.GUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            DP dP = new DP();
-            dP.Id = txbIdDP.Text;
-            dP.IdContract = txbIDContract.Text;
-            dP.IdPO = txbPOCode.Text;
-            dP.MaKT = txbAccountance.Text;
-            dP.DateDeliver = dtpRequest.Value.ToString("yyyy-MM-dd");
-            dP.DateOpen = dtpOutCap.Value.ToString("yyyy-MM-dd");
-            dP.Type = cbbType.Text;
-            dP.Note = txbPurpose.Text;
-            int ret = DP.InsertDP(dP);
-            if (ret == 1)
+            DP dp = new DP();
+            //Thêm mới 1 DP vào database
+            dp.InsertDP(txbIdDP.Text,txbPOCode.Text,txbIDContract.Text);
+            //Lưu trữ thông tin vào database với các tỉnh và file phân bổ
+            for (int i = 1; i < dataGridViewProvince.Rows.Count - 1; i++)
             {
-                MessageBox.Show("Lưu thành công");
+                bool IsCheck = Convert.ToBoolean(dataGridViewProvince.Rows[i].Cells[0].Value);
+                if (IsCheck == true && dataGridViewProvince.Rows[i].Cells[0].ToString().Length > 0)
+                {
+                     dp.InsertListExpected_DP(dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), txbIdDP.Text.ToString());
+                }
             }
-            else
-            {
-                MessageBox.Show("Lưu không thành công");
-            }
-            string strContractDirectory = dP.IdContract.Replace('/', '_');
-            strContractDirectory = strContractDirectory.Replace('-', '_');
-            string strfileDP = "F:\\OPM\\" + strContractDirectory + "\\" + txbPOName.Text;
-            SiteInfo siteInfo = new SiteInfo();
-            siteInfo.GetSiteInfoObject(dP.IdContract, ref siteInfo);
-            if (1 == ret)
-            {
-                
-            int retex= OPM.ExcelHandler.OpmExcelHandler.FindAndReplace(@"F:\LP\DP-template1.xlsx", strfileDP, dP.Id, dP.IdContract, siteInfo.Id, dP.DateDeliver, dP.DateOpen, siteInfo.HeadquaterInfo, dP.Note, dP.MaKT,txbNumber.Text);
-            if(retex == 0)
-            {
-                MessageBox.Show("file excel create false");
-            }
-            else
-            {
-                MessageBox.Show("file excel created ");
-            }
-            }
-            else
-            {
-                MessageBox.Show("lưu không thành công");
-            }
+            MessageBox.Show("Thêm mới thành công!");
+            //Xuất excel file mẫu 12
         }
 
         private void DeliverPartInforDetail_Load(object sender, EventArgs e)
@@ -102,6 +77,14 @@ namespace OPM.GUI
             cbbType.DataSource = new BindingSource(comboSource, null);
             cbbType.DisplayMember = "Value";
             cbbType.ValueMember = "Key";
+            ///Hiển thị danh sách các tỉnh thành ở datagriview
+            Provinces pr = new Provinces();
+            string querySQLProvinces = pr.querySQLProvinces();
+            DataTable dtProvince = OPMDBHandler.ExecuteQuery(querySQLProvinces);
+            if(dtProvince.Rows.Count > 0)
+            {
+                dataGridViewProvince.DataSource = dtProvince;
+            }
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -112,6 +95,25 @@ namespace OPM.GUI
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridViewProvince_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
+        {
         }
     }
 }

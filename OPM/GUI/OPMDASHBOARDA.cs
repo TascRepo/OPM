@@ -481,7 +481,7 @@ namespace OPM.GUI
             DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
             string contractName = null;
             PO po = new PO();
-            int retPo = PO.GetObjectPO(idPO, ref po);
+            //int retPo = PO.GetObjectPO(idPO, ref po);
             ContractObj contractObj = new ContractObj();
             int retContract = ContractObj.GetObjectContract(idContract, ref contractObj);
             deliverPartInforDetail.setIdPO(idPO);
