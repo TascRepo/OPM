@@ -90,9 +90,9 @@ namespace OPM.GUI
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(6, 550);
+            this.btnSave.Location = new System.Drawing.Point(4, 611);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(105, 23);
+            this.btnSave.Size = new System.Drawing.Size(91, 23);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Lưu PO";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -117,7 +117,7 @@ namespace OPM.GUI
             // 
             // btnNewDP
             // 
-            this.btnNewDP.Location = new System.Drawing.Point(417, 550);
+            this.btnNewDP.Location = new System.Drawing.Point(401, 611);
             this.btnNewDP.Name = "btnNewDP";
             this.btnNewDP.Size = new System.Drawing.Size(75, 23);
             this.btnNewDP.TabIndex = 3;
@@ -280,7 +280,7 @@ namespace OPM.GUI
             this.dataGridViewPO.Name = "dataGridViewPO";
             this.dataGridViewPO.RowHeadersWidth = 62;
             this.dataGridViewPO.RowTemplate.Height = 25;
-            this.dataGridViewPO.Size = new System.Drawing.Size(451, 97);
+            this.dataGridViewPO.Size = new System.Drawing.Size(451, 158);
             this.dataGridViewPO.TabIndex = 5;
             // 
             // TimePickerDateCreatedPO
@@ -350,7 +350,7 @@ namespace OPM.GUI
             // 
             // btnNTKT
             // 
-            this.btnNTKT.Location = new System.Drawing.Point(338, 550);
+            this.btnNTKT.Location = new System.Drawing.Point(322, 611);
             this.btnNTKT.Name = "btnNTKT";
             this.btnNTKT.Size = new System.Drawing.Size(75, 23);
             this.btnNTKT.TabIndex = 9;
@@ -360,7 +360,7 @@ namespace OPM.GUI
             // 
             // btnBaoHiem
             // 
-            this.btnBaoHiem.Location = new System.Drawing.Point(259, 550);
+            this.btnBaoHiem.Location = new System.Drawing.Point(243, 611);
             this.btnBaoHiem.Name = "btnBaoHiem";
             this.btnBaoHiem.Size = new System.Drawing.Size(75, 23);
             this.btnBaoHiem.TabIndex = 10;
@@ -370,7 +370,7 @@ namespace OPM.GUI
             // 
             // btnKTKT
             // 
-            this.btnKTKT.Location = new System.Drawing.Point(179, 550);
+            this.btnKTKT.Location = new System.Drawing.Point(163, 611);
             this.btnKTKT.Name = "btnKTKT";
             this.btnKTKT.Size = new System.Drawing.Size(76, 23);
             this.btnKTKT.TabIndex = 12;
@@ -380,7 +380,7 @@ namespace OPM.GUI
             // 
             // deletePO
             // 
-            this.deletePO.Location = new System.Drawing.Point(117, 550);
+            this.deletePO.Location = new System.Drawing.Point(101, 611);
             this.deletePO.Name = "deletePO";
             this.deletePO.Size = new System.Drawing.Size(56, 23);
             this.deletePO.TabIndex = 13;
@@ -390,6 +390,7 @@ namespace OPM.GUI
             // 
             // txbnamefilePO
             // 
+            this.txbnamefilePO.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.txbnamefilePO.Location = new System.Drawing.Point(159, 410);
             this.txbnamefilePO.Name = "txbnamefilePO";
             this.txbnamefilePO.Size = new System.Drawing.Size(187, 23);
@@ -578,6 +579,7 @@ namespace OPM.GUI
             // 
             // txbnamefileKHGH
             // 
+            this.txbnamefileKHGH.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.txbnamefileKHGH.Location = new System.Drawing.Point(160, 381);
             this.txbnamefileKHGH.Name = "txbnamefileKHGH";
             this.txbnamefileKHGH.Size = new System.Drawing.Size(187, 23);
@@ -587,8 +589,8 @@ namespace OPM.GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Yellow;
-            this.ClientSize = new System.Drawing.Size(498, 587);
+            this.BackColor = System.Drawing.Color.LightYellow;
+            this.ClientSize = new System.Drawing.Size(498, 646);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.txbnamefileKHGH);
