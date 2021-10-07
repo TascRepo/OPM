@@ -1677,9 +1677,6 @@ namespace OPM.WordHandler
                                     ref missing, ref missing, ref missing,
                                     ref missing, ref missing, ref missing, ref missing);
                 myDoc.Activate();
-                FindAndReplace(wordApp, "<dd>", " " + DateTime.Now.ToString("dd") + " ");
-                FindAndReplace(wordApp, "<MM>", " " + DateTime.Now.ToString("MM") + " ");
-                FindAndReplace(wordApp, "<yyyy>", " " + DateTime.Now.ToString("yyyy") + " ");
                 FindAndReplace(wordApp, "<Idcontract>", " " + txbIDContract);
                 FindAndReplace(wordApp, "<Tentinh>", " " + diaChi);
                 FindAndReplace(wordApp, "<Loaisanpham>", " " + maHangSP);
@@ -1687,6 +1684,9 @@ namespace OPM.WordHandler
                 FindAndReplace(wordApp, "<Tenthietbi>", " " + tenhangHD);
                 FindAndReplace(wordApp, "<Thucxuat>", " " + soLuong);
                 FindAndReplace(wordApp, "<Ghichu>", " " + GhiChu);
+                FindAndReplace(wordApp, "<dd>", " " + DateTime.Now.ToString("dd") + " ");
+                FindAndReplace(wordApp, "<MM>", " " + DateTime.Now.ToString("MM") + " ");
+                FindAndReplace(wordApp, "<yyyy>", " " + DateTime.Now.ToString("yyyy") + " ");
                 //Save as
                 myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing,
@@ -1743,12 +1743,72 @@ namespace OPM.WordHandler
                 FindAndReplace(wordApp, "<dd>", " " + DateTime.Now.ToString("dd") + " ");
                 FindAndReplace(wordApp, "<MM>", " " + DateTime.Now.ToString("MM") + " ");
                 FindAndReplace(wordApp, "<yyyy>", " " + DateTime.Now.ToString("yyyy") + " ");
-                FindAndReplace(wordApp, "<IDCONTRACT>", " " + txbIDContract);
+                FindAndReplace(wordApp, "<Idcontract>", " " + txbIDContract);
                 FindAndReplace(wordApp, "<IdPO>", " " + txbPOCode);
                 FindAndReplace(wordApp, "<Tentinh>", " " + diaChi);
                 FindAndReplace(wordApp, "<Tenhang>", " " + tenhangHD);
-                FindAndReplace(wordApp, "<Loaihang>", " " + mahangHD);
+                FindAndReplace(wordApp, "<loaihang>", " " + mahangHD);
                 FindAndReplace(wordApp, "<Soluong>", " " + soLuong);
+                //Save as
+                myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing);
+                myDoc.Close();
+                wordApp.Quit();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy bản mẫu 20");
+            }
+        }
+        //Mẫu 22
+        public static void Word_PBH(string txbIDContract, string txbPOName, string txbPOCode, string txbIdDP, string diaChi, string mahangHD, string tenhangHD, string maHangSP, string tenHangSP, string soLuong, string GhiChu)
+        {
+            //Khởi tạo vào check forder
+            string DriveName = "";
+            DriveInfo[] driveInfos = DriveInfo.GetDrives();
+            foreach (DriveInfo driveInfo in driveInfos)
+            {
+                if (String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"D:\") == 0 || String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"E:\") == 0)
+                {
+                    DriveName = driveInfo.Name.ToString().Substring(0, 3);
+                    break;
+                }
+            }
+            //Check xem forder đã đc khởi tạo hay chưa?
+            //Nếu chưa khởi tạo thì tiên hành khởi tạo
+            string strPODirectory = DriveName + "OPM\\" + txbIDContract + "\\" + txbPOName + "\\" + txbIdDP;
+            if (!Directory.Exists(strPODirectory))
+            {
+                Directory.CreateDirectory(strPODirectory);
+            }
+            object filename = strPODirectory + @"\Phieu bao hanh_" + diaChi + ".docx";
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
+            //
+            object path = DriveName + @"\OPM\Template\Mau22. Mau phieu bao hanh.docx";
+            if (File.Exists(path.ToString()))
+            {
+                object readOnly = false;
+                object isVisible = false;
+                wordApp.Visible = false;
+
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                FindAndReplace(wordApp, "<NumberDP>", " " + txbIdDP);
+                FindAndReplace(wordApp, "<Ponumber>", " " + txbPOCode);
+                FindAndReplace(wordApp, "<tentinh>", " " + diaChi);
+                FindAndReplace(wordApp, "<idconntract>", " " + txbIDContract);
+                FindAndReplace(wordApp, "<tenhang>", " " + tenhangHD);
+                FindAndReplace(wordApp, "<LoaiHang>", " " + mahangHD);
+                FindAndReplace(wordApp, "<SoLuong>", " " + soLuong);
                 //Save as
                 myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing,
