@@ -159,7 +159,7 @@ namespace OPM.GUI
             this.txbIdDP.Name = "txbIdDP";
             this.txbIdDP.Size = new System.Drawing.Size(328, 23);
             this.txbIdDP.TabIndex = 18;
-            this.txbIdDP.Text = "XXX/2021";
+            this.txbIdDP.Text = "DPXXX/2021";
             // 
             // label5
             // 
