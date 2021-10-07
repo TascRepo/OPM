@@ -65,7 +65,7 @@ namespace OPM.DBHandler
         public int InsertListExpected_DP(string ProvinceName, string NumberDevice, string id_dp)
         {
             int result = 0;
-            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.ListExpected_DP(ProvinceName, NumberDevice, id_po) VALUES(N'{0}',{1},'{2}')", ProvinceName, Int64.Parse(NumberDevice), id_dp);
+            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.ListExpected_DP(ProvinceName, NumberDevice, id_dp) VALUES(N'{0}',{1},'{2}')", ProvinceName, Int64.Parse(NumberDevice), id_dp);
             result = OPMDBHandler.fInsertData(query);
             return result;
         }

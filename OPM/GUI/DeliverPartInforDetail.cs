@@ -53,23 +53,23 @@ namespace OPM.GUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //DP dp = new DP();
+            DP dp = new DP();
             //Thêm mới 1 DP vào database
-            //dp.InsertDP(txbIdDP.Text, txbPOCode.Text, txbIDContract.Text);
+            dp.InsertDP(txbIdDP.Text, txbPOCode.Text, txbIDContract.Text);
             //Lưu trữ thông tin vào database với các tỉnh và file phân bổ
-            //for (int i = 1; i < dataGridViewProvince.Rows.Count - 1; i++)
-            //{
-                //bool IsCheck = Convert.ToBoolean(dataGridViewProvince.Rows[i].Cells[0].Value);
-                //if (IsCheck == true && dataGridViewProvince.Rows[i].Cells[0].ToString().Length > 0)
-                //{
-                    //dp.InsertListExpected_DP(dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), txbIdDP.Text.ToString());
-                //}
-            //}
-            //MessageBox.Show("Thêm mới thành công!");
-            //Xuất mẫu 19
-            //ExcelHandler_Thanh.FindExcel_Teamplate12(txbIdDP.Text);
-            //MessageBox.Show("Tạo file thành công!");
-            //Xuất file mẫu 19 - 20
+            for (int i = 0; i < dataGridViewProvince.Rows.Count - 1; i++)
+            {
+                bool IsCheck = Convert.ToBoolean(dataGridViewProvince.Rows[i].Cells[0].Value);
+                if (IsCheck == true && dataGridViewProvince.Rows[i].Cells[0].ToString().Length > 0)
+                {
+                    dp.InsertListExpected_DP(dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), txbIdDP.Text.ToString());
+                    //Xuất mẫu 19
+                    OpmWordHandler.Word_DPCNKTCL(txbIDContract.Text, txbPOName.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
+                    //Xuất mẫu 20
+                    OpmWordHandler.Word_DPCNCL(txbIDContract.Text, txbPOName.Text,txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
+                }
+            }
+            MessageBox.Show("Thêm mới DP và tạo mẫu 19,20 đi các tỉnh thành công!");
         }
         private void DeliverPartInforDetail_Load(object sender, EventArgs e)
         {
