@@ -59,13 +59,12 @@ namespace OPM.GUI
             this.Checked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.soLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
-            this.tenhangHD = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.mahangHD = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.ghiChu = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.mahangHD = new System.Windows.Forms.TextBox();
+            this.tenhangHD = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProvince)).BeginInit();
             this.SuspendLayout();
             // 
@@ -256,11 +255,11 @@ namespace OPM.GUI
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(-2, 243);
+            this.label14.Location = new System.Drawing.Point(14, 243);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(105, 15);
+            this.label14.Size = new System.Drawing.Size(53, 15);
             this.label14.TabIndex = 39;
-            this.label14.Text = "Tổng SL hàng xuất";
+            this.label14.Text = "Tổng PO";
             // 
             // txbNumber
             // 
@@ -333,35 +332,19 @@ namespace OPM.GUI
             this.button1.Text = "Cannel";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // tenhangHD
-            // 
-            this.tenhangHD.Location = new System.Drawing.Point(290, 182);
-            this.tenhangHD.Name = "tenhangHD";
-            this.tenhangHD.Size = new System.Drawing.Size(142, 23);
-            this.tenhangHD.TabIndex = 50;
-            this.tenhangHD.Text = "iGate GW020";
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(218, 185);
+            this.label16.Location = new System.Drawing.Point(217, 156);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(75, 15);
             this.label16.TabIndex = 49;
             this.label16.Text = "Tên hàng HĐ";
             // 
-            // mahangHD
-            // 
-            this.mahangHD.Location = new System.Drawing.Point(290, 153);
-            this.mahangHD.Name = "mahangHD";
-            this.mahangHD.Size = new System.Drawing.Size(142, 23);
-            this.mahangHD.TabIndex = 48;
-            this.mahangHD.Text = "Thiết bị đầu cuối ONT";
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(218, 156);
+            this.label17.Location = new System.Drawing.Point(217, 187);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(74, 15);
             this.label17.TabIndex = 47;
@@ -384,13 +367,21 @@ namespace OPM.GUI
             this.label6.TabIndex = 51;
             this.label6.Text = "Ghi chú";
             // 
-            // textBox1
+            // mahangHD
             // 
-            this.textBox1.Location = new System.Drawing.Point(9, 301);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(284, 23);
-            this.textBox1.TabIndex = 53;
-            this.textBox1.Text = "DP123456";
+            this.mahangHD.Location = new System.Drawing.Point(289, 184);
+            this.mahangHD.Name = "mahangHD";
+            this.mahangHD.Size = new System.Drawing.Size(142, 23);
+            this.mahangHD.TabIndex = 48;
+            this.mahangHD.Text = "Thiết bị đầu cuối ONT";
+            // 
+            // tenhangHD
+            // 
+            this.tenhangHD.FormattingEnabled = true;
+            this.tenhangHD.Location = new System.Drawing.Point(290, 155);
+            this.tenhangHD.Name = "tenhangHD";
+            this.tenhangHD.Size = new System.Drawing.Size(142, 23);
+            this.tenhangHD.TabIndex = 54;
             // 
             // DeliverPartInforDetail
             // 
@@ -398,10 +389,9 @@ namespace OPM.GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
             this.ClientSize = new System.Drawing.Size(453, 556);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tenhangHD);
             this.Controls.Add(this.ghiChu);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.tenhangHD);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.mahangHD);
             this.Controls.Add(this.label17);
@@ -475,12 +465,11 @@ namespace OPM.GUI
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Checked;
         private System.Windows.Forms.DataGridViewTextBoxColumn soLuong;
-        private System.Windows.Forms.TextBox tenhangHD;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox mahangHD;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox ghiChu;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox mahangHD;
+        private System.Windows.Forms.ComboBox tenhangHD;
     }
 }

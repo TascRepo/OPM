@@ -83,6 +83,14 @@ namespace OPM.GUI
         }
         private void DeliverPartInforDetail_Load(object sender, EventArgs e)
         {
+            //Load thông tin combobox
+            DP dp1 = new DP();
+            DataTable d1 = dp1.SqlContract_Goods(txbIDContract.Text);
+            for(int i = 0;i< d1.Rows.Count; i++)
+            {
+                tenhangHD.Items.Add(d1.Rows[i][0].ToString());
+            }
+            //
             Dictionary<int, string> comboSource = new Dictionary<int, string>();
             comboSource.Add(1, "Hàng chính");
             comboSource.Add(2, "Hàng bảo hành");
