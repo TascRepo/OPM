@@ -152,8 +152,7 @@ namespace OPM.OPMEnginee
             }
             else
             {
-                strQuerry = "select distinct ctlparent, ctlID, ctlname from CatalogAdmin left join PO on PO.po_number = CatalogAdmin.ctlname where CatalogAdmin.ctlID = 'PO_'+PO.id and ctlparent=" + "'" + strParent + "' ORDER BY ctlname";
-            }    
+                strQuerry = "select ctlparent, ctlID, ctlname from CatalogAdmin where ctlparent=" + "'" + strParent + "' ORDER BY ctlname";            }    
             int ret = OPMDBHandler.fQuerryData(strQuerry, ref ds);
             if (0 == ret)
             {
