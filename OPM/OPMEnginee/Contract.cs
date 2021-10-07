@@ -183,7 +183,7 @@ namespace OPM.OPMEnginee
             }
             if(MessageBox.Show(string.Format("Có chắc chắn xoá hợp đồng: {0} không?", id),"Thông báo!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question)== DialogResult.Cancel) return;
 
-            string query = string.Format(" DELETE FROM dbo.DP WHERE id_contract = '{0}' DELETE FROM dbo.PO WHERE id_contract = '{0}' DELETE FROM dbo.Contract WHERE id = '{0}' DELETE FROM dbo.CatalogAdmin WHERE ctlname = '{0}'", id);
+            string query = string.Format("DELETE FROM dbo.Contract_Goods WHERE idContract = '{0}' DELETE FROM dbo.DP WHERE id_contract = '{0}' DELETE FROM dbo.PO WHERE id_contract = '{0}' DELETE FROM dbo.Contract WHERE id = '{0}' DELETE FROM dbo.CatalogAdmin WHERE ctlname = '{0}'", id);
             try
             {
                 result = OPMDBHandler.ExecuteNonQuery(query);

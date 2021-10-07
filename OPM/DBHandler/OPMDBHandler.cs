@@ -8,9 +8,9 @@ namespace OPM.DBHandler
     public static class OPMDBHandler
     {
         //static string connectionSTR = @"Data Source = LEXUANTHANH\SQLEXPRESS;Initial Catalog = OpmDB1; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        //static string connectionSTR = @"Data Source=10.2.8.70;Initial Catalog=OpmDB1;Persist Security Info=True;Connect Timeout = 30;User ID=sa;Password=Pa$$w0rd";
+        //static string connectionSTR = @"Data Source=10.2.8.83;Initial Catalog=OpmDB1;Persist Security Info=True;Connect Timeout = 30;User ID=sa;Password=Pa$$w0rd";
         //static string connectionSTR = @"Data Source = LEXUANTHANH\SQLEXPRESS;Initial Catalog = OpmDB; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        static string connectionSTR = @"Data Source=THANH\SQLEXPRESS;Initial Catalog=OpmDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        static string connectionSTR = @"Data Source=THANH\SQLEXPRESS;Initial Catalog=OpmDB1;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public static DataTable ExecuteQuery(string query, object[] parameter = null)
         {
             DataTable data = new DataTable();
@@ -120,6 +120,7 @@ namespace OPM.DBHandler
             }
             catch(Exception)
             {
+                MessageBox.Show("Không kết nối được CSDL!");
                 return 0;
             }
         }
@@ -140,6 +141,7 @@ namespace OPM.DBHandler
             catch(Exception)
             {
                 CloseConnection(con);
+                MessageBox.Show("Không kết nối được CSDL!");
                 return 0;
             }
         }
@@ -175,6 +177,7 @@ namespace OPM.DBHandler
             catch (Exception)
             {
                 CloseConnection(con);
+                MessageBox.Show("Không kết nối được CSDL!");
                 return 0;
             }
         }
@@ -206,6 +209,7 @@ namespace OPM.DBHandler
             {
                 adapter.Dispose();
                 CloseConnection(con);
+                MessageBox.Show("Không kết nối được CSDL!");
                 return 0;
             }
         }

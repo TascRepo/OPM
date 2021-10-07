@@ -66,8 +66,8 @@ namespace OPM.GUI
         private void btnFoodTableAdd_Click(object sender, EventArgs e)
         {
             Contract_Goods goods = new Contract_Goods(Tag.ToString(), tbxCode.Text.Trim(), tbxName.Text.Trim(), textBoxUnit.Text.Trim(), double.Parse(textBoxPriceUnit.Text.Trim()), int.Parse(textBoxQuantity.Text.Trim()));
-            if (goods.Exist()) goods.Delete();
-            goods.Insert();
+            if (goods.Exist()) goods.Update();
+            else goods.Insert();
             LoadDataGridView();
         }
 

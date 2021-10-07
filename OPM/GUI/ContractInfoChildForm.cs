@@ -187,6 +187,7 @@ namespace OPM.GUI
         {
             State(false);
             btnSave.Enabled = true;
+            btnContractAnnex.Enabled = true;
         }
         //Xoá hợp đồng
         private void btnRemove_Click(object sender, EventArgs e)
@@ -195,7 +196,6 @@ namespace OPM.GUI
             UpdateCatalogPanel(tbContract.Text);
             SetItemValue_Default();
             btnEdit.Enabled = true;
-            btnContractAnnex.Enabled = false;
             btnSave.Enabled = true;
             State(false);
         }

@@ -194,5 +194,12 @@ namespace OPM.OPMEnginee
             double ret = (tam == null||tam==DBNull.Value) ? 0 : (double)tam;
             return ret;
         }
+        public void Update()
+        {
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.Contract_Goods SET unit = N'{3}', priceUnit = {4}, quantity = {5} WHERE idContract = '{0}' and code = N'{1}' and name = N'{2}'", idContract, code, name, unit, priceUnit, quantity);
+            OPMDBHandler.ExecuteNonQuery(query);
+            //MessageBox.Show(string.Format("Cập nhật thành công hợp đồng {0} !"));
+        }
+
     }
 }

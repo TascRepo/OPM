@@ -102,6 +102,7 @@ namespace OPM.GUI
             // 
             // textBoxPricePreTax
             // 
+            this.textBoxPricePreTax.Enabled = false;
             this.textBoxPricePreTax.Location = new System.Drawing.Point(190, 15);
             this.textBoxPricePreTax.Name = "textBoxPricePreTax";
             this.textBoxPricePreTax.Size = new System.Drawing.Size(331, 31);
