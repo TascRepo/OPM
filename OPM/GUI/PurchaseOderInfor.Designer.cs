@@ -104,7 +104,7 @@ namespace OPM.GUI
             this.txbPOCode.Name = "txbPOCode";
             this.txbPOCode.Size = new System.Drawing.Size(312, 23);
             this.txbPOCode.TabIndex = 1;
-            this.txbPOCode.Text = "865/CUVT-KV";
+            this.txbPOCode.Text = "XXX/CUVT-KV";
             // 
             // label1
             // 
@@ -131,7 +131,7 @@ namespace OPM.GUI
             this.txbIDContract.Name = "txbIDContract";
             this.txbIDContract.Size = new System.Drawing.Size(312, 23);
             this.txbIDContract.TabIndex = 1;
-            this.txbIDContract.Text = "111-2020/CUVT-ANSV/DTRR-KHMS";
+            this.txbIDContract.Text = "XXX-202X/CUVT-ANSV/DTRR-KHMS";
             // 
             // label2
             // 
@@ -147,9 +147,9 @@ namespace OPM.GUI
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 91);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 15);
+            this.label3.Size = new System.Drawing.Size(44, 15);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Tên ";
+            this.label3.Text = "Tên PO";
             // 
             // txbPOName
             // 
@@ -157,12 +157,12 @@ namespace OPM.GUI
             this.txbPOName.Name = "txbPOName";
             this.txbPOName.Size = new System.Drawing.Size(80, 23);
             this.txbPOName.TabIndex = 1;
-            this.txbPOName.Text = "PO1";
+            this.txbPOName.Text = "POX";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(220, 89);
+            this.label4.Location = new System.Drawing.Point(223, 97);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 15);
             this.label4.TabIndex = 2;
@@ -458,7 +458,7 @@ namespace OPM.GUI
             this.confirmpo_number.Name = "confirmpo_number";
             this.confirmpo_number.Size = new System.Drawing.Size(80, 23);
             this.confirmpo_number.TabIndex = 6;
-            this.confirmpo_number.Text = "/ANSV-DO";
+            this.confirmpo_number.Text = "XXX/ANSV-DO";
             this.confirmpo_number.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label17
@@ -537,7 +537,7 @@ namespace OPM.GUI
             // panel1
             // 
             this.panel1.Location = new System.Drawing.Point(4, 246);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(456, 59);
             this.panel1.TabIndex = 18;
@@ -545,7 +545,7 @@ namespace OPM.GUI
             // panel2
             // 
             this.panel2.Location = new System.Drawing.Point(4, 308);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(456, 25);
             this.panel2.TabIndex = 18;
@@ -553,7 +553,7 @@ namespace OPM.GUI
             // panel3
             // 
             this.panel3.Location = new System.Drawing.Point(4, 334);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(456, 25);
             this.panel3.TabIndex = 18;

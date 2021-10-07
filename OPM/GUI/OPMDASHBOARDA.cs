@@ -401,9 +401,9 @@ namespace OPM.GUI
             ContractInfoChildForm contractInfoChildForm = new ContractInfoChildForm();
             contractInfoChildForm.requestDashBoardOpendescriptionForm = new ContractInfoChildForm.RequestDashBoardOpenDescriptionForm(OpenDescription);
             strIDContract = strIDContract.Replace("Contract_","");
-            //purchaseOderInfor.SetTxbIDContract(strIDContract);
+            purchaseOderInfor.SetTxbIDContract(strIDContract);
             //purchaseOderInfor.SetTxbKHMS(strKHMS);
-            purchaseOderInfor.contract = new Contract(strIDContract);
+            //purchaseOderInfor.contract = new Contract(strIDContract);
             purchaseOderInfor.po = new DBHandler.PO_Thanh(idPO);
             OpenChidForm(purchaseOderInfor);
             return;

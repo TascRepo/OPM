@@ -52,6 +52,7 @@ namespace OPM.GUI
         private void btnSave_Click(object sender, EventArgs e)
         {
             PO_Thanh po = new PO_Thanh();
+            Contract contract = new Contract();
             po.Id = txbPOCode.Text;
             po.Po_number = txbPOName.Text;
             po.Datecreated = TimePickerDateCreatedPO.Value;
@@ -245,7 +246,14 @@ namespace OPM.GUI
 
         private void btnNewDP_Click(object sender, EventArgs e)
         {
-            requestDaskboardOpenDP(txbPOCode.Text, txbIDContract.Text, txbPOName.Text);
+            if(txbPOName.Text == "POX" || txbPOCode.Text == "XXX/CUVT-KV" || txbIDContract.Text == "XXX-202X/CUVT-ANSV/DTRR-KHMS")
+            {
+                MessageBox.Show("Chưa khởi tạo PO thì không tạo DP!");
+            }
+            else
+            {
+                requestDaskboardOpenDP(txbPOCode.Text, txbIDContract.Text, txbPOName.Text);
+            }
         }
 
         private void btnConfirmPO_Click(object sender, EventArgs e)

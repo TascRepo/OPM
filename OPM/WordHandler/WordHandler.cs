@@ -685,7 +685,7 @@ namespace OPM.WordHandler
             //Check xem forder đã đc khởi tạo hay chưa?
             //Nếu chưa khởi tạo thì tiên hành khởi tạo
             string FoderName = String.Format(po.Id);
-            string strPODirectory = DriveName + "OPM\\"+po.Id_contract + "\\" +po.Po_number + "-" + FoderName; 
+            string strPODirectory = DriveName + "OPM\\"+po.Id_contract.Trim().Replace('/', '-') + "\\" +po.Po_number.Trim().Replace('/', '-') + "\\" + FoderName.Trim().Replace('/', '-'); 
             if (!Directory.Exists(strPODirectory))
             {
                 Directory.CreateDirectory(strPODirectory);
@@ -777,7 +777,7 @@ namespace OPM.WordHandler
             //Check xem forder đã đc khởi tạo hay chưa?
             //Nếu chưa khởi tạo thì tiên hành khởi tạo
             string FoderName = String.Format(po.Id);
-            string strPODirectory = DriveName + "OPM\\" + po.Id_contract + "\\" + po.Po_number + "-" + FoderName;
+            string strPODirectory = DriveName + "OPM\\" + po.Id_contract.Trim().Replace('/', '-') + "\\" + po.Po_number.Trim().Replace('/', '-') + "\\" + FoderName.Trim().Replace('/', '-');
             if (!Directory.Exists(strPODirectory))
             {
                 Directory.CreateDirectory(strPODirectory);
@@ -848,7 +848,7 @@ namespace OPM.WordHandler
             //Check xem forder đã đc khởi tạo hay chưa?
             //Nếu chưa khởi tạo thì tiên hành khởi tạo
             string FoderName = String.Format(po.Id);
-            string strPODirectory = DriveName + "OPM\\" +po.Id_contract + "\\"+ po.Po_number + "-" + FoderName;
+            string strPODirectory = DriveName + "OPM\\" +po.Id_contract.Trim().Replace('/', '-') + "\\"+ po.Po_number.Trim().Replace('/', '-') + "\\" + FoderName.Trim().Replace('/', '-');
             if (!Directory.Exists(strPODirectory))
             {
                 Directory.CreateDirectory(strPODirectory);
@@ -1654,7 +1654,7 @@ namespace OPM.WordHandler
             }
             //Check xem forder đã đc khởi tạo hay chưa?
             //Nếu chưa khởi tạo thì tiên hành khởi tạo
-            string strPODirectory = DriveName + "OPM\\" +txbIDContract + "\\" +txbPOName + "\\" +txbIdDP;
+            string strPODirectory = DriveName + "OPM\\" +txbIDContract.Trim().Replace('/', '-') + "\\" +txbPOName.Trim().Replace('/', '-') + "\\" +txbIdDP.Trim().Replace('/', '-');
             if (!Directory.Exists(strPODirectory))
             {
                 Directory.CreateDirectory(strPODirectory);
@@ -1717,7 +1717,7 @@ namespace OPM.WordHandler
             }
             //Check xem forder đã đc khởi tạo hay chưa?
             //Nếu chưa khởi tạo thì tiên hành khởi tạo
-            string strPODirectory = DriveName + "OPM\\" + txbIDContract + "\\" + txbPOName + "\\" + txbIdDP;
+            string strPODirectory = DriveName + "OPM\\" + txbIDContract.Trim().Replace('/', '-') + "\\" + txbPOName.Trim().Replace('/', '-') + "\\" + txbIdDP.Trim().Replace('/', '-');
             if (!Directory.Exists(strPODirectory))
             {
                 Directory.CreateDirectory(strPODirectory);
@@ -1779,7 +1779,7 @@ namespace OPM.WordHandler
             }
             //Check xem forder đã đc khởi tạo hay chưa?
             //Nếu chưa khởi tạo thì tiên hành khởi tạo
-            string strPODirectory = DriveName + "OPM\\" + txbIDContract + "\\" + txbPOName + "\\" + txbIdDP;
+            string strPODirectory = DriveName + "OPM\\" + txbIDContract.Trim().Replace('/', '-') + "\\" + txbPOName.Trim().Replace('/', '-') + "\\" + txbIdDP.Trim().Replace('/', '-');
             if (!Directory.Exists(strPODirectory))
             {
                 Directory.CreateDirectory(strPODirectory);

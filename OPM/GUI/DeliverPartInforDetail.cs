@@ -53,33 +53,40 @@ namespace OPM.GUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            DP dp = new DP();
-            //Thêm mới 1 DP vào database
-            int returnDP = dp.InsertUpdateDP(txbIdDP.Text, txbPOCode.Text, txbIDContract.Text, cbbType.Text,ghiChu.Text);
-            if(returnDP == 0)
+            if (txbIdDP.Text == "DPXXX/202X")
             {
-                MessageBox.Show("Cập nhật DP "+ txbIdDP.Text+" thành công!");
+                MessageBox.Show("Nhập sai định dạng số DP!");
             }
             else
             {
-                MessageBox.Show("Thêm mới DP " + txbIdDP.Text + " thành công!");
-            }
-            //Lưu trữ thông tin vào database với các tỉnh và file phân bổ
-            for (int i = 0; i < dataGridViewProvince.Rows.Count - 1; i++)
-            {
-                bool IsCheck = Convert.ToBoolean(dataGridViewProvince.Rows[i].Cells[0].Value);
-                if (IsCheck == true && dataGridViewProvince.Rows[i].Cells[0].ToString().Length > 0)
+                DP dp = new DP();
+                //Thêm mới 1 DP vào database
+                int returnDP = dp.InsertUpdateDP(txbIdDP.Text, txbPOCode.Text, txbIDContract.Text, cbbType.Text, ghiChu.Text);
+                if (returnDP == 0)
                 {
-                    dp.InsertListExpected_DP(dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), txbIdDP.Text);
-                    //Xuất mẫu 19
-                    OpmWordHandler.Word_DPCNKTCL(txbIDContract.Text, txbPOName.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
-                    //Xuất mẫu 20
-                    OpmWordHandler.Word_DPCNCL(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
-                    //Xuất mẫu 22
-                    OpmWordHandler.Word_PBH(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
+                    MessageBox.Show("Cập nhật DP " + txbIdDP.Text + " thành công!");
                 }
+                else
+                {
+                    MessageBox.Show("Thêm mới DP " + txbIdDP.Text + " thành công!");
+                }
+                //Lưu trữ thông tin vào database với các tỉnh và file phân bổ
+                for (int i = 0; i < dataGridViewProvince.Rows.Count - 1; i++)
+                {
+                    bool IsCheck = Convert.ToBoolean(dataGridViewProvince.Rows[i].Cells[0].Value);
+                    if (IsCheck == true && dataGridViewProvince.Rows[i].Cells[0].ToString().Length > 0)
+                    {
+                        dp.InsertListExpected_DP(dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), txbIdDP.Text);
+                        //Xuất mẫu 19
+                        OpmWordHandler.Word_DPCNKTCL(txbIDContract.Text, txbPOName.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
+                        //Xuất mẫu 20
+                        OpmWordHandler.Word_DPCNCL(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
+                        //Xuất mẫu 22
+                        OpmWordHandler.Word_PBH(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
+                    }
+                }
+                MessageBox.Show("Tạo mẫu 19,20,22 đi các tỉnh thành công!");
             }
-            MessageBox.Show("Tạo mẫu 19,20,22 đi các tỉnh thành công!");
         }
         private void DeliverPartInforDetail_Load(object sender, EventArgs e)
         {
