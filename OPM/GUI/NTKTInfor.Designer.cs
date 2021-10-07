@@ -56,6 +56,7 @@ namespace OPM.GUI
             this.tbxContract = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.dateTimePickerCNBQPM = new System.Windows.Forms.DateTimePicker();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSave
@@ -316,6 +317,17 @@ namespace OPM.GUI
             this.dateTimePickerCNBQPM.Size = new System.Drawing.Size(410, 31);
             this.dateTimePickerCNBQPM.TabIndex = 10;
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(245, 798);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(110, 40);
+            this.btnDelete.TabIndex = 0;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // NTKTInfor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -348,6 +360,7 @@ namespace OPM.GUI
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnSave);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -388,5 +401,6 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox tbxContract;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dateTimePickerCNBQPM;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

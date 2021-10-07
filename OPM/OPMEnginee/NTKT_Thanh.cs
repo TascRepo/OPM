@@ -131,6 +131,19 @@ namespace OPM.OPMEnginee
                 }
             }
         }
+        public static void Delete(string id)
+        {
+            string query = string.Format("Delete FROM dbo.NTKT WHERE id = '{0}'", id);
+            try
+            {
+                OPMDBHandler.ExecuteNonQuery(query);
 
+            }
+            catch
+            {
+                MessageBox.Show(string.Format("Không xoá được NTKT số {0}", id));
+                return;
+            }
+        }
     }
 }

@@ -287,5 +287,10 @@ namespace OPM.GUI
             contract_Goods_Form.Tag = tbContract.Text.Trim();
             contract_Goods_Form.ShowDialog();
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -308,10 +308,10 @@ namespace OPM.GUI
             // btnNewPO
             // 
             this.btnNewPO.Enabled = false;
-            this.btnNewPO.Location = new System.Drawing.Point(487, 805);
+            this.btnNewPO.Location = new System.Drawing.Point(526, 805);
             this.btnNewPO.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnNewPO.Name = "btnNewPO";
-            this.btnNewPO.Size = new System.Drawing.Size(141, 38);
+            this.btnNewPO.Size = new System.Drawing.Size(114, 38);
             this.btnNewPO.TabIndex = 4;
             this.btnNewPO.Text = "Quản lý PO";
             this.btnNewPO.UseVisualStyleBackColor = true;
@@ -319,12 +319,12 @@ namespace OPM.GUI
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(169, 805);
+            this.btnEdit.Location = new System.Drawing.Point(182, 805);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(141, 38);
+            this.btnEdit.Size = new System.Drawing.Size(114, 38);
             this.btnEdit.TabIndex = 4;
-            this.btnEdit.Text = "Chỉnh sửa";
+            this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
@@ -334,18 +334,18 @@ namespace OPM.GUI
             this.btnRemove.Location = new System.Drawing.Point(10, 805);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(141, 38);
+            this.btnRemove.Size = new System.Drawing.Size(114, 38);
             this.btnRemove.TabIndex = 4;
-            this.btnRemove.Text = "Xoá";
+            this.btnRemove.Text = "Delete";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(328, 805);
+            this.btnSave.Location = new System.Drawing.Point(354, 805);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(141, 38);
+            this.btnSave.Size = new System.Drawing.Size(114, 38);
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;

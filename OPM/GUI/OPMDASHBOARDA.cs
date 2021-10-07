@@ -383,7 +383,7 @@ namespace OPM.GUI
             }    
         }
 
-        public void OpenPOForm(string strIDContract, string strKHMS)
+        public void OpenPOForm(string strIDContract, string idPO)
         {
             PurchaseOderInfor purchaseOderInfor = new PurchaseOderInfor();
             purchaseOderInfor.UpdateCatalogPanel = new PurchaseOderInfor.UpdateCatalogDelegate(GetCatalogvalue);
@@ -404,6 +404,7 @@ namespace OPM.GUI
             //purchaseOderInfor.SetTxbIDContract(strIDContract);
             //purchaseOderInfor.SetTxbKHMS(strKHMS);
             purchaseOderInfor.contract = new Contract(strIDContract);
+            purchaseOderInfor.po = new DBHandler.PO_Thanh(idPO);
             OpenChidForm(purchaseOderInfor);
             return;
 

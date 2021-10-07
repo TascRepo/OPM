@@ -54,8 +54,8 @@ namespace OPM.GUI
             {
                 //ContractInfoChildForm contractInfoChildForm = new ContractInfoChildForm();
                 //contractInfoChildForm.RequestDashBoardOpenPOForm = new ContractInfoChildForm.RequestDashBoardOpenChildForm(OP)
-                requestDashBoardPurchaseOderForm(tbxNumber.Text, tbxId_po.Text);
-                PurchaseOderInfor purchaseOderInfor = new PurchaseOderInfor();
+                requestDashBoardPurchaseOderForm(tbxContract.Text, tbxId_po.Text);
+                //PurchaseOderInfor purchaseOderInfor = new PurchaseOderInfor();
                 //purchaseOderInfor.SetValueItemForPO();
 
             }
@@ -116,6 +116,12 @@ namespace OPM.GUI
             {
                 MessageBox.Show("Nhập đúng dạng số!");
             }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            NTKT_Thanh.Delete(tbxId.Text.Trim());
+            UpdateCatalogPanel("PO_" + tbxId_po);
         }
     }
 }
