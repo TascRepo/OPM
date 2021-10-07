@@ -50,10 +50,6 @@ namespace OPM.GUI
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txbNumber = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
@@ -69,13 +65,13 @@ namespace OPM.GUI
             this.label17 = new System.Windows.Forms.Label();
             this.ghiChu = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProvince)).BeginInit();
             this.SuspendLayout();
             // 
             // txbKHMS
             // 
             this.txbKHMS.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.txbKHMS.Enabled = false;
             this.txbKHMS.Location = new System.Drawing.Point(104, 6);
             this.txbKHMS.Name = "txbKHMS";
             this.txbKHMS.Size = new System.Drawing.Size(328, 23);
@@ -120,7 +116,6 @@ namespace OPM.GUI
             // txbPOName
             // 
             this.txbPOName.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.txbPOName.Enabled = false;
             this.txbPOName.Location = new System.Drawing.Point(104, 97);
             this.txbPOName.Name = "txbPOName";
             this.txbPOName.Size = new System.Drawing.Size(328, 23);
@@ -129,7 +124,6 @@ namespace OPM.GUI
             // txbIDContract
             // 
             this.txbIDContract.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.txbIDContract.Enabled = false;
             this.txbIDContract.Location = new System.Drawing.Point(104, 39);
             this.txbIDContract.Name = "txbIDContract";
             this.txbIDContract.Size = new System.Drawing.Size(328, 23);
@@ -138,7 +132,6 @@ namespace OPM.GUI
             // txbPOCode
             // 
             this.txbPOCode.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.txbPOCode.Enabled = false;
             this.txbPOCode.Location = new System.Drawing.Point(104, 68);
             this.txbPOCode.Name = "txbPOCode";
             this.txbPOCode.Size = new System.Drawing.Size(328, 23);
@@ -242,63 +235,23 @@ namespace OPM.GUI
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 306);
+            this.label11.Location = new System.Drawing.Point(218, 274);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(92, 15);
+            this.label11.Size = new System.Drawing.Size(56, 15);
             this.label11.TabIndex = 33;
-            this.label11.Text = "Người lập phiếu";
+            this.label11.Text = "Người LP";
             this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // textBox4
             // 
             this.textBox4.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(105, 301);
+            this.textBox4.Location = new System.Drawing.Point(290, 269);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(99, 23);
+            this.textBox4.Size = new System.Drawing.Size(141, 23);
             this.textBox4.TabIndex = 34;
             this.textBox4.Text = "Phạm Văn Liên ";
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(217, 277);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(43, 15);
-            this.label12.TabIndex = 35;
-            this.label12.Text = "Ban DT";
-            // 
-            // textBox5
-            // 
-            this.textBox5.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBox5.Enabled = false;
-            this.textBox5.Location = new System.Drawing.Point(289, 274);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(142, 23);
-            this.textBox5.TabIndex = 36;
-            this.textBox5.Text = "Nguyễn Hoài Nam";
-            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(209, 306);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(67, 15);
-            this.label13.TabIndex = 37;
-            this.label13.Text = "Trưởng kho";
-            // 
-            // textBox6
-            // 
-            this.textBox6.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBox6.Enabled = false;
-            this.textBox6.Location = new System.Drawing.Point(289, 303);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(142, 23);
-            this.textBox6.TabIndex = 38;
-            this.textBox6.Text = "Ngô Trung Thành";
-            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
             // label14
             // 
@@ -416,7 +369,7 @@ namespace OPM.GUI
             // 
             // ghiChu
             // 
-            this.ghiChu.Location = new System.Drawing.Point(61, 274);
+            this.ghiChu.Location = new System.Drawing.Point(62, 269);
             this.ghiChu.Name = "ghiChu";
             this.ghiChu.Size = new System.Drawing.Size(143, 23);
             this.ghiChu.TabIndex = 52;
@@ -425,11 +378,19 @@ namespace OPM.GUI
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 277);
+            this.label6.Location = new System.Drawing.Point(8, 272);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 15);
             this.label6.TabIndex = 51;
             this.label6.Text = "Ghi chú";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(9, 301);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(284, 23);
+            this.textBox1.TabIndex = 53;
+            this.textBox1.Text = "DP123456";
             // 
             // DeliverPartInforDetail
             // 
@@ -437,6 +398,7 @@ namespace OPM.GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
             this.ClientSize = new System.Drawing.Size(453, 556);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.ghiChu);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tenhangHD);
@@ -450,10 +412,6 @@ namespace OPM.GUI
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txbNumber);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
@@ -508,10 +466,6 @@ namespace OPM.GUI
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txbNumber;
         private System.Windows.Forms.Button btnSave;
@@ -527,5 +481,6 @@ namespace OPM.GUI
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox ghiChu;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
