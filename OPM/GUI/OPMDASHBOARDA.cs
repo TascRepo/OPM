@@ -476,7 +476,7 @@ namespace OPM.GUI
             OpenChidForm(handlerExcel);
             return;
         }
-        public void OpenDpForm(string idPO, string idContract)
+        public void OpenDpForm(string idPO, string idContract,String PONumber)
         {
             DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
             string contractName = null;
@@ -487,7 +487,7 @@ namespace OPM.GUI
             deliverPartInforDetail.setIdPO(idPO);
             deliverPartInforDetail.setIdcontract(idContract);
             deliverPartInforDetail.setKHMS(contractObj.KHMS);
-            deliverPartInforDetail.setPoname(po.PONumber);
+            deliverPartInforDetail.setPoname(PONumber);
             OpenChidForm(deliverPartInforDetail);
             return;
         }

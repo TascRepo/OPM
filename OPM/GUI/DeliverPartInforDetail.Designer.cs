@@ -75,6 +75,7 @@ namespace OPM.GUI
             // txbKHMS
             // 
             this.txbKHMS.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.txbKHMS.Enabled = false;
             this.txbKHMS.Location = new System.Drawing.Point(104, 6);
             this.txbKHMS.Name = "txbKHMS";
             this.txbKHMS.Size = new System.Drawing.Size(328, 23);
@@ -119,6 +120,7 @@ namespace OPM.GUI
             // txbPOName
             // 
             this.txbPOName.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.txbPOName.Enabled = false;
             this.txbPOName.Location = new System.Drawing.Point(104, 97);
             this.txbPOName.Name = "txbPOName";
             this.txbPOName.Size = new System.Drawing.Size(328, 23);
@@ -127,6 +129,7 @@ namespace OPM.GUI
             // txbIDContract
             // 
             this.txbIDContract.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.txbIDContract.Enabled = false;
             this.txbIDContract.Location = new System.Drawing.Point(104, 39);
             this.txbIDContract.Name = "txbIDContract";
             this.txbIDContract.Size = new System.Drawing.Size(328, 23);
@@ -135,6 +138,7 @@ namespace OPM.GUI
             // txbPOCode
             // 
             this.txbPOCode.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.txbPOCode.Enabled = false;
             this.txbPOCode.Location = new System.Drawing.Point(104, 68);
             this.txbPOCode.Name = "txbPOCode";
             this.txbPOCode.Size = new System.Drawing.Size(328, 23);

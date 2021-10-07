@@ -37,7 +37,7 @@ namespace OPM.GUI
         public RequestDasckboardOpenExcel requestDasckboardOpenExcel;
 
         //open new DP
-        public delegate void RequestDaskboardOpenDP(string idpo, string idcontract);
+        public delegate void RequestDaskboardOpenDP(string idpo, string idcontract, string POName);
         public RequestDaskboardOpenDP requestDaskboardOpenDP;
 
         //Khai báo POCurrent
@@ -245,7 +245,7 @@ namespace OPM.GUI
 
         private void btnNewDP_Click(object sender, EventArgs e)
         {
-            requestDaskboardOpenDP(txbPOCode.Text, txbIDContract.Text);
+            requestDaskboardOpenDP(txbPOCode.Text, txbIDContract.Text, txbPOName.Text);
         }
 
         private void btnConfirmPO_Click(object sender, EventArgs e)
