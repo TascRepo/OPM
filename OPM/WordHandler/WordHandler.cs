@@ -685,7 +685,7 @@ namespace OPM.WordHandler
             //Check xem forder đã đc khởi tạo hay chưa?
             //Nếu chưa khởi tạo thì tiên hành khởi tạo
             string FoderName = String.Format(po.Id);
-            string strPODirectory = DriveName + "OPM\\"+ po.Id_contract + "\\" + po.Po_number + "-" + FoderName; 
+            string strPODirectory = DriveName + "OPM\\"+po.Id_contract + "\\" +po.Po_number + "-" + FoderName; 
             if (!Directory.Exists(strPODirectory))
             {
                 Directory.CreateDirectory(strPODirectory);
@@ -696,7 +696,7 @@ namespace OPM.WordHandler
             object missing = Missing.Value;
             WordOffice.Document myDoc = null;
             //
-            object path = DriveName + @"LP\Mau 3. van ban xac nhan hieu luc don hang.docx";
+            object path = DriveName + @"\OPM\Template\Mau 3. van ban xac nhan hieu luc don hang.docx";
             if (File.Exists(path.ToString()))
             {
                 object readOnly = false;
@@ -788,7 +788,7 @@ namespace OPM.WordHandler
             object missing = Missing.Value;
             WordOffice.Document myDoc = null;
             //
-            object path = DriveName + @"LP\Mau 5. Van ban mo tam ung PO.docx";
+            object path = DriveName + @"\OPM\Template\Mau 5. Van ban mo tam ung PO.docx";
             if (File.Exists(path.ToString()))
             {
                 object readOnly = false;
@@ -848,7 +848,7 @@ namespace OPM.WordHandler
             //Check xem forder đã đc khởi tạo hay chưa?
             //Nếu chưa khởi tạo thì tiên hành khởi tạo
             string FoderName = String.Format(po.Id);
-            string strPODirectory = DriveName + "OPM\\" + po.Id_contract + "\\" + po.Po_number + "-" + FoderName;
+            string strPODirectory = DriveName + "OPM\\" +po.Id_contract + "\\"+ po.Po_number + "-" + FoderName;
             if (!Directory.Exists(strPODirectory))
             {
                 Directory.CreateDirectory(strPODirectory);
@@ -859,7 +859,7 @@ namespace OPM.WordHandler
             object missing = Missing.Value;
             WordOffice.Document myDoc = null;
             //
-            object path = DriveName + @"LP\Mau 4. Van ban mo thuc hien bao lanh PO.docx";
+            object path = DriveName + @"\OPM\Template\Mau 4. Van ban mo thuc hien bao lanh PO.docx";
             if (File.Exists(path.ToString()))
             {
                 object readOnly = false;
@@ -1636,6 +1636,131 @@ namespace OPM.WordHandler
                 myWordDoc.Close();
                 wordApp.Quit();
                 MessageBox.Show("File chứng nhận hợp quy của thiết bị không được tạo thành công");
+            }
+        }
+        //Mẫu 19
+        public static void Word_DPCNKTCL(string txbIDContract,string txbPOName, string txbIdDP, string diaChi, string mahangHD,string tenhangHD, string maHangSP, string tenHangSP, string soLuong, string GhiChu)
+        {
+            //Khởi tạo vào check forder
+            string DriveName = "";
+            DriveInfo[] driveInfos = DriveInfo.GetDrives();
+            foreach (DriveInfo driveInfo in driveInfos)
+            {
+                if (String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"D:\") == 0 || String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"E:\") == 0)
+                {
+                    DriveName = driveInfo.Name.ToString().Substring(0, 3);
+                    break;
+                }
+            }
+            //Check xem forder đã đc khởi tạo hay chưa?
+            //Nếu chưa khởi tạo thì tiên hành khởi tạo
+            string strPODirectory = DriveName + "OPM\\" +txbIDContract + "\\" +txbPOName + "\\" +txbIdDP;
+            if (!Directory.Exists(strPODirectory))
+            {
+                Directory.CreateDirectory(strPODirectory);
+            }
+            object filename = strPODirectory + @"\Kiem tra CL_"+ diaChi+".docx";
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
+            //
+            object path = DriveName + @"\OPM\Template\Mau 19. Giay CNCL NM gui tinh.docx";
+            if (File.Exists(path.ToString()))
+            {
+                object readOnly = false;
+                object isVisible = false;
+                wordApp.Visible = false;
+
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                FindAndReplace(wordApp, "<dd>", " " + DateTime.Now.ToString("dd") + " ");
+                FindAndReplace(wordApp, "<MM>", " " + DateTime.Now.ToString("MM") + " ");
+                FindAndReplace(wordApp, "<yyyy>", " " + DateTime.Now.ToString("yyyy") + " ");
+                FindAndReplace(wordApp, "<Idcontract>", " " + txbIDContract);
+                FindAndReplace(wordApp, "<Tentinh>", " " + diaChi);
+                FindAndReplace(wordApp, "<Loaisanpham>", " " + maHangSP);
+                FindAndReplace(wordApp, "<Mahang>", " " + mahangHD);
+                FindAndReplace(wordApp, "<Tenthietbi>", " " + tenhangHD);
+                FindAndReplace(wordApp, "<Thucxuat>", " " + soLuong);
+                FindAndReplace(wordApp, "<Ghichu>", " " + GhiChu);
+                //Save as
+                myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing);
+                myDoc.Close();
+                wordApp.Quit();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy bản mẫu 19");
+            }
+        }
+        //Mẫu 20
+        public static void Word_DPCNCL(string txbIDContract, string txbPOName,string txbPOCode, string txbIdDP, string diaChi, string mahangHD, string tenhangHD, string maHangSP, string tenHangSP, string soLuong, string GhiChu)
+        {
+            //Khởi tạo vào check forder
+            string DriveName = "";
+            DriveInfo[] driveInfos = DriveInfo.GetDrives();
+            foreach (DriveInfo driveInfo in driveInfos)
+            {
+                if (String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"D:\") == 0 || String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"E:\") == 0)
+                {
+                    DriveName = driveInfo.Name.ToString().Substring(0, 3);
+                    break;
+                }
+            }
+            //Check xem forder đã đc khởi tạo hay chưa?
+            //Nếu chưa khởi tạo thì tiên hành khởi tạo
+            string strPODirectory = DriveName + "OPM\\" + txbIDContract + "\\" + txbPOName + "\\" + txbIdDP;
+            if (!Directory.Exists(strPODirectory))
+            {
+                Directory.CreateDirectory(strPODirectory);
+            }
+            object filename = strPODirectory + @"\Chung nhan CL_" + diaChi + ".docx";
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
+            //
+            object path = DriveName + @"\OPM\Template\Mau 20. GIAY CNCL gui tinh.docx";
+            if (File.Exists(path.ToString()))
+            {
+                object readOnly = false;
+                object isVisible = false;
+                wordApp.Visible = false;
+
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                FindAndReplace(wordApp, "<dd>", " " + DateTime.Now.ToString("dd") + " ");
+                FindAndReplace(wordApp, "<MM>", " " + DateTime.Now.ToString("MM") + " ");
+                FindAndReplace(wordApp, "<yyyy>", " " + DateTime.Now.ToString("yyyy") + " ");
+                FindAndReplace(wordApp, "<IDCONTRACT>", " " + txbIDContract);
+                FindAndReplace(wordApp, "<IdPO>", " " + txbPOCode);
+                FindAndReplace(wordApp, "<Tentinh>", " " + diaChi);
+                FindAndReplace(wordApp, "<Tenhang>", " " + tenhangHD);
+                FindAndReplace(wordApp, "<Loaihang>", " " + mahangHD);
+                FindAndReplace(wordApp, "<Soluong>", " " + soLuong);
+                //Save as
+                myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing);
+                myDoc.Close();
+                wordApp.Quit();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy bản mẫu 20");
             }
         }
     }

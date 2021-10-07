@@ -58,14 +58,14 @@ namespace OPM.DBHandler
         }
         public bool Check_DP(string id)
         {
-            string query = string.Format("SELECT * FROM dbo.DP WHERE id_po = '{0}'", id);
+            string query = string.Format("SELECT * FROM dbo.DP WHERE id = N'{0}'", id);
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table.Rows.Count > 0;
         }
         public int InsertListExpected_DP(string ProvinceName, string NumberDevice, string id_dp)
         {
             int result = 0;
-            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.ListExpected_DP(ProvinceName, NumberDevice, id_po) VALUES(N'{0}',{1},'{2}')", ProvinceName, Int64.Parse(NumberDevice), id_dp);
+            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.ListExpected_DP(ProvinceName, NumberDevice, id_dp) VALUES(N'{0}',{1},'{2}')", ProvinceName, Int64.Parse(NumberDevice), id_dp);
             result = OPMDBHandler.fInsertData(query);
             return result;
         }
@@ -75,12 +75,24 @@ namespace OPM.DBHandler
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table.Rows.Count > 0;
         }
-        public int InsertDP(string id, string id_po, string id_contract)
+        public int InsertUpdateDP(string id, string id_po, string id_contract, string cbbType,string note)
         {
-            int result = 0;
-            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.DP(id,id_po,id_contract) VALUES(N'{0}',N'{1}',N'{2}')", id, id_po, id_contract);
-            result = OPMDBHandler.fInsertData(query);
-            return result;
+            int Return = 0;
+            if (Check_DP(id))
+            {
+                int result = 0;
+                string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET id_po = N'{0}', id_contract = N'{1}', type = N'{2}', note = N'{3}'  WHERE id = N'{4}'", id_po, id_contract, cbbType, note, id);
+                result = OPMDBHandler.fInsertData(query);
+                Return = 0;
+            }
+            else
+            {
+                int result = 0;
+                string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.DP(id,id_po,id_contract,type,note) VALUES(N'{0}',N'{1}',N'{2}',N'{3}',N'{4}')", id, id_po, id_contract, cbbType, note);
+                result = OPMDBHandler.fInsertData(query);
+                Return = 1;
+            }
+            return Return;
         }
     }
 
