@@ -294,7 +294,8 @@ namespace OPM.DBHandler
         public int InsertImportFilePO(string id_po, string id_province, string numberofdevice, string namefdevice)
         {
             int result = 0;
-            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.ListExpected_PO(id_po, id_province, numberofdevice, nameofdevice) VALUES('{0}',N'{1}',{2},N'{3}')", id_po, id_province, Convert.ToInt64(numberofdevice), namefdevice);
+            numberofdevice = numberofdevice.Replace(",", string.Empty);
+            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.ListExpected_PO(id_po, id_province, numberofdevice, nameofdevice) VALUES('{0}',N'{1}',{2},N'{3}')", id_po, id_province, Int64.Parse(numberofdevice), namefdevice);
             result = OPMDBHandler.fInsertData(query);
             return result;
         }
