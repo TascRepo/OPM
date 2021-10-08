@@ -7,10 +7,11 @@ namespace OPM.DBHandler
 {
     public static class OPMDBHandler
     {
+        static string connectionSTR = @"Data Source=DESKTOP-APVL37V\SQLEXPRESS;Initial Catalog=OpmDB_Dev1;Persist Security Info=True;Connect Timeout = 30;User ID=sa;Password=111111";
         //static string connectionSTR = @"Data Source = LEXUANTHANH\SQLEXPRESS;Initial Catalog = OpmDB1; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         //static string connectionSTR = @"Data Source=10.2.8.83;Initial Catalog=OpmDB1;Persist Security Info=True;Connect Timeout = 30;User ID=sa;Password=Pa$$w0rd";
         //static string connectionSTR = @"Data Source = LEXUANTHANH\SQLEXPRESS;Initial Catalog = OpmDB; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        static string connectionSTR = @"Data Source=THANH\SQLEXPRESS;Initial Catalog=OpmDB1;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        //static string connectionSTR = @"Data Source=THANH\SQLEXPRESS;Initial Catalog=OpmDB1;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public static DataTable ExecuteQuery(string query, object[] parameter = null)
         {
             DataTable data = new DataTable();

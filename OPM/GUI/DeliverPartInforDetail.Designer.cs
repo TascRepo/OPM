@@ -374,6 +374,7 @@ namespace OPM.GUI
             this.mahangHD.Size = new System.Drawing.Size(142, 23);
             this.mahangHD.TabIndex = 48;
             this.mahangHD.Text = "Thiết bị đầu cuối ONT";
+            this.mahangHD.TextChanged += new System.EventHandler(this.mahangHD_TextChanged);
             // 
             // tenhangHD
             // 
@@ -382,6 +383,7 @@ namespace OPM.GUI
             this.tenhangHD.Name = "tenhangHD";
             this.tenhangHD.Size = new System.Drawing.Size(142, 23);
             this.tenhangHD.TabIndex = 54;
+            this.tenhangHD.SelectedIndexChanged += new System.EventHandler(this.tenhangHD_SelectedIndexChanged);
             // 
             // DeliverPartInforDetail
             // 

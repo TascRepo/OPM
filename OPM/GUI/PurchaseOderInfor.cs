@@ -246,9 +246,14 @@ namespace OPM.GUI
 
         private void btnNewDP_Click(object sender, EventArgs e)
         {
+            PO_Thanh pCheck = new PO_Thanh();
             if(txbPOName.Text == "POX" || txbPOCode.Text == "XXX/CUVT-KV" || txbIDContract.Text == "XXX-202X/CUVT-ANSV/DTRR-KHMS")
             {
                 MessageBox.Show("Chưa khởi tạo PO thì không tạo DP!");
+            }
+            else if (!pCheck.Exist(txbPOCode.Text))
+            {
+                MessageBox.Show("PO chưa tồn tại trong CSDL!");
             }
             else
             {

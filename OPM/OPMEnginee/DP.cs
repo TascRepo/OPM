@@ -69,6 +69,13 @@ namespace OPM.DBHandler
             d1 = OPMDBHandler.ExecuteQuery(query);
             return d1;
         }
+        public DataTable GetCodeByContract(string id,string name)
+        {
+            DataTable d1 = new DataTable();
+            string query = string.Format("SELECT top 1 code FROM dbo.Contract_Goods WHERE idContract = N'{0}' and name = N'{1}'", id, name);
+            d1 = OPMDBHandler.ExecuteQuery(query);
+            return d1;
+        }
         public int InsertListExpected_DP(string ProvinceName, string NumberDevice, string id_dp)
         {
             int result = 0;
