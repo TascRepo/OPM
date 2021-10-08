@@ -89,7 +89,7 @@ namespace OPM.DBHandler
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table.Rows.Count > 0;
         }
-        public int InsertUpdateDP(string id, string id_po, string id_contract, string cbbType,string note)
+        public int InsertUpdateDP(string id, string id_po, string id_contract, string cbbType,string note, string dtpRequest, string dtpOutCap)
         {
             int Return = 0;
             if (Check_DP(id))
@@ -107,6 +107,14 @@ namespace OPM.DBHandler
                 Return = 1;
             }
             return Return;
+        }
+        public void DeleteDP(string id)
+        {
+            int result = 0;
+            string query1 = string.Format("delete dbo.ListExpected_DP where id_dp = '"+id+"'");
+            result = OPMDBHandler.fInsertData(query1);
+            string query2 = string.Format("delete dbo.DP where id = '" + id + "'");
+            result = OPMDBHandler.fInsertData(query2);
         }
     }
 

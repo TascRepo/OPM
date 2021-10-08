@@ -16,7 +16,7 @@ namespace OPM.GUI
     {
         public delegate void UpdateCatalogDelegate(string value);
         public UpdateCatalogDelegate UpdateCatalogPanel;
-        
+        public static string tsDP = "";
         public DeliverPartInforDetail()
         {
             InitializeComponent();
@@ -61,7 +61,7 @@ namespace OPM.GUI
             {
                 DP dp = new DP();
                 //Thêm mới 1 DP vào database
-                int returnDP = dp.InsertUpdateDP(txbIdDP.Text, txbPOCode.Text, txbIDContract.Text, cbbType.Text, ghiChu.Text);
+                int returnDP = dp.InsertUpdateDP(txbIdDP.Text, txbPOCode.Text, txbIDContract.Text, cbbType.Text, ghiChu.Text, dtpRequest.Text, dtpOutCap.Text);
                 if (returnDP == 0)
                 {
                     MessageBox.Show("Cập nhật DP " + txbIdDP.Text + " thành công!");
@@ -99,7 +99,6 @@ namespace OPM.GUI
             }
             Dictionary<int, string> comboSource = new Dictionary<int, string>();
             comboSource.Add(1, "Hàng chính");
-            comboSource.Add(2, "Hàng bảo hành");
             cbbType.DataSource = new BindingSource(comboSource, null);
             cbbType.DisplayMember = "Value";
             cbbType.ValueMember = "Key";
@@ -161,6 +160,24 @@ namespace OPM.GUI
                 mahangHD.Text = "";
             }
             //
+        }
+
+        private void xoaDP_Click(object sender, EventArgs e)
+        {
+            DP dp2 = new DP();
+            dp2.DeleteDP(txbIdDP.Text);
+            MessageBox.Show("Xóa DP thành công!");
+        }
+
+        private void hangPhu_CheckedChanged(object sender, EventArgs e)
+        {
+            tsDP = txbIdDP.Text;
+            if (hangPhu.Checked == true)
+            {
+                FormDPWarranty frm2 = new FormDPWarranty();
+                frm2.Activate();
+                frm2.Show();
+            }
         }
     }
 }

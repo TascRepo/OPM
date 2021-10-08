@@ -54,32 +54,33 @@ namespace OPM.GUI
             this.txbNumber = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.cbbType = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.dataGridViewProvince = new System.Windows.Forms.DataGridView();
             this.Checked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.soLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.xoaDP = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.ghiChu = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.mahangHD = new System.Windows.Forms.TextBox();
             this.tenhangHD = new System.Windows.Forms.ComboBox();
+            this.hangPhu = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProvince)).BeginInit();
             this.SuspendLayout();
             // 
             // txbKHMS
             // 
             this.txbKHMS.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.txbKHMS.Location = new System.Drawing.Point(104, 6);
+            this.txbKHMS.Location = new System.Drawing.Point(58, 4);
             this.txbKHMS.Name = "txbKHMS";
-            this.txbKHMS.Size = new System.Drawing.Size(328, 23);
+            this.txbKHMS.Size = new System.Drawing.Size(143, 23);
             this.txbKHMS.TabIndex = 16;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(12, 9);
+            this.label15.Location = new System.Drawing.Point(8, 9);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(40, 15);
             this.label15.TabIndex = 15;
@@ -88,16 +89,16 @@ namespace OPM.GUI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 42);
+            this.label2.Location = new System.Drawing.Point(8, 42);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 15);
+            this.label2.Size = new System.Drawing.Size(44, 15);
             this.label2.TabIndex = 12;
-            this.label2.Text = "Mã Hợp Đồng";
+            this.label2.Text = "Mã HĐ";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 100);
+            this.label3.Location = new System.Drawing.Point(207, 37);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 15);
             this.label3.TabIndex = 13;
@@ -106,7 +107,7 @@ namespace OPM.GUI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 76);
+            this.label1.Location = new System.Drawing.Point(207, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 15);
             this.label1.TabIndex = 14;
@@ -115,31 +116,31 @@ namespace OPM.GUI
             // txbPOName
             // 
             this.txbPOName.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.txbPOName.Location = new System.Drawing.Point(104, 97);
+            this.txbPOName.Location = new System.Drawing.Point(283, 34);
             this.txbPOName.Name = "txbPOName";
-            this.txbPOName.Size = new System.Drawing.Size(328, 23);
+            this.txbPOName.Size = new System.Drawing.Size(158, 23);
             this.txbPOName.TabIndex = 9;
             // 
             // txbIDContract
             // 
             this.txbIDContract.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.txbIDContract.Location = new System.Drawing.Point(104, 39);
+            this.txbIDContract.Location = new System.Drawing.Point(58, 37);
             this.txbIDContract.Name = "txbIDContract";
-            this.txbIDContract.Size = new System.Drawing.Size(328, 23);
+            this.txbIDContract.Size = new System.Drawing.Size(143, 23);
             this.txbIDContract.TabIndex = 10;
             // 
             // txbPOCode
             // 
             this.txbPOCode.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.txbPOCode.Location = new System.Drawing.Point(104, 68);
+            this.txbPOCode.Location = new System.Drawing.Point(283, 5);
             this.txbPOCode.Name = "txbPOCode";
-            this.txbPOCode.Size = new System.Drawing.Size(328, 23);
+            this.txbPOCode.Size = new System.Drawing.Size(158, 23);
             this.txbPOCode.TabIndex = 11;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 129);
+            this.label4.Location = new System.Drawing.Point(13, 69);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 15);
             this.label4.TabIndex = 17;
@@ -147,16 +148,16 @@ namespace OPM.GUI
             // 
             // txbIdDP
             // 
-            this.txbIdDP.Location = new System.Drawing.Point(103, 126);
+            this.txbIdDP.Location = new System.Drawing.Point(57, 66);
             this.txbIdDP.Name = "txbIdDP";
-            this.txbIdDP.Size = new System.Drawing.Size(328, 23);
+            this.txbIdDP.Size = new System.Drawing.Size(144, 23);
             this.txbIdDP.TabIndex = 18;
             this.txbIdDP.Text = "DPXXX/202X";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 161);
+            this.label5.Location = new System.Drawing.Point(7, 98);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(79, 15);
             this.label5.TabIndex = 19;
@@ -165,7 +166,7 @@ namespace OPM.GUI
             // dtpRequest
             // 
             this.dtpRequest.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpRequest.Location = new System.Drawing.Point(105, 155);
+            this.dtpRequest.Location = new System.Drawing.Point(99, 92);
             this.dtpRequest.Name = "dtpRequest";
             this.dtpRequest.Size = new System.Drawing.Size(100, 23);
             this.dtpRequest.TabIndex = 20;
@@ -173,7 +174,7 @@ namespace OPM.GUI
             // label
             // 
             this.label.AutoSize = true;
-            this.label.Location = new System.Drawing.Point(14, 190);
+            this.label.Location = new System.Drawing.Point(8, 127);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(84, 15);
             this.label.TabIndex = 21;
@@ -182,7 +183,7 @@ namespace OPM.GUI
             // dtpOutCap
             // 
             this.dtpOutCap.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpOutCap.Location = new System.Drawing.Point(105, 184);
+            this.dtpOutCap.Location = new System.Drawing.Point(99, 121);
             this.dtpOutCap.Name = "dtpOutCap";
             this.dtpOutCap.Size = new System.Drawing.Size(100, 23);
             this.dtpOutCap.TabIndex = 22;
@@ -190,7 +191,7 @@ namespace OPM.GUI
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(217, 214);
+            this.label7.Location = new System.Drawing.Point(210, 151);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(70, 15);
             this.label7.TabIndex = 25;
@@ -198,9 +199,9 @@ namespace OPM.GUI
             // 
             // maHangSP
             // 
-            this.maHangSP.Location = new System.Drawing.Point(289, 211);
+            this.maHangSP.Location = new System.Drawing.Point(282, 148);
             this.maHangSP.Name = "maHangSP";
-            this.maHangSP.Size = new System.Drawing.Size(142, 23);
+            this.maHangSP.Size = new System.Drawing.Size(158, 23);
             this.maHangSP.TabIndex = 26;
             this.maHangSP.Text = "FINAL_PRODUCT";
             this.maHangSP.TextChanged += new System.EventHandler(this.txbPurpose_TextChanged);
@@ -208,7 +209,7 @@ namespace OPM.GUI
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(217, 243);
+            this.label8.Location = new System.Drawing.Point(210, 180);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(71, 15);
             this.label8.TabIndex = 27;
@@ -216,16 +217,16 @@ namespace OPM.GUI
             // 
             // tenHangSP
             // 
-            this.tenHangSP.Location = new System.Drawing.Point(289, 240);
+            this.tenHangSP.Location = new System.Drawing.Point(282, 177);
             this.tenHangSP.Name = "tenHangSP";
-            this.tenHangSP.Size = new System.Drawing.Size(142, 23);
+            this.tenHangSP.Size = new System.Drawing.Size(158, 23);
             this.tenHangSP.TabIndex = 28;
             this.tenHangSP.Text = "HY5N2TN00024NP";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(13, 216);
+            this.label10.Location = new System.Drawing.Point(7, 153);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(45, 15);
             this.label10.TabIndex = 31;
@@ -234,7 +235,7 @@ namespace OPM.GUI
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(218, 274);
+            this.label11.Location = new System.Drawing.Point(210, 68);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(56, 15);
             this.label11.TabIndex = 33;
@@ -245,9 +246,9 @@ namespace OPM.GUI
             // 
             this.textBox4.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(290, 269);
+            this.textBox4.Location = new System.Drawing.Point(282, 63);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(141, 23);
+            this.textBox4.Size = new System.Drawing.Size(159, 23);
             this.textBox4.TabIndex = 34;
             this.textBox4.Text = "Phạm Văn Liên ";
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
@@ -255,7 +256,7 @@ namespace OPM.GUI
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(14, 243);
+            this.label14.Location = new System.Drawing.Point(8, 180);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(53, 15);
             this.label14.TabIndex = 39;
@@ -263,7 +264,7 @@ namespace OPM.GUI
             // 
             // txbNumber
             // 
-            this.txbNumber.Location = new System.Drawing.Point(103, 240);
+            this.txbNumber.Location = new System.Drawing.Point(97, 177);
             this.txbNumber.Name = "txbNumber";
             this.txbNumber.Size = new System.Drawing.Size(102, 23);
             this.txbNumber.TabIndex = 40;
@@ -272,7 +273,7 @@ namespace OPM.GUI
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnSave.Location = new System.Drawing.Point(235, 522);
+            this.btnSave.Location = new System.Drawing.Point(235, 551);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(96, 25);
             this.btnSave.TabIndex = 41;
@@ -283,20 +284,10 @@ namespace OPM.GUI
             // cbbType
             // 
             this.cbbType.FormattingEnabled = true;
-            this.cbbType.Location = new System.Drawing.Point(103, 213);
+            this.cbbType.Location = new System.Drawing.Point(97, 150);
             this.cbbType.Name = "cbbType";
             this.cbbType.Size = new System.Drawing.Size(102, 23);
             this.cbbType.TabIndex = 43;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 327);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(162, 15);
-            this.label9.TabIndex = 44;
-            this.label9.Text = "Các tỉnh phân bố và số lượng";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // dataGridViewProvince
             // 
@@ -305,10 +296,10 @@ namespace OPM.GUI
             this.dataGridViewProvince.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Checked,
             this.soLuong});
-            this.dataGridViewProvince.Location = new System.Drawing.Point(9, 345);
+            this.dataGridViewProvince.Location = new System.Drawing.Point(8, 252);
             this.dataGridViewProvince.Name = "dataGridViewProvince";
             this.dataGridViewProvince.RowTemplate.Height = 25;
-            this.dataGridViewProvince.Size = new System.Drawing.Size(426, 171);
+            this.dataGridViewProvince.Size = new System.Drawing.Size(426, 293);
             this.dataGridViewProvince.TabIndex = 45;
             this.dataGridViewProvince.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewProvince_DefaultValuesNeeded);
             // 
@@ -322,20 +313,21 @@ namespace OPM.GUI
             this.soLuong.HeaderText = "Số lượng";
             this.soLuong.Name = "soLuong";
             // 
-            // button1
+            // xoaDP
             // 
-            this.button1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.button1.Location = new System.Drawing.Point(105, 522);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 25);
-            this.button1.TabIndex = 46;
-            this.button1.Text = "Cannel";
-            this.button1.UseVisualStyleBackColor = false;
+            this.xoaDP.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.xoaDP.Location = new System.Drawing.Point(105, 551);
+            this.xoaDP.Name = "xoaDP";
+            this.xoaDP.Size = new System.Drawing.Size(96, 25);
+            this.xoaDP.TabIndex = 46;
+            this.xoaDP.Text = "Xóa DP";
+            this.xoaDP.UseVisualStyleBackColor = false;
+            this.xoaDP.Click += new System.EventHandler(this.xoaDP_Click);
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(217, 156);
+            this.label16.Location = new System.Drawing.Point(210, 93);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(75, 15);
             this.label16.TabIndex = 49;
@@ -344,7 +336,7 @@ namespace OPM.GUI
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(217, 187);
+            this.label17.Location = new System.Drawing.Point(210, 124);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(74, 15);
             this.label17.TabIndex = 47;
@@ -352,7 +344,7 @@ namespace OPM.GUI
             // 
             // ghiChu
             // 
-            this.ghiChu.Location = new System.Drawing.Point(62, 269);
+            this.ghiChu.Location = new System.Drawing.Point(56, 206);
             this.ghiChu.Name = "ghiChu";
             this.ghiChu.Size = new System.Drawing.Size(143, 23);
             this.ghiChu.TabIndex = 52;
@@ -361,7 +353,7 @@ namespace OPM.GUI
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 272);
+            this.label6.Location = new System.Drawing.Point(2, 209);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 15);
             this.label6.TabIndex = 51;
@@ -369,9 +361,9 @@ namespace OPM.GUI
             // 
             // mahangHD
             // 
-            this.mahangHD.Location = new System.Drawing.Point(289, 184);
+            this.mahangHD.Location = new System.Drawing.Point(282, 121);
             this.mahangHD.Name = "mahangHD";
-            this.mahangHD.Size = new System.Drawing.Size(142, 23);
+            this.mahangHD.Size = new System.Drawing.Size(158, 23);
             this.mahangHD.TabIndex = 48;
             this.mahangHD.Text = "Thiết bị đầu cuối ONT";
             this.mahangHD.TextChanged += new System.EventHandler(this.mahangHD_TextChanged);
@@ -379,27 +371,48 @@ namespace OPM.GUI
             // tenhangHD
             // 
             this.tenhangHD.FormattingEnabled = true;
-            this.tenhangHD.Location = new System.Drawing.Point(290, 155);
+            this.tenhangHD.Location = new System.Drawing.Point(283, 92);
             this.tenhangHD.Name = "tenhangHD";
-            this.tenhangHD.Size = new System.Drawing.Size(142, 23);
+            this.tenhangHD.Size = new System.Drawing.Size(158, 23);
             this.tenhangHD.TabIndex = 54;
             this.tenhangHD.SelectedIndexChanged += new System.EventHandler(this.tenhangHD_SelectedIndexChanged);
+            // 
+            // hangPhu
+            // 
+            this.hangPhu.AutoSize = true;
+            this.hangPhu.Location = new System.Drawing.Point(259, 210);
+            this.hangPhu.Name = "hangPhu";
+            this.hangPhu.Size = new System.Drawing.Size(166, 19);
+            this.hangPhu.TabIndex = 55;
+            this.hangPhu.Text = "DP yêu cầu hàng phụ (2%)";
+            this.hangPhu.UseVisualStyleBackColor = true;
+            this.hangPhu.CheckedChanged += new System.EventHandler(this.hangPhu_CheckedChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(4, 234);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(178, 15);
+            this.label9.TabIndex = 56;
+            this.label9.Text = "Phân bổ và số lượng hàng chính";
             // 
             // DeliverPartInforDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
-            this.ClientSize = new System.Drawing.Size(453, 556);
+            this.ClientSize = new System.Drawing.Size(453, 578);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.hangPhu);
             this.Controls.Add(this.tenhangHD);
             this.Controls.Add(this.ghiChu);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.mahangHD);
             this.Controls.Add(this.label17);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.xoaDP);
             this.Controls.Add(this.dataGridViewProvince);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.cbbType);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txbNumber);
@@ -462,9 +475,8 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox txbNumber;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox cbbType;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView dataGridViewProvince;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button xoaDP;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Checked;
         private System.Windows.Forms.DataGridViewTextBoxColumn soLuong;
         private System.Windows.Forms.Label label16;
@@ -473,5 +485,7 @@ namespace OPM.GUI
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox mahangHD;
         private System.Windows.Forms.ComboBox tenhangHD;
+        private System.Windows.Forms.CheckBox hangPhu;
+        private System.Windows.Forms.Label label9;
     }
 }
