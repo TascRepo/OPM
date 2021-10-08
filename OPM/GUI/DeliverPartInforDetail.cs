@@ -97,7 +97,6 @@ namespace OPM.GUI
             {
                 tenhangHD.Items.Add(d1.Rows[i][0].ToString());
             }
-            //
             Dictionary<int, string> comboSource = new Dictionary<int, string>();
             comboSource.Add(1, "Hàng chính");
             comboSource.Add(2, "Hàng bảo hành");
@@ -141,6 +140,27 @@ namespace OPM.GUI
 
         private void dataGridViewProvince_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
         {
+        }
+
+        private void mahangHD_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void tenhangHD_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //find giá trị code theo tên
+            DP dp1 = new DP();
+            DataTable dtResult = new DataTable();
+            dtResult = dp1.GetCodeByContract(txbIDContract.Text, tenhangHD.Text);
+            if (dtResult.Rows.Count > 0)
+            {
+                mahangHD.Text = dtResult.Rows[0][0].ToString();
+            }
+            else
+            {
+                mahangHD.Text = "";
+            }
+            //
         }
     }
 }
