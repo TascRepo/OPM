@@ -21,12 +21,12 @@ namespace OPM.OPMEnginee
         private string _mrGD_CSKH_Landline;
         private string _mrGD_CSKH_LandlineExt;
 
-        private string _idProvince;
-        private string _deviceName;
+ //       private string _idProvince;
+ //       private string _deviceName;
         private float _numberOfDevice;
-        private string _typeOfDevice;
-        private string _deliverDateExpected;
-        private string _emailRequeststatus;
+ //       private string _typeOfDevice;
+ //       private string _deliverDateExpected;
+ //       private string _emailRequeststatus;
         private string _createDate;
 
         /*Add New*/

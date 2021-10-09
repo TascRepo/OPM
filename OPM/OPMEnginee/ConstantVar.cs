@@ -12,7 +12,7 @@ namespace OPM.OPMEnginee
         public const string DPType = "DP_";
         public const string NTKTType = "NTKT_";
         public const string PLType = "PL_";
-        public const string DocTemplateDir = "F://OPMTemplate//";
+        public const string DocTemplateDir = "D://OPM//Template//";
 
         public const string CreateNewPOFail = "Tạo Mới PO Thất Bại";
         public const string CreateNewPOSuccess = "Tạo Mới PO Thành Công";

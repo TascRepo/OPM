@@ -10,7 +10,7 @@ namespace OPM.OPMEnginee
         private string _MAC;
         private string _serial_gpon;
         private string _device_name;
-        private string _note;
+        //private string _note;
 
         public Devices()
         {

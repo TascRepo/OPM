@@ -135,14 +135,6 @@ namespace OPM.GUI
             RequestDashBoardOpenPOForm(strContract, txbKHMS.Text);
             return;
         }
-        //private static bool isNumber(string val)
-        //{
-        //    if (val != "")
-        //    {
-        //        return System.Text.RegularExpressions.Regex.IsMatch(val, "[^0-9]");
-        //    }
-        //      else return true;
-        //}
 
         //**********************************
         //Ngày hết hạn hợp đồng = ngày hiệu lực + số ngày thực hiện hợp đồng
@@ -192,8 +184,11 @@ namespace OPM.GUI
         //Xoá hợp đồng
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            Contract.Delete(tbContract.Text);
-            UpdateCatalogPanel(tbContract.Text);
+            if (Contract.Exist(tbContract.Text.Trim()))
+            {
+                Contract.Delete(tbContract.Text.Trim());
+                UpdateCatalogPanel("ContractDelete");
+            } 
             SetItemValue_Default();
             btnEdit.Enabled = true;
             btnSave.Enabled = true;
@@ -231,7 +226,7 @@ namespace OPM.GUI
             btnNewPO.Enabled = true;
             //Cập nhật trên TreeView
             OpmWordHandler.Temp1_CreatContractGuarantee(tbContract.Text.Trim());
-            UpdateCatalogPanel(tbContract.Text.Trim());
+            UpdateCatalogPanel("Contract_"+tbContract.Text.Trim());
         }
 
         private void txbGaranteeValue_TextChanged(object sender, EventArgs e)
@@ -286,11 +281,6 @@ namespace OPM.GUI
             contract_Goods_Form.setValueContractForm = SetValueContract;
             contract_Goods_Form.Tag = tbContract.Text.Trim();
             contract_Goods_Form.ShowDialog();
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

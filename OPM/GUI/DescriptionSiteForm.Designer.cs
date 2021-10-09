@@ -253,8 +253,8 @@ namespace OPM.GUI
         private System.Windows.Forms.Label Representative;
         private System.Windows.Forms.TextBox txbRepresen;
         private System.Windows.Forms.Button edit;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button Save;
+        //private System.Windows.Forms.Button button2;
+        //private System.Windows.Forms.Button Save;
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.TextBox textBoxTaxCode;
         private System.Windows.Forms.Label label6;

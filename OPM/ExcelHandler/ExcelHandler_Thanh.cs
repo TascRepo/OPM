@@ -2,21 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System;
-using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
-using WordOffice = Microsoft.Office.Interop.Word;
 using ExcelOffice = Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
-using System.Reflection;
-using System.Data;
 using System.Text.RegularExpressions;
 using ExcelDataReader;
 using OPM.OPMEnginee;
-using Microsoft.Office.Interop.Excel;
 
 namespace OPM.ExcelHandler
 {
@@ -36,17 +29,6 @@ namespace OPM.ExcelHandler
         { }
 
 
-        public static int readfile(string filename)
-        {
-            ExcelOffice.Range xlRange = null;
-            //ExcelOffice.Workbook xlWorkbook = null;
-            ExcelOffice.Workbook workbook = null;
-            //ExcelOffice.Application xlApp = null;
-            //ExcelOffice._Worksheet xlWorksheet = null;
-
-
-            return 1;
-        }
         public static int fReadExcelFile(string fname)
         {
             ExcelOffice.Range xlRange = null;

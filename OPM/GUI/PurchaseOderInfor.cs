@@ -53,7 +53,7 @@ namespace OPM.GUI
         {
             PO_Thanh po = new PO_Thanh();
             Contract contract = new Contract();
-            po.Id = txbPOCode.Text;
+            po.Id = txbPOCode.Text.Trim();
             po.Po_number = txbPOName.Text;
             po.Datecreated = TimePickerDateCreatedPO.Value;
             try
@@ -96,7 +96,7 @@ namespace OPM.GUI
                 MessageBox.Show("Nhập lại 0 <= Tạm ứng PO <= 100");
                 return;
             }
-            po.Id_contract = txbIDContract.Text;
+            po.Id_contract = txbIDContract.Text.Trim();
             po.Confirmpo_datecreated=confirmpo_datecreated.Value;
             po.Confirmpo_number = confirmpo_number.Text;
             po.Tupo_datecreated=tupo_datecreated.Value;
@@ -156,7 +156,7 @@ namespace OPM.GUI
                         MessageBox.Show(po.Confirmpo_number + "đã có file giao hàng dự kiến, không cần import thêm!");
                     }
                 }
-                OpmWordHandler.Word_POConfirm(po.Id, po.Confirmpo_number,po.Id_contract);
+                OpmWordHandler.Word_POConfirm(po.Id, po.Confirmpo_number, po.Id_contract);
                 //Tạo 3 mẫu văn bản m4,m5,m6
                 if (txbnamefilePO.Text != "")
                 {
@@ -191,8 +191,13 @@ namespace OPM.GUI
                 OpmWordHandler.Word_POTamUng(po.Id);
                 OpmWordHandler.Word_POBaoLanh(po.Id);
             }
-            else MessageBox.Show(string.Format("Không tồn tại hợp đồng {0}", txbIDContract.Text));
-            UpdateCatalogPanel(txbIDContract.Text);
+            else 
+            {
+                MessageBox.Show(string.Format("Không tồn tại hợp đồng {0}", txbIDContract.Text));
+                return;
+            }
+            
+            UpdateCatalogPanel("PO_"+ po.Id);
             //Tạo các mẫu 23,24,36,37
             OpmWordHandler.Temp23_CNCL_TongHop(po.Id);
             OpmWordHandler.Temp24_CNCLNMTongHop(po.Id);
@@ -260,42 +265,6 @@ namespace OPM.GUI
                 requestDaskboardOpenDP(txbPOCode.Text, txbIDContract.Text, txbPOName.Text);
             }
         }
-
-        private void btnConfirmPO_Click(object sender, EventArgs e)
-        {
-            /*Request DashBoard Open Confirm PO Form*/
-            string strContract = "Contract_" + txbIDContract.Text.ToString();
-            /*Request DashBoard Open PO Form*/
-            requestDashBoardOpenConfirmPOForm(txbKHMS.Text, strContract, txbPOCode.Text, txbPOName.Text);
-            return;
-        }
-
-        private void btnKTKT_Click(object sender, EventArgs e)
-        {
-            string strContractDirectory = txbIDContract.Text.Replace('/', '_');
-            strContractDirectory = strContractDirectory.Replace('-', '_');
-            string strPODirectory = @"F:\\OPM\\" + strContractDirectory + "\\" + txbPOName.Text;
-
-            /*Create Bao Lanh Thuc Hien Hop Dong*/
-            int ret = 0;
-            string fileBBKTKTHH_temp = @"F:\LP\Bien_Ban_KTKT_HH_Template.docx";
-            string strBBKTKT = strPODirectory + "\\Biên Bản Kiểm Tra Kỹ Thuật_" + txbPOName.Text + "_" + txbIDContract.Text + ".docx";
-            strBBKTKT = strBBKTKT.Replace("/", "_");
-            ContractObj contractObj = new ContractObj();
-            ret = ContractObj.GetObjectContract(txbIDContract.Text, ref contractObj);
-            PO pO = new PO();
-            ret = PO.GetObjectPO(txbPOCode.Text, ref pO);
-            NTKT nTKT = new NTKT();
-            nTKT.GetObjectNTKTByIDPO(txbPOCode.Text, ref nTKT);
-            SiteInfo siteInfoB = new SiteInfo();
-            SiteInfo siteInfoA = new SiteInfo();
-            siteInfoB.GetSiteInfoObject(txbIDContract.Text, ref siteInfoB);
-            siteInfoA.GetSiteInfoA(txbIDContract.Text, ref siteInfoA);
-            this.Cursor = Cursors.WaitCursor;
-            OpmWordHandler.Create_BBKTKT_HH(fileBBKTKTHH_temp,strBBKTKT, contractObj, pO, nTKT,siteInfoB,siteInfoA);
-            this.Cursor = Cursors.Default;
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             //requestDasckboardOpenExcel();

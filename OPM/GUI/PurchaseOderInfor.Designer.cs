@@ -60,7 +60,6 @@ namespace OPM.GUI
             this.txbKHMS = new System.Windows.Forms.TextBox();
             this.btnNTKT = new System.Windows.Forms.Button();
             this.btnBaoHiem = new System.Windows.Forms.Button();
-            this.btnKTKT = new System.Windows.Forms.Button();
             this.deletePO = new System.Windows.Forms.Button();
             this.txbnamefilePO = new System.Windows.Forms.TextBox();
             this.importPO = new System.Windows.Forms.Button();
@@ -368,16 +367,6 @@ namespace OPM.GUI
             this.btnBaoHiem.UseVisualStyleBackColor = true;
             this.btnBaoHiem.Click += new System.EventHandler(this.btnBaoHiem_Click);
             // 
-            // btnKTKT
-            // 
-            this.btnKTKT.Location = new System.Drawing.Point(166, 539);
-            this.btnKTKT.Name = "btnKTKT";
-            this.btnKTKT.Size = new System.Drawing.Size(76, 23);
-            this.btnKTKT.TabIndex = 12;
-            this.btnKTKT.Text = "Export KTKT";
-            this.btnKTKT.UseVisualStyleBackColor = true;
-            this.btnKTKT.Click += new System.EventHandler(this.btnKTKT_Click);
-            // 
             // deletePO
             // 
             this.deletePO.Location = new System.Drawing.Point(104, 539);
@@ -599,7 +588,6 @@ namespace OPM.GUI
             this.Controls.Add(this.importPO);
             this.Controls.Add(this.txbnamefilePO);
             this.Controls.Add(this.deletePO);
-            this.Controls.Add(this.btnKTKT);
             this.Controls.Add(this.btnBaoHiem);
             this.Controls.Add(this.btnNTKT);
             this.Controls.Add(this.txbKHMS);
@@ -690,10 +678,9 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox txbKHMS;
         private System.Windows.Forms.Button btnNTKT;
         private System.Windows.Forms.Button btnBaoHiem;
-        private System.Windows.Forms.Button btnKTKT;
         private System.Windows.Forms.Button deletePO;
         private System.Windows.Forms.TextBox txbnamefilePO;
-        private System.Windows.Forms.Button button2;
+//        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button importPO;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;

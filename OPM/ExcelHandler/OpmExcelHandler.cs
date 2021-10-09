@@ -31,17 +31,6 @@ namespace OPM.ExcelHandler
         { }
 
 
-        public static int readfile(string filename)
-        {
-            ExcelOffice.Range xlRange = null;
-            //ExcelOffice.Workbook xlWorkbook = null;
-            ExcelOffice.Workbook workbook = null;
-            //ExcelOffice.Application xlApp = null;
-            //ExcelOffice._Worksheet xlWorksheet = null;
-
-
-            return 1;
-        }
         public static int fReadExcelFile(string fname)
         {
             ExcelOffice.Range xlRange = null;

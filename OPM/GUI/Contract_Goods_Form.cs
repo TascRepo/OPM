@@ -16,6 +16,8 @@ namespace OPM.GUI
         {
             tbxName.DataBindings.Clear();
             tbxCode.DataBindings.Clear();
+            tbxOrigin.DataBindings.Clear();
+            tbxManufacturer.DataBindings.Clear();
             textBoxUnit.DataBindings.Clear();
             textBoxPriceUnit.DataBindings.Clear();
             textBoxQuantity.DataBindings.Clear();
@@ -23,6 +25,8 @@ namespace OPM.GUI
 
             tbxName.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "Name"));
             tbxCode.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "Code"));
+            tbxOrigin.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "Origin"));
+            tbxManufacturer.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "Manufacturer"));
             textBoxUnit.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "Unit"));
             textBoxPriceUnit.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "PriceUnit"));
             textBoxQuantity.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "Quantity"));
@@ -31,10 +35,13 @@ namespace OPM.GUI
         void LoadDataGridView()
         {
             dtgvGoods.DataSource = Contract_Goods.GetListByIdContract(Tag.ToString());
-            dtgvGoods.Columns["Code"].HeaderText = @"Xuất xứ/Mã hàng";
+            dtgvGoods.Columns["Name"].HeaderText = "Tên hàng";
+            dtgvGoods.Columns["Origin"].HeaderText = "Xuất xứ";
+            dtgvGoods.Columns["Origin"].Visible = false;
+            dtgvGoods.Columns["Manufacturer"].HeaderText = "Nhà sản xuất";
+            dtgvGoods.Columns["Manufacturer"].Visible = false;
+            dtgvGoods.Columns["Code"].HeaderText = "Mã hàng";
             dtgvGoods.Columns["Code"].Width = 250;
-
-            dtgvGoods.Columns["Name"].HeaderText = "Mô tả";
             dtgvGoods.Columns["PriceUnit"].HeaderText = "Đơn giá";
             //dtgvGoods.Columns["PriceUnit"].Width = 120;
             dtgvGoods.Columns["Quantity"].HeaderText = "Số lượng";
@@ -46,6 +53,7 @@ namespace OPM.GUI
             dtgvGoods.Columns["Tax"].Visible = false;
             dtgvGoods.Columns["PriceAfterTax"].Visible = false;
             textBoxTotalPricePreTax.Text = Contract_Goods.TotalPricePreTax(Tag.ToString()).ToString();
+            //textBoxTotalTax.Text = (double.Parse(textBoxTotalPricePreTax.Text) / 10).ToString();
             textBoxTotalTax.Text = (double.Parse(textBoxTotalPricePreTax.Text) / 10).ToString();
             textBoxTotalPriceAfterTax.Text= (double.Parse(textBoxTotalPricePreTax.Text)+ double.Parse(textBoxTotalTax.Text)).ToString();
             AddGoodsBinding();
@@ -63,19 +71,25 @@ namespace OPM.GUI
             labelQuantity.Text = string.Format(@"Số lượng ({0})", textBoxUnit.Text.Trim());
         }
 
-        private void btnFoodTableAdd_Click(object sender, EventArgs e)
+        private void btnGoodsAdd_Click(object sender, EventArgs e)
         {
-            Contract_Goods goods = new Contract_Goods(Tag.ToString(), tbxCode.Text.Trim(), tbxName.Text.Trim(), textBoxUnit.Text.Trim(), double.Parse(textBoxPriceUnit.Text.Trim()), int.Parse(textBoxQuantity.Text.Trim()));
+            Contract_Goods goods = new Contract_Goods(Tag.ToString(), tbxName.Text.Trim(), tbxOrigin.Text.Trim(), tbxManufacturer.Text.Trim(), tbxCode.Text.Trim(), textBoxUnit.Text.Trim(), double.Parse(textBoxPriceUnit.Text.Trim()), int.Parse(textBoxQuantity.Text.Trim()));
             if (goods.Exist()) goods.Update();
-            else goods.Insert();
-            LoadDataGridView();
+            else
+            {
+                goods.Insert();
+                LoadDataGridView();
+            }
         }
 
-        private void btnFoodTableDelete_Click(object sender, EventArgs e)
+        private void btnGoodsDelete_Click(object sender, EventArgs e)
         {
-            Contract_Goods goods = new Contract_Goods(Tag.ToString(), tbxCode.Text.Trim(), tbxName.Text.Trim(), textBoxUnit.Text.Trim(), double.Parse(textBoxPriceUnit.Text.Trim()), int.Parse(textBoxQuantity.Text.Trim()));
-            if (goods.Exist()) goods.Delete();
-            else MessageBox.Show(string.Format("Không có mặt hàng này trong HĐ {0}", Tag.ToString()));
+            if (!Contract_Goods.Exist(Tag.ToString(), tbxName.Text.Trim())) 
+            {
+                MessageBox.Show("Nhập đúng tên hàng hoá!");
+                return;
+            }
+            Contract_Goods.Delete(Tag.ToString(), tbxName.Text.Trim());
             LoadDataGridView();
         }
 

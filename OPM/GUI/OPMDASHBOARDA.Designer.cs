@@ -38,7 +38,7 @@ namespace OPM.GUI
             this.label1 = new System.Windows.Forms.Label();
             this.btnEnter = new System.Windows.Forms.Button();
             this.panCatalog = new System.Windows.Forms.Panel();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.treeViewOPM = new System.Windows.Forms.TreeView();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuRefresh = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -127,28 +127,26 @@ namespace OPM.GUI
             this.panCatalog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panCatalog.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panCatalog.Controls.Add(this.treeView1);
+            this.panCatalog.Controls.Add(this.treeViewOPM);
             this.panCatalog.Location = new System.Drawing.Point(9, 100);
             this.panCatalog.Name = "panCatalog";
             this.panCatalog.Size = new System.Drawing.Size(246, 504);
             this.panCatalog.TabIndex = 1;
             // 
-            // treeView1
+            // treeViewOPM
             // 
-            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.treeViewOPM.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.treeView1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.treeView1.ContextMenuStrip = this.contextMenuStrip;
-            this.treeView1.ItemHeight = 20;
-            this.treeView1.LabelEdit = true;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(246, 504);
-            this.treeView1.TabIndex = 0;
-            this.treeView1.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.treeView1_AfterLabelEdit);
-            this.treeView1.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
-            this.treeView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeView1_MouseClick);
+            this.treeViewOPM.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.treeViewOPM.ContextMenuStrip = this.contextMenuStrip;
+            this.treeViewOPM.ItemHeight = 20;
+            this.treeViewOPM.LabelEdit = true;
+            this.treeViewOPM.Location = new System.Drawing.Point(0, 0);
+            this.treeViewOPM.Name = "treeViewOPM";
+            this.treeViewOPM.Size = new System.Drawing.Size(246, 504);
+            this.treeViewOPM.TabIndex = 0;
+            this.treeViewOPM.DoubleClick += new System.EventHandler(this.treeViewOPM_DoubleClick);
             // 
             // contextMenuStrip
             // 
@@ -242,7 +240,7 @@ namespace OPM.GUI
         private System.Windows.Forms.Panel panCatalog;
         private System.Windows.Forms.Panel panContent;
         private System.Windows.Forms.Panel panDescription;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView treeViewOPM;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuRefresh;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuNew;

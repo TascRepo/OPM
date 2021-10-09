@@ -537,7 +537,7 @@ namespace OPM.GUI
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(456, 473);
+            this.ClientSize = new System.Drawing.Size(456, 517);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.txbKHMS);
             this.Controls.Add(this.label16);
@@ -606,7 +606,7 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox tbxValueContract;
         private System.Windows.Forms.TextBox tbxDurationPO;
         private System.Windows.Forms.TextBox tbxSiteA;
-        private System.Windows.Forms.TextBox textBox10;
+  //      private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Button btnNewPO;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnRemove;

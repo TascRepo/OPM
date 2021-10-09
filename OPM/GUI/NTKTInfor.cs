@@ -44,7 +44,7 @@ namespace OPM.GUI
             OpmWordHandler.Temp09_BBKTKT(nTKT.Id);
             OpmWordHandler.Temp10_CNBQPM(nTKT.Id);
             OpmWordHandler.Temp11_BBNTKT(nTKT.Id);
-            UpdateCatalogPanel("NTKT_" + nTKT.Number.ToString());
+            UpdateCatalogPanel("NTKT_" + nTKT.Id.ToString());
             //- Tạo file D:\OPM\''Tên HĐ''\"Tên PO"\"Tên NTKT".docx
             //- tạo và thông báo tạo thành công hay không file Yêu cầu NTKT
         }
@@ -121,7 +121,7 @@ namespace OPM.GUI
         private void btnDelete_Click(object sender, EventArgs e)
         {
             NTKT_Thanh.Delete(tbxId.Text.Trim());
-            UpdateCatalogPanel("PO_" + tbxId_po);
+            UpdateCatalogPanel("PO_" + tbxId_po.Text.Trim());
         }
     }
 }
