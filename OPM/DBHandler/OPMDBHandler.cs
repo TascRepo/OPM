@@ -10,7 +10,7 @@ namespace OPM.DBHandler
         //static string connectionSTR = @"Data Source=DESKTOP-APVL37V\SQLEXPRESS;Initial Catalog=OpmDB_Dev1;Persist Security Info=True;Connect Timeout = 30;User ID=sa;Password=111111";
         //static string connectionSTR = @"Data Source = LEXUANTHANH\SQLEXPRESS;Initial Catalog = OpmDB1; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         //static string connectionSTR = @"Data Source=10.2.8.83;Initial Catalog=OpmDB1;Persist Security Info=True;Connect Timeout = 30;User ID=sa;Password=Pa$$w0rd";
-        static readonly string connectionSTR = @"Data Source = LEXUANTHANH\SQLEXPRESS;Initial Catalog = OpmDB1; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        static readonly string connectionSTR = @"Data Source = LEXUANTHANH\SQLEXPRESS;Initial Catalog = OpmDB; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         //static string connectionSTR = @"Data Source=THANH\SQLEXPRESS;Initial Catalog=OpmDB1;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public static DataTable ExecuteQuery(string query, object[] parameter = null)
         {
@@ -112,19 +112,6 @@ namespace OPM.DBHandler
             }
             return data;
         }
-        //public static int GetConnection(ref SqlConnection con)
-        //{
-        //    try 
-        //    {
-        //        con = new SqlConnection(connectionSTR);
-        //        return 1;
-        //    }
-        //    catch(Exception)
-        //    {
-        //        MessageBox.Show("Không kết nối được CSDL!");
-        //        return 0;
-        //    }
-        //}
         public static int fInsertData(string strSqlCommand)
         {
             SqlConnection con = new SqlConnection(connectionSTR);
@@ -146,43 +133,6 @@ namespace OPM.DBHandler
                 return 0;
             }
         }
-        //public static int fQuerryData1(string strQuerry)
-        //{
-        //    SqlConnection con = new SqlConnection(connectionSTR);
-        //    try
-        //    {
-        //        con.Open();
-        //        using (SqlCommand sCommand = con.CreateCommand())
-        //        {
-        //            sCommand.CommandText = strQuerry;
-        //            using (SqlDataReader reader = sCommand.ExecuteReader())
-        //            {
-        //                if(reader.HasRows)
-        //                {
-        //                    while(reader.Read())
-        //                    {
-        //                        //Do Sothing
-        //                    }    
-        //                }
-        //                else
-        //                {
-        //                    //Do Something
-        //                }    
-
-        //            }    
-        //        }
-        //        CloseConnection(con);
-        //        return 1;
-
-        //    }
-        //    catch (Exception)
-        //    {
-        //        CloseConnection(con);
-        //        MessageBox.Show("Không kết nối được CSDL!");
-        //        return 0;
-        //    }
-        //}
-
         public static int fQuerryData(string strQuerry, ref DataSet ds)
         {
             SqlConnection con = new SqlConnection(connectionSTR);
