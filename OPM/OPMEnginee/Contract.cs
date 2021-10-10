@@ -71,8 +71,6 @@ namespace OPM.OPMEnginee
         }
         public Contract(DataRow row)
         {
-            try
-            {
                 Id = row["id"].ToString();
                 Namecontract = (row["namecontract"] == null || row["namecontract"] == DBNull.Value) ? "" : row["namecontract"].ToString();
                 Codeaccouting = (row["codeaccouting"] == null || row["codeaccouting"] == DBNull.Value) ? "" : row["codeaccouting"].ToString();
@@ -90,11 +88,6 @@ namespace OPM.OPMEnginee
                 ExperationDate = (row["experationDate"] == null || row["experationDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["experationDate"];
                 Blvalue = (row["blvalue"] == null || row["blvalue"] == DBNull.Value) ? 0 : (int)row["blvalue"];
                 GaranteeCreatedDate = (row["garanteeCreatedDate"] == null || row["garanteeCreatedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["garanteeCreatedDate"];
-            }
-            catch
-            {
-                MessageBox.Show("Không lấy được dữ liệu từ bảng dbo.Contract!");
-            }
         }
         public Contract(string id)
         {
@@ -195,54 +188,6 @@ namespace OPM.OPMEnginee
                 MessageBox.Show("Xoá hợp đồng thất bại!");
             }
             if (result != 0) MessageBox.Show("Bạn đã xoá hợp đồng thành công!");
-        }
-        public string CreatContractGuarantee()
-        {
-            object filename = string.Format(@"D:\OPM\{0}\BLHD_{0}.docx", id.Trim().Replace('/', '-'));
-            WordOffice.Application wordApp = new WordOffice.Application();
-            object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
-            object path = @"D:\OPM\Template\Đề nghị mở bảo lãnh thực hiện HĐ.docx";
-            if (File.Exists(path.ToString()))
-            {
-                object readOnly = true;
-                //object isVisible = false;
-                wordApp.Visible = false;
-
-                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
-                                    ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing, ref missing);
-                myDoc.Activate();
-                //find and replace
-                OpmWordHandler.FindAndReplace(wordApp, "<Contract_Code>", id.Trim());
-                OpmWordHandler.FindAndReplace(wordApp, "<Now>", activedate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-                OpmWordHandler.FindAndReplace(wordApp, "<Contract_Name>", namecontract);
-                OpmWordHandler.FindAndReplace(wordApp, "<Signed_Date>", datesigned.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-                OpmWordHandler.FindAndReplace(wordApp, "<Site_B>", id_siteB);
-                OpmWordHandler.FindAndReplace(wordApp, "<blvalue>", blvalue);
-                OpmWordHandler.FindAndReplace(wordApp, "<durationpo>", durationpo);
-                //Tạo file BLHĐ trong thư mục D:\OPM
-                string folder = string.Format(@"D:\OPM\{0}", id.Trim().Replace('/', '-'));
-                Directory.CreateDirectory(folder);
-                try
-                {
-                    myDoc.SaveAs2(ref filename);
-                    MessageBox.Show(string.Format("Đã tạo file {0}",filename.ToString()));
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
-                myDoc.Close();
-                wordApp.Quit();
-            }
-            else
-            {
-                MessageBox.Show("Không tìm thấy bản mẫu BLHD.docx! ");
-            }
-            return filename.ToString();
         }
     }
 }

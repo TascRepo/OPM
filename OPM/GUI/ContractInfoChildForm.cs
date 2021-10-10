@@ -187,7 +187,7 @@ namespace OPM.GUI
             if (Contract.Exist(tbContract.Text.Trim()))
             {
                 Contract.Delete(tbContract.Text.Trim());
-                UpdateCatalogPanel("ContractDelete");
+                UpdateCatalogPanel("Contract");
             } 
             SetItemValue_Default();
             btnEdit.Enabled = true;

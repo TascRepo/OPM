@@ -30,45 +30,26 @@ namespace OPM.GUI
             //Khởi tạo TreeNode
             treeViewOPM.Nodes.Clear();
             InitCatalogAdmin(null, null);
-            //Tìm đường đến TreeNode hiện tại
-            string[] tem = nodeName.Split('_', 2);
-            //DP dp;
-            NTKT_Thanh ntkt;
-            PO_Thanh po;
-            switch (tem[0])
+            if (nodeName == "Contract") return;
+            if (!CatalogAdmin.Exist(nodeName))
             {
-                case "Contract":
-                    treeViewOPM.Nodes[nodeName].Expand();
-                    treeViewOPM.Nodes[nodeName].ForeColor = Color.Blue;
-                    break;
-                case "ContractDelete":
-                    break;
-                case "PO":
-                    po = new PO_Thanh(tem[1]);
-                    treeViewOPM.Nodes["Contract_" + po.Id_contract].Expand();
-                    treeViewOPM.Nodes["Contract_" + po.Id_contract].ForeColor = Color.Blue;
-                    treeViewOPM.Nodes["Contract_" + po.Id_contract].Nodes[nodeName].Expand();
-                    treeViewOPM.Nodes["Contract_" + po.Id_contract].Nodes[nodeName].ForeColor = Color.Blue;
-                    break;
-                case "NTKT":
-                    ntkt = new NTKT_Thanh(tem[1]);
-                    po = new PO_Thanh(ntkt.Id_po);
-                    treeViewOPM.SelectedNode = treeViewOPM.Nodes["Contract_" + po.Id_contract];
-                    treeViewOPM.Nodes["Contract_" + po.Id_contract].Expand();
-                    treeViewOPM.Nodes["Contract_" + po.Id_contract].ForeColor = Color.Blue;
-                    treeViewOPM.Nodes["Contract_" + po.Id_contract].Nodes["PO_" + po.Id].Expand();
-                    treeViewOPM.Nodes["Contract_" + po.Id_contract].Nodes["PO_" + po.Id].ForeColor = Color.Blue;
-                    treeViewOPM.Nodes["Contract_" + po.Id_contract].Nodes["PO_" + po.Id].Nodes[nodeName].Expand();
-                    treeViewOPM.Nodes["Contract_" + po.Id_contract].Nodes["PO_" + po.Id].Nodes[nodeName].ForeColor = Color.Blue;
-                    break;
-                //case "DP":
-                //    break;
-                default:
-                    MessageBox.Show("Không tìm thấy đường dẫn đến nút trên TreeView");
-                    break;
+                MessageBox.Show(string.Format("Không tìm thấy đường dẫn đến nút {0} trên TreeView", nodeName));
+                return;
+            }
+            //Tìm đường đến TreeNode hiện tại
+            List<string> list = CatalogAdmin.PathToContractNodeFromCurrentNode(nodeName);
+            list.Reverse();
+            //Vẽ đường đến TreeNode hiện tại
+            treeViewOPM.SelectedNode = treeViewOPM.Nodes[list[0]];
+            treeViewOPM.SelectedNode.Expand();
+            treeViewOPM.SelectedNode.ForeColor = Color.Blue;
+            for (int i=1;i<= list.Count-1;i++)
+            {
+                treeViewOPM.SelectedNode = treeViewOPM.SelectedNode.Nodes[list[i]];
+                treeViewOPM.SelectedNode.Expand();
+                treeViewOPM.SelectedNode.ForeColor = Color.Blue;
             }
         }
-
         private int InitCatalogAdmin(TreeNode parentNode, string parent)
         {
             DataSet ds = new DataSet();

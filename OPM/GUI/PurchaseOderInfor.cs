@@ -1,17 +1,10 @@
-﻿using OPM.EmailHandler;
-using OPM.OPMEnginee;
+﻿using OPM.OPMEnginee;
 using OPM.WordHandler;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 using OPM.ExcelHandler;
-using System.Data.OleDb;
-using System.Data.Common;
 using OPM.DBHandler;
 namespace OPM.GUI
 {
@@ -277,6 +270,7 @@ namespace OPM.GUI
                 Close();
             }
             MessageBox.Show("Xóa PO " + po.Id + " thành công!");
+            UpdateCatalogPanel("Contract_" + po.Id_contract);
         }
 
         private void PurchaseOderInfor_Load(object sender, EventArgs e)
