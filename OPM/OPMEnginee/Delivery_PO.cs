@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Globalization;
-using System.Windows.Forms;
+﻿using System.Data;
 
 namespace OPM.DBHandler
 {

@@ -1,7 +1,5 @@
 ﻿using OPM.DBHandler;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 
 namespace OPM.OPMEnginee
@@ -17,8 +15,8 @@ namespace OPM.OPMEnginee
         public string IdProvince { get => idProvince; set => idProvince = value; }
         public int NumberOfDevice { get => numberOfDevice; set => numberOfDevice = value; }
         public string NameOfDevice { get => nameOfDevice; set => nameOfDevice = value; }
-        public ListExpPO () { }
-        public ListExpPO(string _idPO, string _idProvince, int _numberOfDevice, string _nameOfDevice) 
+        public ListExpPO() { }
+        public ListExpPO(string _idPO, string _idProvince, int _numberOfDevice, string _nameOfDevice)
         {
             this.idPO = _idPO;
             this.idProvince = _idProvince;
@@ -41,7 +39,8 @@ namespace OPM.OPMEnginee
             if (ret == 0)
             {
                 return 0;
-            }else
+            }
+            else
                 return 1;
         }
         public int InsertListPO(string _idPO, string _idProvince, int _numberOfDevice, string _nameOfDevice)
@@ -67,19 +66,19 @@ namespace OPM.OPMEnginee
         public int InsertMultiListPO(List<ListExpPO> listExpPOs)
         {
             string strInsertListpo = "INSERT INTO ListExpected_PO VALUES ";
-            foreach(ListExpPO listExpPO in listExpPOs)
+            foreach (ListExpPO listExpPO in listExpPOs)
             {
-            strInsertListpo += "('";
-            strInsertListpo += listExpPO.IdPO;
-            strInsertListpo += "','";
-            strInsertListpo += listExpPO.IdProvince;
-            strInsertListpo += "','";
-            strInsertListpo += listExpPO.NumberOfDevice;
-            strInsertListpo += "','";
-            strInsertListpo += listExpPO.NameOfDevice;
-            strInsertListpo += "'),";
+                strInsertListpo += "('";
+                strInsertListpo += listExpPO.IdPO;
+                strInsertListpo += "','";
+                strInsertListpo += listExpPO.IdProvince;
+                strInsertListpo += "','";
+                strInsertListpo += listExpPO.NumberOfDevice;
+                strInsertListpo += "','";
+                strInsertListpo += listExpPO.NameOfDevice;
+                strInsertListpo += "'),";
             }
-            strInsertListpo= strInsertListpo.Remove(strInsertListpo.Length - 1);
+            strInsertListpo = strInsertListpo.Remove(strInsertListpo.Length - 1);
             int ret = OPM.DBHandler.OPMDBHandler.fInsertData(strInsertListpo);
             if (ret == 0)
             {
@@ -128,5 +127,5 @@ namespace OPM.OPMEnginee
         }
     }
 
-    
+
 }

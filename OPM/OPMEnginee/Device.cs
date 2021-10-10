@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace OPM.OPMEnginee
 {
-    class Devices:IDevices
+    class Devices : IDevices
     {
         private string _serial;
         private string _MAC;
@@ -16,7 +15,7 @@ namespace OPM.OPMEnginee
         {
 
         }
-         ~Devices()
+        ~Devices()
         {
 
         }

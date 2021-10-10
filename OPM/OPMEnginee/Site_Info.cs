@@ -1,10 +1,6 @@
 ﻿using OPM.DBHandler;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OPM.OPMEnginee
@@ -15,10 +11,10 @@ namespace OPM.OPMEnginee
         string type = "0300954529";
         string headquater_info = "124-Hoàng Quốc Việt-Cầu Giấy- Hà Nội";
         string address = "124-Hoàng Quốc Việt-Cầu Giấy- Hà Nội";
-        string phonenumber= "02835282338";
-        string tin= "02433861195";
-        string account= "0071001103933";
-        string representative="Ông Nguyễn Văn Nam - Tổng giám đốc";
+        string phonenumber = "02835282338";
+        string tin = "02433861195";
+        string account = "0071001103933";
+        string representative = "Ông Nguyễn Văn Nam - Tổng giám đốc";
 
         public string Id { get => id; set => id = value; }
         public string Type { get => type; set => type = value; }
@@ -30,7 +26,7 @@ namespace OPM.OPMEnginee
         public string Representative { get => representative; set => representative = value; }
 
         public Site_Info() { }
-        public Site_Info(string id,string type,string headquater_info,string address,string phonenumber,string tin,string account,string representative) 
+        public Site_Info(string id, string type, string headquater_info, string address, string phonenumber, string tin, string account, string representative)
         {
             Id = id;
             Type = type;
@@ -133,7 +129,7 @@ namespace OPM.OPMEnginee
         }
         public void Delete()
         {
-            if (MessageBox.Show(string.Format("Có chắc chắn xoá không?"), "Thông báo!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel) return; 
+            if (MessageBox.Show(string.Format("Có chắc chắn xoá không?"), "Thông báo!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel) return;
             string query = string.Format("DELETE FROM dbo.Site_Info WHERE id = N'{0}'", id);
             try
             {

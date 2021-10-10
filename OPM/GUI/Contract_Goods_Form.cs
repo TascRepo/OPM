@@ -55,7 +55,7 @@ namespace OPM.GUI
             textBoxTotalPricePreTax.Text = Contract_Goods.TotalPricePreTax(Tag.ToString()).ToString();
             //textBoxTotalTax.Text = (double.Parse(textBoxTotalPricePreTax.Text) / 10).ToString();
             textBoxTotalTax.Text = (double.Parse(textBoxTotalPricePreTax.Text) / 10).ToString();
-            textBoxTotalPriceAfterTax.Text= (double.Parse(textBoxTotalPricePreTax.Text)+ double.Parse(textBoxTotalTax.Text)).ToString();
+            textBoxTotalPriceAfterTax.Text = (double.Parse(textBoxTotalPricePreTax.Text) + double.Parse(textBoxTotalTax.Text)).ToString();
             AddGoodsBinding();
             //dtgvGoods.RowTemplate.Height = 40;
         }
@@ -84,7 +84,7 @@ namespace OPM.GUI
 
         private void btnGoodsDelete_Click(object sender, EventArgs e)
         {
-            if (!Contract_Goods.Exist(Tag.ToString(), tbxName.Text.Trim())) 
+            if (!Contract_Goods.Exist(Tag.ToString(), tbxName.Text.Trim()))
             {
                 MessageBox.Show("Nhập đúng tên hàng hoá!");
                 return;

@@ -1,18 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using OPM.EmailHandler;
-using OPM.OPMEnginee;
-using OPM.WordHandler;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Windows.Forms;
-using OPM.ExcelHandler;
-using System.Data.OleDb;
-using System.Data.Common;
-namespace OPM.DBHandler
+﻿namespace OPM.DBHandler
 {
     class Provinces
     {

@@ -1,11 +1,11 @@
-﻿using OPM.OPMEnginee;
+﻿using OPM.DBHandler;
+using OPM.ExcelHandler;
+using OPM.OPMEnginee;
 using OPM.WordHandler;
 using System;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
-using OPM.ExcelHandler;
-using OPM.DBHandler;
 namespace OPM.GUI
 {
     public partial class PurchaseOderInfor : Form
@@ -84,15 +84,15 @@ namespace OPM.GUI
                 MessageBox.Show("Nhập lại dạng số TUPO!");
                 return;
             }
-            if (po.Tupo < 0|| po.Tupo>100)
+            if (po.Tupo < 0 || po.Tupo > 100)
             {
                 MessageBox.Show("Nhập lại 0 <= Tạm ứng PO <= 100");
                 return;
             }
             po.Id_contract = txbIDContract.Text.Trim();
-            po.Confirmpo_datecreated=confirmpo_datecreated.Value;
+            po.Confirmpo_datecreated = confirmpo_datecreated.Value;
             po.Confirmpo_number = confirmpo_number.Text;
-            po.Tupo_datecreated=tupo_datecreated.Value;
+            po.Tupo_datecreated = tupo_datecreated.Value;
             try
             {
                 po.Bltupo = int.Parse(bltupo.Text);
@@ -107,7 +107,7 @@ namespace OPM.GUI
                 MessageBox.Show("Nhập lại 0 <= Bảo lãnh tạm ứng PO <= 100");
                 return;
             }
-            po.Bltupo_datecreated=bltupo_datecreated.Value;
+            po.Bltupo_datecreated = bltupo_datecreated.Value;
             po.Confirmpo_dateactive = confirmpo_dateactive.Value;
             ///////////////////////////////////
             if (Contract.Exist(txbIDContract.Text.Trim()))
@@ -184,13 +184,13 @@ namespace OPM.GUI
                 OpmWordHandler.Word_POTamUng(po.Id);
                 OpmWordHandler.Word_POBaoLanh(po.Id);
             }
-            else 
+            else
             {
                 MessageBox.Show(string.Format("Không tồn tại hợp đồng {0}", txbIDContract.Text));
                 return;
             }
-            
-            UpdateCatalogPanel("PO_"+ po.Id);
+
+            UpdateCatalogPanel("PO_" + po.Id);
             //Tạo các mẫu 23,24,36,37
             OpmWordHandler.Temp23_CNCL_TongHop(po.Id);
             OpmWordHandler.Temp24_CNCLNMTongHop(po.Id);
@@ -202,11 +202,11 @@ namespace OPM.GUI
         public void SetValueItemForPO(string idPO)
         {
             PO pO = new PO();
-            string namecontract = null, KHMS= null;
-            pO.DisplayPO(idPO,ref namecontract,ref KHMS);
+            string namecontract = null, KHMS = null;
+            pO.DisplayPO(idPO, ref namecontract, ref KHMS);
             pO.GetDisplayPO(idPO, ref pO);
             this.txbKHMS.Text = KHMS;
-            
+
             this.txbIDContract.Text = pO.IdContract;
             this.txbPOCode.Text = pO.IDPO;
             this.txbPOName.Text = pO.PONumber;
@@ -233,7 +233,7 @@ namespace OPM.GUI
             /*Request DashBoard Open NTKT Form*/
             string strContract = "Contract_" + txbIDContract.Text.ToString();
             /*Request DashBoard Open PO Form*/
-            requestDashBoardOpenNTKTForm(txbKHMS.Text,strContract,txbPOCode.Text, txbPOName.Text) ;
+            requestDashBoardOpenNTKTForm(txbKHMS.Text, strContract, txbPOCode.Text, txbPOName.Text);
             return;
 
         }
@@ -245,7 +245,7 @@ namespace OPM.GUI
         private void btnNewDP_Click(object sender, EventArgs e)
         {
             PO_Thanh pCheck = new PO_Thanh();
-            if(txbPOName.Text == "POX" || txbPOCode.Text == "XXX/CUVT-KV" || txbIDContract.Text == "XXX-202X/CUVT-ANSV/DTRR-KHMS")
+            if (txbPOName.Text == "POX" || txbPOCode.Text == "XXX/CUVT-KV" || txbIDContract.Text == "XXX-202X/CUVT-ANSV/DTRR-KHMS")
             {
                 MessageBox.Show("Chưa khởi tạo PO thì không tạo DP!");
             }
@@ -303,12 +303,12 @@ namespace OPM.GUI
             }
         }
         public OpenFileDialog openFileExcel = new OpenFileDialog();
-        public string sConnectionString= null;
+        public string sConnectionString = null;
         private void importPO_Click(object sender, EventArgs e)
         {
-           //openFileExcel.Multiselect = true;
-           //openFileExcel.Multiselect = true;
-           //openFileExcel.Filter = "Excel Files(.xls)|*.xls| Excel Files(.xlsx)| *.xlsx | Excel Files(*.xlsm) | *.xlsm";
+            //openFileExcel.Multiselect = true;
+            //openFileExcel.Multiselect = true;
+            //openFileExcel.Filter = "Excel Files(.xls)|*.xls| Excel Files(.xlsx)| *.xlsx | Excel Files(*.xlsm) | *.xlsm";
             if (openFileExcel.ShowDialog() == DialogResult.OK)
             {
                 if (File.Exists(openFileExcel.FileName))
@@ -317,7 +317,7 @@ namespace OPM.GUI
                     string filename = openFileExcel.FileName;
                     DataTable dt = new DataTable();
                     int ret = OpmExcelHandler.fReadExcelFilePO2(filename, ref dt);
-                    if(ret==1)
+                    if (ret == 1)
                     {
                         dataGridViewPO.DataSource = dt;
                         MessageBox.Show("Import thành công!");
@@ -327,7 +327,7 @@ namespace OPM.GUI
                         MessageBox.Show("Import Không thành công!");
                     }
                 }
-               
+
             }
         }
 
@@ -394,7 +394,7 @@ namespace OPM.GUI
                 {
                     txbnamefileKHGH.Text = openFileExcel.FileName;
                     string filename = openFileExcel.FileName;
-                    int ret = OpmExcelHandler.SaveFileInDelivery_PO(filename,ref dt);
+                    int ret = OpmExcelHandler.SaveFileInDelivery_PO(filename, ref dt);
                     if (ret == 1)
                     {
                         MessageBox.Show("Import thành công");

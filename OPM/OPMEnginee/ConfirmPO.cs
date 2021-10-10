@@ -1,12 +1,9 @@
 ﻿using OPM.DBHandler;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 namespace OPM.OPMEnginee
 {
-    class ConfirmPO:NTKT
+    class ConfirmPO : NTKT
     {
         private string _idConfirmPO;
         public string ConfirmPOID
@@ -30,7 +27,7 @@ namespace OPM.OPMEnginee
             }
         }
 
-        
+
         public int InsertNewConfirmPO(ConfirmPO confirmPO)
         {
             string strInsertConfirmPONew = "insert into VBConfirmPO values (";

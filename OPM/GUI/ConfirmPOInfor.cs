@@ -1,13 +1,8 @@
 ﻿using OPM.OPMEnginee;
 using OPM.WordHandler;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 namespace OPM.GUI
 {
     public partial class ConfirmPOInfor : Form
@@ -66,7 +61,7 @@ namespace OPM.GUI
                 }
             }
             //Phần xử lý file phụ lục đính kèm ở mẫu 3, do đối tác cung cấp, không cần kiểm tra, chỉ cần có thông tin rồi đính kèm vòa mẫu 3
-                string Src_Excel = DriveName + "OPM\\teamplate_PBGHDK.";
+            string Src_Excel = DriveName + "OPM\\teamplate_PBGHDK.";
             //
             //Check xem Forder đã đc tạo hay chưa? nếu chưa tạo hì tạo, còn nếu đã tạo rồi thì thôi
             //

@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using OPM.DBHandler;
+using System;
 using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using OPM.OPMEnginee;
-using System.IO;
-using OPM.WordHandler;
-using OPM.ExcelHandler;
-using OPM.DBHandler;
 
 namespace OPM.GUI
 {

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using OPM.OPMEnginee;
-using System.IO;
+﻿using OPM.DBHandler;
 using OPM.WordHandler;
-using OPM.ExcelHandler;
-using OPM.DBHandler;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Windows.Forms;
 namespace OPM.GUI
 {
     public partial class DeliverPartInforDetail : Form
@@ -93,7 +87,7 @@ namespace OPM.GUI
             //Load thông tin combobox
             DP dp1 = new DP();
             DataTable d1 = dp1.SqlContract_Goods(txbIDContract.Text);
-            for(int i = 0;i< d1.Rows.Count; i++)
+            for (int i = 0; i < d1.Rows.Count; i++)
             {
                 tenhangHD.Items.Add(d1.Rows[i][0].ToString());
             }
@@ -106,7 +100,7 @@ namespace OPM.GUI
             Provinces pr = new Provinces();
             string querySQLProvinces = pr.querySQLProvinces();
             DataTable dtProvince = OPMDBHandler.ExecuteQuery(querySQLProvinces);
-            if(dtProvince.Rows.Count > 0)
+            if (dtProvince.Rows.Count > 0)
             {
                 dataGridViewProvince.DataSource = dtProvince;
             }

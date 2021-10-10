@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
 namespace OPM.Enginee
@@ -17,11 +15,11 @@ namespace OPM.Enginee
 
         public static LogHelper WriteLog()
         {
-            if(null == _logIntance)
+            if (null == _logIntance)
             {
-                lock(_lockObject)
+                lock (_lockObject)
                 {
-                    if(null == _logIntance)
+                    if (null == _logIntance)
                     {
                         _logIntance = new LogHelper();
                     }
@@ -32,23 +30,23 @@ namespace OPM.Enginee
         public static void Content(string strlogs)
         {
             string strDireactory = @"F:\";
-            if(Directory.Exists(strDireactory))
+            if (Directory.Exists(strDireactory))
             {
                 strDireactory = @"F:\";
             }
             else
             {
                 strDireactory = @"D:\";
-            }    
+            }
             string strLogFile = "Opmlog.txt";
             //Write file
             using (StreamWriter w = File.AppendText(strDireactory + strLogFile))
             {
                 w.WriteLine("{0} {1} : ", DateTime.Now.ToLongTimeString(), DateTime.Now.ToLongDateString());
-                w.WriteLine(strlogs+ "\n");
+                w.WriteLine(strlogs + "\n");
             }
 
         }
-        
+
     }
 }

@@ -18,13 +18,13 @@ namespace OPM.OPMEnginee
         string account = "0071001103933";
         string representative1 = "Ông Nguyễn Văn Nam";
         string position1 = "Tổng giám đốc";
-        string proxy1="";
-        string representative2="";
-        string position2="";
-        string proxy2="";
+        string proxy1 = "";
+        string representative2 = "";
+        string position2 = "";
+        string proxy2 = "";
         string representative3 = "";
-        string position3="";
-        string proxy3="";
+        string position3 = "";
+        string proxy3 = "";
 
         public string Id { get => id; set => id = value; }
         public string Type { get => type; set => type = value; }

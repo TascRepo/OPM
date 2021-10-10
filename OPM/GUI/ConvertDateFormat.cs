@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Globalization;
 namespace OPM.GUI
 {
     class ConvertDateFormat
     {
 
-    public string[] ConvertFormatDate(string date, string FormatA, string formatB)
-    {
+        public string[] ConvertFormatDate(string date, string FormatA, string formatB)
+        {
 
             if (date != null)
             {
@@ -18,9 +16,9 @@ namespace OPM.GUI
                 return arrDate;
             }
             else return null;
-            
+
+        }
+
     }
-     
-    }
-    
+
 }

@@ -1,13 +1,11 @@
-﻿using System;
+﻿using OPM.DBHandler;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Text;
-using OPM.DBHandler;
 
 namespace OPM.OPMEnginee
 {
-    class ContractObj :IContract
+    class ContractObj : IContract
     {
         private string _KHMS;
         private string _idContract;
@@ -134,7 +132,7 @@ namespace OPM.OPMEnginee
             int ret = OPMDBHandler.fQuerryData(strQueryOne, ref ds);
             if (0 != ret)
             {
-                    contract.IdContract = (string)ds.Tables[0].Rows[0].ItemArray[0];
+                contract.IdContract = (string)ds.Tables[0].Rows[0].ItemArray[0];
             }
             else
             {
@@ -164,7 +162,7 @@ namespace OPM.OPMEnginee
                 contract.SiteA = (string)ds.Tables[0].Rows[0].ItemArray[9];
                 contract.SiteB = (string)ds.Tables[0].Rows[0].ItemArray[10];
                 contract.KHMS = ds.Tables[0].Rows[0].ItemArray[13].ToString();
-                contract.ExperationDate= ((DateTime)ds.Tables[0].Rows[0].ItemArray[14]).ToString("dd-MM-yyyy");
+                contract.ExperationDate = ((DateTime)ds.Tables[0].Rows[0].ItemArray[14]).ToString("dd-MM-yyyy");
             }
             else
             {
@@ -238,7 +236,7 @@ namespace OPM.OPMEnginee
             strInsertContractNew += newContract.ExperationDate;
             strInsertContractNew += "')";
             int ret = OPMDBHandler.fInsertData(strInsertContractNew);
-            if(0==ret)
+            if (0 == ret)
             {
                 return ret;
             }
@@ -248,8 +246,8 @@ namespace OPM.OPMEnginee
 
         public int UpdateExistedContract(ContractObj contractObj)
         {
-            
-            string strUpdateContract = "update Contract set namecontract = N'"+ contractObj.NameContract +"', codeaccouting = '"+contractObj.CodeAccounting+"', datesigned = '"+contractObj.DateSigned+"',typecontract = N'"+contractObj.TypeContract+"', durationcontract = '"+contractObj.DurationContract+"', activedate='"+contractObj.ActiveDateContract+"', valuecontract = '"+contractObj.ValueContract+"', durationpo = '"+contractObj.DurationGuranteePO+"', id_siteA = N'"+contractObj.SiteA+"', id_siteB = N'"+contractObj.SiteB+"',KHMS = N'"+contractObj.KHMS+"' where id = '"+contractObj.IdContract+ "'";
+
+            string strUpdateContract = "update Contract set namecontract = N'" + contractObj.NameContract + "', codeaccouting = '" + contractObj.CodeAccounting + "', datesigned = '" + contractObj.DateSigned + "',typecontract = N'" + contractObj.TypeContract + "', durationcontract = '" + contractObj.DurationContract + "', activedate='" + contractObj.ActiveDateContract + "', valuecontract = '" + contractObj.ValueContract + "', durationpo = '" + contractObj.DurationGuranteePO + "', id_siteA = N'" + contractObj.SiteA + "', id_siteB = N'" + contractObj.SiteB + "',KHMS = N'" + contractObj.KHMS + "' where id = '" + contractObj.IdContract + "'";
             int ret = OPMDBHandler.fInsertData(strUpdateContract);
             return 1;
 

@@ -8,20 +8,20 @@ namespace OPM.DBHandler
 {
     public partial class PO_Thanh
     {
-        private string id= "5120/CUVT-KV";
-        private string id_contract= "111-2020/CUVT-ANSV/DTRR-KHMS";
-        private string po_number= "PO1";
-        private double numberofdevice=0;
-        private DateTime datecreated =DateTime.Now;
-        private int priceunit=0;
+        private string id = "5120/CUVT-KV";
+        private string id_contract = "111-2020/CUVT-ANSV/DTRR-KHMS";
+        private string po_number = "PO1";
+        private double numberofdevice = 0;
+        private DateTime datecreated = DateTime.Now;
+        private int priceunit = 0;
         private DateTime dateconfirm = DateTime.Now;
         private DateTime dateperform = DateTime.Now;
         private DateTime dateline = DateTime.Now;
-        private string targetdeliveradd="Hà Nội";
-        private string email_BLBH_status="";
-        private string email_BLTH_status= "";
-        private double totalvalue =0;
-        private int tupo=50;
+        private string targetdeliveradd = "Hà Nội";
+        private string email_BLBH_status = "";
+        private string email_BLTH_status = "";
+        private double totalvalue = 0;
+        private int tupo = 50;
         private DateTime tupo_datecreated = DateTime.Now;
         private string confirmpo_number = "679/ANSV-DO";
         private DateTime confirmpo_datecreated = DateTime.Now;
@@ -110,7 +110,7 @@ namespace OPM.DBHandler
             Confirmpo_datecreated = (row["confirmpo_datecreated"] == null || row["confirmpo_datecreated"] == DBNull.Value) ? DateTime.Now : (DateTime)row["confirmpo_datecreated"];
             Bltupo = (row["bltupo"] == null || row["bltupo"] == DBNull.Value) ? 0 : (int)row["bltupo"];
             Bltupo_datecreated = (row["bltupo_datecreated"] == null || row["bltupo_datecreated"] == DBNull.Value) ? DateTime.Now : (DateTime)row["bltupo_datecreated"];
-            Confirmpo_dateactive= (row["confirmpo_dateactive"] == null || row["confirmpo_dateactive"] == DBNull.Value) ? DateTime.Now : (DateTime)row["confirmpo_dateactive"];
+            Confirmpo_dateactive = (row["confirmpo_dateactive"] == null || row["confirmpo_dateactive"] == DBNull.Value) ? DateTime.Now : (DateTime)row["confirmpo_dateactive"];
         }
         public PO_Thanh(string id)
         {
@@ -247,13 +247,13 @@ namespace OPM.DBHandler
             {
                 if (Check_VBConfirmPO(id))
                 {
-                    string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.VBConfirmPO SET id_ConfirmPO = '{1}' where id_po = '{3}'", Confirmpo_number,id);
+                    string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.VBConfirmPO SET id_ConfirmPO = '{1}' where id_po = '{3}'", Confirmpo_number, id);
                     OPMDBHandler.ExecuteNonQuery(query);
                     MessageBox.Show(string.Format("Cập nhật thành công văn bản số hiệu {0} trong CSDL!", id));
                 }
                 else
                 {
-                    string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.VBConfirmPO(id_ConfirmPO, id_po, vb_ConfirmPO) VALUES('{0}','{1}','{2}')", Confirmpo_number,id, ' ');
+                    string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.VBConfirmPO(id_ConfirmPO, id_po, vb_ConfirmPO) VALUES('{0}','{1}','{2}')", Confirmpo_number, id, ' ');
                     OPMDBHandler.ExecuteNonQuery(query);
                     MessageBox.Show(string.Format("Tạo mới thành công văn bản số hiệu {0} trong CSDL!", id));
                 }

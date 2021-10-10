@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
-using System.Windows.Forms;
 
 namespace OPM.DBHandler
 {
@@ -46,8 +43,8 @@ namespace OPM.DBHandler
             strInsert += "',N'";
             strInsert += dP.note;
             strInsert += "')";
-            int ret =OPM.DBHandler.OPMDBHandler.fInsertData(strInsert);
-            if(ret == 0)
+            int ret = OPM.DBHandler.OPMDBHandler.fInsertData(strInsert);
+            if (ret == 0)
             {
                 return 0;
             }
@@ -69,7 +66,7 @@ namespace OPM.DBHandler
             d1 = OPMDBHandler.ExecuteQuery(query);
             return d1;
         }
-        public DataTable GetCodeByContract(string id,string name)
+        public DataTable GetCodeByContract(string id, string name)
         {
             DataTable d1 = new DataTable();
             string query = string.Format("SELECT top 1 code FROM dbo.Contract_Goods WHERE idContract = N'{0}' and name = N'{1}'", id, name);
@@ -89,7 +86,7 @@ namespace OPM.DBHandler
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table.Rows.Count > 0;
         }
-        public int InsertUpdateDP(string id, string id_po, string id_contract, string cbbType,string note, string dtpRequest, string dtpOutCap)
+        public int InsertUpdateDP(string id, string id_po, string id_contract, string cbbType, string note, string dtpRequest, string dtpOutCap)
         {
             int Return = 0;
             if (Check_DP(id))
@@ -111,7 +108,7 @@ namespace OPM.DBHandler
         public void DeleteDP(string id)
         {
             int result = 0;
-            string query1 = string.Format("delete dbo.ListExpected_DP where id_dp = '"+id+"'");
+            string query1 = string.Format("delete dbo.ListExpected_DP where id_dp = '" + id + "'");
             result = OPMDBHandler.fInsertData(query1);
             string query2 = string.Format("delete dbo.DP where id = '" + id + "'");
             result = OPMDBHandler.fInsertData(query2);

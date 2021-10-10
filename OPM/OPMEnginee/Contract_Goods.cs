@@ -2,14 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
 namespace OPM.OPMEnginee
 {
     class Contract_Goods
     {
-        string idContract= "111-2021/CUVT-ANSV/DTRR-KHMS";
+        string idContract = "111-2021/CUVT-ANSV/DTRR-KHMS";
         string origin = "Việt Nam";
         string manufacturer = "VNPT Technology";
         string code = "iGate GW020-H";
@@ -28,12 +27,12 @@ namespace OPM.OPMEnginee
         public string Unit { get => unit; set => unit = value; }
         public double PriceUnit { get => priceUnit; set => priceUnit = value; }
         public int Quantity { get => quantity; set => quantity = value; }
-        public double PricePreTax { get => priceUnit* quantity; }
+        public double PricePreTax { get => priceUnit * quantity; }
         public double Tax { get => 0.1 * priceUnit * quantity; }
-        public double PriceAfterTax { get => 1.1* priceUnit * quantity; }
+        public double PriceAfterTax { get => 1.1 * priceUnit * quantity; }
 
         public Contract_Goods() { }
-        public Contract_Goods(string idContract, string name, string origin = "Việt Nam", string manufacturer = "VNPT Technology", string code= "iGate GW020-H",string unit = "Bộ", double priceUnit = 0, int quantity=0)
+        public Contract_Goods(string idContract, string name, string origin = "Việt Nam", string manufacturer = "VNPT Technology", string code = "iGate GW020-H", string unit = "Bộ", double priceUnit = 0, int quantity = 0)
         {
             IdContract = idContract;
             Name = name;
@@ -44,7 +43,7 @@ namespace OPM.OPMEnginee
             PriceUnit = priceUnit;
             Quantity = quantity;
         }
-        public Contract_Goods(DataRow row) 
+        public Contract_Goods(DataRow row)
         {
             if (row == null) return;
             IdContract = row["idContract"].ToString();
@@ -199,7 +198,7 @@ namespace OPM.OPMEnginee
         {
             string query = string.Format("SELECT SUM(priceUnit*quantity) FROM dbo.Contract_Goods where idContract = '{0}'", idContract);
             object tam = OPMDBHandler.ExecuteScalar(query);
-            double ret = (tam == null||tam==DBNull.Value) ? 0 : (double)tam;
+            double ret = (tam == null || tam == DBNull.Value) ? 0 : (double)tam;
             return ret;
         }
         public void Update()

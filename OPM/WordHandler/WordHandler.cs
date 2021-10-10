@@ -1,47 +1,39 @@
-﻿using System;
-using System.IO;
+﻿using OPM.DBHandler;
+using OPM.GUI;
+using OPM.OPMEnginee;
+using System;
 using System.Data;
+using System.Globalization;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using WordOffice = Microsoft.Office.Interop.Word;
-using System.Reflection;
-using OPM.OPMEnginee;
-using OPM.GUI;
-using System.Globalization;
-using OPM.DBHandler;
 namespace OPM.WordHandler
 {
     class OpmWordHandler
     {
-        private string _nameWordfile;
-        public OpmWordHandler()
-        {
-        }
-        ~OpmWordHandler()
-        { }
-
-        public string FileName
-        {
-            set { _nameWordfile = value; }
-            get { return _nameWordfile; }
-        }
         //Tạo mẫu 37
         public static string Temp37_BBXNCDLicense(string id)
         {
-            //NTKT_Thanh ntkt = new NTKT_Thanh(id);
-            PO_Thanh po = new PO_Thanh(id);
-            Contract contract = new Contract(po.Id_contract);
-            Site_Info site = new Site_Info(contract.Id_siteA);
-            object filename = string.Format(@"D:\OPM\{0}\{1}\BBXNCDLicense_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
-            WordOffice.Application wordApp = new WordOffice.Application();
-            object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
             object path = @"D:\OPM\Template\Mẫu 37. Biên bản xác nhận cài đặt License vào hệ thống.docx";
-            if (File.Exists(path.ToString()))
+            if (!File.Exists(path.ToString()))
             {
+                MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                return string.Format(@"Không tìm thấy {0}", path.ToString());
+            }
+            try
+            {
+                //NTKT_Thanh ntkt = new NTKT_Thanh(id);
+                PO_Thanh po = new PO_Thanh(id);
+                Contract contract = new Contract(po.Id_contract);
+                Site_Info site = new Site_Info(contract.Id_siteA);
+                object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 37. BBXNCDLicense_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
+                WordOffice.Application wordApp = new WordOffice.Application();
+                object missing = Missing.Value;
+                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
-
                 myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
                                     ref missing, ref missing, ref missing,
                                     ref missing, ref missing, ref missing,
@@ -90,42 +82,40 @@ namespace OPM.WordHandler
                 //Tạo file BLHĐ trong thư mục D:\OPM
                 string folder = string.Format(@"D:\OPM\{0}\{1}", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'));
                 Directory.CreateDirectory(folder);
-                try
-                {
-                    myDoc.SaveAs2(ref filename);
-                    MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
-                    myDoc.Close();
-                    wordApp.Quit();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
+                myDoc.SaveAs2(ref filename);
+                MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                myDoc.Close();
+                wordApp.Quit();
+                return filename.ToString();
             }
-            else
+            catch (Exception e)
             {
-                MessageBox.Show("Không tìm thấy Mẫu 37. Biên bản xác nhận cài đặt License vào hệ thống.docx!");
+                MessageBox.Show(e.Message);
+                return e.Message;
             }
-            return filename.ToString();
         }
         //Tạo mẫu 36
         public static string Temp36_BBNTLicense(string id)
         {
-            //NTKT_Thanh ntkt = new NTKT_Thanh(id);
-            PO_Thanh po = new PO_Thanh(id);
-            Contract contract = new Contract(po.Id_contract);
-            Site_Info site = new Site_Info(contract.Id_siteA);
-            object filename = string.Format(@"D:\OPM\{0}\{1}\BBNTLicense_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
-            WordOffice.Application wordApp = new WordOffice.Application();
-            object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
             object path = @"D:\OPM\Template\Mẫu 36. Biên bản nghiệm thu License.docx";
-            if (File.Exists(path.ToString()))
+            if (!File.Exists(path.ToString()))
             {
+                MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                return string.Format(@"Không tìm thấy {0}", path.ToString());
+            }
+            try
+            {
+                //NTKT_Thanh ntkt = new NTKT_Thanh(id);
+                PO_Thanh po = new PO_Thanh(id);
+                Contract contract = new Contract(po.Id_contract);
+                Site_Info site = new Site_Info(contract.Id_siteA);
+                object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 36. BBNTLicense_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
+                WordOffice.Application wordApp = new WordOffice.Application();
+                object missing = Missing.Value;
+                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
-
                 myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
                                     ref missing, ref missing, ref missing,
                                     ref missing, ref missing, ref missing,
@@ -158,6 +148,7 @@ namespace OPM.WordHandler
                 //OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Date_BBNTKT>", ntkt.Date_BBNTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 //OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Date_BBKTKT>", ntkt.Date_BBKTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 //OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Deliver_date_expected>", ntkt.Deliver_date_expected.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+
                 OpmWordHandler.FindAndReplace(wordApp, "<site.Phonenumber>", site.Phonenumber);
                 OpmWordHandler.FindAndReplace(wordApp, "<site.Representative>", site.Representative);
                 OpmWordHandler.FindAndReplace(wordApp, "<site.Tin>", site.Tin);
@@ -168,45 +159,40 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<site.Account>", site.Account);
                 //OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Date_CNBQPM>", ntkt.Date_CNBQPM.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 //OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Total>", ntkt.Numberofdevice2 + ntkt.Numberofdevice);
-
-
-
                 //Tạo file BLHĐ trong thư mục D:\OPM
                 string folder = string.Format(@"D:\OPM\{0}\{1}", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'));
                 Directory.CreateDirectory(folder);
-                try
-                {
-                    myDoc.SaveAs2(ref filename);
-                    MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
-                    myDoc.Close();
-                    wordApp.Quit();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
+                myDoc.SaveAs2(ref filename);
+                MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                myDoc.Close();
+                wordApp.Quit();
+                return filename.ToString();
             }
-            else
+            catch (Exception e)
             {
-                MessageBox.Show("Không tìm thấy Mẫu 36. Biên bản nghiệm thu License.docx!");
+                MessageBox.Show(e.Message);
+                return e.Message;
             }
-            return filename.ToString();
         }
-
         //Tạo mẫu 24
         public static string Temp24_CNCLNMTongHop(string id)
         {
-            //NTKT_Thanh ntkt = new NTKT_Thanh(id);
-            PO_Thanh po = new PO_Thanh(id);
-            Contract contract = new Contract(po.Id_contract);
-            Site_Info site = new Site_Info(contract.Id_siteA);
-            object filename = string.Format(@"D:\OPM\{0}\{1}\CNCLNM_Tong_Hop_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
-            WordOffice.Application wordApp = new WordOffice.Application();
-            object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
             object path = @"D:\OPM\Template\Mẫu 24. Giấy CNCL NM tổng hợp.docx";
-            if (File.Exists(path.ToString()))
+            if (!File.Exists(path.ToString()))
             {
+                MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                return string.Format(@"Không tìm thấy {0}", path.ToString());
+            }
+            try
+            {
+                //NTKT_Thanh ntkt = new NTKT_Thanh(id);
+                PO_Thanh po = new PO_Thanh(id);
+                Contract contract = new Contract(po.Id_contract);
+                //Site_Info site = new Site_Info(contract.Id_siteA);
+                object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 24. CNCLNM_Tong_Hop_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
+                WordOffice.Application wordApp = new WordOffice.Application();
+                object missing = Missing.Value;
+                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -259,39 +245,39 @@ namespace OPM.WordHandler
                 //Tạo file BLHĐ trong thư mục D:\OPM
                 string folder = string.Format(@"D:\OPM\{0}\{1}", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'));
                 Directory.CreateDirectory(folder);
-                try
-                {
-                    myDoc.SaveAs2(ref filename);
-                    MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
-                    myDoc.Close();
-                    wordApp.Quit();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
+                myDoc.SaveAs2(ref filename);
+                MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                myDoc.Close();
+                wordApp.Quit();
+                return filename.ToString();
+
             }
-            else
+            catch (Exception e)
             {
-                MessageBox.Show("Không tìm thấy Mẫu 24. Giấy CNCL NM tổng hợp.docx!");
+                MessageBox.Show(e.Message);
+                return e.Message;
             }
-            return filename.ToString();
         }
 
         //Tạo mẫu 23
         public static string Temp23_CNCL_TongHop(string id)
         {
-            //NTKT_Thanh ntkt = new NTKT_Thanh(id);
-            PO_Thanh po = new PO_Thanh(id);
-            Contract contract = new Contract(po.Id_contract);
-            Site_Info site = new Site_Info(contract.Id_siteA);
-            object filename = string.Format(@"D:\OPM\{0}\{1}\CNCL_Tong_Hop_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'),po.Id.Replace('/', '-'));
-            WordOffice.Application wordApp = new WordOffice.Application();
-            object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
             object path = @"D:\OPM\Template\Mẫu 23. GIAY_CNCL_TONG_HOP.docx";
-            if (File.Exists(path.ToString()))
+            if (!File.Exists(path.ToString()))
             {
+                MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                return string.Format(@"Không tìm thấy {0}", path.ToString());
+            }
+            try
+            {
+                //NTKT_Thanh ntkt = new NTKT_Thanh(id);
+                PO_Thanh po = new PO_Thanh(id);
+                Contract contract = new Contract(po.Id_contract);
+                Site_Info site = new Site_Info(contract.Id_siteA);
+                object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 23. CNCL_Tong_Hop_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
+                WordOffice.Application wordApp = new WordOffice.Application();
+                object missing = Missing.Value;
+                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -318,7 +304,7 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Confirmpo_number>", po.Confirmpo_number);
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Numberofdevice>", po.Numberofdevice);
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Numberofdevice2>", Math.Round(po.Numberofdevice * 0.02, 0, MidpointRounding.AwayFromZero));
-                OpmWordHandler.FindAndReplace(wordApp, "<po.Total>", po.Numberofdevice+ Math.Round(po.Numberofdevice * 0.02, 0, MidpointRounding.AwayFromZero));
+                OpmWordHandler.FindAndReplace(wordApp, "<po.Total>", po.Numberofdevice + Math.Round(po.Numberofdevice * 0.02, 0, MidpointRounding.AwayFromZero));
 
                 //OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Id>", ntkt.Id);
                 //OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Number>", ntkt.Number);
@@ -344,39 +330,38 @@ namespace OPM.WordHandler
                 //Tạo file BLHĐ trong thư mục D:\OPM
                 string folder = string.Format(@"D:\OPM\{0}\{1}", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'));
                 Directory.CreateDirectory(folder);
-                try
-                {
-                    myDoc.SaveAs2(ref filename);
-                    MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
-                    myDoc.Close();
-                    wordApp.Quit();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
+                myDoc.SaveAs2(ref filename);
+                MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                myDoc.Close();
+                wordApp.Quit();
+                return filename.ToString();
             }
-            else
+            catch (Exception e)
             {
-                MessageBox.Show("Không tìm thấy Mẫu 23. GIAY_CNCL_TONG_HOP.docx!");
+                MessageBox.Show(e.Message);
+                return e.Message;
             }
-            return filename.ToString();
         }
 
         //Tạo mẫu 11
         public static string Temp11_BBNTKT(string id)
         {
-            NTKT_Thanh ntkt = new NTKT_Thanh(id);
-            PO_Thanh po = new PO_Thanh(ntkt.Id_po);
-            Contract contract = new Contract(po.Id_contract);
-            Site_Info site = new Site_Info(contract.Id_siteA);
-            object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\BBNTKT_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number, ntkt.Id.Replace('/', '-'));
-            WordOffice.Application wordApp = new WordOffice.Application();
-            object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
             object path = @"D:\OPM\Template\Mẫu 11. Biên bản nghiệm thu kỹ thuật.docx";
-            if (File.Exists(path.ToString()))
+            if (!File.Exists(path.ToString()))
             {
+                MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                return string.Format(@"Không tìm thấy {0}", path.ToString());
+            }
+            try
+            {
+                NTKT_Thanh ntkt = new NTKT_Thanh(id);
+                PO_Thanh po = new PO_Thanh(ntkt.Id_po);
+                Contract contract = new Contract(po.Id_contract);
+                Site_Info site = new Site_Info(contract.Id_siteA);
+                object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\Mẫu 11. BBNTKT_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number, ntkt.Id.Replace('/', '-'));
+                WordOffice.Application wordApp = new WordOffice.Application();
+                object missing = Missing.Value;
+                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -423,37 +408,36 @@ namespace OPM.WordHandler
                 //Tạo file BLHĐ trong thư mục D:\OPM
                 string folder = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number);
                 Directory.CreateDirectory(folder);
-                try
-                {
-                    myDoc.SaveAs2(ref filename);
-                    MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
-                    myDoc.Close();
-                    wordApp.Quit();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
+                myDoc.SaveAs2(ref filename);
+                MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                myDoc.Close();
+                wordApp.Quit();
+                return filename.ToString();
             }
-            else
+            catch (Exception e)
             {
-                MessageBox.Show("Mẫu 11. Biên bản nghiệm thu kỹ thuật.docx!");
+                MessageBox.Show(e.Message);
+                return e.Message;
             }
-            return filename.ToString();
         }
         //Tạo mẫu 10
         public static string Temp10_CNBQPM(string id)
         {
-            NTKT_Thanh ntkt = new NTKT_Thanh(id);
-            PO_Thanh po = new PO_Thanh(ntkt.Id_po);
-            Contract contract = new Contract(po.Id_contract);
-            Site_Info site = new Site_Info(contract.Id_siteA);
-            object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\CNBQPM_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number, ntkt.Id.Replace('/', '-'));
-            WordOffice.Application wordApp = new WordOffice.Application();
-            object missing = Missing.Value;
             object path = @"D:\OPM\Template\Mẫu 10. Chứng nhận bản quyền phần mềm.docx";
-            if (File.Exists(path.ToString()))
+            if (!File.Exists(path.ToString()))
             {
+                MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                return string.Format(@"Không tìm thấy {0}", path.ToString());
+            }
+            try
+            {
+                NTKT_Thanh ntkt = new NTKT_Thanh(id);
+                PO_Thanh po = new PO_Thanh(ntkt.Id_po);
+                Contract contract = new Contract(po.Id_contract);
+                Site_Info site = new Site_Info(contract.Id_siteA);
+                object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\Mẫu 10. CNBQPM_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number, ntkt.Id.Replace('/', '-'));
+                WordOffice.Application wordApp = new WordOffice.Application();
+                object missing = Missing.Value;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -497,43 +481,42 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<site.Address>", site.Address);
                 OpmWordHandler.FindAndReplace(wordApp, "<site.Account>", site.Account);
                 OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Date_CNBQPM>", ntkt.Date_CNBQPM.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-                OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Total>", ntkt.Numberofdevice+ ntkt.Numberofdevice2);
+                OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Total>", ntkt.Numberofdevice + ntkt.Numberofdevice2);
 
                 //Tạo file BLHĐ trong thư mục D:\OPM
                 string folder = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number);
                 Directory.CreateDirectory(folder);
-                try
-                {
-                    myDoc.SaveAs2(ref filename);
-                    MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
-                    myDoc.Close();
-                    wordApp.Quit();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
+                myDoc.SaveAs2(ref filename);
+                MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                myDoc.Close();
+                wordApp.Quit();
+                return filename.ToString();
             }
-            else
+            catch (Exception e)
             {
-                MessageBox.Show("Không tìm thấy Mẫu 10. Chứng nhận bản quyền phần mềm.docx!");
+                MessageBox.Show(e.Message);
+                return e.Message;
             }
-            return filename.ToString();
         }
         //Tạo mẫu 9
         public static string Temp09_BBKTKT(string id)
         {
-            NTKT_Thanh ntkt = new NTKT_Thanh(id);
-            PO_Thanh po = new PO_Thanh(ntkt.Id_po);
-            Contract contract = new Contract(po.Id_contract);
-            Site_Info site = new Site_Info(contract.Id_siteA);
-            object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\BBKTKT_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number, ntkt.Id.Replace('/', '-'));
-            WordOffice.Application wordApp = new WordOffice.Application();
-            object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
             object path = @"D:\OPM\Template\Mẫu 9. Biên bản kiểm tra kỹ thuật.docx";
-            if (File.Exists(path.ToString()))
+            if (!File.Exists(path.ToString()))
             {
+                MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                return string.Format(@"Không tìm thấy {0}", path.ToString());
+            }
+            try
+            {
+                NTKT_Thanh ntkt = new NTKT_Thanh(id);
+                PO_Thanh po = new PO_Thanh(ntkt.Id_po);
+                Contract contract = new Contract(po.Id_contract);
+                Site_Info site = new Site_Info(contract.Id_siteA);
+                object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\Mẫu 9. BBKTKT_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number, ntkt.Id.Replace('/', '-'));
+                WordOffice.Application wordApp = new WordOffice.Application();
+                object missing = Missing.Value;
+                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -565,7 +548,7 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Numberofdevice>", ntkt.Numberofdevice);
                 OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Numberofdevice2>", ntkt.Numberofdevice2);
                 OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Create_date>", ntkt.Create_date.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-                OpmWordHandler.FindAndReplace(wordApp, "<ntkt.KT2%>", Math.Round((ntkt.Numberofdevice+ ntkt.Numberofdevice2)*0.02, 0, MidpointRounding.AwayFromZero));
+                OpmWordHandler.FindAndReplace(wordApp, "<ntkt.KT2%>", Math.Round((ntkt.Numberofdevice + ntkt.Numberofdevice2) * 0.02, 0, MidpointRounding.AwayFromZero));
                 OpmWordHandler.FindAndReplace(wordApp, "<ntkt.KT0.2%>", Math.Round((ntkt.Numberofdevice + ntkt.Numberofdevice2) * 0.002, 0, MidpointRounding.AwayFromZero));
 
                 OpmWordHandler.FindAndReplace(wordApp, "<ntkt.Date_BBNTKT>", ntkt.Date_BBNTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
@@ -583,37 +566,36 @@ namespace OPM.WordHandler
                 //Tạo file BLHĐ trong thư mục D:\OPM
                 string folder = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number);
                 Directory.CreateDirectory(folder);
-                try
-                {
-                    myDoc.SaveAs2(ref filename);
-                    MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
-                    myDoc.Close();
-                    wordApp.Quit();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
+                myDoc.SaveAs2(ref filename);
+                MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                myDoc.Close();
+                wordApp.Quit();
+                return filename.ToString();
             }
-            else
+            catch (Exception e)
             {
-                MessageBox.Show("Không tìm thấy Mẫu 9. Biên bản kiểm tra kỹ thuật.doc! ");
+                MessageBox.Show(e.Message);
+                return e.Message;
             }
-            return filename.ToString();
         }
         //Tạo mẫu 8
         public static string Temp08_NTKTRequest(string id)
         {
-            NTKT_Thanh ntkt = new NTKT_Thanh(id);
-            PO_Thanh po = new PO_Thanh(ntkt.Id_po);
-            Contract contract = new Contract(po.Id_contract);
-            object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\YCNTKT_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number,ntkt.Id.Replace('/', '-'));
-            WordOffice.Application wordApp = new WordOffice.Application();
-            object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
             object path = @"D:\OPM\Template\Mẫu 8. De nghi NTKT.docx";
-            if (File.Exists(path.ToString()))
+            if (!File.Exists(path.ToString()))
             {
+                MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                return string.Format(@"Không tìm thấy {0}", path.ToString());
+            }
+            try
+            {
+                NTKT_Thanh ntkt = new NTKT_Thanh(id);
+                PO_Thanh po = new PO_Thanh(ntkt.Id_po);
+                Contract contract = new Contract(po.Id_contract);
+                object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\Mẫu 8.YCNTKT_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number, ntkt.Id.Replace('/', '-'));
+                WordOffice.Application wordApp = new WordOffice.Application();
+                object missing = Missing.Value;
+                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -643,27 +625,21 @@ namespace OPM.WordHandler
                 //Tạo file BLHĐ trong thư mục D:\OPM
                 string folder = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number);
                 Directory.CreateDirectory(folder);
-                try
-                {
-                    myDoc.SaveAs2(ref filename);
-                    MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
-                    myDoc.Close();
-                    wordApp.Quit();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
+                myDoc.SaveAs2(ref filename);
+                MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                myDoc.Close();
+                wordApp.Quit();
+                return filename.ToString();
             }
-            else
+            catch (Exception e)
             {
-                MessageBox.Show("Mẫu 8. De nghi NTKT.docx! ");
+                MessageBox.Show(e.Message);
+                return e.Message;
             }
-            return filename.ToString();
         }
 
         //Tạo mẫu 3
-        public static void Word_POConfirm(string id,string ConfirmPO_Number,string txbIDContract)
+        public static void Word_POConfirm(string id, string ConfirmPO_Number, string txbIDContract)
         {
             PO_Thanh po = new PO_Thanh(id);
             Contract contract = new Contract(po.Id_contract);
@@ -681,7 +657,7 @@ namespace OPM.WordHandler
             //Check xem forder đã đc khởi tạo hay chưa?
             //Nếu chưa khởi tạo thì tiên hành khởi tạo
             string FoderName = String.Format(po.Id);
-            string strPODirectory = DriveName + "OPM\\"+po.Id_contract.Trim().Replace('/', '-') + "\\" +po.Po_number.Trim().Replace('/', '-') + "\\" + FoderName.Trim().Replace('/', '-'); 
+            string strPODirectory = DriveName + "OPM\\" + po.Id_contract.Trim().Replace('/', '-') + "\\" + po.Po_number.Trim().Replace('/', '-') + "\\" + FoderName.Trim().Replace('/', '-');
             if (!Directory.Exists(strPODirectory))
             {
                 Directory.CreateDirectory(strPODirectory);
@@ -723,11 +699,11 @@ namespace OPM.WordHandler
                 Microsoft.Office.Interop.Word.Table tab = myDoc.Tables[3];
                 Delivery_PO po1 = new Delivery_PO();
                 DataTable dt_PO = new DataTable();
-                if(po1.CheckDelivery_PO(ConfirmPO_Number, id) == 1)
+                if (po1.CheckDelivery_PO(ConfirmPO_Number, id) == 1)
                 {
                     string sql = po1.querySQL(ConfirmPO_Number);
                     DataTable table1 = OPMDBHandler.ExecuteQuery(sql);
-                    for (int i = 2; i < table1.Rows.Count - 1 ; i++)
+                    for (int i = 2; i < table1.Rows.Count - 1; i++)
                     {
                         Object objMiss = Missing.Value;
                         tab.Rows.Add(ref objMiss);
@@ -844,7 +820,7 @@ namespace OPM.WordHandler
             //Check xem forder đã đc khởi tạo hay chưa?
             //Nếu chưa khởi tạo thì tiên hành khởi tạo
             string FoderName = String.Format(po.Id);
-            string strPODirectory = DriveName + "OPM\\" +po.Id_contract.Trim().Replace('/', '-') + "\\"+ po.Po_number.Trim().Replace('/', '-') + "\\" + FoderName.Trim().Replace('/', '-');
+            string strPODirectory = DriveName + "OPM\\" + po.Id_contract.Trim().Replace('/', '-') + "\\" + po.Po_number.Trim().Replace('/', '-') + "\\" + FoderName.Trim().Replace('/', '-');
             if (!Directory.Exists(strPODirectory))
             {
                 Directory.CreateDirectory(strPODirectory);
@@ -895,15 +871,20 @@ namespace OPM.WordHandler
         //Tạo mẫu 3
         public static string Temp3_CreatPOConfirm(string id)
         {
-            PO_Thanh po = new PO_Thanh(id);
-            Contract contract = new Contract(po.Id_contract);
-            object filename = string.Format(@"D:\OPM\{0}\{1}\XacnhanPO_{2}.docx", contract.Id.Trim().Replace('/', '-'),po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
-            WordOffice.Application wordApp = new WordOffice.Application();
-            object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
             object path = @"D:\OPM\Template\Mẫu 3. VB xác nhận hiệu lực đơn hàng.docx";
-            if (File.Exists(path.ToString()))
+            if (!File.Exists(path.ToString()))
             {
+                MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                return string.Format(@"Không tìm thấy {0}", path.ToString());
+            }
+            try
+            {
+                PO_Thanh po = new PO_Thanh(id);
+                Contract contract = new Contract(po.Id_contract);
+                object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 3. XacnhanPO_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
+                WordOffice.Application wordApp = new WordOffice.Application();
+                object missing = Missing.Value;
+                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -915,7 +896,7 @@ namespace OPM.WordHandler
                                     ref missing, ref missing, ref missing, ref missing);
                 myDoc.Activate();
                 //find and replace
-                OpmWordHandler.FindAndReplace(wordApp, "<Ngày tháng năm>", string.Format("ngày {0} tháng {1} năm {2}",DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year));
+                OpmWordHandler.FindAndReplace(wordApp, "<Ngày tháng năm>", string.Format("ngày {0} tháng {1} năm {2}", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year));
                 //OpmWordHandler.FindAndReplace(wordApp, "<Now>", contract.Activedate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 OpmWordHandler.FindAndReplace(wordApp, "<ConfirmPO_Number>", po.Confirmpo_number);
                 //OpmWordHandler.FindAndReplace(wordApp, "<Signed_Date>", contract.Datesigned.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
@@ -932,37 +913,34 @@ namespace OPM.WordHandler
                 //Tạo file BLHĐ trong thư mục D:\OPM
                 string folder = string.Format(@"D:\OPM\{0}\{1}", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'));
                 Directory.CreateDirectory(folder);
-                try
-                {
-                    myDoc.SaveAs2(ref filename);
-                    MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
+                myDoc.SaveAs2(ref filename);
+                MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
                 myDoc.Close();
                 wordApp.Quit();
+                return filename.ToString();
             }
-            else
+            catch (Exception e)
             {
-                MessageBox.Show("Không tìm thấy bản mẫu 3.docx! ");
+                MessageBox.Show(e.Message);
+                return e.Message;
             }
-            return filename.ToString();
         }
-
-
         //Tạo mẫu 1
         public static string Temp1_CreatContractGuarantee(string id)
         {
-            Contract contract = new Contract(id);
-            object filename = string.Format(@"D:\OPM\{0}\BLHD_{0}.docx", id.Trim().Replace('/', '-'));
-            WordOffice.Application wordApp = new WordOffice.Application();
-            object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
             object path = @"D:\OPM\Template\Mẫu 1. Đề nghị mở bảo lãnh thực hiện HĐ.docx";
-            if (File.Exists(path.ToString()))
+            if (!File.Exists(path.ToString()))
             {
+                MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                return string.Format(@"Không tìm thấy {0}", path.ToString());
+            }
+            try
+            {
+                Contract contract = new Contract(id);
+                object filename = string.Format(@"D:\OPM\{0}\Mẫu 1. BLHD_{0}.docx", id.Trim().Replace('/', '-'));
+                WordOffice.Application wordApp = new WordOffice.Application();
+                object missing = Missing.Value;
+                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -984,23 +962,17 @@ namespace OPM.WordHandler
                 //Tạo file BLHĐ trong thư mục D:\OPM
                 string folder = string.Format(@"D:\OPM\{0}", id.Trim().Replace('/', '-'));
                 Directory.CreateDirectory(folder);
-                try
-                {
-                    myDoc.SaveAs2(ref filename);
-                    MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
-                    myDoc.Close();
-                    wordApp.Quit();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
+                myDoc.SaveAs2(ref filename);
+                MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                myDoc.Close();
+                wordApp.Quit();
+                return filename.ToString();
             }
-            else
+            catch (Exception e)
             {
-                MessageBox.Show("Không tìm thấy bản mẫu 1! ");
+                MessageBox.Show(e.Message);
+                return e.Message;
             }
-            return filename.ToString();
         }
         public static void FindAndReplace(WordOffice.Application wordApp, object ToFindText, object replaceWithText)
         {
@@ -1139,7 +1111,7 @@ namespace OPM.WordHandler
                 wordApp.Quit();
                 MessageBox.Show("File Xác Nhận Đơn Hàng Đã Được Created!");
             }
-            catch(Exception)
+            catch (Exception)
             {
                 myWordDoc.Close();
                 wordApp.Quit();
@@ -1149,7 +1121,7 @@ namespace OPM.WordHandler
 
 
         // tạo chứng chỉ phần mềm
-        public static void Create_Sofware_Certificate_Template(object filename, object SaveAs, string idContract, string pOnumber, string KHMS,string idNTKT, float numoD)
+        public static void Create_Sofware_Certificate_Template(object filename, object SaveAs, string idContract, string pOnumber, string KHMS, string idNTKT, float numoD)
         {
             WordOffice.Application wordApp = new WordOffice.Application();
             object missing = Missing.Value;
@@ -1261,7 +1233,7 @@ namespace OPM.WordHandler
             }
         }
         //Mẫu 19
-        public static void Word_DPCNKTCL(string txbIDContract,string txbPOName, string txbIdDP, string diaChi, string mahangHD,string tenhangHD, string maHangSP, string tenHangSP, string soLuong, string GhiChu)
+        public static void Word_DPCNKTCL(string txbIDContract, string txbPOName, string txbIdDP, string diaChi, string mahangHD, string tenhangHD, string maHangSP, string tenHangSP, string soLuong, string GhiChu)
         {
             //Khởi tạo vào check forder
             string DriveName = "";
@@ -1276,12 +1248,12 @@ namespace OPM.WordHandler
             }
             //Check xem forder đã đc khởi tạo hay chưa?
             //Nếu chưa khởi tạo thì tiên hành khởi tạo
-            string strPODirectory = DriveName + "OPM\\" +txbIDContract.Trim().Replace('/', '-') + "\\" +txbPOName.Trim().Replace('/', '-') + "\\" +txbIdDP.Trim().Replace('/', '-');
+            string strPODirectory = DriveName + "OPM\\" + txbIDContract.Trim().Replace('/', '-') + "\\" + txbPOName.Trim().Replace('/', '-') + "\\" + txbIdDP.Trim().Replace('/', '-');
             if (!Directory.Exists(strPODirectory))
             {
                 Directory.CreateDirectory(strPODirectory);
             }
-            object filename = strPODirectory + @"\Kiem tra CL_"+ diaChi+".docx";
+            object filename = strPODirectory + @"\Kiem tra CL_" + diaChi + ".docx";
             WordOffice.Application wordApp = new WordOffice.Application();
             object missing = Missing.Value;
             WordOffice.Document myDoc = null;
@@ -1324,7 +1296,7 @@ namespace OPM.WordHandler
             }
         }
         //Mẫu 20
-        public static void Word_DPCNCL(string txbIDContract, string txbPOName,string txbPOCode, string txbIdDP, string diaChi, string mahangHD, string tenhangHD, string maHangSP, string tenHangSP, string soLuong, string GhiChu)
+        public static void Word_DPCNCL(string txbIDContract, string txbPOName, string txbPOCode, string txbIdDP, string diaChi, string mahangHD, string tenhangHD, string maHangSP, string tenHangSP, string soLuong, string GhiChu)
         {
             //Khởi tạo vào check forder
             string DriveName = "";

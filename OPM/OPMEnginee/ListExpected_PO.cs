@@ -1,6 +1,5 @@
 ﻿using OPM.DBHandler;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -28,10 +27,10 @@ namespace OPM.OPMEnginee
         {
             IdPO = row["id_po"].ToString();
             IdProvince = row["id_province"].ToString();
-            NumberOfDevice = (row["numberofdevice"]==null|| row["numberofdevice"]==DBNull.Value)? 0:int.Parse(row["numberofdevice"].ToString());
-            NameOfDevice = (row["nameofdevice"] == null || row["nameofdevice"] == DBNull.Value) ? "":row["nameofdevice"].ToString();
+            NumberOfDevice = (row["numberofdevice"] == null || row["numberofdevice"] == DBNull.Value) ? 0 : int.Parse(row["numberofdevice"].ToString());
+            NameOfDevice = (row["nameofdevice"] == null || row["nameofdevice"] == DBNull.Value) ? "" : row["nameofdevice"].ToString();
         }
-        public ListExpected_PO(){}
+        public ListExpected_PO() { }
         public ListExpected_PO(string idPO, string idProvince)
         {
             IdPO = idPO;

@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace OPM.OPMEnginee
 {
-    class Packagelist: IPackageList
+    class Packagelist : IPackageList
     {
         private string _year;
         private string _po_number;
         private string _province;
         private int _number;
-        private List<string> _serial =  new List<string>();
+        private List<string> _serial = new List<string>();
 
         public Packagelist()
         {
@@ -48,7 +47,7 @@ namespace OPM.OPMEnginee
         {
             return _serial[index];
         }
-        
+
         public List<string> GetListSerial()
         {
             List<string> xlCloneSerial = new List<string>(_serial);

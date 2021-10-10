@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OPM.ExcelHandler
+﻿namespace OPM.ExcelHandler
 {
     interface IExcelHandler
     {

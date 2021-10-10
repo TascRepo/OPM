@@ -1,8 +1,6 @@
 ﻿using OPM.DBHandler;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 namespace OPM.OPMEnginee
 {
@@ -21,12 +19,12 @@ namespace OPM.OPMEnginee
         private string _mrGD_CSKH_Landline;
         private string _mrGD_CSKH_LandlineExt;
 
- //       private string _idProvince;
- //       private string _deviceName;
+        //       private string _idProvince;
+        //       private string _deviceName;
         private float _numberOfDevice;
- //       private string _typeOfDevice;
- //       private string _deliverDateExpected;
- //       private string _emailRequeststatus;
+        //       private string _typeOfDevice;
+        //       private string _deliverDateExpected;
+        //       private string _emailRequeststatus;
         private string _createDate;
 
         /*Add New*/
@@ -187,7 +185,7 @@ namespace OPM.OPMEnginee
         }
         public int GetObjectNTKTGUI(string strIdNTKT, ref NTKT nTKT)
         {
-            string strQueryOne = "SELECT t1.id,t1.id_po, t1.deliver_date_expected, t1.email_request_status, t2.po_number, t2.id_contract, t3.KHMS FROM NTKT t1 join PO t2 ON t1.id_po =t2.id join Contract t3 ON t2.id_Contract =t3.id where t1.id = " +"'"+ strIdNTKT + "'";
+            string strQueryOne = "SELECT t1.id,t1.id_po, t1.deliver_date_expected, t1.email_request_status, t2.po_number, t2.id_contract, t3.KHMS FROM NTKT t1 join PO t2 ON t1.id_po =t2.id join Contract t3 ON t2.id_Contract =t3.id where t1.id = " + "'" + strIdNTKT + "'";
             DataSet ds = new DataSet();
             int ret = OPMDBHandler.fQuerryData(strQueryOne, ref ds);
             if (0 != ds.Tables.Count)

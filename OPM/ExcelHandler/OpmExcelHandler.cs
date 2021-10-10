@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using WordOffice = Microsoft.Office.Interop.Word;
-using ExcelOffice = Microsoft.Office.Interop.Excel;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using System.Data;
-using System.Text.RegularExpressions;
-using ExcelDataReader;
-using OPM.OPMEnginee;
+﻿using ExcelDataReader;
 using Microsoft.Office.Interop.Excel;
+using OPM.OPMEnginee;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using ExcelOffice = Microsoft.Office.Interop.Excel;
 
 namespace OPM.ExcelHandler
 {
@@ -142,10 +140,10 @@ namespace OPM.ExcelHandler
                 items.Add(xName);
 
             }
-            
+
             GC.Collect();
             GC.WaitForPendingFinalizers();
-            
+
             xlWorkbook.Close();
             Marshal.ReleaseComObject(xlWorkbook);
 
@@ -356,18 +354,18 @@ namespace OPM.ExcelHandler
                 string xName = xlWorksheet.Name.ToString();
                 int rowCount = xlRange.Rows.Count;
                 int colCount = xlRange.Columns.Count;
-                string nameOfD= Convert.ToString((xlRange.Cells[3, 11] as ExcelOffice.Range).Text);
+                string nameOfD = Convert.ToString((xlRange.Cells[3, 11] as ExcelOffice.Range).Text);
                 for (int i = 11; i <= rowCount; i++)
                 {
                     string index = Convert.ToString((xlRange.Cells[i, 1] as ExcelOffice.Range).Text);
-                    if (string.Empty != index )
+                    if (string.Empty != index)
                     {
                         ListExpPO listExpPO = new ListExpPO();
                         string strName = Convert.ToString((xlRange.Cells[i, 2] as ExcelOffice.Range).Text);
                         string idProvine = convertToUnSign3(strName.Trim());
                         idProvine = idProvine.Replace(" ", "");
                         string strNofD = Convert.ToString((xlRange.Cells[i, 11] as ExcelOffice.Range).Text);
-                        if(strNofD.Trim() == "-")
+                        if (strNofD.Trim() == "-")
                         {
                             continue;
                         }
@@ -428,7 +426,7 @@ namespace OPM.ExcelHandler
             }
         }
         //show data on datagridview
-        public static int fReadExcelFilePO2(string fname,ref System.Data.DataTable dt)
+        public static int fReadExcelFilePO2(string fname, ref System.Data.DataTable dt)
         {
             ExcelOffice.Range xlRange = null;
             ExcelOffice.Workbook xlWorkbook = null;
@@ -547,14 +545,14 @@ namespace OPM.ExcelHandler
                 return 0;
             }
         }
-        public static int FindAndReplace(string filename,string filesave, string idDp, string idContract, string site, string dateRequest, string dateOut, string addressB, string purpose, string accountanceCode, string numOfD)
+        public static int FindAndReplace(string filename, string filesave, string idDp, string idContract, string site, string dateRequest, string dateOut, string addressB, string purpose, string accountanceCode, string numOfD)
         {
             object m = Type.Missing;
             ExcelOffice.Range xlRange = null;
             ExcelOffice.Workbook xlWorkbook = null;
             ExcelOffice.Application xlApp = null;
             ExcelOffice._Worksheet xlWorksheet = null;
-            
+
             try
             {
 
@@ -563,7 +561,7 @@ namespace OPM.ExcelHandler
                 xlWorksheet = (ExcelOffice._Worksheet)xlWorkbook.Sheets[1];
                 xlRange = xlWorksheet.UsedRange;
 
-                bool success =(bool) xlRange.Replace("<IdDP>",idDp,XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true,m,m,m);
+                bool success = (bool)xlRange.Replace("<IdDP>", idDp, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
                 bool success1 = (bool)xlRange.Replace("<IdContract>", idContract, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
                 bool success2 = (bool)xlRange.Replace("<dateRequest>", dateRequest, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
                 bool success3 = (bool)xlRange.Replace("<dateOut>", dateOut, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
@@ -576,7 +574,7 @@ namespace OPM.ExcelHandler
                 ExcelOffice.Range xlRange2 = xlWorksheet.UsedRange;
 
                 //bool success8 = (bool)xlRange2.Replace("<NumOfD>", numOfD, XlLookAt.xlWhole, XlSearchOrder.xlByRows, true, m, m, m);
-                xlWorkbook.SaveAs(filesave+"\\DP_"+ idDp + ".xlsx", Type.Missing, Type.Missing,
+                xlWorkbook.SaveAs(filesave + "\\DP_" + idDp + ".xlsx", Type.Missing, Type.Missing,
             Type.Missing, Type.Missing, Type.Missing, XlSaveAsAccessMode.xlExclusive,
             Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
 

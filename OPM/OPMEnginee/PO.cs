@@ -2,11 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 namespace OPM.OPMEnginee
 {
-    class PO :ContractObj, IPO
+    class PO : ContractObj, IPO
     {
         private string _idPO;
         private string _idContract;
@@ -111,7 +110,7 @@ namespace OPM.OPMEnginee
                 objPO.IdContract = (string)ds.Tables[0].Rows[0].ItemArray[1];
                 objPO.PONumber = (string)ds.Tables[0].Rows[0].ItemArray[2];
                 objPO.NumberOfDevice = (float)(double)ds.Tables[0].Rows[0].ItemArray[3];
-                objPO.DateCreatedPO =((DateTime)ds.Tables[0].Rows[0].ItemArray[4]).ToString("yyyy-MM-dd");  
+                objPO.DateCreatedPO = ((DateTime)ds.Tables[0].Rows[0].ItemArray[4]).ToString("yyyy-MM-dd");
                 objPO.DurationConfirmPO = ((DateTime)ds.Tables[0].Rows[0].ItemArray[6]).ToString("yyyy-MM-dd");
                 objPO.DefaultActiveDatePO = ((DateTime)ds.Tables[0].Rows[0].ItemArray[7]).ToString("yyyy-MM-dd");
                 objPO.DeadLinePO = ((DateTime)ds.Tables[0].Rows[0].ItemArray[8]).ToString("yyyy-MM-dd");
@@ -142,7 +141,7 @@ namespace OPM.OPMEnginee
                 objPO.DefaultActiveDatePO = ((DateTime)ds.Tables[0].Rows[0].ItemArray[7]).ToString("yyyy-MM-dd");
                 objPO.DeadLinePO = ((DateTime)ds.Tables[0].Rows[0].ItemArray[8]).ToString("yyyy-MM-dd");
                 objPO.TotalValuePO = (float)(double)ds.Tables[0].Rows[0].ItemArray[12];
-                    
+
             }
             else
             {
@@ -159,7 +158,7 @@ namespace OPM.OPMEnginee
 
             if (0 != ds.Tables.Count)
             {
-                namecontract= (string)ds.Tables[0].Rows[0].ItemArray[0];
+                namecontract = (string)ds.Tables[0].Rows[0].ItemArray[0];
                 KHMS = ds.Tables[0].Rows[0].ItemArray[1].ToString();
             }
             else

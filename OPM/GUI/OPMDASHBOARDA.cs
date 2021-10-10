@@ -1,18 +1,15 @@
-﻿using System;
+﻿using OPM.OPMEnginee;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using OPM.DBHandler;
-using OPM.OPMEnginee;
 
 namespace OPM.GUI
 {
     public partial class OPMDASHBOARDA : Form
     {
-        
+
         //private TreeNode selectedNode;
 
         //public PurchaseOderInfor objPurchaseOder= new PurchaseOderInfor();
@@ -43,7 +40,7 @@ namespace OPM.GUI
             treeViewOPM.SelectedNode = treeViewOPM.Nodes[list[0]];
             treeViewOPM.SelectedNode.Expand();
             treeViewOPM.SelectedNode.ForeColor = Color.Blue;
-            for (int i=1;i<= list.Count-1;i++)
+            for (int i = 1; i <= list.Count - 1; i++)
             {
                 treeViewOPM.SelectedNode = treeViewOPM.SelectedNode.Nodes[list[i]];
                 treeViewOPM.SelectedNode.Expand();
@@ -54,7 +51,7 @@ namespace OPM.GUI
         {
             DataSet ds = new DataSet();
             int ret = CatalogAdmin.GetCatalogNodes(ref ds, parent);
-            if(0 == ret)
+            if (0 == ret)
             {
                 return 0;
             }
@@ -67,7 +64,7 @@ namespace OPM.GUI
                     Name = dr["ctlID"].ToString()
                 };
                 string strChildID = dr["ctlID"].ToString();
-                if(null == parentNode|| null==parent)
+                if (null == parentNode || null == parent)
                 {
                     InitCatalogAdmin(node, strChildID);
                     treeViewOPM.Nodes.Add(node);
@@ -76,13 +73,13 @@ namespace OPM.GUI
                 {
                     InitCatalogAdmin(node, strChildID);
                     parentNode.Nodes.Add(node);
-                }    
+                }
             }
             return 1;
         }
         private Form activeForm = null;
-        
-        private  void OpenChidForm(Form childForm)
+
+        private void OpenChidForm(Form childForm)
         {
             ClearPanel();
             if (null != activeForm) activeForm.Close();
@@ -132,7 +129,7 @@ namespace OPM.GUI
                 {
                     //MessageBox.Show("No Parent Node");
                 }
-                string[] temp = strNodeID.Split('_',2);
+                string[] temp = strNodeID.Split('_', 2);
                 temp[0] += "_";
                 /*Get Detail Infor On Database*/
                 switch (temp[0])
@@ -202,7 +199,7 @@ namespace OPM.GUI
             {
                 OpenContractForm();
             }
-            else if(e.ClickedItem.Name == "toolStripMenuNew")
+            else if (e.ClickedItem.Name == "toolStripMenuNew")
             {
                 //Do Something
                 PurchaseOderInfor purchaseOderInfor = new PurchaseOderInfor();
@@ -248,7 +245,7 @@ namespace OPM.GUI
             purchaseOderInfor.requestDasckboardOpenExcel = new PurchaseOderInfor.RequestDasckboardOpenExcel(OpenExcel);
             ContractInfoChildForm contractInfoChildForm = new ContractInfoChildForm();
             contractInfoChildForm.requestDashBoardOpendescriptionForm = new ContractInfoChildForm.RequestDashBoardOpenDescriptionForm(OpenDescription);
-            strIDContract = strIDContract.Replace("Contract_","");
+            strIDContract = strIDContract.Replace("Contract_", "");
             purchaseOderInfor.SetTxbIDContract(strIDContract);
             purchaseOderInfor.po = new DBHandler.PO_Thanh(idPO);
             OpenChidForm(purchaseOderInfor);
@@ -257,7 +254,7 @@ namespace OPM.GUI
         }
         public void OpenNTKTForm(string strKHMS, string strContractID, string strPOID, string strPONumber)
         {
-            NTKTInfor nTKTInfor= new NTKTInfor();
+            NTKTInfor nTKTInfor = new NTKTInfor();
             nTKTInfor.requestDashBoardPurchaseOderForm = new NTKTInfor.RequestDashBoardPurchaseOderForm(OpenPOForm);
             nTKTInfor.UpdateCatalogPanel = new NTKTInfor.UpdateCatalogDelegate(GetCatalogvalue);
             nTKTInfor.po = new DBHandler.PO_Thanh(strPOID);
@@ -289,7 +286,7 @@ namespace OPM.GUI
             OpenChidForm(handlerExcel);
             return;
         }
-        public void OpenDpForm(string idPO, string idContract,String PONumber)
+        public void OpenDpForm(string idPO, string idContract, String PONumber)
         {
             DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
             PO po = new PO();

@@ -3,21 +3,17 @@ using System;
 using System.Data;
 using System.Globalization;
 using System.Windows.Forms;
-using WordOffice = Microsoft.Office.Interop.Word;
-using System.Reflection;
-using OPM.WordHandler;
-using System.IO;
 
 namespace OPM.OPMEnginee
 {
     public partial class NTKT_Thanh
     {
-        private string id= "1320/ANSV-DO";
-        private string id_po= "5120/CUVT-KV";
-        private int numberofdevice=0;
-        private DateTime deliver_date_expected=DateTime.Now;
-        private string email_request_status="";
-        private DateTime create_date=DateTime.Now;
+        private string id = "1320/ANSV-DO";
+        private string id_po = "5120/CUVT-KV";
+        private int numberofdevice = 0;
+        private DateTime deliver_date_expected = DateTime.Now;
+        private string email_request_status = "";
+        private DateTime create_date = DateTime.Now;
         private int numberofdevice2 = 0;
         private int number = 1;
         private DateTime date_BBKTKT = DateTime.Now;
@@ -54,8 +50,8 @@ namespace OPM.OPMEnginee
         {
             Id = row["id"].ToString();
             Id_po = row["id_po"].ToString();
-            Numberofdevice = (row["numberofdevice"]==null|| row["numberofdevice"]==DBNull.Value)?0:(int)row["numberofdevice"];
-            Deliver_date_expected = (row["deliver_date_expected"]==null|| row["deliver_date_expected"]==DBNull.Value)?DateTime.Now:(DateTime)row["deliver_date_expected"];
+            Numberofdevice = (row["numberofdevice"] == null || row["numberofdevice"] == DBNull.Value) ? 0 : (int)row["numberofdevice"];
+            Deliver_date_expected = (row["deliver_date_expected"] == null || row["deliver_date_expected"] == DBNull.Value) ? DateTime.Now : (DateTime)row["deliver_date_expected"];
             Email_request_status = (row["email_request_status"] == null || row["email_request_status"] == DBNull.Value) ? "" : row["email_request_status"].ToString();
             Create_date = (row["create_date"] == null || row["create_date"] == DBNull.Value) ? DateTime.Now : (DateTime)row["create_date"];
             Numberofdevice2 = (row["Numberofdevice2"] == null || row["Numberofdevice2"] == DBNull.Value) ? 0 : (int)row["Numberofdevice2"];
@@ -68,7 +64,7 @@ namespace OPM.OPMEnginee
         {
             string query = string.Format("SELECT * FROM dbo.NTKT WHERE id = '{0}'", id);
             DataTable table = OPMDBHandler.ExecuteQuery(query);
-            if(table.Rows.Count > 0)
+            if (table.Rows.Count > 0)
             {
                 DataRow row = table.Rows[0];
                 Id = id;

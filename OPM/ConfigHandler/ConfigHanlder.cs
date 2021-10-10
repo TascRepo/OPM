@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-
-namespace OPM.ConfigHandler
+﻿namespace OPM.ConfigHandler
 {
-    class ConfigHanlder:IConfig
+    class ConfigHanlder : IConfig
     {
         public void ReadCatalogInfoFromFile()
         {

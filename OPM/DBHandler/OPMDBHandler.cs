@@ -126,7 +126,7 @@ namespace OPM.DBHandler
                 CloseConnection(con);
                 return 1;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 CloseConnection(con);
                 MessageBox.Show("Không kết nối được CSDL!");
@@ -149,10 +149,10 @@ namespace OPM.DBHandler
                 adapter.Dispose();
                 command.Dispose();
                 CloseConnection(con);
-                if(0 == ds.Tables[0].Rows.Count)
+                if (0 == ds.Tables[0].Rows.Count)
                 {
                     return 0;
-                }    
+                }
                 return 1;
 
             }

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using OPM.OPMEnginee;
 using OPM.WordHandler;
-using OPM.OPMEnginee;
-using OPM.EmailHandler;
-using System.IO;
-using System.Data;
+using System;
+using System.Windows.Forms;
 namespace OPM.GUI
 {
-    
+
 
     public partial class ContractInfoChildForm : Form
     {
@@ -188,7 +185,7 @@ namespace OPM.GUI
             {
                 Contract.Delete(tbContract.Text.Trim());
                 UpdateCatalogPanel("Contract");
-            } 
+            }
             SetItemValue_Default();
             btnEdit.Enabled = true;
             btnSave.Enabled = true;
@@ -226,14 +223,14 @@ namespace OPM.GUI
             btnNewPO.Enabled = true;
             //Cập nhật trên TreeView
             OpmWordHandler.Temp1_CreatContractGuarantee(tbContract.Text.Trim());
-            UpdateCatalogPanel("Contract_"+tbContract.Text.Trim());
+            UpdateCatalogPanel("Contract_" + tbContract.Text.Trim());
         }
 
         private void txbGaranteeValue_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                tbxGaranteeValue.Text = ((0.01*int.Parse(txbGaranteeValue.Text)) * double.Parse(tbxValueContract.Text)).ToString();
+                tbxGaranteeValue.Text = ((0.01 * int.Parse(txbGaranteeValue.Text)) * double.Parse(tbxValueContract.Text)).ToString();
             }
             catch
             {
@@ -269,13 +266,13 @@ namespace OPM.GUI
         }
         private void btnContractAnnex_Click(object sender, EventArgs e)
         {
-            
+
             Contract contract = new Contract();
             contract.Id = tbContract.Text;
             if (!Contract.Exist(tbContract.Text.Trim()))
             {
                 contract.Insert();
-                UpdateCatalogPanel(tbContract.Text.Trim());
+                UpdateCatalogPanel("Contract_"+tbContract.Text.Trim());
             }
             Contract_Goods_Form contract_Goods_Form = new Contract_Goods_Form();
             contract_Goods_Form.setValueContractForm = SetValueContract;

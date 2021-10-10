@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
 namespace OPM.OPMEnginee
@@ -29,7 +28,7 @@ namespace OPM.OPMEnginee
             Name = (row["ctlName"] == null || row["ctlName"] == DBNull.Value) ? "" : row["ctlName"].ToString();
             Parent = (row["ctlParent"] == null || row["ctlParent"] == DBNull.Value) ? "" : row["ctlParent"].ToString();
         }
-        public CatalogAdmin(string id) 
+        public CatalogAdmin(string id)
         {
             Id = id;
             string query = string.Format("SELECT * FROM dbo.CatalogAdmin WHERE ctlID = '{0}'", id);
@@ -80,12 +79,12 @@ namespace OPM.OPMEnginee
         }
         public static List<string> PathToContractNodeFromCurrentNode(string nameOfCurrentNode)
         {
-            if (!CatalogAdmin.Exist(nameOfCurrentNode)) 
+            if (!CatalogAdmin.Exist(nameOfCurrentNode))
             {
                 MessageBox.Show(string.Format(@"Không có Node {0} trong CSDL!", nameOfCurrentNode));
                 return null;
             }
-            List<string> list = new List<string>(); 
+            List<string> list = new List<string>();
             string nameOfParentNode = nameOfCurrentNode;
             do
             {
@@ -93,6 +92,23 @@ namespace OPM.OPMEnginee
                 CatalogAdmin catalog = new CatalogAdmin(nameOfParentNode);
                 nameOfParentNode = catalog.Parent;
             } while (nameOfParentNode != "Contract");
+            return list;
+        }
+        public static DataTable Table()
+        {
+            string query = string.Format("SELECT ctlID, ctlname, ctlparent FROM dbo.CatalogAdmin Order By ctlname");
+            return OPMDBHandler.ExecuteQuery(query);
+        }
+
+        public static List<CatalogAdmin> CatalogAdmins()
+        {
+            string query = string.Format("SELECT * FROM dbo.CatalogAdmin Order By ctlname");
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            List<CatalogAdmin> list = new List<CatalogAdmin>();
+            foreach (DataRow row in table.Rows)
+            {
+                list.Add(new CatalogAdmin(row));
+            }
             return list;
         }
     }

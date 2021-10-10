@@ -50,7 +50,7 @@ namespace OPM.GUI
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
-            if(tbxNumber.Text != null)
+            if (tbxNumber.Text != null)
             {
                 //ContractInfoChildForm contractInfoChildForm = new ContractInfoChildForm();
                 //contractInfoChildForm.RequestDashBoardOpenPOForm = new ContractInfoChildForm.RequestDashBoardOpenChildForm(OP)
