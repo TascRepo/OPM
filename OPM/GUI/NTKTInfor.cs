@@ -123,5 +123,18 @@ namespace OPM.GUI
             NTKT_Thanh.Delete(tbxId.Text.Trim());
             UpdateCatalogPanel("PO_" + tbxId_po.Text.Trim());
         }
+
+        private void textBoxIdNumber_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (textBoxIdNumber.Text.Trim() != null) tbxId.Text = int.Parse(textBoxIdNumber.Text.Trim()).ToString() + @"/ANSV-DO";
+            }
+            catch
+            {
+                MessageBox.Show("Nhập đúng dạng số!");
+                return;
+            }
+        }
     }
 }
