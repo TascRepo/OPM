@@ -30,6 +30,9 @@ namespace OPM.GUI
         private void InitializeComponent()
         {
             this.panel24 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.textBoxNote = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.textBoxPricePreTax = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,6 +45,12 @@ namespace OPM.GUI
             this.panel26 = new System.Windows.Forms.Panel();
             this.textBoxUnit = new System.Windows.Forms.TextBox();
             this.lblFoodTableSatus = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.tbxOrigin = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.tbxManufacturer = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel27 = new System.Windows.Forms.Panel();
             this.tbxCode = new System.Windows.Forms.TextBox();
             this.lblFoodTableName = new System.Windows.Forms.Label();
@@ -49,7 +58,6 @@ namespace OPM.GUI
             this.tbxName = new System.Windows.Forms.TextBox();
             this.lblFoodTableID = new System.Windows.Forms.Label();
             this.dtgvGoods = new System.Windows.Forms.DataGridView();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel31 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAddOrUpdate = new System.Windows.Forms.Button();
@@ -63,17 +71,14 @@ namespace OPM.GUI
             this.panel7 = new System.Windows.Forms.Panel();
             this.textBoxTotalPricePreTax = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.tbxManufacturer = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.tbxOrigin = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.panel24.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel26.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.panel27.SuspendLayout();
             this.panel28.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvGoods)).BeginInit();
@@ -82,13 +87,12 @@ namespace OPM.GUI
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.panel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel24
             // 
             this.panel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.panel24.Controls.Add(this.panel10);
             this.panel24.Controls.Add(this.panel3);
             this.panel24.Controls.Add(this.panel2);
             this.panel24.Controls.Add(this.panel1);
@@ -103,11 +107,43 @@ namespace OPM.GUI
             this.panel24.Size = new System.Drawing.Size(394, 376);
             this.panel24.TabIndex = 2;
             // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.textBoxNote);
+            this.panel10.Controls.Add(this.label8);
+            this.panel10.Location = new System.Drawing.Point(7, 338);
+            this.panel10.Margin = new System.Windows.Forms.Padding(2);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(380, 37);
+            this.panel10.TabIndex = 3;
+            // 
+            // textBoxNote
+            // 
+            this.textBoxNote.Location = new System.Drawing.Point(131, 9);
+            this.textBoxNote.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxNote.Name = "textBoxNote";
+            this.textBoxNote.Size = new System.Drawing.Size(233, 23);
+            this.textBoxNote.TabIndex = 2;
+            this.textBoxNote.Text = "01 Dây cáp mạng UTP dài 1,0 mét với giắc kết nối RJ-45 tại hai đầu; 01 Bộ chuyển " +
+    "đổi điện AC/DC dải rộng với chiều dài dây tối thiểu là 1,5 mét; 01 Tài liệu hướn" +
+    "g dẫn sử dụng bằng tiếng Việt.";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(5, 10);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 16);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Ghi chú";
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.textBoxPricePreTax);
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Location = new System.Drawing.Point(7, 333);
+            this.panel3.Location = new System.Drawing.Point(7, 300);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(380, 37);
@@ -138,7 +174,7 @@ namespace OPM.GUI
             // 
             this.panel2.Controls.Add(this.textBoxQuantity);
             this.panel2.Controls.Add(this.labelQuantity);
-            this.panel2.Location = new System.Drawing.Point(7, 293);
+            this.panel2.Location = new System.Drawing.Point(7, 262);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(380, 37);
@@ -169,7 +205,7 @@ namespace OPM.GUI
             // 
             this.panel1.Controls.Add(this.textBoxPriceUnit);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(6, 253);
+            this.panel1.Location = new System.Drawing.Point(6, 224);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(380, 37);
@@ -200,7 +236,7 @@ namespace OPM.GUI
             // 
             this.panel26.Controls.Add(this.textBoxUnit);
             this.panel26.Controls.Add(this.lblFoodTableSatus);
-            this.panel26.Location = new System.Drawing.Point(6, 212);
+            this.panel26.Location = new System.Drawing.Point(6, 186);
             this.panel26.Margin = new System.Windows.Forms.Padding(2);
             this.panel26.Name = "panel26";
             this.panel26.Size = new System.Drawing.Size(380, 37);
@@ -227,11 +263,75 @@ namespace OPM.GUI
             this.lblFoodTableSatus.TabIndex = 1;
             this.lblFoodTableSatus.Text = "Đơn vị tính";
             // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.tbxOrigin);
+            this.panel9.Controls.Add(this.label7);
+            this.panel9.Location = new System.Drawing.Point(7, 148);
+            this.panel9.Margin = new System.Windows.Forms.Padding(2);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(380, 37);
+            this.panel9.TabIndex = 2;
+            // 
+            // tbxOrigin
+            // 
+            this.tbxOrigin.Location = new System.Drawing.Point(131, 7);
+            this.tbxOrigin.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxOrigin.Multiline = true;
+            this.tbxOrigin.Name = "tbxOrigin";
+            this.tbxOrigin.Size = new System.Drawing.Size(234, 23);
+            this.tbxOrigin.TabIndex = 4;
+            this.tbxOrigin.Text = "Việt Nam";
+            this.tbxOrigin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(5, 11);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(54, 16);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Xuất xứ";
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.tbxManufacturer);
+            this.panel8.Controls.Add(this.label2);
+            this.panel8.Location = new System.Drawing.Point(7, 110);
+            this.panel8.Margin = new System.Windows.Forms.Padding(2);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(380, 37);
+            this.panel8.TabIndex = 2;
+            // 
+            // tbxManufacturer
+            // 
+            this.tbxManufacturer.Location = new System.Drawing.Point(131, 7);
+            this.tbxManufacturer.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxManufacturer.Multiline = true;
+            this.tbxManufacturer.Name = "tbxManufacturer";
+            this.tbxManufacturer.Size = new System.Drawing.Size(234, 23);
+            this.tbxManufacturer.TabIndex = 4;
+            this.tbxManufacturer.Text = "VNPT Technology";
+            this.tbxManufacturer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(5, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(89, 16);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Nhà sản xuất";
+            // 
             // panel27
             // 
             this.panel27.Controls.Add(this.tbxCode);
             this.panel27.Controls.Add(this.lblFoodTableName);
-            this.panel27.Location = new System.Drawing.Point(7, 91);
+            this.panel27.Location = new System.Drawing.Point(7, 72);
             this.panel27.Margin = new System.Windows.Forms.Padding(2);
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(380, 37);
@@ -266,7 +366,7 @@ namespace OPM.GUI
             this.panel28.Location = new System.Drawing.Point(7, 2);
             this.panel28.Margin = new System.Windows.Forms.Padding(2);
             this.panel28.Name = "panel28";
-            this.panel28.Size = new System.Drawing.Size(380, 87);
+            this.panel28.Size = new System.Drawing.Size(380, 69);
             this.panel28.TabIndex = 1;
             // 
             // tbxName
@@ -275,7 +375,7 @@ namespace OPM.GUI
             this.tbxName.Margin = new System.Windows.Forms.Padding(2);
             this.tbxName.Multiline = true;
             this.tbxName.Name = "tbxName";
-            this.tbxName.Size = new System.Drawing.Size(236, 77);
+            this.tbxName.Size = new System.Drawing.Size(236, 58);
             this.tbxName.TabIndex = 4;
             this.tbxName.Text = "Thiết bị đầu cuối ONT loại  (2FE/GE + Wifi Dualband) tương thích hệ thống GPON cù" +
     "ng đầy đủ license và phụ kiện kèm theo (không bao gồm dây nhảy quang, bản quyền " +
@@ -297,8 +397,6 @@ namespace OPM.GUI
             // 
             this.dtgvGoods.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvGoods.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvGoods.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.STT});
             this.dtgvGoods.Location = new System.Drawing.Point(17, 67);
             this.dtgvGoods.Margin = new System.Windows.Forms.Padding(2);
             this.dtgvGoods.Name = "dtgvGoods";
@@ -306,13 +404,6 @@ namespace OPM.GUI
             this.dtgvGoods.RowTemplate.Height = 33;
             this.dtgvGoods.Size = new System.Drawing.Size(700, 481);
             this.dtgvGoods.TabIndex = 0;
-            // 
-            // STT
-            // 
-            this.STT.HeaderText = "STT";
-            this.STT.Name = "STT";
-            this.STT.ReadOnly = true;
-            this.STT.ToolTipText = "Số thứ tự";
             // 
             // panel31
             // 
@@ -452,70 +543,6 @@ namespace OPM.GUI
             this.label6.TabIndex = 1;
             this.label6.Text = "Tổng giá";
             // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.tbxManufacturer);
-            this.panel8.Controls.Add(this.label2);
-            this.panel8.Location = new System.Drawing.Point(7, 132);
-            this.panel8.Margin = new System.Windows.Forms.Padding(2);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(380, 37);
-            this.panel8.TabIndex = 2;
-            // 
-            // tbxManufacturer
-            // 
-            this.tbxManufacturer.Location = new System.Drawing.Point(131, 7);
-            this.tbxManufacturer.Margin = new System.Windows.Forms.Padding(2);
-            this.tbxManufacturer.Multiline = true;
-            this.tbxManufacturer.Name = "tbxManufacturer";
-            this.tbxManufacturer.Size = new System.Drawing.Size(234, 23);
-            this.tbxManufacturer.TabIndex = 4;
-            this.tbxManufacturer.Text = "VNPT Technology";
-            this.tbxManufacturer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(5, 11);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 16);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Nhà sản xuất";
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.tbxOrigin);
-            this.panel9.Controls.Add(this.label7);
-            this.panel9.Location = new System.Drawing.Point(7, 173);
-            this.panel9.Margin = new System.Windows.Forms.Padding(2);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(380, 37);
-            this.panel9.TabIndex = 2;
-            // 
-            // tbxOrigin
-            // 
-            this.tbxOrigin.Location = new System.Drawing.Point(131, 7);
-            this.tbxOrigin.Margin = new System.Windows.Forms.Padding(2);
-            this.tbxOrigin.Multiline = true;
-            this.tbxOrigin.Name = "tbxOrigin";
-            this.tbxOrigin.Size = new System.Drawing.Size(234, 23);
-            this.tbxOrigin.TabIndex = 4;
-            this.tbxOrigin.Text = "Việt Nam";
-            this.tbxOrigin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(5, 11);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(54, 16);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Xuất xứ";
-            // 
             // Contract_Goods_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -530,6 +557,8 @@ namespace OPM.GUI
             this.Text = "Bảng Hợp đồng - Hàng hoá";
             this.Load += new System.EventHandler(this.Contract_Goods_Form_Load);
             this.panel24.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -538,6 +567,10 @@ namespace OPM.GUI
             this.panel1.PerformLayout();
             this.panel26.ResumeLayout(false);
             this.panel26.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.panel27.ResumeLayout(false);
             this.panel27.PerformLayout();
             this.panel28.ResumeLayout(false);
@@ -551,10 +584,6 @@ namespace OPM.GUI
             this.panel6.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -593,12 +622,14 @@ namespace OPM.GUI
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.TextBox textBoxTotalPricePreTax;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.TextBox tbxOrigin;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.TextBox tbxManufacturer;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.TextBox textBoxNote;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -512,6 +512,7 @@ namespace OPM.WordHandler
                 NTKT_Thanh ntkt = new NTKT_Thanh(id);
                 PO_Thanh po = new PO_Thanh(ntkt.Id_po);
                 Contract contract = new Contract(po.Id_contract);
+                Contract_Goods contract_Goods = new Contract_Goods(po.Id_contract);
                 Site_Info site = new Site_Info(contract.Id_siteA);
                 object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\Mẫu 9. BBKTKT_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number, ntkt.Id.Replace('/', '-'));
                 WordOffice.Application wordApp = new WordOffice.Application();
@@ -535,6 +536,19 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.KHMS>", contract.KHMS);
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.Namecontract>", contract.Namecontract);
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.Id_siteA>", contract.Id_siteA);
+
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Name>", contract_Goods.Name);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Origin>", contract_Goods.Origin);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Manufacturer>", contract_Goods.Manufacturer);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Code>", contract_Goods.Code);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Unit>", contract_Goods.Unit);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PriceUnit>", contract_Goods.PriceUnit);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Quantity>", contract_Goods.Quantity);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PricePreTax>", contract_Goods.PricePreTax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Tax>", contract_Goods.Tax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PriceAfterTax>", contract_Goods.PriceAfterTax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Note>", contract_Goods.Note);
+
 
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Po_number>", po.Po_number);
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Id>", po.Id);

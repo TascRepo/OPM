@@ -40,11 +40,11 @@ namespace OPM.GUI
             nTKT.Date_BBNTKT = dtpDate_BBNTKT.Value;
             nTKT.Date_CNBQPM = dateTimePickerCNBQPM.Value;
             nTKT.InsertOrUpdate();
+            UpdateCatalogPanel("NTKT_" + nTKT.Id.ToString());
             OpmWordHandler.Temp08_NTKTRequest(nTKT.Id);
             OpmWordHandler.Temp09_BBKTKT(nTKT.Id);
             OpmWordHandler.Temp10_CNBQPM(nTKT.Id);
             OpmWordHandler.Temp11_BBNTKT(nTKT.Id);
-            UpdateCatalogPanel("NTKT_" + nTKT.Id.ToString());
             //- Tạo file D:\OPM\''Tên HĐ''\"Tên PO"\"Tên NTKT".docx
             //- tạo và thông báo tạo thành công hay không file Yêu cầu NTKT
         }

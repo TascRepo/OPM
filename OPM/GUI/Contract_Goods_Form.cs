@@ -31,6 +31,7 @@ namespace OPM.GUI
             textBoxPriceUnit.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "PriceUnit"));
             textBoxQuantity.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "Quantity"));
             textBoxPricePreTax.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "PricePreTax"));
+            textBoxNote.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "Note"));
         }
         void LoadDataGridView()
         {
@@ -48,6 +49,7 @@ namespace OPM.GUI
             //dtgvGoods.Columns["Quantity"].Width = 120;
             dtgvGoods.Columns["PricePreTax"].HeaderText = "Thành tiền";
             //dtgvGoods.Columns["PricePreTax"].Width = 120;
+            dtgvGoods.Columns["Note"].HeaderText = "Ghi chú";
             dtgvGoods.Columns["IdContract"].Visible = false;
             dtgvGoods.Columns["Unit"].Visible = false;
             dtgvGoods.Columns["Tax"].Visible = false;
@@ -73,7 +75,7 @@ namespace OPM.GUI
 
         private void btnGoodsAdd_Click(object sender, EventArgs e)
         {
-            Contract_Goods goods = new Contract_Goods(Tag.ToString(), tbxName.Text.Trim(), tbxOrigin.Text.Trim(), tbxManufacturer.Text.Trim(), tbxCode.Text.Trim(), textBoxUnit.Text.Trim(), double.Parse(textBoxPriceUnit.Text.Trim()), int.Parse(textBoxQuantity.Text.Trim()));
+            Contract_Goods goods = new Contract_Goods(Tag.ToString(), tbxName.Text.Trim(), tbxOrigin.Text.Trim(), tbxManufacturer.Text.Trim(), tbxCode.Text.Trim(), textBoxUnit.Text.Trim(), double.Parse(textBoxPriceUnit.Text.Trim()), int.Parse(textBoxQuantity.Text.Trim()),textBoxNote.Text.Trim());
             if (goods.Exist()) goods.Update();
             else
             {

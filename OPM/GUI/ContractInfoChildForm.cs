@@ -217,13 +217,13 @@ namespace OPM.GUI
                 return;
             }
             contract.Update();
+            UpdateCatalogPanel("Contract_" + tbContract.Text.Trim());
             State(true);
             btnContractAnnex.Enabled = true;
             btnRemove.Enabled = true;
             btnNewPO.Enabled = true;
             //Cập nhật trên TreeView
             OpmWordHandler.Temp1_CreatContractGuarantee(tbContract.Text.Trim());
-            UpdateCatalogPanel("Contract_" + tbContract.Text.Trim());
         }
 
         private void txbGaranteeValue_TextChanged(object sender, EventArgs e)
@@ -266,7 +266,7 @@ namespace OPM.GUI
         }
         private void btnContractAnnex_Click(object sender, EventArgs e)
         {
-
+            btnSave.Enabled = true;
             Contract contract = new Contract();
             contract.Id = tbContract.Text;
             if (!Contract.Exist(tbContract.Text.Trim()))

@@ -16,6 +16,7 @@ namespace OPM.OPMEnginee
         string unit = "Bộ";
         double priceUnit = 0;
         int quantity = 0;
+        string note = "";
         //double pricePreTax = 0;
         //double tax=0;
         //double priceAfterTax = 0;
@@ -30,9 +31,10 @@ namespace OPM.OPMEnginee
         public double PricePreTax { get => priceUnit * quantity; }
         public double Tax { get => 0.1 * priceUnit * quantity; }
         public double PriceAfterTax { get => 1.1 * priceUnit * quantity; }
+        public string Note { get => note; set => note = value; }
 
         public Contract_Goods() { }
-        public Contract_Goods(string idContract, string name, string origin = "Việt Nam", string manufacturer = "VNPT Technology", string code = "iGate GW020-H", string unit = "Bộ", double priceUnit = 0, int quantity = 0)
+        public Contract_Goods(string idContract, string name, string origin, string manufacturer = "VNPT Technology", string code = "iGate GW020-H", string unit = "Bộ", double priceUnit = 0, int quantity = 0,string note="")
         {
             IdContract = idContract;
             Name = name;
@@ -42,18 +44,20 @@ namespace OPM.OPMEnginee
             Unit = unit;
             PriceUnit = priceUnit;
             Quantity = quantity;
+            Note = note;
         }
         public Contract_Goods(DataRow row)
         {
             if (row == null) return;
             IdContract = row["idContract"].ToString();
             Name = row["name"].ToString();
-            Origin = row["Origin"].ToString();
-            Manufacturer = row["Manufacturer"].ToString();
-            Code = row["Code"].ToString();
-            Unit = row["unit"].ToString();
-            PriceUnit = (double)row["priceUnit"];
-            Quantity = (int)row["quantity"];
+            Origin = (row["Origin"]==null|| row["Origin"]==DBNull.Value)?"Việt Nam":row["Origin"].ToString();
+            Manufacturer = (row["Manufacturer"] == null || row["Manufacturer"] == DBNull.Value) ? "VNPT Technology" : row["Manufacturer"].ToString();
+            Code = (row["Code"] ==null|| row["Code"] ==DBNull.Value)? "iGate GW020 - H":row["Code"].ToString();
+            Unit = (row["Unit"] == null || row["Unit"] == DBNull.Value) ? "Bộ" : row["Unit"].ToString();
+            PriceUnit = (row["PriceUnit"] == null || row["PriceUnit"] == DBNull.Value) ? 0 : (double)row["PriceUnit"];
+            Quantity = (row["Quantity"] == null || row["Quantity"] == DBNull.Value) ? 0 : (int)row["Quantity"];
+            Note= (row["Note"] == null || row["Note"] == DBNull.Value) ? "":row["Note"].ToString();
         }
         public Contract_Goods(int id)
         {
@@ -66,12 +70,13 @@ namespace OPM.OPMEnginee
                     DataRow row = table.Rows[0];
                     IdContract = row["idContract"].ToString();
                     Name = row["name"].ToString();
-                    Origin = row["Origin"].ToString();
-                    Manufacturer = row["Manufacturer"].ToString();
-                    Code = row["Code"].ToString();
-                    Unit = row["unit"].ToString();
-                    PriceUnit = (double)row["priceUnit"];
-                    Quantity = (int)row["quantity"];
+                    Origin = (row["Origin"] == null || row["Origin"] == DBNull.Value) ? "Việt Nam" : row["Origin"].ToString();
+                    Manufacturer = (row["Manufacturer"] == null || row["Manufacturer"] == DBNull.Value) ? "VNPT Technology" : row["Manufacturer"].ToString();
+                    Code = (row["Code"] == null || row["Code"] == DBNull.Value) ? "iGate GW020 - H" : row["Code"].ToString();
+                    Unit = (row["Unit"] == null || row["Unit"] == DBNull.Value) ? "Bộ" : row["Unit"].ToString();
+                    PriceUnit = (row["PriceUnit"] == null || row["PriceUnit"] == DBNull.Value) ? 0 : (double)row["PriceUnit"];
+                    Quantity = (row["Quantity"] == null || row["Quantity"] == DBNull.Value) ? 0 : (int)row["Quantity"];
+                    Note = (row["Note"] == null || row["Note"] == DBNull.Value) ? "" : row["Note"].ToString();
                 }
             }
             catch
@@ -79,6 +84,32 @@ namespace OPM.OPMEnginee
                 MessageBox.Show("Không lấy được dữ liệu từ bảng dbo.Contract_Goods!");
             }
         }
+        public Contract_Goods(string idContract)
+        {
+            string query = string.Format("SELECT * FROM dbo.Contract_Goods WHERE idContract = '{0}'", idContract);
+            try
+            {
+                DataTable table = OPMDBHandler.ExecuteQuery(query);
+                if (table.Rows.Count > 0)
+                {
+                    DataRow row = table.Rows[0];
+                    IdContract = row["idContract"].ToString();
+                    Name = row["name"].ToString();
+                    Origin = (row["Origin"] == null || row["Origin"] == DBNull.Value) ? "Việt Nam" : row["Origin"].ToString();
+                    Manufacturer = (row["Manufacturer"] == null || row["Manufacturer"] == DBNull.Value) ? "VNPT Technology" : row["Manufacturer"].ToString();
+                    Code = (row["Code"] == null || row["Code"] == DBNull.Value) ? "iGate GW020 - H" : row["Code"].ToString();
+                    Unit = (row["Unit"] == null || row["Unit"] == DBNull.Value) ? "Bộ" : row["Unit"].ToString();
+                    PriceUnit = (row["PriceUnit"] == null || row["PriceUnit"] == DBNull.Value) ? 0 : (double)row["PriceUnit"];
+                    Quantity = (row["Quantity"] == null || row["Quantity"] == DBNull.Value) ? 0 : (int)row["Quantity"];
+                    Note = (row["Note"] == null || row["Note"] == DBNull.Value) ? "" : row["Note"].ToString();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Không lấy được dữ liệu từ bảng dbo.Contract_Goods!");
+            }
+        }
+
         public Contract_Goods(string idContract, string name)
         {
             string query = string.Format("SELECT * FROM dbo.Contract_Goods WHERE idContract = '{0}' and name = N'{1}'", idContract, name);
@@ -88,14 +119,15 @@ namespace OPM.OPMEnginee
                 if (table.Rows.Count > 0)
                 {
                     DataRow row = table.Rows[0];
-                    IdContract = idContract;
-                    Name = name;
-                    Origin = row["Origin"].ToString();
-                    Manufacturer = row["Manufacturer"].ToString();
-                    Code = row["Code"].ToString();
-                    Unit = row["unit"].ToString();
-                    PriceUnit = (double)row["priceUnit"];
-                    Quantity = (int)row["quantity"];
+                    IdContract = row["idContract"].ToString();
+                    Name = row["name"].ToString();
+                    Origin = (row["Origin"] == null || row["Origin"] == DBNull.Value) ? "Việt Nam" : row["Origin"].ToString();
+                    Manufacturer = (row["Manufacturer"] == null || row["Manufacturer"] == DBNull.Value) ? "VNPT Technology" : row["Manufacturer"].ToString();
+                    Code = (row["Code"] == null || row["Code"] == DBNull.Value) ? "iGate GW020 - H" : row["Code"].ToString();
+                    Unit = (row["Unit"] == null || row["Unit"] == DBNull.Value) ? "Bộ" : row["Unit"].ToString();
+                    PriceUnit = (row["PriceUnit"] == null || row["PriceUnit"] == DBNull.Value) ? 0 : (double)row["PriceUnit"];
+                    Quantity = (row["Quantity"] == null || row["Quantity"] == DBNull.Value) ? 0 : (int)row["Quantity"];
+                    Note = (row["Note"] == null || row["Note"] == DBNull.Value) ? "" : row["Note"].ToString();
                 }
             }
             catch
@@ -181,7 +213,7 @@ namespace OPM.OPMEnginee
         }
         public void Insert()
         {
-            string query = string.Format(@"INSERT INTO dbo.Contract_Goods(idContract,name, origin, manufacturer, code, unit, priceUnit, quantity) VALUES('{0}',N'{1}',N'{2}',N'{3}',N'{4}',N'{5}',{6},{7})", idContract, name, origin, manufacturer, code, unit, priceUnit, quantity);
+            string query = string.Format(@"INSERT INTO dbo.Contract_Goods(idContract,name, origin, manufacturer, code, unit, priceUnit, quantity, note) VALUES('{0}',N'{1}',N'{2}',N'{3}',N'{4}',N'{5}',{6},{7},N'{8}')", idContract, name, origin, manufacturer, code, unit, priceUnit, quantity, note);
             OPMDBHandler.ExecuteNonQuery(query);
         }
         public void Delete()
@@ -194,6 +226,11 @@ namespace OPM.OPMEnginee
             string query = string.Format(@"DELETE FROM dbo.Contract_Goods WHERE idContract = '{0}' and name = N'{1}'", idContract, name);
             OPMDBHandler.ExecuteNonQuery(query);
         }
+        public void Update()
+        {
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.Contract_Goods SET origin = N'{2}', manufacturer = N'{3}', code = N'{4}', unit = N'{5}', priceUnit = {6}, quantity = {7}, note = N'{8}' WHERE idContract = '{0}' and name = N'{1}'", idContract, name, origin, manufacturer, code, unit, priceUnit, quantity, note);
+            OPMDBHandler.ExecuteNonQuery(query);
+        }
         public static double TotalPricePreTax(string idContract)
         {
             string query = string.Format("SELECT SUM(priceUnit*quantity) FROM dbo.Contract_Goods where idContract = '{0}'", idContract);
@@ -201,11 +238,5 @@ namespace OPM.OPMEnginee
             double ret = (tam == null || tam == DBNull.Value) ? 0 : (double)tam;
             return ret;
         }
-        public void Update()
-        {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.Contract_Goods SET origin = N'{2}', manufacturer = N'{3}', code = N'{4}', unit = N'{5}', priceUnit = {6}, quantity = {7} WHERE idContract = '{0}' and name = N'{1}'", idContract, name, origin, manufacturer, code, unit, priceUnit, quantity);
-            OPMDBHandler.ExecuteNonQuery(query);
-        }
-
     }
 }

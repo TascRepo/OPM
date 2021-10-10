@@ -317,7 +317,7 @@ namespace OPM.GUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(440, 473);
+            this.ClientSize = new System.Drawing.Size(440, 525);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.txbNumberOfDevice2);
             this.Controls.Add(this.btnBack);
