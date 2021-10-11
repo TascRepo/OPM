@@ -22,7 +22,7 @@ namespace OPM.GUI
             textBoxPriceUnit.DataBindings.Clear();
             textBoxQuantity.DataBindings.Clear();
             textBoxPricePreTax.DataBindings.Clear();
-
+            textBoxNote.DataBindings.Clear();
             tbxName.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "Name"));
             tbxCode.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "Code"));
             tbxOrigin.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "Origin"));
