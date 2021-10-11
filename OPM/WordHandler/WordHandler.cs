@@ -768,9 +768,9 @@ namespace OPM.WordHandler
         }
 
         //Tạo mẫu 3
-        public static void Word_POConfirm(string id, string ConfirmPO_Number, string txbIDContract)
+        public static void Word_POConfirm(string txbKHMS, string txbIDContract, string txbPOCode, string txbPOName, string confirmpo_number, string TimePickerDateCreatedPO, string confirmpo_datecreated, string confirmpo_dateactive)
         {
-            PO_Thanh po = new PO_Thanh(id);
+            PO_Thanh po = new PO_Thanh(txbPOCode);
             Contract contract = new Contract(po.Id_contract);
             //Khởi tạo vào check forder
             string DriveName = "";
@@ -791,7 +791,7 @@ namespace OPM.WordHandler
             {
                 Directory.CreateDirectory(strPODirectory);
             }
-            object filename = strPODirectory + @"\Xac nhan don hang.docx";
+            object filename = strPODirectory + @"\1.Xac nhan don hang.docx";
             //object filename = string.Format(DriveName + @"\OPM\{0}\{1}\XacnhanPO_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
             WordOffice.Application wordApp = new WordOffice.Application();
             object missing = Missing.Value;
@@ -812,6 +812,7 @@ namespace OPM.WordHandler
                 myDoc.Activate();
                 OpmWordHandler.FindAndReplace(wordApp, "<dd>", " " + DateTime.Now.ToString("dd") + " ");
                 OpmWordHandler.FindAndReplace(wordApp, "<MM>", " " + DateTime.Now.ToString("MM") + " ");
+                OpmWordHandler.FindAndReplace(wordApp, "<mm>", " " + DateTime.Now.ToString("MM") + " ");
                 OpmWordHandler.FindAndReplace(wordApp, "<yyyy>", " " + DateTime.Now.ToString("yyyy") + " ");
                 OpmWordHandler.FindAndReplace(wordApp, "<ConfirmPO_Number>", po.Confirmpo_number);
                 //OpmWordHandler.FindAndReplace(wordApp, "<Signed_Date>", contract.Datesigned.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
@@ -824,13 +825,21 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<PO_ID>", po.Id);
                 OpmWordHandler.FindAndReplace(wordApp, "<PO_DateCreated>", po.Datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 OpmWordHandler.FindAndReplace(wordApp, "<PO_ConfirmDateActive>", po.Confirmpo_datecreated.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<confirmpo_number>", confirmpo_number);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbPOName>", txbPOName);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbIDContract>", txbIDContract);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbKHMS>", txbKHMS);
+                OpmWordHandler.FindAndReplace(wordApp, "<confirmpo_datecreated>", confirmpo_datecreated);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbPOCode>", txbPOCode);
+                OpmWordHandler.FindAndReplace(wordApp, "<confirmpo_dateactive>", confirmpo_dateactive);
+                OpmWordHandler.FindAndReplace(wordApp, "<TimePickerDateCreatedPO>", TimePickerDateCreatedPO);
                 //FileLocation = path
                 Microsoft.Office.Interop.Word.Table tab = myDoc.Tables[3];
                 Delivery_PO po1 = new Delivery_PO();
                 DataTable dt_PO = new DataTable();
-                if (po1.CheckDelivery_PO(ConfirmPO_Number, id) == 1)
+                if (po1.CheckDelivery_PO(confirmpo_number, txbPOCode) == 1)
                 {
-                    string sql = po1.querySQL(ConfirmPO_Number);
+                    string sql = po1.querySQL(confirmpo_number);
                     DataTable table1 = OPMDBHandler.ExecuteQuery(sql);
                     for (int i = 2; i < table1.Rows.Count - 1; i++)
                     {
@@ -840,7 +849,7 @@ namespace OPM.WordHandler
                         tab.Cell(i, 2).Range.Text = table1.Rows[i][2].ToString();
                         tab.Cell(i, 3).Range.Text = table1.Rows[i][3].ToString();
                         tab.Cell(i, 4).Range.Text = table1.Rows[i][4].ToString();
-                        tab.Cell(i, 5).Range.Text = table1.Rows[i][5].ToString();
+                        tab.Cell(i, 5).Range.Text = table1.Rows[i][5].ToString().Substring(0, 9); 
                     }
                 }
                 myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
@@ -860,10 +869,10 @@ namespace OPM.WordHandler
         //
 
         //Tạo mẫu 4 + 5
-        public static void Word_POTamUng(string id)
+        public static void Word_POTamUng(string txbKHMS, string txbIDContract, string txbPOCode, string txbPOName, string confirmpo_number, string TimePickerDateCreatedPO, string confirmpo_datecreated, string confirmpo_dateactive, string txbValuePO, string bltupo, string txbDurationConfirm,string svbdntt)
         {
-            PO_Thanh po = new PO_Thanh(id);
-            Contract contract = new Contract(po.Id_contract);
+            PO_Thanh po = new PO_Thanh(txbPOCode);
+            Contract contract = new Contract(txbIDContract);
             //Khởi tạo vào check forder
             string DriveName = "";
             DriveInfo[] driveInfos = DriveInfo.GetDrives();
@@ -883,7 +892,7 @@ namespace OPM.WordHandler
             {
                 Directory.CreateDirectory(strPODirectory);
             }
-            object filename = strPODirectory + @"\Van ban de nghi tam ung.docx";
+            object filename = strPODirectory + @"\2.Van ban de nghi tam ung.docx";
             //object filename = string.Format(DriveName + @"\OPM\{0}\{1}\XacnhanPO_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
             WordOffice.Application wordApp = new WordOffice.Application();
             object missing = Missing.Value;
@@ -903,18 +912,19 @@ namespace OPM.WordHandler
                                     ref missing, ref missing, ref missing, ref missing);
                 myDoc.Activate();
                 FindAndReplace(wordApp, "<dd>", " " + DateTime.Now.ToString("dd") + " ");
-                FindAndReplace(wordApp, "<MM>", " " + DateTime.Now.ToString("MM") + " ");
+                FindAndReplace(wordApp, "<mm>", " " + DateTime.Now.ToString("MM") + " ");
                 FindAndReplace(wordApp, "<yyyy>", " " + DateTime.Now.ToString("yyyy") + " ");
-                FindAndReplace(wordApp, "<Number>", " " + po.Confirmpo_number);
-                FindAndReplace(wordApp, "<PO_Name>", " " + po.Po_number);
-                FindAndReplace(wordApp, "<Contract_ID>", " " + contract.Id);
-                FindAndReplace(wordApp, "<Contract_Name>", " " + contract.Namecontract);
-                FindAndReplace(wordApp, "<Signed_DateContract>", " " + po.Dateconfirm.ToString());
-                FindAndReplace(wordApp, "<Signed_DatePO>", " " + po.Datecreated.ToString());
-                FindAndReplace(wordApp, "<Total_Value>", " " + po.Totalvalue);
-                FindAndReplace(wordApp, "<Value_Tamung>", " " + po.Tupo);
-                FindAndReplace(wordApp, "<Site_B>", " " + contract.Id_siteB);
-                FindAndReplace(wordApp, "<Active_Date>", " " + po.Datecreated.ToString());
+                OpmWordHandler.FindAndReplace(wordApp, "<confirmpo_datecreate>", confirmpo_datecreated);
+                OpmWordHandler.FindAndReplace(wordApp, "<confirmpo_number>", confirmpo_number);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbPOName>", txbPOName);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbIDContract>", txbIDContract);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbKHMS>", txbKHMS);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbPOCode>", txbPOCode);
+                OpmWordHandler.FindAndReplace(wordApp, "<TimePickerDateCreatedPO>", TimePickerDateCreatedPO);
+                OpmWordHandler.FindAndReplace(wordApp, "<confirmpo_dateactive>", confirmpo_dateactive);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbValuePO>", txbValuePO);
+                OpmWordHandler.FindAndReplace(wordApp, "<bltupo>", bltupo);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbActiveAfter>", txbDurationConfirm);
                 //Save as
                 myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing,
@@ -931,10 +941,10 @@ namespace OPM.WordHandler
             }
         }
         //Tạo mẫu 6
-        public static void Word_POBaoLanh(string id)
+        public static void Word_POBaoLanh(string txbKHMS, string txbIDContract, string txbPOCode, string txbPOName, string confirmpo_number, string TimePickerDateCreatedPO, string confirmpo_datecreated, string confirmpo_dateactive,string txbValuePO,string bltupo, string txbDurationConfirm)
         {
-            PO_Thanh po = new PO_Thanh(id);
-            Contract contract = new Contract(po.Id_contract);
+            PO_Thanh po = new PO_Thanh(txbPOCode);
+            Contract contract = new Contract(txbIDContract);
             //Khởi tạo vào check forder
             string DriveName = "";
             DriveInfo[] driveInfos = DriveInfo.GetDrives();
@@ -954,7 +964,7 @@ namespace OPM.WordHandler
             {
                 Directory.CreateDirectory(strPODirectory);
             }
-            object filename = strPODirectory + @"\Bao lanh PO.docx";
+            object filename = strPODirectory + @"\3.Bao lanh PO.docx";
             //object filename = string.Format(DriveName + @"\OPM\{0}\{1}\XacnhanPO_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
             WordOffice.Application wordApp = new WordOffice.Application();
             object missing = Missing.Value;
@@ -973,15 +983,17 @@ namespace OPM.WordHandler
                                     ref missing, ref missing, ref missing,
                                     ref missing, ref missing, ref missing, ref missing);
                 myDoc.Activate();
-                FindAndReplace(wordApp, "<PO_Name>", " " + po.Po_number);
-                FindAndReplace(wordApp, "<Contract_ID>", " " + contract.Id);
-                FindAndReplace(wordApp, "<Contract_Name>", " " + contract.Namecontract);
-                FindAndReplace(wordApp, "<Signed_DateContract>", " " + contract.Datesigned.ToString());
-                FindAndReplace(wordApp, "<Signed_DatePO>", " " + contract.Datesigned.ToString());
-                FindAndReplace(wordApp, "<Total_Value>", " " + contract.Valuecontract);
-                FindAndReplace(wordApp, "<Value_Tamung>", " " + po.Tupo);
-                FindAndReplace(wordApp, "<Site_B>", " " + contract.Id_siteB);
-                FindAndReplace(wordApp, "<Active_Date>", " " + po.Dateconfirm.ToString());
+                OpmWordHandler.FindAndReplace(wordApp, "<confirmpo_datecreate>", confirmpo_datecreated);
+                OpmWordHandler.FindAndReplace(wordApp, "<confirmpo_number>", confirmpo_number);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbPOName>", txbPOName);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbIDContract>", txbIDContract);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbKHMS>", txbKHMS);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbPOCode>", txbPOCode);
+                OpmWordHandler.FindAndReplace(wordApp, "<TimePickerDateCreatedPO>", TimePickerDateCreatedPO);
+                OpmWordHandler.FindAndReplace(wordApp, "<confirmpo_dateactive>", confirmpo_dateactive);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbValuePO>", txbValuePO);
+                OpmWordHandler.FindAndReplace(wordApp, "<bltupo>", bltupo);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbActiveAfter>", txbDurationConfirm);
                 //Save as
                 myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing,

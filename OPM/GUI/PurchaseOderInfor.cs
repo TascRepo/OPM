@@ -116,31 +116,8 @@ namespace OPM.GUI
                 //Tạo file xác nhận hợp đồng
                 if (txbnamefileKHGH.Text != "")
                 {
-                    if (po.CheckListDelivery_PO(string.Format(po.Confirmpo_number)))
-                    {
-                        MessageBox.Show(po.Confirmpo_number + "File giao hàng đã tồn tại, không cần import vào");
-                    }
-                    else
-                    {
-                        //Lưu mẫu Comfirm Po vào database
-                        po.InsertOrUpdate_VBConfirmPO(po.Id);
-                        int returnValue = 0;
-                        for (int i = 0; i < dt.Rows.Count - 1; i++)
-                        {
-                            if (dt.Rows[i][2].ToString() != "")
-                            {
-                                returnValue = po.InsertImportFileKHGH(po.Confirmpo_number, dt.Rows[i][1].ToString(), dt.Rows[i][2].ToString(), dt.Rows[i][3].ToString(), dt.Rows[i][4].ToString(), po.Id);
-                            }
-                        }
-                        if (returnValue == 1)
-                        {
-                            MessageBox.Show("Lưu trữ thông tin file giao hàng thành công");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Lưu trữ thông tin file giao hàng thất bại");
-                        }
-                    }
+                    po.InsertOrUpdate_VBConfirmPO(txbPOCode.Text);
+                    OpmWordHandler.Word_POConfirm(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text);
                 }
                 else
                 {
@@ -148,8 +125,11 @@ namespace OPM.GUI
                     {
                         MessageBox.Show(po.Confirmpo_number + "đã có file giao hàng dự kiến, không cần import thêm!");
                     }
+                    else
+                    {
+                        MessageBox.Show(po.Confirmpo_number + "chưa có trong hệ thống, bạn phải bổ sung sau!");
+                    }
                 }
-                OpmWordHandler.Word_POConfirm(po.Id, po.Confirmpo_number, po.Id_contract);
                 //Tạo 3 mẫu văn bản m4,m5,m6
                 if (txbnamefilePO.Text != "")
                 {
@@ -181,8 +161,8 @@ namespace OPM.GUI
                         MessageBox.Show(po.Id + "đã có file phẩn bổ, không cần import thêm!");
                     }
                 }
-                OpmWordHandler.Word_POTamUng(po.Id);
-                OpmWordHandler.Word_POBaoLanh(po.Id);
+                OpmWordHandler.Word_POBaoLanh(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text, txbValuePO.Text, bltupo.Text, txbDurationConfirm.Text);
+                OpmWordHandler.Word_POTamUng(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text, txbValuePO.Text, bltupo.Text, txbDurationConfirm.Text, svbdntt.Text);
             }
             else
             {
@@ -383,7 +363,10 @@ namespace OPM.GUI
             }
 
         }
-        static private DataTable dt = new DataTable();
+        static public DataTable dt = new DataTable();
+        static public DataTable dtkhgh = new DataTable();
+        static public string IDVBXN = "";
+        static public string IPPO = "";
         private void button3_Click(object sender, EventArgs e)
         {
             //openFileExcel.Multiselect = true;
@@ -394,10 +377,13 @@ namespace OPM.GUI
                 {
                     txbnamefileKHGH.Text = openFileExcel.FileName;
                     string filename = openFileExcel.FileName;
-                    int ret = OpmExcelHandler.SaveFileInDelivery_PO(filename, ref dt);
+                    int ret = OpmExcelHandler.SaveFileInDelivery_PO(filename, ref dtkhgh);
                     if (ret == 1)
                     {
-                        MessageBox.Show("Import thành công");
+                        IDVBXN = confirmpo_number.Text;
+                        IPPO = txbPOCode.Text;
+                        KHGH_PO kHGH_PO = new KHGH_PO();
+                        kHGH_PO.ShowDialog();
                     }
                     else
                     {

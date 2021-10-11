@@ -84,6 +84,8 @@ namespace OPM.GUI
             this.label22 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.txbnamefileKHGH = new System.Windows.Forms.TextBox();
+            this.svbdntt = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPO)).BeginInit();
             this.SuspendLayout();
             // 
@@ -154,18 +156,18 @@ namespace OPM.GUI
             // 
             this.txbPOName.Location = new System.Drawing.Point(132, 89);
             this.txbPOName.Name = "txbPOName";
-            this.txbPOName.Size = new System.Drawing.Size(80, 23);
+            this.txbPOName.Size = new System.Drawing.Size(45, 23);
             this.txbPOName.TabIndex = 1;
             this.txbPOName.Text = "POX";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(223, 97);
+            this.label4.Location = new System.Drawing.Point(201, 92);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 15);
+            this.label4.Size = new System.Drawing.Size(50, 15);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Ngày";
+            this.label4.Text = "Ngày ký";
             // 
             // label5
             // 
@@ -268,7 +270,7 @@ namespace OPM.GUI
             // 
             this.txbValuePO.Location = new System.Drawing.Point(132, 223);
             this.txbValuePO.Name = "txbValuePO";
-            this.txbValuePO.Size = new System.Drawing.Size(255, 23);
+            this.txbValuePO.Size = new System.Drawing.Size(77, 23);
             this.txbValuePO.TabIndex = 1;
             this.txbValuePO.Text = "10000000000";
             // 
@@ -453,7 +455,7 @@ namespace OPM.GUI
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(409, 225);
+            this.label17.Location = new System.Drawing.Point(215, 228);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(31, 15);
             this.label17.TabIndex = 17;
@@ -470,6 +472,7 @@ namespace OPM.GUI
             // 
             // confirmpo_datecreated
             // 
+            this.confirmpo_datecreated.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.confirmpo_datecreated.Location = new System.Drawing.Point(264, 249);
             this.confirmpo_datecreated.Name = "confirmpo_datecreated";
             this.confirmpo_datecreated.Size = new System.Drawing.Size(180, 23);
@@ -486,6 +489,7 @@ namespace OPM.GUI
             // 
             // tupo_datecreated
             // 
+            this.tupo_datecreated.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.tupo_datecreated.Location = new System.Drawing.Point(264, 311);
             this.tupo_datecreated.Name = "tupo_datecreated";
             this.tupo_datecreated.Size = new System.Drawing.Size(180, 23);
@@ -502,6 +506,7 @@ namespace OPM.GUI
             // 
             // bltupo_datecreated
             // 
+            this.bltupo_datecreated.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.bltupo_datecreated.Location = new System.Drawing.Point(264, 337);
             this.bltupo_datecreated.Name = "bltupo_datecreated";
             this.bltupo_datecreated.Size = new System.Drawing.Size(180, 23);
@@ -518,6 +523,7 @@ namespace OPM.GUI
             // 
             // confirmpo_dateactive
             // 
+            this.confirmpo_dateactive.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.confirmpo_dateactive.Location = new System.Drawing.Point(264, 282);
             this.confirmpo_dateactive.Name = "confirmpo_dateactive";
             this.confirmpo_dateactive.Size = new System.Drawing.Size(180, 23);
@@ -574,12 +580,32 @@ namespace OPM.GUI
             this.txbnamefileKHGH.Size = new System.Drawing.Size(187, 23);
             this.txbnamefileKHGH.TabIndex = 19;
             // 
+            // svbdntt
+            // 
+            this.svbdntt.Location = new System.Drawing.Point(339, 221);
+            this.svbdntt.Name = "svbdntt";
+            this.svbdntt.Size = new System.Drawing.Size(106, 23);
+            this.svbdntt.TabIndex = 23;
+            this.svbdntt.Text = "XXX/ANSV-TCKT";
+            this.svbdntt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(264, 224);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(69, 15);
+            this.label23.TabIndex = 22;
+            this.label23.Text = "Số VB ĐNTT";
+            // 
             // PurchaseOderInfor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightYellow;
             this.ClientSize = new System.Drawing.Size(498, 578);
+            this.Controls.Add(this.svbdntt);
+            this.Controls.Add(this.label23);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.txbnamefileKHGH);
@@ -703,5 +729,7 @@ namespace OPM.GUI
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox txbnamefileKHGH;
+        private System.Windows.Forms.TextBox svbdntt;
+        private System.Windows.Forms.Label label23;
     }
 }

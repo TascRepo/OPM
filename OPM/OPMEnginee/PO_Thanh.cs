@@ -319,5 +319,19 @@ namespace OPM.DBHandler
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table.Rows.Count > 0;
         }
+        public void DeleteDelivery_PO(string Confirmpo_number)
+        {
+            int result = 0;
+            string query = string.Format("DELETE FROM dbo.Delivery_PO WHERE NumberConfirmPO = '{0}'", Confirmpo_number);
+            try
+            {
+                result = OPMDBHandler.ExecuteNonQuery(query);
+                result = 1;
+            }
+            catch
+            {
+                result = 0;
+            }
+        }
     }
 }
