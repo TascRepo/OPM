@@ -149,7 +149,7 @@ namespace OPM.GUI
                         MessageBox.Show(po.Confirmpo_number + "đã có file giao hàng dự kiến, không cần import thêm!");
                     }
                 }
-                OpmWordHandler.Word_POConfirm(po.Id, po.Confirmpo_number, po.Id_contract);
+                OpmWordHandler.Word_POConfirm(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text);
                 //Tạo 3 mẫu văn bản m4,m5,m6
                 if (txbnamefilePO.Text != "")
                 {

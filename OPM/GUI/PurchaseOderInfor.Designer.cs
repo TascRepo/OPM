@@ -154,18 +154,18 @@ namespace OPM.GUI
             // 
             this.txbPOName.Location = new System.Drawing.Point(132, 89);
             this.txbPOName.Name = "txbPOName";
-            this.txbPOName.Size = new System.Drawing.Size(80, 23);
+            this.txbPOName.Size = new System.Drawing.Size(45, 23);
             this.txbPOName.TabIndex = 1;
             this.txbPOName.Text = "POX";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(223, 97);
+            this.label4.Location = new System.Drawing.Point(201, 92);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 15);
+            this.label4.Size = new System.Drawing.Size(50, 15);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Ngày";
+            this.label4.Text = "Ngày ký";
             // 
             // label5
             // 
