@@ -181,8 +181,8 @@ namespace OPM.GUI
                         MessageBox.Show(po.Id + "đã có file phẩn bổ, không cần import thêm!");
                     }
                 }
-                OpmWordHandler.Word_POTamUng(po.Id);
-                OpmWordHandler.Word_POBaoLanh(po.Id);
+                OpmWordHandler.Word_POBaoLanh(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text, txbValuePO.Text, bltupo.Text, txbDurationConfirm.Text);
+                //OpmWordHandler.Word_POTamUng(po.Id);
             }
             else
             {
