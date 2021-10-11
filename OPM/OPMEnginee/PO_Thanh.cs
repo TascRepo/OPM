@@ -247,7 +247,7 @@ namespace OPM.DBHandler
             {
                 if (Check_VBConfirmPO(id))
                 {
-                    string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.VBConfirmPO SET id_ConfirmPO = '{1}' where id_po = '{3}'", Confirmpo_number, id);
+                    string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.VBConfirmPO SET id_ConfirmPO = '{0}' where id_po = '{1}'", Confirmpo_number, id);
                     OPMDBHandler.ExecuteNonQuery(query);
                     MessageBox.Show(string.Format("Cập nhật thành công văn bản số hiệu {0} trong CSDL!", id));
                 }
@@ -317,6 +317,20 @@ namespace OPM.DBHandler
             string query = string.Format("SELECT * FROM dbo.Delivery_PO WHERE NumberConfirmPO = '{0}'", Confirmpo_number);
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table.Rows.Count > 0;
+        }
+        public void DeleteDelivery_PO(string Confirmpo_number)
+        {
+            int result = 0;
+            string query = string.Format("DELETE FROM dbo.Delivery_PO WHERE NumberConfirmPO = '{0}'", Confirmpo_number);
+            try
+            {
+                result = OPMDBHandler.ExecuteNonQuery(query);
+                result = 1;
+            }
+            catch
+            {
+                result = 0;
+            }
         }
     }
 }
