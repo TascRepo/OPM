@@ -23,6 +23,8 @@ namespace OPM.GUI
             textBoxQuantity.DataBindings.Clear();
             textBoxPricePreTax.DataBindings.Clear();
             textBoxNote.DataBindings.Clear();
+            textBoxLicense.DataBindings.Clear();
+            textBoxName1.DataBindings.Clear();
             tbxName.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "Name"));
             tbxCode.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "Code"));
             tbxOrigin.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "Origin"));
@@ -32,11 +34,13 @@ namespace OPM.GUI
             textBoxQuantity.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "Quantity"));
             textBoxPricePreTax.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "PricePreTax"));
             textBoxNote.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "Note"));
+            textBoxLicense.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "License"));
+            textBoxName1.DataBindings.Add(new Binding("Text", dtgvGoods.DataSource, "License"));
         }
         void LoadDataGridView()
         {
             dtgvGoods.DataSource = Contract_Goods.GetListByIdContract(Tag.ToString());
-            dtgvGoods.Columns["Name"].HeaderText = "Tên hàng";
+            dtgvGoods.Columns["Name"].HeaderText = "Mô tả";
             dtgvGoods.Columns["Origin"].HeaderText = "Xuất xứ";
             dtgvGoods.Columns["Origin"].Visible = false;
             dtgvGoods.Columns["Manufacturer"].HeaderText = "Nhà sản xuất";
@@ -44,12 +48,17 @@ namespace OPM.GUI
             dtgvGoods.Columns["Code"].HeaderText = "Mã hàng";
             dtgvGoods.Columns["Code"].Width = 250;
             dtgvGoods.Columns["PriceUnit"].HeaderText = "Đơn giá";
+            dtgvGoods.Columns["License"].HeaderText = "License";
+            dtgvGoods.Columns["License"].Visible = false;
+            dtgvGoods.Columns["Name1"].HeaderText = "Tên hàng";
+            dtgvGoods.Columns["Name1"].Visible = false;
             //dtgvGoods.Columns["PriceUnit"].Width = 120;
             dtgvGoods.Columns["Quantity"].HeaderText = "Số lượng";
             //dtgvGoods.Columns["Quantity"].Width = 120;
             dtgvGoods.Columns["PricePreTax"].HeaderText = "Thành tiền";
             //dtgvGoods.Columns["PricePreTax"].Width = 120;
             dtgvGoods.Columns["Note"].HeaderText = "Ghi chú";
+            dtgvGoods.Columns["Note"].Visible = false;
             dtgvGoods.Columns["IdContract"].Visible = false;
             dtgvGoods.Columns["Unit"].Visible = false;
             dtgvGoods.Columns["Tax"].Visible = false;
@@ -75,7 +84,7 @@ namespace OPM.GUI
 
         private void btnGoodsAdd_Click(object sender, EventArgs e)
         {
-            Contract_Goods goods = new Contract_Goods(Tag.ToString(), tbxName.Text.Trim(), tbxOrigin.Text.Trim(), tbxManufacturer.Text.Trim(), tbxCode.Text.Trim(), textBoxUnit.Text.Trim(), double.Parse(textBoxPriceUnit.Text.Trim()), int.Parse(textBoxQuantity.Text.Trim()),textBoxNote.Text.Trim());
+            Contract_Goods goods = new Contract_Goods(Tag.ToString(), tbxName.Text.Trim(), tbxOrigin.Text.Trim(), tbxManufacturer.Text.Trim(), tbxCode.Text.Trim(), textBoxUnit.Text.Trim(), double.Parse(textBoxPriceUnit.Text.Trim()), int.Parse(textBoxQuantity.Text.Trim()),textBoxNote.Text.Trim(),textBoxLicense.Text.Trim(), textBoxName1.Text.Trim());
             if (goods.Exist()) goods.Update();
             else
             {
@@ -86,12 +95,12 @@ namespace OPM.GUI
 
         private void btnGoodsDelete_Click(object sender, EventArgs e)
         {
-            if (!Contract_Goods.Exist(Tag.ToString(), tbxName.Text.Trim()))
+            if (!Contract_Goods.Exist(Tag.ToString()))
             {
                 MessageBox.Show("Nhập đúng tên hàng hoá!");
                 return;
             }
-            Contract_Goods.Delete(Tag.ToString(), tbxName.Text.Trim());
+            Contract_Goods.Delete(Tag.ToString());
             LoadDataGridView();
         }
 

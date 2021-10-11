@@ -21,16 +21,17 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
+            WordOffice.Application wordApp = new WordOffice.Application();
+            WordOffice.Document myDoc = null;
             try
             {
                 //NTKT_Thanh ntkt = new NTKT_Thanh(id);
                 PO_Thanh po = new PO_Thanh(id);
                 Contract contract = new Contract(po.Id_contract);
+                Contract_Goods contract_Goods = new Contract_Goods(po.Id_contract);
                 Site_Info site = new Site_Info(contract.Id_siteA);
                 object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 37. BBXNCDLicense_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
-                WordOffice.Application wordApp = new WordOffice.Application();
                 object missing = Missing.Value;
-                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -48,6 +49,21 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.KHMS>", contract.KHMS);
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.Namecontract>", contract.Namecontract);
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.Id_siteA>", contract.Id_siteA);
+
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Name>", contract_Goods.Name);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Origin>", contract_Goods.Origin);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Manufacturer>", contract_Goods.Manufacturer);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Code>", contract_Goods.Code);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Unit>", contract_Goods.Unit);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PriceUnit>", contract_Goods.PriceUnit);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Quantity>", contract_Goods.Quantity);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PricePreTax>", contract_Goods.PricePreTax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Tax>", contract_Goods.Tax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PriceAfterTax>", contract_Goods.PriceAfterTax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Note>", contract_Goods.Note);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.License>", contract_Goods.License);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Name1>", contract_Goods.Name1);
+
 
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Po_number>", po.Po_number);
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Id>", po.Id);
@@ -90,6 +106,8 @@ namespace OPM.WordHandler
             }
             catch (Exception e)
             {
+                myDoc.Close();
+                wordApp.Quit();
                 MessageBox.Show(e.Message);
                 return e.Message;
             }
@@ -103,16 +121,17 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
             try
             {
                 //NTKT_Thanh ntkt = new NTKT_Thanh(id);
                 PO_Thanh po = new PO_Thanh(id);
                 Contract contract = new Contract(po.Id_contract);
+                Contract_Goods contract_Goods = new Contract_Goods(po.Id_contract);
                 Site_Info site = new Site_Info(contract.Id_siteA);
                 object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 36. BBNTLicense_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
-                WordOffice.Application wordApp = new WordOffice.Application();
-                object missing = Missing.Value;
-                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -130,6 +149,21 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.KHMS>", contract.KHMS);
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.Namecontract>", contract.Namecontract);
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.Id_siteA>", contract.Id_siteA);
+
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Name>", contract_Goods.Name);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Origin>", contract_Goods.Origin);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Manufacturer>", contract_Goods.Manufacturer);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Code>", contract_Goods.Code);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Unit>", contract_Goods.Unit);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PriceUnit>", contract_Goods.PriceUnit);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Quantity>", contract_Goods.Quantity);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PricePreTax>", contract_Goods.PricePreTax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Tax>", contract_Goods.Tax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PriceAfterTax>", contract_Goods.PriceAfterTax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Note>", contract_Goods.Note);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.License>", contract_Goods.License);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Name1>", contract_Goods.Name1);
+
 
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Po_number>", po.Po_number);
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Id>", po.Id);
@@ -170,6 +204,8 @@ namespace OPM.WordHandler
             }
             catch (Exception e)
             {
+                myDoc.Close();
+                wordApp.Quit();
                 MessageBox.Show(e.Message);
                 return e.Message;
             }
@@ -183,16 +219,17 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
             try
             {
                 //NTKT_Thanh ntkt = new NTKT_Thanh(id);
                 PO_Thanh po = new PO_Thanh(id);
                 Contract contract = new Contract(po.Id_contract);
+                Contract_Goods contract_Goods = new Contract_Goods(po.Id_contract);
                 //Site_Info site = new Site_Info(contract.Id_siteA);
                 object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 24. CNCLNM_Tong_Hop_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
-                WordOffice.Application wordApp = new WordOffice.Application();
-                object missing = Missing.Value;
-                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -211,6 +248,21 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.KHMS>", contract.KHMS);
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.Namecontract>", contract.Namecontract);
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.Id_siteA>", contract.Id_siteA);
+
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Name>", contract_Goods.Name);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Origin>", contract_Goods.Origin);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Manufacturer>", contract_Goods.Manufacturer);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Code>", contract_Goods.Code);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Unit>", contract_Goods.Unit);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PriceUnit>", contract_Goods.PriceUnit);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Quantity>", contract_Goods.Quantity);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PricePreTax>", contract_Goods.PricePreTax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Tax>", contract_Goods.Tax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PriceAfterTax>", contract_Goods.PriceAfterTax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Note>", contract_Goods.Note);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.License>", contract_Goods.License);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Name1>", contract_Goods.Name1);
+
 
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Po_number>", po.Po_number);
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Id>", po.Id);
@@ -254,6 +306,8 @@ namespace OPM.WordHandler
             }
             catch (Exception e)
             {
+                myDoc.Close();
+                wordApp.Quit();
                 MessageBox.Show(e.Message);
                 return e.Message;
             }
@@ -268,16 +322,17 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
             try
             {
                 //NTKT_Thanh ntkt = new NTKT_Thanh(id);
                 PO_Thanh po = new PO_Thanh(id);
                 Contract contract = new Contract(po.Id_contract);
+                Contract_Goods contract_Goods = new Contract_Goods(po.Id_contract);
                 Site_Info site = new Site_Info(contract.Id_siteA);
                 object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 23. CNCL_Tong_Hop_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
-                WordOffice.Application wordApp = new WordOffice.Application();
-                object missing = Missing.Value;
-                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -296,6 +351,21 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.KHMS>", contract.KHMS);
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.Namecontract>", contract.Namecontract);
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.Id_siteA>", contract.Id_siteA);
+
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Name>", contract_Goods.Name);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Origin>", contract_Goods.Origin);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Manufacturer>", contract_Goods.Manufacturer);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Code>", contract_Goods.Code);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Unit>", contract_Goods.Unit);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PriceUnit>", contract_Goods.PriceUnit);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Quantity>", contract_Goods.Quantity);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PricePreTax>", contract_Goods.PricePreTax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Tax>", contract_Goods.Tax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PriceAfterTax>", contract_Goods.PriceAfterTax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Note>", contract_Goods.Note);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.License>", contract_Goods.License);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Name1>", contract_Goods.Name1);
+
 
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Po_number>", po.Po_number);
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Id>", po.Id);
@@ -338,6 +408,8 @@ namespace OPM.WordHandler
             }
             catch (Exception e)
             {
+                myDoc.Close();
+                wordApp.Quit();
                 MessageBox.Show(e.Message);
                 return e.Message;
             }
@@ -352,16 +424,17 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
             try
             {
                 NTKT_Thanh ntkt = new NTKT_Thanh(id);
                 PO_Thanh po = new PO_Thanh(ntkt.Id_po);
                 Contract contract = new Contract(po.Id_contract);
+                Contract_Goods contract_Goods = new Contract_Goods(po.Id_contract);
                 Site_Info site = new Site_Info(contract.Id_siteA);
                 object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\Mẫu 11. BBNTKT_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number, ntkt.Id.Replace('/', '-'));
-                WordOffice.Application wordApp = new WordOffice.Application();
-                object missing = Missing.Value;
-                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -380,6 +453,21 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.KHMS>", contract.KHMS);
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.Namecontract>", contract.Namecontract);
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.Id_siteA>", contract.Id_siteA);
+
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Name>", contract_Goods.Name);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Origin>", contract_Goods.Origin);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Manufacturer>", contract_Goods.Manufacturer);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Code>", contract_Goods.Code);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Unit>", contract_Goods.Unit);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PriceUnit>", contract_Goods.PriceUnit);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Quantity>", contract_Goods.Quantity);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PricePreTax>", contract_Goods.PricePreTax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Tax>", contract_Goods.Tax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PriceAfterTax>", contract_Goods.PriceAfterTax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Note>", contract_Goods.Note);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.License>", contract_Goods.License);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Name1>", contract_Goods.Name1);
+
 
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Po_number>", po.Po_number);
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Id>", po.Id);
@@ -416,6 +504,8 @@ namespace OPM.WordHandler
             }
             catch (Exception e)
             {
+                myDoc.Close();
+                wordApp.Quit();
                 MessageBox.Show(e.Message);
                 return e.Message;
             }
@@ -429,20 +519,22 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
+            WordOffice.Application wordApp = new WordOffice.Application();
+            WordOffice.Document myDoc=null;
             try
             {
                 NTKT_Thanh ntkt = new NTKT_Thanh(id);
                 PO_Thanh po = new PO_Thanh(ntkt.Id_po);
                 Contract contract = new Contract(po.Id_contract);
+                Contract_Goods contract_Goods = new Contract_Goods(po.Id_contract);
                 Site_Info site = new Site_Info(contract.Id_siteA);
                 object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\Mẫu 10. CNBQPM_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number, ntkt.Id.Replace('/', '-'));
-                WordOffice.Application wordApp = new WordOffice.Application();
                 object missing = Missing.Value;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
 
-                WordOffice.Document myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
                                     ref missing, ref missing, ref missing,
                                     ref missing, ref missing, ref missing,
                                     ref missing, ref missing, ref missing,
@@ -456,6 +548,21 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.KHMS>", contract.KHMS);
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.Namecontract>", contract.Namecontract);
                 OpmWordHandler.FindAndReplace(wordApp, "<contract.Id_siteA>", contract.Id_siteA);
+
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Name>", contract_Goods.Name);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Origin>", contract_Goods.Origin);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Manufacturer>", contract_Goods.Manufacturer);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Code>", contract_Goods.Code);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Unit>", contract_Goods.Unit);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PriceUnit>", contract_Goods.PriceUnit);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Quantity>", contract_Goods.Quantity);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PricePreTax>", contract_Goods.PricePreTax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Tax>", contract_Goods.Tax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PriceAfterTax>", contract_Goods.PriceAfterTax);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Note>", contract_Goods.Note);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.License>", contract_Goods.License);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Name1>", contract_Goods.Name1);
+
 
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Po_number>", po.Po_number);
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Id>", po.Id);
@@ -494,6 +601,8 @@ namespace OPM.WordHandler
             }
             catch (Exception e)
             {
+                myDoc.Close();
+                wordApp.Quit();
                 MessageBox.Show(e.Message);
                 return e.Message;
             }
@@ -507,6 +616,9 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
             try
             {
                 NTKT_Thanh ntkt = new NTKT_Thanh(id);
@@ -515,9 +627,6 @@ namespace OPM.WordHandler
                 Contract_Goods contract_Goods = new Contract_Goods(po.Id_contract);
                 Site_Info site = new Site_Info(contract.Id_siteA);
                 object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\Mẫu 9. BBKTKT_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number, ntkt.Id.Replace('/', '-'));
-                WordOffice.Application wordApp = new WordOffice.Application();
-                object missing = Missing.Value;
-                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -548,6 +657,8 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Tax>", contract_Goods.Tax);
                 OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.PriceAfterTax>", contract_Goods.PriceAfterTax);
                 OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Note>", contract_Goods.Note);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.License>", contract_Goods.License);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract_Goods.Name1>", contract_Goods.Name1);
 
 
                 OpmWordHandler.FindAndReplace(wordApp, "<po.Po_number>", po.Po_number);
@@ -588,6 +699,8 @@ namespace OPM.WordHandler
             }
             catch (Exception e)
             {
+                myDoc.Close();
+                wordApp.Quit();
                 MessageBox.Show(e.Message);
                 return e.Message;
             }
@@ -601,15 +714,15 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
             try
             {
                 NTKT_Thanh ntkt = new NTKT_Thanh(id);
                 PO_Thanh po = new PO_Thanh(ntkt.Id_po);
                 Contract contract = new Contract(po.Id_contract);
                 object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\Mẫu 8.YCNTKT_{3}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), ntkt.Number, ntkt.Id.Replace('/', '-'));
-                WordOffice.Application wordApp = new WordOffice.Application();
-                object missing = Missing.Value;
-                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -647,6 +760,8 @@ namespace OPM.WordHandler
             }
             catch (Exception e)
             {
+                myDoc.Close();
+                wordApp.Quit();
                 MessageBox.Show(e.Message);
                 return e.Message;
             }
@@ -891,14 +1006,14 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
             try
             {
                 PO_Thanh po = new PO_Thanh(id);
                 Contract contract = new Contract(po.Id_contract);
                 object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 3. XacnhanPO_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
-                WordOffice.Application wordApp = new WordOffice.Application();
-                object missing = Missing.Value;
-                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -935,6 +1050,8 @@ namespace OPM.WordHandler
             }
             catch (Exception e)
             {
+                myDoc.Close();
+                wordApp.Quit();
                 MessageBox.Show(e.Message);
                 return e.Message;
             }
@@ -948,13 +1065,13 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
             try
             {
                 Contract contract = new Contract(id);
                 object filename = string.Format(@"D:\OPM\{0}\Mẫu 1. BLHD_{0}.docx", id.Trim().Replace('/', '-'));
-                WordOffice.Application wordApp = new WordOffice.Application();
-                object missing = Missing.Value;
-                WordOffice.Document myDoc = null;
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
@@ -966,13 +1083,13 @@ namespace OPM.WordHandler
                                     ref missing, ref missing, ref missing, ref missing);
                 myDoc.Activate();
                 //find and replace
-                OpmWordHandler.FindAndReplace(wordApp, "<Contract_Code>", id.Trim());
-                OpmWordHandler.FindAndReplace(wordApp, "<Date_Created>", contract.GaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-                OpmWordHandler.FindAndReplace(wordApp, "<Contract_Name>", contract.Namecontract);
-                OpmWordHandler.FindAndReplace(wordApp, "<Signed_Date>", contract.Datesigned.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-                OpmWordHandler.FindAndReplace(wordApp, "<Site_A>", contract.Id_siteA);
-                OpmWordHandler.FindAndReplace(wordApp, "<blvalue>", contract.Blvalue);
-                OpmWordHandler.FindAndReplace(wordApp, "<DurationPO>", contract.Durationpo);
+                OpmWordHandler.FindAndReplace(wordApp, "<Contract.Id>", contract.Id.Trim());
+                OpmWordHandler.FindAndReplace(wordApp, "<contract.GaranteeCreatedDate>", contract.GaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<contract.Namecontract>", contract.Namecontract);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract.Datesigned>", contract.Datesigned.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<contract.Id_siteA>", contract.Id_siteA);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract.Blvalue>", contract.Blvalue);
+                OpmWordHandler.FindAndReplace(wordApp, "<contract.Durationpo>", contract.Durationpo);
                 //Tạo file BLHĐ trong thư mục D:\OPM
                 string folder = string.Format(@"D:\OPM\{0}", id.Trim().Replace('/', '-'));
                 Directory.CreateDirectory(folder);
@@ -984,6 +1101,8 @@ namespace OPM.WordHandler
             }
             catch (Exception e)
             {
+                myDoc.Close();
+                wordApp.Quit();
                 MessageBox.Show(e.Message);
                 return e.Message;
             }
