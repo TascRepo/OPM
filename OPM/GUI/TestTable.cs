@@ -5,6 +5,9 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using WordOffice = Microsoft.Office.Interop.Word;
+using ExcelOffice = Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
 
 namespace OPM.GUI
 {
@@ -21,6 +24,81 @@ namespace OPM.GUI
             textBox2.DataBindings.Add("Text", dataGridViewTest.DataSource, "ctlName");
             textBox3.DataBindings.Add("Text", dataGridViewTest.DataSource, "ctlParent");
             dataGridViewTest.CurrentCell = dataGridViewTest.Rows[2].Cells["ctlId"];
+        }
+        public static int FindAndReplace(string filename, string filesave)
+        {
+            object m = Type.Missing;
+            ExcelOffice.Range xlRange = null;
+            ExcelOffice.Workbook xlWorkbook = null;
+            ExcelOffice.Application xlApp = null;
+            ExcelOffice._Worksheet xlWorksheet = null;
+
+            try
+            {
+
+                xlApp = new ExcelOffice.Application();
+                xlWorkbook = xlApp.Workbooks.Open(filename, m, false, m, m, m, m, m, m, m, m, m, m, m, m);
+                xlWorksheet = (ExcelOffice._Worksheet)xlWorkbook.Sheets[1];
+                xlRange = xlWorksheet.UsedRange;
+
+                //bool success = (bool)xlRange.Replace("<IdDP>", idDp, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                //bool success1 = (bool)xlRange.Replace("<IdContract>", idContract, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                //bool success2 = (bool)xlRange.Replace("<dateRequest>", dateRequest, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                //bool success3 = (bool)xlRange.Replace("<dateOut>", dateOut, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                //bool success4 = (bool)xlRange.Replace("<siteB>", site, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                //bool success5 = (bool)xlRange.Replace("<addressB>", addressB, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                //bool success6 = (bool)xlRange.Replace("<purpose>", purpose, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                //bool success7 = (bool)xlRange.Replace("<accountanceCode>", accountanceCode, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+
+                ExcelOffice._Worksheet xlWorksheet2 = (ExcelOffice._Worksheet)xlWorkbook.Sheets[2];
+                ExcelOffice.Range xlRange2 = xlWorksheet.UsedRange;
+
+                //bool success8 = (bool)xlRange2.Replace("<NumOfD>", numOfD, XlLookAt.xlWhole, XlSearchOrder.xlByRows, true, m, m, m);
+                xlWorkbook.SaveAs(filesave, Type.Missing, Type.Missing,
+            Type.Missing, Type.Missing, Type.Missing, XlSaveAsAccessMode.xlExclusive,
+            Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                //rule of thumb for releasing com objects:  
+                //  never use two dots, all COM objects must be referenced and released individually  
+                //  ex: [somthing].[something].[something] is bad  
+
+                //release com objects to fully kill excel process from running in the background  
+                Marshal.ReleaseComObject(xlRange);
+                Marshal.ReleaseComObject(xlWorksheet);
+
+                //close and release  
+                xlWorkbook.Close();
+                Marshal.ReleaseComObject(xlWorkbook);
+
+                //quit and release  
+                xlApp.Quit();
+                Marshal.ReleaseComObject(xlApp);
+
+                return 1;
+            }
+            catch (Exception)
+            {
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                //rule of thumb for releasing com objects:  
+                //  never use two dots, all COM objects must be referenced and released individually  
+                //  ex: [somthing].[something].[something] is bad  
+
+                //release com objects to fully kill excel process from running in the background  
+                Marshal.ReleaseComObject(xlRange);
+                Marshal.ReleaseComObject(xlWorksheet);
+
+                //close and release  
+                xlWorkbook.Close();
+                Marshal.ReleaseComObject(xlWorkbook);
+
+                //quit and release  
+                xlApp.Quit();
+                Marshal.ReleaseComObject(xlApp);
+                return 0;
+            }
         }
 
         private void TestTableForm_Load(object sender, EventArgs e)
@@ -57,7 +135,7 @@ namespace OPM.GUI
                 WordOffice.Table tab = myDoc.Tables[1];
                 //Lấy dữ liệu từ bảng CatalogAdmin
                 //List<CatalogAdmin> list = CatalogAdmin.CatalogAdmins();
-                DataTable tabsql = CatalogAdmin.Table();
+                System.Data.DataTable tabsql = CatalogAdmin.Table();
                 //Đặt tên các cột (Không cần thiết vì thường để cứng)
                 tab.Cell(1, 1).Range.Text = "ID";
                 tab.Cell(1, 2).Range.Text = "Name";
@@ -129,6 +207,7 @@ namespace OPM.GUI
                 return e.Message;
             }
         }
+
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {

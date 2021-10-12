@@ -65,7 +65,7 @@ namespace OPM.GUI
             this.btnSave.Location = new System.Drawing.Point(351, 479);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(77, 24);
-            this.btnSave.TabIndex = 0;
+            this.btnSave.TabIndex = 14;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -121,7 +121,7 @@ namespace OPM.GUI
             this.tbxId_po.Location = new System.Drawing.Point(144, 64);
             this.tbxId_po.Name = "tbxId_po";
             this.tbxId_po.Size = new System.Drawing.Size(288, 23);
-            this.tbxId_po.TabIndex = 9;
+            this.tbxId_po.TabIndex = 1;
             this.tbxId_po.Text = "5120/CUVT-KV";
             // 
             // tbxId
@@ -130,7 +130,7 @@ namespace OPM.GUI
             this.tbxId.Location = new System.Drawing.Point(244, 101);
             this.tbxId.Name = "tbxId";
             this.tbxId.Size = new System.Drawing.Size(188, 23);
-            this.tbxId.TabIndex = 9;
+            this.tbxId.TabIndex = 3;
             this.tbxId.Text = "1320/ANSV-DO";
             // 
             // tbxNumber
@@ -138,7 +138,7 @@ namespace OPM.GUI
             this.tbxNumber.Location = new System.Drawing.Point(144, 176);
             this.tbxNumber.Name = "tbxNumber";
             this.tbxNumber.Size = new System.Drawing.Size(288, 23);
-            this.tbxNumber.TabIndex = 9;
+            this.tbxNumber.TabIndex = 5;
             this.tbxNumber.Text = "1";
             // 
             // txbNumberOfDevice
@@ -146,7 +146,7 @@ namespace OPM.GUI
             this.txbNumberOfDevice.Location = new System.Drawing.Point(144, 362);
             this.txbNumberOfDevice.Name = "txbNumberOfDevice";
             this.txbNumberOfDevice.Size = new System.Drawing.Size(288, 23);
-            this.txbNumberOfDevice.TabIndex = 9;
+            this.txbNumberOfDevice.TabIndex = 10;
             this.txbNumberOfDevice.Text = "1000";
             this.txbNumberOfDevice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txbNumberOfDevice.TextChanged += new System.EventHandler(this.txbNumberOfDevice_TextChanged);
@@ -156,7 +156,7 @@ namespace OPM.GUI
             this.dtpDeliver_Date_Expected.Location = new System.Drawing.Point(144, 213);
             this.dtpDeliver_Date_Expected.Name = "dtpDeliver_Date_Expected";
             this.dtpDeliver_Date_Expected.Size = new System.Drawing.Size(288, 23);
-            this.dtpDeliver_Date_Expected.TabIndex = 10;
+            this.dtpDeliver_Date_Expected.TabIndex = 6;
             // 
             // label7
             // 
@@ -172,14 +172,14 @@ namespace OPM.GUI
             this.textBox11.Location = new System.Drawing.Point(144, 436);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(185, 23);
-            this.textBox11.TabIndex = 9;
+            this.textBox11.TabIndex = 12;
             // 
             // btnChoose
             // 
             this.btnChoose.Location = new System.Drawing.Point(351, 439);
             this.btnChoose.Name = "btnChoose";
             this.btnChoose.Size = new System.Drawing.Size(77, 24);
-            this.btnChoose.TabIndex = 11;
+            this.btnChoose.TabIndex = 13;
             this.btnChoose.Text = "Choose";
             this.btnChoose.UseVisualStyleBackColor = true;
             this.btnChoose.Click += new System.EventHandler(this.btnChoose_Click);
@@ -189,7 +189,7 @@ namespace OPM.GUI
             this.btnBack.Location = new System.Drawing.Point(13, 479);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(77, 24);
-            this.btnBack.TabIndex = 12;
+            this.btnBack.TabIndex = 16;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
@@ -199,7 +199,7 @@ namespace OPM.GUI
             this.txbNumberOfDevice2.Location = new System.Drawing.Point(144, 399);
             this.txbNumberOfDevice2.Name = "txbNumberOfDevice2";
             this.txbNumberOfDevice2.Size = new System.Drawing.Size(288, 23);
-            this.txbNumberOfDevice2.TabIndex = 13;
+            this.txbNumberOfDevice2.TabIndex = 11;
             this.txbNumberOfDevice2.Text = "50";
             this.txbNumberOfDevice2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -226,7 +226,7 @@ namespace OPM.GUI
             this.dtpCreate_date.Location = new System.Drawing.Point(144, 139);
             this.dtpCreate_date.Name = "dtpCreate_date";
             this.dtpCreate_date.Size = new System.Drawing.Size(288, 23);
-            this.dtpCreate_date.TabIndex = 10;
+            this.dtpCreate_date.TabIndex = 4;
             // 
             // label8
             // 
@@ -242,7 +242,7 @@ namespace OPM.GUI
             this.dtpDate_BBKTKT.Location = new System.Drawing.Point(144, 250);
             this.dtpDate_BBKTKT.Name = "dtpDate_BBKTKT";
             this.dtpDate_BBKTKT.Size = new System.Drawing.Size(288, 23);
-            this.dtpDate_BBKTKT.TabIndex = 10;
+            this.dtpDate_BBKTKT.TabIndex = 7;
             // 
             // label9
             // 
@@ -258,7 +258,7 @@ namespace OPM.GUI
             this.dtpDate_BBNTKT.Location = new System.Drawing.Point(144, 325);
             this.dtpDate_BBNTKT.Name = "dtpDate_BBNTKT";
             this.dtpDate_BBNTKT.Size = new System.Drawing.Size(288, 23);
-            this.dtpDate_BBNTKT.TabIndex = 10;
+            this.dtpDate_BBNTKT.TabIndex = 9;
             // 
             // label5
             // 
@@ -275,7 +275,7 @@ namespace OPM.GUI
             this.tbxContract.Location = new System.Drawing.Point(144, 27);
             this.tbxContract.Name = "tbxContract";
             this.tbxContract.Size = new System.Drawing.Size(288, 23);
-            this.tbxContract.TabIndex = 9;
+            this.tbxContract.TabIndex = 0;
             this.tbxContract.Text = "111-2020/CUVT-ANSV/DTRR-KHMS";
             // 
             // label10
@@ -292,14 +292,14 @@ namespace OPM.GUI
             this.dateTimePickerCNBQPM.Location = new System.Drawing.Point(144, 287);
             this.dateTimePickerCNBQPM.Name = "dateTimePickerCNBQPM";
             this.dateTimePickerCNBQPM.Size = new System.Drawing.Size(288, 23);
-            this.dateTimePickerCNBQPM.TabIndex = 10;
+            this.dateTimePickerCNBQPM.TabIndex = 8;
             // 
             // btnDelete
             // 
             this.btnDelete.Location = new System.Drawing.Point(172, 479);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(77, 24);
-            this.btnDelete.TabIndex = 0;
+            this.btnDelete.TabIndex = 15;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -309,7 +309,7 @@ namespace OPM.GUI
             this.textBoxIdNumber.Location = new System.Drawing.Point(144, 101);
             this.textBoxIdNumber.Name = "textBoxIdNumber";
             this.textBoxIdNumber.Size = new System.Drawing.Size(81, 23);
-            this.textBoxIdNumber.TabIndex = 9;
+            this.textBoxIdNumber.TabIndex = 2;
             this.textBoxIdNumber.TextChanged += new System.EventHandler(this.textBoxIdNumber_TextChanged);
             // 
             // NTKTInfor
