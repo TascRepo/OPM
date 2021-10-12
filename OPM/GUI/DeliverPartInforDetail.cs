@@ -65,6 +65,23 @@ namespace OPM.GUI
                 {
                     MessageBox.Show("Thêm mới DP " + txbIdDP.Text + " thành công!");
                 }
+                //Theem danh sach cac hang chinh vao ListExpect_DP
+                for (int i = 0; i < dataGridViewProvince.Rows.Count - 1; i++)
+                {
+                    bool isCellChecked = (bool)dataGridViewProvince.Rows[i].Cells[0].Value;
+                    if (dataGridViewProvince.Rows[i].Cells[1].Value.ToString() != "" && isCellChecked == true)
+                    {
+                        if (dp.Check_ListExpected_DP(dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), txbIdDP.Text, cbbType.Text, txbPOCode.Text))
+                        {
+                            dp.UpdateListExpected_DP(dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), cbbType.Text, txbIdDP.Text, txbPOCode.Text);
+                        }
+                        else
+                        {
+                            dp.InsertListExpected_DP(dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), cbbType.Text, txbIdDP.Text, txbPOCode.Text);
+                        }
+                    }
+                }
+                MessageBox.Show("Xử lý các thông tin hàng chinh thuộc DP: " + txbIdDP.Text + " thành công!");
             }
         }
         private void DeliverPartInforDetail_Load(object sender, EventArgs e)
@@ -150,6 +167,10 @@ namespace OPM.GUI
 
         private void hangPhu_CheckedChanged(object sender, EventArgs e)
         {
+            if (txbIdDP.Text == "DPXXX/202X")
+            {
+                MessageBox.Show("Nhập sai định dạng số DP!");
+            }
             tsDP = txbIdDP.Text;
             tsPO = txbPOCode.Text;
             if (hangPhu.Checked == true)
