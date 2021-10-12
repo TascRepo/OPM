@@ -53,9 +53,9 @@ namespace OPM.DBHandler
                 return 1;
             }
         }
-        public bool Check_DP(string id)
+        public bool Check_DP(string id,string id_po)
         {
-            string query = string.Format("SELECT * FROM dbo.DP WHERE id = N'{0}'", id);
+            string query = string.Format("SELECT * FROM dbo.DP WHERE id = N'{0}' and id_po = N'{1}'", id, id_po);
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table.Rows.Count > 0;
         }
@@ -73,33 +73,40 @@ namespace OPM.DBHandler
             d1 = OPMDBHandler.ExecuteQuery(query);
             return d1;
         }
-        public int InsertListExpected_DP(string ProvinceName, string NumberDevice, string id_dp)
+        public int InsertListExpected_DP(string ProvinceName, string NumberDevice,string type, string id_dp,string id_po)
         {
             int result = 0;
-            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.ListExpected_DP(ProvinceName, NumberDevice, id_dp) VALUES(N'{0}',{1},'{2}')", ProvinceName, Int64.Parse(NumberDevice), id_dp);
+            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.ListExpected_DP(ProvinceName, NumberDevice, id_dp, type, id_po) VALUES(N'{0}',{1},'{2}',N'{3}','{4}')", ProvinceName, Int64.Parse(NumberDevice), id_dp, type, id_po);
             result = OPMDBHandler.fInsertData(query);
             return result;
         }
-        public bool Check_ListExpected_DP(string ProvinceName, string id_dp)
+        public int UpdateListExpected_DP(string ProvinceName, string NumberDevice,string type, string id_dp,string id_po)
         {
-            string query = string.Format("SELECT * FROM dbo.ListExpected_DP WHERE ProvinceName = '{0}' and id_dp = '{1}'", ProvinceName, id_dp);
+            int result = 0;
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.ListExpected_DP set NumberDevice = {0} where ProvinceName = '{1}' and  id_dp = '{2}' and type = N'{3}' and id_po = '{4}'", Int64.Parse(NumberDevice), ProvinceName, id_dp, type, id_po);
+            result = OPMDBHandler.fInsertData(query);
+            return result;
+        }
+        public bool Check_ListExpected_DP(string ProvinceName, string id_dp, string type, string id_po)
+        {
+            string query = string.Format("SELECT * FROM dbo.ListExpected_DP WHERE ProvinceName = '{0}' and id_dp = '{1}' and type = N'{2}' and id_po = '{3}'", ProvinceName, id_dp, type, id_po);
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table.Rows.Count > 0;
         }
         public int InsertUpdateDP(string id, string id_po, string id_contract, string cbbType, string note, string dtpRequest, string dtpOutCap)
         {
             int Return = 0;
-            if (Check_DP(id))
+            if (Check_DP(id,id_po))
             {
                 int result = 0;
-                string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET id_po = N'{0}', id_contract = N'{1}', type = N'{2}', note = N'{3}'  WHERE id = N'{4}'", id_po, id_contract, cbbType, note, id);
+                string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET note = N'{0}',dateopen = '{1}',datedeliver = '{2}' WHERE id = N'{3}' and type = N'{4}' and id_po = '{5}'", note, dtpRequest, dtpOutCap, id, cbbType, id_po);
                 result = OPMDBHandler.fInsertData(query);
                 Return = 0;
             }
             else
             {
                 int result = 0;
-                string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.DP(id,id_po,id_contract,type,note) VALUES(N'{0}',N'{1}',N'{2}',N'{3}',N'{4}')", id, id_po, id_contract, cbbType, note);
+                string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.DP(id,id_po,id_contract,type,dateopen,datedeliver,note) VALUES(N'{0}',N'{1}',N'{2}',N'{3}','{4}','{5}',N'{6}')", id, id_po, id_contract, cbbType, dtpRequest, dtpOutCap, note);
                 result = OPMDBHandler.fInsertData(query);
                 Return = 1;
             }

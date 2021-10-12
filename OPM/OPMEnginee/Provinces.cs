@@ -11,7 +11,7 @@
         }
         public string querySQLProvinces()
         {
-            string strQuery = string.Format("SELECT NameProvinces FROM dbo.Provinces");
+            string strQuery = string.Format("SELECT id as 'Mã Tỉnh',headquater as 'Tên Tỉnh' FROM dbo.Site");
             return strQuery;
         }
     }

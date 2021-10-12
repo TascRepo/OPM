@@ -11,6 +11,7 @@ namespace OPM.GUI
         public delegate void UpdateCatalogDelegate(string value);
         public UpdateCatalogDelegate UpdateCatalogPanel;
         public static string tsDP = "";
+        public static string tsPO = "";
         public DeliverPartInforDetail()
         {
             InitializeComponent();
@@ -64,22 +65,6 @@ namespace OPM.GUI
                 {
                     MessageBox.Show("Thêm mới DP " + txbIdDP.Text + " thành công!");
                 }
-                //Lưu trữ thông tin vào database với các tỉnh và file phân bổ
-                for (int i = 0; i < dataGridViewProvince.Rows.Count - 1; i++)
-                {
-                    bool IsCheck = Convert.ToBoolean(dataGridViewProvince.Rows[i].Cells[0].Value);
-                    if (IsCheck == true && dataGridViewProvince.Rows[i].Cells[0].ToString().Length > 0)
-                    {
-                        dp.InsertListExpected_DP(dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), txbIdDP.Text);
-                        //Xuất mẫu 19
-                        OpmWordHandler.Word_DPCNKTCL(txbIDContract.Text, txbPOName.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
-                        //Xuất mẫu 20
-                        OpmWordHandler.Word_DPCNCL(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
-                        //Xuất mẫu 22
-                        OpmWordHandler.Word_PBH(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
-                    }
-                }
-                MessageBox.Show("Tạo mẫu 19,20,22 đi các tỉnh thành công!");
             }
         }
         private void DeliverPartInforDetail_Load(object sender, EventArgs e)
@@ -166,6 +151,7 @@ namespace OPM.GUI
         private void hangPhu_CheckedChanged(object sender, EventArgs e)
         {
             tsDP = txbIdDP.Text;
+            tsPO = txbPOCode.Text;
             if (hangPhu.Checked == true)
             {
                 FormDPWarranty frm2 = new FormDPWarranty();
