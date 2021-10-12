@@ -1562,5 +1562,67 @@ namespace OPM.WordHandler
                 MessageBox.Show("Không tìm thấy bản mẫu 20");
             }
         }
+        //Mãu 18
+        public static void Word_GiaoNhanHangHoa(string txbKHMS, string txbIDContract, string txbPOCode, string txbPOName, string ProvinceName,string dtpRequest, string txbIdDP)
+        {
+            PO_Thanh po = new PO_Thanh(txbPOCode);
+            Contract contract = new Contract(txbIDContract);
+            //Khởi tạo vào check forder
+            string DriveName = "";
+            DriveInfo[] driveInfos = DriveInfo.GetDrives();
+            foreach (DriveInfo driveInfo in driveInfos)
+            {
+                if (String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"D:\") == 0 || String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"E:\") == 0)
+                {
+                    DriveName = driveInfo.Name.ToString().Substring(0, 3);
+                    break;
+                }
+            }
+            //Check xem forder đã đc khởi tạo hay chưa?
+            //Nếu chưa khởi tạo thì tiên hành khởi tạo
+            string FoderName = String.Format(po.Id);
+            string strPODirectory = DriveName + "OPM\\" + txbIDContract.Trim().Replace('/', '-') + "\\" + txbPOName.Trim().Replace('/', '-') + "\\" + txbIdDP.Trim().Replace('/', '-');
+            if (!Directory.Exists(strPODirectory))
+            {
+                Directory.CreateDirectory(strPODirectory);
+            }
+            object filename = strPODirectory + @"\Bien ban GNHH "+ProvinceName+".docx";
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
+            //
+            object path = DriveName + @"\OPM\Template\Mau 18. Bien ban giao nhan hang hoa.docx";
+            if (File.Exists(path.ToString()))
+            {
+                object readOnly = false;
+                object isVisible = false;
+                wordApp.Visible = false;
+
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                OpmWordHandler.FindAndReplace(wordApp, "<txbPOName>", txbPOName);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbIDContract>", txbIDContract);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbKHMS>", txbKHMS);
+                OpmWordHandler.FindAndReplace(wordApp, "<txbPOCode>", txbPOCode);
+                OpmWordHandler.FindAndReplace(wordApp, "<dtpRequest>", dtpRequest);
+                OpmWordHandler.FindAndReplace(wordApp, "<ProvinceName>", ProvinceName);
+                //Save as
+                myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing);
+                myDoc.Close();
+                wordApp.Quit();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy bản mẫu");
+            }
+        }
     }
 }

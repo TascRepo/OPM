@@ -118,9 +118,9 @@ namespace OPM.GUI
             // 
             // btnNewDP
             // 
-            this.btnNewDP.Location = new System.Drawing.Point(404, 539);
+            this.btnNewDP.Location = new System.Drawing.Point(353, 539);
             this.btnNewDP.Name = "btnNewDP";
-            this.btnNewDP.Size = new System.Drawing.Size(75, 23);
+            this.btnNewDP.Size = new System.Drawing.Size(107, 23);
             this.btnNewDP.TabIndex = 3;
             this.btnNewDP.Text = "New DP";
             this.btnNewDP.UseVisualStyleBackColor = true;
@@ -351,7 +351,7 @@ namespace OPM.GUI
             // 
             // btnNTKT
             // 
-            this.btnNTKT.Location = new System.Drawing.Point(325, 539);
+            this.btnNTKT.Location = new System.Drawing.Point(267, 539);
             this.btnNTKT.Name = "btnNTKT";
             this.btnNTKT.Size = new System.Drawing.Size(75, 23);
             this.btnNTKT.TabIndex = 9;
@@ -361,7 +361,7 @@ namespace OPM.GUI
             // 
             // btnBaoHiem
             // 
-            this.btnBaoHiem.Location = new System.Drawing.Point(246, 539);
+            this.btnBaoHiem.Location = new System.Drawing.Point(188, 539);
             this.btnBaoHiem.Name = "btnBaoHiem";
             this.btnBaoHiem.Size = new System.Drawing.Size(75, 23);
             this.btnBaoHiem.TabIndex = 10;
@@ -373,7 +373,7 @@ namespace OPM.GUI
             // 
             this.deletePO.Location = new System.Drawing.Point(104, 539);
             this.deletePO.Name = "deletePO";
-            this.deletePO.Size = new System.Drawing.Size(56, 23);
+            this.deletePO.Size = new System.Drawing.Size(73, 23);
             this.deletePO.TabIndex = 13;
             this.deletePO.Text = "Xóa PO";
             this.deletePO.UseVisualStyleBackColor = true;
