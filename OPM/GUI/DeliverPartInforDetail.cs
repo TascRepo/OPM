@@ -89,7 +89,7 @@ namespace OPM.GUI
                     if (dataGridViewProvince.Rows[i].Cells[1].Value.ToString() != "" && isCellChecked == true)
                     {
                         //Xuất mẫu 18
-                        OpmWordHandler.Word_GiaoNhanHangHoa(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), dtpRequest.Text, txbIdDP.Text);
+                        OpmWordHandler.Word_GiaoNhanHangHoa(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), dtpRequest.Text, txbIdDP.Text, dtpOutCap.Text, mahangHD.Text, tenhangHD.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString());
                         //Xuất mẫu 19
                         OpmWordHandler.Word_DPCNKTCL(txbIDContract.Text, txbPOName.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
                         //Xuất mẫu 20

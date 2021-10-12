@@ -120,6 +120,35 @@ namespace OPM.DBHandler
             string query2 = string.Format("delete dbo.DP where id = '" + id + "'");
             result = OPMDBHandler.fInsertData(query2);
         }
+        public DataTable GetInforSite(String ProvinceName)
+        {
+            DataTable dataTable = new DataTable();
+            string query = string.Format("SELECT TOP 1 * FROM dbo.Site WHERE headquater = N'{0}'", ProvinceName);
+            dataTable = OPMDBHandler.ExecuteQuery(query);
+            return dataTable;
+        }
+        public DataTable GetInforPrice(string idContract, string code)
+        {
+            DataTable dataTable = new DataTable();
+            string query = string.Format("SELECT TOP 1 * FROM dbo.Contract_Goods WHERE idContract = N'{0}' and code = N'{1}'", idContract, code);
+            dataTable = OPMDBHandler.ExecuteQuery(query);
+            return dataTable;
+        }
+        public string GetInforSLP(string ProvinceName, string id_dp,string id_po)
+        {
+            DataTable dataTable = new DataTable();
+            string result = "";
+            string query = string.Format("SELECT TOP 1 NumberDevice FROM dbo.ListExpected_DP WHERE ProvinceName = N'{0}' and id_dp = N'{1}' and id_po = N'{2}' and type = N'Hàng bảo hành'", ProvinceName, id_dp, id_po);
+            dataTable = OPMDBHandler.ExecuteQuery(query);
+            if(dataTable.Rows.Count > 0){
+                result = dataTable.Rows[0][0].ToString();
+            }
+            else
+            {
+                result = "0";
+            }
+            return result;
+        }
     }
 
 }

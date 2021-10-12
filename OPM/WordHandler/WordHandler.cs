@@ -1563,10 +1563,19 @@ namespace OPM.WordHandler
             }
         }
         //Mãu 18
-        public static void Word_GiaoNhanHangHoa(string txbKHMS, string txbIDContract, string txbPOCode, string txbPOName, string ProvinceName,string dtpRequest, string txbIdDP)
+        public static void Word_GiaoNhanHangHoa(string txbKHMS, string txbIDContract, string txbPOCode, string txbPOName, string ProvinceName,string dtpRequest, string txbIdDP,string dtpOutCap, string mahangHD,string tenhangHD,string count)
         {
             PO_Thanh po = new PO_Thanh(txbPOCode);
             Contract contract = new Contract(txbIDContract);
+            //Lấy thông tin viễn thông các tỉnh
+            DP dp = new DP();
+            DataTable dataTable = new DataTable();
+            dataTable = dp.GetInforSite(ProvinceName);
+            //Lấy thông tin đơn giá của hàng
+            DataTable dataTable1 = new DataTable();
+            dataTable1 = dp.GetInforPrice(txbIDContract, mahangHD);
+            //Lấy số lượng bảo hành của tỉnh vừa nhập.
+            string slp = dp.GetInforSLP(ProvinceName, txbIdDP, txbPOCode);
             //Khởi tạo vào check forder
             string DriveName = "";
             DriveInfo[] driveInfos = DriveInfo.GetDrives();
@@ -1610,6 +1619,24 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<txbPOCode>", txbPOCode);
                 OpmWordHandler.FindAndReplace(wordApp, "<dtpRequest>", dtpRequest);
                 OpmWordHandler.FindAndReplace(wordApp, "<ProvinceName>", ProvinceName);
+                OpmWordHandler.FindAndReplace(wordApp, "<dtpOutCap>", dtpOutCap);
+                OpmWordHandler.FindAndReplace(wordApp, "<DiaChi>", dataTable.Rows[0][3].ToString());
+                OpmWordHandler.FindAndReplace(wordApp, "<Phone>", dataTable.Rows[0][4].ToString());
+                OpmWordHandler.FindAndReplace(wordApp, "<Fax>", dataTable.Rows[0][5].ToString());
+                OpmWordHandler.FindAndReplace(wordApp, "<People1>", dataTable.Rows[0][8].ToString());
+                OpmWordHandler.FindAndReplace(wordApp, "<Position1>", dataTable.Rows[0][9].ToString());
+                OpmWordHandler.FindAndReplace(wordApp, "<People2>", dataTable.Rows[0][11].ToString());
+                OpmWordHandler.FindAndReplace(wordApp, "<Position2>", dataTable.Rows[0][12].ToString());
+                OpmWordHandler.FindAndReplace(wordApp, "<People3>", dataTable.Rows[0][14].ToString());
+                OpmWordHandler.FindAndReplace(wordApp, "<Position3>", dataTable.Rows[0][15].ToString());
+                OpmWordHandler.FindAndReplace(wordApp, "<TenHang>", tenhangHD);
+                OpmWordHandler.FindAndReplace(wordApp, "<MaHang>", mahangHD);
+                OpmWordHandler.FindAndReplace(wordApp, "<slc>", count);
+                OpmWordHandler.FindAndReplace(wordApp, "<dg>", dataTable1.Rows[0][5].ToString());
+                OpmWordHandler.FindAndReplace(wordApp, "<tt>", Int64.Parse(dataTable1.Rows[0][5].ToString())*Int64.Parse(count));
+                OpmWordHandler.FindAndReplace(wordApp, "<gtgt>", (Int64.Parse(dataTable1.Rows[0][5].ToString()) * Int64.Parse(count))*10/100);
+                OpmWordHandler.FindAndReplace(wordApp, "<tong>", Int64.Parse(dataTable1.Rows[0][5].ToString()) * Int64.Parse(count) + ((Int64.Parse(dataTable1.Rows[0][5].ToString()) * Int64.Parse(count)) * 10 / 100));
+                OpmWordHandler.FindAndReplace(wordApp, "<slp>", slp);
                 //Save as
                 myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing,
