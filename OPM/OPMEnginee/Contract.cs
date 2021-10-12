@@ -43,7 +43,18 @@ namespace OPM.OPMEnginee
         public DateTime ExperationDate { get => experationDate; set => experationDate = value; }
         public int Blvalue { get => blvalue; set => blvalue = value; }
         public DateTime GaranteeCreatedDate { get => garanteeCreatedDate; set => garanteeCreatedDate = value; }
-
+        public List<PO_Thanh> ListPO() 
+        {
+            List<PO_Thanh> list = new List<PO_Thanh>();
+            string query = string.Format("SELECT * FROM dbo.PO Where id_contract = {0} Order By id",id);
+            DataTable dataTable = OPMDBHandler.ExecuteQuery(query);
+            foreach (DataRow item in dataTable.Rows)
+            {
+                PO_Thanh po = new PO_Thanh(item);
+                list.Add(po);
+            }
+            return list;
+        }
         public Contract() { }
         public Contract(string id, string namecontract, string codeaccouting, DateTime datesigned, string typecontract, int durationcontract, DateTime activedate, double valuecontract, int durationpo, string id_siteA, string id_siteB, string phuluc, string vbgurantee, string kHMS, DateTime experationDate, int blvalue, DateTime garanteeCreatedDate)
         {

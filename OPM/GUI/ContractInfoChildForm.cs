@@ -1,6 +1,7 @@
 ﻿using OPM.OPMEnginee;
 using OPM.WordHandler;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 namespace OPM.GUI
 {
@@ -20,6 +21,9 @@ namespace OPM.GUI
         //Yêu cầu mở Form SieA, B
         public delegate void RequestDashBoardOpenDescriptionForm(string id, DescriptionSiteForm.SetIdSite setIdSite);
         public RequestDashBoardOpenDescriptionForm requestDashBoardOpendescriptionForm;
+        Contract_Goods goods;
+
+        public Contract_Goods Goods { get => goods; set => goods = value; }
 
         public ContractInfoChildForm()
         {
@@ -118,12 +122,22 @@ namespace OPM.GUI
         //Mở Form thông tin Site A
         private void IdSiteA_Click(object sender, EventArgs e)
         {
-            requestDashBoardOpendescriptionForm(tbxSiteA.Text, SetIdSiteA);
+            //requestDashBoardOpendescriptionForm(tbxSiteA.Text, SetIdSiteA);
+            SiteForm siteForm = new SiteForm();
+            siteForm.Text = "Bảng lựa chọn chi tiết bên A của hợp đồng: " + tbContract.Text.Trim();
+            siteForm.IdSite = tbxSiteA.Text;
+            siteForm.setValueContractForm = SetIdSiteA;
+            siteForm.ShowDialog();
         }
         //Mở Form thông tin Site B
         private void IdSiteB_Click(object sender, EventArgs e)
         {
-            requestDashBoardOpendescriptionForm(tbxSiteB.Text, SetIdSiteB);
+            //requestDashBoardOpendescriptionForm(tbxSiteB.Text, SetIdSiteB);
+            SiteForm siteForm = new SiteForm();
+            siteForm.Text = "Bảng lựa chọn chi tiết bên B của hợp đồng: " + tbContract.Text.Trim();
+            siteForm.IdSite = tbxSiteB.Text;
+            siteForm.setValueContractForm = SetIdSiteB;
+            siteForm.ShowDialog();
         }
         //Mở Form PO
         private void btnNewPO_Click(object sender, EventArgs e)
@@ -195,6 +209,11 @@ namespace OPM.GUI
         //Cập nhật trên TreeView
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (goods == null)
+            {
+                MessageBox.Show("Cần nhập bảng giá Hợp đồng!");
+                return;
+            }
             Contract contract = new Contract();
             contract.KHMS = txbKHMS.Text;
             contract.Id = tbContract.Text.Trim();
@@ -212,11 +231,12 @@ namespace OPM.GUI
             contract.Durationpo = int.Parse(tbxDurationPO.Text);
             contract.GaranteeCreatedDate = dtpGaranteeCreatedDate.Value;
             if (!contract.Exist())
-            {
-                MessageBox.Show("Cần nhập bảng giá hợp đồng trước!");
-                return;
-            }
-            contract.Update();
+                contract.Insert();
+            else contract.Update();
+            if (!goods.Exist()) 
+                goods.Insert();
+            else 
+                goods.Update();
             UpdateCatalogPanel("Contract_" + tbContract.Text.Trim());
             State(true);
             btnContractAnnex.Enabled = true;
@@ -260,23 +280,18 @@ namespace OPM.GUI
                 MessageBox.Show("Cần nhập đúng định dạng số!");
             }
         }
-        void SetValueContract(string vl)
+        void SetValueContract(string vl, Contract_Goods good)
         {
             tbxValueContract.Text = vl;
+            goods = good;
         }
         private void btnContractAnnex_Click(object sender, EventArgs e)
         {
             btnSave.Enabled = true;
-            Contract contract = new Contract();
-            contract.Id = tbContract.Text;
-            if (!Contract.Exist(tbContract.Text.Trim()))
-            {
-                contract.Insert();
-                UpdateCatalogPanel("Contract_"+tbContract.Text.Trim());
-            }
             Contract_Goods_Form contract_Goods_Form = new Contract_Goods_Form();
+            contract_Goods_Form.Text = "Bảng hàng hoá của hợp đồng: " + tbContract.Text.Trim();
             contract_Goods_Form.setValueContractForm = SetValueContract;
-            contract_Goods_Form.Tag = tbContract.Text.Trim();
+            contract_Goods_Form.Goods = new Contract_Goods(tbContract.Text.Trim());
             contract_Goods_Form.ShowDialog();
         }
     }

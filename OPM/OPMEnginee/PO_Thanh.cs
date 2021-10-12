@@ -159,7 +159,7 @@ namespace OPM.DBHandler
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table.Rows.Count > 0;
         }
-        public List<PO_Thanh> GetList()
+        public static List<PO_Thanh> GetList()
         {
             List<PO_Thanh> list = new List<PO_Thanh>();
             string query = string.Format("SELECT * FROM dbo.PO");

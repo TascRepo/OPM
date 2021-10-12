@@ -38,10 +38,10 @@ namespace OPM.DBHandler
                     adapter.Fill(data);
                     connection.Close();
                 }
-                catch
+                catch(Exception e)
                 {
                     connection.Close();
-                    MessageBox.Show("Không kết nối được CSDL");
+                    MessageBox.Show("Không kết nối được CSDL vì lỗi "+e.Message);
                 }
             }
             return data;
@@ -71,10 +71,10 @@ namespace OPM.DBHandler
                     data = command.ExecuteScalar();
                     connection.Close();
                 }
-                catch
+                catch (Exception e)
                 {
                     connection.Close();
-                    MessageBox.Show("Không kết nối được CSDL");
+                    MessageBox.Show("Không kết nối được CSDL vì lỗi " + e.Message);
                 }
             }
             return data;
@@ -104,10 +104,10 @@ namespace OPM.DBHandler
                     data = command.ExecuteNonQuery();
                     connection.Close();
                 }
-                catch
+                catch (Exception e)
                 {
                     connection.Close();
-                    MessageBox.Show("Không kết nối được CSDL");
+                    MessageBox.Show("Không kết nối được CSDL vì lỗi " + e.Message);
                 }
             }
             return data;
@@ -126,10 +126,10 @@ namespace OPM.DBHandler
                 CloseConnection(con);
                 return 1;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 CloseConnection(con);
-                MessageBox.Show("Không kết nối được CSDL!");
+                MessageBox.Show("Không kết nối được CSDL vì lỗi " + e.Message);
                 return 0;
             }
         }
@@ -156,11 +156,11 @@ namespace OPM.DBHandler
                 return 1;
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 adapter.Dispose();
                 CloseConnection(con);
-                MessageBox.Show("Không kết nối được CSDL!");
+                MessageBox.Show("Không kết nối được CSDL vì lỗi " + e.Message);
                 return 0;
             }
         }

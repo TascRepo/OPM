@@ -82,6 +82,7 @@ namespace OPM.GUI
             this.textBoxId = new System.Windows.Forms.TextBox();
             this.lblFoodTableSatus = new System.Windows.Forms.Label();
             this.dtgvSite = new System.Windows.Forms.DataGridView();
+            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel31 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAddOrUpdate = new System.Windows.Forms.Button();
@@ -127,29 +128,25 @@ namespace OPM.GUI
             this.panel24.Controls.Add(this.panel8);
             this.panel24.Controls.Add(this.panel4);
             this.panel24.Controls.Add(this.panel26);
-            this.panel24.Location = new System.Drawing.Point(545, 7);
-            this.panel24.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel24.Location = new System.Drawing.Point(779, 12);
             this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(531, 602);
+            this.panel24.Size = new System.Drawing.Size(759, 1003);
             this.panel24.TabIndex = 2;
-            this.panel24.Paint += new System.Windows.Forms.PaintEventHandler(this.panel24_Paint);
             // 
             // panel11
             // 
             this.panel11.Controls.Add(this.textBoxRepresentative2);
             this.panel11.Controls.Add(this.label11);
-            this.panel11.Location = new System.Drawing.Point(7, 392);
-            this.panel11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel11.Location = new System.Drawing.Point(10, 653);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(513, 31);
+            this.panel11.Size = new System.Drawing.Size(733, 52);
             this.panel11.TabIndex = 4;
             // 
             // textBoxRepresentative2
             // 
-            this.textBoxRepresentative2.Location = new System.Drawing.Point(133, 7);
-            this.textBoxRepresentative2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxRepresentative2.Location = new System.Drawing.Point(190, 12);
             this.textBoxRepresentative2.Name = "textBoxRepresentative2";
-            this.textBoxRepresentative2.Size = new System.Drawing.Size(370, 23);
+            this.textBoxRepresentative2.Size = new System.Drawing.Size(527, 31);
             this.textBoxRepresentative2.TabIndex = 2;
             this.textBoxRepresentative2.Text = "Ông Vũ Thiện Nhượng";
             // 
@@ -157,10 +154,9 @@ namespace OPM.GUI
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(5, 8);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Location = new System.Drawing.Point(7, 13);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(71, 16);
+            this.label11.Size = new System.Drawing.Size(98, 23);
             this.label11.TabIndex = 1;
             this.label11.Text = "Đại diện 2";
             // 
@@ -168,18 +164,16 @@ namespace OPM.GUI
             // 
             this.panel7.Controls.Add(this.textBoxAccount);
             this.panel7.Controls.Add(this.label7);
-            this.panel7.Location = new System.Drawing.Point(7, 253);
-            this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel7.Location = new System.Drawing.Point(10, 422);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(513, 31);
+            this.panel7.Size = new System.Drawing.Size(733, 52);
             this.panel7.TabIndex = 4;
             // 
             // textBoxAccount
             // 
-            this.textBoxAccount.Location = new System.Drawing.Point(133, 7);
-            this.textBoxAccount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxAccount.Location = new System.Drawing.Point(190, 12);
             this.textBoxAccount.Name = "textBoxAccount";
-            this.textBoxAccount.Size = new System.Drawing.Size(370, 23);
+            this.textBoxAccount.Size = new System.Drawing.Size(527, 31);
             this.textBoxAccount.TabIndex = 2;
             this.textBoxAccount.Text = "0071001103933";
             // 
@@ -187,10 +181,9 @@ namespace OPM.GUI
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(5, 8);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(7, 13);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(70, 16);
+            this.label7.Size = new System.Drawing.Size(95, 23);
             this.label7.TabIndex = 1;
             this.label7.Text = "Tài khoản";
             // 
@@ -198,18 +191,16 @@ namespace OPM.GUI
             // 
             this.panel3.Controls.Add(this.textBoxAddress);
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Location = new System.Drawing.Point(7, 113);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Location = new System.Drawing.Point(10, 188);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(513, 31);
+            this.panel3.Size = new System.Drawing.Size(733, 52);
             this.panel3.TabIndex = 4;
             // 
             // textBoxAddress
             // 
-            this.textBoxAddress.Location = new System.Drawing.Point(133, 7);
-            this.textBoxAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxAddress.Location = new System.Drawing.Point(190, 12);
             this.textBoxAddress.Name = "textBoxAddress";
-            this.textBoxAddress.Size = new System.Drawing.Size(370, 23);
+            this.textBoxAddress.Size = new System.Drawing.Size(527, 31);
             this.textBoxAddress.TabIndex = 2;
             this.textBoxAddress.Text = "124-Hoàng Quốc Việt-Cầu Giấy- Hà Nội";
             // 
@@ -217,10 +208,9 @@ namespace OPM.GUI
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(5, 8);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(7, 13);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 16);
+            this.label3.Size = new System.Drawing.Size(69, 23);
             this.label3.TabIndex = 1;
             this.label3.Text = "Địa chỉ";
             // 
@@ -228,28 +218,25 @@ namespace OPM.GUI
             // 
             this.panel16.Controls.Add(this.textBoxProxy3);
             this.panel16.Controls.Add(this.label16);
-            this.panel16.Location = new System.Drawing.Point(7, 566);
-            this.panel16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel16.Location = new System.Drawing.Point(10, 943);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(513, 31);
+            this.panel16.Size = new System.Drawing.Size(733, 52);
             this.panel16.TabIndex = 4;
             // 
             // textBoxProxy3
             // 
-            this.textBoxProxy3.Location = new System.Drawing.Point(133, 7);
-            this.textBoxProxy3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxProxy3.Location = new System.Drawing.Point(190, 12);
             this.textBoxProxy3.Name = "textBoxProxy3";
-            this.textBoxProxy3.Size = new System.Drawing.Size(370, 23);
+            this.textBoxProxy3.Size = new System.Drawing.Size(527, 31);
             this.textBoxProxy3.TabIndex = 2;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label16.Location = new System.Drawing.Point(5, 8);
-            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Location = new System.Drawing.Point(7, 13);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(122, 16);
+            this.label16.Size = new System.Drawing.Size(166, 23);
             this.label16.TabIndex = 1;
             this.label16.Text = "Văn bản uỷ quyền";
             // 
@@ -257,28 +244,25 @@ namespace OPM.GUI
             // 
             this.panel14.Controls.Add(this.textBoxRepresentative3);
             this.panel14.Controls.Add(this.label14);
-            this.panel14.Location = new System.Drawing.Point(7, 496);
-            this.panel14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel14.Location = new System.Drawing.Point(10, 827);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(513, 31);
+            this.panel14.Size = new System.Drawing.Size(733, 52);
             this.panel14.TabIndex = 4;
             // 
             // textBoxRepresentative3
             // 
-            this.textBoxRepresentative3.Location = new System.Drawing.Point(133, 7);
-            this.textBoxRepresentative3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxRepresentative3.Location = new System.Drawing.Point(190, 12);
             this.textBoxRepresentative3.Name = "textBoxRepresentative3";
-            this.textBoxRepresentative3.Size = new System.Drawing.Size(370, 23);
+            this.textBoxRepresentative3.Size = new System.Drawing.Size(527, 31);
             this.textBoxRepresentative3.TabIndex = 2;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(5, 8);
-            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Location = new System.Drawing.Point(7, 13);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(71, 16);
+            this.label14.Size = new System.Drawing.Size(98, 23);
             this.label14.TabIndex = 1;
             this.label14.Text = "Đại diện 3";
             // 
@@ -286,28 +270,25 @@ namespace OPM.GUI
             // 
             this.panel10.Controls.Add(this.textBoxProxy1);
             this.panel10.Controls.Add(this.label10);
-            this.panel10.Location = new System.Drawing.Point(7, 357);
-            this.panel10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel10.Location = new System.Drawing.Point(10, 595);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(513, 31);
+            this.panel10.Size = new System.Drawing.Size(733, 52);
             this.panel10.TabIndex = 4;
             // 
             // textBoxProxy1
             // 
-            this.textBoxProxy1.Location = new System.Drawing.Point(133, 7);
-            this.textBoxProxy1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxProxy1.Location = new System.Drawing.Point(190, 12);
             this.textBoxProxy1.Name = "textBoxProxy1";
-            this.textBoxProxy1.Size = new System.Drawing.Size(370, 23);
+            this.textBoxProxy1.Size = new System.Drawing.Size(527, 31);
             this.textBoxProxy1.TabIndex = 2;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(5, 8);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Location = new System.Drawing.Point(7, 13);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(122, 16);
+            this.label10.Size = new System.Drawing.Size(166, 23);
             this.label10.TabIndex = 1;
             this.label10.Text = "Văn bản uỷ quyền";
             // 
@@ -315,18 +296,16 @@ namespace OPM.GUI
             // 
             this.panel6.Controls.Add(this.textBoxTax);
             this.panel6.Controls.Add(this.label6);
-            this.panel6.Location = new System.Drawing.Point(7, 218);
-            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel6.Location = new System.Drawing.Point(10, 363);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(513, 31);
+            this.panel6.Size = new System.Drawing.Size(733, 52);
             this.panel6.TabIndex = 4;
             // 
             // textBoxTax
             // 
-            this.textBoxTax.Location = new System.Drawing.Point(133, 7);
-            this.textBoxTax.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxTax.Location = new System.Drawing.Point(190, 12);
             this.textBoxTax.Name = "textBoxTax";
-            this.textBoxTax.Size = new System.Drawing.Size(370, 23);
+            this.textBoxTax.Size = new System.Drawing.Size(527, 31);
             this.textBoxTax.TabIndex = 2;
             this.textBoxTax.Text = "0100113871";
             // 
@@ -334,10 +313,9 @@ namespace OPM.GUI
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(5, 8);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(7, 13);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(77, 16);
+            this.label6.Size = new System.Drawing.Size(108, 23);
             this.label6.TabIndex = 1;
             this.label6.Text = "Mã số thuế";
             // 
@@ -345,18 +323,16 @@ namespace OPM.GUI
             // 
             this.panel2.Controls.Add(this.textBoxHeadquater);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(7, 79);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Location = new System.Drawing.Point(10, 132);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(513, 31);
+            this.panel2.Size = new System.Drawing.Size(733, 52);
             this.panel2.TabIndex = 4;
             // 
             // textBoxHeadquater
             // 
-            this.textBoxHeadquater.Location = new System.Drawing.Point(133, 7);
-            this.textBoxHeadquater.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxHeadquater.Location = new System.Drawing.Point(190, 12);
             this.textBoxHeadquater.Name = "textBoxHeadquater";
-            this.textBoxHeadquater.Size = new System.Drawing.Size(370, 23);
+            this.textBoxHeadquater.Size = new System.Drawing.Size(527, 31);
             this.textBoxHeadquater.TabIndex = 2;
             this.textBoxHeadquater.Text = "124-Hoàng Quốc Việt-Cầu Giấy- Hà Nội";
             // 
@@ -364,10 +340,9 @@ namespace OPM.GUI
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(5, 8);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(7, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 16);
+            this.label2.Size = new System.Drawing.Size(67, 23);
             this.label2.TabIndex = 1;
             this.label2.Text = "Trụ sở";
             // 
@@ -375,28 +350,25 @@ namespace OPM.GUI
             // 
             this.panel15.Controls.Add(this.textBoxPosition3);
             this.panel15.Controls.Add(this.label15);
-            this.panel15.Location = new System.Drawing.Point(7, 531);
-            this.panel15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel15.Location = new System.Drawing.Point(10, 885);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(513, 31);
+            this.panel15.Size = new System.Drawing.Size(733, 52);
             this.panel15.TabIndex = 4;
             // 
             // textBoxPosition3
             // 
-            this.textBoxPosition3.Location = new System.Drawing.Point(133, 7);
-            this.textBoxPosition3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxPosition3.Location = new System.Drawing.Point(190, 12);
             this.textBoxPosition3.Name = "textBoxPosition3";
-            this.textBoxPosition3.Size = new System.Drawing.Size(370, 23);
+            this.textBoxPosition3.Size = new System.Drawing.Size(527, 31);
             this.textBoxPosition3.TabIndex = 2;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label15.Location = new System.Drawing.Point(5, 8);
-            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Location = new System.Drawing.Point(7, 13);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(60, 16);
+            this.label15.Size = new System.Drawing.Size(82, 23);
             this.label15.TabIndex = 1;
             this.label15.Text = "Chức vụ";
             // 
@@ -404,28 +376,25 @@ namespace OPM.GUI
             // 
             this.panel13.Controls.Add(this.textBoxProxy2);
             this.panel13.Controls.Add(this.label13);
-            this.panel13.Location = new System.Drawing.Point(7, 461);
-            this.panel13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel13.Location = new System.Drawing.Point(10, 768);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(513, 31);
+            this.panel13.Size = new System.Drawing.Size(733, 52);
             this.panel13.TabIndex = 4;
             // 
             // textBoxProxy2
             // 
-            this.textBoxProxy2.Location = new System.Drawing.Point(133, 7);
-            this.textBoxProxy2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxProxy2.Location = new System.Drawing.Point(190, 12);
             this.textBoxProxy2.Name = "textBoxProxy2";
-            this.textBoxProxy2.Size = new System.Drawing.Size(370, 23);
+            this.textBoxProxy2.Size = new System.Drawing.Size(527, 31);
             this.textBoxProxy2.TabIndex = 2;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(5, 8);
-            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Location = new System.Drawing.Point(7, 13);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(122, 16);
+            this.label13.Size = new System.Drawing.Size(166, 23);
             this.label13.TabIndex = 1;
             this.label13.Text = "Văn bản uỷ quyền";
             // 
@@ -433,18 +402,16 @@ namespace OPM.GUI
             // 
             this.panel9.Controls.Add(this.textBoxPosition1);
             this.panel9.Controls.Add(this.label9);
-            this.panel9.Location = new System.Drawing.Point(7, 322);
-            this.panel9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel9.Location = new System.Drawing.Point(10, 537);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(513, 31);
+            this.panel9.Size = new System.Drawing.Size(733, 52);
             this.panel9.TabIndex = 4;
             // 
             // textBoxPosition1
             // 
-            this.textBoxPosition1.Location = new System.Drawing.Point(133, 7);
-            this.textBoxPosition1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxPosition1.Location = new System.Drawing.Point(190, 12);
             this.textBoxPosition1.Name = "textBoxPosition1";
-            this.textBoxPosition1.Size = new System.Drawing.Size(370, 23);
+            this.textBoxPosition1.Size = new System.Drawing.Size(527, 31);
             this.textBoxPosition1.TabIndex = 2;
             this.textBoxPosition1.Text = "Tổng giám đốc";
             // 
@@ -452,10 +419,9 @@ namespace OPM.GUI
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.Location = new System.Drawing.Point(5, 8);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(7, 13);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(60, 16);
+            this.label9.Size = new System.Drawing.Size(82, 23);
             this.label9.TabIndex = 1;
             this.label9.Text = "Chức vụ";
             // 
@@ -463,18 +429,16 @@ namespace OPM.GUI
             // 
             this.panel5.Controls.Add(this.textBoxFax);
             this.panel5.Controls.Add(this.label5);
-            this.panel5.Location = new System.Drawing.Point(7, 183);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel5.Location = new System.Drawing.Point(10, 305);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(513, 31);
+            this.panel5.Size = new System.Drawing.Size(733, 52);
             this.panel5.TabIndex = 4;
             // 
             // textBoxFax
             // 
-            this.textBoxFax.Location = new System.Drawing.Point(133, 7);
-            this.textBoxFax.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxFax.Location = new System.Drawing.Point(190, 12);
             this.textBoxFax.Name = "textBoxFax";
-            this.textBoxFax.Size = new System.Drawing.Size(370, 23);
+            this.textBoxFax.Size = new System.Drawing.Size(527, 31);
             this.textBoxFax.TabIndex = 2;
             this.textBoxFax.Text = "02433861195";
             // 
@@ -482,10 +446,9 @@ namespace OPM.GUI
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(5, 8);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(7, 13);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(30, 16);
+            this.label5.Size = new System.Drawing.Size(42, 23);
             this.label5.TabIndex = 1;
             this.label5.Text = "Fax";
             // 
@@ -493,18 +456,16 @@ namespace OPM.GUI
             // 
             this.panel1.Controls.Add(this.textBoxType);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(7, 44);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Location = new System.Drawing.Point(10, 73);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(513, 31);
+            this.panel1.Size = new System.Drawing.Size(733, 52);
             this.panel1.TabIndex = 4;
             // 
             // textBoxType
             // 
-            this.textBoxType.Location = new System.Drawing.Point(133, 7);
-            this.textBoxType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxType.Location = new System.Drawing.Point(190, 12);
             this.textBoxType.Name = "textBoxType";
-            this.textBoxType.Size = new System.Drawing.Size(370, 23);
+            this.textBoxType.Size = new System.Drawing.Size(527, 31);
             this.textBoxType.TabIndex = 2;
             this.textBoxType.Text = "NT";
             // 
@@ -512,10 +473,9 @@ namespace OPM.GUI
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(5, 8);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(7, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 16);
+            this.label1.Size = new System.Drawing.Size(90, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "Phân loại";
             // 
@@ -523,28 +483,25 @@ namespace OPM.GUI
             // 
             this.panel12.Controls.Add(this.textBoxPosition2);
             this.panel12.Controls.Add(this.label12);
-            this.panel12.Location = new System.Drawing.Point(7, 427);
-            this.panel12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel12.Location = new System.Drawing.Point(10, 712);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(513, 31);
+            this.panel12.Size = new System.Drawing.Size(733, 52);
             this.panel12.TabIndex = 3;
             // 
             // textBoxPosition2
             // 
-            this.textBoxPosition2.Location = new System.Drawing.Point(133, 7);
-            this.textBoxPosition2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxPosition2.Location = new System.Drawing.Point(190, 12);
             this.textBoxPosition2.Name = "textBoxPosition2";
-            this.textBoxPosition2.Size = new System.Drawing.Size(370, 23);
+            this.textBoxPosition2.Size = new System.Drawing.Size(527, 31);
             this.textBoxPosition2.TabIndex = 2;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label12.Location = new System.Drawing.Point(5, 8);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Location = new System.Drawing.Point(7, 13);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(60, 16);
+            this.label12.Size = new System.Drawing.Size(82, 23);
             this.label12.TabIndex = 1;
             this.label12.Text = "Chức vụ";
             // 
@@ -552,18 +509,16 @@ namespace OPM.GUI
             // 
             this.panel8.Controls.Add(this.textBoxRepresentative1);
             this.panel8.Controls.Add(this.label8);
-            this.panel8.Location = new System.Drawing.Point(7, 287);
-            this.panel8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel8.Location = new System.Drawing.Point(10, 478);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(513, 31);
+            this.panel8.Size = new System.Drawing.Size(733, 52);
             this.panel8.TabIndex = 3;
             // 
             // textBoxRepresentative1
             // 
-            this.textBoxRepresentative1.Location = new System.Drawing.Point(133, 7);
-            this.textBoxRepresentative1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxRepresentative1.Location = new System.Drawing.Point(190, 12);
             this.textBoxRepresentative1.Name = "textBoxRepresentative1";
-            this.textBoxRepresentative1.Size = new System.Drawing.Size(370, 23);
+            this.textBoxRepresentative1.Size = new System.Drawing.Size(527, 31);
             this.textBoxRepresentative1.TabIndex = 2;
             this.textBoxRepresentative1.Text = "Ông Nguyễn Văn Nam";
             // 
@@ -571,10 +526,9 @@ namespace OPM.GUI
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.Location = new System.Drawing.Point(5, 8);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(7, 13);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 16);
+            this.label8.Size = new System.Drawing.Size(98, 23);
             this.label8.TabIndex = 1;
             this.label8.Text = "Đại diện 1";
             // 
@@ -582,18 +536,16 @@ namespace OPM.GUI
             // 
             this.panel4.Controls.Add(this.textBoxPhonenumber);
             this.panel4.Controls.Add(this.label4);
-            this.panel4.Location = new System.Drawing.Point(7, 148);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Location = new System.Drawing.Point(10, 247);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(513, 31);
+            this.panel4.Size = new System.Drawing.Size(733, 52);
             this.panel4.TabIndex = 3;
             // 
             // textBoxPhonenumber
             // 
-            this.textBoxPhonenumber.Location = new System.Drawing.Point(133, 7);
-            this.textBoxPhonenumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxPhonenumber.Location = new System.Drawing.Point(190, 12);
             this.textBoxPhonenumber.Name = "textBoxPhonenumber";
-            this.textBoxPhonenumber.Size = new System.Drawing.Size(370, 23);
+            this.textBoxPhonenumber.Size = new System.Drawing.Size(527, 31);
             this.textBoxPhonenumber.TabIndex = 2;
             this.textBoxPhonenumber.Text = "02438362094";
             // 
@@ -601,10 +553,9 @@ namespace OPM.GUI
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(5, 8);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(7, 13);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 16);
+            this.label4.Size = new System.Drawing.Size(97, 23);
             this.label4.TabIndex = 1;
             this.label4.Text = "Điện thoại";
             // 
@@ -612,29 +563,27 @@ namespace OPM.GUI
             // 
             this.panel26.Controls.Add(this.textBoxId);
             this.panel26.Controls.Add(this.lblFoodTableSatus);
-            this.panel26.Location = new System.Drawing.Point(7, 9);
-            this.panel26.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel26.Location = new System.Drawing.Point(10, 15);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(513, 31);
+            this.panel26.Size = new System.Drawing.Size(733, 52);
             this.panel26.TabIndex = 3;
             // 
             // textBoxId
             // 
-            this.textBoxId.Location = new System.Drawing.Point(133, 7);
-            this.textBoxId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxId.Location = new System.Drawing.Point(190, 12);
             this.textBoxId.Name = "textBoxId";
-            this.textBoxId.Size = new System.Drawing.Size(370, 23);
+            this.textBoxId.Size = new System.Drawing.Size(527, 31);
             this.textBoxId.TabIndex = 2;
             this.textBoxId.Text = "Công ty TNHH thiết bị viễn thông ANSV";
+            this.textBoxId.TextChanged += new System.EventHandler(this.textBoxId_TextChanged);
             // 
             // lblFoodTableSatus
             // 
             this.lblFoodTableSatus.AutoSize = true;
             this.lblFoodTableSatus.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblFoodTableSatus.Location = new System.Drawing.Point(5, 8);
-            this.lblFoodTableSatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFoodTableSatus.Location = new System.Drawing.Point(7, 13);
             this.lblFoodTableSatus.Name = "lblFoodTableSatus";
-            this.lblFoodTableSatus.Size = new System.Drawing.Size(75, 16);
+            this.lblFoodTableSatus.Size = new System.Drawing.Size(102, 23);
             this.lblFoodTableSatus.TabIndex = 1;
             this.lblFoodTableSatus.Text = "Tên đơn vị";
             // 
@@ -642,30 +591,35 @@ namespace OPM.GUI
             // 
             this.dtgvSite.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvSite.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvSite.Location = new System.Drawing.Point(17, 67);
-            this.dtgvSite.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dtgvSite.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.STT});
+            this.dtgvSite.Location = new System.Drawing.Point(24, 112);
             this.dtgvSite.Name = "dtgvSite";
             this.dtgvSite.RowHeadersWidth = 62;
             this.dtgvSite.RowTemplate.Height = 33;
-            this.dtgvSite.Size = new System.Drawing.Size(513, 543);
+            this.dtgvSite.Size = new System.Drawing.Size(733, 905);
             this.dtgvSite.TabIndex = 0;
+            // 
+            // STT
+            // 
+            this.STT.HeaderText = "STT";
+            this.STT.MinimumWidth = 8;
+            this.STT.Name = "STT";
             // 
             // panel31
             // 
             this.panel31.Controls.Add(this.btnDelete);
             this.panel31.Controls.Add(this.btnAddOrUpdate);
-            this.panel31.Location = new System.Drawing.Point(17, 7);
-            this.panel31.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel31.Location = new System.Drawing.Point(24, 12);
             this.panel31.Name = "panel31";
-            this.panel31.Size = new System.Drawing.Size(513, 49);
+            this.panel31.Size = new System.Drawing.Size(733, 82);
             this.panel31.TabIndex = 0;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(350, 7);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDelete.Location = new System.Drawing.Point(500, 12);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(154, 36);
+            this.btnDelete.Size = new System.Drawing.Size(220, 60);
             this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "Xoá";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -673,10 +627,9 @@ namespace OPM.GUI
             // 
             // btnAddOrUpdate
             // 
-            this.btnAddOrUpdate.Location = new System.Drawing.Point(10, 6);
-            this.btnAddOrUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAddOrUpdate.Location = new System.Drawing.Point(14, 10);
             this.btnAddOrUpdate.Name = "btnAddOrUpdate";
-            this.btnAddOrUpdate.Size = new System.Drawing.Size(154, 36);
+            this.btnAddOrUpdate.Size = new System.Drawing.Size(220, 60);
             this.btnAddOrUpdate.TabIndex = 0;
             this.btnAddOrUpdate.Text = "Thêm hoặc sửa";
             this.btnAddOrUpdate.UseVisualStyleBackColor = true;
@@ -684,15 +637,15 @@ namespace OPM.GUI
             // 
             // SiteForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(959, 449);
+            this.ClientSize = new System.Drawing.Size(1542, 1019);
             this.Controls.Add(this.dtgvSite);
             this.Controls.Add(this.panel24);
             this.Controls.Add(this.panel31);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "SiteForm";
             this.Text = "Bảng Site";
+            this.Load += new System.EventHandler(this.SiteForm_Load);
             this.panel24.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
@@ -791,5 +744,6 @@ namespace OPM.GUI
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox textBoxPhonenumber;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
     }
 }

@@ -16,7 +16,10 @@ namespace OPM
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new OPMDASHBOARDA());
+            //Application.Run(new SiteForm());
             //Application.Run(new TestTableForm());
+            //Application.Run(new Contract_Goods_Form());
+
         }
     }
 }

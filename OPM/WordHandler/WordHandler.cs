@@ -1077,6 +1077,7 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
+
             WordOffice.Application wordApp = new WordOffice.Application();
             object missing = Missing.Value;
             WordOffice.Document myDoc = null;
@@ -1087,7 +1088,6 @@ namespace OPM.WordHandler
                 object readOnly = true;
                 //object isVisible = false;
                 wordApp.Visible = false;
-
                 myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
                                     ref missing, ref missing, ref missing,
                                     ref missing, ref missing, ref missing,

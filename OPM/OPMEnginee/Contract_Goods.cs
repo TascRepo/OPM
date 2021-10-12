@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace OPM.OPMEnginee
 {
-    class Contract_Goods
+    public class Contract_Goods
     {
         string idContract = "111-2021/CUVT-ANSV/DTRR-KHMS";
         string origin = "Việt Nam";
@@ -95,13 +95,13 @@ namespace OPM.OPMEnginee
         public Contract_Goods(string idContract)
         {
             string query = string.Format("SELECT * FROM dbo.Contract_Goods WHERE idContract = '{0}'", idContract);
+            IdContract = idContract;
             try
             {
                 DataTable table = OPMDBHandler.ExecuteQuery(query);
                 if (table.Rows.Count > 0)
                 {
                     DataRow row = table.Rows[0];
-                    IdContract = row["idContract"].ToString();
                     Name = row["name"].ToString();
                     Origin = (row["Origin"] == null || row["Origin"] == DBNull.Value) ? "Việt Nam" : row["Origin"].ToString();
                     Manufacturer = (row["Manufacturer"] == null || row["Manufacturer"] == DBNull.Value) ? "VNPT Technology" : row["Manufacturer"].ToString();
@@ -122,14 +122,14 @@ namespace OPM.OPMEnginee
         public Contract_Goods(string idContract, string name)
         {
             string query = string.Format("SELECT * FROM dbo.Contract_Goods WHERE idContract = '{0}' and name = N'{1}'", idContract, name);
+            IdContract = idContract;
+            Name = name;
             try
             {
                 DataTable table = OPMDBHandler.ExecuteQuery(query);
                 if (table.Rows.Count > 0)
                 {
                     DataRow row = table.Rows[0];
-                    IdContract = row["idContract"].ToString();
-                    Name = row["name"].ToString();
                     Origin = (row["Origin"] == null || row["Origin"] == DBNull.Value) ? "Việt Nam" : row["Origin"].ToString();
                     Manufacturer = (row["Manufacturer"] == null || row["Manufacturer"] == DBNull.Value) ? "VNPT Technology" : row["Manufacturer"].ToString();
                     Name1 = (row["Name1"] == null || row["Name1"] == DBNull.Value) ? "Thiết bị đầu cuối ONT loại  (2FE/GE + Wifi Dualband)" : row["Name1"].ToString();

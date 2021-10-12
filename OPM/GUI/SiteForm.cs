@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace OPM.GUI
@@ -7,17 +8,14 @@ namespace OPM.GUI
     {
         public delegate void SetValueContractForm(string vl);
         public SetValueContractForm setValueContractForm;
+        string idSite;
+
+        public string IdSite { get => idSite; set => idSite = value; }
+
         public SiteForm()
         {
             InitializeComponent();
-            LoadDataGridView();
         }
-        public SiteForm(string id)
-        {
-            InitializeComponent();
-            LoadDataGridView();
-        }
-
         void AddSiteBinding()
         {
             textBoxId.DataBindings.Clear();
@@ -58,7 +56,8 @@ namespace OPM.GUI
         }
         void LoadDataGridView()
         {
-            dtgvSite.DataSource = OPMEnginee.Site.GetList();
+            List<OPMEnginee.Site> sites = OPMEnginee.Site.GetList();
+            dtgvSite.DataSource = sites;
             dtgvSite.Columns["Id"].HeaderText = @"Tên đơn vị";
             //dtgvSite.Columns["Id"].Width = 250;
             dtgvSite.Columns["Type"].HeaderText = @"Phân loại";
@@ -109,6 +108,18 @@ namespace OPM.GUI
             dtgvSite.Columns["Proxy3"].HeaderText = @"Văn bản uỷ quyền";
             dtgvSite.Columns["Proxy3"].Visible = false;
             //dtgvSite.Columns["Proxy3"].Width = 250;
+            if (!OPMEnginee.Site.Exist(idSite))
+            {
+                OPMEnginee.Site site1 = new OPMEnginee.Site(idSite);
+                
+            }
+            //MessageBox.Show(textBoxId.Text);
+            //MessageBox.Show(textBoxId.Text);
+            for (int i = 0; i < dtgvSite.RowCount; i++)
+            {
+                dtgvSite.Rows[i].Cells[0].Value = i+1;
+                if (idSite == dtgvSite.Rows[i].Cells["Id"].Value.ToString()) dtgvSite.CurrentCell = dtgvSite.Rows[i].Cells["Id"];
+            }
             AddSiteBinding();
         }
         private void btnAddOrUpdate_Click(object sender, EventArgs e)
@@ -141,14 +152,21 @@ namespace OPM.GUI
             if (OPMEnginee.Site.Exist(textBoxId.Text.Trim()))
             {
                 OPMEnginee.Site.Delete(textBoxId.Text.Trim());
-                LoadDataGridView();
+                //LoadDataGridView();
             }
             else MessageBox.Show("Site không tồn tại!");
         }
 
-        private void panel24_Paint(object sender, PaintEventArgs e)
+        private void SiteForm_Load(object sender, EventArgs e)
         {
+            LoadDataGridView();
 
+        }
+
+        private void textBoxId_TextChanged(object sender, EventArgs e)
+        {
+            setValueContractForm(textBoxId.Text);
+            idSite = textBoxId.Text;
         }
     }
 }

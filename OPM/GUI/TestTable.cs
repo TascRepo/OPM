@@ -17,6 +17,10 @@ namespace OPM.GUI
         void LoadData()
         {
             dataGridViewTest.DataSource = CatalogAdmin.Table();
+            textBox1.DataBindings.Add("Text", dataGridViewTest.DataSource, "ctlId");
+            textBox2.DataBindings.Add("Text", dataGridViewTest.DataSource, "ctlName");
+            textBox3.DataBindings.Add("Text", dataGridViewTest.DataSource, "ctlParent");
+            dataGridViewTest.CurrentCell = dataGridViewTest.Rows[2].Cells["ctlId"];
         }
 
         private void TestTableForm_Load(object sender, EventArgs e)
@@ -128,7 +132,7 @@ namespace OPM.GUI
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Test());
+            
         }
     }
 }
