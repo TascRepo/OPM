@@ -292,6 +292,7 @@ namespace OPM.GUI
             // dataGridViewProvince
             // 
             this.dataGridViewProvince.AllowUserToOrderColumns = true;
+            this.dataGridViewProvince.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewProvince.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewProvince.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Checked,

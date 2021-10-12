@@ -42,6 +42,7 @@ namespace OPM.GUI
             // 
             // dataKHGH
             // 
+            this.dataKHGH.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataKHGH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataKHGH.Location = new System.Drawing.Point(12, 37);
             this.dataKHGH.Name = "dataKHGH";

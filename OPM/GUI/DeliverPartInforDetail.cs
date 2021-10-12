@@ -11,6 +11,7 @@ namespace OPM.GUI
         public delegate void UpdateCatalogDelegate(string value);
         public UpdateCatalogDelegate UpdateCatalogPanel;
         public static string tsDP = "";
+        public static string tsPO = "";
         public DeliverPartInforDetail()
         {
             InitializeComponent();
@@ -64,22 +65,41 @@ namespace OPM.GUI
                 {
                     MessageBox.Show("Thêm mới DP " + txbIdDP.Text + " thành công!");
                 }
-                //Lưu trữ thông tin vào database với các tỉnh và file phân bổ
+                //Them danh sach cac hang chinh vao ListExpect_DP
                 for (int i = 0; i < dataGridViewProvince.Rows.Count - 1; i++)
                 {
-                    bool IsCheck = Convert.ToBoolean(dataGridViewProvince.Rows[i].Cells[0].Value);
-                    if (IsCheck == true && dataGridViewProvince.Rows[i].Cells[0].ToString().Length > 0)
+                    bool isCellChecked = (bool)dataGridViewProvince.Rows[i].Cells[0].Value;
+                    if (dataGridViewProvince.Rows[i].Cells[1].Value.ToString() != "" && isCellChecked == true)
                     {
-                        dp.InsertListExpected_DP(dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), txbIdDP.Text);
+                        if (dp.Check_ListExpected_DP(dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), txbIdDP.Text, cbbType.Text, txbPOCode.Text))
+                        {
+                            dp.UpdateListExpected_DP(dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), cbbType.Text, txbIdDP.Text, txbPOCode.Text);
+                        }
+                        else
+                        {
+                            dp.InsertListExpected_DP(dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), cbbType.Text, txbIdDP.Text, txbPOCode.Text);
+                        }
+                    }
+                }
+                MessageBox.Show("Xử lý các thông tin hàng chinh thuộc DP: " + txbIdDP.Text + " thành công vao CSDL!");
+                //Xử lý các mẫu 18,19,20,21,22,23
+                for (int i = 0; i < dataGridViewProvince.Rows.Count - 1; i++)
+                {
+                    bool isCellChecked = (bool)dataGridViewProvince.Rows[i].Cells[0].Value;
+                    if (dataGridViewProvince.Rows[i].Cells[1].Value.ToString() != "" && isCellChecked == true)
+                    {
+                        //Xuất mẫu 18
+                        OpmWordHandler.Word_GiaoNhanHangHoa(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), dtpRequest.Text, txbIdDP.Text, dtpOutCap.Text, mahangHD.Text, tenhangHD.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString());
                         //Xuất mẫu 19
-                        OpmWordHandler.Word_DPCNKTCL(txbIDContract.Text, txbPOName.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
+                        OpmWordHandler.Word_DPCNKTCL(txbIDContract.Text, txbPOName.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
                         //Xuất mẫu 20
-                        OpmWordHandler.Word_DPCNCL(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
+                        OpmWordHandler.Word_DPCNCL(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
                         //Xuất mẫu 22
-                        OpmWordHandler.Word_PBH(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[2].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
+                        OpmWordHandler.Word_PBH(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
                     }
                 }
                 MessageBox.Show("Tạo mẫu 19,20,22 đi các tỉnh thành công!");
+                //
             }
         }
         private void DeliverPartInforDetail_Load(object sender, EventArgs e)
@@ -165,12 +185,20 @@ namespace OPM.GUI
 
         private void hangPhu_CheckedChanged(object sender, EventArgs e)
         {
-            tsDP = txbIdDP.Text;
-            if (hangPhu.Checked == true)
+            if (txbIdDP.Text == "DPXXX/202X")
             {
-                FormDPWarranty frm2 = new FormDPWarranty();
-                frm2.Activate();
-                frm2.Show();
+                MessageBox.Show("Nhập sai định dạng số DP!");
+            }
+            else
+            {
+                tsDP = txbIdDP.Text;
+                tsPO = txbPOCode.Text;
+                if (hangPhu.Checked == true)
+                {
+                    FormDPWarranty frm2 = new FormDPWarranty();
+                    frm2.Activate();
+                    frm2.Show();
+                }
             }
         }
     }
