@@ -53,5 +53,26 @@ namespace OPM.GUI
         {
             this.Close();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DP dP = new DP();
+            if(dP.Check_Serial(txtIdDP.Text, maPO.Text))
+            {
+                dP.Delete_Serial(txtIdDP.Text, maPO.Text);
+            }
+            for(int i = 0; i < 10; i = i + 2)
+            {
+                if(dataGridView1.Rows[1].Cells[i + 1].Value.ToString() != "")
+                {
+                    for (int j = 1; j < dataGridView1.Rows.Count - 1; j++)
+                    {
+                        dP.InsertListPhuLucSerial(dataGridView1.Rows[j].Cells[i + 1].Value.ToString(), txtIdDP.Text, maPO.Text);
+                    }
+                    break;
+                }
+            }
+            MessageBox.Show("Xử lý file phụ lục Serial đính kèm thành công!");
+        }
     }
 }

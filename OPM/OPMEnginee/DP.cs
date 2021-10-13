@@ -149,6 +149,24 @@ namespace OPM.DBHandler
             }
             return result;
         }
+        public int InsertListPhuLucSerial(string SerialName, string id_dp, string id_po)
+        {
+            int result = 0;
+            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.PhuLucSerial(Serial,id_dp,id_po) VALUES(N'{0}',N'{1}',N'{2}')", SerialName, id_dp, id_po);
+            result = OPMDBHandler.fInsertData(query);
+            return result;
+        }
+        public bool Check_Serial(string id_dp, string id_po)
+        {
+            string query = string.Format("SELECT * FROM dbo.PhuLucSerial WHERE id_dp = N'{0}' and id_po = N'{1}'", id_dp, id_po);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            return table.Rows.Count > 0;
+        }
+        public void Delete_Serial(string id_dp, string id_po)
+        {
+            string query = string.Format("delete dbo.PhuLucSerial WHERE id_dp = N'{0}' and id_po = N'{1}'", id_dp, id_po);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+        }
     }
 
 }
