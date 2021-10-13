@@ -15,7 +15,7 @@ namespace OPM.GUI
         public UpdateCatalogDelegate UpdateCatalogPanel;
 
         /*Delegate Request Dashboard Open NTKT form*/
-        public delegate void RequestDashBoardOpenNTKTForm(string strIDContract, string strKHMS, string strPONumber, string strPOID);
+        public delegate void RequestDashBoardOpenNTKTForm(string strPOID);
         public RequestDashBoardOpenNTKTForm requestDashBoardOpenNTKTForm;
 
         /*Delegate Request Dashboard Open Confirm form*/
@@ -213,7 +213,7 @@ namespace OPM.GUI
             /*Request DashBoard Open NTKT Form*/
             string strContract = "Contract_" + txbIDContract.Text.ToString();
             /*Request DashBoard Open PO Form*/
-            requestDashBoardOpenNTKTForm(txbKHMS.Text, strContract, txbPOCode.Text, txbPOName.Text);
+            requestDashBoardOpenNTKTForm(txbPOCode.Text.Trim());
             return;
 
         }

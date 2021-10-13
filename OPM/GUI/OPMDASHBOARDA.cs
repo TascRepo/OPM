@@ -79,7 +79,7 @@ namespace OPM.GUI
         }
         private Form activeForm = null;
 
-        private void OpenChidForm(Form childForm)
+        private void OpenChildForm(Form childForm)
         {
             ClearPanel();
             if (null != activeForm) activeForm.Close();
@@ -143,7 +143,7 @@ namespace OPM.GUI
                         //DASHBOAD nhận yêu cầu mở DescriptionSiteForm từ ContractInfoChildForm
                         contractInfoChildForm.requestDashBoardOpendescriptionForm = new ContractInfoChildForm.RequestDashBoardOpenDescriptionForm(OpenDescription);
                         //Mở ContractInfoChildForm
-                        OpenChidForm(contractInfoChildForm);
+                        OpenChildForm(contractInfoChildForm);
                         break;
                     case ConstantVar.POType:
                         /*Display PO */
@@ -158,30 +158,26 @@ namespace OPM.GUI
                         //Click vao ComfirmPO
                         purchaseOderInfor.requestDashBoardOpenConfirmPOForm = new PurchaseOderInfor.RequestDashBoardOpenConfirmForm(OpenConfirmPOForm);
                         //
-                        OpenChidForm(purchaseOderInfor);
+                        OpenChildForm(purchaseOderInfor);
                         break;
                     case ConstantVar.DPType:
                         /*Display DP */
                         DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
                         deliverPartInforDetail.UpdateCatalogPanel = new DeliverPartInforDetail.UpdateCatalogDelegate(GetCatalogvalue);
-                        OpenChidForm(deliverPartInforDetail);
+                        OpenChildForm(deliverPartInforDetail);
                         break;
                     case ConstantVar.NTKTType:
-                        /*Display NTKT */
                         NTKTInfor nTKTInfor = new NTKTInfor();
                         nTKTInfor.UpdateCatalogPanel = new NTKTInfor.UpdateCatalogDelegate(GetCatalogvalue);
                         nTKTInfor.requestDashBoardPurchaseOderForm = new NTKTInfor.RequestDashBoardPurchaseOderForm(OpenPOForm);
-                        //nTKTInfor.setValueItemForNTKT(temp[1]);
-                        //Lấy NTKT hiện tại
-                        nTKTInfor.ntkt = new NTKT_Thanh(temp[1]);
-                        nTKTInfor.po = new DBHandler.PO_Thanh(nTKTInfor.ntkt.Id_po);
-                        OpenChidForm(nTKTInfor);
+                        nTKTInfor.Ntkt = new NTKT_Thanh(temp[1]);
+                        OpenChildForm(nTKTInfor);
                         break;
                     case ConstantVar.PLType:
                         /*Display PL */
                         PackageListInfor packageListInfor = new PackageListInfor();
                         packageListInfor.UpdateCatalogPanel = new PackageListInfor.UpdateCatalogDelegate(GetCatalogvalue);
-                        OpenChidForm(packageListInfor);
+                        OpenChildForm(packageListInfor);
                         break;
                     default:
                         Console.WriteLine("Invalid grade");
@@ -204,7 +200,7 @@ namespace OPM.GUI
                 //Do Something
                 PurchaseOderInfor purchaseOderInfor = new PurchaseOderInfor();
                 purchaseOderInfor.UpdateCatalogPanel = new PurchaseOderInfor.UpdateCatalogDelegate(GetCatalogvalue);
-                OpenChidForm(purchaseOderInfor);
+                OpenChildForm(purchaseOderInfor);
             }
             else if (e.ClickedItem.Name == "toolStripMenuEdit")
             {
@@ -226,9 +222,9 @@ namespace OPM.GUI
                 RequestDashBoardOpenPOForm = new ContractInfoChildForm.RequestDashBoardOpenChildForm(OpenPOForm),
                 requestDashBoardOpendescriptionForm = new ContractInfoChildForm.RequestDashBoardOpenDescriptionForm(OpenDescription)
             };
-            OpenChidForm(contractInfoChildForm);
+            OpenChildForm(contractInfoChildForm);
         }
-        public void OpenPOForm(string strIDContract, string idPO)
+        public void OpenPOForm(string idPO)
         {
             PurchaseOderInfor purchaseOderInfor = new PurchaseOderInfor();
             purchaseOderInfor.UpdateCatalogPanel = new PurchaseOderInfor.UpdateCatalogDelegate(GetCatalogvalue);
@@ -245,20 +241,19 @@ namespace OPM.GUI
             purchaseOderInfor.requestDasckboardOpenExcel = new PurchaseOderInfor.RequestDasckboardOpenExcel(OpenExcel);
             ContractInfoChildForm contractInfoChildForm = new ContractInfoChildForm();
             contractInfoChildForm.requestDashBoardOpendescriptionForm = new ContractInfoChildForm.RequestDashBoardOpenDescriptionForm(OpenDescription);
-            strIDContract = strIDContract.Replace("Contract_", "");
-            purchaseOderInfor.SetTxbIDContract(strIDContract);
             purchaseOderInfor.po = new DBHandler.PO_Thanh(idPO);
-            OpenChidForm(purchaseOderInfor);
+            OpenChildForm(purchaseOderInfor);
             return;
 
         }
-        public void OpenNTKTForm(string strKHMS, string strContractID, string strPOID, string strPONumber)
+        public void OpenNTKTForm(string strPOID)
         {
             NTKTInfor nTKTInfor = new NTKTInfor();
+            nTKTInfor.Ntkt = new NTKT_Thanh();
+            nTKTInfor.Ntkt.Id_po = strPOID;
             nTKTInfor.requestDashBoardPurchaseOderForm = new NTKTInfor.RequestDashBoardPurchaseOderForm(OpenPOForm);
             nTKTInfor.UpdateCatalogPanel = new NTKTInfor.UpdateCatalogDelegate(GetCatalogvalue);
-            nTKTInfor.po = new DBHandler.PO_Thanh(strPOID);
-            OpenChidForm(nTKTInfor);
+            OpenChildForm(nTKTInfor);
             return;
         }
 
@@ -271,7 +266,7 @@ namespace OPM.GUI
             confirmPO.SetContractID(strContractID);
             confirmPO.SetPOID(strPOID);
             confirmPO.SetPONumber(strPONumber);
-            OpenChidForm(confirmPO);
+            OpenChildForm(confirmPO);
             return;
         }
         public void OpenDescription(string id, DescriptionSiteForm.SetIdSite setIdSite)
@@ -283,7 +278,7 @@ namespace OPM.GUI
         public void OpenExcel()
         {
             HandlerExcel handlerExcel = new HandlerExcel();
-            OpenChidForm(handlerExcel);
+            OpenChildForm(handlerExcel);
             return;
         }
         public void OpenDpForm(string idPO, string idContract, String PONumber)
@@ -297,7 +292,7 @@ namespace OPM.GUI
             deliverPartInforDetail.setIdcontract(idContract);
             deliverPartInforDetail.setKHMS(contractObj.KHMS);
             deliverPartInforDetail.setPoname(PONumber);
-            OpenChidForm(deliverPartInforDetail);
+            OpenChildForm(deliverPartInforDetail);
             return;
         }
     }

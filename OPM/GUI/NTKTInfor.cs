@@ -14,12 +14,12 @@ namespace OPM.GUI
         public delegate void RequestDashBoardOpenNTKTForm(string strIDContract, string strKHMS, string strPONumber, string strPOID);
         public RequestDashBoardOpenNTKTForm requestDashBoardOpenNTKTForm;
 
-        public delegate void RequestDashBoardPurchaseOderForm(string strIDPO, string KHMS);
+        public delegate void RequestDashBoardPurchaseOderForm(string strIDPO);
         public RequestDashBoardPurchaseOderForm requestDashBoardPurchaseOderForm;
 
         //Khai báo NTKT hiện tại
-        public PO_Thanh po;
-        public NTKT_Thanh ntkt;
+        private NTKT_Thanh ntkt;
+        public NTKT_Thanh Ntkt { get => ntkt; set => ntkt = value; }
 
         public NTKTInfor()
         {
@@ -27,68 +27,25 @@ namespace OPM.GUI
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //- Lưu vào CSDL dbo.NTKT
-            NTKT_Thanh nTKT = new NTKT_Thanh();
-            nTKT.Id = tbxId.Text.Trim();
-            nTKT.Id_po = tbxId_po.Text.Trim();
-            nTKT.Number = int.Parse(tbxNumber.Text.Trim());
-            nTKT.Numberofdevice = int.Parse(txbNumberOfDevice.Text.Trim());
-            nTKT.Numberofdevice2 = int.Parse(txbNumberOfDevice2.Text.Trim());
-            nTKT.Create_date = dtpCreate_date.Value;
-            nTKT.Deliver_date_expected = dtpDeliver_Date_Expected.Value;
-            nTKT.Date_BBKTKT = dtpDate_BBKTKT.Value;
-            nTKT.Date_BBNTKT = dtpDate_BBNTKT.Value;
-            nTKT.Date_CNBQPM = dateTimePickerCNBQPM.Value;
-            nTKT.InsertOrUpdate();
-            UpdateCatalogPanel("NTKT_" + nTKT.Id.ToString());
-            OpmWordHandler.Temp08_NTKTRequest(nTKT.Id);
-            OpmWordHandler.Temp09_BBKTKT(nTKT.Id);
-            OpmWordHandler.Temp10_CNBQPM(nTKT.Id);
-            OpmWordHandler.Temp11_BBNTKT(nTKT.Id);
-            //- Tạo file D:\OPM\''Tên HĐ''\"Tên PO"\"Tên NTKT".docx
-            //- tạo và thông báo tạo thành công hay không file Yêu cầu NTKT
+            ntkt.Id = tbxId.Text.Trim();
+            ntkt.Number = int.Parse(tbxNumber.Text.Trim());
+            ntkt.Numberofdevice = int.Parse(txbNumberOfDevice.Text.Trim());
+            ntkt.Numberofdevice2 = int.Parse(txbNumberOfDevice2.Text.Trim());
+            ntkt.Create_date = dtpCreate_date.Value;
+            ntkt.Deliver_date_expected = dtpDeliver_Date_Expected.Value;
+            ntkt.Date_BBKTKT = dtpDate_BBKTKT.Value;
+            ntkt.Date_BBNTKT = dtpDate_BBNTKT.Value;
+            ntkt.Date_CNBQPM = dateTimePickerCNBQPM.Value;
+            ntkt.InsertOrUpdate();
+            UpdateCatalogPanel("NTKT_" + ntkt.Id);
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
-            if (tbxNumber.Text != null)
-            {
-                //ContractInfoChildForm contractInfoChildForm = new ContractInfoChildForm();
-                //contractInfoChildForm.RequestDashBoardOpenPOForm = new ContractInfoChildForm.RequestDashBoardOpenChildForm(OP)
-                requestDashBoardPurchaseOderForm(tbxContract.Text, tbxId_po.Text);
-                //PurchaseOderInfor purchaseOderInfor = new PurchaseOderInfor();
-                //purchaseOderInfor.SetValueItemForPO();
-
-            }
-            else
-            {
-                //tra ve form rong
-            }
-            return;
+            UpdateCatalogPanel("PO_" + ntkt.Id_po);
+            requestDashBoardPurchaseOderForm(ntkt.Id_po);
         }
-        //@Dưỡng Bùi -- Show thông tin NTKT lên UI
-        public void setValueItemForNTKT(string IDNTKT)
-        {
-            NTKT nTKT = new NTKT();
-            nTKT.GetObjectNTKT(IDNTKT, ref nTKT);
-            string idPO = null, poNumber = null, idContract = null;
-            int ret = nTKT.getPOinfor(IDNTKT, ref idPO, ref poNumber, ref idContract);
-            PO pO = new PO();
-            string namecontract = null, KHMS = null;
-            pO.DisplayPO(idPO, ref namecontract, ref KHMS);
-            this.tbxId_po.Text = (string)KHMS;
-            this.tbxId.Text = (string)idContract;
-            this.tbxNumber.Text = (string)nTKT.POID;
-            this.txbNumberOfDevice.Text = (string)poNumber;
-            //this.txbNTKTID.Text = (string)nTKT.ID_NTKT;
-            dtpDeliver_Date_Expected.Value = Convert.ToDateTime(nTKT.DateDuKienNTKT);
-        }
-
         private void NTKTInfor_Load(object sender, EventArgs e)
         {
-            if (po == null) return;
-            Contract contract = new Contract(po.Id_contract);
-            tbxContract.Text = contract.Id;
-            tbxId_po.Text = po.Id;
             if (ntkt == null) return;
             tbxId.Text = ntkt.Id;
             dtpCreate_date.Value = ntkt.Create_date;
@@ -120,8 +77,9 @@ namespace OPM.GUI
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            NTKT_Thanh.Delete(tbxId.Text.Trim());
-            UpdateCatalogPanel("PO_" + tbxId_po.Text.Trim());
+            if (MessageBox.Show(string.Format("Bạn có chắc chắn xoá cả đợt NTKT số {0} của {1} không?", ntkt.Id,ntkt.Id_po),"Cảnh báo!",MessageBoxButtons.OKCancel)== System.Windows.Forms.DialogResult.Cancel)return;
+            ntkt.Delete();
+            UpdateCatalogPanel("PO_" + ntkt.Id_po);
         }
 
         private void textBoxIdNumber_TextChanged(object sender, EventArgs e)
@@ -135,6 +93,14 @@ namespace OPM.GUI
                 MessageBox.Show("Nhập đúng dạng số!");
                 return;
             }
+        }
+
+        private void buttonCreatDocument_Click(object sender, EventArgs e)
+        {
+            OpmWordHandler.Temp08_NTKTRequest(ntkt.Id);
+            OpmWordHandler.Temp09_BBKTKT(ntkt.Id);
+            OpmWordHandler.Temp10_CNBQPM(ntkt.Id);
+            OpmWordHandler.Temp11_BBNTKT(ntkt.Id);
         }
     }
 }

@@ -15,16 +15,14 @@ namespace OPM.GUI
         public UpdateCatalogDelegate OpenPurchaseOrderInforGUI;
 
         //Yêu cầu mở Form PO 
-        public delegate void RequestDashBoardOpenChildForm(string strIDContract, string strKHMS);
+        public delegate void RequestDashBoardOpenChildForm(string strIDContract);
         public RequestDashBoardOpenChildForm RequestDashBoardOpenPOForm;
 
         //Yêu cầu mở Form SieA, B
         public delegate void RequestDashBoardOpenDescriptionForm(string id, DescriptionSiteForm.SetIdSite setIdSite);
         public RequestDashBoardOpenDescriptionForm requestDashBoardOpendescriptionForm;
         Contract_Goods goods;
-
-        public Contract_Goods Goods { get => goods; set => goods = value; }
-
+        public Contract contract;
         public ContractInfoChildForm()
         {
             InitializeComponent();
@@ -143,7 +141,7 @@ namespace OPM.GUI
         private void btnNewPO_Click(object sender, EventArgs e)
         {
             string strContract = "Contract_" + tbContract.Text.Trim();
-            RequestDashBoardOpenPOForm(strContract, txbKHMS.Text);
+            RequestDashBoardOpenPOForm(strContract);
             return;
         }
 
@@ -237,13 +235,12 @@ namespace OPM.GUI
                 goods.Insert();
             else 
                 goods.Update();
+            //Cập nhật trên TreeView
             UpdateCatalogPanel("Contract_" + tbContract.Text.Trim());
             State(true);
             btnContractAnnex.Enabled = true;
             btnRemove.Enabled = true;
             btnNewPO.Enabled = true;
-            //Cập nhật trên TreeView
-            OpmWordHandler.Temp1_CreatContractGuarantee(tbContract.Text.Trim());
         }
 
         private void txbGaranteeValue_TextChanged(object sender, EventArgs e)
@@ -293,6 +290,11 @@ namespace OPM.GUI
             contract_Goods_Form.setValueContractForm = SetValueContract;
             contract_Goods_Form.Goods = new Contract_Goods(tbContract.Text.Trim());
             contract_Goods_Form.ShowDialog();
+        }
+
+        private void buttonCreatDocument_Click(object sender, EventArgs e)
+        {
+            OpmWordHandler.Temp1_CreatContractGuarantee(tbContract.Text.Trim());
         }
     }
 }
