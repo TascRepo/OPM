@@ -167,6 +167,12 @@ namespace OPM.DBHandler
             string query = string.Format("delete dbo.PhuLucSerial WHERE id_dp = N'{0}' and id_po = N'{1}'", id_dp, id_po);
             DataTable table = OPMDBHandler.ExecuteQuery(query);
         }
+        public string querySQL(string id_dp, string id_po)
+        {
+            string strQuery = "";
+            string query = string.Format("SELECT * FROM dbo.PhuLucSerial WHERE id_dp = N'{0}' and id_po = N'{1}'", id_dp, id_po);
+            return strQuery;
+        }
     }
 
 }

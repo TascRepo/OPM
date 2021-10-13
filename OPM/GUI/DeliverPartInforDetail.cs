@@ -66,7 +66,7 @@ namespace OPM.GUI
                     MessageBox.Show("Thêm mới DP " + txbIdDP.Text + " thành công!");
                 }
                 //Them danh sach cac hang chinh vao ListExpect_DP
-                for (int i = 0; i < dataGridViewProvince.Rows.Count - 1; i++)
+                for (int i = 1; i < dataGridViewProvince.Rows.Count - 1; i++)
                 {
                     bool isCellChecked = (bool)dataGridViewProvince.Rows[i].Cells[0].Value;
                     if (dataGridViewProvince.Rows[i].Cells[1].Value.ToString() != "" && isCellChecked == true)
@@ -98,7 +98,7 @@ namespace OPM.GUI
                         OpmWordHandler.Word_PBH(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
                     }
                 }
-                MessageBox.Show("Tạo mẫu 19,20,22 đi các tỉnh thành công!");
+                MessageBox.Show("Tạo mẫu 18,19,20,21,22 đi các tỉnh thành công!");
                 //
             }
         }

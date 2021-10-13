@@ -1489,7 +1489,24 @@ namespace OPM.WordHandler
                 FindAndReplace(wordApp, "<loaihang>", " " + mahangHD);
                 FindAndReplace(wordApp, "<Soluong>", " " + soLuong);
                 FindAndReplace(wordApp, "<slp>", " " + slp);
-                FindAndReplace(wordApp, "<tong>", " " + (slp+soLuong));
+                FindAndReplace(wordApp, "<tong>", " " + (Int64.Parse(slp) + Int64.Parse(soLuong)));
+                //Phu luc serial 
+                //FileLocation = path
+                Microsoft.Office.Interop.Word.Table tab = myDoc.Tables[2];
+                DP dP = new DP();
+                DataTable dt_Serial = new DataTable();
+                if (dP.Check_Serial(txbIdDP, txbPOCode))
+                {
+                    string sql = dP.querySQL(txbIdDP, txbPOCode);
+                    DataTable table1 = OPMDBHandler.ExecuteQuery(sql);
+                    for (int i = 1; i < table1.Rows.Count - 1; i++)
+                    {
+                        Object objMiss = Missing.Value;
+                        tab.Rows.Add(ref objMiss);
+                        tab.Cell(i, 1).Range.Text = (1).ToString();
+                        tab.Cell(i, 2).Range.Text = table1.Rows[i][1].ToString();
+                    }
+                }
                 //Save as
                 myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing,
