@@ -1490,23 +1490,6 @@ namespace OPM.WordHandler
                 FindAndReplace(wordApp, "<Soluong>", " " + soLuong);
                 FindAndReplace(wordApp, "<slp>", " " + slp);
                 FindAndReplace(wordApp, "<tong>", " " + (Int64.Parse(slp) + Int64.Parse(soLuong)));
-                //Phu luc serial 
-                //FileLocation = path
-                Microsoft.Office.Interop.Word.Table tab = myDoc.Tables[2];
-                DP dP = new DP();
-                DataTable dt_Serial = new DataTable();
-                if (dP.Check_Serial(txbIdDP, txbPOCode))
-                {
-                    string sql = dP.querySQL(txbIdDP, txbPOCode);
-                    DataTable table1 = OPMDBHandler.ExecuteQuery(sql);
-                    for (int i = 1; i < table1.Rows.Count - 1; i++)
-                    {
-                        Object objMiss = Missing.Value;
-                        tab.Rows.Add(ref objMiss);
-                        tab.Cell(i, 1).Range.Text = (1).ToString();
-                        tab.Cell(i, 2).Range.Text = table1.Rows[i][1].ToString();
-                    }
-                }
                 //Save as
                 myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing,
@@ -1651,12 +1634,82 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<TenHang>", tenhangHD);
                 OpmWordHandler.FindAndReplace(wordApp, "<MaHang>", mahangHD);
                 OpmWordHandler.FindAndReplace(wordApp, "<slc>", count);
-                OpmWordHandler.FindAndReplace(wordApp, "<dg>", dataTable1.Rows[0][5].ToString());
-                OpmWordHandler.FindAndReplace(wordApp, "<tt>", Int64.Parse(dataTable1.Rows[0][5].ToString())*Int64.Parse(count));
-                OpmWordHandler.FindAndReplace(wordApp, "<gtgt>", (Int64.Parse(dataTable1.Rows[0][5].ToString()) * Int64.Parse(count))*10/100);
-                OpmWordHandler.FindAndReplace(wordApp, "<tong>", Int64.Parse(dataTable1.Rows[0][5].ToString()) * Int64.Parse(count) + ((Int64.Parse(dataTable1.Rows[0][5].ToString()) * Int64.Parse(count)) * 10 / 100));
+                OpmWordHandler.FindAndReplace(wordApp, "<dg>", dataTable1.Rows[0][7].ToString());
+                OpmWordHandler.FindAndReplace(wordApp, "<tt>", Int64.Parse(dataTable1.Rows[0][7].ToString())*Int64.Parse(count));
+                OpmWordHandler.FindAndReplace(wordApp, "<gtgt>", (Int64.Parse(dataTable1.Rows[0][7].ToString()) * Int64.Parse(count))*10/100);
+                OpmWordHandler.FindAndReplace(wordApp, "<tong>", Int64.Parse(dataTable1.Rows[0][7].ToString()) * Int64.Parse(count) + ((Int64.Parse(dataTable1.Rows[0][7].ToString()) * Int64.Parse(count)) * 10 / 100));
                 OpmWordHandler.FindAndReplace(wordApp, "<slp>", slp);
                 //Save as
+                myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing);
+                myDoc.Close();
+                wordApp.Quit();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy bản mẫu");
+            }
+        }
+        //Tạo mẫu 21
+        public static void Word_PhuLucSerial(string txbIDContract, string txbPOCode, string txbPOName, string txbIdDP, string ProvinceName)
+        {
+            PO_Thanh po = new PO_Thanh(txbPOCode);
+            Contract contract = new Contract(po.Id_contract);
+            //Khởi tạo vào check forder
+            string DriveName = "";
+            DriveInfo[] driveInfos = DriveInfo.GetDrives();
+            foreach (DriveInfo driveInfo in driveInfos)
+            {
+                if (String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"D:\") == 0 || String.Compare(driveInfo.Name.ToString().Substring(0, 3), @"E:\") == 0)
+                {
+                    DriveName = driveInfo.Name.ToString().Substring(0, 3);
+                    break;
+                }
+            }
+            //Check xem forder đã đc khởi tạo hay chưa?
+            //Nếu chưa khởi tạo thì tiên hành khởi tạo
+            string FoderName = String.Format(po.Id);
+            string strPODirectory = DriveName + "OPM\\" + txbIDContract.Trim().Replace('/', '-') + "\\" + txbPOName.Trim().Replace('/', '-') + "\\" + txbIdDP.Trim().Replace('/', '-');
+            if (!Directory.Exists(strPODirectory))
+            {
+                Directory.CreateDirectory(strPODirectory);
+            }
+            object filename = strPODirectory + @"\Phu luc Serial "+ ProvinceName+ ".docx";
+            WordOffice.Application wordApp = new WordOffice.Application();
+            object missing = Missing.Value;
+            WordOffice.Document myDoc = null;
+            object path = DriveName + @"\OPM\Template\Mau 21. Phu luc Serial.docx";
+            if (File.Exists(path.ToString()))
+            {
+                object readOnly = false;
+                object isVisible = false;
+                wordApp.Visible = false;
+
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                //FileLocation = path
+                Microsoft.Office.Interop.Word.Table tab = myDoc.Tables[1];
+                DP dp = new DP();
+                DataTable dt_PO = new DataTable();
+                if (dp.Check_Serial(txbIdDP, txbPOCode))
+                {
+                    string sql = dp.querySQL(txbIdDP, txbPOCode);
+                    DataTable table1 = OPMDBHandler.ExecuteQuery(sql);
+                    for (int i = 2; i < table1.Rows.Count - 1; i++)
+                    {
+                        Object objMiss = Missing.Value;
+                        tab.Rows.Add(ref objMiss);
+                        tab.Cell(i, 1).Range.Text = (i - 1).ToString();
+                        tab.Cell(i, 2).Range.Text = table1.Rows[i][1].ToString();
+                    }
+                }
                 myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing,
