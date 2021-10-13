@@ -99,14 +99,14 @@ namespace OPM.DBHandler
             if (Check_DP(id,id_po))
             {
                 int result = 0;
-                string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET note = N'{0}',dateopen = '{1}',datedeliver = '{2}' WHERE id = N'{3}' and type = N'{4}' and id_po = '{5}'", note, dtpRequest, dtpOutCap, id, cbbType, id_po);
+                string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET note = N'{0}',dateopen = '{1}',datedeliver = '{2}' WHERE id = N'{3}' and type = N'{4}' and id_po = '{5}'", note, dtpRequest, dtpOutCap, id, "", id_po);
                 result = OPMDBHandler.fInsertData(query);
                 Return = 0;
             }
             else
             {
                 int result = 0;
-                string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.DP(id,id_po,id_contract,type,dateopen,datedeliver,note) VALUES(N'{0}',N'{1}',N'{2}',N'{3}','{4}','{5}',N'{6}')", id, id_po, id_contract, cbbType, dtpRequest, dtpOutCap, note);
+                string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.DP(id,id_po,id_contract,type,dateopen,datedeliver,mskt,note) VALUES(N'{0}',N'{1}',N'{2}',N'{3}','{4}','{5}','{6}',N'{7}')", id, id_po, id_contract, "", dtpRequest, dtpOutCap,"", note);
                 result = OPMDBHandler.fInsertData(query);
                 Return = 1;
             }
@@ -148,6 +148,30 @@ namespace OPM.DBHandler
                 result = "0";
             }
             return result;
+        }
+        public int InsertListPhuLucSerial(string SerialName, string id_dp, string id_po)
+        {
+            int result = 0;
+            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.PhuLucSerial(Serial,id_dp,id_po) VALUES(N'{0}',N'{1}',N'{2}')", SerialName, id_dp, id_po);
+            result = OPMDBHandler.fInsertData(query);
+            return result;
+        }
+        public bool Check_Serial(string id_dp, string id_po)
+        {
+            string query = string.Format("SELECT * FROM dbo.PhuLucSerial WHERE id_dp = N'{0}' and id_po = N'{1}'", id_dp, id_po);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            return table.Rows.Count > 0;
+        }
+        public void Delete_Serial(string id_dp, string id_po)
+        {
+            string query = string.Format("delete dbo.PhuLucSerial WHERE id_dp = N'{0}' and id_po = N'{1}'", id_dp, id_po);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+        }
+        public string querySQL(string id_dp, string id_po)
+        {
+            string strQuery = "";
+            string query = string.Format("SELECT * FROM dbo.PhuLucSerial WHERE id_dp = N'{0}' and id_po = N'{1}'", id_dp, id_po);
+            return strQuery;
         }
     }
 

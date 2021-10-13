@@ -56,7 +56,7 @@ namespace OPM.GUI
             {
                 DP dp = new DP();
                 //Thêm mới 1 DP vào database
-                int returnDP = dp.InsertUpdateDP(txbIdDP.Text, txbPOCode.Text, txbIDContract.Text, cbbType.Text, ghiChu.Text, dtpRequest.Text, dtpOutCap.Text);
+                int returnDP = dp.InsertUpdateDP(txbIdDP.Text.Trim().Replace('/', '-'), txbPOCode.Text, txbIDContract.Text, cbbType.Text, ghiChu.Text, dtpRequest.Text, dtpOutCap.Text);
                 if (returnDP == 0)
                 {
                     MessageBox.Show("Cập nhật DP " + txbIdDP.Text + " thành công!");
@@ -66,7 +66,7 @@ namespace OPM.GUI
                     MessageBox.Show("Thêm mới DP " + txbIdDP.Text + " thành công!");
                 }
                 //Them danh sach cac hang chinh vao ListExpect_DP
-                for (int i = 0; i < dataGridViewProvince.Rows.Count - 1; i++)
+                for (int i = 1; i < dataGridViewProvince.Rows.Count - 1; i++)
                 {
                     bool isCellChecked = (bool)dataGridViewProvince.Rows[i].Cells[0].Value;
                     if (dataGridViewProvince.Rows[i].Cells[1].Value.ToString() != "" && isCellChecked == true)
@@ -91,14 +91,14 @@ namespace OPM.GUI
                         //Xuất mẫu 18
                         OpmWordHandler.Word_GiaoNhanHangHoa(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), dtpRequest.Text, txbIdDP.Text, dtpOutCap.Text, mahangHD.Text, tenhangHD.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString());
                         //Xuất mẫu 19
-                        OpmWordHandler.Word_DPCNKTCL(txbIDContract.Text, txbPOName.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
+                        OpmWordHandler.Word_DPCNKTCL(txbIDContract.Text, txbPOName.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text, dtpOutCap.Text);
                         //Xuất mẫu 20
-                        OpmWordHandler.Word_DPCNCL(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
+                        OpmWordHandler.Word_DPCNCL(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text, dtpOutCap.Text);
                         //Xuất mẫu 22
                         OpmWordHandler.Word_PBH(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
                     }
                 }
-                MessageBox.Show("Tạo mẫu 19,20,22 đi các tỉnh thành công!");
+                MessageBox.Show("Tạo mẫu 18,19,20,21,22 đi các tỉnh thành công!");
                 //
             }
         }
@@ -199,6 +199,22 @@ namespace OPM.GUI
                     frm2.Activate();
                     frm2.Show();
                 }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (txbIdDP.Text == "DPXXX/202X")
+            {
+                MessageBox.Show("Nhập sai định dạng số DP!");
+            }
+            else
+            {
+                tsDP = txbIdDP.Text;
+                tsPO = txbPOCode.Text;
+                PhuLucSerial frm2 = new PhuLucSerial();
+                frm2.Activate();
+                frm2.Show();
             }
         }
     }

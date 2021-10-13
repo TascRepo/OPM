@@ -742,5 +742,116 @@ namespace OPM.ExcelHandler
                 return 0;
             }
         }
+        //Mẫu phụ lục Serial kèm theo CNCL
+        public static int fReadExcelPhuLucSerial(string fname, ref System.Data.DataTable dt)
+        {
+            ExcelOffice.Range xlRange = null;
+            ExcelOffice.Workbook xlWorkbook = null;
+            ExcelOffice.Application xlApp = null;
+            ExcelOffice._Worksheet xlWorksheet = null;
+            DataRow row;
+            try
+            {
+                xlApp = new ExcelOffice.Application();
+                xlWorkbook = xlApp.Workbooks.Open(fname);
+                //Hiện giờ chỉ có 1 sheet đầu tiên nên Sheet[1]
+                xlWorksheet = (ExcelOffice._Worksheet)xlWorkbook.Sheets[1];
+                xlRange = xlWorksheet.UsedRange;
+                string xName = xlWorksheet.Name.ToString();
+                int rowCount = xlRange.Rows.Count;
+                //Hiển thị xem có tổng cộng bao nhiêu hàng
+                //MessageBox.Show(rowCount.ToString()); 72
+                int colCount = xlRange.Columns.Count;
+                //Hiển thị xem có tổng cộng bao nhiêu cột
+                //MessageBox.Show(colCount.ToString()); 82
+                int[] arrcolum = { 1,2,3,4,5,6,7,8,9,10};
+                int rowCounter;
+                int StartCells = 1;
+                int CountCells = 0;
+                dt.Columns.Add("STT1");
+                dt.Columns.Add("Serial1");
+                dt.Columns.Add("STT2");
+                dt.Columns.Add("Serial2");
+                dt.Columns.Add("STT3");
+                dt.Columns.Add("Serial3");
+                dt.Columns.Add("STT4");
+                dt.Columns.Add("Serial4");
+                dt.Columns.Add("STT5");
+                dt.Columns.Add("Serial5");
+                //Tim tong so hang can hien thi len man hinh
+                for (int i = StartCells; i <= rowCount; i++)
+                {
+                    row = dt.NewRow();
+                    if (xlRange.Cells[i, 1] != null)
+                    {
+                        row[1] = (xlRange.Cells[i, 1] as ExcelOffice.Range).Text;
+                        if (row[1].ToString() == "")
+                        {
+                            CountCells = i - 1;
+                            break;
+                        }
+                    }
+                }
+                //
+                for (int i = StartCells + 1; i <= CountCells; i++)
+                {
+                    row = dt.NewRow();
+                    rowCounter = 0;
+                    foreach (int j in arrcolum)
+                    {
+                        if (xlRange.Cells[i, j] != null)
+                        {
+                            row[rowCounter] = (xlRange.Cells[i, j] as ExcelOffice.Range).Text;
+                        }
+                        else
+                        {
+                            row[i] = "";
+                        }
+                        rowCounter++;
+                    }
+                    dt.Rows.Add(row);
+                }
+                //cleanup  
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                //rule of thumb for releasing com objects:  
+                //  never use two dots, all COM objects must be referenced and released individually  
+                //  ex: [somthing].[something].[something] is bad  
+
+                //release com objects to fully kill excel process from running in the background  
+                Marshal.ReleaseComObject(xlRange);
+                Marshal.ReleaseComObject(xlWorksheet);
+
+                //close and release  
+                xlWorkbook.Close();
+                Marshal.ReleaseComObject(xlWorkbook);
+
+                //quit and release  
+                xlApp.Quit();
+                Marshal.ReleaseComObject(xlApp);
+                return 1;
+            }
+            catch (Exception)
+            {
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                //rule of thumb for releasing com objects:  
+                //  never use two dots, all COM objects must be referenced and released individually  
+                //  ex: [somthing].[something].[something] is bad  
+
+                //release com objects to fully kill excel process from running in the background  
+                Marshal.ReleaseComObject(xlRange);
+                Marshal.ReleaseComObject(xlWorksheet);
+
+                //close and release  
+                xlWorkbook.Close();
+                Marshal.ReleaseComObject(xlWorkbook);
+
+                //quit and release  
+                xlApp.Quit();
+                Marshal.ReleaseComObject(xlApp);
+                return 0;
+            }
+        }
     }
 }
