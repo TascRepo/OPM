@@ -66,6 +66,7 @@ namespace OPM.GUI
             this.tenhangHD = new System.Windows.Forms.ComboBox();
             this.hangPhu = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProvince)).BeginInit();
             this.SuspendLayout();
             // 
@@ -273,7 +274,7 @@ namespace OPM.GUI
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnSave.Location = new System.Drawing.Point(235, 551);
+            this.btnSave.Location = new System.Drawing.Point(300, 551);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(96, 25);
             this.btnSave.TabIndex = 41;
@@ -317,7 +318,7 @@ namespace OPM.GUI
             // xoaDP
             // 
             this.xoaDP.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.xoaDP.Location = new System.Drawing.Point(105, 551);
+            this.xoaDP.Location = new System.Drawing.Point(184, 551);
             this.xoaDP.Name = "xoaDP";
             this.xoaDP.Size = new System.Drawing.Size(96, 25);
             this.xoaDP.TabIndex = 46;
@@ -398,12 +399,24 @@ namespace OPM.GUI
             this.label9.TabIndex = 56;
             this.label9.Text = "Phân bổ và số lượng hàng chính";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.button1.Location = new System.Drawing.Point(58, 551);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(96, 25);
+            this.button1.TabIndex = 57;
+            this.button1.Text = "Phụ lục Serial";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // DeliverPartInforDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
             this.ClientSize = new System.Drawing.Size(453, 578);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.hangPhu);
             this.Controls.Add(this.tenhangHD);
@@ -488,5 +501,6 @@ namespace OPM.GUI
         private System.Windows.Forms.ComboBox tenhangHD;
         private System.Windows.Forms.CheckBox hangPhu;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button1;
     }
 }

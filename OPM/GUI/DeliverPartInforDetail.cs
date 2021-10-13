@@ -201,5 +201,21 @@ namespace OPM.GUI
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (txbIdDP.Text == "DPXXX/202X")
+            {
+                MessageBox.Show("Nhập sai định dạng số DP!");
+            }
+            else
+            {
+                tsDP = txbIdDP.Text;
+                tsPO = txbPOCode.Text;
+                PhuLucSerial frm2 = new PhuLucSerial();
+                frm2.Activate();
+                frm2.Show();
+            }
+        }
     }
 }
