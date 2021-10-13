@@ -216,7 +216,8 @@ namespace OPM.GUI
             // 
             // TimePickerDateConfirmPO
             // 
-            this.TimePickerDateConfirmPO.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.TimePickerDateConfirmPO.CustomFormat = "dd/MM/yyyy";
+            this.TimePickerDateConfirmPO.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.TimePickerDateConfirmPO.Location = new System.Drawing.Point(264, 143);
             this.TimePickerDateConfirmPO.Name = "TimePickerDateConfirmPO";
             this.TimePickerDateConfirmPO.Size = new System.Drawing.Size(180, 23);
@@ -224,7 +225,8 @@ namespace OPM.GUI
             // 
             // TimepickerDefaultActive
             // 
-            this.TimepickerDefaultActive.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.TimepickerDefaultActive.CustomFormat = "dd/MM/yyyy";
+            this.TimepickerDefaultActive.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.TimepickerDefaultActive.Location = new System.Drawing.Point(264, 170);
             this.TimepickerDefaultActive.Name = "TimepickerDefaultActive";
             this.TimepickerDefaultActive.Size = new System.Drawing.Size(180, 23);
@@ -241,7 +243,8 @@ namespace OPM.GUI
             // 
             // TimePickerDeadLinePO
             // 
-            this.TimePickerDeadLinePO.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.TimePickerDeadLinePO.CustomFormat = "dd/MM/yyyy";
+            this.TimePickerDeadLinePO.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.TimePickerDeadLinePO.Location = new System.Drawing.Point(264, 196);
             this.TimePickerDeadLinePO.Name = "TimePickerDeadLinePO";
             this.TimePickerDeadLinePO.Size = new System.Drawing.Size(180, 23);
@@ -286,7 +289,8 @@ namespace OPM.GUI
             // 
             // TimePickerDateCreatedPO
             // 
-            this.TimePickerDateCreatedPO.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.TimePickerDateCreatedPO.CustomFormat = "dd/MM/yyyy";
+            this.TimePickerDateCreatedPO.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.TimePickerDateCreatedPO.Location = new System.Drawing.Point(264, 91);
             this.TimePickerDateCreatedPO.Name = "TimePickerDateCreatedPO";
             this.TimePickerDateCreatedPO.Size = new System.Drawing.Size(180, 23);
@@ -472,7 +476,8 @@ namespace OPM.GUI
             // 
             // confirmpo_datecreated
             // 
-            this.confirmpo_datecreated.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.confirmpo_datecreated.CustomFormat = "dd/MM/yyyy";
+            this.confirmpo_datecreated.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.confirmpo_datecreated.Location = new System.Drawing.Point(264, 249);
             this.confirmpo_datecreated.Name = "confirmpo_datecreated";
             this.confirmpo_datecreated.Size = new System.Drawing.Size(180, 23);
@@ -489,7 +494,8 @@ namespace OPM.GUI
             // 
             // tupo_datecreated
             // 
-            this.tupo_datecreated.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.tupo_datecreated.CustomFormat = "dd/MM/yyyy";
+            this.tupo_datecreated.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.tupo_datecreated.Location = new System.Drawing.Point(264, 311);
             this.tupo_datecreated.Name = "tupo_datecreated";
             this.tupo_datecreated.Size = new System.Drawing.Size(180, 23);
@@ -506,7 +512,8 @@ namespace OPM.GUI
             // 
             // bltupo_datecreated
             // 
-            this.bltupo_datecreated.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.bltupo_datecreated.CustomFormat = "dd/MM/yyyy";
+            this.bltupo_datecreated.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.bltupo_datecreated.Location = new System.Drawing.Point(264, 337);
             this.bltupo_datecreated.Name = "bltupo_datecreated";
             this.bltupo_datecreated.Size = new System.Drawing.Size(180, 23);
@@ -523,7 +530,8 @@ namespace OPM.GUI
             // 
             // confirmpo_dateactive
             // 
-            this.confirmpo_dateactive.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.confirmpo_dateactive.CustomFormat = "dd/MM/yyyy";
+            this.confirmpo_dateactive.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.confirmpo_dateactive.Location = new System.Drawing.Point(264, 282);
             this.confirmpo_dateactive.Name = "confirmpo_dateactive";
             this.confirmpo_dateactive.Size = new System.Drawing.Size(180, 23);

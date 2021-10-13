@@ -153,7 +153,7 @@ namespace OPM.GUI
             this.txbIdDP.Name = "txbIdDP";
             this.txbIdDP.Size = new System.Drawing.Size(144, 23);
             this.txbIdDP.TabIndex = 18;
-            this.txbIdDP.Text = "DPXXX/202X";
+            this.txbIdDP.Text = "DPXXX";
             // 
             // label5
             // 
@@ -166,7 +166,8 @@ namespace OPM.GUI
             // 
             // dtpRequest
             // 
-            this.dtpRequest.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpRequest.CustomFormat = "dd/MM/yyyy";
+            this.dtpRequest.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpRequest.Location = new System.Drawing.Point(99, 92);
             this.dtpRequest.Name = "dtpRequest";
             this.dtpRequest.Size = new System.Drawing.Size(100, 23);
@@ -183,7 +184,8 @@ namespace OPM.GUI
             // 
             // dtpOutCap
             // 
-            this.dtpOutCap.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpOutCap.CustomFormat = "dd/MM/yyyy";
+            this.dtpOutCap.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpOutCap.Location = new System.Drawing.Point(99, 121);
             this.dtpOutCap.Name = "dtpOutCap";
             this.dtpOutCap.Size = new System.Drawing.Size(100, 23);

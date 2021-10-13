@@ -1378,7 +1378,7 @@ namespace OPM.WordHandler
             }
         }
         //Mẫu 19
-        public static void Word_DPCNKTCL(string txbIDContract, string txbPOName, string txbIdDP, string diaChi, string mahangHD, string tenhangHD, string maHangSP, string tenHangSP, string soLuong, string GhiChu)
+        public static void Word_DPCNKTCL(string txbIDContract, string txbPOName, string txbIdDP, string diaChi, string mahangHD, string tenhangHD, string maHangSP, string tenHangSP, string soLuong, string GhiChu, string dtpOutCap)
         {
             //Khởi tạo vào check forder
             string DriveName = "";
@@ -1423,9 +1423,7 @@ namespace OPM.WordHandler
                 FindAndReplace(wordApp, "<Tenthietbi>", " " + tenhangHD);
                 FindAndReplace(wordApp, "<Thucxuat>", " " + soLuong);
                 FindAndReplace(wordApp, "<Ghichu>", " " + GhiChu);
-                FindAndReplace(wordApp, "<dd>", " " + DateTime.Now.ToString("dd") + " ");
-                FindAndReplace(wordApp, "<MM>", " " + DateTime.Now.ToString("MM") + " ");
-                FindAndReplace(wordApp, "<yyyy>", " " + DateTime.Now.ToString("yyyy") + " ");
+                FindAndReplace(wordApp, "<dtpOutCap>", " " + dtpOutCap);
                 //Save as
                 myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing,
@@ -1441,9 +1439,13 @@ namespace OPM.WordHandler
             }
         }
         //Mẫu 20
-        public static void Word_DPCNCL(string txbIDContract, string txbPOName, string txbPOCode, string txbIdDP, string diaChi, string mahangHD, string tenhangHD, string maHangSP, string tenHangSP, string soLuong, string GhiChu)
+        public static void Word_DPCNCL(string txbIDContract, string txbPOName, string txbPOCode, string txbIdDP, string diaChi, string mahangHD, string tenhangHD, string maHangSP, string tenHangSP, string soLuong, string GhiChu,string dtpOutCap)
         {
             //Khởi tạo vào check forder
+            //Lấy số lượng bảo hành của tỉnh vừa nhập.
+            DP dp = new DP();
+            string slp = dp.GetInforSLP(diaChi, txbIdDP, txbPOCode);
+            //
             string DriveName = "";
             DriveInfo[] driveInfos = DriveInfo.GetDrives();
             foreach (DriveInfo driveInfo in driveInfos)
@@ -1479,15 +1481,15 @@ namespace OPM.WordHandler
                                     ref missing, ref missing, ref missing,
                                     ref missing, ref missing, ref missing, ref missing);
                 myDoc.Activate();
-                FindAndReplace(wordApp, "<dd>", " " + DateTime.Now.ToString("dd") + " ");
-                FindAndReplace(wordApp, "<MM>", " " + DateTime.Now.ToString("MM") + " ");
-                FindAndReplace(wordApp, "<yyyy>", " " + DateTime.Now.ToString("yyyy") + " ");
+                FindAndReplace(wordApp, "<dtpOutCap>", " " + dtpOutCap);
                 FindAndReplace(wordApp, "<Idcontract>", " " + txbIDContract);
                 FindAndReplace(wordApp, "<IdPO>", " " + txbPOCode);
                 FindAndReplace(wordApp, "<Tentinh>", " " + diaChi);
                 FindAndReplace(wordApp, "<Tenhang>", " " + tenhangHD);
                 FindAndReplace(wordApp, "<loaihang>", " " + mahangHD);
                 FindAndReplace(wordApp, "<Soluong>", " " + soLuong);
+                FindAndReplace(wordApp, "<slp>", " " + slp);
+                FindAndReplace(wordApp, "<tong>", " " + (slp+soLuong));
                 //Save as
                 myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing,

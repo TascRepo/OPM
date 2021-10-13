@@ -56,7 +56,7 @@ namespace OPM.GUI
             {
                 DP dp = new DP();
                 //Thêm mới 1 DP vào database
-                int returnDP = dp.InsertUpdateDP(txbIdDP.Text, txbPOCode.Text, txbIDContract.Text, cbbType.Text, ghiChu.Text, dtpRequest.Text, dtpOutCap.Text);
+                int returnDP = dp.InsertUpdateDP(txbIdDP.Text.Trim().Replace('/', '-'), txbPOCode.Text, txbIDContract.Text, cbbType.Text, ghiChu.Text, dtpRequest.Text, dtpOutCap.Text);
                 if (returnDP == 0)
                 {
                     MessageBox.Show("Cập nhật DP " + txbIdDP.Text + " thành công!");
@@ -91,9 +91,9 @@ namespace OPM.GUI
                         //Xuất mẫu 18
                         OpmWordHandler.Word_GiaoNhanHangHoa(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), dtpRequest.Text, txbIdDP.Text, dtpOutCap.Text, mahangHD.Text, tenhangHD.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString());
                         //Xuất mẫu 19
-                        OpmWordHandler.Word_DPCNKTCL(txbIDContract.Text, txbPOName.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
+                        OpmWordHandler.Word_DPCNKTCL(txbIDContract.Text, txbPOName.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text, dtpOutCap.Text);
                         //Xuất mẫu 20
-                        OpmWordHandler.Word_DPCNCL(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
+                        OpmWordHandler.Word_DPCNCL(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text, dtpOutCap.Text);
                         //Xuất mẫu 22
                         OpmWordHandler.Word_PBH(txbIDContract.Text, txbPOName.Text, txbPOCode.Text, txbIdDP.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), mahangHD.Text, tenhangHD.Text, maHangSP.Text, tenHangSP.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString(), ghiChu.Text);
                     }
