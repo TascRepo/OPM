@@ -69,7 +69,6 @@ namespace OPM.GUI
                     {
                         dP.InsertListPhuLucSerial(dataGridView1.Rows[j].Cells[i + 1].Value.ToString(), txtIdDP.Text, maPO.Text);
                     }
-                    break;
                 }
             }
             MessageBox.Show("Xử lý file phụ lục Serial đính kèm thành công!");

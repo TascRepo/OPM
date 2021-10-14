@@ -67,6 +67,10 @@ namespace OPM.GUI
             this.hangPhu = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.soDCPO = new System.Windows.Forms.TextBox();
+            this.lable23 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProvince)).BeginInit();
             this.SuspendLayout();
             // 
@@ -276,9 +280,9 @@ namespace OPM.GUI
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnSave.Location = new System.Drawing.Point(300, 551);
+            this.btnSave.Location = new System.Drawing.Point(348, 566);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(96, 25);
+            this.btnSave.Size = new System.Drawing.Size(86, 25);
             this.btnSave.TabIndex = 41;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -300,10 +304,10 @@ namespace OPM.GUI
             this.dataGridViewProvince.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Checked,
             this.soLuong});
-            this.dataGridViewProvince.Location = new System.Drawing.Point(8, 252);
+            this.dataGridViewProvince.Location = new System.Drawing.Point(8, 259);
             this.dataGridViewProvince.Name = "dataGridViewProvince";
             this.dataGridViewProvince.RowTemplate.Height = 25;
-            this.dataGridViewProvince.Size = new System.Drawing.Size(426, 293);
+            this.dataGridViewProvince.Size = new System.Drawing.Size(426, 301);
             this.dataGridViewProvince.TabIndex = 45;
             this.dataGridViewProvince.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewProvince_DefaultValuesNeeded);
             // 
@@ -320,9 +324,9 @@ namespace OPM.GUI
             // xoaDP
             // 
             this.xoaDP.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.xoaDP.Location = new System.Drawing.Point(184, 551);
+            this.xoaDP.Location = new System.Drawing.Point(272, 566);
             this.xoaDP.Name = "xoaDP";
-            this.xoaDP.Size = new System.Drawing.Size(96, 25);
+            this.xoaDP.Size = new System.Drawing.Size(70, 25);
             this.xoaDP.TabIndex = 46;
             this.xoaDP.Text = "Xóa DP";
             this.xoaDP.UseVisualStyleBackColor = false;
@@ -384,7 +388,7 @@ namespace OPM.GUI
             // hangPhu
             // 
             this.hangPhu.AutoSize = true;
-            this.hangPhu.Location = new System.Drawing.Point(259, 210);
+            this.hangPhu.Location = new System.Drawing.Point(268, 235);
             this.hangPhu.Name = "hangPhu";
             this.hangPhu.Size = new System.Drawing.Size(166, 19);
             this.hangPhu.TabIndex = 55;
@@ -395,7 +399,7 @@ namespace OPM.GUI
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(4, 234);
+            this.label9.Location = new System.Drawing.Point(8, 235);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(178, 15);
             this.label9.TabIndex = 56;
@@ -404,7 +408,7 @@ namespace OPM.GUI
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.button1.Location = new System.Drawing.Point(58, 551);
+            this.button1.Location = new System.Drawing.Point(170, 566);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(96, 25);
             this.button1.TabIndex = 57;
@@ -412,12 +416,53 @@ namespace OPM.GUI
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // soDCPO
+            // 
+            this.soDCPO.Location = new System.Drawing.Point(282, 206);
+            this.soDCPO.Name = "soDCPO";
+            this.soDCPO.Size = new System.Drawing.Size(158, 23);
+            this.soDCPO.TabIndex = 59;
+            this.soDCPO.Text = "XXX/CUVT-KV";
+            // 
+            // lable23
+            // 
+            this.lable23.AutoSize = true;
+            this.lable23.Location = new System.Drawing.Point(210, 209);
+            this.lable23.Name = "lable23";
+            this.lable23.Size = new System.Drawing.Size(58, 15);
+            this.lable23.TabIndex = 58;
+            this.lable23.Text = "Số ĐC PO";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.button2.Location = new System.Drawing.Point(91, 566);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(78, 25);
+            this.button2.TabIndex = 60;
+            this.button2.Text = "Tiến độ";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.button3.Location = new System.Drawing.Point(7, 566);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(78, 25);
+            this.button3.TabIndex = 61;
+            this.button3.Text = "Phát HĐ";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
             // DeliverPartInforDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
-            this.ClientSize = new System.Drawing.Size(453, 578);
+            this.ClientSize = new System.Drawing.Size(453, 594);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.soDCPO);
+            this.Controls.Add(this.lable23);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.hangPhu);
@@ -504,5 +549,9 @@ namespace OPM.GUI
         private System.Windows.Forms.CheckBox hangPhu;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox soDCPO;
+        private System.Windows.Forms.Label lable23;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }

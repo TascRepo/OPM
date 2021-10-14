@@ -1702,12 +1702,35 @@ namespace OPM.WordHandler
                 {
                     string sql = dp.querySQL(txbIdDP, txbPOCode);
                     DataTable table1 = OPMDBHandler.ExecuteQuery(sql);
-                    for (int i = 2; i < table1.Rows.Count - 1; i++)
+                    int kqt, kqd;
+                    kqt = (table1.Rows.Count - 1) / 5;
+                    kqd = (table1.Rows.Count - 1) % 5;
+                    for(int j = 1; j <= 10; j = j+2)
                     {
-                        Object objMiss = Missing.Value;
-                        tab.Rows.Add(ref objMiss);
-                        tab.Cell(i, 1).Range.Text = (i - 1).ToString();
-                        tab.Cell(i, 2).Range.Text = table1.Rows[i][1].ToString();
+                        for (int i = 2; i <= kqt; i++)
+                        {
+                            if(i == 2 && j == 1)
+                            {
+                                //tạo khung Table Word
+                                for(int k = 2; k <= kqt; k++)
+                                {
+                                    Object objMiss = Missing.Value;
+                                    tab.Rows.Add(ref objMiss);
+                                }
+                            }
+                            tab.Cell(i, j).Range.Text = (i - 1).ToString();
+                            tab.Cell(i, j + 1).Range.Text = table1.Rows[i][1].ToString();
+                            if (j == 8 && i == kqt && kqd != 0)
+                            {
+                                for (int k = kqt; k <= kqt + kqd; k++)
+                                {
+                                    Object objMiss = Missing.Value;
+                                    tab.Rows.Add(ref objMiss);
+                                    tab.Cell(k, j).Range.Text = (k - 1).ToString();
+                                    tab.Cell(k, j + 1).Range.Text = table1.Rows[i][1].ToString();
+                                }
+                            }
+                        }
                     }
                 }
                 myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,

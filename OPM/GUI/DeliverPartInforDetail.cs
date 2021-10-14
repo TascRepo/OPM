@@ -68,8 +68,8 @@ namespace OPM.GUI
                 //Them danh sach cac hang chinh vao ListExpect_DP
                 for (int i = 0; i < dataGridViewProvince.Rows.Count - 1; i++)
                 {
-                    bool isCellChecked = (bool)dataGridViewProvince.Rows[i].Cells[0].Value;
-                    if (dataGridViewProvince.Rows[i].Cells[1].Value.ToString() != "" && isCellChecked == true)
+                    bool isCellChecked = Convert.ToBoolean(dataGridViewProvince.Rows[i].Cells[0].Value);
+                    if (isCellChecked == true)
                     {
                         if (dp.Check_ListExpected_DP(dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), txbIdDP.Text, cbbType.Text, txbPOCode.Text))
                         {
@@ -85,8 +85,8 @@ namespace OPM.GUI
                 //Xử lý các mẫu 18,19,20,21,22,23
                 for (int i = 0; i < dataGridViewProvince.Rows.Count - 1; i++)
                 {
-                    bool isCellChecked = (bool)dataGridViewProvince.Rows[i].Cells[0].Value;
-                    if (dataGridViewProvince.Rows[i].Cells[1].Value.ToString() != "" && isCellChecked == true)
+                    bool isCellChecked = Convert.ToBoolean(dataGridViewProvince.Rows[i].Cells[0].Value);
+                    if (isCellChecked == true)
                     {
                         //Xuất mẫu 18
                         OpmWordHandler.Word_GiaoNhanHangHoa(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, dataGridViewProvince.Rows[i].Cells[3].Value.ToString(), dtpRequest.Text, txbIdDP.Text, dtpOutCap.Text, mahangHD.Text, tenhangHD.Text, dataGridViewProvince.Rows[i].Cells[1].Value.ToString());
@@ -101,7 +101,6 @@ namespace OPM.GUI
                     }
                 }
                 MessageBox.Show("Tạo mẫu 18,19,20,21,22 đi các tỉnh thành công!");
-                //
             }
         }
         private void DeliverPartInforDetail_Load(object sender, EventArgs e)
@@ -218,6 +217,10 @@ namespace OPM.GUI
                 frm2.Activate();
                 frm2.Show();
             }
+        }
+
+        private void dataGridViewProvince_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
         }
     }
 }

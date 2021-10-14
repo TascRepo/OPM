@@ -32,7 +32,7 @@ namespace OPM.GUI
             for (int i = 0; i < dataGridViewWarranty.Rows.Count - 1; i++)
             {
                 bool isCellChecked = (bool)dataGridViewWarranty.Rows[i].Cells[0].Value;
-                if (dataGridViewWarranty.Rows[i].Cells[1].Value.ToString() != "" && isCellChecked == true)
+                if (isCellChecked == true)
                 {
                     if (dp.Check_ListExpected_DP(dataGridViewWarranty.Rows[i].Cells[3].Value.ToString(), txtIdDP.Text, textBox1.Text, maPO.Text))
                     {
