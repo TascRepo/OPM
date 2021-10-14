@@ -36,7 +36,10 @@ namespace OPM.GUI
         //Khai báo POCurrent
         public Contract contract;
         public PO_Thanh po;
-
+        //
+        public static string maHD = "";
+        public static string maPO = "";
+        public static string tenPO = "";
         public PurchaseOderInfor()
         {
             InitializeComponent();
@@ -307,7 +310,6 @@ namespace OPM.GUI
                         MessageBox.Show("Import Không thành công!");
                     }
                 }
-
             }
         }
 
@@ -397,6 +399,15 @@ namespace OPM.GUI
         private void TimepickerDefaultActive_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            PHD_PO pHD_PO = new PHD_PO();
+            maHD = txbIDContract.Text;
+            maPO = txbPOCode.Text;
+            tenPO = txbPOName.Text;
+            pHD_PO.ShowDialog();
         }
     }
 }

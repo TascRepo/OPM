@@ -70,7 +70,6 @@ namespace OPM.GUI
             this.soDCPO = new System.Windows.Forms.TextBox();
             this.lable23 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProvince)).BeginInit();
             this.SuspendLayout();
             // 
@@ -324,9 +323,9 @@ namespace OPM.GUI
             // xoaDP
             // 
             this.xoaDP.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.xoaDP.Location = new System.Drawing.Point(272, 566);
+            this.xoaDP.Location = new System.Drawing.Point(234, 566);
             this.xoaDP.Name = "xoaDP";
-            this.xoaDP.Size = new System.Drawing.Size(70, 25);
+            this.xoaDP.Size = new System.Drawing.Size(108, 25);
             this.xoaDP.TabIndex = 46;
             this.xoaDP.Text = "Xóa DP";
             this.xoaDP.UseVisualStyleBackColor = false;
@@ -408,9 +407,9 @@ namespace OPM.GUI
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.button1.Location = new System.Drawing.Point(170, 566);
+            this.button1.Location = new System.Drawing.Point(112, 566);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 25);
+            this.button1.Size = new System.Drawing.Size(116, 25);
             this.button1.TabIndex = 57;
             this.button1.Text = "Phụ lục Serial";
             this.button1.UseVisualStyleBackColor = false;
@@ -436,22 +435,12 @@ namespace OPM.GUI
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.button2.Location = new System.Drawing.Point(91, 566);
+            this.button2.Location = new System.Drawing.Point(7, 566);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(78, 25);
+            this.button2.Size = new System.Drawing.Size(99, 25);
             this.button2.TabIndex = 60;
             this.button2.Text = "Tiến độ";
             this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.button3.Location = new System.Drawing.Point(7, 566);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(78, 25);
-            this.button3.TabIndex = 61;
-            this.button3.Text = "Phát HĐ";
-            this.button3.UseVisualStyleBackColor = false;
             // 
             // DeliverPartInforDetail
             // 
@@ -459,7 +448,6 @@ namespace OPM.GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
             this.ClientSize = new System.Drawing.Size(453, 594);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.soDCPO);
             this.Controls.Add(this.lable23);
@@ -552,6 +540,5 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox soDCPO;
         private System.Windows.Forms.Label lable23;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
     }
 }
