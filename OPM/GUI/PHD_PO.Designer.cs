@@ -65,13 +65,15 @@ namespace OPM.GUI
             this.txbsoDCDP = new System.Windows.Forms.TextBox();
             this.txbprovincename = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.txbkhms = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(554, 57);
+            this.label1.Location = new System.Drawing.Point(537, 72);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 15);
             this.label1.TabIndex = 0;
@@ -80,7 +82,7 @@ namespace OPM.GUI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(754, 54);
+            this.label2.Location = new System.Drawing.Point(754, 69);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 15);
             this.label2.TabIndex = 1;
@@ -89,7 +91,7 @@ namespace OPM.GUI
             // txbmaPO
             // 
             this.txbmaPO.Enabled = false;
-            this.txbmaPO.Location = new System.Drawing.Point(603, 54);
+            this.txbmaPO.Location = new System.Drawing.Point(603, 69);
             this.txbmaPO.Name = "txbmaPO";
             this.txbmaPO.Size = new System.Drawing.Size(135, 23);
             this.txbmaPO.TabIndex = 4;
@@ -131,7 +133,7 @@ namespace OPM.GUI
             // txbsoPO
             // 
             this.txbsoPO.Enabled = false;
-            this.txbsoPO.Location = new System.Drawing.Point(799, 51);
+            this.txbsoPO.Location = new System.Drawing.Point(799, 66);
             this.txbsoPO.Name = "txbsoPO";
             this.txbsoPO.Size = new System.Drawing.Size(148, 23);
             this.txbsoPO.TabIndex = 76;
@@ -158,7 +160,7 @@ namespace OPM.GUI
             // txbtenHD
             // 
             this.txbtenHD.Enabled = false;
-            this.txbtenHD.Location = new System.Drawing.Point(799, 14);
+            this.txbtenHD.Location = new System.Drawing.Point(799, 37);
             this.txbtenHD.Name = "txbtenHD";
             this.txbtenHD.Size = new System.Drawing.Size(148, 23);
             this.txbtenHD.TabIndex = 82;
@@ -167,7 +169,7 @@ namespace OPM.GUI
             // txbmaHD
             // 
             this.txbmaHD.Enabled = false;
-            this.txbmaHD.Location = new System.Drawing.Point(603, 17);
+            this.txbmaHD.Location = new System.Drawing.Point(603, 40);
             this.txbmaHD.Name = "txbmaHD";
             this.txbmaHD.Size = new System.Drawing.Size(135, 23);
             this.txbmaHD.TabIndex = 81;
@@ -176,7 +178,7 @@ namespace OPM.GUI
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(748, 17);
+            this.label5.Location = new System.Drawing.Point(748, 40);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 15);
             this.label5.TabIndex = 80;
@@ -185,7 +187,7 @@ namespace OPM.GUI
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(554, 20);
+            this.label6.Location = new System.Drawing.Point(537, 43);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 15);
             this.label6.TabIndex = 79;
@@ -393,11 +395,32 @@ namespace OPM.GUI
             this.label18.TabIndex = 102;
             this.label18.Text = "Tên tỉnh";
             // 
+            // txbkhms
+            // 
+            this.txbkhms.Enabled = false;
+            this.txbkhms.Location = new System.Drawing.Point(603, 9);
+            this.txbkhms.Name = "txbkhms";
+            this.txbkhms.Size = new System.Drawing.Size(344, 23);
+            this.txbkhms.TabIndex = 105;
+            this.txbkhms.Text = "Mua sắm tập trung thiết bị đầu cuối ONT loại (2FE/GE+Wifi singleband) tương thích" +
+    " hệ thống gpon cho nhu cầu năm 2020";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(537, 12);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(40, 15);
+            this.label19.TabIndex = 104;
+            this.label19.Text = "KHMS";
+            // 
             // PHD_PO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(966, 507);
+            this.Controls.Add(this.txbkhms);
+            this.Controls.Add(this.label19);
             this.Controls.Add(this.txbprovincename);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
@@ -482,5 +505,7 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox txbsoDCDP;
         private System.Windows.Forms.TextBox txbprovincename;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txbkhms;
+        private System.Windows.Forms.Label label19;
     }
 }
