@@ -222,5 +222,13 @@ namespace OPM.GUI
         private void dataGridViewProvince_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            tsDP = txbIdDP.Text;
+            tsPO = txbPOCode.Text;
+            PHD_PO pHD_PO = new PHD_PO();
+            pHD_PO.ShowDialog();
+        }
     }
 }

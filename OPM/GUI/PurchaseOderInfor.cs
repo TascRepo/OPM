@@ -403,11 +403,6 @@ namespace OPM.GUI
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            PHD_PO pHD_PO = new PHD_PO();
-            maHD = txbIDContract.Text;
-            maPO = txbPOCode.Text;
-            tenPO = txbPOName.Text;
-            pHD_PO.ShowDialog();
         }
     }
 }
