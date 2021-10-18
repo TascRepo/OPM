@@ -8,8 +8,9 @@ namespace OPM.GUI
 {
     public partial class DeliverPartInforDetail : Form
     {
-        public delegate void UpdateCatalogDelegate(string value);
-        public UpdateCatalogDelegate UpdateCatalogPanel;
+        public delegate void RequestDashBoardPurchaseOderForm(string strIDDP);
+        public RequestDashBoardPurchaseOderForm requestDashBoardPurchaseOderForm;
+
         public static string tsDP = "";
         public static string tsPO = "";
         public DeliverPartInforDetail()
@@ -229,6 +230,11 @@ namespace OPM.GUI
             tsPO = txbPOCode.Text;
             PHD_PO pHD_PO = new PHD_PO();
             pHD_PO.ShowDialog();
+        }
+
+        private void dataGridViewProvince_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

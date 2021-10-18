@@ -106,6 +106,8 @@ namespace OPM.DBHandler
             else
             {
                 int result = 0;
+                string sql = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.CatalogAdmin(ctlID,ctlname,ctlparent) VALUES(N'{0}',N'{1}',N'{2}')", "DP_"+id, id, "PO_"+id_po);
+                result = OPMDBHandler.fInsertData(sql);
                 string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.DP(id,id_po,id_contract,type,dateopen,datedeliver,mskt,note) VALUES(N'{0}',N'{1}',N'{2}',N'{3}','{4}','{5}','{6}',N'{7}')", id, id_po, id_contract, "", dtpRequest, dtpOutCap,"", note);
                 result = OPMDBHandler.fInsertData(query);
                 Return = 1;
@@ -119,6 +121,8 @@ namespace OPM.DBHandler
             result = OPMDBHandler.fInsertData(query1);
             string query2 = string.Format("delete dbo.DP where id = '" + id + "'");
             result = OPMDBHandler.fInsertData(query2);
+            string query3 = string.Format("delete dbo.CatalogAdmin where ctlID = '" + id + "'");
+            result = OPMDBHandler.fInsertData(query3);
         }
         public DataTable GetInforSite(String ProvinceName)
         {

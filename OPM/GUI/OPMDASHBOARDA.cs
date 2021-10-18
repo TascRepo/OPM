@@ -162,8 +162,12 @@ namespace OPM.GUI
                         break;
                     case ConstantVar.DPType:
                         /*Display DP */
+                        //DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
+                        //deliverPartInforDetail.UpdateCatalogPanel = new DeliverPartInforDetail.UpdateCatalogDelegate(GetCatalogvalue);
+                        //OpenChildForm(deliverPartInforDetail);
                         DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
-                        deliverPartInforDetail.UpdateCatalogPanel = new DeliverPartInforDetail.UpdateCatalogDelegate(GetCatalogvalue);
+                        deliverPartInforDetail.requestDashBoardPurchaseOderForm = new DeliverPartInforDetail.RequestDashBoardPurchaseOderForm(OpenDP);
+                        //set các giá trị lên form
                         OpenChildForm(deliverPartInforDetail);
                         break;
                     case ConstantVar.NTKTType:
@@ -294,6 +298,12 @@ namespace OPM.GUI
             deliverPartInforDetail.setPoname(PONumber);
             OpenChildForm(deliverPartInforDetail);
             return;
+        }
+        public void OpenDP(string strIdDP)
+        {
+            //Lấy các giá trị trong database liên quan đến DP để hiển thị lên màn hình
+            DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
+            OpenChildForm(deliverPartInforDetail);
         }
     }
 }
