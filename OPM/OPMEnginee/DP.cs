@@ -53,7 +53,7 @@ namespace OPM.DBHandler
                 return 1;
             }
         }
-        public bool Check_DP(string id,string id_po)
+        public bool Check_DP(string id, string id_po)
         {
             string query = string.Format("SELECT * FROM dbo.DP WHERE id = N'{0}' and id_po = N'{1}'", id, id_po);
             DataTable table = OPMDBHandler.ExecuteQuery(query);
@@ -73,14 +73,14 @@ namespace OPM.DBHandler
             d1 = OPMDBHandler.ExecuteQuery(query);
             return d1;
         }
-        public int InsertListExpected_DP(string ProvinceName, string NumberDevice,string type, string id_dp,string id_po)
+        public int InsertListExpected_DP(string ProvinceName, string NumberDevice, string type, string id_dp, string id_po)
         {
             int result = 0;
             string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.ListExpected_DP(ProvinceName, NumberDevice, id_dp, type, id_po) VALUES(N'{0}',{1},'{2}',N'{3}','{4}')", ProvinceName, Int64.Parse(NumberDevice), id_dp, type, id_po);
             result = OPMDBHandler.fInsertData(query);
             return result;
         }
-        public int UpdateListExpected_DP(string ProvinceName, string NumberDevice,string type, string id_dp,string id_po)
+        public int UpdateListExpected_DP(string ProvinceName, string NumberDevice, string type, string id_dp, string id_po)
         {
             int result = 0;
             string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.ListExpected_DP set NumberDevice = {0} where ProvinceName = '{1}' and  id_dp = '{2}' and type = N'{3}' and id_po = '{4}'", Int64.Parse(NumberDevice), ProvinceName, id_dp, type, id_po);
@@ -96,7 +96,7 @@ namespace OPM.DBHandler
         public int InsertUpdateDP(string id, string id_po, string id_contract, string cbbType, string note, string dtpRequest, string dtpOutCap)
         {
             int Return = 0;
-            if (Check_DP(id,id_po))
+            if (Check_DP(id, id_po))
             {
                 int result = 0;
                 string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET note = N'{0}',dateopen = '{1}',datedeliver = '{2}' WHERE id = N'{3}' and type = N'{4}' and id_po = '{5}'", note, dtpRequest, dtpOutCap, id, "", id_po);
@@ -106,9 +106,9 @@ namespace OPM.DBHandler
             else
             {
                 int result = 0;
-                string sql = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.CatalogAdmin(ctlID,ctlname,ctlparent) VALUES(N'{0}',N'{1}',N'{2}')", "DP_"+id, id, "PO_"+id_po);
+                string sql = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.CatalogAdmin(ctlID,ctlname,ctlparent) VALUES(N'{0}',N'{1}',N'{2}')", "DP_" + id, id, "PO_" + id_po);
                 result = OPMDBHandler.fInsertData(sql);
-                string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.DP(id,id_po,id_contract,type,dateopen,datedeliver,mskt,note) VALUES(N'{0}',N'{1}',N'{2}',N'{3}','{4}','{5}','{6}',N'{7}')", id, id_po, id_contract, "", dtpRequest, dtpOutCap,"", note);
+                string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.DP(id,id_po,id_contract,type,dateopen,datedeliver,mskt,note) VALUES(N'{0}',N'{1}',N'{2}',N'{3}','{4}','{5}','{6}',N'{7}')", id, id_po, id_contract, "", dtpRequest, dtpOutCap, "", note);
                 result = OPMDBHandler.fInsertData(query);
                 Return = 1;
             }
@@ -138,13 +138,14 @@ namespace OPM.DBHandler
             dataTable = OPMDBHandler.ExecuteQuery(query);
             return dataTable;
         }
-        public string GetInforSLP(string ProvinceName, string id_dp,string id_po)
+        public string GetInforSLP(string ProvinceName, string id_dp, string id_po)
         {
             DataTable dataTable = new DataTable();
             string result = "";
             string query = string.Format("SELECT TOP 1 NumberDevice FROM dbo.ListExpected_DP WHERE ProvinceName = N'{0}' and id_dp = N'{1}' and id_po = N'{2}' and type = N'Hàng bảo hành'", ProvinceName, id_dp, id_po);
             dataTable = OPMDBHandler.ExecuteQuery(query);
-            if(dataTable.Rows.Count > 0){
+            if (dataTable.Rows.Count > 0)
+            {
                 result = dataTable.Rows[0][0].ToString();
             }
             else
@@ -176,6 +177,23 @@ namespace OPM.DBHandler
             string query = string.Format("SELECT * FROM dbo.PhuLucSerial WHERE id_dp = N'{0}' and id_po = N'{1}'", id_dp, id_po);
             return query;
         }
+        public DataTable getInforDPByIdDP(string id_dp)
+        {
+            string query = string.Format("select d.id as 'IdDP', d.id_po,p.po_number, d.id_contract,c.KHMS, d.dateopen, d.datedeliver,d.note,cg.name,cg.code,cg.quantity from dbo.DP d left join dbo.PO p on p.id = d.id_po left join dbo.Contract c on c.id = p.id_contract left join dbo.Contract_Goods cg on cg.idContract = c.id where d.id = N'{0}'", id_dp);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            return table;
+        }
+        public bool Check_DSHang(string id_dp, string id_po, string type)
+        {
+            string query = string.Format("SELECT * FROM dbo.ListExpected_DP WHERE id_dp = '{0}' and type = N'{1}' and id_po = '{2}'", id_dp, type, id_po);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            return table.Rows.Count > 0;
+        }
+        public DataTable getInforListExxpected_DP(string id_dp, string id_po, string type)
+        {
+            string query = string.Format("select ProvinceName,NumberDevice from dbo.ListExpected_DP where id_dp = '{0}' and id_po = N'{1}' and type = N'{2}'", id_dp,id_po,type);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            return table;
+        }
     }
-
 }

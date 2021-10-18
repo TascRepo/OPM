@@ -167,8 +167,8 @@ namespace OPM.GUI
                         //OpenChildForm(deliverPartInforDetail);
                         DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
                         deliverPartInforDetail.requestDashBoardPurchaseOderForm = new DeliverPartInforDetail.RequestDashBoardPurchaseOderForm(OpenDP);
-                        //set các giá trị lên form
-                        OpenChildForm(deliverPartInforDetail);
+                        //OpenChildForm(deliverPartInforDetail);
+                        OpenDP(temp[1].ToString());
                         break;
                     case ConstantVar.NTKTType:
                         NTKTInfor nTKTInfor = new NTKTInfor();
@@ -303,7 +303,12 @@ namespace OPM.GUI
         {
             //Lấy các giá trị trong database liên quan đến DP để hiển thị lên màn hình
             DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
+            MessageBox.Show(strIdDP);
+            //Set các gia tri Contract va PO
+            deliverPartInforDetail.SetValueDP(strIdDP);
+            //Set cac gia tri DP va don hang
             OpenChildForm(deliverPartInforDetail);
+            return;
         }
     }
 }

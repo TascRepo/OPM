@@ -264,9 +264,9 @@ namespace OPM.GUI
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(8, 180);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(53, 15);
+            this.label14.Size = new System.Drawing.Size(84, 15);
             this.label14.TabIndex = 39;
-            this.label14.Text = "Tổng PO";
+            this.label14.Text = "Số lượng hàng";
             // 
             // txbNumber
             // 
@@ -308,6 +308,7 @@ namespace OPM.GUI
             this.dataGridViewProvince.RowTemplate.Height = 25;
             this.dataGridViewProvince.Size = new System.Drawing.Size(426, 301);
             this.dataGridViewProvince.TabIndex = 45;
+            this.dataGridViewProvince.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProvince_CellContentClick_1);
             this.dataGridViewProvince.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewProvince_DefaultValuesNeeded);
             // 
             // Checked

@@ -126,6 +126,25 @@ namespace OPM.GUI
             {
                 dataGridViewProvince.DataSource = dtProvince;
             }
+            if (dp1.Check_DSHang(txbIdDP.Text, txbPOCode.Text, cbbType.Text))
+            {
+                DataTable d2 = dp1.getInforListExxpected_DP(txbIdDP.Text, txbPOCode.Text, cbbType.Text);
+                for (int i = 0; i < dataGridViewProvince.Rows.Count - 1; i++)
+                {
+                    for (int j = 0; j < d2.Rows.Count - 1; j++)
+                    {
+                        MessageBox.Show(dataGridViewProvince.Rows[i].Cells[3].Value.ToString());
+                        MessageBox.Show(d2.Rows[j][0].ToString());
+                        if (dataGridViewProvince.Rows[i].Cells[3].Value.ToString() == d2.Rows[j][0].ToString())
+                        {
+                            bool isCellChecked = Convert.ToBoolean(dataGridViewProvince.Rows[i].Cells[0].Value);
+                            isCellChecked = true;
+                            dataGridViewProvince.Rows[i].Cells[1].Value = d2.Rows[j][1].ToString();
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -235,6 +254,21 @@ namespace OPM.GUI
         private void dataGridViewProvince_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+        public void SetValueDP(string IdDP)
+        {
+            DP dP = new DP();
+            DataTable data = dP.getInforDPByIdDP(IdDP);
+            //Set Value các giá trị của Form DP
+            txbIdDP.Text = IdDP;
+            txbPOCode.Text = data.Rows[0][1].ToString();
+            txbPOName.Text = data.Rows[0][2].ToString();
+            txbIDContract.Text = data.Rows[0][3].ToString();
+            txbKHMS.Text = data.Rows[0][4].ToString();
+            ghiChu.Text = data.Rows[0][7].ToString();
+            tenhangHD.Text = data.Rows[0][8].ToString();
+            mahangHD.Text = data.Rows[0][9].ToString();
+            txbNumber.Text = data.Rows[0][10].ToString();
         }
     }
 }
