@@ -133,8 +133,6 @@ namespace OPM.GUI
                 {
                     for (int j = 0; j < d2.Rows.Count - 1; j++)
                     {
-                        MessageBox.Show(dataGridViewProvince.Rows[i].Cells[3].Value.ToString());
-                        MessageBox.Show(d2.Rows[j][0].ToString());
                         if (dataGridViewProvince.Rows[i].Cells[3].Value.ToString() == d2.Rows[j][0].ToString())
                         {
                             bool isCellChecked = Convert.ToBoolean(dataGridViewProvince.Rows[i].Cells[0].Value);

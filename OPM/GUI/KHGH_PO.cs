@@ -50,5 +50,23 @@ namespace OPM.GUI
         {
             this.Close();
         }
+
+        private void dataKHGH_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                dataKHGH.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                dataKHGH.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+            }
+        }
+
+        private void dataKHGH_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                dataKHGH.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                dataKHGH.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+            }
+        }
     }
 }

@@ -49,6 +49,8 @@ namespace OPM.GUI
             this.dataKHGH.RowTemplate.Height = 25;
             this.dataKHGH.Size = new System.Drawing.Size(844, 418);
             this.dataKHGH.TabIndex = 0;
+            this.dataKHGH.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataKHGH_CellMouseLeave);
+            this.dataKHGH.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataKHGH_CellMouseMove);
             // 
             // label1
             // 

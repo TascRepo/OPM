@@ -93,6 +93,8 @@ namespace OPM.GUI
             this.dataPBDKPO.RowTemplate.Height = 25;
             this.dataPBDKPO.Size = new System.Drawing.Size(836, 418);
             this.dataPBDKPO.TabIndex = 8;
+            this.dataPBDKPO.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataPBDKPO_CellMouseLeave);
+            this.dataPBDKPO.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataPBDKPO_CellMouseMove);
             // 
             // PBPO
             // 

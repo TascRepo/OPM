@@ -73,5 +73,23 @@ namespace OPM.GUI
             }
             MessageBox.Show("Xử lý file phụ lục Serial đính kèm thành công!");
         }
+
+        private void dataGridView1_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+            }
+        }
+
+        private void dataGridView1_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+            }
+        }
     }
 }

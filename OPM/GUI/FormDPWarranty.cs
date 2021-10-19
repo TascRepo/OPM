@@ -51,5 +51,15 @@ namespace OPM.GUI
         {
             this.Close();
         }
+
+        private void dataGridViewWarranty_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridViewWarranty_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+        }
     }
 }

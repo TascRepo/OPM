@@ -56,5 +56,23 @@ namespace OPM.GUI
             }
             
         }
+
+        private void dataPBDKPO_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                dataPBDKPO.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                dataPBDKPO.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+            }
+        }
+
+        private void dataPBDKPO_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                dataPBDKPO.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                dataPBDKPO.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+            }
+        }
     }
 }

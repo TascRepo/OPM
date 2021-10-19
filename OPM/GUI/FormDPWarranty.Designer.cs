@@ -93,6 +93,8 @@ namespace OPM.GUI
             this.dataGridViewWarranty.RowTemplate.Height = 25;
             this.dataGridViewWarranty.Size = new System.Drawing.Size(504, 280);
             this.dataGridViewWarranty.TabIndex = 58;
+            this.dataGridViewWarranty.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewWarranty_CellMouseLeave);
+            this.dataGridViewWarranty.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewWarranty_CellMouseMove);
             // 
             // Checked
             // 
