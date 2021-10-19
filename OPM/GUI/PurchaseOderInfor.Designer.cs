@@ -50,7 +50,6 @@ namespace OPM.GUI
             this.txbDeadLine = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txbValuePO = new System.Windows.Forms.TextBox();
-            this.dataGridViewPO = new System.Windows.Forms.DataGridView();
             this.TimePickerDateCreatedPO = new System.Windows.Forms.DateTimePicker();
             this.tbxTupo = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -86,12 +85,11 @@ namespace OPM.GUI
             this.txbnamefileKHGH = new System.Windows.Forms.TextBox();
             this.svbdntt = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPO)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(4, 539);
+            this.btnSave.Location = new System.Drawing.Point(0, 456);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(69, 23);
             this.btnSave.TabIndex = 0;
@@ -118,7 +116,7 @@ namespace OPM.GUI
             // 
             // btnNewDP
             // 
-            this.btnNewDP.Location = new System.Drawing.Point(372, 539);
+            this.btnNewDP.Location = new System.Drawing.Point(368, 456);
             this.btnNewDP.Name = "btnNewDP";
             this.btnNewDP.Size = new System.Drawing.Size(88, 23);
             this.btnNewDP.TabIndex = 3;
@@ -277,16 +275,6 @@ namespace OPM.GUI
             this.txbValuePO.TabIndex = 1;
             this.txbValuePO.Text = "10000000000";
             // 
-            // dataGridViewPO
-            // 
-            this.dataGridViewPO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPO.Location = new System.Drawing.Point(7, 411);
-            this.dataGridViewPO.Name = "dataGridViewPO";
-            this.dataGridViewPO.RowHeadersWidth = 62;
-            this.dataGridViewPO.RowTemplate.Height = 25;
-            this.dataGridViewPO.Size = new System.Drawing.Size(453, 122);
-            this.dataGridViewPO.TabIndex = 5;
-            // 
             // TimePickerDateCreatedPO
             // 
             this.TimePickerDateCreatedPO.CustomFormat = "dd/MM/yyyy";
@@ -319,7 +307,7 @@ namespace OPM.GUI
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(188, 335);
+            this.label13.Location = new System.Drawing.Point(188, 337);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(21, 20);
             this.label13.TabIndex = 2;
@@ -355,7 +343,7 @@ namespace OPM.GUI
             // 
             // btnNTKT
             // 
-            this.btnNTKT.Location = new System.Drawing.Point(278, 539);
+            this.btnNTKT.Location = new System.Drawing.Point(274, 456);
             this.btnNTKT.Name = "btnNTKT";
             this.btnNTKT.Size = new System.Drawing.Size(88, 23);
             this.btnNTKT.TabIndex = 9;
@@ -365,7 +353,7 @@ namespace OPM.GUI
             // 
             // btnBaoHiem
             // 
-            this.btnBaoHiem.Location = new System.Drawing.Point(171, 539);
+            this.btnBaoHiem.Location = new System.Drawing.Point(167, 456);
             this.btnBaoHiem.Name = "btnBaoHiem";
             this.btnBaoHiem.Size = new System.Drawing.Size(101, 23);
             this.btnBaoHiem.TabIndex = 10;
@@ -375,7 +363,7 @@ namespace OPM.GUI
             // 
             // deletePO
             // 
-            this.deletePO.Location = new System.Drawing.Point(80, 539);
+            this.deletePO.Location = new System.Drawing.Point(76, 456);
             this.deletePO.Name = "deletePO";
             this.deletePO.Size = new System.Drawing.Size(85, 23);
             this.deletePO.TabIndex = 13;
@@ -386,14 +374,14 @@ namespace OPM.GUI
             // txbnamefilePO
             // 
             this.txbnamefilePO.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.txbnamefilePO.Location = new System.Drawing.Point(155, 390);
+            this.txbnamefilePO.Location = new System.Drawing.Point(146, 421);
             this.txbnamefilePO.Name = "txbnamefilePO";
             this.txbnamefilePO.Size = new System.Drawing.Size(187, 23);
             this.txbnamefilePO.TabIndex = 14;
             // 
             // importPO
             // 
-            this.importPO.Location = new System.Drawing.Point(348, 388);
+            this.importPO.Location = new System.Drawing.Point(339, 419);
             this.importPO.Name = "importPO";
             this.importPO.Size = new System.Drawing.Size(112, 23);
             this.importPO.TabIndex = 15;
@@ -404,7 +392,7 @@ namespace OPM.GUI
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(9, 391);
+            this.label8.Location = new System.Drawing.Point(0, 422);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(130, 15);
             this.label8.TabIndex = 16;
@@ -413,7 +401,7 @@ namespace OPM.GUI
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 338);
+            this.label10.Location = new System.Drawing.Point(12, 340);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(104, 15);
             this.label10.TabIndex = 2;
@@ -421,7 +409,7 @@ namespace OPM.GUI
             // 
             // bltupo
             // 
-            this.bltupo.Location = new System.Drawing.Point(132, 337);
+            this.bltupo.Location = new System.Drawing.Point(132, 339);
             this.bltupo.Name = "bltupo";
             this.bltupo.Size = new System.Drawing.Size(45, 23);
             this.bltupo.TabIndex = 6;
@@ -504,7 +492,7 @@ namespace OPM.GUI
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(220, 338);
+            this.label20.Location = new System.Drawing.Point(220, 340);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(35, 15);
             this.label20.TabIndex = 2;
@@ -514,7 +502,7 @@ namespace OPM.GUI
             // 
             this.bltupo_datecreated.CustomFormat = "dd/MM/yyyy";
             this.bltupo_datecreated.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.bltupo_datecreated.Location = new System.Drawing.Point(264, 337);
+            this.bltupo_datecreated.Location = new System.Drawing.Point(264, 339);
             this.bltupo_datecreated.Name = "bltupo_datecreated";
             this.bltupo_datecreated.Size = new System.Drawing.Size(180, 23);
             this.bltupo_datecreated.TabIndex = 4;
@@ -555,7 +543,7 @@ namespace OPM.GUI
             // 
             // panel3
             // 
-            this.panel3.Location = new System.Drawing.Point(4, 334);
+            this.panel3.Location = new System.Drawing.Point(4, 336);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(456, 25);
@@ -564,7 +552,7 @@ namespace OPM.GUI
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(9, 366);
+            this.label22.Location = new System.Drawing.Point(0, 387);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(132, 15);
             this.label22.TabIndex = 21;
@@ -572,7 +560,7 @@ namespace OPM.GUI
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(349, 362);
+            this.button3.Location = new System.Drawing.Point(340, 383);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(111, 23);
             this.button3.TabIndex = 20;
@@ -583,7 +571,7 @@ namespace OPM.GUI
             // txbnamefileKHGH
             // 
             this.txbnamefileKHGH.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.txbnamefileKHGH.Location = new System.Drawing.Point(156, 364);
+            this.txbnamefileKHGH.Location = new System.Drawing.Point(147, 385);
             this.txbnamefileKHGH.Name = "txbnamefileKHGH";
             this.txbnamefileKHGH.Size = new System.Drawing.Size(187, 23);
             this.txbnamefileKHGH.TabIndex = 19;
@@ -629,7 +617,6 @@ namespace OPM.GUI
             this.Controls.Add(this.bltupo);
             this.Controls.Add(this.confirmpo_number);
             this.Controls.Add(this.tbxTupo);
-            this.Controls.Add(this.dataGridViewPO);
             this.Controls.Add(this.TimePickerDeadLinePO);
             this.Controls.Add(this.TimepickerDefaultActive);
             this.Controls.Add(this.bltupo_datecreated);
@@ -673,7 +660,6 @@ namespace OPM.GUI
             this.Name = "PurchaseOderInfor";
             this.Text = "Purchase Oder Infor";
             this.Load += new System.EventHandler(this.PurchaseOderInfor_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPO)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -702,7 +688,6 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox txbDeadLine;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txbValuePO;
-        private System.Windows.Forms.DataGridView dataGridViewPO;
         private System.Windows.Forms.DateTimePicker TimePickerDateCreatedPO;
         private System.Windows.Forms.TextBox tbxTupo;
         private System.Windows.Forms.Label label12;

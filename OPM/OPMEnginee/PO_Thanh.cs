@@ -296,7 +296,7 @@ namespace OPM.DBHandler
             int result = 0;
             numberofdevice = numberofdevice.Replace(",", string.Empty);
             numberofdevice = numberofdevice.Replace(".", string.Empty);
-            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.ListExpected_PO(id_po, id_province, numberofdevice, nameofdevice) VALUES('{0}',N'{1}',{2},N'{3}')", id_po, id_province, Int64.Parse(numberofdevice), namefdevice);
+            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.ListExpected_PO(id_po, id_province, numberofdevice, nameofdevice) VALUES(N'{0}',N'{1}',{2},N'{3}')", id_po, id_province, Int64.Parse(numberofdevice), namefdevice);
             result = OPMDBHandler.fInsertData(query);
             return result;
         }

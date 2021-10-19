@@ -213,5 +213,17 @@ namespace OPM.OPMEnginee
             }
             return 1;
         }
+        public string GetNameContractByPOId(string id_po)
+        {
+            string query = string.Format("select top 1 namecontract from dbo.PO p left join dbo.Contract c on c.id = p.id_contract where p.id = N'{0}'", id_po);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            return table.Rows[0][0].ToString();
+        }
+        public void DeleteListExpected_PO(string id)
+        {
+            int result = 0;
+            string query1 = string.Format("delete dbo.ListExpected_PO where id_po = '" + id + "'");
+            result = OPMDBHandler.fInsertData(query1);
+        }
     }
 }

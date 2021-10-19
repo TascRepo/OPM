@@ -134,36 +134,36 @@ namespace OPM.GUI
                     }
                 }
                 //Tạo 3 mẫu văn bản m4,m5,m6
-                if (txbnamefilePO.Text != "")
-                {
-                    int returnValue = 0;
-                    if (po.CheckListExpected_PO(po.Id))
-                    {
-                        MessageBox.Show(po.Id + "Đã có file phẩn bổ, không cần import thêm!");
-                    }
-                    else
-                    {
-                        for (int i = 0; i < dataGridViewPO.Rows.Count - 1; i++)
-                        {
-                            returnValue = po.InsertImportFilePO(po.Id, dataGridViewPO.Rows[i].Cells[1].Value.ToString(), dataGridViewPO.Rows[i].Cells[2].Value.ToString(), contract.Namecontract);
-                        }
-                        if (returnValue == 1)
-                        {
-                            MessageBox.Show("Lưu trữ thông tin file phân bổ thành công");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Lưu trữ thông tin file phân bổ thất bại");
-                        }
-                    }
-                }
-                else
-                {
-                    if (po.CheckListExpected_PO(po.Id))
-                    {
-                        MessageBox.Show(po.Id + "đã có file phẩn bổ, không cần import thêm!");
-                    }
-                }
+                ////if (txbnamefilePO.Text != "")
+                //{
+                    //int returnValue = 0;
+                    //if (po.CheckListExpected_PO(po.Id))
+                    //{
+                        //MessageBox.Show(po.Id + "Đã có file phẩn bổ, không cần import thêm!");
+                    //}
+                    //else
+                    //{
+                        //for (int i = 0; i < dataGridViewPO.Rows.Count - 1; i++)
+                        //{
+                            //returnValue = po.InsertImportFilePO(po.Id, dataGridViewPO.Rows[i].Cells[1].Value.ToString(), dataGridViewPO.Rows[i].Cells[2].Value.ToString(), contract.Namecontract);
+                        //}
+                        //if (returnValue == 1)
+                        //{
+                            //MessageBox.Show("Lưu trữ thông tin file phân bổ thành công");
+                        //}
+                        //else
+                        //{
+                            //MessageBox.Show("Lưu trữ thông tin file phân bổ thất bại");
+                        //}
+                    //}
+                //}
+                //else
+                //{
+                    //if (po.CheckListExpected_PO(po.Id))
+                    //{
+                        //MessageBox.Show(po.Id + "đã có file phẩn bổ, không cần import thêm!");
+                    //}
+                //}
                 OpmWordHandler.Word_POBaoLanh(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text, txbValuePO.Text, bltupo.Text, txbDurationConfirm.Text);
                 OpmWordHandler.Word_POTamUng(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text, txbValuePO.Text, bltupo.Text, txbDurationConfirm.Text, svbdntt.Text);
             }
@@ -289,27 +289,26 @@ namespace OPM.GUI
         public string sConnectionString = null;
         private void importPO_Click(object sender, EventArgs e)
         {
-            //openFileExcel.Multiselect = true;
-            //openFileExcel.Multiselect = true;
-            //openFileExcel.Filter = "Excel Files(.xls)|*.xls| Excel Files(.xlsx)| *.xlsx | Excel Files(*.xlsm) | *.xlsm";
+            //
             if (openFileExcel.ShowDialog() == DialogResult.OK)
             {
                 if (File.Exists(openFileExcel.FileName))
                 {
                     txbnamefilePO.Text = openFileExcel.FileName;
                     string filename = openFileExcel.FileName;
-                    DataTable dt = new DataTable();
-                    int ret = OpmExcelHandler.fReadExcelFilePO2(filename, ref dt);
+                    int ret = OpmExcelHandler.fReadExcelFilePO2(filename, ref pbpo);
                     if (ret == 1)
                     {
-                        dataGridViewPO.DataSource = dt;
-                        MessageBox.Show("Import thành công!");
+                        IPPO = txbPOCode.Text;
+                        PBPO pBPO = new PBPO();
+                        pBPO.ShowDialog();
                     }
                     else
                     {
-                        MessageBox.Show("Import Không thành công!");
+                        MessageBox.Show("Import thất bại");
                     }
                 }
+
             }
         }
 
@@ -367,6 +366,7 @@ namespace OPM.GUI
         }
         static public DataTable dt = new DataTable();
         static public DataTable dtkhgh = new DataTable();
+        static public DataTable pbpo = new DataTable();
         static public string IDVBXN = "";
         static public string IPPO = "";
         private void button3_Click(object sender, EventArgs e)
