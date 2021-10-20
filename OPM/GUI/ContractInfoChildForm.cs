@@ -296,5 +296,10 @@ namespace OPM.GUI
         {
             OpmWordHandler.Temp1_CreatContractGuarantee(tbContract.Text.Trim());
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

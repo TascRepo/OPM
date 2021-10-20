@@ -140,6 +140,10 @@ namespace OPM.DBHandler
                 Bltupo_datecreated = (row["bltupo_datecreated"] == null || row["bltupo_datecreated"] == DBNull.Value) ? DateTime.Now : (DateTime)row["bltupo_datecreated"];
                 Confirmpo_dateactive = (row["confirmpo_dateactive"] == null || row["confirmpo_dateactive"] == DBNull.Value) ? DateTime.Now : (DateTime)row["confirmpo_dateactive"];
             }
+            else
+            {
+                Id_contract = id;
+            }
         }
         public bool Exist()
         {

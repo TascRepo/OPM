@@ -117,12 +117,7 @@ namespace OPM.GUI
             {
                 po.InsertOrUpdate();
                 //Tạo file xác nhận hợp đồng
-                if (txbnamefileKHGH.Text != "")
-                {
-                    po.InsertOrUpdate_VBConfirmPO(txbPOCode.Text);
-                    OpmWordHandler.Word_POConfirm(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text);
-                }
-                else
+                if (txbnamefileKHGH.Text == "")
                 {
                     if (po.CheckListDelivery_PO(po.Confirmpo_number))
                     {
@@ -133,37 +128,19 @@ namespace OPM.GUI
                         MessageBox.Show(po.Confirmpo_number + "chưa có trong hệ thống, bạn phải bổ sung sau!");
                     }
                 }
-                //Tạo 3 mẫu văn bản m4,m5,m6
-                ////if (txbnamefilePO.Text != "")
-                //{
-                    //int returnValue = 0;
-                    //if (po.CheckListExpected_PO(po.Id))
-                    //{
-                        //MessageBox.Show(po.Id + "Đã có file phẩn bổ, không cần import thêm!");
-                    //}
-                    //else
-                    //{
-                        //for (int i = 0; i < dataGridViewPO.Rows.Count - 1; i++)
-                        //{
-                            //returnValue = po.InsertImportFilePO(po.Id, dataGridViewPO.Rows[i].Cells[1].Value.ToString(), dataGridViewPO.Rows[i].Cells[2].Value.ToString(), contract.Namecontract);
-                        //}
-                        //if (returnValue == 1)
-                        //{
-                            //MessageBox.Show("Lưu trữ thông tin file phân bổ thành công");
-                        //}
-                        //else
-                        //{
-                            //MessageBox.Show("Lưu trữ thông tin file phân bổ thất bại");
-                        //}
-                    //}
-                //}
-                //else
-                //{
-                    //if (po.CheckListExpected_PO(po.Id))
-                    //{
-                        //MessageBox.Show(po.Id + "đã có file phẩn bổ, không cần import thêm!");
-                    //}
-                //}
+                if (txbnamefilePO.Text == "")
+                {
+                    if (po.CheckListExpected_PO(po.Id))
+                    {
+                        MessageBox.Show(po.Confirmpo_number + "đã có file giao hàng dự kiến, không cần import thêm!");
+                    }
+                    else
+                    {
+                        MessageBox.Show(po.Confirmpo_number + "chưa có trong hệ thống, bạn phải bổ sung sau!");
+                    }
+                }
+                po.InsertOrUpdate_VBConfirmPO(txbPOCode.Text);
+                OpmWordHandler.Word_POConfirm(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text);
                 OpmWordHandler.Word_POBaoLanh(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text, txbValuePO.Text, bltupo.Text, txbDurationConfirm.Text);
                 OpmWordHandler.Word_POTamUng(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text, txbValuePO.Text, bltupo.Text, txbDurationConfirm.Text, svbdntt.Text);
             }
@@ -172,7 +149,6 @@ namespace OPM.GUI
                 MessageBox.Show(string.Format("Không tồn tại hợp đồng {0}", txbIDContract.Text));
                 return;
             }
-
             UpdateCatalogPanel("PO_" + po.Id);
             //Tạo các mẫu 23,24,36,37
             OpmWordHandler.Temp23_CNCL_TongHop(po.Id);
@@ -189,7 +165,6 @@ namespace OPM.GUI
             pO.DisplayPO(idPO, ref namecontract, ref KHMS);
             pO.GetDisplayPO(idPO, ref pO);
             this.txbKHMS.Text = KHMS;
-
             this.txbIDContract.Text = pO.IdContract;
             this.txbPOCode.Text = pO.IDPO;
             this.txbPOName.Text = pO.PONumber;
@@ -200,7 +175,6 @@ namespace OPM.GUI
             TimePickerDeadLinePO.Value = Convert.ToDateTime(pO.DeadLinePO);
             this.txbValuePO.Text = pO.TotalValuePO.ToString();
             return;
-
         }
 
         public void SetTxbIDContract(string strIDContract)
@@ -284,6 +258,10 @@ namespace OPM.GUI
                     confirmpo_dateactive.Value = po.Confirmpo_dateactive;
                 }
             }
+            else
+            {
+                txbIDContract.Text = po.Id_contract.Substring(9);
+            }
         }
         public OpenFileDialog openFileExcel = new OpenFileDialog();
         public string sConnectionString = null;
@@ -299,7 +277,7 @@ namespace OPM.GUI
                     int ret = OpmExcelHandler.fReadExcelFilePO2(filename, ref pbpo);
                     if (ret == 1)
                     {
-                        IPPO = txbPOCode.Text;
+                        IPPO = txbIDContract.Text;
                         PBPO pBPO = new PBPO();
                         pBPO.ShowDialog();
                     }
@@ -383,7 +361,7 @@ namespace OPM.GUI
                     if (ret == 1)
                     {
                         IDVBXN = confirmpo_number.Text;
-                        IPPO = txbPOCode.Text;
+                        IPPO = txbIDContract.Text;
                         KHGH_PO kHGH_PO = new KHGH_PO();
                         kHGH_PO.ShowDialog();
                     }

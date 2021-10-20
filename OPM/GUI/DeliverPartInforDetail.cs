@@ -103,6 +103,7 @@ namespace OPM.GUI
                 }
                 MessageBox.Show("Tạo mẫu 18,19,20,21,22 đi các tỉnh thành công!");
             }
+            this.Cursor = Cursors.Default;
         }
         private void DeliverPartInforDetail_Load(object sender, EventArgs e)
         {

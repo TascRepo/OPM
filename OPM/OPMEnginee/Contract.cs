@@ -196,5 +196,11 @@ namespace OPM.OPMEnginee
             }
             if (result != 0) MessageBox.Show("Bạn đã xoá hợp đồng thành công!");
         }
+        public static bool CheckContract(string id)
+        {
+            string query = string.Format("SELECT * FROM dbo.Contract WHERE id = '{0}'", id);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            return table.Rows.Count > 0;
+        }
     }
 }

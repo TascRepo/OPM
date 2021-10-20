@@ -215,7 +215,7 @@ namespace OPM.OPMEnginee
         }
         public string GetNameContractByPOId(string id_po)
         {
-            string query = string.Format("select top 1 namecontract from dbo.PO p left join dbo.Contract c on c.id = p.id_contract where p.id = N'{0}'", id_po);
+            string query = string.Format("select top 1 namecontract from dbo.Contract where id = N'{0}'", id_po);
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table.Rows[0][0].ToString();
         }
