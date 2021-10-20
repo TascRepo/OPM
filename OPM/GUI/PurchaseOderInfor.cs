@@ -382,5 +382,20 @@ namespace OPM.GUI
         private void button1_Click_1(object sender, EventArgs e)
         {
         }
+
+        private void txbValuePO_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txbNumberDevice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)20)
+            {
+                Contract_Goods cg = new Contract_Goods();
+                double priceUnit = cg.GetPriceUnit(txbIDContract.Text);
+                priceUnit = double.Parse(txbNumberDevice.Text) * priceUnit;
+                txbValuePO.Text = priceUnit.ToString();
+            }
+        }
     }
 }

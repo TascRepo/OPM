@@ -183,6 +183,7 @@ namespace OPM.GUI
             this.txbNumberDevice.Size = new System.Drawing.Size(312, 23);
             this.txbNumberDevice.TabIndex = 1;
             this.txbNumberDevice.Text = "0";
+            this.txbNumberDevice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbNumberDevice_KeyPress);
             // 
             // label6
             // 
@@ -274,6 +275,7 @@ namespace OPM.GUI
             this.txbValuePO.Size = new System.Drawing.Size(77, 23);
             this.txbValuePO.TabIndex = 1;
             this.txbValuePO.Text = "10000000000";
+            this.txbValuePO.TextChanged += new System.EventHandler(this.txbValuePO_TextChanged);
             // 
             // TimePickerDateCreatedPO
             // 
