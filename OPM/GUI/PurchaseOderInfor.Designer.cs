@@ -85,6 +85,7 @@ namespace OPM.GUI
             this.txbnamefileKHGH = new System.Windows.Forms.TextBox();
             this.svbdntt = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSave
@@ -116,9 +117,9 @@ namespace OPM.GUI
             // 
             // btnNewDP
             // 
-            this.btnNewDP.Location = new System.Drawing.Point(368, 456);
+            this.btnNewDP.Location = new System.Drawing.Point(309, 456);
             this.btnNewDP.Name = "btnNewDP";
-            this.btnNewDP.Size = new System.Drawing.Size(88, 23);
+            this.btnNewDP.Size = new System.Drawing.Size(76, 23);
             this.btnNewDP.TabIndex = 3;
             this.btnNewDP.Text = "New DP";
             this.btnNewDP.UseVisualStyleBackColor = true;
@@ -346,9 +347,9 @@ namespace OPM.GUI
             // 
             // btnNTKT
             // 
-            this.btnNTKT.Location = new System.Drawing.Point(274, 456);
+            this.btnNTKT.Location = new System.Drawing.Point(229, 456);
             this.btnNTKT.Name = "btnNTKT";
-            this.btnNTKT.Size = new System.Drawing.Size(88, 23);
+            this.btnNTKT.Size = new System.Drawing.Size(74, 23);
             this.btnNTKT.TabIndex = 9;
             this.btnNTKT.Text = "New NTKT";
             this.btnNTKT.UseVisualStyleBackColor = true;
@@ -356,9 +357,9 @@ namespace OPM.GUI
             // 
             // btnBaoHiem
             // 
-            this.btnBaoHiem.Location = new System.Drawing.Point(167, 456);
+            this.btnBaoHiem.Location = new System.Drawing.Point(152, 456);
             this.btnBaoHiem.Name = "btnBaoHiem";
-            this.btnBaoHiem.Size = new System.Drawing.Size(101, 23);
+            this.btnBaoHiem.Size = new System.Drawing.Size(71, 23);
             this.btnBaoHiem.TabIndex = 10;
             this.btnBaoHiem.Text = "Bảo Hiểm";
             this.btnBaoHiem.UseVisualStyleBackColor = true;
@@ -366,9 +367,9 @@ namespace OPM.GUI
             // 
             // deletePO
             // 
-            this.deletePO.Location = new System.Drawing.Point(76, 456);
+            this.deletePO.Location = new System.Drawing.Point(75, 456);
             this.deletePO.Name = "deletePO";
-            this.deletePO.Size = new System.Drawing.Size(85, 23);
+            this.deletePO.Size = new System.Drawing.Size(70, 23);
             this.deletePO.TabIndex = 13;
             this.deletePO.Text = "Xóa PO";
             this.deletePO.UseVisualStyleBackColor = true;
@@ -597,12 +598,23 @@ namespace OPM.GUI
             this.label23.TabIndex = 22;
             this.label23.Text = "Số VB ĐNTT";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(391, 456);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(76, 23);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "QLSP";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            // 
             // PurchaseOderInfor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightYellow;
             this.ClientSize = new System.Drawing.Size(498, 578);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.svbdntt);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.label22);
@@ -727,5 +739,6 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox txbnamefileKHGH;
         private System.Windows.Forms.TextBox svbdntt;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button button1;
     }
 }

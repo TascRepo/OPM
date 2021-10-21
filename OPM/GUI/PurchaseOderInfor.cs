@@ -397,5 +397,11 @@ namespace OPM.GUI
                 txbValuePO.Text = priceUnit.ToString();
             }
         }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            Product product = new Product();
+            product.Show();
+        }
     }
 }
