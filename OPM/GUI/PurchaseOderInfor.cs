@@ -389,7 +389,7 @@ namespace OPM.GUI
 
         private void txbNumberDevice_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar == (char)20)
+            if(e.KeyChar == (char)13)
             {
                 Contract_Goods cg = new Contract_Goods();
                 double priceUnit = cg.GetPriceUnit(txbIDContract.Text);

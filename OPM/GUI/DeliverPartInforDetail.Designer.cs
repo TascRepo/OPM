@@ -67,8 +67,6 @@ namespace OPM.GUI
             this.hangPhu = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.soDCPO = new System.Windows.Forms.TextBox();
-            this.lable23 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProvince)).BeginInit();
             this.SuspendLayout();
@@ -388,7 +386,7 @@ namespace OPM.GUI
             // hangPhu
             // 
             this.hangPhu.AutoSize = true;
-            this.hangPhu.Location = new System.Drawing.Point(268, 235);
+            this.hangPhu.Location = new System.Drawing.Point(249, 210);
             this.hangPhu.Name = "hangPhu";
             this.hangPhu.Size = new System.Drawing.Size(166, 19);
             this.hangPhu.TabIndex = 55;
@@ -416,23 +414,6 @@ namespace OPM.GUI
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // soDCPO
-            // 
-            this.soDCPO.Location = new System.Drawing.Point(282, 206);
-            this.soDCPO.Name = "soDCPO";
-            this.soDCPO.Size = new System.Drawing.Size(158, 23);
-            this.soDCPO.TabIndex = 59;
-            this.soDCPO.Text = "XXX/CUVT-KV";
-            // 
-            // lable23
-            // 
-            this.lable23.AutoSize = true;
-            this.lable23.Location = new System.Drawing.Point(210, 209);
-            this.lable23.Name = "lable23";
-            this.lable23.Size = new System.Drawing.Size(58, 15);
-            this.lable23.TabIndex = 58;
-            this.lable23.Text = "Số ĐC PO";
-            // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.LightSteelBlue;
@@ -451,8 +432,6 @@ namespace OPM.GUI
             this.BackColor = System.Drawing.Color.Thistle;
             this.ClientSize = new System.Drawing.Size(453, 594);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.soDCPO);
-            this.Controls.Add(this.lable23);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.hangPhu);
@@ -539,8 +518,6 @@ namespace OPM.GUI
         private System.Windows.Forms.CheckBox hangPhu;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox soDCPO;
-        private System.Windows.Forms.Label lable23;
         private System.Windows.Forms.Button button2;
     }
 }

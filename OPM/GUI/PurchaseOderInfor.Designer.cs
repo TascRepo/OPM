@@ -270,6 +270,7 @@ namespace OPM.GUI
             // 
             // txbValuePO
             // 
+            this.txbValuePO.Enabled = false;
             this.txbValuePO.Location = new System.Drawing.Point(132, 223);
             this.txbValuePO.Name = "txbValuePO";
             this.txbValuePO.Size = new System.Drawing.Size(77, 23);
