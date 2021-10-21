@@ -93,13 +93,13 @@ namespace OPM.DBHandler
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table.Rows.Count > 0;
         }
-        public int InsertUpdateDP(string id, string id_po, string id_contract, string cbbType, string note, string dtpRequest, string dtpOutCap)
+        public int InsertUpdateDP(string id, string id_po, string id_contract, string cbbType, string note, string dtpRequest, string dtpOutCap,string maHangSP,string tenHangSP)
         {
             int Return = 0;
             if (Check_DP(id, id_po))
             {
                 int result = 0;
-                string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET note = N'{0}',dateopen = '{1}',datedeliver = '{2}' WHERE id = N'{3}' and type = N'{4}' and id_po = '{5}'", note, dtpRequest, dtpOutCap, id, "", id_po);
+                string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET note = N'{0}',dateopen = '{1}',datedeliver = '{2}',maSP = '{3}',tenSP = '{4}' WHERE id = N'{5}' and type = N'{6}' and id_po = '{7}'", note, dtpRequest, dtpOutCap, maHangSP, tenHangSP, id, "", id_po);
                 result = OPMDBHandler.fInsertData(query);
                 Return = 0;
             }
@@ -108,7 +108,7 @@ namespace OPM.DBHandler
                 int result = 0;
                 string sql = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.CatalogAdmin(ctlID,ctlname,ctlparent) VALUES(N'{0}',N'{1}',N'{2}')", "DP_" + id, id, "PO_" + id_po);
                 result = OPMDBHandler.fInsertData(sql);
-                string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.DP(id,id_po,id_contract,type,dateopen,datedeliver,mskt,note) VALUES(N'{0}',N'{1}',N'{2}',N'{3}','{4}','{5}','{6}',N'{7}')", id, id_po, id_contract, "", dtpRequest, dtpOutCap, "", note);
+                string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.DP(id,id_po,id_contract,type,dateopen,datedeliver,mskt,note,maSP,tenSP) VALUES(N'{0}',N'{1}',N'{2}',N'{3}','{4}','{5}','{6}',N'{7}',N'{8}',N'{9}')", id, id_po, id_contract, "", dtpRequest, dtpOutCap, "", note, maHangSP, tenHangSP);
                 result = OPMDBHandler.fInsertData(query);
                 Return = 1;
             }
@@ -179,7 +179,7 @@ namespace OPM.DBHandler
         }
         public DataTable getInforDPByIdDP(string id_dp)
         {
-            string query = string.Format("select d.id as 'IdDP', d.id_po,p.po_number, d.id_contract,c.KHMS, d.dateopen, d.datedeliver,d.note,cg.name,cg.code,cg.quantity from dbo.DP d left join dbo.PO p on p.id = d.id_po left join dbo.Contract c on c.id = p.id_contract left join dbo.Contract_Goods cg on cg.idContract = c.id where d.id = N'{0}'", id_dp);
+            string query = string.Format("select d.id as 'IdDP', d.id_po,p.po_number, d.id_contract,c.KHMS, d.dateopen, d.datedeliver,d.note,cg.name,cg.code,cg.quantity,d.maSP,d.tenSP from dbo.DP d left join dbo.PO p on p.id = d.id_po left join dbo.Contract c on c.id = p.id_contract left join dbo.Contract_Goods cg on cg.idContract = c.id where d.id = N'{0}'", id_dp);
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table;
         }

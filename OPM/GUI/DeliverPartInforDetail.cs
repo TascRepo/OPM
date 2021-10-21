@@ -57,7 +57,7 @@ namespace OPM.GUI
             {
                 DP dp = new DP();
                 //Thêm mới 1 DP vào database
-                int returnDP = dp.InsertUpdateDP(txbIdDP.Text.Trim().Replace('/', '-'), txbPOCode.Text, txbIDContract.Text, cbbType.Text, ghiChu.Text, dtpRequest.Text, dtpOutCap.Text);
+                int returnDP = dp.InsertUpdateDP(txbIdDP.Text.Trim().Replace('/', '-'), txbPOCode.Text, txbIDContract.Text, cbbType.Text, ghiChu.Text, dtpRequest.Text, dtpOutCap.Text,maHangSP.Text,tenHangSP.Text);
                 if (returnDP == 0)
                 {
                     MessageBox.Show("Cập nhật DP " + txbIdDP.Text + " thành công!");
@@ -275,6 +275,8 @@ namespace OPM.GUI
             tenhangHD.Text = data.Rows[0][8].ToString();
             mahangHD.Text = data.Rows[0][9].ToString();
             txbNumber.Text = data.Rows[0][10].ToString();
+            maHangSP.Text = data.Rows[0][11].ToString();
+            tenHangSP.Text = data.Rows[0][12].ToString();
         }
 
         private void maHangSP_SelectedIndexChanged(object sender, EventArgs e)
