@@ -44,7 +44,6 @@ namespace OPM.GUI
             this.label = new System.Windows.Forms.Label();
             this.dtpOutCap = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
-            this.maHangSP = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tenHangSP = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -68,6 +67,7 @@ namespace OPM.GUI
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.maHangSP = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProvince)).BeginInit();
             this.SuspendLayout();
             // 
@@ -200,15 +200,6 @@ namespace OPM.GUI
             this.label7.Size = new System.Drawing.Size(70, 15);
             this.label7.TabIndex = 25;
             this.label7.Text = "Mã hàng SP";
-            // 
-            // maHangSP
-            // 
-            this.maHangSP.Location = new System.Drawing.Point(282, 148);
-            this.maHangSP.Name = "maHangSP";
-            this.maHangSP.Size = new System.Drawing.Size(158, 23);
-            this.maHangSP.TabIndex = 26;
-            this.maHangSP.Text = "FINAL_PRODUCT";
-            this.maHangSP.TextChanged += new System.EventHandler(this.txbPurpose_TextChanged);
             // 
             // label8
             // 
@@ -425,12 +416,23 @@ namespace OPM.GUI
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // maHangSP
+            // 
+            this.maHangSP.FormattingEnabled = true;
+            this.maHangSP.Location = new System.Drawing.Point(282, 150);
+            this.maHangSP.Name = "maHangSP";
+            this.maHangSP.Size = new System.Drawing.Size(158, 23);
+            this.maHangSP.TabIndex = 61;
+            this.maHangSP.Text = "FINAL_PRODUCT";
+            this.maHangSP.SelectedIndexChanged += new System.EventHandler(this.maHangSP_SelectedIndexChanged);
+            // 
             // DeliverPartInforDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
             this.ClientSize = new System.Drawing.Size(453, 594);
+            this.Controls.Add(this.maHangSP);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
@@ -452,7 +454,6 @@ namespace OPM.GUI
             this.Controls.Add(this.label10);
             this.Controls.Add(this.tenHangSP);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.maHangSP);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dtpOutCap);
             this.Controls.Add(this.label);
@@ -495,7 +496,6 @@ namespace OPM.GUI
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.DateTimePicker dtpOutCap;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox maHangSP;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tenHangSP;
         private System.Windows.Forms.Label label10;
@@ -519,5 +519,6 @@ namespace OPM.GUI
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox maHangSP;
     }
 }

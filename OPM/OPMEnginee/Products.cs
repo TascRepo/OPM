@@ -64,5 +64,19 @@ namespace OPM.DBHandler
             result = OPMDBHandler.fInsertData(query);
             return result;
         }
+        public DataTable GetListMaSP(string idHang)
+        {
+            DataTable d = new DataTable();
+            string query = string.Format("select CodeProduct from dbo.Products p left join dbo.Contract_Goods c on c.id = p.Id_Contract_Goods where c.code = N'{0}'", idHang);
+            d = OPMDBHandler.ExecuteQuery(query);
+            return d;
+        }
+        public DataTable GetNameProductByCodeProduct(string codeProducts)
+        {
+            DataTable d = new DataTable();
+            string query = string.Format("select top 1 NameProduct from dbo.Products where CodeProduct = N'{0}'", codeProducts);
+            d = OPMDBHandler.ExecuteQuery(query);
+            return d;
+        }
     }
 }

@@ -303,7 +303,6 @@ namespace OPM.GUI
         {
             //Lấy các giá trị trong database liên quan đến DP để hiển thị lên màn hình
             DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
-            MessageBox.Show(strIdDP);
             //Set các gia tri Contract va PO
             deliverPartInforDetail.SetValueDP(strIdDP);
             //Set cac gia tri DP va don hang

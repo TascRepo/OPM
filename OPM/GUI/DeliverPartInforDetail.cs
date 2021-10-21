@@ -193,7 +193,14 @@ namespace OPM.GUI
             {
                 mahangHD.Text = "";
             }
-            //
+            //find tên và mã hàng sản phẩm theo tên hàng HĐ
+            Products products = new Products();
+            DataTable dtproducts = new DataTable();
+            dtResult = products.GetListMaSP(mahangHD.Text);
+            for (int i = 0; i < dtResult.Rows.Count; i++)
+            {
+                maHangSP.Items.Add(dtResult.Rows[i][0].ToString());
+            }
         }
 
         private void xoaDP_Click(object sender, EventArgs e)
@@ -268,6 +275,22 @@ namespace OPM.GUI
             tenhangHD.Text = data.Rows[0][8].ToString();
             mahangHD.Text = data.Rows[0][9].ToString();
             txbNumber.Text = data.Rows[0][10].ToString();
+        }
+
+        private void maHangSP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //find giá trị tên theo code
+            Products products = new Products();
+            DataTable dtResult = new DataTable();
+            dtResult = products.GetNameProductByCodeProduct(maHangSP.Text);
+            if (dtResult.Rows.Count > 0)
+            {
+                tenHangSP.Text = dtResult.Rows[0][0].ToString();
+            }
+            else
+            {
+                tenHangSP.Text = "";
+            }
         }
     }
 }
