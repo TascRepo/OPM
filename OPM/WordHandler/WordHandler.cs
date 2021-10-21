@@ -1752,9 +1752,7 @@ namespace OPM.WordHandler
         {
             //Xem ngày và phân các mẫu
             string a = DateTime.ParseExact(dtpycht, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-            MessageBox.Show(a);
             string b = DateTime.ParseExact(dtpthht, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
-            MessageBox.Show(b);
             DateTime ngaymuon = Convert.ToDateTime(a);
             DateTime ngaytra = Convert.ToDateTime(b);
             TimeSpan Time = ngaytra - ngaymuon;
@@ -1857,6 +1855,7 @@ namespace OPM.WordHandler
                                         ref missing1, ref missing1, ref missing1, ref missing1);
                     myDoc1.Activate();
                     OpmWordHandler.FindAndReplace(wordApp1, "<dtpRequest>", DateTime.Now.ToString("dd/MM/yyyy"));
+                    OpmWordHandler.FindAndReplace(wordApp1, "<txbsoDCDP>", txbsoDCDP);
                     OpmWordHandler.FindAndReplace(wordApp1, "<txbKHMS>", KHMS);
                     OpmWordHandler.FindAndReplace(wordApp1, "<txbPOName>", txbPOName);
                     OpmWordHandler.FindAndReplace(wordApp1, "<dtpOutCap>", dtpycbd);
