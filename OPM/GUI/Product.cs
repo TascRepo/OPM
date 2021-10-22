@@ -1,12 +1,8 @@
 ﻿using OPM.DBHandler;
-using OPM.ExcelHandler;
-using OPM.OPMEnginee;
-using OPM.WordHandler;
 using System;
 using System.Data;
-using System.IO;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 namespace OPM.GUI
 {
     public partial class Product : Form
@@ -54,7 +50,7 @@ namespace OPM.GUI
             Products products = new Products();
             //Thêm mới 1 DP vào database
             int IdContract_Goods = products.GetId(mH.Text);
-            if(IdContract_Goods != 0)
+            if (IdContract_Goods != 0)
             {
                 int returnDP = products.InsertUpdateProducts(IdContract_Goods, mSP.Text, tSP.Text);
                 if (returnDP == 0)
@@ -108,7 +104,7 @@ namespace OPM.GUI
         {
             Products products = new Products();
             int resuilt = products.DeleteProduct(mSP.Text);
-            if(resuilt == 1)
+            if (resuilt == 1)
             {
                 MessageBox.Show("Xóa thành công!");
             }

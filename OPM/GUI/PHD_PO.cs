@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using OPM.DBHandler;
+using System;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using OPM.DBHandler;
-using OPM.ExcelHandler;
-using OPM.OPMEnginee;
-using OPM.WordHandler;
-using System.IO;
 namespace OPM.GUI
 {
     public partial class PHD_PO : Form
@@ -25,7 +18,7 @@ namespace OPM.GUI
             string tsDP = DeliverPartInforDetail.tsDP;
             string tsPO = DeliverPartInforDetail.tsPO;
             //load thông tin lên datagrview
-            if(iPHD_PO.Check(tsDP, tsPO))
+            if (iPHD_PO.Check(tsDP, tsPO))
             {
                 dataTable = iPHD_PO.GetInforDP(tsDP, tsPO, "Hàng chính");
                 dataGridView1.DataSource = dataTable;
@@ -46,7 +39,7 @@ namespace OPM.GUI
         public OpenFileDialog openFileExcel = new OpenFileDialog();
         private void button3_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -56,7 +49,7 @@ namespace OPM.GUI
 
         private void dataGridView1_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex > -1)
+            if (e.RowIndex > -1)
             {
                 dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
                 dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;

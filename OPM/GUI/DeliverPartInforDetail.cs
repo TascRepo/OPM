@@ -57,7 +57,7 @@ namespace OPM.GUI
             {
                 DP dp = new DP();
                 //Thêm mới 1 DP vào database
-                int returnDP = dp.InsertUpdateDP(txbIdDP.Text.Trim().Replace('/', '-'), txbPOCode.Text, txbIDContract.Text, cbbType.Text, ghiChu.Text, dtpRequest.Text, dtpOutCap.Text,maHangSP.Text,tenHangSP.Text);
+                int returnDP = dp.InsertUpdateDP(txbIdDP.Text.Trim().Replace('/', '-'), txbPOCode.Text, txbIDContract.Text, cbbType.Text, ghiChu.Text, dtpRequest.Text, dtpOutCap.Text, maHangSP.Text, tenHangSP.Text);
                 if (returnDP == 0)
                 {
                     MessageBox.Show("Cập nhật DP " + txbIdDP.Text + " thành công!");

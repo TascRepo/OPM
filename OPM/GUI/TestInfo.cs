@@ -1,20 +1,18 @@
-﻿using OPM.OPMEnginee;
+﻿using Microsoft.Office.Interop.Excel;
 using System;
 using System.Data;
-using System.IO;
-using System.Reflection;
-using System.Windows.Forms;
-using ExcelOffice = Microsoft.Office.Interop.Excel;
-using Microsoft.Office.Interop.Excel;
-using System.Runtime.InteropServices;
-using DataTable = System.Data.DataTable;
 using System.Globalization;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using DataTable = System.Data.DataTable;
+using ExcelOffice = Microsoft.Office.Interop.Excel;
 
 namespace OPM.GUI
 {
-    public partial class TestTable : Form
+    public partial class TestInfo : Form
     {
-        public TestTable()
+        public TestInfo()
         {
             InitializeComponent();
         }
@@ -105,10 +103,10 @@ namespace OPM.GUI
         public static System.Data.DataTable ReadExcelToDataTable(string nameOfExcelFile, int indexWorksheet, int indexHeaderLine, int indexStartColumn)
         {
             System.Data.DataTable dataTable = new System.Data.DataTable();
-            Microsoft.Office.Interop.Excel.Application excel=null;
-            Microsoft.Office.Interop.Excel.Workbook workbook=null;
-            Microsoft.Office.Interop.Excel.Worksheet sheet=null;
-            Microsoft.Office.Interop.Excel.Range range=null;
+            Microsoft.Office.Interop.Excel.Application excel = null;
+            Microsoft.Office.Interop.Excel.Workbook workbook = null;
+            Microsoft.Office.Interop.Excel.Worksheet sheet = null;
+            Microsoft.Office.Interop.Excel.Range range = null;
             try
             {
                 // Get Application object.
@@ -121,9 +119,9 @@ namespace OPM.GUI
                 object m = Type.Missing;
                 workbook = excel.Workbooks.Open(nameOfExcelFile, m, false, m, m, m, m, m, m, m, m, m, m, m, m);
                 // Worksheet
-                sheet = (Microsoft.Office.Interop.Excel.Worksheet) workbook.Worksheets.Item[indexWorksheet];
+                sheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets.Item[indexWorksheet];
                 range = sheet.UsedRange;
-                if(range.Rows.Count< indexHeaderLine|| range.Columns.Count< indexStartColumn)
+                if (range.Rows.Count < indexHeaderLine || range.Columns.Count < indexStartColumn)
                 {
                     MessageBox.Show(string.Format("Giá trị indexHeaderLine và indexStartColumn không phù hợp với File Excel"));
                     GC.Collect();
@@ -142,7 +140,7 @@ namespace OPM.GUI
                 //Tạo Headder cho Datatable (Kiểu là String)
                 for (int j = indexStartColumn; j <= countOfColumns; j++)
                 {
-                    dataTable.Columns.Add(string.Format(@"{0} {1}",Convert.ToString((range.Cells[indexHeaderLine, j] as Microsoft.Office.Interop.Excel.Range).Value2),j), typeof(string));
+                    dataTable.Columns.Add(string.Format(@"{0} {1}", Convert.ToString((range.Cells[indexHeaderLine, j] as Microsoft.Office.Interop.Excel.Range).Value2), j), typeof(string));
                 }
                 //filling the table from  excel file                
                 for (int i = indexHeaderLine + 1; i <= countOfRows; i++)
@@ -182,9 +180,9 @@ namespace OPM.GUI
                 return null;
             }
         }
-        public static int GetIndexDataRowInDataTable(DataTable table,string identifying)
+        public static int GetIndexDataRowInDataTable(DataTable table, string identifying)
         {
-            for(int i=0;i< table.Rows.Count; i++)
+            for (int i = 0; i < table.Rows.Count; i++)
             {
                 if ((table.Rows[i][0].ToString() == identifying)) return (i + 1);
             }
@@ -215,9 +213,9 @@ namespace OPM.GUI
                 int countOfColumns = range.Columns.Count;
                 // Tổng số dòng
                 int countOfEndRows = range.Rows.Count;
-                for (int i= indexHeaderRows; i< range.Rows.Count; i++)
+                for (int i = indexHeaderRows; i < range.Rows.Count; i++)
                 {
-                    if ((Convert.ToString((range.Cells[i, 2] as Microsoft.Office.Interop.Excel.Range).Text) == "Tổng cộng:")|| (Convert.ToString((range.Cells[i, 1] as Microsoft.Office.Interop.Excel.Range).Text) == "Tổng cộng:"))
+                    if ((Convert.ToString((range.Cells[i, 2] as Microsoft.Office.Interop.Excel.Range).Text) == "Tổng cộng:") || (Convert.ToString((range.Cells[i, 1] as Microsoft.Office.Interop.Excel.Range).Text) == "Tổng cộng:"))
                     {
                         countOfEndRows = i;
                         break;
@@ -243,8 +241,8 @@ namespace OPM.GUI
                         row = dataTable.NewRow();
                         row["Province"] = (range.Cells[i, 2] as Microsoft.Office.Interop.Excel.Range).Value2;
                         row["Phase"] = j;
-                        row["ExpectedQuantity"] = ((range.Cells[i, 2 + 2 * j] as Microsoft.Office.Interop.Excel.Range).Value2==null)?DBNull.Value:(range.Cells[i, 2 + 2 * j] as Microsoft.Office.Interop.Excel.Range).Value2;
-                        if(((range.Cells[i, 3 + 2 * j] as Microsoft.Office.Interop.Excel.Range).Value2 == null))
+                        row["ExpectedQuantity"] = ((range.Cells[i, 2 + 2 * j] as Microsoft.Office.Interop.Excel.Range).Value2 == null) ? DBNull.Value : (range.Cells[i, 2 + 2 * j] as Microsoft.Office.Interop.Excel.Range).Value2;
+                        if (((range.Cells[i, 3 + 2 * j] as Microsoft.Office.Interop.Excel.Range).Value2 == null))
                         {
                             row["ExpectedDate"] = DBNull.Value;
                         }

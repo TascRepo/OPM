@@ -93,7 +93,7 @@ namespace OPM.DBHandler
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table.Rows.Count > 0;
         }
-        public int InsertUpdateDP(string id, string id_po, string id_contract, string cbbType, string note, string dtpRequest, string dtpOutCap,string maHangSP,string tenHangSP)
+        public int InsertUpdateDP(string id, string id_po, string id_contract, string cbbType, string note, string dtpRequest, string dtpOutCap, string maHangSP, string tenHangSP)
         {
             int Return = 0;
             if (Check_DP(id, id_po))
@@ -191,7 +191,7 @@ namespace OPM.DBHandler
         }
         public DataTable getInforListExxpected_DP(string id_dp, string id_po, string type)
         {
-            string query = string.Format("select ProvinceName,NumberDevice from dbo.ListExpected_DP where id_dp = '{0}' and id_po = N'{1}' and type = N'{2}'", id_dp,id_po,type);
+            string query = string.Format("select ProvinceName,NumberDevice from dbo.ListExpected_DP where id_dp = '{0}' and id_po = N'{1}' and type = N'{2}'", id_dp, id_po, type);
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table;
         }

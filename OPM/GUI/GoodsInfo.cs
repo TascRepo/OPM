@@ -1,13 +1,11 @@
-﻿using OPM.OPMEnginee;
-using System;
-using System.Data;
+﻿using System;
 using System.Windows.Forms;
 
 namespace OPM.GUI
 {
-    public partial class GoodsForm : Form
+    public partial class GoodsInfo : Form
     {
-        public GoodsForm()
+        public GoodsInfo()
         {
             InitializeComponent();
         }
@@ -42,7 +40,7 @@ namespace OPM.GUI
         {
             try
             {
-                textBoxPricePreTax.Text = ((string.IsNullOrEmpty(textBoxPriceUnit.Text.Trim())? 0 : double.Parse(textBoxPriceUnit.Text.Trim()) * (string.IsNullOrEmpty(textBoxQuantity.Text.Trim()) ? 0 : int.Parse(textBoxQuantity.Text.Trim())))).ToString();
+                textBoxPricePreTax.Text = ((string.IsNullOrEmpty(textBoxPriceUnit.Text.Trim()) ? 0 : double.Parse(textBoxPriceUnit.Text.Trim()) * (string.IsNullOrEmpty(textBoxQuantity.Text.Trim()) ? 0 : int.Parse(textBoxQuantity.Text.Trim())))).ToString();
             }
             catch
             {
@@ -58,22 +56,22 @@ namespace OPM.GUI
         private void textBoxPricePreTax_TextChanged(object sender, EventArgs e)
         {
             //setValueContractForm(textBoxPricePreTax.Text,goods);
-            textBoxTotalTax.Text = ( (string.IsNullOrEmpty(textBoxPricePreTax.Text.Trim()) ? 0 : Convert.ToDouble(textBoxPricePreTax.Text.Trim()))/10).ToString();
-            textBoxTotalPriceAfterTax.Text = ((string.IsNullOrEmpty(textBoxTotalTax.Text.Trim()) ? 0 : Convert.ToDouble(textBoxTotalTax.Text.Trim()))+(string.IsNullOrEmpty(textBoxPricePreTax.Text.Trim()) ? 0 : Convert.ToDouble(textBoxPricePreTax.Text.Trim()))).ToString();
+            textBoxTotalTax.Text = ((string.IsNullOrEmpty(textBoxPricePreTax.Text.Trim()) ? 0 : Convert.ToDouble(textBoxPricePreTax.Text.Trim())) / 10).ToString();
+            textBoxTotalPriceAfterTax.Text = ((string.IsNullOrEmpty(textBoxTotalTax.Text.Trim()) ? 0 : Convert.ToDouble(textBoxTotalTax.Text.Trim())) + (string.IsNullOrEmpty(textBoxPricePreTax.Text.Trim()) ? 0 : Convert.ToDouble(textBoxPricePreTax.Text.Trim()))).ToString();
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).Goods.IdContract = (Tag as OPMDASHBOARDA).Contract.Id;
             (Tag as OPMDASHBOARDA).Goods.Name = tbxName.Text;
-            (Tag as OPMDASHBOARDA).Goods.Code= tbxCode.Text;
-            (Tag as OPMDASHBOARDA).Goods.Manufacturer= tbxManufacturer.Text;
-            (Tag as OPMDASHBOARDA).Goods.Origin= tbxOrigin.Text;
-            (Tag as OPMDASHBOARDA).Goods.License= textBoxLicense.Text;
-            (Tag as OPMDASHBOARDA).Goods.Name1= textBoxName1.Text;
-            (Tag as OPMDASHBOARDA).Goods.Note= textBoxNote.Text;
-            (Tag as OPMDASHBOARDA).Goods.PriceUnit= Convert.ToDouble(textBoxPriceUnit.Text.Trim());
-            (Tag as OPMDASHBOARDA).Goods.Quantity= Convert.ToInt32(textBoxQuantity.Text);
-            (Tag as OPMDASHBOARDA).Goods.Unit= textBoxUnit.Text;
+            (Tag as OPMDASHBOARDA).Goods.Code = tbxCode.Text;
+            (Tag as OPMDASHBOARDA).Goods.Manufacturer = tbxManufacturer.Text;
+            (Tag as OPMDASHBOARDA).Goods.Origin = tbxOrigin.Text;
+            (Tag as OPMDASHBOARDA).Goods.License = textBoxLicense.Text;
+            (Tag as OPMDASHBOARDA).Goods.Name1 = textBoxName1.Text;
+            (Tag as OPMDASHBOARDA).Goods.Note = textBoxNote.Text;
+            (Tag as OPMDASHBOARDA).Goods.PriceUnit = Convert.ToDouble(textBoxPriceUnit.Text.Trim());
+            (Tag as OPMDASHBOARDA).Goods.Quantity = Convert.ToInt32(textBoxQuantity.Text);
+            (Tag as OPMDASHBOARDA).Goods.Unit = textBoxUnit.Text;
             (Tag as OPMDASHBOARDA).Contract.ContractValue = (Tag as OPMDASHBOARDA).Goods.PriceUnit * (Tag as OPMDASHBOARDA).Goods.Quantity;
             (Tag as OPMDASHBOARDA).OpenContractForm();
         }

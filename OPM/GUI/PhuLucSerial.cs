@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using OPM.DBHandler;
+using OPM.ExcelHandler;
+using System;
 using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using OPM.DBHandler;
-using OPM.ExcelHandler;
-using OPM.OPMEnginee;
-using OPM.WordHandler;
 using System.IO;
+using System.Windows.Forms;
 namespace OPM.GUI
 {
     public partial class PhuLucSerial : Form
@@ -57,13 +52,13 @@ namespace OPM.GUI
         private void button1_Click(object sender, EventArgs e)
         {
             DP dP = new DP();
-            if(dP.Check_Serial(txtIdDP.Text, maPO.Text))
+            if (dP.Check_Serial(txtIdDP.Text, maPO.Text))
             {
                 dP.Delete_Serial(txtIdDP.Text, maPO.Text);
             }
-            for(int i = 0; i < 10; i = i + 2)
+            for (int i = 0; i < 10; i = i + 2)
             {
-                if(dataGridView1.Rows[1].Cells[i + 1].Value.ToString() != "")
+                if (dataGridView1.Rows[1].Cells[i + 1].Value.ToString() != "")
                 {
                     for (int j = 1; j < dataGridView1.Rows.Count - 1; j++)
                     {

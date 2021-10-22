@@ -1,7 +1,7 @@
 ﻿
 namespace OPM.GUI
 {
-    partial class TestTable
+    partial class TestInfo
     {
         /// <summary>
         /// Required designer variable.

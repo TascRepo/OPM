@@ -1,7 +1,7 @@
 ﻿
 namespace OPM.GUI
 {
-    partial class GoodsForm
+    partial class GoodsInfo
     {
         /// <summary>
         /// Required designer variable.

@@ -44,7 +44,7 @@ namespace OPM.GUI
                     }
                 }
             }
-            MessageBox.Show("Xử lý các thông tin hàng 2% bảo hành thuộc DP: "+txtIdDP.Text+" thành công!");
+            MessageBox.Show("Xử lý các thông tin hàng 2% bảo hành thuộc DP: " + txtIdDP.Text + " thành công!");
         }
 
         private void button1_Click(object sender, EventArgs e)

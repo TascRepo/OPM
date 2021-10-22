@@ -83,7 +83,7 @@ namespace OPM.OPMEnginee
             }
             return 1;
         }
-        public static List<string> PathToContractNodeFromCurrentNode(string nameOfCurrentNode,DataTable table)
+        public static List<string> PathToContractNodeFromCurrentNode(string nameOfCurrentNode, DataTable table)
         {
             if (table.Rows.Count < 1) return null;
             List<string> list = new List<string>();

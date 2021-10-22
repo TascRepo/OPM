@@ -1,226 +1,160 @@
 ﻿using OPM.DBHandler;
 using System;
 using System.Data;
+using System.Globalization;
+using System.Windows.Forms;
 
 namespace OPM.OPMEnginee
 {
-    class NTKT
+    public partial class NTKT
     {
-        private string _KHMS;
-        private string _idContract;
-        private string _idPO;
-        private string _PONumber;
-        private string _idNTKT;
-        private string _dateDuKienNTKT;
-        private string _mrPhoBan;
-        private string _mrPhoBanMobile;
-        private string _mrGD_CSKH;
-        private string _mrGD_CSKH_mobile;
-        private string _mrGD_CSKH_Landline;
-        private string _mrGD_CSKH_LandlineExt;
+        private string id = "1320/ANSV-DO";
+        private string id_po = "5120/CUVT-KV";
+        private int numberofdevice = 0;
+        private DateTime deliver_date_expected = DateTime.Now;
+        private string email_request_status = "";
+        private DateTime create_date = DateTime.Now;
+        private int numberofdevice2 = 0;
+        private int number = 1;
+        private DateTime date_BBKTKT = DateTime.Now;
+        private DateTime date_BBNTKT = DateTime.Now;
+        private DateTime date_CNBQPM = DateTime.Now;
 
-        //       private string _idProvince;
-        //       private string _deviceName;
-        private float _numberOfDevice;
-        //       private string _typeOfDevice;
-        //       private string _deliverDateExpected;
-        //       private string _emailRequeststatus;
-        private string _createDate;
+        public string Id { get => id; set => id = value; }
+        public string Id_po { get => id_po; set => id_po = value; }
+        public int Numberofdevice { get => numberofdevice; set => numberofdevice = value; }
+        public DateTime Deliver_date_expected { get => deliver_date_expected; set => deliver_date_expected = value; }
+        public string Email_request_status { get => email_request_status; set => email_request_status = value; }
+        public DateTime Create_date { get => create_date; set => create_date = value; }
+        public int Numberofdevice2 { get => numberofdevice2; set => numberofdevice2 = value; }
+        public int Number { get => number; set => number = value; }
+        public DateTime Date_BBKTKT { get => date_BBKTKT; set => date_BBKTKT = value; }
+        public DateTime Date_BBNTKT { get => date_BBNTKT; set => date_BBNTKT = value; }
+        public DateTime Date_CNBQPM { get => date_CNBQPM; set => date_CNBQPM = value; }
 
-        /*Add New*/
-        public float NumberOfDevice
+        public NTKT(string id, string id_po, int numberofdevice, DateTime deliver_date_expected, string email_request_status, DateTime create_date, int numberofdevice2, int number, DateTime date_BBKTKT, DateTime date_BBNTKT, DateTime date_CNBQPM)
         {
-            set { _numberOfDevice = value; }
-            get { return _numberOfDevice; }
+            Id = id;
+            Id_po = id_po;
+            Numberofdevice = numberofdevice;
+            Deliver_date_expected = deliver_date_expected;
+            Email_request_status = email_request_status;
+            Create_date = create_date;
+            Numberofdevice2 = numberofdevice2;
+            Number = number;
+            Date_BBKTKT = date_BBKTKT;
+            Date_BBNTKT = date_BBNTKT;
+            Date_CNBQPM = date_CNBQPM;
         }
-        public string KHMS
+        public NTKT(DataRow row)
         {
-            set { _KHMS = value; }
-            get { return _KHMS; }
+            Id = row["id"].ToString();
+            Id_po = row["id_po"].ToString();
+            Numberofdevice = (row["numberofdevice"] == null || row["numberofdevice"] == DBNull.Value) ? 0 : (int)row["numberofdevice"];
+            Deliver_date_expected = (row["deliver_date_expected"] == null || row["deliver_date_expected"] == DBNull.Value) ? DateTime.Now : (DateTime)row["deliver_date_expected"];
+            Email_request_status = (row["email_request_status"] == null || row["email_request_status"] == DBNull.Value) ? "" : row["email_request_status"].ToString();
+            Create_date = (row["create_date"] == null || row["create_date"] == DBNull.Value) ? DateTime.Now : (DateTime)row["create_date"];
+            Numberofdevice2 = (row["Numberofdevice2"] == null || row["Numberofdevice2"] == DBNull.Value) ? 0 : (int)row["Numberofdevice2"];
+            Number = (row["number"] == null || row["number"] == DBNull.Value) ? 0 : (int)row["number"];
+            Date_BBKTKT = (row["date_BBKTKT"] == null || row["date_BBKTKT"] == DBNull.Value) ? DateTime.Now : (DateTime)row["date_BBKTKT"];
+            Date_BBNTKT = (row["date_BBNTKT"] == null || row["date_BBNTKT"] == DBNull.Value) ? DateTime.Now : (DateTime)row["date_BBNTKT"];
+            Date_CNBQPM = (row["date_CNBQPM"] == null || row["date_CNBQPM"] == DBNull.Value) ? DateTime.Now : (DateTime)row["date_CNBQPM"];
         }
-        public string IDContract
+        public NTKT(string id)
         {
-            set { _idContract = value; }
-            get { return _idContract; }
-        }
-
-        public string POID
-        {
-            set { _idPO = value; }
-            get { return _idPO; }
-        }
-
-        public string PONumber
-        {
-            set { _PONumber = value; }
-            get { return _PONumber; }
-        }
-
-        public string ID_NTKT
-        {
-            set { _idNTKT = value; }
-            get { return _idNTKT; }
-        }
-
-        public string DateDuKienNTKT
-        {
-            set { _dateDuKienNTKT = value; }
-            get { return _dateDuKienNTKT; }
-        }
-
-        public string MrPhoBan
-        {
-            set { _mrPhoBan = value; }
-            get { return _mrPhoBan; }
-        }
-
-        public string MrPhoBanMobile
-        {
-            set { _mrPhoBanMobile = value; }
-            get { return _mrPhoBanMobile; }
-        }
-
-        public string MrGD_CSKH
-        {
-            set { _mrGD_CSKH = value; }
-            get { return _mrGD_CSKH; }
-        }
-
-        public string MrGD_CSKH_mobile
-        {
-            set { _mrGD_CSKH_mobile = value; }
-            get { return _mrGD_CSKH_mobile; }
-        }
-
-        public string MrGD_CSKH_Landline
-        {
-            set { _mrGD_CSKH_Landline = value; }
-            get { return _mrGD_CSKH_Landline; }
-        }
-
-        public string MrrGD_CSKH_LandlineExt
-        {
-            set { _mrGD_CSKH_LandlineExt = value; }
-            get { return _mrGD_CSKH_LandlineExt; }
-        }
-        public string getCreateDate
-        {
-            set { _createDate = value; }
-            get { return _createDate; }
-        }
-
-        public int CheckExistNTKT(string strIDNTKT)
-        {
-            string strQueryOne = "select * from NTKT where id=" + "'" + strIDNTKT + "'";
-            DataSet ds = new DataSet();
-            int ret = OPMDBHandler.fQuerryData(strQueryOne, ref ds);
-            if (0 != ret)
+            string query = string.Format("SELECT * FROM dbo.NTKT WHERE id = '{0}'", id);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            if (table.Rows.Count > 0)
             {
-                return 1;
+                DataRow row = table.Rows[0];
+                Id = id;
+                Id_po = row["id_po"].ToString();
+                Numberofdevice = (row["numberofdevice"] == null || row["numberofdevice"] == DBNull.Value) ? 0 : (int)row["numberofdevice"];
+                Deliver_date_expected = (row["deliver_date_expected"] == null || row["deliver_date_expected"] == DBNull.Value) ? DateTime.Now : (DateTime)row["deliver_date_expected"];
+                Email_request_status = (row["email_request_status"] == null || row["email_request_status"] == DBNull.Value) ? "" : row["email_request_status"].ToString();
+                Create_date = (row["create_date"] == null || row["create_date"] == DBNull.Value) ? DateTime.Now : (DateTime)row["create_date"];
+                Numberofdevice2 = (row["Numberofdevice2"] == null || row["Numberofdevice2"] == DBNull.Value) ? 0 : (int)row["Numberofdevice2"];
+                Number = (row["number"] == null || row["number"] == DBNull.Value) ? 0 : (int)row["number"];
+                Date_BBKTKT = (row["date_BBKTKT"] == null || row["date_BBKTKT"] == DBNull.Value) ? DateTime.Now : (DateTime)row["date_BBKTKT"];
+                Date_BBNTKT = (row["date_BBNTKT"] == null || row["date_BBNTKT"] == DBNull.Value) ? DateTime.Now : (DateTime)row["date_BBNTKT"];
+                Date_CNBQPM = (row["date_CNBQPM"] == null || row["date_CNBQPM"] == DBNull.Value) ? DateTime.Now : (DateTime)row["date_CNBQPM"];
             }
+        }
+        public NTKT() { }
+        public bool Exist()
+        {
+            string query = string.Format("SELECT * FROM dbo.NTKT WHERE id = '{0}'", id);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            return table.Rows.Count > 0;
+        }
+        public static bool Exist(string id)
+        {
+            string query = string.Format("SELECT * FROM dbo.NTKT WHERE id = '{0}'", id);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            return table.Rows.Count > 0;
+        }
+        public void InsertOrUpdate()
+        {
+            if (id == null)
+                MessageBox.Show("Id chưa khởi tạo!");
             else
             {
-                return 0;
+                if (Exist(id))
+                {
+                    string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.NTKT SET  id_po = '{1}', numberofdevice = {2}, deliver_date_expected = '{3}', email_request_status = '{4}', create_date = '{5}', Numberofdevice2 = {6}, number = {7}, date_BBNTKT = '{8}', date_BBKTKT = '{9}',date_CNBQPM = '{10}' Where id = '{0}'", id, id_po, numberofdevice, deliver_date_expected.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), email_request_status, create_date.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), Numberofdevice2, number, date_BBNTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), date_BBKTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), date_CNBQPM.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                    try
+                    {
+                        OPMDBHandler.ExecuteNonQuery(query);
+                    }
+                    catch
+                    {
+                        MessageBox.Show(string.Format("Cập nhật KHÔNG THÀNH CÔNG NTKT {0} của PO {1}!", id, id_po));
+                        return;
+                    }
+                }
+                else
+                {
+                    string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.NTKT(id,id_po,numberofdevice,deliver_date_expected,email_request_status,create_date,numberofdevice2,number,date_BBNTKT,date_BBKTKT,date_CNBQPM)VALUES('{0}','{1}', {2}, '{3}', '{4}', '{5}', {6}, {7}, '{8}', '{9}','{10}')", id, id_po, numberofdevice, deliver_date_expected.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), email_request_status, create_date.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), Numberofdevice2, number, date_BBNTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), date_BBKTKT.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), date_CNBQPM.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                    try
+                    {
+                        OPMDBHandler.ExecuteNonQuery(query);
+                    }
+                    catch
+                    {
+                        MessageBox.Show(string.Format("Tạo mới KHÔNG THÀNH CÔNG NTKT {0} của PO {1}!", id, id_po));
+                        return;
+                    }
+                }
             }
         }
-        public int InsertNewNTKT(NTKT nTKT)
+        public void Delete()
         {
-            string strInsertNTKTNew = "insert into NTKT values (";
-            strInsertNTKTNew += "'";
-            strInsertNTKTNew += nTKT.ID_NTKT;
-            strInsertNTKTNew += "',N'";
-            strInsertNTKTNew += nTKT.POID;
-            strInsertNTKTNew += "','";
-            strInsertNTKTNew += nTKT.NumberOfDevice;
-            strInsertNTKTNew += "','";
-            strInsertNTKTNew += nTKT.DateDuKienNTKT;
-            strInsertNTKTNew += "','";
-            strInsertNTKTNew += "','";
-            strInsertNTKTNew += "')";
-            int ret = OPMDBHandler.fInsertData(strInsertNTKTNew);
-            if (0 == ret)
+            string query = string.Format("Delete FROM dbo.NTKT WHERE id = '{0}'", id);
+            try
             {
-                return ret;
-            }
-            return 1;
-        }
-        public int GetObjectNTKT(string strIdNTKT, ref NTKT nTKT)
-        {
-            string strQueryOne = "select * from NTKT where id=" + "'" + strIdNTKT + "'";
-            DataSet ds = new DataSet();
-            int ret = OPMDBHandler.fQuerryData(strQueryOne, ref ds);
-            if (0 != ds.Tables.Count)
-            {
-                nTKT.ID_NTKT = (string)ds.Tables[0].Rows[0].ItemArray[0];
-                nTKT.POID = (string)ds.Tables[0].Rows[0].ItemArray[1];
-                nTKT.NumberOfDevice = (int)ds.Tables[0].Rows[0].ItemArray[2];
-                nTKT.DateDuKienNTKT = ((DateTime)ds.Tables[0].Rows[0].ItemArray[3]).ToString("yyyy-MM-dd");
-                //nTKT.getCreateDate = ((DateTime)ds.Tables[0].Rows[0].ItemArray[5]).ToString("yyyy-MM-dd");
-            }
-            else
-            {
-                return 0;
-            }
-            return 1;
-        }
-
-        public int GetObjectNTKTByIDPO(string strIdPO, ref NTKT nTKT)
-        {
-            string strQueryOne = "select * from NTKT where id_po=" + "'" + strIdPO + "'";
-            DataSet ds = new DataSet();
-            int ret = OPMDBHandler.fQuerryData(strQueryOne, ref ds);
-            if (0 != ds.Tables.Count)
-            {
-                nTKT.ID_NTKT = (string)ds.Tables[0].Rows[0].ItemArray[0];
-                nTKT.POID = (string)ds.Tables[0].Rows[0].ItemArray[1];
-                nTKT.NumberOfDevice = (int)ds.Tables[0].Rows[0].ItemArray[2];
-                nTKT.DateDuKienNTKT = ((DateTime)ds.Tables[0].Rows[0].ItemArray[3]).ToString("yyyy-MM-dd");
-                nTKT.getCreateDate = ((DateTime)ds.Tables[0].Rows[0].ItemArray[5]).ToString("yyyy-MM-dd");
-            }
-            else
-            {
-                return 0;
-            }
-            return 1;
-        }
-        public int GetObjectNTKTGUI(string strIdNTKT, ref NTKT nTKT)
-        {
-            string strQueryOne = "SELECT t1.id,t1.id_po, t1.deliver_date_expected, t1.email_request_status, t2.po_number, t2.id_contract, t3.KHMS FROM NTKT t1 join PO t2 ON t1.id_po =t2.id join Contract t3 ON t2.id_Contract =t3.id where t1.id = " + "'" + strIdNTKT + "'";
-            DataSet ds = new DataSet();
-            int ret = OPMDBHandler.fQuerryData(strQueryOne, ref ds);
-            if (0 != ds.Tables.Count)
-            {
-                nTKT.ID_NTKT = (string)ds.Tables[0].Rows[0].ItemArray[0];
-                nTKT.POID = (string)ds.Tables[0].Rows[0].ItemArray[1];
-                nTKT.DateDuKienNTKT = ((DateTime)ds.Tables[0].Rows[0].ItemArray[2]).ToString("yyyy-MM-dd");
-                nTKT.PONumber = (string)ds.Tables[0].Rows[0].ItemArray[4];
-                nTKT.IDContract = (string)ds.Tables[0].Rows[0].ItemArray[5];
-                nTKT.KHMS = (string)ds.Tables[0].Rows[0].ItemArray[6];
+                OPMDBHandler.ExecuteNonQuery(query);
 
             }
-            else
+            catch
             {
-                return 0;
+                MessageBox.Show(string.Format("Không xoá được NTKT số {0}", id));
+                return;
             }
-            return 1;
         }
-        //@Dưỡng Bùi -- Lấy thông tin mã PO, PO number, idContract bằng mã NTKT
-        public int getPOinfor(string idNTKT, ref string idPO, ref string PONumber, ref string idContract)
+
+        public static void Delete(string id)
         {
-            string strQueryOne = "SELECT DISTINCT PO.id, PO.po_number, PO.id_contract FROM NTKT INNER JOIN PO ON NTKT.id_po = PO.id WHERE NTKT.id = " + "'" + idNTKT + "'";
-            DataSet ds = new DataSet();
-            int ret = OPMDBHandler.fQuerryData(strQueryOne, ref ds);
-            if (0 != ds.Tables.Count)
+            string query = string.Format("Delete FROM dbo.NTKT WHERE id = '{0}'", id);
+            try
             {
-                idPO = (string)ds.Tables[0].Rows[0].ItemArray[0];
-                PONumber = ds.Tables[0].Rows[0].ItemArray[1].ToString();
-                idContract = ds.Tables[0].Rows[0].ItemArray[2].ToString();
+                OPMDBHandler.ExecuteNonQuery(query);
+
             }
-            else
+            catch
             {
-                return 0;
+                MessageBox.Show(string.Format("Không xoá được NTKT số {0}", id));
+                return;
             }
-            return 1;
         }
     }
 }

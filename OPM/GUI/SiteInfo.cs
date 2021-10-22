@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace OPM.GUI
 {
-    public partial class SiteForm : Form
+    public partial class SiteInfo : Form
     {
         public delegate void SetStringValue(string vl);
         public SetStringValue setStringValue;
@@ -12,7 +12,7 @@ namespace OPM.GUI
 
         public string IdSite { get => idSite; set => idSite = value; }
 
-        public SiteForm()
+        public SiteInfo()
         {
             InitializeComponent();
         }
@@ -57,7 +57,7 @@ namespace OPM.GUI
         }
         void LoadDataGridView()
         {
-            List<OPMEnginee.Site> sites = OPMEnginee.Site.GetList();
+            List<OPMEnginee.SiteObj> sites = OPMEnginee.SiteObj.GetList();
             dtgvSite.DataSource = sites;
             dtgvSite.Columns["Id"].HeaderText = @"Tên đơn vị";
             //dtgvSite.Columns["Id"].Width = 250;
@@ -124,7 +124,7 @@ namespace OPM.GUI
         }
         private void btnAddOrUpdate_Click(object sender, EventArgs e)
         {
-            OPMEnginee.Site site = new OPMEnginee.Site();
+            OPMEnginee.SiteObj site = new OPMEnginee.SiteObj();
             site.Id = txtId.Text.Trim();
             site.IdVNPT = txtIdVNPT.Text.Trim();
             site.Headquater = textBoxHeadquater.Text.Trim();
@@ -149,9 +149,9 @@ namespace OPM.GUI
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (OPMEnginee.Site.Exist(txtId.Text.Trim()))
+            if (OPMEnginee.SiteObj.Exist(txtId.Text.Trim()))
             {
-                OPMEnginee.Site.Delete(txtId.Text.Trim());
+                OPMEnginee.SiteObj.Delete(txtId.Text.Trim());
                 //LoadDataGridView();
             }
             else MessageBox.Show("Site không tồn tại!");
@@ -162,7 +162,7 @@ namespace OPM.GUI
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
-            OPMEnginee.Site site = new OPMEnginee.Site();
+            OPMEnginee.SiteObj site = new OPMEnginee.SiteObj();
             site.Id = txtId.Text.Trim();
             site.IdVNPT = txtIdVNPT.Text.Trim();
             site.Headquater = textBoxHeadquater.Text.Trim();

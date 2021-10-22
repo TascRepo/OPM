@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace OPM.OPMEnginee
 {
-    class Packagelist : IPackageList
+    class Packagelist
     {
         private string _year;
         private string _po_number;
@@ -54,17 +54,17 @@ namespace OPM.OPMEnginee
             return xlCloneSerial;
         }
 
-        public int InsertPackageList(IPackageList packageList, string strInsertQuery)
+        public int InsertPackageList(Packagelist packageList, string strInsertQuery)
         {
             throw new NotImplementedException();
         }
 
-        public int GetDetailPackageList(ref IPackageList packageList, string strQueryOne)
+        public int GetDetailPackageList(ref Packagelist packageList, string strQueryOne)
         {
             throw new NotImplementedException();
         }
 
-        public int GetAllPackageList(ref List<IPackageList> lstpackageList)
+        public int GetAllPackageList(ref List<Packagelist> lstpackageList)
         {
             throw new NotImplementedException();
         }

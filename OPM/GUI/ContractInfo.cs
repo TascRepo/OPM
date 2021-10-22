@@ -4,9 +4,9 @@ using System;
 using System.Windows.Forms;
 namespace OPM.GUI
 {
-    public partial class ContractInfoChildForm : Form
+    public partial class ContractInfo : Form
     {
-        public ContractInfoChildForm()
+        public ContractInfo()
         {
             InitializeComponent();
         }
@@ -111,7 +111,7 @@ namespace OPM.GUI
             if ((Tag as OPMDASHBOARDA).Contract.Exist())
             {
                 (Tag as OPMDASHBOARDA).Contract.Delete();
-                (Tag as OPMDASHBOARDA).Contract = new Contract_Thanh();
+                (Tag as OPMDASHBOARDA).Contract = new ContractObj();
                 (Tag as OPMDASHBOARDA).OpenContractForm();
             }
         }
@@ -185,7 +185,7 @@ namespace OPM.GUI
         private void btnNew_Click(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).TempStatus = 0;//Tạo mới Hợp đồng
-            (Tag as OPMDASHBOARDA).Contract = new Contract_Thanh();
+            (Tag as OPMDASHBOARDA).Contract = new ContractObj();
             (Tag as OPMDASHBOARDA).OpenContractForm();
         }
         private void TxtId_TextChanged(object sender, EventArgs e)

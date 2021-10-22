@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace OPM.GUI
 {
-    partial class ContractInfoChildForm
+    partial class ContractInfo
     {
         /// <summary>
         /// Required designer variable.

@@ -13,7 +13,7 @@ using ExcelOffice = Microsoft.Office.Interop.Excel;
 
 namespace OPM.ExcelHandler
 {
-    class OpmExcelHandler : IExcelHandler
+    class OpmExcelHandler
     {
         private string _strFileName;
 

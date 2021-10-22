@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace OPM.OPMEnginee
 {
-    public class Site
+    public class SiteObj
     {
         string id = "Công ty TNHH thiết bị viễn thông ANSV";
         string idVNPT = "ANSV";
@@ -46,8 +46,8 @@ namespace OPM.OPMEnginee
         public string Position3 { get => position3; set => position3 = value; }
         public string Proxy3 { get => proxy3; set => proxy3 = value; }
 
-        public Site() { }
-        public Site(string id,string idVNPT, string type, string headquater, string address, string phonenumber, string fax, string tax, string account, string representative1, string position1, string proxy1, string representative2, string position2, string proxy2, string representative3, string position3, string proxy3)
+        public SiteObj() { }
+        public SiteObj(string id, string idVNPT, string type, string headquater, string address, string phonenumber, string fax, string tax, string account, string representative1, string position1, string proxy1, string representative2, string position2, string proxy2, string representative3, string position3, string proxy3)
         {
             Id = id;
             IdVNPT = idVNPT;
@@ -68,10 +68,10 @@ namespace OPM.OPMEnginee
             Position3 = position3;
             Proxy3 = proxy3;
         }
-        public Site(DataRow row)
+        public SiteObj(DataRow row)
         {
             Id = row["id"].ToString();
-            IdVNPT= row["IdVNPT"].ToString();
+            IdVNPT = row["IdVNPT"].ToString();
             Type = (row["Type"] == null || row["Type"] == DBNull.Value) ? "" : row["Type"].ToString();
             Headquater = (row["Headquater"] == null || row["Headquater"] == DBNull.Value) ? "" : row["Headquater"].ToString();
             Address = (row["Address"] == null || row["Address"] == DBNull.Value) ? "" : row["Address"].ToString();
@@ -89,7 +89,7 @@ namespace OPM.OPMEnginee
             Position3 = (row["Position3"] == null || row["Position3"] == DBNull.Value) ? "" : row["Position3"].ToString();
             Proxy3 = (row["Proxy3"] == null || row["Proxy3"] == DBNull.Value) ? "" : row["Proxy3"].ToString();
         }
-        public Site(string id)
+        public SiteObj(string id)
         {
             string query = string.Format("SELECT * FROM dbo.Site WHERE id = N'{0}'", id);
             DataTable table = OPMDBHandler.ExecuteQuery(query);
@@ -149,7 +149,7 @@ namespace OPM.OPMEnginee
             DataTable table1 = OPMDBHandler.ExecuteQuery(query1);
             string query2 = string.Format("SELECT * FROM dbo.Site WHERE idVNPT = N'{0}'", idVNPT);
             DataTable table2 = OPMDBHandler.ExecuteQuery(query2);
-            return (table1.Rows.Count > 0)|| (table2.Rows.Count > 0);
+            return (table1.Rows.Count > 0) || (table2.Rows.Count > 0);
         }
         public static bool Exist(string id)
         {
@@ -165,14 +165,14 @@ namespace OPM.OPMEnginee
             return OPMDBHandler.ExecuteQuery(query);
         }
 
-        public static List<Site> GetList()
+        public static List<SiteObj> GetList()
         {
-            List<Site> list = new List<Site>();
+            List<SiteObj> list = new List<SiteObj>();
             string query = string.Format("SELECT * FROM dbo.Site order by type, id");
             DataTable dataTable = OPMDBHandler.ExecuteQuery(query);
             foreach (DataRow item in dataTable.Rows)
             {
-                Site site = new Site(item);
+                SiteObj site = new SiteObj(item);
                 list.Add(site);
             }
             return list;
@@ -184,13 +184,13 @@ namespace OPM.OPMEnginee
                 MessageBox.Show("Id chưa khởi tạo!");
             else
             {
-                string query = string.Format("UPDATE dbo.Site SET type = N'{1}', headquater = N'{2}', address= N'{3}', phonenumber = '{4}',fax = '{5}', tax= '{6}', account = '{7}',representative1 = N'{8}',position1 = N'{9}',proxy1 = N'{10}',representative2 = N'{11}',position2 = N'{12}',proxy2 = N'{13}',representative3 = N'{14}',position3 = N'{15}',proxy3 = N'{16}' WHERE id = N'{0}' or idVNPT = N'{17}'", id, type, headquater, address, phonenumber, fax, tax, account, representative1, position1, proxy1, representative2, position2, proxy2, representative3, position3, proxy3,idVNPT);
+                string query = string.Format("UPDATE dbo.Site SET type = N'{1}', headquater = N'{2}', address= N'{3}', phonenumber = '{4}',fax = '{5}', tax= '{6}', account = '{7}',representative1 = N'{8}',position1 = N'{9}',proxy1 = N'{10}',representative2 = N'{11}',position2 = N'{12}',proxy2 = N'{13}',representative3 = N'{14}',position3 = N'{15}',proxy3 = N'{16}' WHERE id = N'{0}' or idVNPT = N'{17}'", id, type, headquater, address, phonenumber, fax, tax, account, representative1, position1, proxy1, representative2, position2, proxy2, representative3, position3, proxy3, idVNPT);
                 OPMDBHandler.ExecuteNonQuery(query);
             }
         }
         public void Insert()
         {
-            string query = string.Format(@"INSERT INTO dbo.Site VALUES(N'{0}',N'{17}',N'{1}',N'{2}',N'{3}','{4}','{5}','{6}','{7}',N'{8}',N'{9}',N'{10}',N'{11}',N'{12}',N'{13}',N'{14}',N'{15}',N'{16}')", id, type, headquater, address, phonenumber, fax, tax, account, representative1, position1, proxy1, representative2, position2, proxy2, representative3, position3, proxy3,idVNPT);
+            string query = string.Format(@"INSERT INTO dbo.Site VALUES(N'{0}',N'{17}',N'{1}',N'{2}',N'{3}','{4}','{5}','{6}','{7}',N'{8}',N'{9}',N'{10}',N'{11}',N'{12}',N'{13}',N'{14}',N'{15}',N'{16}')", id, type, headquater, address, phonenumber, fax, tax, account, representative1, position1, proxy1, representative2, position2, proxy2, representative3, position3, proxy3, idVNPT);
             OPMDBHandler.ExecuteNonQuery(query);
         }
         public void Delete()

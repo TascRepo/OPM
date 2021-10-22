@@ -9,10 +9,10 @@ namespace OPM.GUI
     {
         public delegate void UpdateCatalogDelegate(string value);
         public UpdateCatalogDelegate UpdateCatalogPanel;
-        public delegate void RequestDashBoardPurchaseOderForm(PO_Thanh pO);
+        public delegate void RequestDashBoardPurchaseOderForm(PO pO);
         public RequestDashBoardPurchaseOderForm requestDashBoardPurchaseOderForm;
-        private NTKT_Thanh ntkt;
-        public NTKT_Thanh Ntkt
+        private NTKT ntkt;
+        public NTKT Ntkt
         {
             get => ntkt;
             set
@@ -54,7 +54,7 @@ namespace OPM.GUI
         private void btnBack_Click(object sender, EventArgs e)
         {
             UpdateCatalogPanel("PO_" + ntkt.Id_po);
-            PO_Thanh pO = new PO_Thanh(ntkt.Id_po);
+            PO pO = new PO(ntkt.Id_po);
             requestDashBoardPurchaseOderForm(pO);
         }
         private void txbNumberOfDevice_TextChanged(object sender, EventArgs e)

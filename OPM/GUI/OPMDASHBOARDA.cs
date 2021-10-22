@@ -9,20 +9,19 @@ namespace OPM.GUI
 {
     public partial class OPMDASHBOARDA : Form
     {
-        private int tempStatus=0;
+        private int tempStatus = 0;
         //tempStatus = x = 
         //0: đang ở Form tạo mới hợp đồng
         //1: đang ở Form chỉnh sửa hợp đồng
         //2:
         //3: Đang ở Form tạo mới PO
         //4: Đang ở Form chỉnh sửa PO
-        Contract_Thanh contract = new Contract_Thanh();
-        PO_Thanh po=new PO_Thanh();
-        Goods_Thanh goods=new Goods_Thanh();
-        Site_Info info=new Site_Info();
-        NTKT_Thanh ntkt = new NTKT_Thanh();
-        public Contract_Thanh Contract 
-        { 
+        ContractObj contract = new ContractObj();
+        PO po = new PO();
+        GoodsObj goods = new GoodsObj();
+        NTKT ntkt = new NTKT();
+        public ContractObj Contract
+        {
             get => contract;
             set
             {
@@ -30,8 +29,8 @@ namespace OPM.GUI
                 po.IdContract = value.Id;
             }
         }
-        public PO_Thanh PO { get => po; set => po = value; }
-        public Goods_Thanh Goods
+        public PO Po { get => po; set => po = value; }
+        public GoodsObj Goods
         {
             get => goods;
             set
@@ -40,8 +39,7 @@ namespace OPM.GUI
                 contract.ContractValue = value.PriceUnit * value.Quantity;
             }
         }
-        public Site_Info Info { get => info; set => info = value; }
-        public NTKT_Thanh Ntkt { get => ntkt; set => ntkt = value; }
+        public NTKT Ntkt { get => ntkt; set => ntkt = value; }
         public int TempStatus { get => tempStatus; set => tempStatus = value; }
 
         public OPMDASHBOARDA()
@@ -68,12 +66,12 @@ namespace OPM.GUI
                         break;
                     case "PO":
                         row["ctlName"] = po.POName;
-                        row["ctlParent"] = "Contract_"+contract.Id;
+                        row["ctlParent"] = "Contract_" + contract.Id;
                         break;
                     case "DP":
                         break;
                     case "NTKT":
-                        row["ctlName"] = "NTKT"+ntkt.Number.ToString();
+                        row["ctlName"] = "NTKT" + ntkt.Number.ToString();
                         row["ctlParent"] = "PO_" + po.Id;
                         break;
                     case "PL":
@@ -85,7 +83,7 @@ namespace OPM.GUI
                 table.Rows.Add(row);
             }
             InitCatalogAdmin(null, null, table);
-            List<string> list = CatalogAdmin.PathToContractNodeFromCurrentNode(nodeName,table);
+            List<string> list = CatalogAdmin.PathToContractNodeFromCurrentNode(nodeName, table);
             list.Reverse();
             treeViewOPM.SelectedNode = treeViewOPM.Nodes[list[0]];
             treeViewOPM.SelectedNode.Expand();
@@ -100,7 +98,7 @@ namespace OPM.GUI
         private void InitCatalogAdmin(TreeNode parentNode, string parent, DataTable table)
         {
             DataRow[] ds = table.Select(string.Format(@"ctlparent is null"), "ctlname");
-            if (parent!=null) ds = table.Select(string.Format(@"ctlparent = '{0}'", parent), "ctlname");
+            if (parent != null) ds = table.Select(string.Format(@"ctlparent = '{0}'", parent), "ctlname");
             if (ds.Length < 1) return;
             foreach (DataRow dr in ds)
             {
@@ -146,29 +144,29 @@ namespace OPM.GUI
                 {
                     case "Contract":
                         tempStatus = 1;//Đang ở Form chỉnh sửa hợp đồng
-                        contract = new Contract_Thanh(temp[1]);
+                        contract = new ContractObj(temp[1]);
 
-                        goods = new Goods_Thanh(temp[1]);
+                        goods = new GoodsObj(temp[1]);
                         OpenContractForm();
                         break;
                     case "PO":
                         tempStatus = 4;//Đang ở Form PO có sẵn
-                        po = new PO_Thanh(temp[1]);
-                        contract = new Contract_Thanh(po.IdContract);
-                        goods = new Goods_Thanh(po.IdContract);
+                        po = new PO(temp[1]);
+                        contract = new ContractObj(po.IdContract);
+                        goods = new GoodsObj(po.IdContract);
                         OpenPOForm();
                         break;
                     case "DP":
                         /*Display DP */
                         DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
-//                        deliverPartInforDetail.UpdateCatalogPanel = new DeliverPartInforDetail.UpdateCatalogDelegate(InitCatalogByNodeName);
+                        //                        deliverPartInforDetail.UpdateCatalogPanel = new DeliverPartInforDetail.UpdateCatalogDelegate(InitCatalogByNodeName);
                         OpenChildForm(deliverPartInforDetail);
                         break;
                     case "NTKT":
-                        ntkt = new NTKT_Thanh(temp[1]);
-                        po = new PO_Thanh(ntkt.Id_po);
-                        contract = new Contract_Thanh(po.IdContract);
-                        goods = new Goods_Thanh(po.IdContract);
+                        ntkt = new NTKT(temp[1]);
+                        po = new PO(ntkt.Id_po);
+                        contract = new ContractObj(po.IdContract);
+                        goods = new GoodsObj(po.IdContract);
                         OpenNTKTForm();
                         break;
                     case "PL":
@@ -192,7 +190,7 @@ namespace OPM.GUI
             if (e.ClickedItem.Name == "toolStripMenuNewContract")
             {
                 tempStatus = 0;//Đang ở Form tạo mới Hợp đồng
-                Contract = new Contract_Thanh();
+                Contract = new ContractObj();
                 OpenContractForm();
             }
             else if (e.ClickedItem.Name == "toolStripMenuNew")
@@ -213,18 +211,18 @@ namespace OPM.GUI
         }
         public void OpenSiteAForm(string idSite)
         {
-            SiteForm siteForm = new SiteForm
+            SiteInfo siteForm = new SiteInfo
             {
-                setStringValue = new SiteForm.SetStringValue(SetIdSiteA),
+                setStringValue = new SiteInfo.SetStringValue(SetIdSiteA),
                 IdSite = idSite
             };
             OpenChildForm(siteForm);
         }
         public void OpenSiteBForm(string idSite)
         {
-            SiteForm siteForm = new SiteForm
+            SiteInfo siteForm = new SiteInfo
             {
-                setStringValue = new SiteForm.SetStringValue(SetIdSiteB),
+                setStringValue = new SiteInfo.SetStringValue(SetIdSiteB),
                 IdSite = idSite
             };
             OpenChildForm(siteForm);
@@ -232,13 +230,13 @@ namespace OPM.GUI
 
         public void OpenGoodsForm()
         {
-            GoodsForm goodsForm = new GoodsForm();
+            GoodsInfo goodsForm = new GoodsInfo();
             Text = string.Format("Hợp đồng số {0}: Bảng hàng hoá", contract.Id);
             OpenChildForm(goodsForm);
         }
         public void OpenContractForm()
         {
-            ContractInfoChildForm contractInfoChildForm = new ContractInfoChildForm();
+            ContractInfo contractInfoChildForm = new ContractInfo();
             Text = string.Format("Hợp đồng số {0}", contract.Id);
             InitCatalogByNodeName("Contract_" + contract.Id);
             OpenChildForm(contractInfoChildForm);
@@ -247,7 +245,7 @@ namespace OPM.GUI
         {
             PurchaseOderInfor purchaseOderInfor = new PurchaseOderInfor();
             Text = string.Format("Hợp đồng số {0} - {1}", contract.Id, po.POName);
-            if (tempStatus == 3) po = new PO_Thanh();
+            if (tempStatus == 3) po = new PO();
             po.IdContract = contract.Id;
             InitCatalogByNodeName("PO_" + po.Id);
             OpenChildForm(purchaseOderInfor);
@@ -255,24 +253,24 @@ namespace OPM.GUI
         public void OpenNTKTForm()
         {
             NTKTInfor nTKTInfor = new NTKTInfor();
-            Text = string.Format(@"Hợp đồng số {2} - {1} - Đợt NTKT{0}", ntkt.Number, po.POName,contract.Id);
+            Text = string.Format(@"Hợp đồng số {2} - {1} - Đợt NTKT{0}", ntkt.Number, po.POName, contract.Id);
             ntkt.Id_po = po.Id;
             InitCatalogByNodeName("NTKT_" + ntkt.Id);
             OpenChildForm(nTKTInfor);
         }
         public void OpenDpForm(string idPO, string idContract, String PONumber)
         {
-            DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
-            PO po = new PO();
-            //int retPo = PO.GetObjectPO(idPO, ref po);
-            ContractObj contractObj = new ContractObj();
-            int retContract = ContractObj.GetObjectContract(idContract, ref contractObj);
-            deliverPartInforDetail.setIdPO(idPO);
-            deliverPartInforDetail.setIdcontract(idContract);
-            deliverPartInforDetail.setKHMS(contractObj.KHMS);
-            deliverPartInforDetail.setPoname(PONumber);
-            OpenChildForm(deliverPartInforDetail);
-            return;
+            //DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
+            //PO po = new PO();
+            ////int retPo = PO.GetObjectPO(idPO, ref po);
+            //Contract contractObj = new Contract();
+            //int retContract = Contract.GetObjectContract(idContract, ref contractObj);
+            //deliverPartInforDetail.setIdPO(idPO);
+            //deliverPartInforDetail.setIdcontract(idContract);
+            //deliverPartInforDetail.setKHMS(contractObj.KHMS);
+            //deliverPartInforDetail.setPoname(PONumber);
+            //OpenChildForm(deliverPartInforDetail);
+            //return;
         }
         void OpenChildForm(Form childForm)
         {

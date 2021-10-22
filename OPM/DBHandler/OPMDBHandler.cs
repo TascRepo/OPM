@@ -40,10 +40,10 @@ namespace OPM.DBHandler
                     adapter.Fill(data);
                     connection.Close();
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     connection.Close();
-                    MessageBox.Show("Không kết nối được CSDL vì lỗi "+e.Message);
+                    MessageBox.Show("Không kết nối được CSDL vì lỗi " + e.Message);
                 }
             }
             return data;
@@ -109,7 +109,7 @@ namespace OPM.DBHandler
                 catch (Exception e)
                 {
                     connection.Close();
-                    
+
                     MessageBox.Show("Không kết nối được CSDL vì lỗi " + e.Message);
                 }
             }

@@ -1,7 +1,7 @@
 ﻿
 namespace OPM.GUI
 {
-    partial class SiteForm
+    partial class SiteInfo
     {
         /// <summary>
         /// Required designer variable.
