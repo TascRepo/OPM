@@ -31,11 +31,11 @@ namespace OPM.GUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnDescriptionA = new System.Windows.Forms.Button();
-            this.tbContract = new System.Windows.Forms.TextBox();
-            this.tbBidName = new System.Windows.Forms.TextBox();
-            this.tbxAccountingCode = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnIdSiteA = new System.Windows.Forms.Button();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtAccountingCode = new System.Windows.Forms.TextBox();
+            this.btnIdSiteB = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,252 +47,281 @@ namespace OPM.GUI
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.tbxDurationContract = new System.Windows.Forms.TextBox();
-            this.txbTypeContract = new System.Windows.Forms.TextBox();
-            this.tbxValueContract = new System.Windows.Forms.TextBox();
-            this.tbxDurationPO = new System.Windows.Forms.TextBox();
-            this.tbxSiteA = new System.Windows.Forms.TextBox();
-            this.tbxSiteB = new System.Windows.Forms.TextBox();
+            this.txtDuration = new System.Windows.Forms.TextBox();
+            this.txtType = new System.Windows.Forms.TextBox();
+            this.txtValue = new System.Windows.Forms.TextBox();
+            this.txtDurationPO = new System.Windows.Forms.TextBox();
+            this.txtIdSiteA = new System.Windows.Forms.TextBox();
+            this.txtIdSiteB = new System.Windows.Forms.TextBox();
             this.btnNewPO = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.txbGaranteeValue = new System.Windows.Forms.TextBox();
+            this.txbGuaranteeValue = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.dateTimePickerDateSignedPO = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerDurationDateContract = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerActiveDateContract = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateSigned = new System.Windows.Forms.DateTimePicker();
+            this.dtpDeadline = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateActive = new System.Windows.Forms.DateTimePicker();
             this.label16 = new System.Windows.Forms.Label();
-            this.txbKHMS = new System.Windows.Forms.TextBox();
+            this.ttxtKHMS = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.ExpirationDate = new System.Windows.Forms.DateTimePicker();
-            this.txbGaranteeActiveDate = new System.Windows.Forms.TextBox();
+            this.dtpGuaranteeDeadline = new System.Windows.Forms.DateTimePicker();
+            this.txtGuaranteeDuration = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnContractAnnex = new System.Windows.Forms.Button();
+            this.btnAnnex = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dtpGaranteeCreatedDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpGuaranteeDateCreated = new System.Windows.Forms.DateTimePicker();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.tbxGaranteeValue = new System.Windows.Forms.TextBox();
-            this.buttonCreatDocument = new System.Windows.Forms.Button();
+            this.txtGuaranteeValue = new System.Windows.Forms.TextBox();
+            this.btnCreatDocument = new System.Windows.Forms.Button();
+            this.btnNew = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnDescriptionA
+            // btnIdSiteA
             // 
-            this.btnDescriptionA.Location = new System.Drawing.Point(345, 272);
-            this.btnDescriptionA.Name = "btnDescriptionA";
-            this.btnDescriptionA.Size = new System.Drawing.Size(99, 23);
-            this.btnDescriptionA.TabIndex = 10;
-            this.btnDescriptionA.Text = "Chi tiết bên A";
-            this.btnDescriptionA.UseVisualStyleBackColor = true;
-            this.btnDescriptionA.Click += new System.EventHandler(this.IdSiteA_Click);
+            this.btnIdSiteA.Location = new System.Drawing.Point(493, 453);
+            this.btnIdSiteA.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnIdSiteA.Name = "btnIdSiteA";
+            this.btnIdSiteA.Size = new System.Drawing.Size(141, 38);
+            this.btnIdSiteA.TabIndex = 10;
+            this.btnIdSiteA.Text = "Chi tiết bên A";
+            this.btnIdSiteA.UseVisualStyleBackColor = true;
+            this.btnIdSiteA.Click += new System.EventHandler(this.btnIdSiteA_Click);
             // 
-            // tbContract
+            // txtId
             // 
-            this.tbContract.BackColor = System.Drawing.SystemColors.Window;
-            this.tbContract.Location = new System.Drawing.Point(140, 35);
-            this.tbContract.Name = "tbContract";
-            this.tbContract.Size = new System.Drawing.Size(305, 23);
-            this.tbContract.TabIndex = 2;
-            this.tbContract.Text = "XXX-2021/CUVT-ANSV/DTRR-KHMS";
+            this.txtId.BackColor = System.Drawing.SystemColors.Window;
+            this.txtId.Location = new System.Drawing.Point(200, 58);
+            this.txtId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(434, 31);
+            this.txtId.TabIndex = 2;
+            this.txtId.Text = "XXX-2021/CUVT-ANSV/DTRR-KHMS";
+            this.txtId.TextChanged += new System.EventHandler(this.TxtId_TextChanged);
             // 
-            // tbBidName
+            // txtName
             // 
-            this.tbBidName.Location = new System.Drawing.Point(140, 65);
-            this.tbBidName.Name = "tbBidName";
-            this.tbBidName.Size = new System.Drawing.Size(305, 23);
-            this.tbBidName.TabIndex = 3;
-            this.tbBidName.Text = "Mua sắm thiết bị đầu cuối ONT loại (2FE/GE+Wifi singleband)";
+            this.txtName.Location = new System.Drawing.Point(200, 108);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(434, 31);
+            this.txtName.TabIndex = 3;
+            this.txtName.Text = "Mua sắm thiết bị đầu cuối ONT loại (2FE/GE+Wifi singleband)";
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
-            // tbxAccountingCode
+            // txtAccountingCode
             // 
-            this.tbxAccountingCode.Location = new System.Drawing.Point(140, 95);
-            this.tbxAccountingCode.Name = "tbxAccountingCode";
-            this.tbxAccountingCode.Size = new System.Drawing.Size(305, 23);
-            this.tbxAccountingCode.TabIndex = 4;
-            this.tbxAccountingCode.Text = "C01007";
-            this.tbxAccountingCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAccountingCode.Location = new System.Drawing.Point(200, 158);
+            this.txtAccountingCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtAccountingCode.Name = "txtAccountingCode";
+            this.txtAccountingCode.Size = new System.Drawing.Size(434, 31);
+            this.txtAccountingCode.TabIndex = 4;
+            this.txtAccountingCode.Text = "C01007";
+            this.txtAccountingCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAccountingCode.TextChanged += new System.EventHandler(this.txtAccountingCode_TextChanged);
             // 
-            // button2
+            // btnIdSiteB
             // 
-            this.button2.Location = new System.Drawing.Point(345, 302);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Chi tiết bên B";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.IdSiteB_Click);
+            this.btnIdSiteB.Location = new System.Drawing.Point(493, 503);
+            this.btnIdSiteB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnIdSiteB.Name = "btnIdSiteB";
+            this.btnIdSiteB.Size = new System.Drawing.Size(141, 38);
+            this.btnIdSiteB.TabIndex = 11;
+            this.btnIdSiteB.Text = "Chi tiết bên B";
+            this.btnIdSiteB.UseVisualStyleBackColor = true;
+            this.btnIdSiteB.Click += new System.EventHandler(this.btnIdSiteB_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(10, 40);
+            this.label1.Location = new System.Drawing.Point(14, 67);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 15);
+            this.label1.Size = new System.Drawing.Size(127, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã Hợp Đồng";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 70);
+            this.label2.Location = new System.Drawing.Point(14, 117);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 15);
+            this.label2.Size = new System.Drawing.Size(113, 25);
             this.label2.TabIndex = 0;
             this.label2.Text = "Tên Gói Thầu";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 100);
+            this.label3.Location = new System.Drawing.Point(14, 167);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 15);
+            this.label3.Size = new System.Drawing.Size(103, 25);
             this.label3.TabIndex = 0;
             this.label3.Text = "Mã Kế Toán";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 130);
+            this.label4.Location = new System.Drawing.Point(14, 217);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 15);
+            this.label4.Size = new System.Drawing.Size(77, 25);
             this.label4.TabIndex = 0;
             this.label4.Text = "Ngày Ký";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 217);
+            this.label5.Location = new System.Drawing.Point(13, 362);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(112, 15);
+            this.label5.Size = new System.Drawing.Size(167, 25);
             this.label5.TabIndex = 7;
             this.label5.Text = "Thời Hạn Thực Hiện";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 190);
+            this.label6.Location = new System.Drawing.Point(14, 317);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 15);
+            this.label6.Size = new System.Drawing.Size(134, 25);
             this.label6.TabIndex = 6;
             this.label6.Text = "Loại Hợp Đồng";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(9, 157);
+            this.label7.Location = new System.Drawing.Point(13, 262);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(85, 15);
+            this.label7.Size = new System.Drawing.Size(127, 25);
             this.label7.TabIndex = 5;
             this.label7.Text = "Ngày Hiệu Lực";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 250);
+            this.label8.Location = new System.Drawing.Point(14, 417);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(91, 15);
+            this.label8.Size = new System.Drawing.Size(140, 25);
             this.label8.TabIndex = 8;
             this.label8.Text = "Giá trị trước VAT";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(2, 77);
+            this.label9.Location = new System.Drawing.Point(3, 128);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(98, 15);
+            this.label9.Size = new System.Drawing.Size(146, 25);
             this.label9.TabIndex = 13;
             this.label9.Text = "Thời hạn hiệu lực";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(12, 279);
+            this.label10.Location = new System.Drawing.Point(17, 465);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(34, 15);
+            this.label10.Size = new System.Drawing.Size(53, 25);
             this.label10.TabIndex = 9;
             this.label10.Text = "SiteA";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 309);
+            this.label11.Location = new System.Drawing.Point(17, 515);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(33, 15);
+            this.label11.Size = new System.Drawing.Size(51, 25);
             this.label11.TabIndex = 10;
             this.label11.Text = "SiteB";
             // 
-            // tbxDurationContract
+            // txtDuration
             // 
-            this.tbxDurationContract.Location = new System.Drawing.Point(139, 215);
-            this.tbxDurationContract.Name = "tbxDurationContract";
-            this.tbxDurationContract.Size = new System.Drawing.Size(48, 23);
-            this.tbxDurationContract.TabIndex = 8;
-            this.tbxDurationContract.Text = "365";
-            this.tbxDurationContract.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tbxDurationContract.TextChanged += new System.EventHandler(this.tbxDurationContract_TextChanged);
+            this.txtDuration.Location = new System.Drawing.Point(199, 358);
+            this.txtDuration.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtDuration.Name = "txtDuration";
+            this.txtDuration.Size = new System.Drawing.Size(67, 31);
+            this.txtDuration.TabIndex = 8;
+            this.txtDuration.Text = "365";
+            this.txtDuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDuration.TextChanged += new System.EventHandler(this.txtDuration_TextChanged);
             // 
-            // txbTypeContract
+            // txtType
             // 
-            this.txbTypeContract.Location = new System.Drawing.Point(139, 185);
-            this.txbTypeContract.Name = "txbTypeContract";
-            this.txbTypeContract.Size = new System.Drawing.Size(305, 23);
-            this.txbTypeContract.TabIndex = 7;
-            this.txbTypeContract.Text = "Theo đơn giá cố định";
-            this.txbTypeContract.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtType.Location = new System.Drawing.Point(199, 308);
+            this.txtType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtType.Name = "txtType";
+            this.txtType.Size = new System.Drawing.Size(434, 31);
+            this.txtType.TabIndex = 7;
+            this.txtType.Text = "Theo đơn giá cố định";
+            this.txtType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtType.TextChanged += new System.EventHandler(this.txtType_TextChanged);
             // 
-            // tbxValueContract
+            // txtValue
             // 
-            this.tbxValueContract.Enabled = false;
-            this.tbxValueContract.Location = new System.Drawing.Point(139, 245);
-            this.tbxValueContract.Name = "tbxValueContract";
-            this.tbxValueContract.ReadOnly = true;
-            this.tbxValueContract.Size = new System.Drawing.Size(162, 23);
-            this.tbxValueContract.TabIndex = 8;
-            this.tbxValueContract.Text = "0";
-            this.tbxValueContract.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tbxValueContract.TextChanged += new System.EventHandler(this.tbxValueContract_TextChanged);
+            this.txtValue.Enabled = false;
+            this.txtValue.Location = new System.Drawing.Point(199, 408);
+            this.txtValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtValue.Name = "txtValue";
+            this.txtValue.Size = new System.Drawing.Size(230, 31);
+            this.txtValue.TabIndex = 8;
+            this.txtValue.Text = "0";
+            this.txtValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtValue.TextChanged += new System.EventHandler(this.txtValue_TextChanged);
             // 
-            // tbxDurationPO
+            // txtDurationPO
             // 
-            this.tbxDurationPO.Location = new System.Drawing.Point(132, 72);
-            this.tbxDurationPO.Name = "tbxDurationPO";
-            this.tbxDurationPO.Size = new System.Drawing.Size(47, 23);
-            this.tbxDurationPO.TabIndex = 14;
-            this.tbxDurationPO.Text = "5";
-            this.tbxDurationPO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDurationPO.Location = new System.Drawing.Point(189, 120);
+            this.txtDurationPO.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtDurationPO.Name = "txtDurationPO";
+            this.txtDurationPO.Size = new System.Drawing.Size(65, 31);
+            this.txtDurationPO.TabIndex = 14;
+            this.txtDurationPO.Text = "5";
+            this.txtDurationPO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDurationPO.TextChanged += new System.EventHandler(this.txtDurationPO_TextChanged);
             // 
-            // tbxSiteA
+            // txtIdSiteA
             // 
-            this.tbxSiteA.Enabled = false;
-            this.tbxSiteA.Location = new System.Drawing.Point(139, 274);
-            this.tbxSiteA.Name = "tbxSiteA";
-            this.tbxSiteA.Size = new System.Drawing.Size(202, 23);
-            this.tbxSiteA.TabIndex = 9;
-            this.tbxSiteA.Text = "Trung tâm cung ứng vật tư - Viễn thông TP.HCM";
+            this.txtIdSiteA.Enabled = false;
+            this.txtIdSiteA.Location = new System.Drawing.Point(199, 457);
+            this.txtIdSiteA.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtIdSiteA.Name = "txtIdSiteA";
+            this.txtIdSiteA.Size = new System.Drawing.Size(287, 31);
+            this.txtIdSiteA.TabIndex = 9;
+            this.txtIdSiteA.Text = "Trung tâm cung ứng vật tư - Viễn thông TP.HCM";
+            this.txtIdSiteA.TextChanged += new System.EventHandler(this.txtIdSiteA_TextChanged);
             // 
-            // tbxSiteB
+            // txtIdSiteB
             // 
-            this.tbxSiteB.Enabled = false;
-            this.tbxSiteB.Location = new System.Drawing.Point(139, 304);
-            this.tbxSiteB.Name = "tbxSiteB";
-            this.tbxSiteB.Size = new System.Drawing.Size(202, 23);
-            this.tbxSiteB.TabIndex = 10;
-            this.tbxSiteB.Text = "Công ty TNHH thiết bị viễn thông ANSV";
+            this.txtIdSiteB.Enabled = false;
+            this.txtIdSiteB.Location = new System.Drawing.Point(199, 507);
+            this.txtIdSiteB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtIdSiteB.Name = "txtIdSiteB";
+            this.txtIdSiteB.Size = new System.Drawing.Size(287, 31);
+            this.txtIdSiteB.TabIndex = 10;
+            this.txtIdSiteB.Text = "Công ty TNHH thiết bị viễn thông ANSV";
+            this.txtIdSiteB.TextChanged += new System.EventHandler(this.txtIdSiteB_TextChanged);
             // 
             // btnNewPO
             // 
-            this.btnNewPO.Enabled = false;
-            this.btnNewPO.Location = new System.Drawing.Point(368, 483);
+            this.btnNewPO.Location = new System.Drawing.Point(553, 809);
+            this.btnNewPO.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnNewPO.Name = "btnNewPO";
-            this.btnNewPO.Size = new System.Drawing.Size(83, 23);
+            this.btnNewPO.Size = new System.Drawing.Size(94, 43);
             this.btnNewPO.TabIndex = 17;
             this.btnNewPO.Text = "New PO";
             this.btnNewPO.UseVisualStyleBackColor = true;
@@ -300,60 +329,65 @@ namespace OPM.GUI
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(97, 483);
+            this.btnEdit.Location = new System.Drawing.Point(229, 809);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(83, 23);
+            this.btnEdit.Size = new System.Drawing.Size(97, 43);
             this.btnEdit.TabIndex = 18;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // btnRemove
+            // btnDelete
             // 
-            this.btnRemove.Enabled = false;
-            this.btnRemove.Location = new System.Drawing.Point(7, 483);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(83, 23);
-            this.btnRemove.TabIndex = 19;
-            this.btnRemove.Text = "Delete";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            this.btnDelete.Location = new System.Drawing.Point(120, 809);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(97, 43);
+            this.btnDelete.TabIndex = 19;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(278, 483);
+            this.btnSave.Location = new System.Drawing.Point(338, 809);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(83, 23);
+            this.btnSave.Size = new System.Drawing.Size(97, 43);
             this.btnSave.TabIndex = 16;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // txbGaranteeValue
+            // txbGuaranteeValue
             // 
-            this.txbGaranteeValue.Location = new System.Drawing.Point(132, 46);
-            this.txbGaranteeValue.Name = "txbGaranteeValue";
-            this.txbGaranteeValue.Size = new System.Drawing.Size(47, 23);
-            this.txbGaranteeValue.TabIndex = 13;
-            this.txbGaranteeValue.Text = "50";
-            this.txbGaranteeValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txbGaranteeValue.TextChanged += new System.EventHandler(this.txbGaranteeValue_TextChanged);
+            this.txbGuaranteeValue.Location = new System.Drawing.Point(189, 77);
+            this.txbGuaranteeValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txbGuaranteeValue.Name = "txbGuaranteeValue";
+            this.txbGuaranteeValue.Size = new System.Drawing.Size(65, 31);
+            this.txbGuaranteeValue.TabIndex = 13;
+            this.txbGuaranteeValue.Text = "50";
+            this.txbGuaranteeValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txbGuaranteeValue.TextChanged += new System.EventHandler(this.txbGaranteeValue_TextChanged);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(4, 51);
+            this.label12.Location = new System.Drawing.Point(6, 85);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(91, 15);
+            this.label12.Size = new System.Drawing.Size(136, 25);
             this.label12.TabIndex = 12;
             this.label12.Text = "Giá Trị Bảo Lãnh";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(1, 109);
+            this.label13.Location = new System.Drawing.Point(1, 182);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(127, 15);
+            this.label13.Size = new System.Drawing.Size(192, 25);
             this.label13.TabIndex = 14;
             this.label13.Text = "Ngày hết hạn bảo lãnh";
             // 
@@ -361,206 +395,241 @@ namespace OPM.GUI
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(185, 49);
+            this.label14.Location = new System.Drawing.Point(264, 82);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(21, 20);
+            this.label14.Size = new System.Drawing.Size(31, 30);
             this.label14.TabIndex = 3;
             this.label14.Text = "%";
             // 
-            // dateTimePickerDateSignedPO
+            // dtpDateSigned
             // 
-            this.dateTimePickerDateSignedPO.CustomFormat = "dd/mm/yyyy";
-            this.dateTimePickerDateSignedPO.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDateSignedPO.Location = new System.Drawing.Point(245, 125);
-            this.dateTimePickerDateSignedPO.Name = "dateTimePickerDateSignedPO";
-            this.dateTimePickerDateSignedPO.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePickerDateSignedPO.TabIndex = 5;
+            this.dtpDateSigned.CustomFormat = "dd/mm/yyyy";
+            this.dtpDateSigned.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDateSigned.Location = new System.Drawing.Point(350, 208);
+            this.dtpDateSigned.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dtpDateSigned.Name = "dtpDateSigned";
+            this.dtpDateSigned.Size = new System.Drawing.Size(284, 31);
+            this.dtpDateSigned.TabIndex = 5;
+            this.dtpDateSigned.ValueChanged += new System.EventHandler(this.dtpDateSigned_ValueChanged);
             // 
-            // dateTimePickerDurationDateContract
+            // dtpDeadline
             // 
-            this.dateTimePickerDurationDateContract.CustomFormat = "d-m-y";
-            this.dateTimePickerDurationDateContract.Enabled = false;
-            this.dateTimePickerDurationDateContract.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDurationDateContract.Location = new System.Drawing.Point(245, 215);
-            this.dateTimePickerDurationDateContract.Name = "dateTimePickerDurationDateContract";
-            this.dateTimePickerDurationDateContract.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePickerDurationDateContract.TabIndex = 8;
+            this.dtpDeadline.CustomFormat = "d-m-y";
+            this.dtpDeadline.Enabled = false;
+            this.dtpDeadline.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDeadline.Location = new System.Drawing.Point(350, 358);
+            this.dtpDeadline.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dtpDeadline.Name = "dtpDeadline";
+            this.dtpDeadline.Size = new System.Drawing.Size(284, 31);
+            this.dtpDeadline.TabIndex = 8;
             // 
-            // dateTimePickerActiveDateContract
+            // dtpDateActive
             // 
-            this.dateTimePickerActiveDateContract.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerActiveDateContract.Location = new System.Drawing.Point(245, 155);
-            this.dateTimePickerActiveDateContract.Name = "dateTimePickerActiveDateContract";
-            this.dateTimePickerActiveDateContract.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePickerActiveDateContract.TabIndex = 6;
-            this.dateTimePickerActiveDateContract.ValueChanged += new System.EventHandler(this.dateTimePickerActiveDateContract_ValueChanged);
+            this.dtpDateActive.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDateActive.Location = new System.Drawing.Point(350, 258);
+            this.dtpDateActive.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dtpDateActive.Name = "dtpDateActive";
+            this.dtpDateActive.Size = new System.Drawing.Size(284, 31);
+            this.dtpDateActive.TabIndex = 6;
+            this.dtpDateActive.ValueChanged += new System.EventHandler(this.dtpActiveDate_ValueChanged);
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(10, 10);
+            this.label16.Location = new System.Drawing.Point(14, 17);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(111, 15);
+            this.label16.Size = new System.Drawing.Size(167, 25);
             this.label16.TabIndex = 0;
             this.label16.Text = "Kế Hoạch Mua Sắm";
             // 
-            // txbKHMS
+            // ttxtKHMS
             // 
-            this.txbKHMS.Location = new System.Drawing.Point(140, 5);
-            this.txbKHMS.Name = "txbKHMS";
-            this.txbKHMS.Size = new System.Drawing.Size(305, 23);
-            this.txbKHMS.TabIndex = 1;
-            this.txbKHMS.Text = "Mua sắm tập trung thiết bị đầu cuối ONT loại (2FE/GE+Wifi singleband) tương thích" +
+            this.ttxtKHMS.Location = new System.Drawing.Point(200, 8);
+            this.ttxtKHMS.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ttxtKHMS.Name = "ttxtKHMS";
+            this.ttxtKHMS.Size = new System.Drawing.Size(434, 31);
+            this.ttxtKHMS.TabIndex = 1;
+            this.ttxtKHMS.Text = "Mua sắm tập trung thiết bị đầu cuối ONT loại (2FE/GE+Wifi singleband) tương thích" +
     " hệ thống gpon cho nhu cầu năm 2020";
+            this.ttxtKHMS.TextChanged += new System.EventHandler(this.ttxtKHMS_TextChanged);
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(301, 245);
+            this.label17.Location = new System.Drawing.Point(430, 408);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(31, 15);
+            this.label17.Size = new System.Drawing.Size(49, 25);
             this.label17.TabIndex = 13;
             this.label17.Text = "VND";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(205, 217);
+            this.label18.Location = new System.Drawing.Point(293, 362);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(35, 15);
+            this.label18.Size = new System.Drawing.Size(54, 25);
             this.label18.TabIndex = 14;
             this.label18.Text = "Ngày";
             // 
-            // ExpirationDate
+            // dtpGuaranteeDeadline
             // 
-            this.ExpirationDate.Enabled = false;
-            this.ExpirationDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.ExpirationDate.Location = new System.Drawing.Point(237, 106);
-            this.ExpirationDate.Name = "ExpirationDate";
-            this.ExpirationDate.Size = new System.Drawing.Size(200, 23);
-            this.ExpirationDate.TabIndex = 14;
+            this.dtpGuaranteeDeadline.Enabled = false;
+            this.dtpGuaranteeDeadline.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpGuaranteeDeadline.Location = new System.Drawing.Point(339, 176);
+            this.dtpGuaranteeDeadline.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dtpGuaranteeDeadline.Name = "dtpGuaranteeDeadline";
+            this.dtpGuaranteeDeadline.Size = new System.Drawing.Size(284, 31);
+            this.dtpGuaranteeDeadline.TabIndex = 14;
+            this.dtpGuaranteeDeadline.ValueChanged += new System.EventHandler(this.dtpGaranteeDeadline_ValueChanged);
             // 
-            // txbGaranteeActiveDate
+            // txtGuaranteeDuration
             // 
-            this.txbGaranteeActiveDate.Location = new System.Drawing.Point(131, 105);
-            this.txbGaranteeActiveDate.Name = "txbGaranteeActiveDate";
-            this.txbGaranteeActiveDate.Size = new System.Drawing.Size(48, 23);
-            this.txbGaranteeActiveDate.TabIndex = 15;
-            this.txbGaranteeActiveDate.Text = "5";
-            this.txbGaranteeActiveDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txbGaranteeActiveDate.TextChanged += new System.EventHandler(this.txbGaranteeActiveDate_TextChanged);
+            this.txtGuaranteeDuration.Location = new System.Drawing.Point(187, 175);
+            this.txtGuaranteeDuration.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtGuaranteeDuration.Name = "txtGuaranteeDuration";
+            this.txtGuaranteeDuration.Size = new System.Drawing.Size(67, 31);
+            this.txtGuaranteeDuration.TabIndex = 15;
+            this.txtGuaranteeDuration.Text = "5";
+            this.txtGuaranteeDuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtGuaranteeDuration.TextChanged += new System.EventHandler(this.txtGuaranteeDuration_TextChanged);
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(182, 109);
+            this.label15.Location = new System.Drawing.Point(260, 182);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(35, 15);
+            this.label15.Size = new System.Drawing.Size(54, 25);
             this.label15.TabIndex = 14;
             this.label15.Text = "Ngày";
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.label17);
-            this.panel1.Controls.Add(this.btnContractAnnex);
-            this.panel1.Location = new System.Drawing.Point(8, 1);
+            this.panel1.Controls.Add(this.btnAnnex);
+            this.panel1.Location = new System.Drawing.Point(11, 6);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(445, 333);
+            this.panel1.Size = new System.Drawing.Size(636, 539);
             this.panel1.TabIndex = 17;
             // 
-            // btnContractAnnex
+            // btnAnnex
             // 
-            this.btnContractAnnex.Location = new System.Drawing.Point(337, 242);
-            this.btnContractAnnex.Name = "btnContractAnnex";
-            this.btnContractAnnex.Size = new System.Drawing.Size(99, 23);
-            this.btnContractAnnex.TabIndex = 9;
-            this.btnContractAnnex.Text = "Bảng giá";
-            this.btnContractAnnex.UseVisualStyleBackColor = true;
-            this.btnContractAnnex.Click += new System.EventHandler(this.btnContractAnnex_Click);
+            this.btnAnnex.Location = new System.Drawing.Point(482, 403);
+            this.btnAnnex.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAnnex.Name = "btnAnnex";
+            this.btnAnnex.Size = new System.Drawing.Size(141, 38);
+            this.btnAnnex.TabIndex = 9;
+            this.btnAnnex.Text = "Bảng giá";
+            this.btnAnnex.UseVisualStyleBackColor = true;
+            this.btnAnnex.Click += new System.EventHandler(this.btnAnnex_Click);
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.txbGaranteeActiveDate);
-            this.panel2.Controls.Add(this.dtpGaranteeCreatedDate);
-            this.panel2.Controls.Add(this.ExpirationDate);
+            this.panel2.Controls.Add(this.txtGuaranteeDuration);
+            this.panel2.Controls.Add(this.dtpGuaranteeDateCreated);
+            this.panel2.Controls.Add(this.dtpGuaranteeDeadline);
             this.panel2.Controls.Add(this.label20);
             this.panel2.Controls.Add(this.label13);
             this.panel2.Controls.Add(this.label19);
             this.panel2.Controls.Add(this.label15);
-            this.panel2.Controls.Add(this.tbxGaranteeValue);
-            this.panel2.Controls.Add(this.txbGaranteeValue);
-            this.panel2.Controls.Add(this.tbxDurationPO);
+            this.panel2.Controls.Add(this.txtGuaranteeValue);
+            this.panel2.Controls.Add(this.txbGuaranteeValue);
+            this.panel2.Controls.Add(this.txtDurationPO);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.label14);
-            this.panel2.Location = new System.Drawing.Point(8, 340);
+            this.panel2.Location = new System.Drawing.Point(11, 551);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(445, 137);
+            this.panel2.Size = new System.Drawing.Size(636, 228);
             this.panel2.TabIndex = 17;
             // 
-            // dtpGaranteeCreatedDate
+            // dtpGuaranteeDateCreated
             // 
-            this.dtpGaranteeCreatedDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpGaranteeCreatedDate.Location = new System.Drawing.Point(237, 13);
-            this.dtpGaranteeCreatedDate.Name = "dtpGaranteeCreatedDate";
-            this.dtpGaranteeCreatedDate.Size = new System.Drawing.Size(200, 23);
-            this.dtpGaranteeCreatedDate.TabIndex = 12;
+            this.dtpGuaranteeDateCreated.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpGuaranteeDateCreated.Location = new System.Drawing.Point(339, 21);
+            this.dtpGuaranteeDateCreated.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dtpGuaranteeDateCreated.Name = "dtpGuaranteeDateCreated";
+            this.dtpGuaranteeDateCreated.Size = new System.Drawing.Size(284, 31);
+            this.dtpGuaranteeDateCreated.TabIndex = 12;
+            this.dtpGuaranteeDateCreated.ValueChanged += new System.EventHandler(this.dtpGaranteeDateCreated_ValueChanged);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(2, 16);
+            this.label20.Location = new System.Drawing.Point(3, 27);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(104, 15);
+            this.label20.Size = new System.Drawing.Size(159, 25);
             this.label20.TabIndex = 11;
             this.label20.Text = "Ngày tạo bảo lãnh";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(185, 77);
+            this.label19.Location = new System.Drawing.Point(264, 128);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(188, 15);
+            this.label19.Size = new System.Drawing.Size(285, 25);
             this.label19.TabIndex = 13;
             this.label19.Text = "ngày làm việc kể từ ngày đặt hàng";
             // 
-            // tbxGaranteeValue
+            // txtGuaranteeValue
             // 
-            this.tbxGaranteeValue.Enabled = false;
-            this.tbxGaranteeValue.Location = new System.Drawing.Point(237, 47);
-            this.tbxGaranteeValue.Name = "tbxGaranteeValue";
-            this.tbxGaranteeValue.Size = new System.Drawing.Size(200, 23);
-            this.tbxGaranteeValue.TabIndex = 12;
-            this.tbxGaranteeValue.Text = "0";
-            this.tbxGaranteeValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtGuaranteeValue.Enabled = false;
+            this.txtGuaranteeValue.Location = new System.Drawing.Point(339, 78);
+            this.txtGuaranteeValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtGuaranteeValue.Name = "txtGuaranteeValue";
+            this.txtGuaranteeValue.Size = new System.Drawing.Size(284, 31);
+            this.txtGuaranteeValue.TabIndex = 12;
+            this.txtGuaranteeValue.Text = "0";
+            this.txtGuaranteeValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // buttonCreatDocument
+            // btnCreatDocument
             // 
-            this.buttonCreatDocument.Location = new System.Drawing.Point(188, 483);
-            this.buttonCreatDocument.Name = "buttonCreatDocument";
-            this.buttonCreatDocument.Size = new System.Drawing.Size(83, 23);
-            this.buttonCreatDocument.TabIndex = 16;
-            this.buttonCreatDocument.Text = "Tạo văn bản";
-            this.buttonCreatDocument.UseVisualStyleBackColor = true;
-            this.buttonCreatDocument.Click += new System.EventHandler(this.buttonCreatDocument_Click);
+            this.btnCreatDocument.Location = new System.Drawing.Point(447, 809);
+            this.btnCreatDocument.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCreatDocument.Name = "btnCreatDocument";
+            this.btnCreatDocument.Size = new System.Drawing.Size(94, 43);
+            this.btnCreatDocument.TabIndex = 16;
+            this.btnCreatDocument.Text = "CreatDoc";
+            this.btnCreatDocument.UseVisualStyleBackColor = true;
+            this.btnCreatDocument.Click += new System.EventHandler(this.btnCreatDocument_Click);
+            // 
+            // btnNew
+            // 
+            this.btnNew.Location = new System.Drawing.Point(11, 809);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(97, 43);
+            this.btnNew.TabIndex = 19;
+            this.btnNew.Text = "New";
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // ContractInfoChildForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(456, 518);
+            this.ClientSize = new System.Drawing.Size(792, 1005);
             this.Controls.Add(this.label18);
-            this.Controls.Add(this.txbKHMS);
+            this.Controls.Add(this.ttxtKHMS);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.dateTimePickerActiveDateContract);
-            this.Controls.Add(this.dateTimePickerDurationDateContract);
-            this.Controls.Add(this.dateTimePickerDateSignedPO);
-            this.Controls.Add(this.buttonCreatDocument);
+            this.Controls.Add(this.dtpDateActive);
+            this.Controls.Add(this.dtpDeadline);
+            this.Controls.Add(this.dtpDateSigned);
+            this.Controls.Add(this.btnCreatDocument);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnRemove);
+            this.Controls.Add(this.btnNew);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnNewPO);
             this.Controls.Add(this.label11);
@@ -573,19 +642,20 @@ namespace OPM.GUI
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.tbxSiteB);
-            this.Controls.Add(this.tbxSiteA);
-            this.Controls.Add(this.tbxValueContract);
-            this.Controls.Add(this.txbTypeContract);
-            this.Controls.Add(this.tbxDurationContract);
-            this.Controls.Add(this.tbxAccountingCode);
-            this.Controls.Add(this.tbBidName);
-            this.Controls.Add(this.tbContract);
-            this.Controls.Add(this.btnDescriptionA);
+            this.Controls.Add(this.btnIdSiteB);
+            this.Controls.Add(this.txtIdSiteB);
+            this.Controls.Add(this.txtIdSiteA);
+            this.Controls.Add(this.txtValue);
+            this.Controls.Add(this.txtType);
+            this.Controls.Add(this.txtDuration);
+            this.Controls.Add(this.txtAccountingCode);
+            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.txtId);
+            this.Controls.Add(this.btnIdSiteA);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ContractInfoChildForm";
             this.Text = "ContractInfoChildForm";
             this.Load += new System.EventHandler(this.ContractInfoChildForm_Load);
@@ -600,11 +670,11 @@ namespace OPM.GUI
 
         #endregion
 
-        private System.Windows.Forms.Button btnDescriptionA;
-        private System.Windows.Forms.TextBox tbContract;
-        private System.Windows.Forms.TextBox tbBidName;
-        private System.Windows.Forms.TextBox tbxAccountingCode;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnIdSiteA;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtAccountingCode;
+        private System.Windows.Forms.Button btnIdSiteB;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -616,38 +686,39 @@ namespace OPM.GUI
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox tbxDurationContract;
-        private System.Windows.Forms.TextBox txbTypeContract;
-        private System.Windows.Forms.TextBox tbxValueContract;
-        private System.Windows.Forms.TextBox tbxDurationPO;
-        private System.Windows.Forms.TextBox tbxSiteA;
+        private System.Windows.Forms.TextBox txtDuration;
+        private System.Windows.Forms.TextBox txtType;
+        private System.Windows.Forms.TextBox txtValue;
+        private System.Windows.Forms.TextBox txtDurationPO;
+        private System.Windows.Forms.TextBox txtIdSiteA;
   //      private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Button btnNewPO;
         private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox tbxSiteB;
-        private System.Windows.Forms.TextBox txbGaranteeValue;
+        private System.Windows.Forms.TextBox txtIdSiteB;
+        private System.Windows.Forms.TextBox txbGuaranteeValue;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.DateTimePicker dateTimePickerDateSignedPO;
-        private System.Windows.Forms.DateTimePicker dateTimePickerDurationDateContract;
-        private System.Windows.Forms.DateTimePicker dateTimePickerActiveDateContract;
+        private System.Windows.Forms.DateTimePicker dtpDateSigned;
+        private System.Windows.Forms.DateTimePicker dtpDeadline;
+        private System.Windows.Forms.DateTimePicker dtpDateActive;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txbKHMS;
+        private System.Windows.Forms.TextBox ttxtKHMS;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.DateTimePicker ExpirationDate;
-        private System.Windows.Forms.TextBox txbGaranteeActiveDate;
+        private System.Windows.Forms.DateTimePicker dtpGuaranteeDeadline;
+        private System.Windows.Forms.TextBox txtGuaranteeDuration;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox tbxGaranteeValue;
-        private System.Windows.Forms.Button btnContractAnnex;
-        private System.Windows.Forms.DateTimePicker dtpGaranteeCreatedDate;
+        private System.Windows.Forms.TextBox txtGuaranteeValue;
+        private System.Windows.Forms.Button btnAnnex;
+        private System.Windows.Forms.DateTimePicker dtpGuaranteeDateCreated;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button buttonCreatDocument;
+        private System.Windows.Forms.Button btnCreatDocument;
+        private System.Windows.Forms.Button btnNew;
     }
 }

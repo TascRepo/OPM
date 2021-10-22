@@ -6,8 +6,8 @@ namespace OPM.GUI
 {
     public partial class SiteForm : Form
     {
-        public delegate void SetValueContractForm(string vl);
-        public SetValueContractForm setValueContractForm;
+        public delegate void SetStringValue(string vl);
+        public SetStringValue setStringValue;
         string idSite;
 
         public string IdSite { get => idSite; set => idSite = value; }
@@ -18,8 +18,10 @@ namespace OPM.GUI
         }
         void AddSiteBinding()
         {
-            textBoxId.DataBindings.Clear();
-            textBoxId.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Id"));
+            txtId.DataBindings.Clear();
+            txtId.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Id"));
+            txtIdVNPT.DataBindings.Clear();
+            txtIdVNPT.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "IdVNPT"));
             textBoxType.DataBindings.Clear();
             textBoxType.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Type"));
             textBoxHeadquater.DataBindings.Clear();
@@ -52,7 +54,6 @@ namespace OPM.GUI
             textBoxProxy2.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Proxy2"));
             textBoxProxy3.DataBindings.Clear();
             textBoxProxy3.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Proxy3"));
-
         }
         void LoadDataGridView()
         {
@@ -60,6 +61,7 @@ namespace OPM.GUI
             dtgvSite.DataSource = sites;
             dtgvSite.Columns["Id"].HeaderText = @"Tên đơn vị";
             //dtgvSite.Columns["Id"].Width = 250;
+            dtgvSite.Columns["IdVNPT"].HeaderText = @"VNPT tỉnh";
             dtgvSite.Columns["Type"].HeaderText = @"Phân loại";
             //dtgvSite.Columns["Type"].Width = 250;
             dtgvSite.Columns["Type"].Visible = false;
@@ -68,10 +70,13 @@ namespace OPM.GUI
             dtgvSite.Columns["Headquater"].Visible = false;
 
             dtgvSite.Columns["Address"].HeaderText = @"Địa chỉ";
+            dtgvSite.Columns["Address"].Visible = false;
             //dtgvSite.Columns["Address"].Width = 250;
             dtgvSite.Columns["Phonenumber"].HeaderText = @"Điện thoại";
+            dtgvSite.Columns["Phonenumber"].Visible = false;
             //dtgvSite.Columns["Phonenumber"].Width = 250;
             dtgvSite.Columns["Fax"].HeaderText = @"Fax";
+            dtgvSite.Columns["Fax"].Visible = false;
             //dtgvSite.Columns["Fax"].Width = 250;
             dtgvSite.Columns["Tax"].HeaderText = @"Mã số thuế";
             //dtgvSite.Columns["Tax"].Width = 250;
@@ -82,8 +87,10 @@ namespace OPM.GUI
             dtgvSite.Columns["Account"].Visible = false;
 
             dtgvSite.Columns["Representative1"].HeaderText = @"Đại diện 1";
+            dtgvSite.Columns["Representative1"].Visible = false;
             //dtgvSite.Columns["Representative1"].Width = 250;
             dtgvSite.Columns["Position1"].HeaderText = @"Chức vụ";
+            dtgvSite.Columns["Position1"].Visible = false;
             //dtgvSite.Columns["Position1"].Width = 250;
             dtgvSite.Columns["Proxy1"].HeaderText = @"Văn bản uỷ quyền";
             //dtgvSite.Columns["Proxy1"].Width = 250;
@@ -108,16 +115,9 @@ namespace OPM.GUI
             dtgvSite.Columns["Proxy3"].HeaderText = @"Văn bản uỷ quyền";
             dtgvSite.Columns["Proxy3"].Visible = false;
             //dtgvSite.Columns["Proxy3"].Width = 250;
-            if (!OPMEnginee.Site.Exist(idSite))
-            {
-                OPMEnginee.Site site1 = new OPMEnginee.Site(idSite);
-                
-            }
-            //MessageBox.Show(textBoxId.Text);
-            //MessageBox.Show(textBoxId.Text);
             for (int i = 0; i < dtgvSite.RowCount; i++)
             {
-                dtgvSite.Rows[i].Cells[0].Value = i+1;
+                dtgvSite.Rows[i].Cells[0].Value = i + 1;
                 if (idSite == dtgvSite.Rows[i].Cells["Id"].Value.ToString()) dtgvSite.CurrentCell = dtgvSite.Rows[i].Cells["Id"];
             }
             AddSiteBinding();
@@ -125,7 +125,8 @@ namespace OPM.GUI
         private void btnAddOrUpdate_Click(object sender, EventArgs e)
         {
             OPMEnginee.Site site = new OPMEnginee.Site();
-            site.Id = textBoxId.Text.Trim();
+            site.Id = txtId.Text.Trim();
+            site.IdVNPT = txtIdVNPT.Text.Trim();
             site.Headquater = textBoxHeadquater.Text.Trim();
             site.Address = textBoxAddress.Text.Trim();
             site.Phonenumber = textBoxPhonenumber.Text.Trim();
@@ -146,27 +147,49 @@ namespace OPM.GUI
             else site.Insert();
             LoadDataGridView();
         }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (OPMEnginee.Site.Exist(textBoxId.Text.Trim()))
+            if (OPMEnginee.Site.Exist(txtId.Text.Trim()))
             {
-                OPMEnginee.Site.Delete(textBoxId.Text.Trim());
+                OPMEnginee.Site.Delete(txtId.Text.Trim());
                 //LoadDataGridView();
             }
             else MessageBox.Show("Site không tồn tại!");
         }
-
         private void SiteForm_Load(object sender, EventArgs e)
         {
             LoadDataGridView();
-
         }
-
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            OPMEnginee.Site site = new OPMEnginee.Site();
+            site.Id = txtId.Text.Trim();
+            site.IdVNPT = txtIdVNPT.Text.Trim();
+            site.Headquater = textBoxHeadquater.Text.Trim();
+            site.Address = textBoxAddress.Text.Trim();
+            site.Phonenumber = textBoxPhonenumber.Text.Trim();
+            site.Fax = textBoxFax.Text.Trim();
+            site.Tax = textBoxTax.Text.Trim();
+            site.Account = textBoxAccount.Text.Trim();
+            site.Type = textBoxType.Text.Trim();
+            site.Representative1 = textBoxRepresentative1.Text.Trim();
+            site.Representative2 = textBoxRepresentative2.Text.Trim();
+            site.Representative3 = textBoxRepresentative3.Text.Trim();
+            site.Position1 = textBoxPosition1.Text.Trim();
+            site.Position2 = textBoxPosition2.Text.Trim();
+            site.Position3 = textBoxPosition3.Text.Trim();
+            site.Proxy1 = textBoxProxy1.Text.Trim();
+            site.Proxy2 = textBoxProxy2.Text.Trim();
+            site.Proxy3 = textBoxProxy3.Text.Trim();
+            if (site.Exist()) site.Update();
+            else site.Insert();
+            LoadDataGridView();
+            setStringValue(idSite);
+            (Tag as OPMDASHBOARDA).OpenContractForm();
+        }
         private void textBoxId_TextChanged(object sender, EventArgs e)
         {
-            setValueContractForm(textBoxId.Text);
-            idSite = textBoxId.Text;
+            idSite = txtId.Text;
         }
     }
 }

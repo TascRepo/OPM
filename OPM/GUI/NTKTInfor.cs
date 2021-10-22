@@ -1,5 +1,4 @@
-﻿using OPM.DBHandler;
-using OPM.OPMEnginee;
+﻿using OPM.OPMEnginee;
 using OPM.WordHandler;
 using System;
 using System.Windows.Forms;
@@ -10,20 +9,33 @@ namespace OPM.GUI
     {
         public delegate void UpdateCatalogDelegate(string value);
         public UpdateCatalogDelegate UpdateCatalogPanel;
-
-        public delegate void RequestDashBoardOpenNTKTForm(string strIDContract, string strKHMS, string strPONumber, string strPOID);
-        public RequestDashBoardOpenNTKTForm requestDashBoardOpenNTKTForm;
-
-        public delegate void RequestDashBoardPurchaseOderForm(string strIDPO);
+        public delegate void RequestDashBoardPurchaseOderForm(PO_Thanh pO);
         public RequestDashBoardPurchaseOderForm requestDashBoardPurchaseOderForm;
-
-        //Khai báo NTKT hiện tại
         private NTKT_Thanh ntkt;
-        public NTKT_Thanh Ntkt { get => ntkt; set => ntkt = value; }
-
+        public NTKT_Thanh Ntkt
+        {
+            get => ntkt;
+            set
+            {
+                ntkt = value;
+                LoadData();
+            }
+        }
         public NTKTInfor()
         {
             InitializeComponent();
+        }
+        void LoadData()
+        {
+            tbxId.Text = ntkt.Id;
+            dtpCreate_date.Value = ntkt.Create_date;
+            tbxNumber.Text = ntkt.Number.ToString();
+            dtpDeliver_Date_Expected.Value = ntkt.Deliver_date_expected;
+            dtpDate_BBKTKT.Value = ntkt.Date_BBKTKT;
+            dtpDate_BBNTKT.Value = ntkt.Date_BBNTKT;
+            dateTimePickerCNBQPM.Value = ntkt.Date_CNBQPM;
+            txbNumberOfDevice.Text = ntkt.Numberofdevice.ToString();
+            txbNumberOfDevice2.Text = ntkt.Numberofdevice2.ToString();
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -42,42 +54,24 @@ namespace OPM.GUI
         private void btnBack_Click(object sender, EventArgs e)
         {
             UpdateCatalogPanel("PO_" + ntkt.Id_po);
-            requestDashBoardPurchaseOderForm(ntkt.Id_po);
+            PO_Thanh pO = new PO_Thanh(ntkt.Id_po);
+            requestDashBoardPurchaseOderForm(pO);
         }
-        private void NTKTInfor_Load(object sender, EventArgs e)
-        {
-            if (ntkt == null) return;
-            tbxId.Text = ntkt.Id;
-            dtpCreate_date.Value = ntkt.Create_date;
-            tbxNumber.Text = ntkt.Number.ToString();
-            dtpDeliver_Date_Expected.Value = ntkt.Deliver_date_expected;
-            dtpDate_BBKTKT.Value = ntkt.Date_BBKTKT;
-            dtpDate_BBNTKT.Value = ntkt.Date_BBNTKT;
-            dateTimePickerCNBQPM.Value = ntkt.Date_CNBQPM;
-            txbNumberOfDevice.Text = ntkt.Numberofdevice.ToString();
-            txbNumberOfDevice2.Text = ntkt.Numberofdevice2.ToString();
-        }
-
-        private void btnChoose_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void txbNumberOfDevice_TextChanged(object sender, EventArgs e)
         {
-            try
-            {
-                txbNumberOfDevice2.Text = Math.Round(double.Parse(txbNumberOfDevice.Text) / 50, 0, MidpointRounding.AwayFromZero).ToString();
-            }
-            catch
-            {
-                MessageBox.Show("Nhập đúng dạng số!");
-            }
+            if (!string.IsNullOrEmpty(txbNumberOfDevice.Text.Trim()))
+                try
+                {
+                    txbNumberOfDevice2.Text = Math.Round(double.Parse(txbNumberOfDevice.Text) / 50, 0, MidpointRounding.AwayFromZero).ToString();
+                }
+                catch
+                {
+                    MessageBox.Show("Nhập đúng dạng số!");
+                }
         }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(string.Format("Bạn có chắc chắn xoá cả đợt NTKT số {0} của {1} không?", ntkt.Id,ntkt.Id_po),"Cảnh báo!",MessageBoxButtons.OKCancel)== System.Windows.Forms.DialogResult.Cancel)return;
+            if (MessageBox.Show(string.Format("Bạn có chắc chắn xoá cả đợt NTKT số {0} của {1} không?", ntkt.Id, ntkt.Id_po), "Cảnh báo!", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.Cancel) return;
             ntkt.Delete();
             UpdateCatalogPanel("PO_" + ntkt.Id_po);
         }

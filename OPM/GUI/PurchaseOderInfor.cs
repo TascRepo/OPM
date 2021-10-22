@@ -1,5 +1,4 @@
-﻿using OPM.DBHandler;
-using OPM.ExcelHandler;
+﻿using OPM.ExcelHandler;
 using OPM.OPMEnginee;
 using OPM.WordHandler;
 using System;
@@ -10,153 +9,187 @@ namespace OPM.GUI
 {
     public partial class PurchaseOderInfor : Form
     {
-        /*Delegate Request Dashboard Update Catalog Admin*/
-        public delegate void UpdateCatalogDelegate(string value);
-        public UpdateCatalogDelegate UpdateCatalogPanel;
-
-        /*Delegate Request Dashboard Open NTKT form*/
-        public delegate void RequestDashBoardOpenNTKTForm(string strPOID);
-        public RequestDashBoardOpenNTKTForm requestDashBoardOpenNTKTForm;
-
-        /*Delegate Request Dashboard Open Confirm form*/
-        public delegate void RequestDashBoardOpenConfirmForm(string strIDContract, string strKHMS, string strPONumber, string strPOID);
-        public RequestDashBoardOpenConfirmForm requestDashBoardOpenConfirmPOForm;
-
-        public delegate void RequestDashBoardPurchaseOderForm(string strIDPO, string strKHMS);
-        public RequestDashBoardPurchaseOderForm requestDashBoardPurchaseOderForm;
-
-        //open excel handle
-        public delegate void RequestDasckboardOpenExcel();
-        public RequestDasckboardOpenExcel requestDasckboardOpenExcel;
-
-        //open new DP
-        public delegate void RequestDaskboardOpenDP(string idpo, string idcontract, string POName);
-        public RequestDaskboardOpenDP requestDaskboardOpenDP;
-
-        //Khai báo POCurrent
-        public Contract contract;
-        public PO_Thanh po;
-        //
-        public static string maHD = "";
-        public static string maPO = "";
-        public static string tenPO = "";
         public PurchaseOderInfor()
         {
             InitializeComponent();
         }
-
+        private void PurchaseOderInfor_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+        void LoadData()
+        {
+            txtIdPO.Text = (Tag as OPMDASHBOARDA).PO.Id;
+            txtIdPO.Tag = (Tag as OPMDASHBOARDA).PO.Id;     //Lưu lại Id khi cần vì txtIdPO.Text có thể thay đổi khi Edit
+            txtPOName.Text = (Tag as OPMDASHBOARDA).PO.POName;
+            dtpSignedDate.Value = (Tag as OPMDASHBOARDA).PO.SignedDate;
+            txtNumberOfDevice.Text = (Tag as OPMDASHBOARDA).PO.NumberOfDevice.ToString();
+            txtConfirmRequestDuration.Text = ((Tag as OPMDASHBOARDA).PO.ConfirmRequestDate.Date - (Tag as OPMDASHBOARDA).PO.SignedDate.Date).TotalDays.ToString();
+            dtpDefaultPerformDate.Value = (Tag as OPMDASHBOARDA).PO.DefaultPerformDate;
+            txtDuration.Text= ((Tag as OPMDASHBOARDA).PO.Deadline.Date - (Tag as OPMDASHBOARDA).PO.PerformDate.Date).TotalDays.ToString();
+            //dtpDeadline.Value = (Tag as OPMDASHBOARDA).PO.Deadline;
+            txtTotalValue.Text = (Tag as OPMDASHBOARDA).PO.TotalValue.ToString();
+            txtAdvancePercentage.Text = (Tag as OPMDASHBOARDA).PO.AdvancePercentage.ToString();
+            dtpConfirmCreatedDate.Value = (Tag as OPMDASHBOARDA).PO.ConfirmCreatedDate;
+            txtIdConfirm.Text = (Tag as OPMDASHBOARDA).PO.IdConfirm.ToString();
+            dtpAdvanceCreatedDate.Value = (Tag as OPMDASHBOARDA).PO.AdvanceCreatedDate;
+            txtAdvanceGuaranteePercentage.Text = (Tag as OPMDASHBOARDA).PO.AdvanceGuaranteePercentage.ToString();
+            dtpAdvanceGuaranteeCreatedDate.Value = (Tag as OPMDASHBOARDA).PO.AdvanceGuaranteeCreatedDate;
+            dtpPerformDate.Value = (Tag as OPMDASHBOARDA).PO.PerformDate;
+            txtIdAdvanceRequest.Text = (Tag as OPMDASHBOARDA).PO.IdAdvanceRequest;
+            dtpAdvanceRequestDate.Value = (Tag as OPMDASHBOARDA).PO.AdvanceRequestDate;
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            PO_Thanh po = new PO_Thanh();
-            Contract contract = new Contract();
-            po.Id = txbPOCode.Text.Trim();
-            po.Po_number = txbPOName.Text;
-            po.Datecreated = TimePickerDateCreatedPO.Value;
-            try
+            if((Tag as OPMDASHBOARDA).PO.Id==(new PO_Thanh()).Id)
             {
-                po.Numberofdevice = double.Parse(txbNumberDevice.Text);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Nhập lại dạng số thiết bị!");
+                MessageBox.Show("Nhập đúng số PO!");
                 return;
             }
-            po.Dateconfirm = TimePickerDateConfirmPO.Value;
-            po.Dateperform = TimepickerDefaultActive.Value;
-            po.Dateline = TimePickerDeadLinePO.Value;
-            try
+            if ((Tag as OPMDASHBOARDA).TempStatus == 4)//Đang ở Form chỉnh sửa
             {
-                po.Totalvalue = double.Parse(txbValuePO.Text);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Nhập lại dạng Tổng giá trị hợp đồng");
-                return;
-            }
-            if (po.Totalvalue < 0)
-            {
-                MessageBox.Show("Nhập lại dạng Tổng giá trị hợp >= 0");
-                return;
-            }
-            try
-            {
-                po.Tupo = int.Parse(tbxTupo.Text);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Nhập lại dạng số TUPO!");
-                return;
-            }
-            if (po.Tupo < 0 || po.Tupo > 100)
-            {
-                MessageBox.Show("Nhập lại 0 <= Tạm ứng PO <= 100");
-                return;
-            }
-            po.Id_contract = txbIDContract.Text.Trim();
-            po.Confirmpo_datecreated = confirmpo_datecreated.Value;
-            po.Confirmpo_number = confirmpo_number.Text;
-            po.Tupo_datecreated = tupo_datecreated.Value;
-            try
-            {
-                po.Bltupo = int.Parse(bltupo.Text);
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Nhập lại dạng sô BLTUPO!");
-                return;
-            }
-            if (po.Bltupo < 0 || po.Bltupo > 100)
-            {
-                MessageBox.Show("Nhập lại 0 <= Bảo lãnh tạm ứng PO <= 100");
-                return;
-            }
-            po.Bltupo_datecreated = bltupo_datecreated.Value;
-            po.Confirmpo_dateactive = confirmpo_dateactive.Value;
-            ///////////////////////////////////
-            if (Contract.Exist(txbIDContract.Text.Trim()))
-            {
-                po.InsertOrUpdate();
-                //Tạo file xác nhận hợp đồng
-                if (txbnamefileKHGH.Text == "")
+                if (txtIdPO.Text == (txtIdPO.Tag as string))    //Không thay đổi IdPO
+                    (Tag as OPMDASHBOARDA).PO.Update();
+                else if (!(Tag as OPMDASHBOARDA).PO.Exist())
+                    (Tag as OPMDASHBOARDA).PO.Update(txtIdPO.Tag as string);
+                else
                 {
-                    if (po.CheckListDelivery_PO(po.Confirmpo_number))
+                    MessageBox.Show(string.Format("Đã tồn tại PO số '{0}'", (Tag as OPMDASHBOARDA).PO.Id));
+                    return;
+                }
+            }
+            if ((Tag as OPMDASHBOARDA).TempStatus == 3)//Đang ở Form tạo mới PO
+            {
+                if (!(Tag as OPMDASHBOARDA).PO.Exist())
+                {
+                    if((Tag as OPMDASHBOARDA).PO.Insert() > 0)
                     {
-                        MessageBox.Show(po.Confirmpo_number + "đã có file giao hàng dự kiến, không cần import thêm!");
-                    }
-                    else
-                    {
-                        MessageBox.Show(po.Confirmpo_number + "chưa có trong hệ thống, bạn phải bổ sung sau!");
+                        (Tag as OPMDASHBOARDA).TempStatus = 4;//Chuyển sang Form chỉnh sửa PO (đã tồn tại trong CSDL)
+                        (Tag as OPMDASHBOARDA).OpenPOForm();
                     }
                 }
-                if (txbnamefilePO.Text == "")
+                else
                 {
-                    if (po.CheckListExpected_PO(po.Id))
-                    {
-                        MessageBox.Show(po.Confirmpo_number + "đã có file giao hàng dự kiến, không cần import thêm!");
-                    }
-                    else
-                    {
-                        MessageBox.Show(po.Confirmpo_number + "chưa có trong hệ thống, bạn phải bổ sung sau!");
-                    }
+                    MessageBox.Show(string.Format("Không tạo được vì PO số '{0}' đã tồn tại", (Tag as OPMDASHBOARDA).PO.Id));
+                    return;
                 }
-                po.InsertOrUpdate_VBConfirmPO(txbPOCode.Text);
-                OpmWordHandler.Word_POConfirm(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text);
-                OpmWordHandler.Word_POBaoLanh(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text, txbValuePO.Text, bltupo.Text, txbDurationConfirm.Text);
-                OpmWordHandler.Word_POTamUng(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text, txbValuePO.Text, bltupo.Text, txbDurationConfirm.Text, svbdntt.Text);
             }
-            else
-            {
-                MessageBox.Show(string.Format("Không tồn tại hợp đồng {0}", txbIDContract.Text));
-                return;
-            }
-            UpdateCatalogPanel("PO_" + po.Id);
-            //Tạo các mẫu 23,24,36,37
-            OpmWordHandler.Temp23_CNCL_TongHop(po.Id);
-            OpmWordHandler.Temp24_CNCLNMTongHop(po.Id);
-            OpmWordHandler.Temp36_BBNTLicense(po.Id);
-            OpmWordHandler.Temp37_BBXNCDLicense(po.Id);
+            //if((Tag as OPMDASHBOARDA).TempStatus = 4)
 
-            this.Cursor = Cursors.Default;
+            //(Tag as OPMDASHBOARDA).PO.Id = txtIdPO.Text.Trim();
+            //(Tag as OPMDASHBOARDA).PO.POName = txtPOName.Text;
+            //(Tag as OPMDASHBOARDA).PO.SignedDate = dtpSignedDate.Value;
+            //try
+            //{
+            //    (Tag as OPMDASHBOARDA).PO.NumberOfDevice = double.Parse(txtNumberOfDevice.Text);
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Nhập lại dạng số thiết bị!");
+            //    return;
+            //}
+            //(Tag as OPMDASHBOARDA).PO.ConfirmRequestDate = dtpConfirmRequestDate.Value;
+            //(Tag as OPMDASHBOARDA).PO.DefaultPerformDate = dtpDefaultPerformDate.Value;
+            //(Tag as OPMDASHBOARDA).PO.Deadline = dtpDeadline.Value;
+            //try
+            //{
+            //    (Tag as OPMDASHBOARDA).PO.TotalValue = double.Parse(txtTotalValue.Text);
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Nhập lại dạng Tổng giá trị hợp đồng");
+            //    return;
+            //}
+            //if ((Tag as OPMDASHBOARDA).PO.TotalValue < 0)
+            //{
+            //    MessageBox.Show("Nhập lại dạng Tổng giá trị hợp >= 0");
+            //    return;
+            //}
+            //try
+            //{
+            //    (Tag as OPMDASHBOARDA).PO.AdvancePercentage = int.Parse(txtAdvancePercentage.Text);
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Nhập lại dạng số TUPO!");
+            //    return;
+            //}
+            //if ((Tag as OPMDASHBOARDA).PO.AdvancePercentage < 0 || (Tag as OPMDASHBOARDA).PO.AdvancePercentage > 100)
+            //{
+            //    MessageBox.Show("Nhập lại 0 <= Tạm ứng PO <= 100");
+            //    return;
+            //}
+            //(Tag as OPMDASHBOARDA).PO.ConfirmCreatedDate = dtpConfirmCreatedDate.Value;
+            //(Tag as OPMDASHBOARDA).PO.IdConfirm = txtIdConfirm.Text;
+            //(Tag as OPMDASHBOARDA).PO.AdvanceCreatedDate = dtpAdvanceCreatedDate.Value;
+            //try
+            //{
+            //    (Tag as OPMDASHBOARDA).PO.AdvanceGuaranteePercentage = int.Parse(txtAdvanceGuaranteePercentage.Text);
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Nhập lại dạng sô BLTUPO!");
+            //    return;
+            //}
+            //if ((Tag as OPMDASHBOARDA).PO.AdvanceGuaranteePercentage < 0 || (Tag as OPMDASHBOARDA).PO.AdvanceGuaranteePercentage > 100)
+            //{
+            //    MessageBox.Show("Nhập lại 0 <= Bảo lãnh tạm ứng PO <= 100");
+            //    return;
+            //}
+            //(Tag as OPMDASHBOARDA).PO.AdvanceGuaranteeCreatedDate = dtpAdvanceGuaranteeCreatedDate.Value;
+            //(Tag as OPMDASHBOARDA).PO.PerformDate = dtpPerformDate.Value;
+            //(Tag as OPMDASHBOARDA).PO.InsertOrUpdate();
+            ////Tạo file xác nhận hợp đồng
+            //if (txbnamefileKHGH.Text != "")
+            //{
+            //    (Tag as OPMDASHBOARDA).PO.InsertOrUpdate_VBConfirmPO(txtIdPO.Text);
+            //    //OpmWordHandler.Word_POConfirm(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text);
+            //}
+            //else
+            //{
+            //    if ((Tag as OPMDASHBOARDA).PO.CheckListDelivery_PO((Tag as OPMDASHBOARDA).PO.IdConfirm))
+            //    {
+            //        MessageBox.Show((Tag as OPMDASHBOARDA).PO.IdConfirm + "đã có file giao hàng dự kiến, không cần import thêm!");
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show((Tag as OPMDASHBOARDA).PO.IdConfirm + "chưa có trong hệ thống, bạn phải bổ sung sau!");
+            //    }
+            //}
+            ////Tạo 3 mẫu văn bản m4,m5,m6
+            //if (txbnamefilePO.Text != "")
+            //{
+            //    int returnValue = 0;
+            //    if ((Tag as OPMDASHBOARDA).PO.CheckListExpected_PO((Tag as OPMDASHBOARDA).PO.Id))
+            //    {
+            //        MessageBox.Show((Tag as OPMDASHBOARDA).PO.Id + "Đã có file phẩn bổ, không cần import thêm!");
+            //    }
+            //    else
+            //    {
+            //        for (int i = 0; i < dataGridViewPO.Rows.Count - 1; i++)
+            //        {
+            //            returnValue = (Tag as OPMDASHBOARDA).PO.InsertImportFilePO((Tag as OPMDASHBOARDA).PO.Id, dataGridViewPO.Rows[i].Cells[1].Value.ToString(), dataGridViewPO.Rows[i].Cells[2].Value.ToString(), (new Contract_Thanh((Tag as OPMDASHBOARDA).PO.IdContract)).ContractName);
+            //        }
+            //        if (returnValue == 1)
+            //        {
+            //            MessageBox.Show("Lưu trữ thông tin file phân bổ thành công");
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("Lưu trữ thông tin file phân bổ thất bại");
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    if ((Tag as OPMDASHBOARDA).PO.CheckListExpected_PO((Tag as OPMDASHBOARDA).PO.Id))
+            //    {
+            //        MessageBox.Show((Tag as OPMDASHBOARDA).PO.Id + "đã có file phẩn bổ, không cần import thêm!");
+            //    }
+            //}
+            //OpmWordHandler.Word_POBaoLanh(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text, txbValuePO.Text, bltupo.Text, txbDurationConfirm.Text);
+            //OpmWordHandler.Word_POTamUng(txbKHMS.Text, txbIDContract.Text, txbPOCode.Text, txbPOName.Text, confirmpo_number.Text, TimePickerDateCreatedPO.Text, confirmpo_datecreated.Text, confirmpo_dateactive.Text, txbValuePO.Text, bltupo.Text, txbDurationConfirm.Text, svbdntt.Text);
+            //this.Cursor = Cursors.Default;
         }
         public void SetValueItemForPO(string idPO)
         {
@@ -164,190 +197,127 @@ namespace OPM.GUI
             string namecontract = null, KHMS = null;
             pO.DisplayPO(idPO, ref namecontract, ref KHMS);
             pO.GetDisplayPO(idPO, ref pO);
-            this.txbKHMS.Text = KHMS;
-            this.txbIDContract.Text = pO.IdContract;
-            this.txbPOCode.Text = pO.IDPO;
-            this.txbPOName.Text = pO.PONumber;
-            TimePickerDateCreatedPO.Value = Convert.ToDateTime(pO.DateCreatedPO);
-            this.txbNumberDevice.Text = pO.NumberOfDevice.ToString();
-            TimePickerDateConfirmPO.Value = Convert.ToDateTime(pO.DurationConfirmPO);
-            TimepickerDefaultActive.Value = Convert.ToDateTime(pO.DefaultActiveDatePO);
-            TimePickerDeadLinePO.Value = Convert.ToDateTime(pO.DeadLinePO);
-            this.txbValuePO.Text = pO.TotalValuePO.ToString();
+            this.txtIdPO.Text = pO.IDPO;
+            this.txtPOName.Text = pO.PONumber;
+            dtpSignedDate.Value = Convert.ToDateTime(pO.DateCreatedPO);
+            this.txtNumberOfDevice.Text = pO.NumberOfDevice.ToString();
+            dtpConfirmRequestDate.Value = Convert.ToDateTime(pO.DurationConfirmPO);
+            dtpDefaultPerformDate.Value = Convert.ToDateTime(pO.DefaultActiveDatePO);
+            dtpDeadline.Value = Convert.ToDateTime(pO.DeadLinePO);
+            this.txtTotalValue.Text = pO.TotalValuePO.ToString();
             return;
+
         }
 
-        public void SetTxbIDContract(string strIDContract)
-        {
-            this.txbIDContract.Text = strIDContract;
-        }
-        public void SetTxbKHMS(string strKHMS)
-        {
-            this.txbKHMS.Text = strKHMS;
-        }
         private void btnNTKT_Click(object sender, EventArgs e)
         {
-            /*Request DashBoard Open NTKT Form*/
-            string strContract = "Contract_" + txbIDContract.Text.ToString();
-            /*Request DashBoard Open PO Form*/
-            requestDashBoardOpenNTKTForm(txbPOCode.Text.Trim());
-            return;
-
+            NTKT_Thanh ntkt = new NTKT_Thanh();
+            ntkt.Id_po = (Tag as OPMDASHBOARDA).PO.Id;
+            (Tag as OPMDASHBOARDA).OpenNTKTForm();
         }
-        private void btnBaoHiem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnNewDP_Click(object sender, EventArgs e)
         {
             PO_Thanh pCheck = new PO_Thanh();
-            if (txbPOName.Text == "POX" || txbPOCode.Text == "XXX/CUVT-KV" || txbIDContract.Text == "XXX-202X/CUVT-ANSV/DTRR-KHMS")
-            {
-                MessageBox.Show("Chưa khởi tạo PO thì không tạo DP!");
-            }
-            else if (!pCheck.Exist(txbPOCode.Text))
+            if (!pCheck.Exist(txtIdPO.Text))
             {
                 MessageBox.Show("PO chưa tồn tại trong CSDL!");
             }
             else
             {
-                requestDaskboardOpenDP(txbPOCode.Text, txbIDContract.Text, txbPOName.Text);
             }
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            //requestDasckboardOpenExcel();
-            DialogResult d;
-            d = MessageBox.Show("Bạn có chắc chắn muốn xóa PO", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-            if (d == DialogResult.Yes)
+            if ((Tag as OPMDASHBOARDA).TempStatus == 3) return;
+            if (MessageBox.Show(string.Format("Bạn có chắc chắn muốn xóa PO số '{0}'",(Tag as OPMDASHBOARDA).PO.Id), "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
-                PO p1 = new PO();
-                p1.DeleteInforPO(po.Id);
-                Close();
-            }
-            MessageBox.Show("Xóa PO " + po.Id + " thành công!");
-            UpdateCatalogPanel("Contract_" + po.Id_contract);
-        }
-
-        private void PurchaseOderInfor_Load(object sender, EventArgs e)
-        {
-            txbnamefilePO.ReadOnly = true;
-            txbKHMS.Enabled = false;
-            if (contract != null)
-            {
-                txbKHMS.Text = contract.KHMS;
-                txbIDContract.Text = contract.Id;
-                txbIDContract.Enabled = false;
-                if (po != null)
+                if((Tag as OPMDASHBOARDA).PO.Delete() > 0)
                 {
-                    txbPOCode.Text = po.Id;
-                    txbPOName.Text = po.Po_number;
-                    TimePickerDateCreatedPO.Value = po.Datecreated;
-                    txbNumberDevice.Text = po.Numberofdevice.ToString();
-                    TimePickerDateConfirmPO.Value = po.Dateconfirm;
-                    TimepickerDefaultActive.Value = po.Dateperform;
-                    TimePickerDeadLinePO.Value = po.Dateline;
-                    txbValuePO.Text = po.Totalvalue.ToString();
-                    tbxTupo.Text = po.Tupo.ToString();
-                    confirmpo_datecreated.Value = po.Confirmpo_datecreated;
-                    confirmpo_number.Text = po.Confirmpo_number.ToString();
-                    tupo_datecreated.Value = po.Tupo_datecreated;
-                    bltupo.Text = po.Bltupo.ToString();
-                    bltupo_datecreated.Value = po.Bltupo_datecreated;
-                    confirmpo_dateactive.Value = po.Confirmpo_dateactive;
+                    (Tag as OPMDASHBOARDA).TempStatus = 3;  //Chuyển đến Form tạo mới PO
+                    (Tag as OPMDASHBOARDA).OpenPOForm();
                 }
             }
-            else
-            {
-                txbIDContract.Text = po.Id_contract.Substring(9);
-            }
         }
+
         public OpenFileDialog openFileExcel = new OpenFileDialog();
         public string sConnectionString = null;
         private void importPO_Click(object sender, EventArgs e)
         {
-            //
             if (openFileExcel.ShowDialog() == DialogResult.OK)
             {
                 if (File.Exists(openFileExcel.FileName))
                 {
                     txbnamefilePO.Text = openFileExcel.FileName;
                     string filename = openFileExcel.FileName;
-                    int ret = OpmExcelHandler.fReadExcelFilePO2(filename, ref pbpo);
+                    DataTable dt = new DataTable();
+                    int ret = OpmExcelHandler.fReadExcelFilePO2(filename, ref dt);
                     if (ret == 1)
                     {
-                        IPPO = txbIDContract.Text;
-                        PBPO pBPO = new PBPO();
-                        pBPO.ShowDialog();
+                        dataGridViewPO.DataSource = dt;
+                        MessageBox.Show("Import thành công!");
                     }
                     else
                     {
-                        MessageBox.Show("Import thất bại");
+                        MessageBox.Show("Import Không thành công!");
                     }
                 }
 
             }
         }
-
         private void txbDurationConfirm_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                TimePickerDateConfirmPO.Value = TimePickerDateCreatedPO.Value.AddDays(int.Parse(txbDurationConfirm.Text));
+                if (!string.IsNullOrEmpty(txtConfirmRequestDuration.Text.Trim()))
+                {
+                    (Tag as OPMDASHBOARDA).PO.ConfirmRequestDate = dtpSignedDate.Value.AddDays(int.Parse(txtConfirmRequestDuration.Text.Trim()));
+                    dtpConfirmRequestDate.Value = dtpSignedDate.Value.AddDays(int.Parse(txtConfirmRequestDuration.Text.Trim()));
+                }
+                else
+                    dtpConfirmRequestDate.Value = dtpSignedDate.Value;
             }
             catch (Exception)
             {
                 MessageBox.Show("Nhập lại dạng số!");
             }
         }
-
-        private void TimePickerDateCreatedPO_ValueChanged(object sender, EventArgs e)
+        private void dtpSignedDate_ValueChanged(object sender, EventArgs e)
         {
+            (Tag as OPMDASHBOARDA).PO.SignedDate = dtpSignedDate.Value;
             try
             {
-                TimePickerDateConfirmPO.Value = TimePickerDateCreatedPO.Value.AddDays(int.Parse(txbDurationConfirm.Text));
-                TimepickerDefaultActive.Value = TimePickerDateCreatedPO.Value.AddDays(int.Parse(txbActiveAfter.Text));
-                TimePickerDeadLinePO.Value = TimePickerDateCreatedPO.Value.AddDays(int.Parse(txbDeadLine.Text));
+                dtpConfirmRequestDate.Value = dtpSignedDate.Value.AddDays(int.Parse(txtConfirmRequestDuration.Text));
+                dtpDeadline.Value = dtpSignedDate.Value.AddDays(int.Parse(txtDuration.Text));
             }
             catch (Exception)
             {
                 MessageBox.Show("Nhập lại dạng số!");
             }
-
         }
-
-        private void txbActiveAfter_TextChanged(object sender, EventArgs e)
+        private void txtDuration_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                TimepickerDefaultActive.Value = TimePickerDateCreatedPO.Value.AddDays(int.Parse(txbActiveAfter.Text));
+                if (!string.IsNullOrEmpty(txtDuration.Text.Trim()))
+                {
+                    (Tag as OPMDASHBOARDA).PO.Deadline = dtpPerformDate.Value.AddDays(int.Parse(txtDuration.Text));
+                    dtpDeadline.Value = dtpPerformDate.Value.AddDays(int.Parse(txtDuration.Text));
+                }
+                else
+                    dtpDeadline.Value = dtpPerformDate.Value;
             }
             catch (Exception)
             {
                 MessageBox.Show("Nhập lại dạng số!");
             }
-
-        }
-
-        private void txbDeadLine_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                TimePickerDeadLinePO.Value = TimePickerDateCreatedPO.Value.AddDays(int.Parse(txbDeadLine.Text));
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Nhập lại dạng số!");
-            }
-
         }
         static public DataTable dt = new DataTable();
         static public DataTable dtkhgh = new DataTable();
-        static public DataTable pbpo = new DataTable();
         static public string IDVBXN = "";
         static public string IPPO = "";
-        private void button3_Click(object sender, EventArgs e)
+
+        
+        private void btnDeliveryPlan_Click(object sender, EventArgs e)
         {
             //openFileExcel.Multiselect = true;
             //openFileExcel.Filter = "Excel Files(.xls)|*.xls| Excel Files(.xlsx)| *.xlsx | Excel Files(*.xlsm) | *.xlsm";
@@ -355,13 +325,12 @@ namespace OPM.GUI
             {
                 if (File.Exists(openFileExcel.FileName))
                 {
-                    txbnamefileKHGH.Text = openFileExcel.FileName;
                     string filename = openFileExcel.FileName;
                     int ret = OpmExcelHandler.SaveFileInDelivery_PO(filename, ref dtkhgh);
                     if (ret == 1)
                     {
-                        IDVBXN = confirmpo_number.Text;
-                        IPPO = txbIDContract.Text;
+                        IDVBXN = txtIdConfirm.Text;
+                        IPPO = txtIdPO.Text;
                         KHGH_PO kHGH_PO = new KHGH_PO();
                         kHGH_PO.ShowDialog();
                     }
@@ -373,35 +342,176 @@ namespace OPM.GUI
 
             }
         }
-
-        private void TimepickerDefaultActive_ValueChanged(object sender, EventArgs e)
+        private void txtIdPO_TextChanged(object sender, EventArgs e)
         {
-
+            (Tag as OPMDASHBOARDA).PO.Id = txtIdPO.Text.Trim();
         }
-
-        private void button1_Click_1(object sender, EventArgs e)
+        private void txtPOName_TextChanged(object sender, EventArgs e)
         {
+            (Tag as OPMDASHBOARDA).PO.POName = txtPOName.Text;
+            (Tag as OPMDASHBOARDA).SetNameOfSelectNode(txtPOName.Text);
         }
-
-        private void txbValuePO_TextChanged(object sender, EventArgs e)
+        private void txtNumberOfDevice_TextChanged(object sender, EventArgs e)
         {
-        }
-
-        private void txbNumberDevice_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if(e.KeyChar == (char)13)
+            try
             {
-                Contract_Goods cg = new Contract_Goods();
-                double priceUnit = cg.GetPriceUnit(txbIDContract.Text);
-                priceUnit = double.Parse(txbNumberDevice.Text) * priceUnit;
-                txbValuePO.Text = priceUnit.ToString();
+                if (!string.IsNullOrEmpty(txtNumberOfDevice.Text.Trim()))
+                    (Tag as OPMDASHBOARDA).PO.NumberOfDevice = int.Parse(txtNumberOfDevice.Text.Trim());
+                else
+                    (Tag as OPMDASHBOARDA).PO.NumberOfDevice = 0;
+            }
+            catch
+            {
+                MessageBox.Show("Nhập lại dạng số!");
+            }
+        }
+        private void dtpConfirmRequestDate_ValueChanged(object sender, EventArgs e)
+        {
+            //(Tag as OPMDASHBOARDA).PO.ConfirmRequestDate = dtpConfirmRequestDate.Value;
+        }
+
+        private void dtpDefaultPerformDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).PO.DefaultPerformDate = dtpDefaultPerformDate.Value;
+        }
+
+        private void txtTotalValue_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(txtTotalValue.Text.Trim()))
+                    (Tag as OPMDASHBOARDA).PO.TotalValue = double.Parse(txtTotalValue.Text.Trim());
+                else
+                    (Tag as OPMDASHBOARDA).PO.TotalValue = 0;
+            }
+            catch
+            {
+                MessageBox.Show("Nhập lại dạng số!");
+            }
+        }
+        private void txtIdConfirm_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).PO.IdConfirm = txtIdConfirm.Text.Trim();
+        }
+        private void dtpConfirmCreatedDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).PO.ConfirmCreatedDate = dtpConfirmCreatedDate.Value;
+            try
+            {
+                if (!string.IsNullOrEmpty(txtDuration.Text.Trim()))
+                {
+                    (Tag as OPMDASHBOARDA).PO.Deadline = dtpPerformDate.Value.AddDays(int.Parse(txtDuration.Text));
+                    dtpDeadline.Value = dtpPerformDate.Value.AddDays(int.Parse(txtDuration.Text));
+                }
+                else
+                    dtpDeadline.Value = dtpPerformDate.Value;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Nhập lại dạng số!");
             }
         }
 
-        private void button1_Click_2(object sender, EventArgs e)
+        private void dtpPerformDate_ValueChanged(object sender, EventArgs e)
         {
-            Product product = new Product();
-            product.Show();
+            (Tag as OPMDASHBOARDA).PO.PerformDate = dtpPerformDate.Value;
+        }
+
+        private void txtAdvancePercentage_TextChanged(object sender, EventArgs e)
+        {
+            try
+           {
+                if (!string.IsNullOrEmpty(txtAdvancePercentage.Text.Trim()))
+                {
+                    if (0 <= int.Parse(txtAdvancePercentage.Text.Trim()) && int.Parse(txtAdvancePercentage.Text.Trim()) <= 100)
+                        (Tag as OPMDASHBOARDA).PO.AdvancePercentage = int.Parse(txtAdvancePercentage.Text.Trim());
+                    else
+                    {
+                        MessageBox.Show("Nhập lại dạng số trong khoảng 0 đến 100!");
+                        return;
+                    }
+                }
+                else
+                    (Tag as OPMDASHBOARDA).PO.AdvancePercentage = 0;
+            }
+            catch
+            {
+                MessageBox.Show("Nhập lại dạng số!");
+            }
+        }
+
+        private void dtpAdvanceCreatedDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).PO.AdvanceCreatedDate = dtpAdvanceCreatedDate.Value;
+        }
+
+        private void txtAdvanceGuaranteePercentage_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(txtAdvanceGuaranteePercentage.Text.Trim()))
+                {
+                    if (0 <= int.Parse(txtAdvanceGuaranteePercentage.Text.Trim()) && int.Parse(txtAdvanceGuaranteePercentage.Text.Trim()) <= 100)
+                        (Tag as OPMDASHBOARDA).PO.AdvanceGuaranteePercentage = int.Parse(txtAdvanceGuaranteePercentage.Text.Trim());
+                    else
+                    {
+                        MessageBox.Show("Nhập lại dạng số trong khoảng 0 đến 100!");
+                        return;
+                    }
+                }
+                else
+                    (Tag as OPMDASHBOARDA).PO.AdvanceGuaranteePercentage = 0;
+            }
+            catch
+            {
+                MessageBox.Show("Nhập lại dạng số!");
+            }
+        }
+
+        private void dtpAdvanceGuaranteeCreatedDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).PO.AdvanceGuaranteeCreatedDate = dtpAdvanceGuaranteeCreatedDate.Value;
+        }
+
+        private void txtIdAdvanceRequest_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).PO.IdAdvanceRequest = txtIdAdvanceRequest.Text.Trim();
+        }
+
+        private void dtpAdvanceRequestDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).PO.AdvanceRequestDate = dtpAdvanceRequestDate.Value;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).TempStatus = 1;
+            (Tag as OPMDASHBOARDA).OpenContractForm();
+        }
+
+        private void btnNewPO_Click(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).TempStatus = 3;//Chuyển sang Form tạo mới PO
+            (Tag as OPMDASHBOARDA).OpenPOForm();
+        }
+
+        private void btnCreatDoc_Click(object sender, EventArgs e)
+        {
+            //Tạo mẫu 7
+
+            //Tạo mẫu 6
+
+            //Tạo mẫu 5
+
+            //Tạo mẫu 4
+
+            //Tạo mẫu 3
+            OpmWordHandler.Temp3_CreatPOConfirm((Tag as OPMDASHBOARDA).PO.Id);
+            //Tạo các mẫu 23,24,36,37
+            OpmWordHandler.Temp23_CNCL_TongHop((Tag as OPMDASHBOARDA).PO.Id);
+            OpmWordHandler.Temp24_CNCLNMTongHop((Tag as OPMDASHBOARDA).PO.Id);
+            OpmWordHandler.Temp36_BBNTLicense((Tag as OPMDASHBOARDA).PO.Id);
+            OpmWordHandler.Temp37_BBXNCDLicense((Tag as OPMDASHBOARDA).PO.Id);
         }
     }
 }

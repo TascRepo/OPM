@@ -20,8 +20,8 @@ namespace OPM.GUI
 
         private void PBPO_Load(object sender, EventArgs e)
         {
-            dataPBDKPO.DataSource = PurchaseOderInfor.pbpo;
-            mpo.Text = PurchaseOderInfor.IPPO;
+            //dataPBDKPO.DataSource = PurchaseOderInfor.pbpo;
+            //mpo.Text = PurchaseOderInfor.IPPO;
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -40,7 +40,7 @@ namespace OPM.GUI
         private void button1_Click(object sender, EventArgs e)
         {
             //Xuất mẫu 26
-            OpmWordHandler.Word_TiendoDP(txbkhms.Text, txbmaHD.Text, txbtenHD.Text, txbmaPO.Text, txbsoPO.Text, txbsoDP.Text, txbprovincename.Text, txbmaHang.Text, txbtenHang.Text, dtpycbd.Text, dtpycht.Text, txbycsl.Text, dtpthbd.Text, dtpthht.Text, txbthsl.Text, txbsoDCDP.Text);
+            //OpmWordHandler.Word_TiendoDP(txbkhms.Text, txbmaHD.Text, txbtenHD.Text, txbmaPO.Text, txbsoPO.Text, txbsoDP.Text, txbprovincename.Text, txbmaHang.Text, txbtenHang.Text, dtpycbd.Text, dtpycht.Text, txbycsl.Text, dtpthbd.Text, dtpthht.Text, txbthsl.Text, txbsoDCDP.Text);
             MessageBox.Show("Tạo file tiến độ tỉnh " + txbprovincename.Text + " thành công!");
         }
         public OpenFileDialog openFileExcel = new OpenFileDialog();

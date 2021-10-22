@@ -1,305 +1,296 @@
 ﻿using OPM.OPMEnginee;
 using OPM.WordHandler;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 namespace OPM.GUI
 {
-
-
     public partial class ContractInfoChildForm : Form
     {
-        //Yêu cầu cập nhật Node trên TreeView
-        public delegate void UpdateCatalogDelegate(string value);
-        public UpdateCatalogDelegate UpdateCatalogPanel;
-        public UpdateCatalogDelegate OpenPurchaseOrderInforGUI;
-
-        //Yêu cầu mở Form PO 
-        public delegate void RequestDashBoardOpenChildForm(string strIDContract);
-        public RequestDashBoardOpenChildForm RequestDashBoardOpenPOForm;
-
-        //Yêu cầu mở Form SieA, B
-        public delegate void RequestDashBoardOpenDescriptionForm(string id, DescriptionSiteForm.SetIdSite setIdSite);
-        public RequestDashBoardOpenDescriptionForm requestDashBoardOpendescriptionForm;
-        Contract_Goods goods;
-        public Contract contract;
         public ContractInfoChildForm()
         {
             InitializeComponent();
         }
-        //Form được gọi bằng IdContract
-        public ContractInfoChildForm(string idContract)
-        {
-            InitializeComponent();
-            SetValueItemForm(idContract);
-        }
-        void SetIdSiteA(string value)
-        {
-            tbxSiteA.Text = value;
-        }
-        void SetIdSiteB(string value)
-        {
-            tbxSiteB.Text = value;
-        }
         public void State(bool state)
         {
-            txbKHMS.ReadOnly = state;
-            tbContract.ReadOnly = state;
-            tbBidName.ReadOnly = state;
-            tbxAccountingCode.ReadOnly = state;
-            tbxDurationContract.ReadOnly = state;
-            txbTypeContract.ReadOnly = state;
-            //tbxValueContract.ReadOnly = state;
-            tbxDurationPO.ReadOnly = state;
-            txbGaranteeValue.ReadOnly = state;
-            txbGaranteeActiveDate.ReadOnly = state;
-            tbxSiteA.ReadOnly = state;
-            tbxSiteB.ReadOnly = state;
-            dateTimePickerActiveDateContract.Enabled = !state;
-            dateTimePickerDateSignedPO.Enabled = !state;
-            dtpGaranteeCreatedDate.Enabled = !state;
+            ttxtKHMS.ReadOnly = state;
+            txtId.ReadOnly = state;
+            txtName.ReadOnly = state;
+            txtAccountingCode.ReadOnly = state;
+            txtDuration.ReadOnly = state;
+            txtType.ReadOnly = state;
+            txtDurationPO.ReadOnly = state;
+            txbGuaranteeValue.ReadOnly = state;
+            txtGuaranteeDuration.ReadOnly = state;
+            txtIdSiteA.ReadOnly = state;
+            txtIdSiteB.ReadOnly = state;
+            dtpDateActive.Enabled = !state;
+            dtpDateSigned.Enabled = !state;
+            dtpGuaranteeDateCreated.Enabled = !state;
         }
-        private void SetValueItemForm(string idContract)
+        //Tải các thông số mặc định cho ContractForm với Contract tương ứng
+        private void LoadData()
         {
-            if (Contract.Exist(idContract))
-            {
-                Contract contract = new Contract(idContract);
-                txbKHMS.Text = contract.KHMS;
-                tbContract.Text = contract.Id;
-                tbBidName.Text = contract.Namecontract;
-                tbxAccountingCode.Text = contract.Codeaccouting;
-                dateTimePickerDateSignedPO.Value = contract.Datesigned;
-                dateTimePickerDurationDateContract.Value = dateTimePickerDateSignedPO.Value.AddDays(Convert.ToInt32(contract.Durationcontract));
-                txbTypeContract.Text = contract.Typecontract;
-                tbxDurationContract.Text = contract.Durationcontract.ToString();
-                dateTimePickerActiveDateContract.Value = contract.Activedate;
-                tbxValueContract.Text = contract.Valuecontract.ToString();
-                tbxDurationPO.Text = contract.Durationpo.ToString();
-                tbxSiteA.Text = contract.Id_siteA;
-                tbxSiteB.Text = contract.Id_siteB;
-                ExpirationDate.Value = contract.ExperationDate;
-                txbGaranteeActiveDate.Text = (contract.ExperationDate - contract.Activedate).TotalDays.ToString();
-                txbGaranteeValue.Text = contract.Blvalue.ToString();
-                dtpGaranteeCreatedDate.Value = contract.GaranteeCreatedDate;
-                btnContractAnnex.Enabled = true;
-                btnRemove.Enabled = true;
-                btnEdit.Enabled = true;
-                btnSave.Enabled = false;
-                btnNewPO.Enabled = true;
-                State(true);
-            }
-            else SetItemValue_Default();
-        }
-        //Tải các thông số mặc định cho Form
-        private void SetItemValue_Default()
-        {
-            txbKHMS.Text = "mua sắm tập trung thiết bị đầu cuối ont loại (2fe/ge+wifi singleband) tương thích hệ thống gpon cho nhu cầu năm 2020";
-            tbContract.Text = "XXX-2021/CUVT-ANSV/DTRR-KHMS";
-            tbBidName.Text = "Mua sắm thiết bị đầu cuối ONT loại (2FE/GE+Wifi singleband)";
-            tbxAccountingCode.Text = "C01007";
-            dateTimePickerDateSignedPO.Value = DateTime.Now;
-            dateTimePickerActiveDateContract.Value = DateTime.Now;
-            txbTypeContract.Text = "Theo đơn giá cố định";
-            tbxDurationContract.Text = "365";
-            dateTimePickerDurationDateContract.Value = DateTime.Now.AddDays(365);
-            dateTimePickerDurationDateContract.Enabled = false;
-            tbxValueContract.Text = "0";
-            tbxDurationPO.Text = "5";
-            txbGaranteeValue.Text = "50";
-            txbGaranteeActiveDate.Text = "7";
-            ExpirationDate.Value = DateTime.Now.AddDays(7);
-            ExpirationDate.Enabled = false;
-            tbxSiteA.Text = "Trung tâm cung ứng vật tư - Viễn thông TP.HCM";
-            tbxSiteB.Text = "Công ty TNHH thiết bị viễn thông ANSV";
-            dtpGaranteeCreatedDate.Value = DateTime.Now;
-            btnContractAnnex.Enabled = false;
-            btnRemove.Enabled = false;
-            btnEdit.Enabled = true;
-            btnSave.Enabled = true;
+            ttxtKHMS.Text = (Tag as OPMDASHBOARDA).Contract.KHMS;
+            txtId.Text = (Tag as OPMDASHBOARDA).Contract.Id;
+            txtId.Tag = txtId.Text;
+            txtName.Text = (Tag as OPMDASHBOARDA).Contract.ContractName;
+            txtAccountingCode.Text = (Tag as OPMDASHBOARDA).Contract.AccoutingCode;
+            dtpDateSigned.Value = (Tag as OPMDASHBOARDA).Contract.SignedDate;
+            dtpDeadline.Value = dtpDateSigned.Value.AddDays(Convert.ToInt32((Tag as OPMDASHBOARDA).Contract.ContractDuration));
+            txtType.Text = (Tag as OPMDASHBOARDA).Contract.TypeContract;
+            txtDuration.Text = (Tag as OPMDASHBOARDA).Contract.ContractDuration.ToString();
+            dtpDateActive.Value = (Tag as OPMDASHBOARDA).Contract.ActiveDate;
+            txtValue.Text = Math.Round((Tag as OPMDASHBOARDA).Contract.ContractValue).ToString();
+            txtDurationPO.Text = (Tag as OPMDASHBOARDA).Contract.PoDuration.ToString();
+            txtIdSiteA.Text = (Tag as OPMDASHBOARDA).Contract.IdSiteA;
+            txtIdSiteB.Text = (Tag as OPMDASHBOARDA).Contract.IdSiteB;
+            txtGuaranteeDuration.Text = ((Tag as OPMDASHBOARDA).Contract.GuaranteeDeadline.Date - (Tag as OPMDASHBOARDA).Contract.GuaranteeCreatedDate).TotalDays.ToString();
+            txbGuaranteeValue.Text = (Tag as OPMDASHBOARDA).Contract.GuaranteeValue.ToString();
+            txtGuaranteeValue.Text = Math.Round(((0.01 * (Tag as OPMDASHBOARDA).Contract.GuaranteeValue) * (Tag as OPMDASHBOARDA).Contract.ContractValue)).ToString();
+            dtpGuaranteeDateCreated.Value = (Tag as OPMDASHBOARDA).Contract.GuaranteeCreatedDate;
         }
         //Mở Form thông tin Site A
-        private void IdSiteA_Click(object sender, EventArgs e)
+        private void btnIdSiteA_Click(object sender, EventArgs e)
         {
-            //requestDashBoardOpendescriptionForm(tbxSiteA.Text, SetIdSiteA);
-            SiteForm siteForm = new SiteForm();
-            siteForm.Text = "Bảng lựa chọn chi tiết bên A của hợp đồng: " + tbContract.Text.Trim();
-            siteForm.IdSite = tbxSiteA.Text;
-            siteForm.setValueContractForm = SetIdSiteA;
-            siteForm.ShowDialog();
+
+            (Tag as OPMDASHBOARDA).OpenSiteAForm(txtIdSiteA.Text);
         }
         //Mở Form thông tin Site B
-        private void IdSiteB_Click(object sender, EventArgs e)
+        private void btnIdSiteB_Click(object sender, EventArgs e)
         {
-            //requestDashBoardOpendescriptionForm(tbxSiteB.Text, SetIdSiteB);
-            SiteForm siteForm = new SiteForm();
-            siteForm.Text = "Bảng lựa chọn chi tiết bên B của hợp đồng: " + tbContract.Text.Trim();
-            siteForm.IdSite = tbxSiteB.Text;
-            siteForm.setValueContractForm = SetIdSiteB;
-            siteForm.ShowDialog();
+            (Tag as OPMDASHBOARDA).OpenSiteBForm(txtIdSiteB.Text);
         }
         //Mở Form PO
         private void btnNewPO_Click(object sender, EventArgs e)
         {
-            string strContract = "Contract_" + tbContract.Text.Trim();
-            RequestDashBoardOpenPOForm(strContract);
-            return;
+            if ((Tag as OPMDASHBOARDA).Contract.Exist())
+            {
+                (Tag as OPMDASHBOARDA).TempStatus = 3;//Chuyển sang Form tạo mới PO
+                (Tag as OPMDASHBOARDA).OpenPOForm();
+            }
         }
 
         //**********************************
         //Ngày hết hạn hợp đồng = ngày hiệu lực + số ngày thực hiện hợp đồng
         //Ngày hết hạn bảo lãnh = ngày hiệu lực + số ngày bảo lãnh
-        private void dateTimePickerActiveDateContract_ValueChanged(object sender, EventArgs e)
+        private void dtpActiveDate_ValueChanged(object sender, EventArgs e)
         {
             try
             {
-                dateTimePickerDurationDateContract.Value = dateTimePickerActiveDateContract.Value.AddDays(double.Parse(tbxDurationContract.Text.Trim()));
-                ExpirationDate.Value = dateTimePickerActiveDateContract.Value.AddDays(double.Parse(txbGaranteeActiveDate.Text.Trim()));
+                dtpDeadline.Value = dtpDateActive.Value.AddDays(double.Parse(txtDuration.Text.Trim()));
+                //dtpGaranteeDeadline.Value = dtpDateActive.Value.AddDays(double.Parse(txtDurationGarantee.Text.Trim()));
             }
             catch (Exception)
             {
                 MessageBox.Show("Bạn phải chọn đúng định dạng ngày bắt đầu hợp đồng có hiệu lực!", "Thông báo");
-            }
-        }
-        private void txbGaranteeActiveDate_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                ExpirationDate.Value = dateTimePickerActiveDateContract.Value.AddDays(double.Parse(txbGaranteeActiveDate.Text.Trim()));
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Bạn phải nhập đúng số lượng (bằng số) ngày đến hạn bảo lãnh!", "Thông báo");
-            }
-        }
-        private void tbxDurationContract_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                dateTimePickerDurationDateContract.Value = dateTimePickerActiveDateContract.Value.AddDays(double.Parse(tbxDurationContract.Text.Trim()));
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Bạn phải nhập đúng số lượng (bằng số) ngày trong hợp đồng!", "Thông báo");
-            }
-        }
-        //Tạo File bảo lãnh thực hiện hợp đồng .docx
-        //Chuyển sang dạng có thể chỉnh sửa Form
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            State(false);
-            btnSave.Enabled = true;
-            btnContractAnnex.Enabled = true;
-        }
-        //Xoá hợp đồng
-        private void btnRemove_Click(object sender, EventArgs e)
-        {
-            if (Contract.Exist(tbContract.Text.Trim()))
-            {
-                Contract.Delete(tbContract.Text.Trim());
-                UpdateCatalogPanel("Contract");
-            }
-            SetItemValue_Default();
-            btnEdit.Enabled = true;
-            btnSave.Enabled = true;
-            State(false);
-        }
-        //Lưu thông tin hợp đồng vào dbo.Contract
-        //Cập nhật trên TreeView
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (goods == null)
-            {
-                MessageBox.Show("Cần nhập bảng giá Hợp đồng!");
                 return;
             }
-            Contract contract = new Contract();
-            contract.KHMS = txbKHMS.Text;
-            contract.Id = tbContract.Text.Trim();
-            contract.Namecontract = tbBidName.Text;
-            contract.Codeaccouting = tbxAccountingCode.Text;
-            contract.Typecontract = txbTypeContract.Text;
-            contract.Valuecontract = double.Parse(tbxValueContract.Text);
-            contract.Blvalue = int.Parse(txbGaranteeValue.Text);
-            contract.Id_siteA = tbxSiteA.Text;
-            contract.Id_siteB = tbxSiteB.Text;
-            contract.Datesigned = dateTimePickerDateSignedPO.Value;
-            contract.Activedate = dateTimePickerActiveDateContract.Value;
-            contract.ExperationDate = ExpirationDate.Value;
-            contract.Durationcontract = int.Parse(tbxDurationContract.Text);
-            contract.Durationpo = int.Parse(tbxDurationPO.Text);
-            contract.GaranteeCreatedDate = dtpGaranteeCreatedDate.Value;
-            if (!contract.Exist())
-                contract.Insert();
-            else contract.Update();
-            if (!goods.Exist()) 
-                goods.Insert();
-            else 
-                goods.Update();
-            //Cập nhật trên TreeView
-            UpdateCatalogPanel("Contract_" + tbContract.Text.Trim());
-            State(true);
-            btnContractAnnex.Enabled = true;
-            btnRemove.Enabled = true;
-            btnNewPO.Enabled = true;
+            (Tag as OPMDASHBOARDA).Contract.ActiveDate = dtpDateActive.Value;
         }
-
-        private void txbGaranteeValue_TextChanged(object sender, EventArgs e)
+        private void txtDuration_TextChanged(object sender, EventArgs e)
         {
-            try
+            if (!string.IsNullOrEmpty(txtDuration.Text.Trim()))
+                try
+                {
+                    dtpDeadline.Value = dtpDateActive.Value.AddDays(double.Parse(txtDuration.Text.Trim()));
+                    (Tag as OPMDASHBOARDA).Contract.ContractDuration = int.Parse(txtDuration.Text.Trim());
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Bạn phải nhập đúng số lượng (bằng số) ngày trong hợp đồng!", "Thông báo");
+                    return;
+                }
+        }
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            //(Tag as OPMDASHBOARDA).TempStatus = 1;//Chỉnh sửa Hợp đồng
+            State(false);
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if ((Tag as OPMDASHBOARDA).Contract.Exist())
             {
-                tbxGaranteeValue.Text = ((0.01 * int.Parse(txbGaranteeValue.Text)) * double.Parse(tbxValueContract.Text)).ToString();
-            }
-            catch
-            {
-                MessageBox.Show("Cần nhập đúng định dạng giá trị bảo lãnh!");
+                (Tag as OPMDASHBOARDA).Contract.Delete();
+                (Tag as OPMDASHBOARDA).Contract = new Contract_Thanh();
+                (Tag as OPMDASHBOARDA).OpenContractForm();
             }
         }
-
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            //Lưu thông tin vào bảng Contract
+            if (string.IsNullOrEmpty(txtId.Text.Trim()))
+            {
+                MessageBox.Show("Cần nhập đúng mã Hợp đồng!");
+                return;
+            }
+            if ((Tag as OPMDASHBOARDA).TempStatus == 1)//Chỉnh sửa
+            {
+                if (txtId.Text == (txtId.Tag as string))
+                    (Tag as OPMDASHBOARDA).Contract.Update();
+                else if (!(Tag as OPMDASHBOARDA).Contract.Exist())
+                    (Tag as OPMDASHBOARDA).Contract.Update(txtId.Tag as string);
+                else
+                {
+                    MessageBox.Show(string.Format("Đã tồn tại hợp đồng số: '{0}'", (Tag as OPMDASHBOARDA).Contract.Id));
+                    return;
+                }
+            }
+            if ((Tag as OPMDASHBOARDA).TempStatus == 0)//Tạo mới
+            {
+                if (!(Tag as OPMDASHBOARDA).Contract.Exist())
+                    if ((Tag as OPMDASHBOARDA).Contract.Insert() > 0)
+                    {
+                        (Tag as OPMDASHBOARDA).TempStatus = 1;
+                        (Tag as OPMDASHBOARDA).OpenContractForm();
+                    }
+                    else
+                    {
+                        MessageBox.Show(string.Format("Đã tồn tại hợp đồng số: '{0}'", (Tag as OPMDASHBOARDA).Contract.Id));
+                        return;
+                    }
+            }
+            //Lưu thông tin vào bảng Goods
+            (Tag as OPMDASHBOARDA).Goods.IdContract = (Tag as OPMDASHBOARDA).Contract.Id;
+            if (!(Tag as OPMDASHBOARDA).Goods.Exist())
+                (Tag as OPMDASHBOARDA).Goods.Insert();
+            else
+                (Tag as OPMDASHBOARDA).Goods.Update();
+        }
         private void ContractInfoChildForm_Load(object sender, EventArgs e)
         {
-            try
-            {
-                tbxGaranteeValue.Text = ((0.01 * int.Parse(txbGaranteeValue.Text)) * double.Parse(tbxValueContract.Text)).ToString();
-            }
-            catch
-            {
-                MessageBox.Show("Cần nhập đúng định dạng giá trị bảo lãnh!");
-            }
+            LoadData();
         }
-        private void tbxValueContract_TextChanged(object sender, EventArgs e)
+        private void txtValue_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                tbxGaranteeValue.Text = ((0.01 * int.Parse(txbGaranteeValue.Text)) * double.Parse(tbxValueContract.Text)).ToString();
+                txtGuaranteeValue.Text = ((0.01 * int.Parse(txbGuaranteeValue.Text)) * double.Parse(txtValue.Text)).ToString();
             }
             catch
             {
                 MessageBox.Show("Cần nhập đúng định dạng số!");
+                return;
+            }
+            (Tag as OPMDASHBOARDA).Contract.ContractValue = double.Parse(txtValue.Text.Trim());
+        }
+        private void btnAnnex_Click(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).OpenGoodsForm();
+        }
+        private void btnCreatDocument_Click(object sender, EventArgs e)
+        {
+            if ((Tag as OPMDASHBOARDA).Contract.Exist()) OpmWordHandler.Temp1_CreatContractGuarantee(txtId.Text.Trim());
+            else MessageBox.Show(string.Format(@"Không có hợp đồng số '{0}'", (Tag as OPMDASHBOARDA).Contract.Id));
+        }
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).TempStatus = 0;//Tạo mới Hợp đồng
+            (Tag as OPMDASHBOARDA).Contract = new Contract_Thanh();
+            (Tag as OPMDASHBOARDA).OpenContractForm();
+        }
+        private void TxtId_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.Id = txtId.Text.Trim();
+            (Tag as OPMDASHBOARDA).Goods.IdContract = txtId.Text.Trim();
+            (Tag as OPMDASHBOARDA).SetNameOfSelectNode(txtId.Text.Trim());
+        }
+        private void ttxtKHMS_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.KHMS = ttxtKHMS.Text.Trim();
+        }
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.ContractName = txtName.Text.Trim();
+        }
+        private void txtAccountingCode_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.AccoutingCode = txtAccountingCode.Text.Trim();
+        }
+        private void dtpDateSigned_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.SignedDate = dtpDateSigned.Value;
+        }
+        private void txtType_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.TypeContract = txtType.Text.Trim();
+        }
+        private void txtIdSiteA_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.IdSiteA = txtIdSiteA.Text.Trim();
+        }
+        private void txtIdSiteB_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.IdSiteB = txtIdSiteB.Text.Trim();
+        }
+        private void dtpGaranteeDateCreated_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.GuaranteeCreatedDate = dtpGuaranteeDateCreated.Value;
+            try
+            {
+                if (!string.IsNullOrEmpty(txtGuaranteeDuration.Text.Trim()))
+                {
+                    (Tag as OPMDASHBOARDA).Contract.GuaranteeDeadline = dtpGuaranteeDateCreated.Value.AddDays(int.Parse(txtGuaranteeDuration.Text.Trim()));
+                    dtpGuaranteeDeadline.Value = dtpGuaranteeDateCreated.Value.AddDays(int.Parse(txtGuaranteeDuration.Text.Trim()));
+                }
+                else
+                    dtpGuaranteeDeadline.Value = dtpGuaranteeDateCreated.Value;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Nhập lại dạng số thời hạn bảo lãnh!");
             }
         }
-        void SetValueContract(string vl, Contract_Goods good)
+        private void txtDurationPO_TextChanged(object sender, EventArgs e)
         {
-            tbxValueContract.Text = vl;
-            goods = good;
+            try
+            {
+                if (!string.IsNullOrEmpty(txtDurationPO.Text.Trim()))
+                    (Tag as OPMDASHBOARDA).Contract.PoDuration = Convert.ToInt32(txtDurationPO.Text.Trim());
+            }
+            catch
+            {
+                MessageBox.Show("Cần nhập đúng định dạng số!");
+                return;
+            }
         }
-        private void btnContractAnnex_Click(object sender, EventArgs e)
+        private void dtpGaranteeDeadline_ValueChanged(object sender, EventArgs e)
         {
-            btnSave.Enabled = true;
-            Contract_Goods_Form contract_Goods_Form = new Contract_Goods_Form();
-            contract_Goods_Form.Text = "Bảng hàng hoá của hợp đồng: " + tbContract.Text.Trim();
-            contract_Goods_Form.setValueContractForm = SetValueContract;
-            contract_Goods_Form.Goods = new Contract_Goods(tbContract.Text.Trim());
-            contract_Goods_Form.ShowDialog();
+            //txtGuaranteeDuration.Text = (dtpGuaranteeDeadline.Value - dtpDateActive.Value).TotalDays.ToString();
+            //(Tag as OPMDASHBOARDA).Contract.GuaranteeDeadline = dtpGuaranteeDeadline.Value;
+        }
+        private void txbGaranteeValue_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(txbGuaranteeValue.Text.Trim()))
+                {
+                    txtGuaranteeValue.Text = string.Format("{0:0.##}", (0.01 * int.Parse(txbGuaranteeValue.Text.Trim())) * double.Parse(txtValue.Text.Trim()));
+                    (Tag as OPMDASHBOARDA).Contract.GuaranteeValue = int.Parse(txbGuaranteeValue.Text.Trim());
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Cần nhập đúng định dạng giá trị bảo lãnh!");
+                return;
+            }
         }
 
-        private void buttonCreatDocument_Click(object sender, EventArgs e)
+        private void txtGuaranteeDuration_TextChanged(object sender, EventArgs e)
         {
-            OpmWordHandler.Temp1_CreatContractGuarantee(tbContract.Text.Trim());
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
+            try
+            {
+                if (!string.IsNullOrEmpty(txtGuaranteeDuration.Text.Trim()))
+                {
+                    (Tag as OPMDASHBOARDA).Contract.GuaranteeDeadline = dtpGuaranteeDateCreated.Value.AddDays(int.Parse(txtGuaranteeDuration.Text.Trim()));
+                    dtpGuaranteeDeadline.Value = dtpGuaranteeDateCreated.Value.AddDays(int.Parse(txtGuaranteeDuration.Text.Trim()));
+                }
+                else
+                    dtpGuaranteeDeadline.Value = dtpGuaranteeDateCreated.Value;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Nhập lại dạng số thời hạn bảo lãnh!");
+            }
         }
     }
 }

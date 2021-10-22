@@ -9,34 +9,84 @@ namespace OPM.GUI
 {
     public partial class OPMDASHBOARDA : Form
     {
+        private int tempStatus=0;
+        //tempStatus = x = 
+        //0: đang ở Form tạo mới hợp đồng
+        //1: đang ở Form chỉnh sửa hợp đồng
+        //2:
+        //3: Đang ở Form tạo mới PO
+        //4: Đang ở Form chỉnh sửa PO
+        Contract_Thanh contract = new Contract_Thanh();
+        PO_Thanh po=new PO_Thanh();
+        Goods_Thanh goods=new Goods_Thanh();
+        Site_Info info=new Site_Info();
+        NTKT_Thanh ntkt = new NTKT_Thanh();
+        public Contract_Thanh Contract 
+        { 
+            get => contract;
+            set
+            {
+                contract = value;
+                po.IdContract = value.Id;
+            }
+        }
+        public PO_Thanh PO { get => po; set => po = value; }
+        public Goods_Thanh Goods
+        {
+            get => goods;
+            set
+            {
+                goods = value;
+                contract.ContractValue = value.PriceUnit * value.Quantity;
+            }
+        }
+        public Site_Info Info { get => info; set => info = value; }
+        public NTKT_Thanh Ntkt { get => ntkt; set => ntkt = value; }
+        public int TempStatus { get => tempStatus; set => tempStatus = value; }
 
-        //private TreeNode selectedNode;
-
-        //public PurchaseOderInfor objPurchaseOder= new PurchaseOderInfor();
         public OPMDASHBOARDA()
         {
             InitializeComponent();
         }
         private void OPMDASHBOARDA_Load(object sender, EventArgs e)
         {
-            InitCatalogAdmin(null, null);
             OpenContractForm();
         }
-        public void GetCatalogvalue(string nodeName)
+        public void InitCatalogByNodeName(string nodeName)
         {
-            //Khởi tạo TreeNode
             treeViewOPM.Nodes.Clear();
-            InitCatalogAdmin(null, null);
-            if (nodeName == "Contract") return;
+            DataTable table = CatalogAdmin.Table();
             if (!CatalogAdmin.Exist(nodeName))
             {
-                MessageBox.Show(string.Format("Không tìm thấy đường dẫn đến nút {0} trên TreeView", nodeName));
-                return;
+                DataRow row = table.NewRow();
+                row["ctlId"] = nodeName;
+                string[] temp = nodeName.Split('_', 2);
+                switch (temp[0])
+                {
+                    case "Contract":
+                        row["ctlName"] = temp[1];
+                        break;
+                    case "PO":
+                        row["ctlName"] = po.POName;
+                        row["ctlParent"] = "Contract_"+contract.Id;
+                        break;
+                    case "DP":
+                        break;
+                    case "NTKT":
+                        row["ctlName"] = "NTKT"+ntkt.Number.ToString();
+                        row["ctlParent"] = "PO_" + po.Id;
+                        break;
+                    case "PL":
+                        break;
+                    default:
+                        MessageBox.Show(string.Format("Không tìm thấy đường dẫn đến nút {0} trên TreeView", nodeName));
+                        return;
+                }
+                table.Rows.Add(row);
             }
-            //Tìm đường đến TreeNode hiện tại
-            List<string> list = CatalogAdmin.PathToContractNodeFromCurrentNode(nodeName);
+            InitCatalogAdmin(null, null, table);
+            List<string> list = CatalogAdmin.PathToContractNodeFromCurrentNode(nodeName,table);
             list.Reverse();
-            //Vẽ đường đến TreeNode hiện tại
             treeViewOPM.SelectedNode = treeViewOPM.Nodes[list[0]];
             treeViewOPM.SelectedNode.Expand();
             treeViewOPM.SelectedNode.ForeColor = Color.Blue;
@@ -47,16 +97,12 @@ namespace OPM.GUI
                 treeViewOPM.SelectedNode.ForeColor = Color.Blue;
             }
         }
-        private int InitCatalogAdmin(TreeNode parentNode, string parent)
+        private void InitCatalogAdmin(TreeNode parentNode, string parent, DataTable table)
         {
-            DataSet ds = new DataSet();
-            int ret = CatalogAdmin.GetCatalogNodes(ref ds, parent);
-            if (0 == ret)
-            {
-                return 0;
-            }
-
-            foreach (DataRow dr in ds.Tables[0].Rows)
+            DataRow[] ds = table.Select(string.Format(@"ctlparent is null"), "ctlname");
+            if (parent!=null) ds = table.Select(string.Format(@"ctlparent = '{0}'", parent), "ctlname");
+            if (ds.Length < 1) return;
+            foreach (DataRow dr in ds)
             {
                 TreeNode node = new TreeNode
                 {
@@ -66,125 +112,73 @@ namespace OPM.GUI
                 string strChildID = dr["ctlID"].ToString();
                 if (null == parentNode || null == parent)
                 {
-                    InitCatalogAdmin(node, strChildID);
+                    InitCatalogAdmin(node, strChildID, table);
                     treeViewOPM.Nodes.Add(node);
                 }
                 else
                 {
-                    InitCatalogAdmin(node, strChildID);
+                    InitCatalogAdmin(node, strChildID, table);
                     parentNode.Nodes.Add(node);
                 }
             }
-            return 1;
         }
-        private Form activeForm = null;
-
-        private void OpenChildForm(Form childForm)
+        public void SetNameOfSelectNode(string nameOfNode)
         {
-            ClearPanel();
-            if (null != activeForm) activeForm.Close();
-            activeForm = childForm;
-            childForm.TopLevel = false;
-            childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
-            panContent.Controls.Add(childForm);
-            panContent.Tag = childForm;
-            //childForm.BringToFront();
-            childForm.Show();
-
+            treeViewOPM.SelectedNode.Text = nameOfNode;
         }
-        public void ClearPanel()
+        public void SetIdSiteA(string vl)
         {
-            for (int ix = panDescription.Controls.Count - 1; ix >= 0; ix--)
-            {
-                if (panDescription.Controls[ix] is Form) panDescription.Controls[ix].Dispose();
-            }
+            contract.IdSiteA = vl;
         }
-        public void OpenChidForm1(Form childForm)
+        public void SetIdSiteB(string vl)
         {
-            ClearPanel();
-            panDescription.Controls.Clear();
-            childForm.TopLevel = false;
-            //childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
-            panDescription.Controls.Add(childForm);
-            panDescription.Tag = childForm;
-            childForm.BringToFront();
-            childForm.Show();
+            contract.IdSiteB = vl;
         }
         public void treeViewOPM_DoubleClick(object sender, EventArgs e)
         {
-            /*OK Important for Communication*/
-
-            /*Check What Label Checked and it's parent Checked*/
             try
             {
+                treeViewOPM.Tag = treeViewOPM.SelectedNode;
                 string strNodeID = treeViewOPM.SelectedNode.Name.ToString();
-                if (null != treeViewOPM.SelectedNode.Parent)
-                {
-                    string strParentNodeID = treeViewOPM.SelectedNode.Parent.Name.ToString();
-                    //MessageBox.Show(treeView1.SelectedNode.Parent.Text);
-                }
-                else
-                {
-                    //MessageBox.Show("No Parent Node");
-                }
                 string[] temp = strNodeID.Split('_', 2);
-                temp[0] += "_";
                 /*Get Detail Infor On Database*/
                 switch (temp[0])
                 {
-                    case ConstantVar.ContractType:
-                        //Khai báo contractInfoChildForm ứng với IdContract
-                        ContractInfoChildForm contractInfoChildForm = new ContractInfoChildForm(temp[1]);
-                        contractInfoChildForm.UpdateCatalogPanel = new ContractInfoChildForm.UpdateCatalogDelegate(GetCatalogvalue);
-                        //DASHBOAD nhận yêu cầu mở PurchaseOderInfor từ ContractInfoChildForm
-                        contractInfoChildForm.RequestDashBoardOpenPOForm = new ContractInfoChildForm.RequestDashBoardOpenChildForm(OpenPOForm);
-                        //DASHBOAD nhận yêu cầu mở DescriptionSiteForm từ ContractInfoChildForm
-                        contractInfoChildForm.requestDashBoardOpendescriptionForm = new ContractInfoChildForm.RequestDashBoardOpenDescriptionForm(OpenDescription);
-                        //Mở ContractInfoChildForm
-                        OpenChildForm(contractInfoChildForm);
+                    case "Contract":
+                        tempStatus = 1;//Đang ở Form chỉnh sửa hợp đồng
+                        contract = new Contract_Thanh(temp[1]);
+
+                        goods = new Goods_Thanh(temp[1]);
+                        OpenContractForm();
                         break;
-                    case ConstantVar.POType:
-                        /*Display PO */
-                        PurchaseOderInfor purchaseOderInfor = new PurchaseOderInfor();
-                        purchaseOderInfor.UpdateCatalogPanel = new PurchaseOderInfor.UpdateCatalogDelegate(GetCatalogvalue);
-                        purchaseOderInfor.po = new DBHandler.PO_Thanh(temp[1]);
-                        purchaseOderInfor.contract = new Contract(treeViewOPM.SelectedNode.Parent.Text);
-                        //MessageBox.Show(temp[1]);
-                        purchaseOderInfor.requestDashBoardOpenNTKTForm = new PurchaseOderInfor.RequestDashBoardOpenNTKTForm(OpenNTKTForm);
-                        //purchaseOderInfor.SetValueItemForPO(temp[1]);
-                        purchaseOderInfor.requestDaskboardOpenDP = new PurchaseOderInfor.RequestDaskboardOpenDP(OpenDpForm);
-                        //Click vao ComfirmPO
-                        purchaseOderInfor.requestDashBoardOpenConfirmPOForm = new PurchaseOderInfor.RequestDashBoardOpenConfirmForm(OpenConfirmPOForm);
-                        //
-                        OpenChildForm(purchaseOderInfor);
+                    case "PO":
+                        tempStatus = 4;//Đang ở Form PO có sẵn
+                        po = new PO_Thanh(temp[1]);
+                        contract = new Contract_Thanh(po.IdContract);
+                        goods = new Goods_Thanh(po.IdContract);
+                        OpenPOForm();
                         break;
-                    case ConstantVar.DPType:
+                    case "DP":
                         /*Display DP */
-                        //DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
-                        //deliverPartInforDetail.UpdateCatalogPanel = new DeliverPartInforDetail.UpdateCatalogDelegate(GetCatalogvalue);
-                        //OpenChildForm(deliverPartInforDetail);
                         DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
-                        deliverPartInforDetail.requestDashBoardPurchaseOderForm = new DeliverPartInforDetail.RequestDashBoardPurchaseOderForm(OpenDP);
-                        //OpenChildForm(deliverPartInforDetail);
-                        OpenDP(temp[1].ToString());
+//                        deliverPartInforDetail.UpdateCatalogPanel = new DeliverPartInforDetail.UpdateCatalogDelegate(InitCatalogByNodeName);
+                        OpenChildForm(deliverPartInforDetail);
                         break;
-                    case ConstantVar.NTKTType:
-                        NTKTInfor nTKTInfor = new NTKTInfor();
-                        nTKTInfor.UpdateCatalogPanel = new NTKTInfor.UpdateCatalogDelegate(GetCatalogvalue);
-                        nTKTInfor.requestDashBoardPurchaseOderForm = new NTKTInfor.RequestDashBoardPurchaseOderForm(OpenPOForm);
-                        nTKTInfor.Ntkt = new NTKT_Thanh(temp[1]);
-                        OpenChildForm(nTKTInfor);
+                    case "NTKT":
+                        ntkt = new NTKT_Thanh(temp[1]);
+                        po = new PO_Thanh(ntkt.Id_po);
+                        contract = new Contract_Thanh(po.IdContract);
+                        goods = new Goods_Thanh(po.IdContract);
+                        OpenNTKTForm();
                         break;
-                    case ConstantVar.PLType:
+                    case "PL":
                         /*Display PL */
                         PackageListInfor packageListInfor = new PackageListInfor();
-                        packageListInfor.UpdateCatalogPanel = new PackageListInfor.UpdateCatalogDelegate(GetCatalogvalue);
+                        packageListInfor.UpdateCatalogPanel = new PackageListInfor.UpdateCatalogDelegate(InitCatalogByNodeName);
                         OpenChildForm(packageListInfor);
                         break;
                     default:
-                        Console.WriteLine("Invalid grade");
+                        MessageBox.Show("Invalid grade");
                         break;
                 }
             }
@@ -195,15 +189,16 @@ namespace OPM.GUI
         }
         private void contextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            if (e.ClickedItem.Name == "toolStripMenuRefresh")
+            if (e.ClickedItem.Name == "toolStripMenuNewContract")
             {
+                tempStatus = 0;//Đang ở Form tạo mới Hợp đồng
+                Contract = new Contract_Thanh();
                 OpenContractForm();
             }
             else if (e.ClickedItem.Name == "toolStripMenuNew")
             {
                 //Do Something
                 PurchaseOderInfor purchaseOderInfor = new PurchaseOderInfor();
-                purchaseOderInfor.UpdateCatalogPanel = new PurchaseOderInfor.UpdateCatalogDelegate(GetCatalogvalue);
                 OpenChildForm(purchaseOderInfor);
             }
             else if (e.ClickedItem.Name == "toolStripMenuEdit")
@@ -215,75 +210,55 @@ namespace OPM.GUI
                 //Do Something
 
             }
-
-
         }
-        void OpenContractForm()
+        public void OpenSiteAForm(string idSite)
         {
-            ContractInfoChildForm contractInfoChildForm = new ContractInfoChildForm
+            SiteForm siteForm = new SiteForm
             {
-                UpdateCatalogPanel = new ContractInfoChildForm.UpdateCatalogDelegate(GetCatalogvalue),
-                RequestDashBoardOpenPOForm = new ContractInfoChildForm.RequestDashBoardOpenChildForm(OpenPOForm),
-                requestDashBoardOpendescriptionForm = new ContractInfoChildForm.RequestDashBoardOpenDescriptionForm(OpenDescription)
+                setStringValue = new SiteForm.SetStringValue(SetIdSiteA),
+                IdSite = idSite
             };
+            OpenChildForm(siteForm);
+        }
+        public void OpenSiteBForm(string idSite)
+        {
+            SiteForm siteForm = new SiteForm
+            {
+                setStringValue = new SiteForm.SetStringValue(SetIdSiteB),
+                IdSite = idSite
+            };
+            OpenChildForm(siteForm);
+        }
+
+        public void OpenGoodsForm()
+        {
+            GoodsForm goodsForm = new GoodsForm();
+            Text = string.Format("Hợp đồng số {0}: Bảng hàng hoá", contract.Id);
+            OpenChildForm(goodsForm);
+        }
+        public void OpenContractForm()
+        {
+            ContractInfoChildForm contractInfoChildForm = new ContractInfoChildForm();
+            Text = string.Format("Hợp đồng số {0}", contract.Id);
+            InitCatalogByNodeName("Contract_" + contract.Id);
             OpenChildForm(contractInfoChildForm);
         }
-        public void OpenPOForm(string idPO)
+        public void OpenPOForm()
         {
             PurchaseOderInfor purchaseOderInfor = new PurchaseOderInfor();
-            purchaseOderInfor.UpdateCatalogPanel = new PurchaseOderInfor.UpdateCatalogDelegate(GetCatalogvalue);
-
-            /*Receipt Request Open Nghiệm Thu Kỹ Thuật Form*/
-            purchaseOderInfor.requestDashBoardOpenNTKTForm = new PurchaseOderInfor.RequestDashBoardOpenNTKTForm(OpenNTKTForm);
-
-            /*Receipt Request Open Xác Nhận Đơn Hàng Form*/
-            purchaseOderInfor.requestDashBoardOpenConfirmPOForm = new PurchaseOderInfor.RequestDashBoardOpenConfirmForm(OpenConfirmPOForm);
-
-            /**/
-
-            purchaseOderInfor.requestDaskboardOpenDP = new PurchaseOderInfor.RequestDaskboardOpenDP(OpenDpForm);
-            purchaseOderInfor.requestDasckboardOpenExcel = new PurchaseOderInfor.RequestDasckboardOpenExcel(OpenExcel);
-            ContractInfoChildForm contractInfoChildForm = new ContractInfoChildForm();
-            contractInfoChildForm.requestDashBoardOpendescriptionForm = new ContractInfoChildForm.RequestDashBoardOpenDescriptionForm(OpenDescription);
-            purchaseOderInfor.po = new DBHandler.PO_Thanh(idPO);
+            Text = string.Format("Hợp đồng số {0} - {1}", contract.Id, po.POName);
+            if (tempStatus == 3) po = new PO_Thanh();
+            po.IdContract = contract.Id;
+            InitCatalogByNodeName("PO_" + po.Id);
             OpenChildForm(purchaseOderInfor);
-            return;
-
         }
-        public void OpenNTKTForm(string strPOID)
+        public void OpenNTKTForm()
         {
             NTKTInfor nTKTInfor = new NTKTInfor();
-            nTKTInfor.Ntkt = new NTKT_Thanh();
-            nTKTInfor.Ntkt.Id_po = strPOID;
-            nTKTInfor.requestDashBoardPurchaseOderForm = new NTKTInfor.RequestDashBoardPurchaseOderForm(OpenPOForm);
-            nTKTInfor.UpdateCatalogPanel = new NTKTInfor.UpdateCatalogDelegate(GetCatalogvalue);
+            Text = string.Format(@"Hợp đồng số {2} - {1} - Đợt NTKT{0}", ntkt.Number, po.POName,contract.Id);
+            ntkt.Id_po = po.Id;
+            InitCatalogByNodeName("NTKT_" + ntkt.Id);
             OpenChildForm(nTKTInfor);
-            return;
-        }
-
-        public void OpenConfirmPOForm(string strKHMS, string strContractID, string strPOID, string strPONumber)
-        {
-            ConfirmPOInfor confirmPO = new ConfirmPOInfor();
-            confirmPO.SetKHMS(strKHMS);
-
-            strContractID = strContractID.Replace("Contract_", "");
-            confirmPO.SetContractID(strContractID);
-            confirmPO.SetPOID(strPOID);
-            confirmPO.SetPONumber(strPONumber);
-            OpenChildForm(confirmPO);
-            return;
-        }
-        public void OpenDescription(string id, DescriptionSiteForm.SetIdSite setIdSite)
-        {
-            DescriptionSiteForm descriptionSiteForm = new DescriptionSiteForm(id);
-            OpenChidForm1(descriptionSiteForm);
-            descriptionSiteForm.setIdSite = setIdSite;
-        }
-        public void OpenExcel()
-        {
-            HandlerExcel handlerExcel = new HandlerExcel();
-            OpenChildForm(handlerExcel);
-            return;
         }
         public void OpenDpForm(string idPO, string idContract, String PONumber)
         {
@@ -299,15 +274,23 @@ namespace OPM.GUI
             OpenChildForm(deliverPartInforDetail);
             return;
         }
-        public void OpenDP(string strIdDP)
+        void OpenChildForm(Form childForm)
         {
-            //Lấy các giá trị trong database liên quan đến DP để hiển thị lên màn hình
-            DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
-            //Set các gia tri Contract va PO
-            deliverPartInforDetail.SetValueDP(strIdDP);
-            //Set cac gia tri DP va don hang
-            OpenChildForm(deliverPartInforDetail);
-            return;
+            ClearPanel();
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            panContent.Controls.Add(childForm);
+            panContent.Tag = childForm;
+            childForm.Tag = this;
+            childForm.Show();
+        }
+        public void ClearPanel()
+        {
+            foreach (Control item in panContent.Controls)
+            {
+                item.Dispose();
+            }
         }
     }
 }

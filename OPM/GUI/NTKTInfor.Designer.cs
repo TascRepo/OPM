@@ -173,7 +173,6 @@ namespace OPM.GUI
             this.btnChoose.TabIndex = 13;
             this.btnChoose.Text = "Choose";
             this.btnChoose.UseVisualStyleBackColor = true;
-            this.btnChoose.Click += new System.EventHandler(this.btnChoose_Click);
             // 
             // btnBack
             // 
@@ -345,7 +344,6 @@ namespace OPM.GUI
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "NTKTInfor";
             this.Text = "s";
-            this.Load += new System.EventHandler(this.NTKTInfor_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
