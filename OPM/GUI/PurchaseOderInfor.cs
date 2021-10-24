@@ -19,50 +19,51 @@ namespace OPM.GUI
         }
         void LoadData()
         {
-            txtIdPO.Text = (Tag as OPMDASHBOARDA).Po.Id;
-            txtIdPO.Tag = (Tag as OPMDASHBOARDA).Po.Id;     //Lưu lại Id khi cần vì txtIdPO.Text có thể thay đổi khi Edit
+            txtPOId.Text = (Tag as OPMDASHBOARDA).Po.POId;
+            txtPOId.Tag = (Tag as OPMDASHBOARDA).Po.POId;     //Lưu lại Id khi cần vì txtIdPO.Text có thể thay đổi khi Edit
             txtPOName.Text = (Tag as OPMDASHBOARDA).Po.POName;
-            dtpSignedDate.Value = (Tag as OPMDASHBOARDA).Po.SignedDate;
-            txtNumberOfDevice.Text = (Tag as OPMDASHBOARDA).Po.NumberOfDevice.ToString();
-            txtConfirmRequestDuration.Text = ((Tag as OPMDASHBOARDA).Po.ConfirmRequestDate.Date - (Tag as OPMDASHBOARDA).Po.SignedDate.Date).TotalDays.ToString();
-            dtpDefaultPerformDate.Value = (Tag as OPMDASHBOARDA).Po.DefaultPerformDate;
-            txtDuration.Text = ((Tag as OPMDASHBOARDA).Po.Deadline.Date - (Tag as OPMDASHBOARDA).Po.PerformDate.Date).TotalDays.ToString();
+            dtpPOCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.POCreatedDate;
+            txtPODuration.Text = ((Tag as OPMDASHBOARDA).Po.PODeadline.Date - (Tag as OPMDASHBOARDA).Po.POPerformDate.Date).TotalDays.ToString();
+            txtPOGoodsQuantity.Text = (Tag as OPMDASHBOARDA).Po.POGoodsQuantity.ToString();
+            txtPOConfirmRequestDuration.Text = ((Tag as OPMDASHBOARDA).Po.POConfirmRequestDeadline.Date - (Tag as OPMDASHBOARDA).Po.POCreatedDate.Date).Days.ToString();
+            dtpPODefaultPerformDate.Value = (Tag as OPMDASHBOARDA).Po.PODefaultPerformDate;
+            txtPOTotalValue.Text = (Tag as OPMDASHBOARDA).Po.POTotalValue.ToString();
+            txtPOConfirmId.Text = (Tag as OPMDASHBOARDA).Po.POConfirmId.ToString();
+            dtpPOConfirmCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.POConfirmCreatedDate;
+            dtpPOPerformDate.Value = (Tag as OPMDASHBOARDA).Po.POPerformDate;
             //dtpDeadline.Value = (Tag as OPMDASHBOARDA).PO.Deadline;
-            txtTotalValue.Text = (Tag as OPMDASHBOARDA).Po.TotalValue.ToString();
-            txtAdvancePercentage.Text = (Tag as OPMDASHBOARDA).Po.AdvancePercentage.ToString();
-            dtpConfirmCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.ConfirmCreatedDate;
-            txtIdConfirm.Text = (Tag as OPMDASHBOARDA).Po.IdConfirm.ToString();
-            dtpAdvanceCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.AdvanceCreatedDate;
-            txtAdvanceGuaranteePercentage.Text = (Tag as OPMDASHBOARDA).Po.AdvanceGuaranteePercentage.ToString();
-            dtpAdvanceGuaranteeCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.AdvanceGuaranteeCreatedDate;
-            dtpPerformDate.Value = (Tag as OPMDASHBOARDA).Po.PerformDate;
-            txtIdAdvanceRequest.Text = (Tag as OPMDASHBOARDA).Po.IdAdvanceRequest;
-            dtpAdvanceRequestDate.Value = (Tag as OPMDASHBOARDA).Po.AdvanceRequestDate;
+            txtPOAdvanceId.Text = (Tag as OPMDASHBOARDA).Po.POAdvanceId;
+            txtPOAdvancePercentage.Text = (Tag as OPMDASHBOARDA).Po.POAdvancePercentage.ToString();
+            dtpPOAdvanceCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.POAdvanceCreatedDate;
+            txtPOAdvanceGuaranteePercentage.Text = (Tag as OPMDASHBOARDA).Po.POAdvanceGuaranteePercentage.ToString();
+            dtpPOAdvanceGuaranteeCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.POAdvanceGuaranteeCreatedDate;
+            txtPOAdvanceRequestId.Text = (Tag as OPMDASHBOARDA).Po.POAdvanceRequestId;
+            dtpPOAdvanceRequestCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.POAdvanceRequestCreatedDate;
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if ((Tag as OPMDASHBOARDA).Po.Id == (new PO()).Id)
+            if ((Tag as OPMDASHBOARDA).Po.POId == (new POObj()).POId)
             {
                 MessageBox.Show("Nhập đúng số PO!");
                 return;
             }
             if ((Tag as OPMDASHBOARDA).TempStatus == 4)//Đang ở Form chỉnh sửa
             {
-                if (txtIdPO.Text == (txtIdPO.Tag as string))    //Không thay đổi IdPO
-                    (Tag as OPMDASHBOARDA).Po.Update();
-                else if (!(Tag as OPMDASHBOARDA).Po.Exist())
-                    (Tag as OPMDASHBOARDA).Po.Update(txtIdPO.Tag as string);
+                if (txtPOId.Text.Trim() == (txtPOId.Tag as string))    //Không thay đổi IdPO
+                    (Tag as OPMDASHBOARDA).Po.POUpdate();
+                else if (!(Tag as OPMDASHBOARDA).Po.POExist())
+                    (Tag as OPMDASHBOARDA).Po.POUpdate(txtPOId.Tag as string);
                 else
                 {
-                    MessageBox.Show(string.Format("Đã tồn tại PO số '{0}'", (Tag as OPMDASHBOARDA).Po.Id));
+                    MessageBox.Show(string.Format("Đã tồn tại PO số '{0}'", txtPOId.Text.Trim()));
                     return;
                 }
             }
             if ((Tag as OPMDASHBOARDA).TempStatus == 3)//Đang ở Form tạo mới PO
             {
-                if (!(Tag as OPMDASHBOARDA).Po.Exist())
+                if (!(Tag as OPMDASHBOARDA).Po.POExist())
                 {
-                    if ((Tag as OPMDASHBOARDA).Po.Insert() > 0)
+                    if ((Tag as OPMDASHBOARDA).Po.POInsert() > 0)
                     {
                         (Tag as OPMDASHBOARDA).TempStatus = 4;//Chuyển sang Form chỉnh sửa PO (đã tồn tại trong CSDL)
                         (Tag as OPMDASHBOARDA).OpenPOForm();
@@ -70,7 +71,7 @@ namespace OPM.GUI
                 }
                 else
                 {
-                    MessageBox.Show(string.Format("Không tạo được vì PO số '{0}' đã tồn tại", (Tag as OPMDASHBOARDA).Po.Id));
+                    MessageBox.Show(string.Format("Không tạo được vì PO số '{0}' đã tồn tại", (Tag as OPMDASHBOARDA).Po.POId));
                     return;
                 }
             }
@@ -79,13 +80,12 @@ namespace OPM.GUI
         private void btnNTKT_Click(object sender, EventArgs e)
         {
             NTKT ntkt = new NTKT();
-            ntkt.Id_po = (Tag as OPMDASHBOARDA).Po.Id;
+            ntkt.Id_po = (Tag as OPMDASHBOARDA).Po.POId;
             (Tag as OPMDASHBOARDA).OpenNTKTForm();
         }
         private void btnNewDP_Click(object sender, EventArgs e)
         {
-            PO pCheck = new PO();
-            if (!pCheck.Exist(txtIdPO.Text))
+            if (!POObj.POExist(txtPOId.Text))
             {
                 MessageBox.Show("PO chưa tồn tại trong CSDL!");
             }
@@ -96,9 +96,9 @@ namespace OPM.GUI
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if ((Tag as OPMDASHBOARDA).TempStatus == 3) return;
-            if (MessageBox.Show(string.Format("Bạn có chắc chắn muốn xóa PO số '{0}'", (Tag as OPMDASHBOARDA).Po.Id), "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            if (MessageBox.Show(string.Format("Bạn có chắc chắn muốn xóa PO số '{0}'", (Tag as OPMDASHBOARDA).Po.POId), "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
-                if ((Tag as OPMDASHBOARDA).Po.Delete() > 0)
+                if ((Tag as OPMDASHBOARDA).Po.PODelete() > 0)
                 {
                     (Tag as OPMDASHBOARDA).TempStatus = 3;  //Chuyển đến Form tạo mới PO
                     (Tag as OPMDASHBOARDA).OpenPOForm();
@@ -131,52 +131,48 @@ namespace OPM.GUI
 
             }
         }
-        private void txbDurationConfirm_TextChanged(object sender, EventArgs e)
+        private void txtPOConfirmRequestDuration_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                if (!string.IsNullOrEmpty(txtConfirmRequestDuration.Text.Trim()))
-                {
-                    (Tag as OPMDASHBOARDA).Po.ConfirmRequestDate = dtpSignedDate.Value.AddDays(int.Parse(txtConfirmRequestDuration.Text.Trim()));
-                    dtpConfirmRequestDate.Value = dtpSignedDate.Value.AddDays(int.Parse(txtConfirmRequestDuration.Text.Trim()));
-                }
+                if (!string.IsNullOrEmpty(txtPOConfirmRequestDuration.Text.Trim()))
+                    dtpPOConfirmRequestDeadline.Value = dtpPOCreatedDate.Value.AddDays(int.Parse(txtPOConfirmRequestDuration.Text.Trim()));
                 else
-                    dtpConfirmRequestDate.Value = dtpSignedDate.Value;
+                    dtpPOConfirmRequestDeadline.Value = dtpPOCreatedDate.Value;
             }
             catch (Exception)
             {
-                MessageBox.Show("Nhập lại dạng số!");
+                MessageBox.Show("Nhập lại POConfirmRequestDuration dạng số!");
+            }
+            (Tag as OPMDASHBOARDA).Po.POConfirmRequestDeadline = dtpPOConfirmRequestDeadline.Value;
+        }
+        private void dtpPOCreatedDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Po.POCreatedDate = dtpPOCreatedDate.Value;
+            try
+            {
+                if(!string.IsNullOrEmpty(txtPOConfirmRequestDuration.Text.Trim()))
+                    dtpPOConfirmRequestDeadline.Value = dtpPOCreatedDate.Value.AddDays(int.Parse(txtPOConfirmRequestDuration.Text.Trim()));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Nhập lại POConfirmRequestDuration dạng số!");
             }
         }
-        private void dtpSignedDate_ValueChanged(object sender, EventArgs e)
-        {
-            (Tag as OPMDASHBOARDA).Po.SignedDate = dtpSignedDate.Value;
-            try
-            {
-                dtpConfirmRequestDate.Value = dtpSignedDate.Value.AddDays(int.Parse(txtConfirmRequestDuration.Text));
-                dtpDeadline.Value = dtpSignedDate.Value.AddDays(int.Parse(txtDuration.Text));
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Nhập lại dạng số!");
-            }
-        }
-        private void txtDuration_TextChanged(object sender, EventArgs e)
+        private void txtPODuration_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                if (!string.IsNullOrEmpty(txtDuration.Text.Trim()))
-                {
-                    (Tag as OPMDASHBOARDA).Po.Deadline = dtpPerformDate.Value.AddDays(int.Parse(txtDuration.Text));
-                    dtpDeadline.Value = dtpPerformDate.Value.AddDays(int.Parse(txtDuration.Text));
-                }
+                if (!string.IsNullOrEmpty(txtPODuration.Text.Trim()))
+                    dtpPODeadline.Value = dtpPOPerformDate.Value.AddDays(int.Parse(txtPODuration.Text));
                 else
-                    dtpDeadline.Value = dtpPerformDate.Value;
+                    dtpPODeadline.Value = dtpPOPerformDate.Value;
             }
             catch (Exception)
             {
-                MessageBox.Show("Nhập lại dạng số!");
+                MessageBox.Show("Nhập lại PODuration dạng số!");
             }
+            (Tag as OPMDASHBOARDA).Po.PODeadline = dtpPODeadline.Value;
         }
         static public DataTable dt = new DataTable();
         static public DataTable dtkhgh = new DataTable();
@@ -196,8 +192,8 @@ namespace OPM.GUI
                     int ret = OpmExcelHandler.SaveFileInDelivery_PO(filename, ref dtkhgh);
                     if (ret == 1)
                     {
-                        IDVBXN = txtIdConfirm.Text;
-                        IPPO = txtIdPO.Text;
+                        IDVBXN = txtPOConfirmId.Text;
+                        IPPO = txtPOId.Text;
                         KHGH_PO kHGH_PO = new KHGH_PO();
                         kHGH_PO.ShowDialog();
                     }
@@ -209,117 +205,116 @@ namespace OPM.GUI
 
             }
         }
-        private void txtIdPO_TextChanged(object sender, EventArgs e)
+        private void txtPOId_TextChanged(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).Po.Id = txtIdPO.Text.Trim();
+            if (POObj.POExist(txtPOId.Text.Trim()))return;
+            (Tag as OPMDASHBOARDA).Po.POId = txtPOId.Text.Trim();
         }
-        private void txtPOName_TextChanged(object sender, EventArgs e)
+        private void TxtPOName_TextChanged(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).Po.POName = txtPOName.Text;
             (Tag as OPMDASHBOARDA).SetNameOfSelectNode(txtPOName.Text);
         }
-        private void txtNumberOfDevice_TextChanged(object sender, EventArgs e)
+        private void txtPOGoodsQuantity_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                if (!string.IsNullOrEmpty(txtNumberOfDevice.Text.Trim()))
-                    (Tag as OPMDASHBOARDA).Po.NumberOfDevice = int.Parse(txtNumberOfDevice.Text.Trim());
-                else
-                    (Tag as OPMDASHBOARDA).Po.NumberOfDevice = 0;
-            }
-            catch
-            {
-                MessageBox.Show("Nhập lại dạng số!");
-            }
-        }
-        private void dtpConfirmRequestDate_ValueChanged(object sender, EventArgs e)
-        {
-            //(Tag as OPMDASHBOARDA).PO.ConfirmRequestDate = dtpConfirmRequestDate.Value;
-        }
-
-        private void dtpDefaultPerformDate_ValueChanged(object sender, EventArgs e)
-        {
-            (Tag as OPMDASHBOARDA).Po.DefaultPerformDate = dtpDefaultPerformDate.Value;
-        }
-
-        private void txtTotalValue_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!string.IsNullOrEmpty(txtTotalValue.Text.Trim()))
-                    (Tag as OPMDASHBOARDA).Po.TotalValue = double.Parse(txtTotalValue.Text.Trim());
-                else
-                    (Tag as OPMDASHBOARDA).Po.TotalValue = 0;
-            }
-            catch
-            {
-                MessageBox.Show("Nhập lại dạng số!");
-            }
-        }
-        private void txtIdConfirm_TextChanged(object sender, EventArgs e)
-        {
-            (Tag as OPMDASHBOARDA).Po.IdConfirm = txtIdConfirm.Text.Trim();
-        }
-        private void dtpConfirmCreatedDate_ValueChanged(object sender, EventArgs e)
-        {
-            (Tag as OPMDASHBOARDA).Po.ConfirmCreatedDate = dtpConfirmCreatedDate.Value;
-            try
-            {
-                if (!string.IsNullOrEmpty(txtDuration.Text.Trim()))
+                if (!string.IsNullOrEmpty(txtPOGoodsQuantity.Text.Trim()))
                 {
-                    (Tag as OPMDASHBOARDA).Po.Deadline = dtpPerformDate.Value.AddDays(int.Parse(txtDuration.Text));
-                    dtpDeadline.Value = dtpPerformDate.Value.AddDays(int.Parse(txtDuration.Text));
+                    (Tag as OPMDASHBOARDA).Po.POGoodsQuantity = int.Parse(txtPOGoodsQuantity.Text.Trim());
+                    txtPOTotalValue.Text = (Tag as OPMDASHBOARDA).Po.POTotalValue.ToString();
+                    txtPOAdvanceValue.Text = (0.01 * (Tag as OPMDASHBOARDA).Po.POAdvancePercentage * (Tag as OPMDASHBOARDA).Po.POTotalValue).ToString();
                 }
                 else
-                    dtpDeadline.Value = dtpPerformDate.Value;
+                    (Tag as OPMDASHBOARDA).Po.POGoodsQuantity = 0;
+            }
+            catch
+            {
+                MessageBox.Show("Nhập lại POGoodsQuantity dạng số!");
+            }
+        }
+
+        private void dtpPODefaultPerformDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Po.PODefaultPerformDate = dtpPODefaultPerformDate.Value;
+        }
+        private void txtPOConfirmId_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Po.POConfirmId = txtPOConfirmId.Text.Trim();
+        }
+        private void dtpPOConfirmCreatedDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Po.POConfirmCreatedDate = dtpPOConfirmCreatedDate.Value;
+            try
+            {
+                if (!string.IsNullOrEmpty(txtPODuration.Text.Trim()))
+                {
+                    (Tag as OPMDASHBOARDA).Po.PODeadline = dtpPOPerformDate.Value.AddDays(int.Parse(txtPODuration.Text));
+                    dtpPODeadline.Value = dtpPOPerformDate.Value.AddDays(int.Parse(txtPODuration.Text));
+                }
+                else
+                    dtpPODeadline.Value = dtpPOPerformDate.Value;
             }
             catch (Exception)
             {
-                MessageBox.Show("Nhập lại dạng số!");
+                MessageBox.Show("Nhập lại ConfirmCreatedDate dạng số!");
             }
         }
 
-        private void dtpPerformDate_ValueChanged(object sender, EventArgs e)
+        private void dtpPOPerformDate_ValueChanged(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).Po.PerformDate = dtpPerformDate.Value;
+            (Tag as OPMDASHBOARDA).Po.POPerformDate = dtpPOPerformDate.Value;
+            try
+            {
+                if (!string.IsNullOrEmpty(txtPODuration.Text.Trim()))
+                    dtpPODeadline.Value = dtpPOPerformDate.Value.AddDays(int.Parse(txtPODuration.Text));
+                else
+                    dtpPODeadline.Value = dtpPOPerformDate.Value;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Nhập lại PODuration dạng số!");
+            }
+            (Tag as OPMDASHBOARDA).Po.PODeadline = dtpPODeadline.Value;
         }
 
-        private void txtAdvancePercentage_TextChanged(object sender, EventArgs e)
+        private void txtPOAdvancePercentage_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                if (!string.IsNullOrEmpty(txtAdvancePercentage.Text.Trim()))
+                if (!string.IsNullOrEmpty(txtPOAdvancePercentage.Text.Trim()))
                 {
-                    if (0 <= int.Parse(txtAdvancePercentage.Text.Trim()) && int.Parse(txtAdvancePercentage.Text.Trim()) <= 100)
-                        (Tag as OPMDASHBOARDA).Po.AdvancePercentage = int.Parse(txtAdvancePercentage.Text.Trim());
+                    if (0 <= int.Parse(txtPOAdvancePercentage.Text.Trim()) && int.Parse(txtPOAdvancePercentage.Text.Trim()) <= 100)
+                    {
+                        (Tag as OPMDASHBOARDA).Po.POAdvancePercentage = int.Parse(txtPOAdvancePercentage.Text.Trim());
+                        txtPOAdvanceValue.Text = (0.01 * (Tag as OPMDASHBOARDA).Po.POAdvancePercentage * (Tag as OPMDASHBOARDA).Po.POTotalValue).ToString();
+                    }
                     else
                     {
-                        MessageBox.Show("Nhập lại dạng số trong khoảng 0 đến 100!");
+                        MessageBox.Show("Nhập lại POAdvancePercentage dạng số trong khoảng 0 đến 100!");
                         return;
                     }
                 }
-                else
-                    (Tag as OPMDASHBOARDA).Po.AdvancePercentage = 0;
             }
             catch
             {
-                MessageBox.Show("Nhập lại dạng số!");
+                MessageBox.Show("Nhập lại POAdvancePercentage dạng số!");
             }
         }
 
         private void dtpAdvanceCreatedDate_ValueChanged(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).Po.AdvanceCreatedDate = dtpAdvanceCreatedDate.Value;
+            (Tag as OPMDASHBOARDA).Po.POAdvanceCreatedDate = dtpPOAdvanceCreatedDate.Value;
         }
 
-        private void txtAdvanceGuaranteePercentage_TextChanged(object sender, EventArgs e)
+        private void txtPOAdvanceGuaranteePercentage_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                if (!string.IsNullOrEmpty(txtAdvanceGuaranteePercentage.Text.Trim()))
+                if (!string.IsNullOrEmpty(txtPOAdvanceGuaranteePercentage.Text.Trim()))
                 {
-                    if (0 <= int.Parse(txtAdvanceGuaranteePercentage.Text.Trim()) && int.Parse(txtAdvanceGuaranteePercentage.Text.Trim()) <= 100)
-                        (Tag as OPMDASHBOARDA).Po.AdvanceGuaranteePercentage = int.Parse(txtAdvanceGuaranteePercentage.Text.Trim());
+                    if (0 <= int.Parse(txtPOAdvanceGuaranteePercentage.Text.Trim()) && int.Parse(txtPOAdvanceGuaranteePercentage.Text.Trim()) <= 100)
+                        (Tag as OPMDASHBOARDA).Po.POAdvanceGuaranteePercentage = int.Parse(txtPOAdvanceGuaranteePercentage.Text.Trim());
                     else
                     {
                         MessageBox.Show("Nhập lại dạng số trong khoảng 0 đến 100!");
@@ -327,27 +322,27 @@ namespace OPM.GUI
                     }
                 }
                 else
-                    (Tag as OPMDASHBOARDA).Po.AdvanceGuaranteePercentage = 0;
+                    (Tag as OPMDASHBOARDA).Po.POAdvanceGuaranteePercentage = 0;
             }
             catch
             {
-                MessageBox.Show("Nhập lại dạng số!");
+                MessageBox.Show("Nhập lại POAdvanceGuaranteePercentage dạng số!");
             }
         }
 
         private void dtpAdvanceGuaranteeCreatedDate_ValueChanged(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).Po.AdvanceGuaranteeCreatedDate = dtpAdvanceGuaranteeCreatedDate.Value;
+            (Tag as OPMDASHBOARDA).Po.POAdvanceGuaranteeCreatedDate = dtpPOAdvanceGuaranteeCreatedDate.Value;
         }
 
         private void txtIdAdvanceRequest_TextChanged(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).Po.IdAdvanceRequest = txtIdAdvanceRequest.Text.Trim();
+            (Tag as OPMDASHBOARDA).Po.POAdvanceRequestId = txtPOAdvanceRequestId.Text.Trim();
         }
 
         private void dtpAdvanceRequestDate_ValueChanged(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).Po.AdvanceRequestDate = dtpAdvanceRequestDate.Value;
+            (Tag as OPMDASHBOARDA).Po.POAdvanceRequestCreatedDate = dtpPOAdvanceRequestCreatedDate.Value;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -364,6 +359,7 @@ namespace OPM.GUI
 
         private void btnCreatDoc_Click(object sender, EventArgs e)
         {
+            if (!(Tag as OPMDASHBOARDA).Po.POExist()) return;
             //Tạo mẫu 7
 
             //Tạo mẫu 6
@@ -373,12 +369,17 @@ namespace OPM.GUI
             //Tạo mẫu 4
 
             //Tạo mẫu 3
-            OpmWordHandler.Temp3_CreatPOConfirm((Tag as OPMDASHBOARDA).Po.Id);
+            OpmWordHandler.Temp3_CreatPOConfirm((Tag as OPMDASHBOARDA).Po.POId);
             //Tạo các mẫu 23,24,36,37
-            OpmWordHandler.Temp23_CNCL_TongHop((Tag as OPMDASHBOARDA).Po.Id);
-            OpmWordHandler.Temp24_CNCLNMTongHop((Tag as OPMDASHBOARDA).Po.Id);
-            OpmWordHandler.Temp36_BBNTLicense((Tag as OPMDASHBOARDA).Po.Id);
-            OpmWordHandler.Temp37_BBXNCDLicense((Tag as OPMDASHBOARDA).Po.Id);
+            OpmWordHandler.Temp23_CNCL_TongHop((Tag as OPMDASHBOARDA).Po.POId);
+            OpmWordHandler.Temp24_CNCLNMTongHop((Tag as OPMDASHBOARDA).Po.POId);
+            OpmWordHandler.Temp36_BBNTLicense((Tag as OPMDASHBOARDA).Po.POId);
+            OpmWordHandler.Temp37_BBXNCDLicense((Tag as OPMDASHBOARDA).Po.POId);
+        }
+
+        private void txtPOAdvanceId_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Po.POAdvanceId = txtPOAdvanceId.Text.Trim();
         }
     }
 }

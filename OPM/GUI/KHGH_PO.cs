@@ -19,7 +19,7 @@ namespace OPM.GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            PO po = new PO();
+            POObj po = new POObj();
             int returnValue = 0;
             if (po.CheckListDelivery_PO(vbxn.Text))
             {

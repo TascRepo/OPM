@@ -8,9 +8,8 @@ namespace OPM.GUI
     {
         public delegate void SetStringValue(string vl);
         public SetStringValue setStringValue;
-        string idSite;
 
-        public string IdSite { get => idSite; set => idSite = value; }
+        public string IdSite { get; set; }
 
         public SiteInfo()
         {
@@ -18,53 +17,55 @@ namespace OPM.GUI
         }
         void AddSiteBinding()
         {
-            txtId.DataBindings.Clear();
-            txtId.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Id"));
-            txtIdVNPT.DataBindings.Clear();
-            txtIdVNPT.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "IdVNPT"));
-            textBoxType.DataBindings.Clear();
-            textBoxType.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Type"));
-            textBoxHeadquater.DataBindings.Clear();
-            textBoxHeadquater.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Headquater"));
-            textBoxAddress.DataBindings.Clear();
-            textBoxAddress.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Address"));
-            textBoxPhonenumber.DataBindings.Clear();
-            textBoxPhonenumber.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Phonenumber"));
-            textBoxFax.DataBindings.Clear();
-            textBoxFax.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Fax"));
-            textBoxTax.DataBindings.Clear();
-            textBoxTax.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Tax"));
-            textBoxAccount.DataBindings.Clear();
-            textBoxAccount.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Account"));
-            textBoxRepresentative1.DataBindings.Clear();
-            textBoxRepresentative1.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Representative1"));
-            textBoxRepresentative2.DataBindings.Clear();
-            textBoxRepresentative2.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Representative2"));
-            textBoxRepresentative3.DataBindings.Clear();
-            textBoxRepresentative3.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Representative3"));
-            textBoxPosition1.DataBindings.Clear();
-            textBoxPosition1.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Position1"));
-            textBoxPosition2.DataBindings.Clear();
-            textBoxPosition2.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Position2"));
-            textBoxPosition3.DataBindings.Clear();
-            textBoxPosition3.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Position3"));
-            textBoxProxy1.DataBindings.Clear();
-            textBoxProxy1.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Proxy1"));
-            textBoxProxy2.DataBindings.Clear();
-            textBoxProxy2.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Proxy2"));
-            textBoxProxy3.DataBindings.Clear();
-            textBoxProxy3.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Proxy3"));
+            txtSiteId.DataBindings.Clear();
+            txtSiteId.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "SiteId"));
+            txtProvinceId.DataBindings.Clear();
+            txtProvinceId.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "ProvinceId"));
+            txtTypeOfSite.DataBindings.Clear();
+            txtTypeOfSite.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "TypeOfSite"));
+            txtHeadquater.DataBindings.Clear();
+            txtHeadquater.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Headquater"));
+            txtAddress.DataBindings.Clear();
+            txtAddress.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Address"));
+            txtPhoneNumber.DataBindings.Clear();
+            txtPhoneNumber.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Phonenumber"));
+            txtFaxNumber.DataBindings.Clear();
+            txtFaxNumber.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "FaxNumber"));
+            txtTaxCode.DataBindings.Clear();
+            txtTaxCode.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "TaxCode"));
+            txtBankAccount.DataBindings.Clear();
+            txtBankAccount.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "BankAccount"));
+            txtNameOfBank.DataBindings.Clear();
+            txtNameOfBank.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "NameOfBank"));
+            txtRepresentative1.DataBindings.Clear();
+            txtRepresentative1.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Representative1"));
+            txtRepresentative2.DataBindings.Clear();
+            txtRepresentative2.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Representative2"));
+            txtRepresentative3.DataBindings.Clear();
+            txtRepresentative3.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Representative3"));
+            txtPosition1.DataBindings.Clear();
+            txtPosition1.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Position1"));
+            txtPosition2.DataBindings.Clear();
+            txtPosition2.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Position2"));
+            txtPosition3.DataBindings.Clear();
+            txtPosition3.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Position3"));
+            txtProxy1.DataBindings.Clear();
+            txtProxy1.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Proxy1"));
+            txtProxy2.DataBindings.Clear();
+            txtProxy2.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Proxy2"));
+            txtProxy3.DataBindings.Clear();
+            txtProxy3.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Proxy3"));
         }
         void LoadDataGridView()
         {
             List<OPMEnginee.SiteObj> sites = OPMEnginee.SiteObj.GetList();
             dtgvSite.DataSource = sites;
-            dtgvSite.Columns["Id"].HeaderText = @"Tên đơn vị";
+            dtgvSite.Columns["SiteId"].HeaderText = @"Tên đơn vị";
             //dtgvSite.Columns["Id"].Width = 250;
-            dtgvSite.Columns["IdVNPT"].HeaderText = @"VNPT tỉnh";
-            dtgvSite.Columns["Type"].HeaderText = @"Phân loại";
-            //dtgvSite.Columns["Type"].Width = 250;
-            dtgvSite.Columns["Type"].Visible = false;
+            dtgvSite.Columns["ProvinceId"].HeaderText = @"VNPT tỉnh";
+            dtgvSite.Columns["TypeOfSite"].HeaderText = @"Phân loại";
+            //dtgvSite.Columns["TypeOfSite"].Width = 250;
+            dtgvSite.Columns["TypeOfSite"].Visible = false;
             dtgvSite.Columns["Headquater"].HeaderText = @"Trụ sở";
             //dtgvSite.Columns["Headquater"].Width = 250;
             dtgvSite.Columns["Headquater"].Visible = false;
@@ -75,16 +76,19 @@ namespace OPM.GUI
             dtgvSite.Columns["Phonenumber"].HeaderText = @"Điện thoại";
             dtgvSite.Columns["Phonenumber"].Visible = false;
             //dtgvSite.Columns["Phonenumber"].Width = 250;
-            dtgvSite.Columns["Fax"].HeaderText = @"Fax";
-            dtgvSite.Columns["Fax"].Visible = false;
-            //dtgvSite.Columns["Fax"].Width = 250;
-            dtgvSite.Columns["Tax"].HeaderText = @"Mã số thuế";
-            //dtgvSite.Columns["Tax"].Width = 250;
-            dtgvSite.Columns["Tax"].Visible = false;
+            dtgvSite.Columns["FaxNumber"].HeaderText = @"Số Fax";
+            dtgvSite.Columns["FaxNumber"].Visible = false;
+            //dtgvSite.Columns["FaxNumber"].Width = 250;
+            dtgvSite.Columns["TaxCode"].HeaderText = @"Mã số thuế";
+            //dtgvSite.Columns["TaxCode"].Width = 250;
+            dtgvSite.Columns["TaxCode"].Visible = false;
 
-            dtgvSite.Columns["Account"].HeaderText = @"Tài khoản";
-            //dtgvSite.Columns["Account"].Width = 250;
-            dtgvSite.Columns["Account"].Visible = false;
+            dtgvSite.Columns["BankAccount"].HeaderText = @"Tài khoản";
+            //dtgvSite.Columns["BankAccount"].Width = 250;
+            dtgvSite.Columns["BankAccount"].Visible = false;
+            dtgvSite.Columns["NameOfBank"].HeaderText = @"Nhân hàng";
+            //dtgvSite.Columns["NameOfBank"].Width = 250;
+            dtgvSite.Columns["NameOfBank"].Visible = false;
 
             dtgvSite.Columns["Representative1"].HeaderText = @"Đại diện 1";
             dtgvSite.Columns["Representative1"].Visible = false;
@@ -118,41 +122,44 @@ namespace OPM.GUI
             for (int i = 0; i < dtgvSite.RowCount; i++)
             {
                 dtgvSite.Rows[i].Cells[0].Value = i + 1;
-                if (idSite == dtgvSite.Rows[i].Cells["Id"].Value.ToString()) dtgvSite.CurrentCell = dtgvSite.Rows[i].Cells["Id"];
+                if (IdSite == dtgvSite.Rows[i].Cells["SiteId"].Value.ToString()) dtgvSite.CurrentCell = dtgvSite.Rows[i].Cells["SiteId"];
             }
             AddSiteBinding();
         }
         private void btnAddOrUpdate_Click(object sender, EventArgs e)
         {
-            OPMEnginee.SiteObj site = new OPMEnginee.SiteObj();
-            site.Id = txtId.Text.Trim();
-            site.IdVNPT = txtIdVNPT.Text.Trim();
-            site.Headquater = textBoxHeadquater.Text.Trim();
-            site.Address = textBoxAddress.Text.Trim();
-            site.Phonenumber = textBoxPhonenumber.Text.Trim();
-            site.Fax = textBoxFax.Text.Trim();
-            site.Tax = textBoxTax.Text.Trim();
-            site.Account = textBoxAccount.Text.Trim();
-            site.Type = textBoxType.Text.Trim();
-            site.Representative1 = textBoxRepresentative1.Text.Trim();
-            site.Representative2 = textBoxRepresentative2.Text.Trim();
-            site.Representative3 = textBoxRepresentative3.Text.Trim();
-            site.Position1 = textBoxPosition1.Text.Trim();
-            site.Position2 = textBoxPosition2.Text.Trim();
-            site.Position3 = textBoxPosition3.Text.Trim();
-            site.Proxy1 = textBoxProxy1.Text.Trim();
-            site.Proxy2 = textBoxProxy2.Text.Trim();
-            site.Proxy3 = textBoxProxy3.Text.Trim();
+            var site = new OPMEnginee.SiteObj
+            {
+                SiteId = txtSiteId.Text.Trim(),
+                ProvinceId = txtProvinceId.Text.Trim(),
+                Headquater = txtHeadquater.Text.Trim(),
+                Address = txtAddress.Text.Trim(),
+                Phonenumber = txtPhoneNumber.Text.Trim(),
+                FaxNumber = txtFaxNumber.Text.Trim(),
+                TaxCode = txtTaxCode.Text.Trim(),
+                BankAccount = txtBankAccount.Text.Trim(),
+                NameOfBank = txtNameOfBank.Text.Trim(),
+                TypeOfSite = txtTypeOfSite.Text.Trim(),
+                Representative1 = txtRepresentative1.Text.Trim(),
+                Representative2 = txtRepresentative2.Text.Trim(),
+                Representative3 = txtRepresentative3.Text.Trim(),
+                Position1 = txtPosition1.Text.Trim(),
+                Position2 = txtPosition2.Text.Trim(),
+                Position3 = txtPosition3.Text.Trim(),
+                Proxy1 = txtProxy1.Text.Trim(),
+                Proxy2 = txtProxy2.Text.Trim(),
+                Proxy3 = txtProxy3.Text.Trim()
+            };
             if (site.Exist()) site.Update();
             else site.Insert();
             LoadDataGridView();
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (OPMEnginee.SiteObj.Exist(txtId.Text.Trim()))
+            if (OPMEnginee.SiteObj.Exist(txtSiteId.Text.Trim()))
             {
-                OPMEnginee.SiteObj.Delete(txtId.Text.Trim());
-                //LoadDataGridView();
+                OPMEnginee.SiteObj.Delete(txtSiteId.Text.Trim());
+                LoadDataGridView();
             }
             else MessageBox.Show("Site không tồn tại!");
         }
@@ -162,34 +169,37 @@ namespace OPM.GUI
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
-            OPMEnginee.SiteObj site = new OPMEnginee.SiteObj();
-            site.Id = txtId.Text.Trim();
-            site.IdVNPT = txtIdVNPT.Text.Trim();
-            site.Headquater = textBoxHeadquater.Text.Trim();
-            site.Address = textBoxAddress.Text.Trim();
-            site.Phonenumber = textBoxPhonenumber.Text.Trim();
-            site.Fax = textBoxFax.Text.Trim();
-            site.Tax = textBoxTax.Text.Trim();
-            site.Account = textBoxAccount.Text.Trim();
-            site.Type = textBoxType.Text.Trim();
-            site.Representative1 = textBoxRepresentative1.Text.Trim();
-            site.Representative2 = textBoxRepresentative2.Text.Trim();
-            site.Representative3 = textBoxRepresentative3.Text.Trim();
-            site.Position1 = textBoxPosition1.Text.Trim();
-            site.Position2 = textBoxPosition2.Text.Trim();
-            site.Position3 = textBoxPosition3.Text.Trim();
-            site.Proxy1 = textBoxProxy1.Text.Trim();
-            site.Proxy2 = textBoxProxy2.Text.Trim();
-            site.Proxy3 = textBoxProxy3.Text.Trim();
+            var site = new OPMEnginee.SiteObj
+            {
+                SiteId = txtSiteId.Text.Trim(),
+                ProvinceId = txtProvinceId.Text.Trim(),
+                Headquater = txtHeadquater.Text.Trim(),
+                Address = txtAddress.Text.Trim(),
+                Phonenumber = txtPhoneNumber.Text.Trim(),
+                FaxNumber = txtFaxNumber.Text.Trim(),
+                TaxCode = txtTaxCode.Text.Trim(),
+                BankAccount = txtBankAccount.Text.Trim(),
+                NameOfBank = txtNameOfBank.Text.Trim(),
+                TypeOfSite = txtTypeOfSite.Text.Trim(),
+                Representative1 = txtRepresentative1.Text.Trim(),
+                Representative2 = txtRepresentative2.Text.Trim(),
+                Representative3 = txtRepresentative3.Text.Trim(),
+                Position1 = txtPosition1.Text.Trim(),
+                Position2 = txtPosition2.Text.Trim(),
+                Position3 = txtPosition3.Text.Trim(),
+                Proxy1 = txtProxy1.Text.Trim(),
+                Proxy2 = txtProxy2.Text.Trim(),
+                Proxy3 = txtProxy3.Text.Trim()
+            };
             if (site.Exist()) site.Update();
             else site.Insert();
             LoadDataGridView();
-            setStringValue(idSite);
+            setStringValue(IdSite);
             (Tag as OPMDASHBOARDA).OpenContractForm();
         }
         private void textBoxId_TextChanged(object sender, EventArgs e)
         {
-            idSite = txtId.Text;
+            IdSite = txtSiteId.Text;
         }
     }
 }

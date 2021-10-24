@@ -92,8 +92,8 @@ namespace OPM.OPMEnginee
             {
                 list.Add(nameOfParentNode);
                 //CatalogAdmin catalog = new CatalogAdmin(nameOfParentNode);
-                DataRow[] ds = table.Select(string.Format(@"ctlId = '{0}'", nameOfCurrentNode), "ctlname");
-                nameOfParentNode = ds[0]["ctlParent"].ToString();
+                DataRow[] rows = table.Select(string.Format(@"ctlId = '{0}'", nameOfCurrentNode), "ctlname");
+                nameOfParentNode = rows[0]["ctlParent"].ToString();
                 nameOfCurrentNode = nameOfParentNode;
             } while (nameOfParentNode != "");
             return list;

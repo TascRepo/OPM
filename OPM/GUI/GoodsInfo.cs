@@ -11,75 +11,124 @@ namespace OPM.GUI
         }
         void LoadData()
         {
-            tbxName.Text = (Tag as OPMDASHBOARDA).Goods.Name;
-            tbxCode.Text = (Tag as OPMDASHBOARDA).Goods.Code;
-            tbxManufacturer.Text = (Tag as OPMDASHBOARDA).Goods.Manufacturer;
-            tbxOrigin.Text = (Tag as OPMDASHBOARDA).Goods.Origin;
-            textBoxLicense.Text = (Tag as OPMDASHBOARDA).Goods.License;
-            textBoxName1.Text = (Tag as OPMDASHBOARDA).Goods.Name1;
-            textBoxNote.Text = (Tag as OPMDASHBOARDA).Goods.Note;
-            textBoxPricePreTax.Text = (Tag as OPMDASHBOARDA).Goods.PricePreTax.ToString();
-            textBoxPriceUnit.Text = (Tag as OPMDASHBOARDA).Goods.PriceUnit.ToString();
-            textBoxQuantity.Text = (Tag as OPMDASHBOARDA).Goods.Quantity.ToString();
-            textBoxTotalTax.Text = (Tag as OPMDASHBOARDA).Goods.Tax.ToString();
-            textBoxUnit.Text = (Tag as OPMDASHBOARDA).Goods.Unit;
-            textBoxTotalPriceAfterTax.Text = (Tag as OPMDASHBOARDA).Goods.PriceAfterTax.ToString();
+            txtContractGoodsDesignation.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsDesignation;
+            txtContractGoodsDesignation1.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsDesignation1;
+            txtContractGoodsCode.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsCode;
+            txtContractGoodsCode1.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsCode1;
+            txtContractGoodsCode2.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsCode2;
+            txtContractGoodsManufacture.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsManufacture;
+            txtContractGoodsOrigin.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsOrigin;
+            txtContractGoodsSpecies.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsSpecies;
+            txtContractGoodsNote.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsNote;
+            txtContractGoodsUnit.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsUnit;
+            txtContractGoodsUnitPrice.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsUnitPrice.ToString();
+            txtContractGoodsQuantity.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsQuantity.ToString();
+            txtPreTaxContractPrice.Text = ((Tag as OPMDASHBOARDA).Contract.ContractGoodsUnitPrice * (Tag as OPMDASHBOARDA).Contract.ContractGoodsQuantity).ToString();
+            txtContractGoodsLicenseName.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsLicenseName;
+            txtContractGoodsLicenseUnitPrice.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsLicenseUnitPrice.ToString();
         }
-        private void textBoxPriceUnit_TextChanged(object sender, EventArgs e)
+        private void txtContractGoodsUnitPrice_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                textBoxPricePreTax.Text = ((string.IsNullOrEmpty(textBoxPriceUnit.Text.Trim()) ? 0 : double.Parse(textBoxPriceUnit.Text.Trim()) * (string.IsNullOrEmpty(textBoxQuantity.Text.Trim()) ? 0 : int.Parse(textBoxQuantity.Text.Trim())))).ToString();
+                (Tag as OPMDASHBOARDA).Contract.ContractGoodsUnitPrice = string.IsNullOrEmpty(txtContractGoodsUnitPrice.Text.Trim()) ? 0 : double.Parse(txtContractGoodsUnitPrice.Text.Trim());
+                txtPreTaxContractPrice.Text = ((string.IsNullOrEmpty(txtContractGoodsUnitPrice.Text.Trim()) ? 0 : double.Parse(txtContractGoodsUnitPrice.Text.Trim()) * (string.IsNullOrEmpty(txtContractGoodsQuantity.Text.Trim()) ? 0 : int.Parse(txtContractGoodsQuantity.Text.Trim())))).ToString();
             }
             catch
             {
-                MessageBox.Show(string.Format("Nhập thông tin ở dạng số"));
+                MessageBox.Show(string.Format("Nhập thông tin UnitPrice ở dạng số"));
             }
         }
-        private void textBoxQuantity_TextChanged(object sender, EventArgs e)
+        private void txtContractGoodsQuantity_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                textBoxPricePreTax.Text = ((string.IsNullOrEmpty(textBoxPriceUnit.Text.Trim()) ? 0 : double.Parse(textBoxPriceUnit.Text.Trim()) * (string.IsNullOrEmpty(textBoxQuantity.Text.Trim()) ? 0 : int.Parse(textBoxQuantity.Text.Trim())))).ToString();
+                (Tag as OPMDASHBOARDA).Contract.ContractGoodsQuantity= string.IsNullOrEmpty(txtContractGoodsQuantity.Text.Trim()) ? 0 : int.Parse(txtContractGoodsQuantity.Text.Trim());
+                txtPreTaxContractPrice.Text = ((string.IsNullOrEmpty(txtContractGoodsUnitPrice.Text.Trim()) ? 0 : double.Parse(txtContractGoodsUnitPrice.Text.Trim()) * (string.IsNullOrEmpty(txtContractGoodsQuantity.Text.Trim()) ? 0 : int.Parse(txtContractGoodsQuantity.Text.Trim())))).ToString();
             }
             catch
             {
-                MessageBox.Show(string.Format("Nhập thông tin ở dạng số"));
+                MessageBox.Show(string.Format("Nhập thông tin Quantity ở dạng số"));
             }
         }
 
-        private void textBoxUnit_TextChanged(object sender, EventArgs e)
+        private void txtContractGoodsUnit_TextChanged(object sender, EventArgs e)
         {
-            labelQuantity.Text = string.Format(@"Số lượng ({0})", textBoxUnit.Text.Trim());
+            labelQuantity.Text = string.Format(@"Số lượng ({0})", txtContractGoodsUnit.Text.Trim());
+            (Tag as OPMDASHBOARDA).Contract.ContractGoodsUnit = txtContractGoodsUnit.Text;
         }
 
-        private void textBoxPricePreTax_TextChanged(object sender, EventArgs e)
+        private void BtnBack_Click(object sender, EventArgs e)
         {
-            //setValueContractForm(textBoxPricePreTax.Text,goods);
-            textBoxTotalTax.Text = ((string.IsNullOrEmpty(textBoxPricePreTax.Text.Trim()) ? 0 : Convert.ToDouble(textBoxPricePreTax.Text.Trim())) / 10).ToString();
-            textBoxTotalPriceAfterTax.Text = ((string.IsNullOrEmpty(textBoxTotalTax.Text.Trim()) ? 0 : Convert.ToDouble(textBoxTotalTax.Text.Trim())) + (string.IsNullOrEmpty(textBoxPricePreTax.Text.Trim()) ? 0 : Convert.ToDouble(textBoxPricePreTax.Text.Trim()))).ToString();
-        }
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            (Tag as OPMDASHBOARDA).Goods.IdContract = (Tag as OPMDASHBOARDA).Contract.Id;
-            (Tag as OPMDASHBOARDA).Goods.Name = tbxName.Text;
-            (Tag as OPMDASHBOARDA).Goods.Code = tbxCode.Text;
-            (Tag as OPMDASHBOARDA).Goods.Manufacturer = tbxManufacturer.Text;
-            (Tag as OPMDASHBOARDA).Goods.Origin = tbxOrigin.Text;
-            (Tag as OPMDASHBOARDA).Goods.License = textBoxLicense.Text;
-            (Tag as OPMDASHBOARDA).Goods.Name1 = textBoxName1.Text;
-            (Tag as OPMDASHBOARDA).Goods.Note = textBoxNote.Text;
-            (Tag as OPMDASHBOARDA).Goods.PriceUnit = Convert.ToDouble(textBoxPriceUnit.Text.Trim());
-            (Tag as OPMDASHBOARDA).Goods.Quantity = Convert.ToInt32(textBoxQuantity.Text);
-            (Tag as OPMDASHBOARDA).Goods.Unit = textBoxUnit.Text;
-            (Tag as OPMDASHBOARDA).Contract.ContractValue = (Tag as OPMDASHBOARDA).Goods.PriceUnit * (Tag as OPMDASHBOARDA).Goods.Quantity;
             (Tag as OPMDASHBOARDA).OpenContractForm();
         }
 
         private void GoodsForm_Load(object sender, EventArgs e)
         {
-            labelQuantity.Text = string.Format(@"Số lượng ({0})", textBoxUnit.Text.Trim());
+            labelQuantity.Text = string.Format(@"Số lượng ({0})", txtContractGoodsUnit.Text.Trim());
             LoadData();
+        }
+
+        private void txtContractGoodsDesignation_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.ContractGoodsDesignation = txtContractGoodsDesignation.Text;
+        }
+
+        private void txtContractGoodsDesignation1_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.ContractGoodsDesignation1 = txtContractGoodsDesignation1.Text;
+        }
+
+        private void txtContractGoodsCode_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.ContractGoodsCode = txtContractGoodsCode.Text;
+        }
+
+        private void txtContractGoodsCode1_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.ContractGoodsCode1 = txtContractGoodsCode1.Text;
+        }
+
+        private void txtContractGoodsCode2_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.ContractGoodsCode2 = txtContractGoodsCode2.Text;
+        }
+
+        private void txtContractGoodsManufacture_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.ContractGoodsManufacture = txtContractGoodsManufacture.Text;
+        }
+
+        private void txtContractGoodsOrigin_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.ContractGoodsOrigin = txtContractGoodsOrigin.Text;
+        }
+
+        private void txtContractGoodsSpecies_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.ContractGoodsSpecies = txtContractGoodsSpecies.Text;
+        }
+
+        private void txtContractGoodsNote_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.ContractGoodsNote = txtContractGoodsNote.Text;
+        }
+
+        private void txtContractGoodsLicenseName_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.ContractGoodsLicenseName = txtContractGoodsLicenseName.Text;
+        }
+
+        private void txtContractGoodsLicenseUnitPrice_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                (Tag as OPMDASHBOARDA).Contract.ContractGoodsLicenseUnitPrice = string.IsNullOrEmpty(txtContractGoodsLicenseUnitPrice.Text.Trim()) ? 0 : int.Parse(txtContractGoodsLicenseUnitPrice.Text.Trim());
+            }
+            catch
+            {
+                MessageBox.Show(string.Format("Nhập thông tin LicenseUnitPrice ở dạng số"));
+            }
         }
     }
 }

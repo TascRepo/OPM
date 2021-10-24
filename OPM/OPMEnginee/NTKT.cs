@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace OPM.OPMEnginee
 {
-    public partial class NTKT
+    public partial class NTKT:POObj
     {
         private string id = "1320/ANSV-DO";
         private string id_po = "5120/CUVT-KV";
