@@ -100,7 +100,7 @@ namespace OPM.OPMEnginee
         }
         public static DataTable Table()
         {
-            string query = string.Format("SELECT ctlID, ctlname, ctlparent FROM dbo.CatalogAdmin Order By ctlname");
+            string query = string.Format("(SELECT ('Contract_'+ContractId)AS ctlId, ContractId AS ctlName, null AS ctlParent FROM dbo.Contract) UNION (SELECT 'PO_'+POId,POName, 'Contract_'+ContractId FROM dbo.PO) UNION (SELECT 'NTKT_'+NTKTId,'NTKT'+ NTKTPhase,'PO_'+POId FROM dbo.NTKT) ORDER BY ContractId");
             return OPMDBHandler.ExecuteQuery(query);
         }
         public static DataRow ToRow(CatalogAdmin catalogAdmin)

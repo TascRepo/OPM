@@ -11,8 +11,17 @@ namespace OPM.GUI
     {
         public ContractObj Contract { get; set; } = new ContractObj();
         public POObj Po { get; set; } = new POObj();
-        public NTKT Ntkt { get; set; } = new NTKT();
+        public NTKTObj Ntkt { get; set; } = new NTKTObj();
         public int TempStatus { get; set; } = 0;
+        //TempStatus = 0 : Đang ở Form tạo mới hợp đồng
+        //TempStatus = 1 : Đang ở Form chỉnh sửa hợp đồng
+        //TempStatus = 3 : Đang ở Form tạo mới PO
+        //TempStatus = 4 : Đang ở Form tạo mới PO
+        //TempStatus = 6 : Đang ở Form tạo mới NTKT
+        //TempStatus = 7 : Đang ở Form chỉnh sửa NTKT
+        //TempStatus = 0 : Đang ở Form 
+        //TempStatus = 0 : Đang ở Form 
+        //TempStatus = 0 : Đang ở Form 
 
         public OPMDASHBOARDA()
         {
@@ -26,33 +35,41 @@ namespace OPM.GUI
         {
             treeViewOPM.Nodes.Clear();
             DataTable table = CatalogAdmin.Table();
-            if (!CatalogAdmin.Exist(nodeName))
+            DataRow row = table.NewRow();
+            row["ctlId"] = nodeName;
+            string[] temp = nodeName.Split('_', 2);
+            switch (temp[0])
             {
-                DataRow row = table.NewRow();
-                row["ctlId"] = nodeName;
-                string[] temp = nodeName.Split('_', 2);
-                switch (temp[0])
-                {
-                    case "Contract":
+                case "Contract":
+                    if (!ContractObj.ContractExist(temp[1]))
+                    {
                         row["ctlName"] = temp[1];
-                        break;
-                    case "PO":
+                        table.Rows.Add(row);
+                    }
+                    break;
+                case "PO":
+                    if (!POObj.POExist(temp[1]))
+                    {
                         row["ctlName"] = Po.POName;
                         row["ctlParent"] = "Contract_" + Contract.ContractId;
-                        break;
-                    case "DP":
-                        break;
-                    case "NTKT":
-                        row["ctlName"] = "NTKT" + Ntkt.Number.ToString();
+                        table.Rows.Add(row);
+                    }
+                    break;
+                case "DP":
+                    break;
+                case "NTKT":
+                    if (!NTKTObj.NTKTExist(temp[1]))
+                    {
+                        row["ctlName"] = "NTKT" + Ntkt.NTKTPhase;
                         row["ctlParent"] = "PO_" + Po.POId;
-                        break;
-                    case "PL":
-                        break;
-                    default:
-                        MessageBox.Show(string.Format("Không tìm thấy đường dẫn đến nút {0} trên TreeView", nodeName));
-                        return;
-                }
-                table.Rows.Add(row);
+                        table.Rows.Add(row);
+                    }
+                    break;
+                case "PL":
+                    break;
+                default:
+                    MessageBox.Show(string.Format("Không tìm thấy đường dẫn đến nút {0} trên TreeView", nodeName));
+                    break;
             }
             InitCatalogAdmin(null, null, table);
             List<string> list = CatalogAdmin.PathToContractNodeFromCurrentNode(nodeName, table);
@@ -102,21 +119,20 @@ namespace OPM.GUI
         }
         public void TreeViewOPM_DoubleClick(object sender, EventArgs e)
         {
-            treeViewOPM.Tag = treeViewOPM.SelectedNode;
-            string strNodeID = treeViewOPM.SelectedNode.Name.ToString();
-            string[] temp = strNodeID.Split('_', 2);
+            treeViewOPM.Tag = treeViewOPM.SelectedNode; //Lưu lại Node được chọn
+            string[] temp = treeViewOPM.SelectedNode.Name.ToString().Split('_', 2);
             /*Get Detail Infor On Database*/
             switch (temp[0])
             {
                 case "Contract":
                     TempStatus = 1;//Đang ở Form chỉnh sửa hợp đồng
-                    Contract = new ContractObj(temp[1]);
+                    Contract.ContractId = temp[1];
                     OpenContractForm();
                     break;
                 case "PO":
                     TempStatus = 4;//Đang ở Form PO có sẵn
-                    Po = new POObj(temp[1]);
-                    Contract = new ContractObj(Po.ContractId);
+                    Po.POId = temp[1];
+                    Contract.ContractId = Po.ContractId;
                     OpenPOForm();
                     break;
                 case "DP":
@@ -126,8 +142,9 @@ namespace OPM.GUI
                     OpenChildForm(deliverPartInforDetail);
                     break;
                 case "NTKT":
-                    Ntkt = new NTKT(temp[1]);
-                    Po = new POObj(Ntkt.Id_po);
+                    TempStatus = 7;//Đang ở Form chỉnh sửa NTKT
+                    Ntkt = new NTKTObj(temp[1]);
+                    Po = new POObj(Ntkt.POId);
                     Contract = new ContractObj(Po.ContractId);
                     OpenNTKTForm();
                     break;
@@ -194,7 +211,7 @@ namespace OPM.GUI
         {
             PurchaseOderInfor purchaseOderInfor = new PurchaseOderInfor();
             Text = string.Format("Hợp đồng số {0} - {1}", Contract.ContractId, Po.POName);
-            if (TempStatus == 3) Po = new POObj();
+            if (TempStatus == 3) Po = new POObj();  //Ở Form tạo mới PO
             Po.ContractId = Contract.ContractId;
             InitCatalogByNodeName("PO_" + Po.POId);
             OpenChildForm(purchaseOderInfor);
@@ -202,9 +219,10 @@ namespace OPM.GUI
         public void OpenNTKTForm()
         {
             NTKTInfor nTKTInfor = new NTKTInfor();
-            Text = string.Format(@"Hợp đồng số {2} - {1} - Đợt NTKT{0}", Ntkt.Number, Po.POName, Contract.ContractId);
-            Ntkt.Id_po = Po.POId;
-            InitCatalogByNodeName("NTKT_" + Ntkt.Id);
+            Text = string.Format(@"Hợp đồng số {2} - {1} - Đợt NTKT{0}", Ntkt.NTKTPhase, Po.POName, Contract.ContractId);
+            if (TempStatus == 6) Ntkt = new NTKTObj();  //Ở Form tạo mới NTKT
+            Ntkt.POId = Po.POId;
+            InitCatalogByNodeName("NTKT_" + Ntkt.NTKTId);
             OpenChildForm(nTKTInfor);
         }
         public void OpenDpForm(string idPO, string idContract, String PONumber)

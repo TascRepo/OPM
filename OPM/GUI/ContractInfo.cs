@@ -61,9 +61,6 @@ namespace OPM.GUI
             }
         }
 
-        //**********************************
-        //Ngày hết hạn hợp đồng = ngày hiệu lực + số ngày thực hiện hợp đồng
-        //Ngày hết hạn bảo lãnh = ngày hiệu lực + số ngày bảo lãnh
         private void dtpActiveDate_ValueChanged(object sender, EventArgs e)
         {
             try
@@ -94,7 +91,6 @@ namespace OPM.GUI
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            //(Tag as OPMDASHBOARDA).TempStatus = 1;//Chỉnh sửa Hợp đồng
             State(false);
         }
         private void btnDelete_Click(object sender, EventArgs e)
@@ -108,39 +104,35 @@ namespace OPM.GUI
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //Lưu thông tin vào bảng Contract
-            if (string.IsNullOrEmpty(txtContractId.Text.Trim()))
-            {
-                MessageBox.Show("Cần nhập đúng mã Hợp đồng!");
-                return;
-            }
-            if ((Tag as OPMDASHBOARDA).TempStatus == 1)//Chỉnh sửa
-            {
-                if (txtContractId.Text == (txtContractId.Tag as string))
-                    (Tag as OPMDASHBOARDA).Contract.ContractUpdate();
-                else if (!(Tag as OPMDASHBOARDA).Contract.ContractExist())
-                    (Tag as OPMDASHBOARDA).Contract.ContractUpdate(txtContractId.Tag as string);
-                else
-                {
-                    MessageBox.Show(string.Format("Đã tồn tại hợp đồng số: '{0}'", (Tag as OPMDASHBOARDA).Contract.ContractId));
-                    return;
-                }
-            }
+            if (string.IsNullOrEmpty(txtContractId.Text.Trim()) || txtContractId.Text.Trim() == (new ContractObj()).ContractId) return;
             if ((Tag as OPMDASHBOARDA).TempStatus == 0)//Tạo mới
             {
-                if (!(Tag as OPMDASHBOARDA).Contract.ContractExist())
-                    if ((Tag as OPMDASHBOARDA).Contract.ContractInsert() > 0)
+                if ((Tag as OPMDASHBOARDA).Contract.ContractInsert(txtContractId.Text.Trim()) > 0) 
+                {
+                    (Tag as OPMDASHBOARDA).Contract.ContractId = txtContractId.Text.Trim();
+                    (Tag as OPMDASHBOARDA).TempStatus = 1;
+                    (Tag as OPMDASHBOARDA).OpenContractForm();
+                }
+            }
+            else
+            {
+                if (txtContractId.Text.Trim()== txtContractId.Tag.ToString())
+                {
+                    (Tag as OPMDASHBOARDA).Contract.ContractUpdate(txtContractId.Text.Trim(), txtContractId.Tag as string);
+                }
+                else
+                {
+                    if (ContractObj.ContractExist(txtContractId.Text.Trim()))
                     {
-                        (Tag as OPMDASHBOARDA).TempStatus = 1;
-                        (Tag as OPMDASHBOARDA).OpenContractForm();
+                        MessageBox.Show("Đã có hợp đồng số "+ txtContractId.Text.Trim());
                     }
                     else
                     {
-                        MessageBox.Show(string.Format("Đã tồn tại hợp đồng số: '{0}'", (Tag as OPMDASHBOARDA).Contract.ContractId));
-                        return;
+                        (Tag as OPMDASHBOARDA).Contract.ContractUpdate(txtContractId.Text.Trim(), txtContractId.Tag as string);
                     }
+                }
+                (Tag as OPMDASHBOARDA).OpenContractForm();
             }
-            //Lưu thông tin vào bảng Goods
         }
         private void ContractInfoChildForm_Load(object sender, EventArgs e)
         {
@@ -161,7 +153,7 @@ namespace OPM.GUI
             (Tag as OPMDASHBOARDA).Contract = new ContractObj();
             (Tag as OPMDASHBOARDA).OpenContractForm();
         }
-        private void TxtId_TextChanged(object sender, EventArgs e)
+        private void txtContractId_TextChanged(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).SetNameOfSelectNode(txtContractId.Text.Trim());
             if (ContractObj.ContractExist(txtContractId.Text.Trim())) return;

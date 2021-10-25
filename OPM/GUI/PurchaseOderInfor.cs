@@ -39,6 +39,8 @@ namespace OPM.GUI
             dtpPOAdvanceGuaranteeCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.POAdvanceGuaranteeCreatedDate;
             txtPOAdvanceRequestId.Text = (Tag as OPMDASHBOARDA).Po.POAdvanceRequestId;
             dtpPOAdvanceRequestCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.POAdvanceRequestCreatedDate;
+            dtpPOGuaranteeDate.Value=(Tag as OPMDASHBOARDA).Po.POGuaranteeDate;
+            txtPOGuaranteeRatio.Text = (Tag as OPMDASHBOARDA).Po.POGuaranteeRatio.ToString();
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -79,9 +81,11 @@ namespace OPM.GUI
 
         private void btnNTKT_Click(object sender, EventArgs e)
         {
-            NTKT ntkt = new NTKT();
-            ntkt.Id_po = (Tag as OPMDASHBOARDA).Po.POId;
-            (Tag as OPMDASHBOARDA).OpenNTKTForm();
+            if ((Tag as OPMDASHBOARDA).Po.POExist())
+            {
+                (Tag as OPMDASHBOARDA).TempStatus = 6;//Chuyển sang Form tạo mới PO
+                (Tag as OPMDASHBOARDA).OpenNTKTForm();
+            }
         }
         private void btnNewDP_Click(object sender, EventArgs e)
         {
@@ -363,11 +367,11 @@ namespace OPM.GUI
             //Tạo mẫu 7
 
             //Tạo mẫu 6
-
+            OpmWordHandler.Temp6_CreatPOAdvanceReques((Tag as OPMDASHBOARDA).Po.POId); 
             //Tạo mẫu 5
-
+            OpmWordHandler.Temp5_CreatPOAdvanceGuarantee((Tag as OPMDASHBOARDA).Po.POId);
             //Tạo mẫu 4
-
+            OpmWordHandler.Temp4_CreatPOPerformanceGuarantee((Tag as OPMDASHBOARDA).Po.POId); 
             //Tạo mẫu 3
             OpmWordHandler.Temp3_CreatPOConfirm((Tag as OPMDASHBOARDA).Po.POId);
             //Tạo các mẫu 23,24,36,37
@@ -380,6 +384,11 @@ namespace OPM.GUI
         private void txtPOAdvanceId_TextChanged(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).Po.POAdvanceId = txtPOAdvanceId.Text.Trim();
+        }
+
+        private void dtpPOGuaranteeDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Po.POGuaranteeDate = dtpPOGuaranteeDate.Value;
         }
     }
 }

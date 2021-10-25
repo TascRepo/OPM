@@ -57,9 +57,10 @@ namespace OPM.GUI
             // 
             this.panHeader.BackColor = System.Drawing.SystemColors.ControlDark;
             this.panHeader.Controls.Add(this.tabControl1);
-            this.panHeader.Location = new System.Drawing.Point(5, 5);
+            this.panHeader.Location = new System.Drawing.Point(7, 8);
+            this.panHeader.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panHeader.Name = "panHeader";
-            this.panHeader.Size = new System.Drawing.Size(250, 100);
+            this.panHeader.Size = new System.Drawing.Size(357, 167);
             this.panHeader.TabIndex = 0;
             // 
             // tabControl1
@@ -68,17 +69,19 @@ namespace OPM.GUI
             this.tabControl1.Controls.Add(this.tabContent);
             this.tabControl1.Controls.Add(this.tabSearch);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(259, 100);
+            this.tabControl1.Size = new System.Drawing.Size(370, 167);
             this.tabControl1.TabIndex = 0;
             // 
             // tabContent
             // 
-            this.tabContent.Location = new System.Drawing.Point(4, 27);
+            this.tabContent.Location = new System.Drawing.Point(4, 37);
+            this.tabContent.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabContent.Name = "tabContent";
-            this.tabContent.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabContent.Size = new System.Drawing.Size(251, 69);
+            this.tabContent.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabContent.Size = new System.Drawing.Size(362, 126);
             this.tabContent.TabIndex = 0;
             this.tabContent.Text = "Content";
             this.tabContent.UseVisualStyleBackColor = true;
@@ -88,35 +91,39 @@ namespace OPM.GUI
             this.tabSearch.Controls.Add(this.textBox1);
             this.tabSearch.Controls.Add(this.label1);
             this.tabSearch.Controls.Add(this.btnEnter);
-            this.tabSearch.Location = new System.Drawing.Point(4, 27);
+            this.tabSearch.Location = new System.Drawing.Point(4, 37);
+            this.tabSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabSearch.Name = "tabSearch";
-            this.tabSearch.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabSearch.Size = new System.Drawing.Size(251, 69);
+            this.tabSearch.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabSearch.Size = new System.Drawing.Size(362, 126);
             this.tabSearch.TabIndex = 1;
             this.tabSearch.Text = "Search";
             this.tabSearch.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(4, 24);
+            this.textBox1.Location = new System.Drawing.Point(6, 40);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(175, 23);
+            this.textBox1.Size = new System.Drawing.Size(248, 31);
             this.textBox1.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 4);
+            this.label1.Location = new System.Drawing.Point(6, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 15);
+            this.label1.Size = new System.Drawing.Size(130, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Type the word ";
             // 
             // btnEnter
             // 
-            this.btnEnter.Location = new System.Drawing.Point(185, 24);
+            this.btnEnter.Location = new System.Drawing.Point(264, 40);
+            this.btnEnter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEnter.Name = "btnEnter";
-            this.btnEnter.Size = new System.Drawing.Size(54, 23);
+            this.btnEnter.Size = new System.Drawing.Size(77, 38);
             this.btnEnter.TabIndex = 0;
             this.btnEnter.Text = "Enter";
             this.btnEnter.UseVisualStyleBackColor = true;
@@ -127,9 +134,10 @@ namespace OPM.GUI
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panCatalog.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panCatalog.Controls.Add(this.treeViewOPM);
-            this.panCatalog.Location = new System.Drawing.Point(9, 100);
+            this.panCatalog.Location = new System.Drawing.Point(13, 167);
+            this.panCatalog.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panCatalog.Name = "panCatalog";
-            this.panCatalog.Size = new System.Drawing.Size(246, 678);
+            this.panCatalog.Size = new System.Drawing.Size(351, 1254);
             this.panCatalog.TabIndex = 1;
             // 
             // treeViewOPM
@@ -142,8 +150,9 @@ namespace OPM.GUI
             this.treeViewOPM.ItemHeight = 20;
             this.treeViewOPM.LabelEdit = true;
             this.treeViewOPM.Location = new System.Drawing.Point(0, 0);
+            this.treeViewOPM.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.treeViewOPM.Name = "treeViewOPM";
-            this.treeViewOPM.Size = new System.Drawing.Size(246, 677);
+            this.treeViewOPM.Size = new System.Drawing.Size(350, 1250);
             this.treeViewOPM.TabIndex = 0;
             this.treeViewOPM.DoubleClick += new System.EventHandler(this.TreeViewOPM_DoubleClick);
             // 
@@ -157,38 +166,38 @@ namespace OPM.GUI
             this.toolStripMenuDelete,
             this.toolStripMenuExport});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(175, 114);
+            this.contextMenuStrip.Size = new System.Drawing.Size(238, 164);
             this.contextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip_ItemClicked);
             // 
             // toolStripMenuNewContract
             // 
             this.toolStripMenuNewContract.Name = "toolStripMenuNewContract";
-            this.toolStripMenuNewContract.Size = new System.Drawing.Size(174, 22);
+            this.toolStripMenuNewContract.Size = new System.Drawing.Size(237, 32);
             this.toolStripMenuNewContract.Text = "Tạo mới Hợp đồng";
             // 
             // toolStripMenuNew
             // 
             this.toolStripMenuNew.Name = "toolStripMenuNew";
-            this.toolStripMenuNew.Size = new System.Drawing.Size(174, 22);
+            this.toolStripMenuNew.Size = new System.Drawing.Size(237, 32);
             this.toolStripMenuNew.Text = "New";
             // 
             // toolStripMenuEdit
             // 
             this.toolStripMenuEdit.CheckOnClick = true;
             this.toolStripMenuEdit.Name = "toolStripMenuEdit";
-            this.toolStripMenuEdit.Size = new System.Drawing.Size(174, 22);
+            this.toolStripMenuEdit.Size = new System.Drawing.Size(237, 32);
             this.toolStripMenuEdit.Text = "Edit";
             // 
             // toolStripMenuDelete
             // 
             this.toolStripMenuDelete.Name = "toolStripMenuDelete";
-            this.toolStripMenuDelete.Size = new System.Drawing.Size(174, 22);
+            this.toolStripMenuDelete.Size = new System.Drawing.Size(237, 32);
             this.toolStripMenuDelete.Text = "Delete";
             // 
             // toolStripMenuExport
             // 
             this.toolStripMenuExport.Name = "toolStripMenuExport";
-            this.toolStripMenuExport.Size = new System.Drawing.Size(174, 22);
+            this.toolStripMenuExport.Size = new System.Drawing.Size(237, 32);
             this.toolStripMenuExport.Text = "Export Document";
             // 
             // panContent
@@ -197,19 +206,21 @@ namespace OPM.GUI
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panContent.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panContent.Location = new System.Drawing.Point(261, 5);
+            this.panContent.Location = new System.Drawing.Point(373, 8);
+            this.panContent.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panContent.Name = "panContent";
-            this.panContent.Size = new System.Drawing.Size(1032, 772);
+            this.panContent.Size = new System.Drawing.Size(1474, 1411);
             this.panContent.TabIndex = 2;
             // 
             // OPMDASHBOARDA
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(959, 532);
+            this.ClientSize = new System.Drawing.Size(1370, 1011);
             this.Controls.Add(this.panContent);
             this.Controls.Add(this.panCatalog);
             this.Controls.Add(this.panHeader);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "OPMDASHBOARDA";
             this.Text = "OPMDASHBOARDA";
             this.Load += new System.EventHandler(this.OPMDASHBOARDA_Load);

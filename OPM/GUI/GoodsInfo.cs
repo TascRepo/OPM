@@ -43,7 +43,7 @@ namespace OPM.GUI
         {
             try
             {
-                (Tag as OPMDASHBOARDA).Contract.ContractGoodsQuantity= string.IsNullOrEmpty(txtContractGoodsQuantity.Text.Trim()) ? 0 : int.Parse(txtContractGoodsQuantity.Text.Trim());
+                (Tag as OPMDASHBOARDA).Contract.ContractGoodsQuantity = string.IsNullOrEmpty(txtContractGoodsQuantity.Text.Trim()) ? 0 : int.Parse(txtContractGoodsQuantity.Text.Trim());
                 txtPreTaxContractPrice.Text = ((string.IsNullOrEmpty(txtContractGoodsUnitPrice.Text.Trim()) ? 0 : double.Parse(txtContractGoodsUnitPrice.Text.Trim()) * (string.IsNullOrEmpty(txtContractGoodsQuantity.Text.Trim()) ? 0 : int.Parse(txtContractGoodsQuantity.Text.Trim())))).ToString();
             }
             catch

@@ -97,7 +97,7 @@ namespace OPM.GUI
             this.txtContractId.Name = "txtContractId";
             this.txtContractId.Size = new System.Drawing.Size(311, 23);
             this.txtContractId.TabIndex = 2;
-            this.txtContractId.TextChanged += new System.EventHandler(this.TxtId_TextChanged);
+            this.txtContractId.TextChanged += new System.EventHandler(this.txtContractId_TextChanged);
             // 
             // txtContractName
             // 

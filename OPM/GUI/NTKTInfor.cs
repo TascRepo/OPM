@@ -7,94 +7,100 @@ namespace OPM.GUI
 {
     public partial class NTKTInfor : Form
     {
-        public delegate void UpdateCatalogDelegate(string value);
-        public UpdateCatalogDelegate UpdateCatalogPanel;
-        public delegate void RequestDashBoardPurchaseOderForm(POObj pO);
-        public RequestDashBoardPurchaseOderForm requestDashBoardPurchaseOderForm;
-        private NTKT ntkt;
-        public NTKT Ntkt
-        {
-            get => ntkt;
-            set
-            {
-                ntkt = value;
-                LoadData();
-            }
-        }
         public NTKTInfor()
         {
             InitializeComponent();
         }
         void LoadData()
         {
-            tbxId.Text = ntkt.Id;
-            dtpCreate_date.Value = ntkt.Create_date;
-            tbxNumber.Text = ntkt.Number.ToString();
-            dtpDeliver_Date_Expected.Value = ntkt.Deliver_date_expected;
-            dtpDate_BBKTKT.Value = ntkt.Date_BBKTKT;
-            dtpDate_BBNTKT.Value = ntkt.Date_BBNTKT;
-            dateTimePickerCNBQPM.Value = ntkt.Date_CNBQPM;
-            txbNumberOfDevice.Text = ntkt.Numberofdevice.ToString();
-            txbNumberOfDevice2.Text = ntkt.Numberofdevice2.ToString();
+            txtNTKTId.Text = (Tag as OPMDASHBOARDA).Ntkt.NTKTId;
+            txtNTKTId.Tag = txtNTKTId.Text;
+            dtpNTKTCreatedDate.Value = (Tag as OPMDASHBOARDA).Ntkt.NTKTCreatedDate;
+            txtNTKTPhase.Text = (Tag as OPMDASHBOARDA).Ntkt.NTKTPhase.ToString();
+            dtpNTKTTestExpectedDate.Value = (Tag as OPMDASHBOARDA).Ntkt.NTKTTestExpectedDate;
+            dtpTechnicalInspectionReportDate.Value = (Tag as OPMDASHBOARDA).Ntkt.TechnicalInspectionReportDate;
+            dtpTechnicalAcceptanceReportDate.Value = (Tag as OPMDASHBOARDA).Ntkt.TechnicalAcceptanceReportDate;
+            dtpNTKTLicenseCertificateDate.Value = (Tag as OPMDASHBOARDA).Ntkt.NTKTLicenseCertificateDate;
+            txtNTKTQuantity.Text = (Tag as OPMDASHBOARDA).Ntkt.NTKTQuantity.ToString();
+            //txtNTKTExtraQuantity.Text = (Tag as OPMDASHBOARDA).Ntkt.NTKTExtraQuantity.ToString();
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            ntkt.Id = tbxId.Text.Trim();
-            ntkt.Number = int.Parse(tbxNumber.Text.Trim());
-            ntkt.Numberofdevice = int.Parse(txbNumberOfDevice.Text.Trim());
-            ntkt.Numberofdevice2 = int.Parse(txbNumberOfDevice2.Text.Trim());
-            ntkt.Create_date = dtpCreate_date.Value;
-            ntkt.Deliver_date_expected = dtpDeliver_Date_Expected.Value;
-            ntkt.Date_BBKTKT = dtpDate_BBKTKT.Value;
-            ntkt.Date_BBNTKT = dtpDate_BBNTKT.Value;
-            ntkt.Date_CNBQPM = dateTimePickerCNBQPM.Value;
-            ntkt.InsertOrUpdate();
-            UpdateCatalogPanel("NTKT_" + ntkt.Id);
+            if (string.IsNullOrEmpty(txtNTKTId.Text.Trim())) return;
+            //if((Tag as OPMDASHBOARDA).)
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
-            UpdateCatalogPanel("PO_" + ntkt.Id_po);
-            POObj pO = new POObj(ntkt.Id_po);
-            requestDashBoardPurchaseOderForm(pO);
         }
-        private void txbNumberOfDevice_TextChanged(object sender, EventArgs e)
+        private void txbNTKTQuantity_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txbNumberOfDevice.Text.Trim()))
+            if (!string.IsNullOrEmpty(txtNTKTQuantity.Text.Trim()))
                 try
                 {
-                    txbNumberOfDevice2.Text = Math.Round(double.Parse(txbNumberOfDevice.Text) / 50, 0, MidpointRounding.AwayFromZero).ToString();
+                    if (!string.IsNullOrEmpty(txtNTKTQuantity.Text.Trim()))
+                    {
+                        (Tag as OPMDASHBOARDA).Ntkt.NTKTQuantity = double.Parse(txtNTKTQuantity.Text.Trim());
+                        txtNTKTExtraQuantity.Text = Math.Round(double.Parse(txtNTKTQuantity.Text.Trim()) / 50, 0, MidpointRounding.AwayFromZero).ToString();
+                    }
                 }
                 catch
                 {
-                    MessageBox.Show("Nhập đúng dạng số!");
+                    MessageBox.Show("Nhập đúng NTKTQuantity dạng số!");
                 }
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(string.Format("Bạn có chắc chắn xoá cả đợt NTKT số {0} của {1} không?", ntkt.Id, ntkt.Id_po), "Cảnh báo!", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.Cancel) return;
-            ntkt.Delete();
-            UpdateCatalogPanel("PO_" + ntkt.Id_po);
-        }
-
-        private void textBoxIdNumber_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (textBoxIdNumber.Text.Trim() != null) tbxId.Text = int.Parse(textBoxIdNumber.Text.Trim()).ToString() + @"/ANSV-DO";
-            }
-            catch
-            {
-                MessageBox.Show("Nhập đúng dạng số!");
-                return;
-            }
+            if (MessageBox.Show(string.Format("Bạn có chắc chắn xoá cả đợt NTKT số {0} của {1} không?", (Tag as OPMDASHBOARDA).Ntkt.NTKTId, (Tag as OPMDASHBOARDA).Ntkt.POId), "Cảnh báo!", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.Cancel) return;
         }
 
         private void buttonCreatDocument_Click(object sender, EventArgs e)
         {
-            OpmWordHandler.Temp08_NTKTRequest(ntkt.Id);
-            OpmWordHandler.Temp09_BBKTKT(ntkt.Id);
-            OpmWordHandler.Temp10_CNBQPM(ntkt.Id);
-            OpmWordHandler.Temp11_BBNTKT(ntkt.Id);
+            OpmWordHandler.Temp08_NTKTRequest((Tag as OPMDASHBOARDA).Ntkt.NTKTId);
+            OpmWordHandler.Temp09_BBKTKT((Tag as OPMDASHBOARDA).Ntkt.NTKTId);
+            OpmWordHandler.Temp10_CNBQPM((Tag as OPMDASHBOARDA).Ntkt.NTKTId);
+            OpmWordHandler.Temp11_BBNTKT((Tag as OPMDASHBOARDA).Ntkt.NTKTId);
+        }
+
+        private void txtNTKTId_TextChanged(object sender, EventArgs e)
+        {
+            if (NTKTObj.NTKTExist(txtNTKTId.Text.Trim())) return;
+            (Tag as OPMDASHBOARDA).Ntkt.NTKTId = txtNTKTId.Text.Trim();
+        }
+
+        private void txtNTKTPhase_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Ntkt.NTKTPhase = txtNTKTPhase.Text.Trim();
+            (Tag as OPMDASHBOARDA).SetNameOfSelectNode("NTKT" + txtNTKTPhase.Text.Trim());
+        }
+
+        private void dtpNTKTCreatedDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Ntkt.NTKTCreatedDate = dtpNTKTCreatedDate.Value;
+        }
+
+        private void dtpNTKTTestExpectedDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Ntkt.NTKTTestExpectedDate = dtpNTKTTestExpectedDate.Value;
+        }
+
+        private void dtpTechnicalInspectionReportDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Ntkt.TechnicalInspectionReportDate = dtpTechnicalInspectionReportDate.Value;
+        }
+
+        private void dtpNTKTLicenseCertificateDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Ntkt.NTKTLicenseCertificateDate = dtpNTKTLicenseCertificateDate.Value;
+        }
+
+        private void dtpTechnicalAcceptanceReportDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Ntkt.TechnicalAcceptanceReportDate = dtpTechnicalAcceptanceReportDate.Value;
+        }
+
+        private void NTKTInfor_Load(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }
