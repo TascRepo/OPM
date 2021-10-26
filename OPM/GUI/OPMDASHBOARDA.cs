@@ -9,7 +9,16 @@ namespace OPM.GUI
 {
     public partial class OPMDASHBOARDA : Form
     {
-        public string SelectedNodeName = "Root";
+        string selectedNodeName = "Root";
+        public string SelectedNodeName 
+        {
+            get => selectedNodeName;
+            set
+            {
+                selectedNodeName = value;
+                InitCatalogByNodeName(value);
+            }
+        }
         public ContractObj Contract { get; set; } = new ContractObj();
         public POObj Po
         {
@@ -20,6 +29,7 @@ namespace OPM.GUI
             get; set;
         } = new NTKTObj();
         public int TempStatus { get; set; } = 0;
+
         //TempStatus = 0 : Đang ở Form tạo mới hợp đồng
         //TempStatus = 1 : Đang ở Form chỉnh sửa hợp đồng
         //TempStatus = 3 : Đang ở Form tạo mới PO
@@ -38,7 +48,7 @@ namespace OPM.GUI
         {
             OpenContractForm();
         }
-        public void InitCatalogByNodeName(string nodeName)
+        public bool InitCatalogByNodeName(string nodeName)
         {
             treeViewOPM.Nodes.Clear();
             DataTable table = CatalogAdmin.Table();
@@ -90,6 +100,7 @@ namespace OPM.GUI
                 treeViewOPM.SelectedNode.Expand();
                 treeViewOPM.SelectedNode.ForeColor = Color.Blue;
             }
+            return table.Rows.Count>0;
         }
         private void InitCatalogAdmin(TreeNode parentNode, string parent, DataTable table)
         {
@@ -128,7 +139,6 @@ namespace OPM.GUI
         {
             treeViewOPM.Tag = treeViewOPM.SelectedNode; //Lưu lại Node được chọn
             string[] temp = treeViewOPM.SelectedNode.Name.ToString().Split('_', 2);
-            SelectedNodeName = temp[1];
             /*Get Detail Infor On Database*/
             switch (temp[0])
             {
@@ -162,7 +172,6 @@ namespace OPM.GUI
                 case "PL":
                     /*Display PL */
                     PackageListInfor packageListInfor = new PackageListInfor();
-                    packageListInfor.UpdateCatalogPanel = new PackageListInfor.UpdateCatalogDelegate(InitCatalogByNodeName);
                     OpenChildForm(packageListInfor);
                     break;
                 default:
@@ -215,7 +224,8 @@ namespace OPM.GUI
         {
             ContractInfo contractInfo = new ContractInfo();
             Text = string.Format("Hợp đồng số {0}", Contract.ContractId);
-            InitCatalogByNodeName("Contract_" + Contract.ContractId);
+            SelectedNodeName = "Contract_" + Contract.ContractId;
+            //InitCatalogByNodeName("Contract_" + Contract.ContractId);
             OpenChildForm(contractInfo);
         }
         public void OpenPOForm()
@@ -224,7 +234,8 @@ namespace OPM.GUI
             Text = string.Format("Hợp đồng số {0} - {1}", Contract.ContractId, Po.POName);
             if (TempStatus == 3) Po = new POObj();  //Ở Form tạo mới PO
             Po.ContractId = Contract.ContractId;
-            InitCatalogByNodeName("PO_" + Po.POId);
+            SelectedNodeName = "PO_" + Po.POId; 
+            //InitCatalogByNodeName("PO_" + Po.POId);
             OpenChildForm(purchaseOderInfor);
         }
         public void OpenNTKTForm()
@@ -233,7 +244,8 @@ namespace OPM.GUI
             Text = string.Format(@"Hợp đồng số {2} - {1} - Đợt NTKT{0}", Ntkt.NTKTPhase, Po.POName, Contract.ContractId);
             if (TempStatus == 6) Ntkt = new NTKTObj();  //Ở Form tạo mới NTKT
             Ntkt.POId = Po.POId;
-            InitCatalogByNodeName("NTKT_" + Ntkt.NTKTId);
+            SelectedNodeName = "NTKT_" + Ntkt.NTKTId; 
+            //InitCatalogByNodeName("NTKT_" + Ntkt.NTKTId);
             OpenChildForm(nTKTInfor);
         }
         public void OpenDpForm(string idPO, string idContract, String PONumber)

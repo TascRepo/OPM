@@ -158,10 +158,11 @@ namespace OPM.GUI
             (Tag as OPMDASHBOARDA).SetNameOfSelectNode(txtContractId.Text.Trim());
             if (ContractObj.ContractExist(txtContractId.Text.Trim())) 
             {
-                if(txtContractId.Text.Trim()!= (Tag as OPMDASHBOARDA).SelectedNodeName)
+                if(("Contract_"+txtContractId.Text.Trim())!= (Tag as OPMDASHBOARDA).SelectedNodeName)
                 {
                     MessageBox.Show("Đã tồn tại hợp đồng số " + txtContractId.Text.Trim());
-                    txtContractId.Text= (Tag as OPMDASHBOARDA).SelectedNodeName;
+                    string[] temp = (Tag as OPMDASHBOARDA).SelectedNodeName.Split('_', 2);
+                    txtContractId.Text= temp[1];
                 }
                 return;
             }
