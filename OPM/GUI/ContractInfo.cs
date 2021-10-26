@@ -156,7 +156,15 @@ namespace OPM.GUI
         private void txtContractId_TextChanged(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).SetNameOfSelectNode(txtContractId.Text.Trim());
-            if (ContractObj.ContractExist(txtContractId.Text.Trim())) return;
+            if (ContractObj.ContractExist(txtContractId.Text.Trim())) 
+            {
+                if(txtContractId.Text.Trim()!= (Tag as OPMDASHBOARDA).SelectedNodeName)
+                {
+                    MessageBox.Show("Đã tồn tại hợp đồng số " + txtContractId.Text.Trim());
+                    txtContractId.Text= (Tag as OPMDASHBOARDA).SelectedNodeName;
+                }
+                return;
+            }
             (Tag as OPMDASHBOARDA).Contract.ContractId = txtContractId.Text.Trim();
         }
         private void txtContractShoppingPlan_TextChanged(object sender, EventArgs e)

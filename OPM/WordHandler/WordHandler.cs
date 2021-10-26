@@ -1055,6 +1055,11 @@ namespace OPM.WordHandler
         {
             object path = @"D:\OPM\Template\Mẫu 1. Đề nghị mở bảo lãnh thực hiện hợp đồng.docx";
             object filename = string.Format(@"D:\OPM\{0}\Mẫu 1. Đề nghị mở bảo lãnh thực hiện hợp đồng {0}.docx", id.Trim().Replace('/', '-'));
+            string strPODirectory = string.Format(@"D:\OPM\{0}", id.Trim().Replace('/', '-'));
+            if (!Directory.Exists(strPODirectory))
+            {
+                Directory.CreateDirectory(strPODirectory);
+            }
             if (!File.Exists(path.ToString()))
             {
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
@@ -1068,7 +1073,7 @@ namespace OPM.WordHandler
             {
                 ContractObj contract = new ContractObj(id);
                 object readOnly = true;
-                //object isVisible = false;
+                object isVisible = false;
                 wordApp.Visible = false;
                 myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
                                     ref missing, ref missing, ref missing,

@@ -40,7 +40,7 @@ namespace OPM.OPMEnginee
                         ContractGoodsNote = (row["ContractGoodsNote"] == null || row["ContractGoodsNote"] == DBNull.Value) ? "" : row["ContractGoodsNote"].ToString();
                         ContractGoodsUnit = (row["ContractGoodsUnit"] == null || row["ContractGoodsUnit"] == DBNull.Value) ? "" : row["ContractGoodsUnit"].ToString();
                         ContractGoodsUnitPrice = (row["ContractGoodsUnitPrice"] == null || row["ContractGoodsUnitPrice"] == DBNull.Value) ? 0 : (double)row["ContractGoodsUnitPrice"];
-                        ContractGoodsQuantity = (row["ContractGoodsQuantity"] == null || row["ContractGoodsQuantity"] == DBNull.Value) ? 0 : (int)row["ContractGoodsQuantity"];
+                        ContractGoodsQuantity = (row["ContractGoodsQuantity"] == null || row["ContractGoodsQuantity"] == DBNull.Value) ? 0 : (double)row["ContractGoodsQuantity"];
                         ContractGoodsLicenseName = (row["ContractGoodsLicenseName"] == null || row["ContractGoodsLicenseName"] == DBNull.Value) ? "" : row["ContractGoodsLicenseName"].ToString();
                         ContractGoodsLicenseUnitPrice = (row["ContractGoodsLicenseUnitPrice"] == null || row["ContractGoodsLicenseUnitPrice"] == DBNull.Value) ? 0 : (double)row["ContractGoodsLicenseUnitPrice"];
                         ContractGuaranteeCreatedDate = (row["ContractGuaranteeCreatedDate"] == null || row["ContractGuaranteeCreatedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["ContractGuaranteeCreatedDate"];

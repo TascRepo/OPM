@@ -69,6 +69,10 @@ namespace OPM.OPMEnginee
         public DateTime POGuaranteeDate { get; set; } = DateTime.Now;
 
         public POObj() { }
+        public POObj(ContractObj contract)
+        {
+            ContractId = contract.ContractId;
+        }
         public POObj(string POId, string POName, double POGoodsQuantity, DateTime POCreatedDate, DateTime POConfirmRequestDeadline, DateTime PODefaultPerformDate, DateTime POPerformDate, DateTime PODeadline, string POConfirmId, DateTime POConfirmCreatedDate, string POAdvanceId,int POAdvancePercentage, DateTime POAdvanceCreatedDate, int POAdvanceGuaranteePercentage, DateTime POAdvanceGuaranteeCreatedDate, string POAdvanceRequestId, DateTime POAdvanceRequestCreatedDate, DateTime POGuaranteeDate)
         {
             this.POId = POId;

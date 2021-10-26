@@ -1,4 +1,5 @@
 ﻿using Microsoft.Office.Interop.Excel;
+using OPM.OPMEnginee;
 using System;
 using System.Data;
 using System.Globalization;
@@ -289,6 +290,16 @@ namespace OPM.GUI
             string str = GetNameOfExcelFile();
             System.Data.DataTable dataTable = DataTableDeliveryPlanFromExcelFile(str);
             dataGridViewTest.DataSource = dataTable;
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            ContractObj contract = new ContractObj();
+            ContractObj contract1 = new ContractObj();
+            contract1 = contract;
+            contract.ContractId = "contract";
+            contract1.ContractId = "contract1";
+            MessageBox.Show("contract = "+contract.ContractId + " contract1 = " + contract1.ContractId);
         }
     }
 }

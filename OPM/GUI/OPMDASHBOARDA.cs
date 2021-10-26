@@ -9,14 +9,21 @@ namespace OPM.GUI
 {
     public partial class OPMDASHBOARDA : Form
     {
+        public string SelectedNodeName = "Root";
         public ContractObj Contract { get; set; } = new ContractObj();
-        public POObj Po { get; set; } = new POObj();
-        public NTKTObj Ntkt { get; set; } = new NTKTObj();
+        public POObj Po
+        {
+            get; set;
+        } = new POObj();
+        public NTKTObj Ntkt
+        {
+            get; set;
+        } = new NTKTObj();
         public int TempStatus { get; set; } = 0;
         //TempStatus = 0 : Đang ở Form tạo mới hợp đồng
         //TempStatus = 1 : Đang ở Form chỉnh sửa hợp đồng
         //TempStatus = 3 : Đang ở Form tạo mới PO
-        //TempStatus = 4 : Đang ở Form tạo mới PO
+        //TempStatus = 4 : Đang ở Form chỉnh sửa PO
         //TempStatus = 6 : Đang ở Form tạo mới NTKT
         //TempStatus = 7 : Đang ở Form chỉnh sửa NTKT
         //TempStatus = 0 : Đang ở Form 
@@ -121,16 +128,19 @@ namespace OPM.GUI
         {
             treeViewOPM.Tag = treeViewOPM.SelectedNode; //Lưu lại Node được chọn
             string[] temp = treeViewOPM.SelectedNode.Name.ToString().Split('_', 2);
+            SelectedNodeName = temp[1];
             /*Get Detail Infor On Database*/
             switch (temp[0])
             {
                 case "Contract":
-                    TempStatus = 1;//Đang ở Form chỉnh sửa hợp đồng
+                    if (!ContractObj.ContractExist(temp[1])) break;
+                    TempStatus = 1;//chuyển sang Form chỉnh sửa hợp đồng
                     Contract.ContractId = temp[1];
                     OpenContractForm();
                     break;
                 case "PO":
-                    TempStatus = 4;//Đang ở Form PO có sẵn
+                    if (!POObj.POExist(temp[1])) break;
+                    TempStatus = 4;//Đang ở chỉnh sửa Form PO có sẵn
                     Po.POId = temp[1];
                     Contract.ContractId = Po.ContractId;
                     OpenPOForm();
@@ -142,6 +152,7 @@ namespace OPM.GUI
                     OpenChildForm(deliverPartInforDetail);
                     break;
                 case "NTKT":
+                    if (!NTKTObj.NTKTExist(temp[1])) break;
                     TempStatus = 7;//Đang ở Form chỉnh sửa NTKT
                     Ntkt = new NTKTObj(temp[1]);
                     Po = new POObj(Ntkt.POId);
