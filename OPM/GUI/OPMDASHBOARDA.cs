@@ -164,9 +164,9 @@ namespace OPM.GUI
                 case "NTKT":
                     if (!NTKTObj.NTKTExist(temp[1])) break;
                     TempStatus = 7;//Đang ở Form chỉnh sửa NTKT
-                    Ntkt = new NTKTObj(temp[1]);
-                    Po = new POObj(Ntkt.POId);
-                    Contract = new ContractObj(Po.ContractId);
+                    Ntkt.NTKTId = temp[1];
+                    Po.POId = Ntkt.POId;
+                    Contract.ContractId = Ntkt.ContractId;
                     OpenNTKTForm();
                     break;
                 case "PL":
@@ -184,10 +184,9 @@ namespace OPM.GUI
             if (e.ClickedItem.Name == "toolStripMenuNewContract")
             {
                 TempStatus = 0;//Đang ở Form tạo mới Hợp đồng
-                Contract = new ContractObj();
                 OpenContractForm();
             }
-            else if (e.ClickedItem.Name == "toolStripMenuNew")
+            else if (e.ClickedItem.Name == "toolStripMenuNewPO")
             {
                 if (Contract.ContractExist())
                 {
@@ -195,7 +194,27 @@ namespace OPM.GUI
                     OpenPOForm();
                 }
             }
-            else if (e.ClickedItem.Name == "toolStripMenuEdit")
+            else if (e.ClickedItem.Name == "toolStripMenuNewNTKT")
+            {
+                if (Po.POExist())
+                {
+                    TempStatus = 6;//Chuyển sang Form tạo mới NTKT
+                    OpenNTKTForm();
+                }
+            }
+            else if (e.ClickedItem.Name == "toolStripMenuNewDP")
+            {
+                //Do Something
+            }
+            else if (e.ClickedItem.Name == "toolStripMenuNewPL")
+            {
+                //Do Something
+            }
+            else if (e.ClickedItem.Name == "toolStripMenuSave")
+            {
+                //Do Something
+            }
+            else if (e.ClickedItem.Name == "toolStripMenuCreateDoc")
             {
                 //Do Something
             }
@@ -223,6 +242,7 @@ namespace OPM.GUI
         public void OpenContractForm()
         {
             ContractInfo contractInfo = new ContractInfo();
+            if (TempStatus == 0) Contract = new ContractObj();  //Ở Form tạo mới
             Text = string.Format("Hợp đồng số {0}", Contract.ContractId);
             SelectedNodeName = "Contract_" + Contract.ContractId;
             //InitCatalogByNodeName("Contract_" + Contract.ContractId);

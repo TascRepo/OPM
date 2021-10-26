@@ -113,25 +113,34 @@ namespace OPM.GUI
                     (Tag as OPMDASHBOARDA).TempStatus = 1;
                     (Tag as OPMDASHBOARDA).OpenContractForm();
                 }
+                else
+                {
+                    MessageBox.Show("Đã có hợp đồng số " + txtContractId.Text.Trim());
+                    txtContractId.Text = (new ContractObj()).ContractId;
+                }
             }
             else
             {
-                if (txtContractId.Text.Trim()== txtContractId.Tag.ToString())
+                if ("Contract_"+txtContractId.Text.Trim()== (Tag as OPMDASHBOARDA).SelectedNodeName)
                 {
-                    (Tag as OPMDASHBOARDA).Contract.ContractUpdate(txtContractId.Text.Trim(), txtContractId.Tag as string);
+                    (Tag as OPMDASHBOARDA).Contract.ContractUpdate(txtContractId.Text.Trim(), txtContractId.Text.Trim());
+                    (Tag as OPMDASHBOARDA).Contract.ContractId = txtContractId.Text.Trim();
                 }
                 else
                 {
+                    string[] temp = (Tag as OPMDASHBOARDA).SelectedNodeName.Split('_', 2);
                     if (ContractObj.ContractExist(txtContractId.Text.Trim()))
                     {
                         MessageBox.Show("Đã có hợp đồng số "+ txtContractId.Text.Trim());
+                        txtContractId.Text = temp[1];
                     }
                     else
                     {
-                        (Tag as OPMDASHBOARDA).Contract.ContractUpdate(txtContractId.Text.Trim(), txtContractId.Tag as string);
+                        (Tag as OPMDASHBOARDA).Contract.ContractUpdate(txtContractId.Text.Trim(), temp[1]);
+                        (Tag as OPMDASHBOARDA).Contract.ContractId = txtContractId.Text.Trim();
+                        (Tag as OPMDASHBOARDA).OpenContractForm();
                     }
                 }
-                (Tag as OPMDASHBOARDA).OpenContractForm();
             }
         }
         private void ContractInfoChildForm_Load(object sender, EventArgs e)
@@ -161,8 +170,8 @@ namespace OPM.GUI
                 if(("Contract_"+txtContractId.Text.Trim())!= (Tag as OPMDASHBOARDA).SelectedNodeName)
                 {
                     MessageBox.Show("Đã tồn tại hợp đồng số " + txtContractId.Text.Trim());
-                    string[] temp = (Tag as OPMDASHBOARDA).SelectedNodeName.Split('_', 2);
-                    txtContractId.Text= temp[1];
+                    //string[] temp = (Tag as OPMDASHBOARDA).SelectedNodeName.Split('_', 2);
+                    //txtContractId.Text= temp[1];
                 }
                 return;
             }

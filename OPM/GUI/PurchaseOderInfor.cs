@@ -65,9 +65,11 @@ namespace OPM.GUI
             {
                 if (!(Tag as OPMDASHBOARDA).Po.POExist())
                 {
-                    if ((Tag as OPMDASHBOARDA).Po.POInsert() > 0)
+                    if ((Tag as OPMDASHBOARDA).Po.POInsert(txtPOId.Text.Trim()) > 0)
                     {
                         (Tag as OPMDASHBOARDA).TempStatus = 4;//Chuyển sang Form chỉnh sửa PO (đã tồn tại trong CSDL)
+                        (Tag as OPMDASHBOARDA).Po.POId = txtPOId.Text.Trim();
+                        //(Tag as OPMDASHBOARDA).Contract.ContractId = (Tag as OPMDASHBOARDA).Po.ContractId;
                         (Tag as OPMDASHBOARDA).OpenPOForm();
                     }
                 }
@@ -83,7 +85,7 @@ namespace OPM.GUI
         {
             if ((Tag as OPMDASHBOARDA).Po.POExist())
             {
-                (Tag as OPMDASHBOARDA).TempStatus = 6;//Chuyển sang Form tạo mới PO
+                (Tag as OPMDASHBOARDA).TempStatus = 6;//Chuyển sang Form tạo mới NTKT
                 (Tag as OPMDASHBOARDA).OpenNTKTForm();
             }
         }
@@ -211,7 +213,16 @@ namespace OPM.GUI
         }
         private void txtPOId_TextChanged(object sender, EventArgs e)
         {
-            if (POObj.POExist(txtPOId.Text.Trim()))return;
+            if (POObj.POExist(txtPOId.Text.Trim()))
+            {
+                if(("PO_" + txtPOId.Text.Trim())!= (Tag as OPMDASHBOARDA).SelectedNodeName)
+                {
+                    MessageBox.Show("Đã tồn tại PO số " + txtPOId.Text.Trim());
+                    //string[] temp = (Tag as OPMDASHBOARDA).SelectedNodeName.Split('_', 2);
+                    //txtPOId.Text = temp[1];
+                }
+                return;
+            }
             (Tag as OPMDASHBOARDA).Po.POId = txtPOId.Text.Trim();
         }
         private void TxtPOName_TextChanged(object sender, EventArgs e)

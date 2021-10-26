@@ -41,11 +41,13 @@ namespace OPM.GUI
             this.treeViewOPM = new System.Windows.Forms.TreeView();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuNewContract = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuNew = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuNewPO = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuNewNTKT = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuCreatDoc = new System.Windows.Forms.ToolStripMenuItem();
             this.panContent = new System.Windows.Forms.Panel();
+            this.toolStripMenuNewDP = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuNewPL = new System.Windows.Forms.ToolStripMenuItem();
             this.panHeader.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabSearch.SuspendLayout();
@@ -161,12 +163,14 @@ namespace OPM.GUI
             this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuNewContract,
-            this.toolStripMenuNew,
-            this.toolStripMenuEdit,
-            this.toolStripMenuDelete,
-            this.toolStripMenuExport});
+            this.toolStripMenuNewPO,
+            this.toolStripMenuNewNTKT,
+            this.toolStripMenuNewDP,
+            this.toolStripMenuNewPL,
+            this.toolStripMenuSave,
+            this.toolStripMenuCreatDoc});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(238, 164);
+            this.contextMenuStrip.Size = new System.Drawing.Size(238, 228);
             this.contextMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip_ItemClicked);
             // 
             // toolStripMenuNewContract
@@ -175,30 +179,30 @@ namespace OPM.GUI
             this.toolStripMenuNewContract.Size = new System.Drawing.Size(237, 32);
             this.toolStripMenuNewContract.Text = "Tạo mới Hợp đồng";
             // 
-            // toolStripMenuNew
+            // toolStripMenuNewPO
             // 
-            this.toolStripMenuNew.Name = "toolStripMenuNew";
-            this.toolStripMenuNew.Size = new System.Drawing.Size(237, 32);
-            this.toolStripMenuNew.Text = "New";
+            this.toolStripMenuNewPO.Name = "toolStripMenuNewPO";
+            this.toolStripMenuNewPO.Size = new System.Drawing.Size(237, 32);
+            this.toolStripMenuNewPO.Text = "Tạo mới PO";
             // 
-            // toolStripMenuEdit
+            // toolStripMenuNewNTKT
             // 
-            this.toolStripMenuEdit.CheckOnClick = true;
-            this.toolStripMenuEdit.Name = "toolStripMenuEdit";
-            this.toolStripMenuEdit.Size = new System.Drawing.Size(237, 32);
-            this.toolStripMenuEdit.Text = "Edit";
+            this.toolStripMenuNewNTKT.CheckOnClick = true;
+            this.toolStripMenuNewNTKT.Name = "toolStripMenuNewNTKT";
+            this.toolStripMenuNewNTKT.Size = new System.Drawing.Size(237, 32);
+            this.toolStripMenuNewNTKT.Text = "Tạo mới NTKT";
             // 
-            // toolStripMenuDelete
+            // toolStripMenuSave
             // 
-            this.toolStripMenuDelete.Name = "toolStripMenuDelete";
-            this.toolStripMenuDelete.Size = new System.Drawing.Size(237, 32);
-            this.toolStripMenuDelete.Text = "Delete";
+            this.toolStripMenuSave.Name = "toolStripMenuSave";
+            this.toolStripMenuSave.Size = new System.Drawing.Size(237, 32);
+            this.toolStripMenuSave.Text = "Save";
             // 
-            // toolStripMenuExport
+            // toolStripMenuCreatDoc
             // 
-            this.toolStripMenuExport.Name = "toolStripMenuExport";
-            this.toolStripMenuExport.Size = new System.Drawing.Size(237, 32);
-            this.toolStripMenuExport.Text = "Export Document";
+            this.toolStripMenuCreatDoc.Name = "toolStripMenuCreatDoc";
+            this.toolStripMenuCreatDoc.Size = new System.Drawing.Size(237, 32);
+            this.toolStripMenuCreatDoc.Text = "Creat Document";
             // 
             // panContent
             // 
@@ -211,6 +215,18 @@ namespace OPM.GUI
             this.panContent.Name = "panContent";
             this.panContent.Size = new System.Drawing.Size(1474, 1411);
             this.panContent.TabIndex = 2;
+            // 
+            // toolStripMenuNewDP
+            // 
+            this.toolStripMenuNewDP.Name = "toolStripMenuNewDP";
+            this.toolStripMenuNewDP.Size = new System.Drawing.Size(237, 32);
+            this.toolStripMenuNewDP.Text = "Tạo mới DP";
+            // 
+            // toolStripMenuNewPL
+            // 
+            this.toolStripMenuNewPL.Name = "toolStripMenuNewPL";
+            this.toolStripMenuNewPL.Size = new System.Drawing.Size(237, 32);
+            this.toolStripMenuNewPL.Text = "Tạo mới PL";
             // 
             // OPMDASHBOARDA
             // 
@@ -242,15 +258,17 @@ namespace OPM.GUI
         private System.Windows.Forms.TreeView treeViewOPM;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuNewContract;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuNew;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuEdit;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuDelete;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuExport;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuNewPO;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuNewNTKT;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuSave;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuCreatDoc;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabContent;
         private System.Windows.Forms.TabPage tabSearch;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnEnter;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuNewDP;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuNewPL;
     }
 }
