@@ -48,7 +48,7 @@ namespace OPM.GUI
                 MessageBox.Show("Nhập đúng số PO!");
                 return;
             }
-            (Tag as OPMDASHBOARDA).SaveSQLByNodeName(txtPOId.Text.Trim());
+            (Tag as OPMDASHBOARDA).SaveSQLByNodeName();
         }
 
         private void btnNewNTKT_Click(object sender, EventArgs e)
@@ -178,13 +178,12 @@ namespace OPM.GUI
         }
         private void txtPOId_TextChanged(object sender, EventArgs e)
         {
+            (Tag as OPMDASHBOARDA).CurrentNodeId = txtPOId.Text.Trim();
             if (POObj.POExist(txtPOId.Text.Trim()))
             {
                 if (("PO_" + txtPOId.Text.Trim()) != (Tag as OPMDASHBOARDA).CurrentNodeName)
                 {
                     MessageBox.Show("Đã tồn tại PO số " + txtPOId.Text.Trim());
-                    //string[] temp = (Tag as OPMDASHBOARDA).SelectedNodeName.Split('_', 2);
-                    //txtPOId.Text = temp[1];
                 }
                 return;
             }

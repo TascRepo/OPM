@@ -26,11 +26,16 @@ namespace OPM.GUI
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtNTKTId.Text.Trim())) return;
-            //if((Tag as OPMDASHBOARDA).)
+            if (string.IsNullOrEmpty(txtNTKTId.Text.Trim()) || txtNTKTId.Text.Trim() == (new NTKTObj()).NTKTId)
+            {
+                MessageBox.Show("Nhập đúng số công văn đề nghị Nghiệm thu kỹ thuật!");
+                return;
+            }
+            (Tag as OPMDASHBOARDA).SaveSQLByNodeName();
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
+            (Tag as OPMDASHBOARDA).CurrentNodeName = "PO_" + (Tag as OPMDASHBOARDA).Po.POId;
         }
         private void txbNTKTQuantity_TextChanged(object sender, EventArgs e)
         {
@@ -50,27 +55,32 @@ namespace OPM.GUI
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(string.Format("Bạn có chắc chắn xoá cả đợt NTKT số {0} của {1} không?", (Tag as OPMDASHBOARDA).Ntkt.NTKTId, (Tag as OPMDASHBOARDA).Ntkt.POId), "Cảnh báo!", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.Cancel) return;
+            (Tag as OPMDASHBOARDA).DeleteSQLByNodeName(); 
         }
 
         private void buttonCreatDocument_Click(object sender, EventArgs e)
         {
-            OpmWordHandler.Temp08_NTKTRequest((Tag as OPMDASHBOARDA).Ntkt.NTKTId);
-            OpmWordHandler.Temp09_BBKTKT((Tag as OPMDASHBOARDA).Ntkt.NTKTId);
-            OpmWordHandler.Temp10_CNBQPM((Tag as OPMDASHBOARDA).Ntkt.NTKTId);
-            OpmWordHandler.Temp11_BBNTKT((Tag as OPMDASHBOARDA).Ntkt.NTKTId);
+            (Tag as OPMDASHBOARDA).CreatDocumentByNodeName();
         }
 
         private void txtNTKTId_TextChanged(object sender, EventArgs e)
         {
-            if (NTKTObj.NTKTExist(txtNTKTId.Text.Trim())) return;
+            (Tag as OPMDASHBOARDA).CurrentNodeId = txtNTKTId.Text.Trim(); 
+            if (NTKTObj.NTKTExist(txtNTKTId.Text.Trim()))
+            {
+                if (("NTKT_" + txtNTKTId.Text.Trim()) != (Tag as OPMDASHBOARDA).CurrentNodeName)
+                {
+                    MessageBox.Show("Đã tồn tại PO số " + txtNTKTId.Text.Trim());
+                }
+                return;
+            }
             (Tag as OPMDASHBOARDA).Ntkt.NTKTId = txtNTKTId.Text.Trim();
         }
 
         private void txtNTKTPhase_TextChanged(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).Ntkt.NTKTPhase = txtNTKTPhase.Text.Trim();
-            (Tag as OPMDASHBOARDA).SetNameOfSelectNode("NTKT" + txtNTKTPhase.Text.Trim());
+            (Tag as OPMDASHBOARDA).SetNameOfSelectNode("NTKT " + txtNTKTPhase.Text.Trim());
         }
 
         private void dtpNTKTCreatedDate_ValueChanged(object sender, EventArgs e)
@@ -101,6 +111,11 @@ namespace OPM.GUI
         private void NTKTInfor_Load(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void btnNewNTKT_Click(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).CurrentNodeName = "NTKT_" + (new NTKTObj()).NTKTId;
         }
     }
 }

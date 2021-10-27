@@ -155,6 +155,7 @@ namespace OPM.GUI
             this.txbIdDP.Size = new System.Drawing.Size(144, 23);
             this.txbIdDP.TabIndex = 18;
             this.txbIdDP.Text = "DPXXX";
+            this.txbIdDP.TextChanged += new System.EventHandler(this.txbIdDP_TextChanged);
             // 
             // label5
             // 
@@ -426,7 +427,7 @@ namespace OPM.GUI
             this.maHangSP.Text = "FINAL_PRODUCT";
             this.maHangSP.SelectedIndexChanged += new System.EventHandler(this.maHangSP_SelectedIndexChanged);
             // 
-            // DeliverPartInforDetail
+            // DPInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -470,7 +471,7 @@ namespace OPM.GUI
             this.Controls.Add(this.txbIDContract);
             this.Controls.Add(this.txbPOCode);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "DeliverPartInforDetail";
+            this.Name = "DPInfo";
             this.Text = "DeliverPartInforDetail";
             this.Load += new System.EventHandler(this.DeliverPartInforDetail_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProvince)).EndInit();

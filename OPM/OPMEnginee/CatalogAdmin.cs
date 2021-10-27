@@ -91,7 +91,6 @@ namespace OPM.OPMEnginee
             do
             {
                 list.Add(nameOfParentNode);
-                //CatalogAdmin catalog = new CatalogAdmin(nameOfParentNode);
                 DataRow[] rows = table.Select(string.Format(@"ctlId = '{0}'", nameOfCurrentNode), "ctlname");
                 nameOfParentNode = rows[0]["ctlParent"].ToString();
                 nameOfCurrentNode = nameOfParentNode;
@@ -100,7 +99,7 @@ namespace OPM.OPMEnginee
         }
         public static DataTable Table()
         {
-            string query = string.Format("(SELECT ('Contract_'+ContractId)AS ctlId, ContractId AS ctlName, null AS ctlParent FROM dbo.Contract) UNION (SELECT 'PO_'+POId,POName, 'Contract_'+ContractId FROM dbo.PO) UNION (SELECT 'NTKT_'+NTKTId,'NTKT'+ NTKTPhase,'PO_'+POId FROM dbo.NTKT) ORDER BY ContractId");
+            string query = string.Format("(SELECT ('Contract_'+ContractId)AS ctlId, ContractId AS ctlName, null AS ctlParent FROM dbo.Contract) UNION (SELECT 'PO_'+POId,POName, 'Contract_'+ContractId FROM dbo.PO) UNION (SELECT 'NTKT_'+NTKTId,'NTKT '+ NTKTPhase,'PO_'+POId FROM dbo.NTKT) ORDER BY ContractId");
             DataTable table= OPMDBHandler.ExecuteQuery(query);
             DataTable table1 = new DataTable();
             table1.Columns.Add("ctlId");

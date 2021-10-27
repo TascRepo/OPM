@@ -294,5 +294,10 @@ namespace OPM.GUI
                 tenHangSP.Text = "";
             }
         }
+
+        private void txbIdDP_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).CurrentNodeId = txbIdDP.Text.Trim();
+        }
     }
 }

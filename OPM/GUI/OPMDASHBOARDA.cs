@@ -11,6 +11,7 @@ namespace OPM.GUI
     public partial class OPMDASHBOARDA : Form
     {
         private string currentNodeName;
+        public string CurrentNodeId;
         public string CurrentNodeName 
         {
             get => currentNodeName;
@@ -21,25 +22,8 @@ namespace OPM.GUI
             }
         }
         public ContractObj Contract { get; set; } = new ContractObj();
-        public POObj Po
-        {
-            get; set;
-        } = new POObj();
-        public NTKTObj Ntkt
-        {
-            get; set;
-        } = new NTKTObj();
-        public int TempStatus { get; set; } = 0;
-
-        //TempStatus = 0 : Đang ở Form tạo mới hợp đồng
-        //TempStatus = 1 : Đang ở Form chỉnh sửa hợp đồng
-        //TempStatus = 3 : Đang ở Form tạo mới PO
-        //TempStatus = 4 : Đang ở Form chỉnh sửa PO
-        //TempStatus = 6 : Đang ở Form tạo mới NTKT
-        //TempStatus = 7 : Đang ở Form chỉnh sửa NTKT
-        //TempStatus = 0 : Đang ở Form 
-        //TempStatus = 0 : Đang ở Form 
-        //TempStatus = 0 : Đang ở Form 
+        public POObj Po { get; set;} = new POObj();
+        public NTKTObj Ntkt { get; set;} = new NTKTObj();
 
         public OPMDASHBOARDA()
         {
@@ -85,6 +69,10 @@ namespace OPM.GUI
                 case "DP":
                     break;
                 case "NTKT":
+                    OpmWordHandler.Temp08_NTKTRequest(temp[1]);
+                    OpmWordHandler.Temp09_BBKTKT(temp[1]);
+                    OpmWordHandler.Temp10_CNBQPM(temp[1]);
+                    OpmWordHandler.Temp11_BBNTKT(temp[1]);
                     break;
                 case "PL":
                     break;
@@ -125,6 +113,15 @@ namespace OPM.GUI
                     case "DP":
                         break;
                     case "NTKT":
+                        if (NTKTObj.NTKTDelete(temp[1]) > 0)
+                        {
+                            MessageBox.Show("Xoá thành công NTKT số " + temp[1]);
+                            CurrentNodeName = "NTKT_" + (new NTKTObj()).NTKTId;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Xoá thất bại vì chưa có NTKT số " + temp[1]);
+                        }
                         break;
                     case "PL":
                         break;
@@ -134,7 +131,7 @@ namespace OPM.GUI
                 }
             }
         }
-        public void SaveSQLByNodeName(string nodeId)
+        public void SaveSQLByNodeName()
         {
             string[] temp = CurrentNodeName.Split('_', 2);
             switch (temp[0])
@@ -142,60 +139,85 @@ namespace OPM.GUI
                 case "Contract":
                     if (!ContractObj.ContractExist(temp[1]))
                     {
-                        if(Contract.ContractInsert(nodeId) >0)
+                        if(Contract.ContractInsert(CurrentNodeId) >0)
                         {
-                            MessageBox.Show("Tạo mới thành công hợp đồng số " + nodeId);
-                            CurrentNodeName = "Contract_" + nodeId;
+                            MessageBox.Show("Tạo mới thành công hợp đồng số " + CurrentNodeId);
+                            CurrentNodeName = "Contract_" + CurrentNodeId;
                         }
                         else
                         {
-                            MessageBox.Show("Tạo mới thất bại vì đã có hợp đồng số " + nodeId);
+                            MessageBox.Show("Tạo mới thất bại vì đã có hợp đồng số " + CurrentNodeId);
                             CurrentNodeName = "Contract_"+(new ContractObj()).ContractId; ;
                         }
                     }
                     else
                     {
-                        if (Contract.ContractUpdate(nodeId, temp[1]) > 0)
+                        if (Contract.ContractUpdate(CurrentNodeId, temp[1]) > 0)
                         {
-                            MessageBox.Show("Cập nhật thành công hợp đồng số " + nodeId);
-                            CurrentNodeName = "Contract_" + nodeId;
+                            MessageBox.Show("Cập nhật thành công hợp đồng số " + CurrentNodeId);
+                            CurrentNodeName = "Contract_" + CurrentNodeId;
                         }
                         else
                         {
-                            MessageBox.Show("Cập nhật thất bại vì đã có hợp đồng số " + nodeId);
+                            MessageBox.Show("Cập nhật thất bại vì đã có hợp đồng số " + CurrentNodeId);
                         }
                     }
                     break;
                 case "PO":
                     if (!POObj.POExist(temp[1]))
                     {
-                        if (Po.POInsert(nodeId) > 0)
+                        if (Po.POInsert(CurrentNodeId) > 0)
                         {
-                            MessageBox.Show("Tạo mới thành công PO số " + nodeId);
-                            CurrentNodeName = "PO_" + nodeId;
+                            MessageBox.Show("Tạo mới thành công PO số " + CurrentNodeId);
+                            CurrentNodeName = "PO_" + CurrentNodeId;
                         }
                         else
                         {
-                            MessageBox.Show("Tạo mới thất bại vì đã có PO số " + nodeId);
+                            MessageBox.Show("Tạo mới thất bại vì đã có PO số " + CurrentNodeId);
                             CurrentNodeName = "PO_" + (new POObj()).POId;
                         }
                     }
                     else
                     {
-                        if (Po.POUpdate(nodeId, temp[1]) > 0)
+                        if (Po.POUpdate(CurrentNodeId, temp[1]) > 0)
                         {
-                            MessageBox.Show("Cập nhật thành công PO số " + nodeId);
-                            CurrentNodeName = "PO_" + nodeId;
+                            MessageBox.Show("Cập nhật thành công PO số " + CurrentNodeId);
+                            CurrentNodeName = "PO_" + CurrentNodeId;
                         }
                         else
                         {
-                            MessageBox.Show("Cập nhật thất bại vì đã có PO số " + nodeId);
+                            MessageBox.Show("Cập nhật thất bại vì đã có PO số " + CurrentNodeId);
                         }
                     }
                     break;
                 case "DP":
                     break;
                 case "NTKT":
+                    if (!NTKTObj.NTKTExist(temp[1]))
+                    {
+                        if (Ntkt.NTKTInsert(CurrentNodeId) > 0)
+                        {
+                            MessageBox.Show("Tạo mới thành công NTKT số " + CurrentNodeId);
+                            CurrentNodeName = "NTKT_" + CurrentNodeId;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Tạo mới thất bại vì đã có NTKT số " + CurrentNodeId);
+                            CurrentNodeName = "NTKT_" + (new NTKTObj()).NTKTId;
+                        }
+                    }
+                    else
+                    {
+                        if (Ntkt.NTKTUpdate(CurrentNodeId, temp[1]) > 0)
+                        {
+                            MessageBox.Show("Cập nhật thành công NTKT số " + CurrentNodeId);
+                            CurrentNodeName = "NTKT_" + CurrentNodeId;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cập nhật thất bại vì đã có NTKT số " + CurrentNodeId);
+                        }
+                    }
                     break;
                 case "PL":
                     break;
@@ -210,7 +232,7 @@ namespace OPM.GUI
             switch (temp[0])
             {
                 case "Contract":
-                    Contract.ContractId = temp[1];
+                    Contract =new ContractObj(temp[1]);
                     Text = string.Format("Hợp đồng số {0}", temp[1]);
                     ContractInfo contractInfo = new ContractInfo();
                     OpenChildForm(contractInfo);
@@ -275,7 +297,7 @@ namespace OPM.GUI
             }
             if (currentNodeName == "NTKT_" + (new NTKTObj()).NTKTId)
             {
-                row["ctlName"] = "NTKT" + Ntkt.NTKTPhase;
+                row["ctlName"] = "NTKT " + Ntkt.NTKTPhase;
                 row["ctlParent"] = "PO_" + Po.POId;
                 table.Rows.Add(row);
             }
@@ -333,25 +355,27 @@ namespace OPM.GUI
         }
         private void contextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            string[] temp = CurrentNodeName.Split('_', 2);
             if (e.ClickedItem.Name == "toolStripMenuNewContract")
             {
-                TempStatus = 0;//Đang ở Form tạo mới Hợp đồng
-                OpenContractForm();
+                CurrentNodeName = "Contract_" + (new ContractObj()).ContractId;
             }
             else if (e.ClickedItem.Name == "toolStripMenuNewPO")
             {
                 if (Contract.ContractExist())
                 {
-                    TempStatus = 3;//Chuyển sang Form tạo mới PO
-                    OpenPOForm();
+                    CurrentNodeName = "PO_" + (new POObj()).POId;
+                }
+                else
+                {
+                    MessageBox.Show(string.Format("Vẫn chưa lưu hợp đồng số {0}", Contract.ContractId), "Thông báo");
                 }
             }
             else if (e.ClickedItem.Name == "toolStripMenuNewNTKT")
             {
                 if (Po.POExist())
                 {
-                    TempStatus = 6;//Chuyển sang Form tạo mới NTKT
-                    OpenNTKTForm();
+                    CurrentNodeName = "NTKT_" + (new NTKTObj()).NTKTId;
                 }
             }
             else if (e.ClickedItem.Name == "toolStripMenuNewDP")
@@ -364,11 +388,11 @@ namespace OPM.GUI
             }
             else if (e.ClickedItem.Name == "toolStripMenuSave")
             {
-                //Do Something
+                SaveSQLByNodeName();
             }
-            else if (e.ClickedItem.Name == "toolStripMenuCreateDoc")
+            else if (e.ClickedItem.Name == "toolStripMenuCreatDoc")
             {
-                //Do Something
+                CreatDocumentByNodeName();
             }
             else
             {
@@ -401,20 +425,16 @@ namespace OPM.GUI
         {
             POInfo purchaseOderInfor = new POInfo();
             Text = string.Format("Hợp đồng số {0} - {1}", Contract.ContractId, Po.POName);
-            if (TempStatus == 3) Po = new POObj();  //Ở Form tạo mới PO
             Po.ContractId = Contract.ContractId;
             CurrentNodeName = "PO_" + Po.POId; 
-            //InitCatalogByNodeName("PO_" + Po.POId);
             OpenChildForm(purchaseOderInfor);
         }
         public void OpenNTKTForm()
         {
             NTKTInfo nTKTInfor = new NTKTInfo();
             Text = string.Format(@"Hợp đồng số {2} - {1} - Đợt NTKT{0}", Ntkt.NTKTPhase, Po.POName, Contract.ContractId);
-            if (TempStatus == 6) Ntkt = new NTKTObj();  //Ở Form tạo mới NTKT
             Ntkt.POId = Po.POId;
             CurrentNodeName = "NTKT_" + Ntkt.NTKTId; 
-            //InitCatalogByNodeName("NTKT_" + Ntkt.NTKTId);
             OpenChildForm(nTKTInfor);
         }
         public void OpenDpForm(string idPO, string idContract, String PONumber)

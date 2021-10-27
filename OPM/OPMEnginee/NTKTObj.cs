@@ -27,7 +27,7 @@ namespace OPM.OPMEnginee
                         NTKTQuantity = (row["NTKTQuantity"] == null || row["NTKTQuantity"] == DBNull.Value) ? 0 : (double)row["NTKTQuantity"];
                         NTKTTestExpectedDate = (row["NTKTTestExpectedDate"] == null || row["NTKTTestExpectedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["NTKTTestExpectedDate"];
                         NTKTCreatedDate = (row["NTKTCreatedDate"] == null || row["NTKTCreatedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["NTKTCreatedDate"];
-                        NTKTPhase = (row["NTKTPhase"] == null || row["NTKTPhase"] == DBNull.Value) ? "1" : row["NTKTPhase"].ToString();
+                        NTKTPhase = (row["NTKTPhase"] == null || row["NTKTPhase"] == DBNull.Value) ? "X" : row["NTKTPhase"].ToString();
                         TechnicalInspectionReportDate = (row["TechnicalInspectionReportDate"] == null || row["TechnicalInspectionReportDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["TechnicalInspectionReportDate"];
                         TechnicalAcceptanceReportDate = (row["TechnicalAcceptanceReportDate"] == null || row["TechnicalAcceptanceReportDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["TechnicalAcceptanceReportDate"];
                         NTKTLicenseCertificateDate = (row["NTKTLicenseCertificateDate"] == null || row["NTKTLicenseCertificateDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["NTKTLicenseCertificateDate"];
@@ -40,7 +40,7 @@ namespace OPM.OPMEnginee
             }
         }
         public DateTime NTKTCreatedDate { get; set; } = DateTime.Now;
-        public string NTKTPhase { get; set; } = "1";
+        public string NTKTPhase { get; set; } = "X";
         public double NTKTQuantity { get; set; } = 0;
         public double NTKTExtraQuantity => Math.Round(NTKTQuantity * 0.02, 0, MidpointRounding.AwayFromZero);
         public DateTime NTKTTestExpectedDate { get; set; } = DateTime.Now;
@@ -66,7 +66,7 @@ namespace OPM.OPMEnginee
             NTKTQuantity = (row["NTKTQuantity"] == null || row["NTKTQuantity"] == DBNull.Value) ? 0 : (double)row["NTKTQuantity"];
             NTKTTestExpectedDate = (row["NTKTTestExpectedDate"] == null || row["NTKTTestExpectedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["NTKTTestExpectedDate"];
             NTKTCreatedDate = (row["NTKTCreatedDate"] == null || row["NTKTCreatedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["NTKTCreatedDate"];
-            NTKTPhase = (row["NTKTPhase"] == null || row["NTKTPhase"] == DBNull.Value) ? "1" : row["NTKTPhase"].ToString();
+            NTKTPhase = (row["NTKTPhase"] == null || row["NTKTPhase"] == DBNull.Value) ? "X" : row["NTKTPhase"].ToString();
             TechnicalInspectionReportDate = (row["TechnicalInspectionReportDate"] == null || row["TechnicalInspectionReportDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["TechnicalInspectionReportDate"];
             TechnicalAcceptanceReportDate = (row["TechnicalAcceptanceReportDate"] == null || row["TechnicalAcceptanceReportDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["TechnicalAcceptanceReportDate"];
             NTKTLicenseCertificateDate = (row["NTKTLicenseCertificateDate"] == null || row["NTKTLicenseCertificateDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["NTKTLicenseCertificateDate"];
@@ -88,51 +88,33 @@ namespace OPM.OPMEnginee
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table.Rows.Count > 0;
         }
-        public void NTKTInsert(string id)
+        public int NTKTInsert(string id)
         {
-            if (POObj.POExist(id)) return;
+            if (POObj.POExist(id)) return 0;
             string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.NTKT(NTKTId,POId,NTKTCreatedDate,NTKTPhase,NTKTQuantity,NTKTTestExpectedDate,TechnicalInspectionReportDate,TechnicalAcceptanceReportDate,NTKTLicenseCertificateDate)VALUES('{0}','{1}', '{2}', '{3}', {4}, '{5}', '{6}', '{7}', '{8}')", id, POId, NTKTCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTPhase, NTKTQuantity, NTKTTestExpectedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalInspectionReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalAcceptanceReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTLicenseCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-            OPMDBHandler.ExecuteNonQuery(query);
+            return OPMDBHandler.ExecuteNonQuery(query);
         }
-        public void NTKTUpdate()
+        public int NTKTUpdate()
         {
             string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.NTKT SET  POId = '{1}', NTKTCreatedDate = '{2}', NTKTPhase = '{3}', NTKTQuantity = {4}, NTKTTestExpectedDate = '{5}', TechnicalInspectionReportDate = '{6}', TechnicalAcceptanceReportDate = '{7}', NTKTLicenseCertificateDate = '{8}' Where NTKTId = '{0}'", NTKTId, POId, NTKTCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTPhase, NTKTQuantity,NTKTTestExpectedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalInspectionReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalAcceptanceReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTLicenseCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-            OPMDBHandler.ExecuteNonQuery(query);
+            return OPMDBHandler.ExecuteNonQuery(query);
         }
-        public void NTKTUpdate(string oldId)
+        public int NTKTUpdate(string newId,string oldId)
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.NTKT SET NTKTId = '{0}' POId = '{1}', NTKTCreatedDate = '{2}', NTKTPhase = '{3}', NTKTQuantity = {4}, NTKTTestExpectedDate = '{5}', TechnicalInspectionReportDate = '{6}', TechnicalAcceptanceReportDate = '{7}', NTKTLicenseCertificateDate = '{8}' Where NTKTId = '{9}'", NTKTId, POId, NTKTCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTPhase, NTKTQuantity,NTKTTestExpectedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalInspectionReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalAcceptanceReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTLicenseCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")),oldId);
-            OPMDBHandler.ExecuteNonQuery(query);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.NTKT SET NTKTId = '{0}', POId = '{1}', NTKTCreatedDate = '{2}', NTKTPhase = '{3}', NTKTQuantity = {4}, NTKTTestExpectedDate = '{5}', TechnicalInspectionReportDate = '{6}', TechnicalAcceptanceReportDate = '{7}', NTKTLicenseCertificateDate = '{8}' Where NTKTId = '{9}'", newId, POId, NTKTCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTPhase, NTKTQuantity,NTKTTestExpectedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalInspectionReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalAcceptanceReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTLicenseCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")),oldId);
+            return OPMDBHandler.ExecuteNonQuery(query);
         }
 
-        public void Delete()
+        public int NTKTDelete()
         {
             string query = string.Format("Delete FROM dbo.NTKT WHERE NTKTId = '{0}'", ntktId);
-            try
-            {
-                OPMDBHandler.ExecuteNonQuery(query);
-
-            }
-            catch
-            {
-                MessageBox.Show(string.Format("Không xoá được NTKT số {0}", ntktId));
-                return;
-            }
+            return OPMDBHandler.ExecuteNonQuery(query);
         }
 
-        public static void Delete(string id)
+        public static int NTKTDelete(string id)
         {
             string query = string.Format("Delete FROM dbo.NTKT WHERE NTKTId = '{0}'", id);
-            try
-            {
-                OPMDBHandler.ExecuteNonQuery(query);
-
-            }
-            catch
-            {
-                MessageBox.Show(string.Format("Không xoá được NTKT số {0}", id));
-                return;
-            }
+            return OPMDBHandler.ExecuteNonQuery(query);
         }
     }
 }

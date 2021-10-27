@@ -107,7 +107,7 @@ namespace OPM.GUI
                 MessageBox.Show("Nhập đúng số hợp đồng!");
                 return;
             }
-            (Tag as OPMDASHBOARDA).SaveSQLByNodeName(txtContractId.Text.Trim());
+            (Tag as OPMDASHBOARDA).SaveSQLByNodeName();
         }
         private void ContractInfoChildForm_Load(object sender, EventArgs e)
         {
@@ -127,6 +127,7 @@ namespace OPM.GUI
         }
         private void txtContractId_TextChanged(object sender, EventArgs e)
         {
+            (Tag as OPMDASHBOARDA).CurrentNodeId = txtContractId.Text.Trim();
             (Tag as OPMDASHBOARDA).SetNameOfSelectNode(txtContractId.Text.Trim());
             if (ContractObj.ContractExist(txtContractId.Text.Trim())) 
             {
