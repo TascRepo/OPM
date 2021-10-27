@@ -56,8 +56,11 @@ namespace OPM.GUI
         {
             if ((Tag as OPMDASHBOARDA).Contract.ContractExist())
             {
-                (Tag as OPMDASHBOARDA).TempStatus = 3;//Chuyển sang Form tạo mới PO
-                (Tag as OPMDASHBOARDA).OpenPOForm();
+                (Tag as OPMDASHBOARDA).CurrentNodeName = "PO_" + (new POObj()).POId;
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Vẫn chưa lưu hợp đồng số {0}", (Tag as OPMDASHBOARDA).Contract.ContractId), "Thông báo");
             }
         }
 
@@ -95,53 +98,16 @@ namespace OPM.GUI
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if ((Tag as OPMDASHBOARDA).Contract.ContractExist())
-            {
-                (Tag as OPMDASHBOARDA).Contract.ContractDelete();
-                (Tag as OPMDASHBOARDA).Contract = new ContractObj();
-                (Tag as OPMDASHBOARDA).OpenContractForm();
-            }
+            (Tag as OPMDASHBOARDA).DeleteSQLByNodeName();
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtContractId.Text.Trim()) || txtContractId.Text.Trim() == (new ContractObj()).ContractId) return;
-            if ((Tag as OPMDASHBOARDA).TempStatus == 0)//Tạo mới
+            if (string.IsNullOrEmpty(txtContractId.Text.Trim()) || txtContractId.Text.Trim() == (new ContractObj()).ContractId) 
             {
-                if ((Tag as OPMDASHBOARDA).Contract.ContractInsert(txtContractId.Text.Trim()) > 0) 
-                {
-                    (Tag as OPMDASHBOARDA).Contract.ContractId = txtContractId.Text.Trim();
-                    (Tag as OPMDASHBOARDA).TempStatus = 1;
-                    (Tag as OPMDASHBOARDA).OpenContractForm();
-                }
-                else
-                {
-                    MessageBox.Show("Đã có hợp đồng số " + txtContractId.Text.Trim());
-                    txtContractId.Text = (new ContractObj()).ContractId;
-                }
+                MessageBox.Show("Nhập đúng số hợp đồng!");
+                return;
             }
-            else
-            {
-                if ("Contract_"+txtContractId.Text.Trim()== (Tag as OPMDASHBOARDA).SelectedNodeName)
-                {
-                    (Tag as OPMDASHBOARDA).Contract.ContractUpdate(txtContractId.Text.Trim(), txtContractId.Text.Trim());
-                    (Tag as OPMDASHBOARDA).Contract.ContractId = txtContractId.Text.Trim();
-                }
-                else
-                {
-                    string[] temp = (Tag as OPMDASHBOARDA).SelectedNodeName.Split('_', 2);
-                    if (ContractObj.ContractExist(txtContractId.Text.Trim()))
-                    {
-                        MessageBox.Show("Đã có hợp đồng số "+ txtContractId.Text.Trim());
-                        txtContractId.Text = temp[1];
-                    }
-                    else
-                    {
-                        (Tag as OPMDASHBOARDA).Contract.ContractUpdate(txtContractId.Text.Trim(), temp[1]);
-                        (Tag as OPMDASHBOARDA).Contract.ContractId = txtContractId.Text.Trim();
-                        (Tag as OPMDASHBOARDA).OpenContractForm();
-                    }
-                }
-            }
+            (Tag as OPMDASHBOARDA).SaveSQLByNodeName(txtContractId.Text.Trim());
         }
         private void ContractInfoChildForm_Load(object sender, EventArgs e)
         {
@@ -153,25 +119,20 @@ namespace OPM.GUI
         }
         private void btnCreatDocument_Click(object sender, EventArgs e)
         {
-            if ((Tag as OPMDASHBOARDA).Contract.ContractExist()) OpmWordHandler.Temp1_CreatContractGuarantee(txtContractId.Text.Trim());
-            else MessageBox.Show(string.Format(@"Không có hợp đồng số '{0}'", (Tag as OPMDASHBOARDA).Contract.ContractId));
+            (Tag as OPMDASHBOARDA).CreatDocumentByNodeName();
         }
         private void btnNew_Click(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).TempStatus = 0;//Tạo mới Hợp đồng
-            (Tag as OPMDASHBOARDA).Contract = new ContractObj();
-            (Tag as OPMDASHBOARDA).OpenContractForm();
+            (Tag as OPMDASHBOARDA).CurrentNodeName = "Contract_" + (new ContractObj()).ContractId;
         }
         private void txtContractId_TextChanged(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).SetNameOfSelectNode(txtContractId.Text.Trim());
             if (ContractObj.ContractExist(txtContractId.Text.Trim())) 
             {
-                if(("Contract_"+txtContractId.Text.Trim())!= (Tag as OPMDASHBOARDA).SelectedNodeName)
+                if(("Contract_"+txtContractId.Text.Trim())!= (Tag as OPMDASHBOARDA).CurrentNodeName)
                 {
                     MessageBox.Show("Đã tồn tại hợp đồng số " + txtContractId.Text.Trim());
-                    //string[] temp = (Tag as OPMDASHBOARDA).SelectedNodeName.Split('_', 2);
-                    //txtContractId.Text= temp[1];
                 }
                 return;
             }

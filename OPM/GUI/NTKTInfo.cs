@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace OPM.GUI
 {
-    public partial class NTKTInfor : Form
+    public partial class NTKTInfo : Form
     {
-        public NTKTInfor()
+        public NTKTInfo()
         {
             InitializeComponent();
         }

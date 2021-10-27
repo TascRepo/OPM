@@ -15,8 +15,8 @@ namespace OPM.GUI
         {
             DataTable dataTable = new DataTable();
             IPHD_PO iPHD_PO = new IPHD_PO();
-            string tsDP = DeliverPartInforDetail.tsDP;
-            string tsPO = DeliverPartInforDetail.tsPO;
+            string tsDP = DPInfo.tsDP;
+            string tsPO = DPInfo.tsPO;
             //load thông tin lên datagrview
             if (iPHD_PO.Check(tsDP, tsPO))
             {

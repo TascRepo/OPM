@@ -12,9 +12,9 @@ namespace OPM.GUI
         }
         private void KHGH_PO_Load(object sender, EventArgs e)
         {
-            dataKHGH.DataSource = PurchaseOderInfor.dtkhgh;
-            mpo.Text = PurchaseOderInfor.IPPO;
-            vbxn.Text = PurchaseOderInfor.IDVBXN;
+            dataKHGH.DataSource = POInfo.dtkhgh;
+            mpo.Text = POInfo.IPPO;
+            vbxn.Text = POInfo.IDVBXN;
         }
 
         private void button1_Click(object sender, EventArgs e)

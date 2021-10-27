@@ -1,15 +1,14 @@
 ﻿using OPM.ExcelHandler;
 using OPM.OPMEnginee;
-using OPM.WordHandler;
 using System;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
 namespace OPM.GUI
 {
-    public partial class PurchaseOderInfor : Form
+    public partial class POInfo : Form
     {
-        public PurchaseOderInfor()
+        public POInfo()
         {
             InitializeComponent();
         }
@@ -39,54 +38,28 @@ namespace OPM.GUI
             dtpPOAdvanceGuaranteeCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.POAdvanceGuaranteeCreatedDate;
             txtPOAdvanceRequestId.Text = (Tag as OPMDASHBOARDA).Po.POAdvanceRequestId;
             dtpPOAdvanceRequestCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.POAdvanceRequestCreatedDate;
-            dtpPOGuaranteeDate.Value=(Tag as OPMDASHBOARDA).Po.POGuaranteeDate;
+            dtpPOGuaranteeDate.Value = (Tag as OPMDASHBOARDA).Po.POGuaranteeDate;
             txtPOGuaranteeRatio.Text = (Tag as OPMDASHBOARDA).Po.POGuaranteeRatio.ToString();
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if ((Tag as OPMDASHBOARDA).Po.POId == (new POObj()).POId)
+            if (string.IsNullOrEmpty(txtPOId.Text.Trim()) || txtPOId.Text.Trim() == (new POObj()).POId)
             {
                 MessageBox.Show("Nhập đúng số PO!");
                 return;
             }
-            if ((Tag as OPMDASHBOARDA).TempStatus == 4)//Đang ở Form chỉnh sửa
-            {
-                if (txtPOId.Text.Trim() == (txtPOId.Tag as string))    //Không thay đổi IdPO
-                    (Tag as OPMDASHBOARDA).Po.POUpdate();
-                else if (!(Tag as OPMDASHBOARDA).Po.POExist())
-                    (Tag as OPMDASHBOARDA).Po.POUpdate(txtPOId.Tag as string);
-                else
-                {
-                    MessageBox.Show(string.Format("Đã tồn tại PO số '{0}'", txtPOId.Text.Trim()));
-                    return;
-                }
-            }
-            if ((Tag as OPMDASHBOARDA).TempStatus == 3)//Đang ở Form tạo mới PO
-            {
-                if (!(Tag as OPMDASHBOARDA).Po.POExist())
-                {
-                    if ((Tag as OPMDASHBOARDA).Po.POInsert(txtPOId.Text.Trim()) > 0)
-                    {
-                        (Tag as OPMDASHBOARDA).TempStatus = 4;//Chuyển sang Form chỉnh sửa PO (đã tồn tại trong CSDL)
-                        (Tag as OPMDASHBOARDA).Po.POId = txtPOId.Text.Trim();
-                        //(Tag as OPMDASHBOARDA).Contract.ContractId = (Tag as OPMDASHBOARDA).Po.ContractId;
-                        (Tag as OPMDASHBOARDA).OpenPOForm();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show(string.Format("Không tạo được vì PO số '{0}' đã tồn tại", (Tag as OPMDASHBOARDA).Po.POId));
-                    return;
-                }
-            }
+            (Tag as OPMDASHBOARDA).SaveSQLByNodeName(txtPOId.Text.Trim());
         }
 
-        private void btnNTKT_Click(object sender, EventArgs e)
+        private void btnNewNTKT_Click(object sender, EventArgs e)
         {
             if ((Tag as OPMDASHBOARDA).Po.POExist())
             {
-                (Tag as OPMDASHBOARDA).TempStatus = 6;//Chuyển sang Form tạo mới NTKT
-                (Tag as OPMDASHBOARDA).OpenNTKTForm();
+                (Tag as OPMDASHBOARDA).CurrentNodeName = "NTKT_" + (new NTKTObj()).NTKTId;
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Vẫn chưa lưu PO số {0}", (Tag as OPMDASHBOARDA).Po.POId), "Thông báo");
             }
         }
         private void btnNewDP_Click(object sender, EventArgs e)
@@ -101,15 +74,7 @@ namespace OPM.GUI
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if ((Tag as OPMDASHBOARDA).TempStatus == 3) return;
-            if (MessageBox.Show(string.Format("Bạn có chắc chắn muốn xóa PO số '{0}'", (Tag as OPMDASHBOARDA).Po.POId), "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-            {
-                if ((Tag as OPMDASHBOARDA).Po.PODelete() > 0)
-                {
-                    (Tag as OPMDASHBOARDA).TempStatus = 3;  //Chuyển đến Form tạo mới PO
-                    (Tag as OPMDASHBOARDA).OpenPOForm();
-                }
-            }
+            (Tag as OPMDASHBOARDA).DeleteSQLByNodeName();
         }
 
         public OpenFileDialog openFileExcel = new OpenFileDialog();
@@ -120,13 +85,13 @@ namespace OPM.GUI
             {
                 if (File.Exists(openFileExcel.FileName))
                 {
-                    txbnamefilePO.Text = openFileExcel.FileName;
+                    //txbnamefilePO.Text = openFileExcel.FileName;
                     string filename = openFileExcel.FileName;
                     DataTable dt = new DataTable();
                     int ret = OpmExcelHandler.fReadExcelFilePO2(filename, ref dt);
                     if (ret == 1)
                     {
-                        dataGridViewPO.DataSource = dt;
+                        //dataGridViewPO.DataSource = dt;
                         MessageBox.Show("Import thành công!");
                     }
                     else
@@ -157,7 +122,7 @@ namespace OPM.GUI
             (Tag as OPMDASHBOARDA).Po.POCreatedDate = dtpPOCreatedDate.Value;
             try
             {
-                if(!string.IsNullOrEmpty(txtPOConfirmRequestDuration.Text.Trim()))
+                if (!string.IsNullOrEmpty(txtPOConfirmRequestDuration.Text.Trim()))
                     dtpPOConfirmRequestDeadline.Value = dtpPOCreatedDate.Value.AddDays(int.Parse(txtPOConfirmRequestDuration.Text.Trim()));
             }
             catch (Exception)
@@ -215,7 +180,7 @@ namespace OPM.GUI
         {
             if (POObj.POExist(txtPOId.Text.Trim()))
             {
-                if(("PO_" + txtPOId.Text.Trim())!= (Tag as OPMDASHBOARDA).SelectedNodeName)
+                if (("PO_" + txtPOId.Text.Trim()) != (Tag as OPMDASHBOARDA).CurrentNodeName)
                 {
                     MessageBox.Show("Đã tồn tại PO số " + txtPOId.Text.Trim());
                     //string[] temp = (Tag as OPMDASHBOARDA).SelectedNodeName.Split('_', 2);
@@ -362,34 +327,17 @@ namespace OPM.GUI
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).TempStatus = 1;
-            (Tag as OPMDASHBOARDA).OpenContractForm();
+            (Tag as OPMDASHBOARDA).CurrentNodeName = "Contract_" + (Tag as OPMDASHBOARDA).Po.ContractId;
         }
 
         private void btnNewPO_Click(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).TempStatus = 3;//Chuyển sang Form tạo mới PO
-            (Tag as OPMDASHBOARDA).OpenPOForm();
+            (Tag as OPMDASHBOARDA).CurrentNodeName = "PO_" + (new POObj()).POId;
         }
 
         private void btnCreatDoc_Click(object sender, EventArgs e)
         {
-            if (!(Tag as OPMDASHBOARDA).Po.POExist()) return;
-            //Tạo mẫu 7
-
-            //Tạo mẫu 6
-            OpmWordHandler.Temp6_CreatPOAdvanceReques((Tag as OPMDASHBOARDA).Po.POId); 
-            //Tạo mẫu 5
-            OpmWordHandler.Temp5_CreatPOAdvanceGuarantee((Tag as OPMDASHBOARDA).Po.POId);
-            //Tạo mẫu 4
-            OpmWordHandler.Temp4_CreatPOPerformanceGuarantee((Tag as OPMDASHBOARDA).Po.POId); 
-            //Tạo mẫu 3
-            OpmWordHandler.Temp3_CreatPOConfirm((Tag as OPMDASHBOARDA).Po.POId);
-            //Tạo các mẫu 23,24,36,37
-            OpmWordHandler.Temp23_CNCL_TongHop((Tag as OPMDASHBOARDA).Po.POId);
-            OpmWordHandler.Temp24_CNCLNMTongHop((Tag as OPMDASHBOARDA).Po.POId);
-            OpmWordHandler.Temp36_BBNTLicense((Tag as OPMDASHBOARDA).Po.POId);
-            OpmWordHandler.Temp37_BBXNCDLicense((Tag as OPMDASHBOARDA).Po.POId);
+            (Tag as OPMDASHBOARDA).CreatDocumentByNodeName();
         }
 
         private void txtPOAdvanceId_TextChanged(object sender, EventArgs e)

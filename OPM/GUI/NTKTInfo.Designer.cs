@@ -1,7 +1,7 @@
 ﻿
 namespace OPM.GUI
 {
-    partial class NTKTInfor
+    partial class NTKTInfo
     {
         /// <summary>
         /// Required designer variable.

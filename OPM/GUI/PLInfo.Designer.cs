@@ -1,7 +1,7 @@
 ﻿
 namespace OPM.GUI
 {
-    partial class PackageListInfor
+    partial class PLInfo
     {
         /// <summary>
         /// Required designer variable.

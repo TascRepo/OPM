@@ -803,7 +803,8 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<POPerformDate>", po.POPerformDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 OpmWordHandler.FindAndReplace(wordApp, "<POAdvanceGuaranteeCreatedDate>", po.POAdvanceGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 OpmWordHandler.FindAndReplace(wordApp, "<POTotalValue>", string.Format(new CultureInfo("vi-VN"), "{0:#,##0.##}", (po.POTotalValue/100) * po.POAdvanceGuaranteePercentage));
-                OpmWordHandler.FindAndReplace(wordApp, "<POTotalValueString>", NumberToString(((po.POTotalValue / 100) * po.POAdvanceGuaranteePercentage).ToString()));
+                //OpmWordHandler.FindAndReplace(wordApp, "<POTotalValueString>", NumberToString(Math.Round(((po.POTotalValue / 100) * po.POAdvanceGuaranteePercentage), 0, MidpointRounding.AwayFromZero).ToString()));
+                OpmWordHandler.FindAndReplace(wordApp, "<POTotalValueString>", NumberToString((po.POTotalValue / 100) * po.POAdvanceGuaranteePercentage).ToString());
                 OpmWordHandler.FindAndReplace(wordApp, "<POAdvanceGuaranteePercentage>", po.POAdvanceGuaranteePercentage.ToString());
                 OpmWordHandler.FindAndReplace(wordApp, "<POGuaranteeValidityPeriod>", po.POGuaranteeValidityPeriod.ToString());
                 OpmWordHandler.FindAndReplace(wordApp, "<POAdvanceRequestId>", po.POAdvanceRequestId.ToString());
@@ -1488,6 +1489,11 @@ namespace OPM.WordHandler
                 MessageBox.Show("Không tìm thấy bản mẫu");
             }
         }
+        public static string NumberToString(double number)
+        {
+            return NumberToString(Math.Round(number, 0, MidpointRounding.AwayFromZero).ToString());
+        }
+
         public static string NumberToString(string number)
         {
             string[] dv = { "", "mươi", "trăm", "nghìn", "triệu", "tỉ" };

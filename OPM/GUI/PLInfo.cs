@@ -3,11 +3,11 @@
 namespace OPM.GUI
 {
 
-    public partial class PackageListInfor : Form
+    public partial class PLInfo : Form
     {
         public delegate void UpdateCatalogDelegate(string value);
         public UpdateCatalogDelegate UpdateCatalogPanel;
-        public PackageListInfor()
+        public PLInfo()
         {
             InitializeComponent();
         }

@@ -1,7 +1,7 @@
 ﻿
 namespace OPM.GUI
 {
-    partial class DeliverPartInforDetail
+    partial class DPInfo
     {
         /// <summary>
         /// Required designer variable.

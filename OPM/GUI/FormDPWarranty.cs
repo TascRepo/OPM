@@ -15,8 +15,8 @@ namespace OPM.GUI
         private void FormDPWarranty_Load(object sender, EventArgs e)
         {
             ///Hiển thị danh sách các tỉnh thành ở datagriview
-            txtIdDP.Text = DeliverPartInforDetail.tsDP;
-            maPO.Text = DeliverPartInforDetail.tsPO;
+            txtIdDP.Text = DPInfo.tsDP;
+            maPO.Text = DPInfo.tsPO;
             Provinces pr = new Provinces();
             string querySQLProvinces = pr.querySQLProvinces();
             DataTable dtProvince = OPMDBHandler.ExecuteQuery(querySQLProvinces);

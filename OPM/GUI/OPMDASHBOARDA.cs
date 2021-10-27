@@ -1,4 +1,5 @@
 ﻿using OPM.OPMEnginee;
+using OPM.WordHandler;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,14 +10,14 @@ namespace OPM.GUI
 {
     public partial class OPMDASHBOARDA : Form
     {
-        string selectedNodeName = "Root";
-        public string SelectedNodeName 
+        private string currentNodeName;
+        public string CurrentNodeName 
         {
-            get => selectedNodeName;
+            get => currentNodeName;
             set
             {
-                selectedNodeName = value;
-                InitCatalogByNodeName(value);
+                currentNodeName = value;
+                InitByCurrentNodeName(value);
             }
         }
         public ContractObj Contract { get; set; } = new ContractObj();
@@ -46,50 +47,241 @@ namespace OPM.GUI
         }
         private void OPMDASHBOARDA_Load(object sender, EventArgs e)
         {
-            OpenContractForm();
+            CurrentNodeName= "Contract_" + (new ContractObj()).ContractId;
         }
-        public bool InitCatalogByNodeName(string nodeName)
+        public void CreatDocumentByNodeName()
         {
-            treeViewOPM.Nodes.Clear();
-            DataTable table = CatalogAdmin.Table();
-            DataRow row = table.NewRow();
-            row["ctlId"] = nodeName;
-            string[] temp = nodeName.Split('_', 2);
+            string[] temp = CurrentNodeName.Split('_', 2);
             switch (temp[0])
             {
                 case "Contract":
-                    if (!ContractObj.ContractExist(temp[1]))
+                    if (ContractObj.ContractExist(temp[1]))
                     {
-                        row["ctlName"] = temp[1];
-                        table.Rows.Add(row);
+                        OpmWordHandler.Temp1_CreatContractGuarantee(temp[1]);
+                    }
+                    else
+                    {
+                        MessageBox.Show(string.Format(@"Không có hợp đồng số '{0}'", temp[1]));
                     }
                     break;
                 case "PO":
-                    if (!POObj.POExist(temp[1]))
+                    if (POObj.POExist(temp[1]))
                     {
-                        row["ctlName"] = Po.POName;
-                        row["ctlParent"] = "Contract_" + Contract.ContractId;
-                        table.Rows.Add(row);
+                        //Tạo mẫu 7
+                        OpmWordHandler.Temp3_CreatPOConfirm(temp[1]);
+                        OpmWordHandler.Temp4_CreatPOPerformanceGuarantee(temp[1]);
+                        OpmWordHandler.Temp5_CreatPOAdvanceGuarantee(temp[1]);
+                        OpmWordHandler.Temp6_CreatPOAdvanceReques(temp[1]);
+                        OpmWordHandler.Temp23_CNCL_TongHop(temp[1]);
+                        OpmWordHandler.Temp24_CNCLNMTongHop(temp[1]);
+                        OpmWordHandler.Temp36_BBNTLicense(temp[1]);
+                        OpmWordHandler.Temp37_BBXNCDLicense(temp[1]);
+                    }
+                    else
+                    {
+                        MessageBox.Show(string.Format(@"Không có PO số '{0}'", temp[1]));
                     }
                     break;
                 case "DP":
                     break;
                 case "NTKT":
-                    if (!NTKTObj.NTKTExist(temp[1]))
-                    {
-                        row["ctlName"] = "NTKT" + Ntkt.NTKTPhase;
-                        row["ctlParent"] = "PO_" + Po.POId;
-                        table.Rows.Add(row);
-                    }
                     break;
                 case "PL":
                     break;
                 default:
-                    MessageBox.Show(string.Format("Không tìm thấy đường dẫn đến nút {0} trên TreeView", nodeName));
+                    MessageBox.Show("Invalid grade");
                     break;
             }
+        }
+        public void DeleteSQLByNodeName()
+        {
+            if (MessageBox.Show(string.Format("Bạn có chắc chắn muốn xóa '{0}'", CurrentNodeName), "Thông báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                string[] temp = CurrentNodeName.Split('_', 2);
+                switch (temp[0])
+                {
+                    case "Contract":
+                        if (ContractObj.ContractDelete(temp[1]) > 0)
+                        {
+                            MessageBox.Show("Xoá thành công hợp đồng số " + temp[1]);
+                            CurrentNodeName = "Contract_" + (new ContractObj()).ContractId;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Xoá thất bại vì chưa có hợp đồng số " + temp[1]);
+                        }
+                        break;
+                    case "PO":
+                        if (POObj.PODelete(temp[1])>0)
+                        {
+                            MessageBox.Show("Xoá thành công PO số " + temp[1]);
+                            CurrentNodeName = "PO_" + (new POObj()).POId;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Xoá thất bại vì chưa có PO số " + temp[1]);
+                        }
+                        break;
+                    case "DP":
+                        break;
+                    case "NTKT":
+                        break;
+                    case "PL":
+                        break;
+                    default:
+                        MessageBox.Show("Invalid grade");
+                        break;
+                }
+            }
+        }
+        public void SaveSQLByNodeName(string nodeId)
+        {
+            string[] temp = CurrentNodeName.Split('_', 2);
+            switch (temp[0])
+            {
+                case "Contract":
+                    if (!ContractObj.ContractExist(temp[1]))
+                    {
+                        if(Contract.ContractInsert(nodeId) >0)
+                        {
+                            MessageBox.Show("Tạo mới thành công hợp đồng số " + nodeId);
+                            CurrentNodeName = "Contract_" + nodeId;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Tạo mới thất bại vì đã có hợp đồng số " + nodeId);
+                            CurrentNodeName = "Contract_"+(new ContractObj()).ContractId; ;
+                        }
+                    }
+                    else
+                    {
+                        if (Contract.ContractUpdate(nodeId, temp[1]) > 0)
+                        {
+                            MessageBox.Show("Cập nhật thành công hợp đồng số " + nodeId);
+                            CurrentNodeName = "Contract_" + nodeId;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cập nhật thất bại vì đã có hợp đồng số " + nodeId);
+                        }
+                    }
+                    break;
+                case "PO":
+                    if (!POObj.POExist(temp[1]))
+                    {
+                        if (Po.POInsert(nodeId) > 0)
+                        {
+                            MessageBox.Show("Tạo mới thành công PO số " + nodeId);
+                            CurrentNodeName = "PO_" + nodeId;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Tạo mới thất bại vì đã có PO số " + nodeId);
+                            CurrentNodeName = "PO_" + (new POObj()).POId;
+                        }
+                    }
+                    else
+                    {
+                        if (Po.POUpdate(nodeId, temp[1]) > 0)
+                        {
+                            MessageBox.Show("Cập nhật thành công PO số " + nodeId);
+                            CurrentNodeName = "PO_" + nodeId;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cập nhật thất bại vì đã có PO số " + nodeId);
+                        }
+                    }
+                    break;
+                case "DP":
+                    break;
+                case "NTKT":
+                    break;
+                case "PL":
+                    break;
+                default:
+                    MessageBox.Show("Invalid grade");
+                    break;
+            }
+        }
+        void OpenChildFormByNodeName(string currentNodeName) 
+        {
+            string[] temp = currentNodeName.Split('_', 2);
+            switch (temp[0])
+            {
+                case "Contract":
+                    Contract.ContractId = temp[1];
+                    Text = string.Format("Hợp đồng số {0}", temp[1]);
+                    ContractInfo contractInfo = new ContractInfo();
+                    OpenChildForm(contractInfo);
+                    break;
+                case "PO":
+                    Po = new POObj(temp[1]);
+                    if (POObj.POExist(temp[1]))
+                    {
+                        Contract.ContractId = Po.ContractId;
+                    }
+                    else
+                    {
+                        Po.ContractId = Contract.ContractId;
+                    }
+                    Text = string.Format("Hợp đồng số {0} - {1}", Po.ContractId, Po.POName);
+                    POInfo purchaseOderInfor = new POInfo();
+                    OpenChildForm(purchaseOderInfor);
+                    break;
+                case "DP":
+                    DPInfo deliverPartInforDetail = new DPInfo();
+                    OpenChildForm(deliverPartInforDetail);
+                    break;
+                case "NTKT":
+                    Ntkt = new NTKTObj(temp[1]);
+                    if (NTKTObj.NTKTExist(temp[1]))
+                    {
+                        Po.POId = Ntkt.POId;
+                        Contract.ContractId = Ntkt.ContractId;
+                    }
+                    else
+                    {
+                        Ntkt.POId = Po.POId;
+                    }
+                    Text = string.Format(@"Hợp đồng số {2} - {1} - Đợt NTKT{0}", Ntkt.NTKTPhase, Po.POName, Contract.ContractId);
+                    NTKTInfo nTKTInfor = new NTKTInfo();
+                    OpenChildForm(nTKTInfor);
+                    break;
+                case "PL":
+                    PLInfo packageListInfor = new PLInfo();
+                    OpenChildForm(packageListInfor);
+                    break;
+                default:
+                    MessageBox.Show("Invalid grade");
+                    break;
+            }
+        }
+        void InitByCurrentNodeName(string currentNodeName)
+        {
+            DataTable table = CatalogAdmin.Table();
+            DataRow row = table.NewRow();
+            row["ctlId"] = currentNodeName;
+            if (currentNodeName == "Contract_" + (new ContractObj()).ContractId)
+            {
+                row["ctlName"] = (new ContractObj()).ContractId;
+                table.Rows.Add(row);
+            }
+            if (currentNodeName == "PO_" + (new POObj()).POId)
+            {
+                row["ctlName"] = (new POObj()).POName;
+                row["ctlParent"] = "Contract_" + Contract.ContractId;
+                table.Rows.Add(row);
+            }
+            if (currentNodeName == "NTKT_" + (new NTKTObj()).NTKTId)
+            {
+                row["ctlName"] = "NTKT" + Ntkt.NTKTPhase;
+                row["ctlParent"] = "PO_" + Po.POId;
+                table.Rows.Add(row);
+            }
+            treeViewOPM.Nodes.Clear();
             InitCatalogAdmin(null, null, table);
-            List<string> list = CatalogAdmin.PathToContractNodeFromCurrentNode(nodeName, table);
+            List<string> list = CatalogAdmin.PathToContractNodeFromCurrentNode(currentNodeName, table);
             list.Reverse();
             treeViewOPM.SelectedNode = treeViewOPM.Nodes[list[0]];
             treeViewOPM.SelectedNode.Expand();
@@ -100,14 +292,14 @@ namespace OPM.GUI
                 treeViewOPM.SelectedNode.Expand();
                 treeViewOPM.SelectedNode.ForeColor = Color.Blue;
             }
-            return table.Rows.Count>0;
+            OpenChildFormByNodeName(currentNodeName);
         }
         private void InitCatalogAdmin(TreeNode parentNode, string parent, DataTable table)
         {
-            DataRow[] ds = table.Select(string.Format(@"ctlparent is null"), "ctlname");
-            if (parent != null) ds = table.Select(string.Format(@"ctlparent = '{0}'", parent), "ctlname");
-            if (ds.Length < 1) return;
-            foreach (DataRow dr in ds)
+            DataRow[] rows = table.Select(string.Format(@"ctlparent is null"), "ctlname");
+            if (parent != null) rows = table.Select(string.Format(@"ctlparent = '{0}'", parent), "ctlname");
+            if (rows.Length < 1) return;
+            foreach (DataRow dr in rows)
             {
                 TreeNode node = new TreeNode
                 {
@@ -137,47 +329,7 @@ namespace OPM.GUI
         }
         public void TreeViewOPM_DoubleClick(object sender, EventArgs e)
         {
-            treeViewOPM.Tag = treeViewOPM.SelectedNode; //Lưu lại Node được chọn
-            string[] temp = treeViewOPM.SelectedNode.Name.ToString().Split('_', 2);
-            /*Get Detail Infor On Database*/
-            switch (temp[0])
-            {
-                case "Contract":
-                    if (!ContractObj.ContractExist(temp[1])) break;
-                    TempStatus = 1;//chuyển sang Form chỉnh sửa hợp đồng
-                    Contract.ContractId = temp[1];
-                    OpenContractForm();
-                    break;
-                case "PO":
-                    if (!POObj.POExist(temp[1])) break;
-                    TempStatus = 4;//Đang ở chỉnh sửa Form PO có sẵn
-                    Po.POId = temp[1];
-                    Contract.ContractId = Po.ContractId;
-                    OpenPOForm();
-                    break;
-                case "DP":
-                    /*Display DP */
-                    DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
-                    //                        deliverPartInforDetail.UpdateCatalogPanel = new DeliverPartInforDetail.UpdateCatalogDelegate(InitCatalogByNodeName);
-                    OpenChildForm(deliverPartInforDetail);
-                    break;
-                case "NTKT":
-                    if (!NTKTObj.NTKTExist(temp[1])) break;
-                    TempStatus = 7;//Đang ở Form chỉnh sửa NTKT
-                    Ntkt.NTKTId = temp[1];
-                    Po.POId = Ntkt.POId;
-                    Contract.ContractId = Ntkt.ContractId;
-                    OpenNTKTForm();
-                    break;
-                case "PL":
-                    /*Display PL */
-                    PackageListInfor packageListInfor = new PackageListInfor();
-                    OpenChildForm(packageListInfor);
-                    break;
-                default:
-                    MessageBox.Show("Invalid grade");
-                    break;
-            }
+            CurrentNodeName = treeViewOPM.SelectedNode.Name;
         }
         private void contextMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -229,7 +381,7 @@ namespace OPM.GUI
             SiteInfo siteForm = new SiteInfo
             {
                 setStringValue = new SiteInfo.SetStringValue(SetIdSiteA),
-                IdSite = idSite
+                SiteId = idSite
             };
             OpenChildForm(siteForm);
         }
@@ -242,35 +394,32 @@ namespace OPM.GUI
         public void OpenContractForm()
         {
             ContractInfo contractInfo = new ContractInfo();
-            if (TempStatus == 0) Contract = new ContractObj();  //Ở Form tạo mới
             Text = string.Format("Hợp đồng số {0}", Contract.ContractId);
-            SelectedNodeName = "Contract_" + Contract.ContractId;
-            //InitCatalogByNodeName("Contract_" + Contract.ContractId);
             OpenChildForm(contractInfo);
         }
         public void OpenPOForm()
         {
-            PurchaseOderInfor purchaseOderInfor = new PurchaseOderInfor();
+            POInfo purchaseOderInfor = new POInfo();
             Text = string.Format("Hợp đồng số {0} - {1}", Contract.ContractId, Po.POName);
             if (TempStatus == 3) Po = new POObj();  //Ở Form tạo mới PO
             Po.ContractId = Contract.ContractId;
-            SelectedNodeName = "PO_" + Po.POId; 
+            CurrentNodeName = "PO_" + Po.POId; 
             //InitCatalogByNodeName("PO_" + Po.POId);
             OpenChildForm(purchaseOderInfor);
         }
         public void OpenNTKTForm()
         {
-            NTKTInfor nTKTInfor = new NTKTInfor();
+            NTKTInfo nTKTInfor = new NTKTInfo();
             Text = string.Format(@"Hợp đồng số {2} - {1} - Đợt NTKT{0}", Ntkt.NTKTPhase, Po.POName, Contract.ContractId);
             if (TempStatus == 6) Ntkt = new NTKTObj();  //Ở Form tạo mới NTKT
             Ntkt.POId = Po.POId;
-            SelectedNodeName = "NTKT_" + Ntkt.NTKTId; 
+            CurrentNodeName = "NTKT_" + Ntkt.NTKTId; 
             //InitCatalogByNodeName("NTKT_" + Ntkt.NTKTId);
             OpenChildForm(nTKTInfor);
         }
         public void OpenDpForm(string idPO, string idContract, String PONumber)
         {
-            DeliverPartInforDetail deliverPartInforDetail = new DeliverPartInforDetail();
+            DPInfo deliverPartInforDetail = new DPInfo();
             POObj po = new POObj();
             //int retPo = PO.GetObjectPO(idPO, ref po);
             ContractObj contractObj = new ContractObj();

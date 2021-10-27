@@ -6,14 +6,14 @@ using System.Data;
 using System.Windows.Forms;
 namespace OPM.GUI
 {
-    public partial class DeliverPartInforDetail : Form
+    public partial class DPInfo : Form
     {
         public delegate void RequestDashBoardPurchaseOderForm(string strIDDP);
         public RequestDashBoardPurchaseOderForm requestDashBoardPurchaseOderForm;
 
         public static string tsDP = "";
         public static string tsPO = "";
-        public DeliverPartInforDetail()
+        public DPInfo()
         {
             InitializeComponent();
         }

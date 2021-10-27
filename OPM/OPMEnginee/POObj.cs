@@ -119,57 +119,6 @@ namespace OPM.OPMEnginee
         public POObj(string id)
         {
             POId = id;
-            //string query = string.Format("SELECT * FROM dbo.PO WHERE POId = '{0}'", id);
-            //DataTable table = OPMDBHandler.ExecuteQuery(query);
-            //if (table.Rows.Count > 0)
-            //{
-            //    DataRow row = table.Rows[0];
-            //    ContractId = (row["ContractId"] == null || row["ContractId"] == DBNull.Value) ? "" : row["ContractId"].ToString();
-            //    POName = (row["POName"] == null || row["POName"] == DBNull.Value) ? "" : row["POName"].ToString();
-            //    POGoodsQuantity = (row["POGoodsQuantity"] == null || row["POGoodsQuantity"] == DBNull.Value) ? 0 : (int)row["POGoodsQuantity"];
-            //    POCreatedDate = (row["POCreatedDate"] == null || row["POCreatedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["POCreatedDate"];
-            //    POConfirmRequestDeadline = (row["POConfirmRequestDeadline"] == null || row["POConfirmRequestDeadline"] == DBNull.Value) ? DateTime.Now : (DateTime)row["POConfirmRequestDeadline"];
-            //    PODefaultPerformDate = (row["PODefaultPerformDate"] == null || row["PODefaultPerformDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["PODefaultPerformDate"];
-            //    POPerformDate = (row["POPerformDate"] == null || row["POPerformDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["POPerformDate"];
-            //    PODeadline = (row["PODeadline"] == null || row["PODeadline"] == DBNull.Value) ? DateTime.Now : (DateTime)row["PODeadline"];
-            //    POConfirmId = (row["POConfirmId"] == null || row["POConfirmId"] == DBNull.Value) ? "" : row["POConfirmId"].ToString();
-            //    POConfirmCreatedDate = (row["POConfirmCreatedDate"] == null || row["POConfirmCreatedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["POConfirmCreatedDate"];
-            //    POAdvancePercentage = (row["POAdvancePercentage"] == null || row["POAdvancePercentage"] == DBNull.Value) ? 0 : (int)row["POAdvancePercentage"];
-            //    POAdvanceId = (row["POAdvanceId"] == null || row["POAdvanceId"] == DBNull.Value) ? "" : row["POAdvanceId"].ToString();
-            //    POAdvanceCreatedDate = (row["POAdvanceCreatedDate"] == null || row["POAdvanceCreatedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["POAdvanceCreatedDate"];
-            //    POAdvanceGuaranteePercentage = (row["POAdvanceGuaranteePercentage"] == null || row["POAdvanceGuaranteePercentage"] == DBNull.Value) ? 0 : (int)row["POAdvanceGuaranteePercentage"];
-            //    POAdvanceGuaranteeCreatedDate = (row["POAdvanceGuaranteeCreatedDate"] == null || row["POAdvanceGuaranteeCreatedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["POAdvanceGuaranteeCreatedDate"];
-            //    POAdvanceRequestId = (row["POAdvanceRequestId"] == null || row["POAdvanceRequestId"] == DBNull.Value) ? "" : row["POAdvanceRequestId"].ToString();
-            //    POAdvanceRequestCreatedDate = (row["POAdvanceRequestCreatedDate"] == null || row["POAdvanceRequestCreatedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["POAdvanceRequestCreatedDate"];
-            //    POGuaranteeDate = (row["POGuaranteeDate"] == null || row["POGuaranteeDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["POGuaranteeDate"];
-            //    ContractObj contract = new ContractObj(ContractId);
-            //    ContractCreatedDate = contract.ContractCreatedDate;
-            //    ContractName = contract.ContractName;
-            //    ContractShoppingPlan = contract.ContractShoppingPlan;
-            //    ContractType = contract.ContractType;
-            //    ContractSiteId = contract.ContractSiteId;
-            //    ContractValidityDate = contract.ContractValidityDate;
-            //    ContractDeadline = contract.ContractDeadline;
-            //    ContractGoodsDesignation = contract.ContractGoodsDesignation;
-            //    ContractGoodsCode = contract.ContractGoodsCode;
-            //    ContractGoodsManufacture = contract.ContractGoodsManufacture;
-            //    ContractGoodsOrigin = contract.ContractGoodsOrigin;
-            //    ContractGoodsDesignation1 = contract.ContractGoodsDesignation1;
-            //    ContractGoodsCode1 = contract.ContractGoodsCode1;
-            //    ContractGoodsCode2 = contract.ContractGoodsCode2;
-            //    ContractGoodsSpecies = contract.ContractGoodsSpecies;
-            //    ContractGoodsNote = contract.ContractGoodsNote;
-            //    ContractGoodsUnit = contract.ContractGoodsUnit;
-            //    ContractGoodsUnitPrice = contract.ContractGoodsUnitPrice;
-            //    ContractGoodsQuantity = contract.ContractGoodsQuantity;
-            //    ContractGoodsLicenseName = contract.ContractGoodsLicenseName;
-            //    ContractGoodsLicenseUnitPrice = contract.ContractGoodsLicenseUnitPrice;
-            //    ContractGuaranteeCreatedDate = contract.ContractGuaranteeCreatedDate;
-            //    POGuaranteeRatio = contract.POGuaranteeRatio;
-            //    POGuaranteeValidityPeriod = contract.POGuaranteeValidityPeriod;
-            //    ContractGuaranteeDeadline = contract.ContractGuaranteeDeadline;
-            //    AccoutingCode = contract.AccoutingCode;
-            //}
         }
         public bool POExist()
         {
@@ -208,6 +157,11 @@ namespace OPM.OPMEnginee
             string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.PO SET POId = '{0}', ContractId = '{1}', POName = '{2}', POCreatedDate = '{3}', POGoodsQuantity = {4},POConfirmRequestDeadline = '{5}',PODefaultPerformDate = '{6}',POPerformDate = '{7}',PODeadline = '{8}',POConfirmId = '{9}',POConfirmCreatedDate = '{10}',POAdvanceId = '{11}',POAdvanceCreatedDate = '{12}', POAdvancePercentage = {13}, POAdvanceGuaranteeCreatedDate = '{14}', POAdvanceGuaranteePercentage = {15}, POAdvanceRequestId = '{16}', POAdvanceRequestCreatedDate= '{17}',POGuaranteeDate='{19}' WHERE POId = '{18}'", POId, ContractId, POName, POCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POGoodsQuantity, POConfirmRequestDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PODefaultPerformDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POPerformDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PODeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POConfirmId, POConfirmCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POAdvanceId, POAdvanceCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POAdvancePercentage, POAdvanceGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POAdvanceGuaranteePercentage, POAdvanceRequestId, POAdvanceRequestCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), oldId, POGuaranteeDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
             return OPMDBHandler.ExecuteNonQuery(query);
         }
+        public int POUpdate(string newId, string oldId)             //Giữ nguyên IdContract đổi Id
+        {
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.PO SET POId = '{0}', ContractId = '{1}', POName = '{2}', POCreatedDate = '{3}', POGoodsQuantity = {4},POConfirmRequestDeadline = '{5}',PODefaultPerformDate = '{6}',POPerformDate = '{7}',PODeadline = '{8}',POConfirmId = '{9}',POConfirmCreatedDate = '{10}',POAdvanceId = '{11}',POAdvanceCreatedDate = '{12}', POAdvancePercentage = {13}, POAdvanceGuaranteeCreatedDate = '{14}', POAdvanceGuaranteePercentage = {15}, POAdvanceRequestId = '{16}', POAdvanceRequestCreatedDate= '{17}',POGuaranteeDate='{19}' WHERE POId = '{18}'", newId, ContractId, POName, POCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POGoodsQuantity, POConfirmRequestDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PODefaultPerformDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POPerformDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PODeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POConfirmId, POConfirmCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POAdvanceId, POAdvanceCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POAdvancePercentage, POAdvanceGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POAdvanceGuaranteePercentage, POAdvanceRequestId, POAdvanceRequestCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), oldId, POGuaranteeDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+            return OPMDBHandler.ExecuteNonQuery(query);
+        }
         public bool Check_VBConfirmPO(string id)
         {
             string query = string.Format("SELECT * FROM dbo.VBConfirmPO WHERE id_po = '{0}'", id);
@@ -226,65 +180,15 @@ namespace OPM.OPMEnginee
             }
             return list;
         }
-        public void InsertOrUpdate_VBConfirmPO(string id)
-        {
-            if (id == null)
-                MessageBox.Show("Id chưa khởi tạo!");
-            else
-            {
-                if (Check_VBConfirmPO(id))
-                {
-                    string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.VBConfirmPO SET id_ConfirmPO = '{0}' where id_po = '{1}'", POConfirmId, id);
-                    OPMDBHandler.ExecuteNonQuery(query);
-                    MessageBox.Show(string.Format("Cập nhật thành công văn bản số hiệu {0} trong CSDL!", id));
-                }
-                else
-                {
-                    string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.VBConfirmPO(id_ConfirmPO, id_po, vb_ConfirmPO) VALUES('{0}','{1}','{2}')", POConfirmId, id, ' ');
-                    OPMDBHandler.ExecuteNonQuery(query);
-                    MessageBox.Show(string.Format("Tạo mới thành công văn bản số hiệu {0} trong CSDL!", id));
-                }
-            }
-        }
         public int PODelete()
         {
-            int result = 0;
             string query = string.Format("DELETE FROM dbo.PO WHERE POId = '{0}'", POId);
-            try
-            {
-                result = OPMDBHandler.ExecuteNonQuery(query);
-            }
-            catch
-            {
-                MessageBox.Show("Xoá thất bại!");
-            }
-            if (result != 0) MessageBox.Show("Bạn đã xoá thành công!");
-            return result;
+            return OPMDBHandler.ExecuteNonQuery(query);
         }
-        public int PODelete(string id)
+        public static int PODelete(string id)
         {
-            int result = 0;
-            MessageBox.Show(string.Format("Có chắc chắn xoá PO: {0} không?", id), "Thông báo!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            string query = string.Format("DELETE FROM dbo.PO WHERE id = '{0}'", id);
-            try
-            {
-                result = OPMDBHandler.ExecuteNonQuery(query);
-            }
-            catch
-            {
-                MessageBox.Show("Xoá thất bại!");
-            }
-            if (result != 0) MessageBox.Show("Bạn đã xoá thành công!");
-            return result;
-        }
-        public int InsertImportFilePO(string id_po, string id_province, string numberofdevice, string namefdevice)
-        {
-            int result = 0;
-            numberofdevice = numberofdevice.Replace(",", string.Empty);
-            numberofdevice = numberofdevice.Replace(".", string.Empty);
-            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.ListExpected_PO(id_po, id_province, numberofdevice, nameofdevice) VALUES('{0}',N'{1}',{2},N'{3}')", id_po, id_province, Int64.Parse(numberofdevice), namefdevice);
-            result = OPMDBHandler.fInsertData(query);
-            return result;
+            string query = string.Format("DELETE FROM dbo.PO WHERE POId = '{0}'", id);
+            return OPMDBHandler.ExecuteNonQuery(query);
         }
         public int InsertImportFileKHGH(string NumberConfirmPO, string Province, string Count_PO, string Number_PO, string Date_Delivery, string id_po)
         {
@@ -292,12 +196,6 @@ namespace OPM.OPMEnginee
             string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.Delivery_PO(NumberConfirmPO, Province, Count_PO, Number_PO, Date_Delivery,id_po) VALUES('{0}',N'{1}',{2},{3},N'{4}',N'{5}')", NumberConfirmPO, Province, Int64.Parse(Count_PO), Int64.Parse(Number_PO), Date_Delivery, id_po);
             result = OPMDBHandler.fInsertData(query);
             return result;
-        }
-        public bool CheckListExpected_PO(string id)
-        {
-            string query = string.Format("SELECT * FROM dbo.ListExpected_PO WHERE id_po = '{0}'", id);
-            DataTable table = OPMDBHandler.ExecuteQuery(query);
-            return table.Rows.Count > 0;
         }
         public bool CheckListDelivery_PO(string Confirmpo_number)
         {

@@ -101,34 +101,12 @@ namespace OPM.OPMEnginee
         public static DataTable Table()
         {
             string query = string.Format("(SELECT ('Contract_'+ContractId)AS ctlId, ContractId AS ctlName, null AS ctlParent FROM dbo.Contract) UNION (SELECT 'PO_'+POId,POName, 'Contract_'+ContractId FROM dbo.PO) UNION (SELECT 'NTKT_'+NTKTId,'NTKT'+ NTKTPhase,'PO_'+POId FROM dbo.NTKT) ORDER BY ContractId");
-            return OPMDBHandler.ExecuteQuery(query);
-        }
-        public static DataRow ToRow(CatalogAdmin catalogAdmin)
-        {
-            DataRow row = Table().NewRow();
-            row["ctlId"] = catalogAdmin.Id;
-            row["ctlName"] = catalogAdmin.Name;
-            row["ctlParent"] = catalogAdmin.Parent;
-            return row;
-        }
-        public DataRow ToRow()
-        {
-            DataRow row = Table().NewRow();
-            row["ctlId"] = id;
-            row["ctlName"] = name;
-            row["ctlParent"] = parent;
-            return row;
-        }
-        public static List<CatalogAdmin> CatalogAdmins()
-        {
-            string query = string.Format("SELECT * FROM dbo.CatalogAdmin Order By ctlname");
-            DataTable table = OPMDBHandler.ExecuteQuery(query);
-            List<CatalogAdmin> list = new List<CatalogAdmin>();
-            foreach (DataRow row in table.Rows)
-            {
-                list.Add(new CatalogAdmin(row));
-            }
-            return list;
+            DataTable table= OPMDBHandler.ExecuteQuery(query);
+            DataTable table1 = new DataTable();
+            table1.Columns.Add("ctlId");
+            table1.Columns.Add("ctlName");
+            table1.Columns.Add("ctlParent");
+            return (table.Rows.Count > 0) ? table : table1;
         }
     }
 }

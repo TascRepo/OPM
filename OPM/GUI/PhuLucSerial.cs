@@ -40,8 +40,8 @@ namespace OPM.GUI
 
         private void PhuLucSerial_Load(object sender, EventArgs e)
         {
-            txtIdDP.Text = DeliverPartInforDetail.tsDP;
-            maPO.Text = DeliverPartInforDetail.tsPO;
+            txtIdDP.Text = DPInfo.tsDP;
+            maPO.Text = DPInfo.tsPO;
         }
 
         private void button2_Click(object sender, EventArgs e)

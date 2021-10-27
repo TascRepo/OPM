@@ -9,7 +9,7 @@ namespace OPM.GUI
         public delegate void SetStringValue(string vl);
         public SetStringValue setStringValue;
 
-        public string IdSite { get; set; }
+        public string SiteId { get; set; }
 
         public SiteInfo()
         {
@@ -122,7 +122,7 @@ namespace OPM.GUI
             for (int i = 0; i < dtgvSite.RowCount; i++)
             {
                 dtgvSite.Rows[i].Cells[0].Value = i + 1;
-                if (IdSite == dtgvSite.Rows[i].Cells["SiteId"].Value.ToString()) dtgvSite.CurrentCell = dtgvSite.Rows[i].Cells["SiteId"];
+                if (SiteId == dtgvSite.Rows[i].Cells["SiteId"].Value.ToString()) dtgvSite.CurrentCell = dtgvSite.Rows[i].Cells["SiteId"];
             }
             AddSiteBinding();
         }
@@ -194,12 +194,12 @@ namespace OPM.GUI
             if (site.Exist()) site.Update();
             else site.Insert();
             LoadDataGridView();
-            setStringValue(IdSite);
+            setStringValue(SiteId);
             (Tag as OPMDASHBOARDA).OpenContractForm();
         }
         private void textBoxId_TextChanged(object sender, EventArgs e)
         {
-            IdSite = txtSiteId.Text;
+            SiteId = txtSiteId.Text.Trim();
         }
     }
 }
