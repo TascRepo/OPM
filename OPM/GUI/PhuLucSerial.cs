@@ -51,7 +51,7 @@ namespace OPM.GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DP dP = new DP();
+            DPOld dP = new DPOld();
             if (dP.Check_Serial(txtIdDP.Text, maPO.Text))
             {
                 dP.Delete_Serial(txtIdDP.Text, maPO.Text);

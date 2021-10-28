@@ -29,7 +29,7 @@ namespace OPM.GUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataKHGH = new System.Windows.Forms.DataGridView();
+            this.dtgKHGH = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.vbxn = new System.Windows.Forms.TextBox();
@@ -37,20 +37,20 @@ namespace OPM.GUI
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataKHGH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgKHGH)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataKHGH
+            // dtgKHGH
             // 
-            this.dataKHGH.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataKHGH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataKHGH.Location = new System.Drawing.Point(12, 37);
-            this.dataKHGH.Name = "dataKHGH";
-            this.dataKHGH.RowTemplate.Height = 25;
-            this.dataKHGH.Size = new System.Drawing.Size(844, 418);
-            this.dataKHGH.TabIndex = 0;
-            this.dataKHGH.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataKHGH_CellMouseLeave);
-            this.dataKHGH.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataKHGH_CellMouseMove);
+            this.dtgKHGH.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgKHGH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgKHGH.Location = new System.Drawing.Point(12, 37);
+            this.dtgKHGH.Name = "dtgKHGH";
+            this.dtgKHGH.RowTemplate.Height = 25;
+            this.dtgKHGH.Size = new System.Drawing.Size(844, 418);
+            this.dtgKHGH.TabIndex = 0;
+            this.dtgKHGH.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataKHGH_CellMouseLeave);
+            this.dtgKHGH.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataKHGH_CellMouseMove);
             // 
             // label1
             // 
@@ -127,11 +127,11 @@ namespace OPM.GUI
             this.Controls.Add(this.vbxn);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataKHGH);
+            this.Controls.Add(this.dtgKHGH);
             this.Name = "KHGH_PO";
             this.Text = "KHGH_PO";
             this.Load += new System.EventHandler(this.KHGH_PO_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataKHGH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgKHGH)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -139,7 +139,7 @@ namespace OPM.GUI
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataKHGH;
+        private System.Windows.Forms.DataGridView dtgKHGH;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox vbxn;

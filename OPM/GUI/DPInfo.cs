@@ -55,7 +55,7 @@ namespace OPM.GUI
             }
             else
             {
-                DP dp = new DP();
+                DPOld dp = new DPOld();
                 //Thêm mới 1 DP vào database
                 int returnDP = dp.InsertUpdateDP(txbIdDP.Text.Trim().Replace('/', '-'), txbPOCode.Text, txbIDContract.Text, cbbType.Text, ghiChu.Text, dtpRequest.Text, dtpOutCap.Text, maHangSP.Text, tenHangSP.Text);
                 if (returnDP == 0)
@@ -108,7 +108,7 @@ namespace OPM.GUI
         private void DeliverPartInforDetail_Load(object sender, EventArgs e)
         {
             //Load thông tin combobox
-            DP dp1 = new DP();
+            DPOld dp1 = new DPOld();
             DataTable d1 = dp1.SqlContract_Goods(txbIDContract.Text);
             for (int i = 0; i < d1.Rows.Count; i++)
             {
@@ -182,7 +182,7 @@ namespace OPM.GUI
         private void tenhangHD_SelectedIndexChanged(object sender, EventArgs e)
         {
             //find giá trị code theo tên
-            DP dp1 = new DP();
+            DPOld dp1 = new DPOld();
             DataTable dtResult = new DataTable();
             dtResult = dp1.GetCodeByContract(txbIDContract.Text, tenhangHD.Text);
             if (dtResult.Rows.Count > 0)
@@ -205,7 +205,7 @@ namespace OPM.GUI
 
         private void xoaDP_Click(object sender, EventArgs e)
         {
-            DP dp2 = new DP();
+            DPOld dp2 = new DPOld();
             dp2.DeleteDP(txbIdDP.Text);
             MessageBox.Show("Xóa DP thành công!");
         }
@@ -263,7 +263,7 @@ namespace OPM.GUI
         }
         public void SetValueDP(string IdDP)
         {
-            DP dP = new DP();
+            DPOld dP = new DPOld();
             DataTable data = dP.getInforDPByIdDP(IdDP);
             //Set Value các giá trị của Form DP
             txbIdDP.Text = IdDP;

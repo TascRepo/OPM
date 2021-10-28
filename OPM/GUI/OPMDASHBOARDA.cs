@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace OPM.GUI
 {
+    
     public partial class OPMDASHBOARDA : Form
     {
         private string currentNodeName;
@@ -22,9 +23,8 @@ namespace OPM.GUI
             }
         }
         public ContractObj Contract { get; set; } = new ContractObj();
-        public POObj Po { get; set;} = new POObj();
+        public POObj Po { get; set; } = new POObj();
         public NTKTObj Ntkt { get; set;} = new NTKTObj();
-
         public OPMDASHBOARDA()
         {
             InitializeComponent();

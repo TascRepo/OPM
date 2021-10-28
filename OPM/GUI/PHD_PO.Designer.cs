@@ -32,7 +32,7 @@ namespace OPM.GUI
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txbmaPO = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgProvinceId = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.txbsoPO = new System.Windows.Forms.TextBox();
@@ -67,7 +67,7 @@ namespace OPM.GUI
             this.label18 = new System.Windows.Forms.Label();
             this.txbkhms = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgProvinceId)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -97,18 +97,18 @@ namespace OPM.GUI
             this.txbmaPO.TabIndex = 4;
             this.txbmaPO.Text = "XXX/CUVT-KV";
             // 
-            // dataGridView1
+            // dtgProvinceId
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(8, 51);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(496, 447);
-            this.dataGridView1.TabIndex = 6;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseLeave);
-            this.dataGridView1.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseMove);
+            this.dtgProvinceId.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgProvinceId.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgProvinceId.Location = new System.Drawing.Point(8, 51);
+            this.dtgProvinceId.Name = "dtgProvinceId";
+            this.dtgProvinceId.RowTemplate.Height = 25;
+            this.dtgProvinceId.Size = new System.Drawing.Size(496, 447);
+            this.dtgProvinceId.TabIndex = 6;
+            this.dtgProvinceId.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dtgProvinceId.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellMouseLeave);
+            this.dtgProvinceId.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseMove);
             // 
             // button2
             // 
@@ -451,7 +451,7 @@ namespace OPM.GUI
             this.Controls.Add(this.txbsoPO);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgProvinceId);
             this.Controls.Add(this.txbmaPO);
             this.Controls.Add(this.txbsoDCDP);
             this.Controls.Add(this.label3);
@@ -460,7 +460,7 @@ namespace OPM.GUI
             this.Name = "PHD_PO";
             this.Text = "PHD_PO";
             this.Load += new System.EventHandler(this.PHD_PO_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgProvinceId)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -472,7 +472,7 @@ namespace OPM.GUI
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txbmaPO;
         //private System.Windows.Forms.TextBox soPO;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtgProvinceId;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txbsoPO;

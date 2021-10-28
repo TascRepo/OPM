@@ -1,199 +1,187 @@
-﻿using System;
+﻿using OPM.DBHandler;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
+using System.Windows.Forms;
 
-namespace OPM.DBHandler
+namespace OPM.OPMEnginee
 {
-    class DP
+    class DP:POObj
     {
-        private string id;
-        private string idPO;
-        private string idContract;
-        private string type;
-        private string dateOpen;
-        private string dateDeliver;
-        private string maKT;
-        private string note;
+        string dPId = @"XXXX/202X";
+        public string DPId 
+        { 
+            get => dPId;
+            set
+            {
+                dPId = value;
+                try
+                {
+                    string query = string.Format("SELECT * FROM dbo.DP WHERE DPId = '{0}'", value);
+                    DataTable table = OPMDBHandler.ExecuteQuery(query);
+                    if (table.Rows.Count > 0)
+                    {
+                        DataRow row = table.Rows[0];
+                        POId = (row["POId"] == null || row["POId"] == DBNull.Value) ? "" : row["POId"].ToString();
+                        ProvinceId = (row["ProvinceId"] == null || row["ProvinceId"] == DBNull.Value) ? "" : row["ProvinceId"].ToString();
+                        DPPhase = (row["DPPhase"] == null || row["DPPhase"] == DBNull.Value) ? "0" : row["DPPhase"].ToString();
+                        DPQuantity = (row["DPQuantity"] == null || row["DPQuantity"] == DBNull.Value) ? 0 : (double)row["DPQuantity"];
+                        DPDate = (row["DPDate"] == null || row["DPDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPDate"];
+                    }
+                }
+                catch(Exception e)
+                {
+                    MessageBox.Show("Lỗi khi kết nối bảng DP trong CSDL " + e.Message);
+                }
+            }
+        }
+        public string ProvinceId { get; set; }
+        public string DPPhase { get; set; }
+        public double DPQuantity { get; set; } = 0;
+        public DateTime DPDate { get; set; } = DateTime.Now;
 
-        public string Id { get => id; set => id = value; }
-        public string IdPO { get => idPO; set => idPO = value; }
-        public string IdContract { get => idContract; set => idContract = value; }
-        public string Type { get => type; set => type = value; }
-        public string DateOpen { get => dateOpen; set => dateOpen = value; }
-        public string DateDeliver { get => dateDeliver; set => dateDeliver = value; }
-        public string MaKT { get => maKT; set => maKT = value; }
-        public string Note { get => note; set => note = value; }
         public DP() { }
-        public static int InsertDP(DP dP)
+        public DP(string DPId, string ProvinceId, string DPPhase, double DPQuantity, DateTime DPDate)
         {
-            string strInsert = "INSERT INTO DP VALUES(";
-            strInsert += "'";
-            strInsert += dP.Id;
-            strInsert += "','";
-            strInsert += dP.IdPO;
-            strInsert += "','";
-            strInsert += dP.IdContract;
-            strInsert += "',N'";
-            strInsert += dP.type;
-            strInsert += "','";
-            strInsert += dP.dateOpen;
-            strInsert += "','";
-            strInsert += dP.DateDeliver;
-            strInsert += "','";
-            strInsert += dP.maKT;
-            strInsert += "',N'";
-            strInsert += dP.note;
-            strInsert += "')";
-            int ret = OPM.DBHandler.OPMDBHandler.fInsertData(strInsert);
-            if (ret == 0)
+            this.DPId = DPId;
+            this.ProvinceId = ProvinceId;
+            this.DPPhase = DPPhase;
+            this.DPQuantity = DPQuantity;
+            this.DPDate = DPDate;
+        }
+        public DP(string id)
+        {
+            DPId = id;
+        }
+        public static void Delete(string idPO_Thanh, string province, int phase)
+        {
+            string query = string.Format("DELETE FROM dbo.DP WHERE DPId = '{0}' AND province = N'{1}' AND phase = {2}", idPO_Thanh, province, phase);
+            OPMDBHandler.ExecuteNonQuery(query);
+        }
+        public static void Delete(string DPId, int phase)
+        {
+            string query = string.Format("DELETE FROM dbo.DP WHERE DPId = '{0}' AND phase = {2}", DPId, phase);
+            OPMDBHandler.ExecuteNonQuery(query);
+        }
+        public static void Delete(string idPO)
+        {
+            string query = string.Format("DELETE FROM dbo.DP WHERE DPId = '{0}'", idPO);
+            OPMDBHandler.ExecuteNonQuery(query);
+        }
+
+        public void Delete()
+        {
+            string query = string.Format("DELETE FROM dbo.DP WHERE idPO_Thanh = '{0}' AND province = N'{1}' AND phase = {2}", dPId, ProvinceId, DPPhase);
+            OPMDBHandler.ExecuteNonQuery(query);
+        }
+        public static void ResetQuantityByIdPO(string idPO)
+        {
+            string query = string.Format("UPDATE dbo.DP SET expectedQuantity = 0 WHERE idPO_Thanh = '{0}'", idPO);
+            OPMDBHandler.ExecuteNonQuery(query);
+        }
+        public static void ResetQuantityByIdPOAndTimes(string idPO, int times)
+        {
+            string query = string.Format("UPDATE dbo.DP SET expectedQuantity = 0 WHERE idPO_Thanh = '{0}' And phase = {1}", idPO, times);
+            OPMDBHandler.ExecuteNonQuery(query);
+        }
+        public static List<DP> GetListByProvince(string province)
+        {
+            List<DP> list = new List<DP>();
+            string query = string.Format("SELECT * FROM dbo.DP Where province = '{0}' Order By idPO_Thanh, phase", province);
+            DataTable dataTable = OPMDBHandler.ExecuteQuery(query);
+            foreach (DataRow item in dataTable.Rows)
             {
-                return 0;
+                DP dpo = new DP(item);
+                list.Add(dpo);
             }
-            else
+            return list;
+        }
+        public static List<DP> GetListByIdPO(string idPO)
+        {
+            List<DP> list = new List<DP>();
+            string query = string.Format("SELECT * FROM dbo.DP Where idPO_Thanh = '{0}' Order By phase, province", idPO);
+            DataTable dataTable = OPMDBHandler.ExecuteQuery(query);
+            foreach (DataRow item in dataTable.Rows)
             {
-                return 1;
+                DP dpo = new DP(item);
+                list.Add(dpo);
+            }
+            return list;
+        }
+        public static List<DP> GetListByIdPOAndTimes(string idPO, int phase)
+        {
+            List<DP> list = new List<DP>();
+            string query = string.Format("SELECT * FROM dbo.DP Where idPO_Thanh = '{0}' AND phase = {1} Order By Province", idPO, phase);
+            DataTable dataTable = OPMDBHandler.ExecuteQuery(query);
+            foreach (DataRow item in dataTable.Rows)
+            {
+                DP dpo = new DP(item);
+                list.Add(dpo);
+            }
+            return list;
+        }
+        public static void InsertOrUpdateList(List<DP> deliveryPlans)
+        {
+            foreach (DP deliveryPlan in deliveryPlans)
+            {
+                if (deliveryPlan.Exist()) deliveryPlan.Update();
+                else deliveryPlan.Insert();
             }
         }
-        public bool Check_DP(string id, string id_po)
+        public static void InsertOrUpdateTable(DataTable table)
         {
-            string query = string.Format("SELECT * FROM dbo.DP WHERE id = N'{0}' and id_po = N'{1}'", id, id_po);
+            foreach (DataRow item in table.Rows)
+            {
+                DP deliveryPlan = new DP(item);
+                if (deliveryPlan.Exist()) deliveryPlan.Update();
+                else deliveryPlan.Insert();
+            }
+        }
+        public void Update()
+        {
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET ExpectedQuantity = {3}, ExpectedDate = '{4}' WHERE IdPO_Thanh = '{0}' AND Province = N'{1}' AND Phase = {2})", dPId, ProvinceId, DPPhase, DPQuantity, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+            OPMDBHandler.ExecuteNonQuery(query);
+        }
+        public void Insert()
+        {
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(IdPO_Thanh,Province,Phase,ExpectedQuantity,ExpectedDate) VALUES('{0}',N'{1}',{2},{3},'{4}')", dPId, ProvinceId, DPPhase, DPQuantity, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+            OPMDBHandler.ExecuteNonQuery(query);
+        }
+        public DP(DataRow row)
+        {
+            DPId = row["IdPO_Thanh"].ToString();
+            ProvinceId = row["Province"].ToString();
+            DPPhase = row["Phase"].ToString();
+            DPQuantity = (row["ExpectedQuantity"] == null || row["ExpectedQuantity"] == DBNull.Value) ? 0 : (int)row["ExpectedQuantity"];
+            DPDate = (row["ExpectedDate"] == null || row["ExpectedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["ExpectedDate"];
+        }
+        public DP(string idPO, string province, string DPPhase)
+        {
+            DPId = idPO;
+            ProvinceId = province;
+            this.DPPhase = DPPhase;
+            string query = string.Format("SELECT * FROM dbo.DP WHERE IdPO_Thanh = '{0}' AND Province = N'{1}' AND Phase = {2}", idPO, province, DPPhase);
+            try
+            {
+                DataTable table = OPMDBHandler.ExecuteQuery(query);
+                if (table.Rows.Count > 0)
+                {
+                    DataRow row = table.Rows[0];
+                    DPQuantity = (row["ExpectedQuantity"] == null || row["ExpectedQuantity"] == DBNull.Value) ? 0 : (int)row["ExpectedQuantity"];
+                    DPDate = (row["ExpectedDate"] == null || row["ExpectedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["ExpectedDate"];
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Không lấy được dữ liệu từ bảng dbo.DPO!");
+            }
+        }
+        public bool Exist()
+        {
+            string query = string.Format("SELECT * FROM dbo.DP WHERE IdPO_Thanh = '{0}' AND Province = N'{1}' AND Phase = {2}", dPId, ProvinceId, DPPhase);
             DataTable table = OPMDBHandler.ExecuteQuery(query);
             return table.Rows.Count > 0;
-        }
-        public DataTable SqlContract_Goods(string id)
-        {
-            DataTable d1 = new DataTable();
-            string query = string.Format("SELECT name FROM dbo.Contract_Goods WHERE idContract = N'{0}'", id);
-            d1 = OPMDBHandler.ExecuteQuery(query);
-            return d1;
-        }
-        public DataTable GetCodeByContract(string id, string name)
-        {
-            DataTable d1 = new DataTable();
-            string query = string.Format("SELECT top 1 code FROM dbo.Contract_Goods WHERE idContract = N'{0}' and name = N'{1}'", id, name);
-            d1 = OPMDBHandler.ExecuteQuery(query);
-            return d1;
-        }
-        public int InsertListExpected_DP(string ProvinceName, string NumberDevice, string type, string id_dp, string id_po)
-        {
-            int result = 0;
-            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.ListExpected_DP(ProvinceName, NumberDevice, id_dp, type, id_po) VALUES(N'{0}',{1},'{2}',N'{3}','{4}')", ProvinceName, Int64.Parse(NumberDevice), id_dp, type, id_po);
-            result = OPMDBHandler.fInsertData(query);
-            return result;
-        }
-        public int UpdateListExpected_DP(string ProvinceName, string NumberDevice, string type, string id_dp, string id_po)
-        {
-            int result = 0;
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.ListExpected_DP set NumberDevice = {0} where ProvinceName = '{1}' and  id_dp = '{2}' and type = N'{3}' and id_po = '{4}'", Int64.Parse(NumberDevice), ProvinceName, id_dp, type, id_po);
-            result = OPMDBHandler.fInsertData(query);
-            return result;
-        }
-        public bool Check_ListExpected_DP(string ProvinceName, string id_dp, string type, string id_po)
-        {
-            string query = string.Format("SELECT * FROM dbo.ListExpected_DP WHERE ProvinceName = '{0}' and id_dp = '{1}' and type = N'{2}' and id_po = '{3}'", ProvinceName, id_dp, type, id_po);
-            DataTable table = OPMDBHandler.ExecuteQuery(query);
-            return table.Rows.Count > 0;
-        }
-        public int InsertUpdateDP(string id, string id_po, string id_contract, string cbbType, string note, string dtpRequest, string dtpOutCap, string maHangSP, string tenHangSP)
-        {
-            int Return = 0;
-            if (Check_DP(id, id_po))
-            {
-                int result = 0;
-                string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET note = N'{0}',dateopen = '{1}',datedeliver = '{2}',maSP = '{3}',tenSP = '{4}' WHERE id = N'{5}' and type = N'{6}' and id_po = '{7}'", note, dtpRequest, dtpOutCap, maHangSP, tenHangSP, id, "", id_po);
-                result = OPMDBHandler.fInsertData(query);
-                Return = 0;
-            }
-            else
-            {
-                int result = 0;
-                string sql = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.CatalogAdmin(ctlID,ctlname,ctlparent) VALUES(N'{0}',N'{1}',N'{2}')", "DP_" + id, id, "PO_" + id_po);
-                result = OPMDBHandler.fInsertData(sql);
-                string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.DP(id,id_po,id_contract,type,dateopen,datedeliver,mskt,note,maSP,tenSP) VALUES(N'{0}',N'{1}',N'{2}',N'{3}','{4}','{5}','{6}',N'{7}',N'{8}',N'{9}')", id, id_po, id_contract, "", dtpRequest, dtpOutCap, "", note, maHangSP, tenHangSP);
-                result = OPMDBHandler.fInsertData(query);
-                Return = 1;
-            }
-            return Return;
-        }
-        public void DeleteDP(string id)
-        {
-            int result = 0;
-            string query1 = string.Format("delete dbo.ListExpected_DP where id_dp = '" + id + "'");
-            result = OPMDBHandler.fInsertData(query1);
-            string query2 = string.Format("delete dbo.DP where id = '" + id + "'");
-            result = OPMDBHandler.fInsertData(query2);
-            string query3 = string.Format("delete dbo.CatalogAdmin where ctlID = '" + id + "'");
-            result = OPMDBHandler.fInsertData(query3);
-        }
-        public DataTable GetInforSite(String ProvinceName)
-        {
-            DataTable dataTable = new DataTable();
-            string query = string.Format("SELECT TOP 1 * FROM dbo.Site WHERE headquater = N'{0}'", ProvinceName);
-            dataTable = OPMDBHandler.ExecuteQuery(query);
-            return dataTable;
-        }
-        public DataTable GetInforPrice(string idContract, string code)
-        {
-            DataTable dataTable = new DataTable();
-            string query = string.Format("SELECT TOP 1 * FROM dbo.Contract_Goods WHERE idContract = N'{0}' and code = N'{1}'", idContract, code);
-            dataTable = OPMDBHandler.ExecuteQuery(query);
-            return dataTable;
-        }
-        public string GetInforSLP(string ProvinceName, string id_dp, string id_po)
-        {
-            DataTable dataTable = new DataTable();
-            string result = "";
-            string query = string.Format("SELECT TOP 1 NumberDevice FROM dbo.ListExpected_DP WHERE ProvinceName = N'{0}' and id_dp = N'{1}' and id_po = N'{2}' and type = N'Hàng bảo hành'", ProvinceName, id_dp, id_po);
-            dataTable = OPMDBHandler.ExecuteQuery(query);
-            if (dataTable.Rows.Count > 0)
-            {
-                result = dataTable.Rows[0][0].ToString();
-            }
-            else
-            {
-                result = "0";
-            }
-            return result;
-        }
-        public int InsertListPhuLucSerial(string SerialName, string id_dp, string id_po)
-        {
-            int result = 0;
-            string query = string.Format("SET DATEFORMAT DMY INSERT INTO dbo.PhuLucSerial(Serial,id_dp,id_po) VALUES(N'{0}',N'{1}',N'{2}')", SerialName, id_dp, id_po);
-            result = OPMDBHandler.fInsertData(query);
-            return result;
-        }
-        public bool Check_Serial(string id_dp, string id_po)
-        {
-            string query = string.Format("SELECT * FROM dbo.PhuLucSerial WHERE id_dp = N'{0}' and id_po = N'{1}'", id_dp, id_po);
-            DataTable table = OPMDBHandler.ExecuteQuery(query);
-            return table.Rows.Count > 0;
-        }
-        public void Delete_Serial(string id_dp, string id_po)
-        {
-            string query = string.Format("delete dbo.PhuLucSerial WHERE id_dp = N'{0}' and id_po = N'{1}'", id_dp, id_po);
-            DataTable table = OPMDBHandler.ExecuteQuery(query);
-        }
-        public string querySQL(string id_dp, string id_po)
-        {
-            string query = string.Format("SELECT * FROM dbo.PhuLucSerial WHERE id_dp = N'{0}' and id_po = N'{1}'", id_dp, id_po);
-            return query;
-        }
-        public DataTable getInforDPByIdDP(string id_dp)
-        {
-            string query = string.Format("select d.id as 'IdDP', d.id_po,p.po_number, d.id_contract,c.KHMS, d.dateopen, d.datedeliver,d.note,cg.name,cg.code,cg.quantity,d.maSP,d.tenSP from dbo.DP d left join dbo.PO p on p.id = d.id_po left join dbo.Contract c on c.id = p.id_contract left join dbo.Contract_Goods cg on cg.idContract = c.id where d.id = N'{0}'", id_dp);
-            DataTable table = OPMDBHandler.ExecuteQuery(query);
-            return table;
-        }
-        public bool Check_DSHang(string id_dp, string id_po, string type)
-        {
-            string query = string.Format("SELECT * FROM dbo.ListExpected_DP WHERE id_dp = '{0}' and type = N'{1}' and id_po = '{2}'", id_dp, type, id_po);
-            DataTable table = OPMDBHandler.ExecuteQuery(query);
-            return table.Rows.Count > 0;
-        }
-        public DataTable getInforListExxpected_DP(string id_dp, string id_po, string type)
-        {
-            string query = string.Format("select ProvinceName,NumberDevice from dbo.ListExpected_DP where id_dp = '{0}' and id_po = N'{1}' and type = N'{2}'", id_dp, id_po, type);
-            DataTable table = OPMDBHandler.ExecuteQuery(query);
-            return table;
         }
     }
 }

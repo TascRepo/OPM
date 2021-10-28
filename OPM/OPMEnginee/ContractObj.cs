@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
+using System.Windows.Forms;
 
 namespace OPM.OPMEnginee
 {
@@ -50,9 +51,9 @@ namespace OPM.OPMEnginee
                         AccoutingCode = (row["AccoutingCode"] == null || row["AccoutingCode"] == DBNull.Value) ? "" : row["AccoutingCode"].ToString();
                     }
                 }
-                catch
+                catch(Exception e)
                 {
-
+                    MessageBox.Show("Lỗi khi kết nối bảng Contract trong CSDL " + e.Message);
                 }
             }
         }

@@ -1209,7 +1209,7 @@ namespace OPM.WordHandler
         {
             //Khởi tạo vào check forder
             //Lấy số lượng bảo hành của tỉnh vừa nhập.
-            DP dp = new DP();
+            DPOld dp = new DPOld();
             string slp = dp.GetInforSLP(diaChi, txbIdDP, txbPOCode);
             //
             string DriveName = "";
@@ -1336,7 +1336,7 @@ namespace OPM.WordHandler
             POObj po = new POObj(txbPOCode);
             ContractObj contract = new ContractObj(txbIDContract);
             //Lấy thông tin viễn thông các tỉnh
-            DP dp = new DP();
+            DPOld dp = new DPOld();
             DataTable dataTable = new DataTable();
             dataTable = dp.GetInforSite(ProvinceName);
             //Lấy thông tin đơn giá của hàng
@@ -1462,7 +1462,7 @@ namespace OPM.WordHandler
                 myDoc.Activate();
                 //FileLocation = path
                 Microsoft.Office.Interop.Word.Table tab = myDoc.Tables[1];
-                DP dp = new DP();
+                DPOld dp = new DPOld();
                 DataTable dt_PO = new DataTable();
                 if (dp.Check_Serial(txbIdDP, txbPOCode))
                 {

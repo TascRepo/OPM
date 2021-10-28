@@ -12,7 +12,7 @@ namespace OPM.GUI
         }
         private void KHGH_PO_Load(object sender, EventArgs e)
         {
-            dataKHGH.DataSource = POInfo.dtkhgh;
+            dtgKHGH.DataSource = POInfo.dtkhgh;
             mpo.Text = POInfo.IPPO;
             vbxn.Text = POInfo.IDVBXN;
         }
@@ -25,9 +25,9 @@ namespace OPM.GUI
             {
                 po.DeleteDelivery_PO(vbxn.Text);
             }
-            for (int i = 0; i < dataKHGH.Rows.Count - 1; i++)
+            for (int i = 0; i < dtgKHGH.Rows.Count - 1; i++)
             {
-                returnValue = po.InsertImportFileKHGH(vbxn.Text, dataKHGH.Rows[i].Cells[1].Value.ToString(), dataKHGH.Rows[i].Cells[2].Value.ToString(), dataKHGH.Rows[i].Cells[3].Value.ToString(), dataKHGH.Rows[i].Cells[4].Value.ToString(), mpo.Text);
+                returnValue = po.InsertImportFileKHGH(vbxn.Text, dtgKHGH.Rows[i].Cells[1].Value.ToString(), dtgKHGH.Rows[i].Cells[2].Value.ToString(), dtgKHGH.Rows[i].Cells[3].Value.ToString(), dtgKHGH.Rows[i].Cells[4].Value.ToString(), mpo.Text);
             }
             if (returnValue == 1)
             {
@@ -48,8 +48,8 @@ namespace OPM.GUI
         {
             if (e.RowIndex > -1)
             {
-                dataKHGH.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
-                dataKHGH.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                dtgKHGH.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                dtgKHGH.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
             }
         }
 
@@ -57,8 +57,8 @@ namespace OPM.GUI
         {
             if (e.RowIndex > -1)
             {
-                dataKHGH.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
-                dataKHGH.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+                dtgKHGH.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                dtgKHGH.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
             }
         }
     }

@@ -28,7 +28,7 @@ namespace OPM.GUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            DP dp = new DP();
+            DPOld dp = new DPOld();
             for (int i = 0; i < dataGridViewWarranty.Rows.Count - 1; i++)
             {
                 bool isCellChecked = (bool)dataGridViewWarranty.Rows[i].Cells[0].Value;

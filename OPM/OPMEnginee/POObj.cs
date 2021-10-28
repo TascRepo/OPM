@@ -43,9 +43,9 @@ namespace OPM.OPMEnginee
                         POGuaranteeDate = (row["POGuaranteeDate"] == null || row["POGuaranteeDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["POGuaranteeDate"];
                     }
                 }
-                catch
+                catch (Exception e)
                 {
-
+                    MessageBox.Show("Lỗi khi kết nối bảng PO trong CSDL " + e.Message);
                 }
             }
         }
@@ -72,7 +72,96 @@ namespace OPM.OPMEnginee
         public POObj(ContractObj contract)
         {
             ContractId = contract.ContractId;
+            ContractCreatedDate = contract.ContractCreatedDate;
+            ContractName = contract.ContractName;
+            ContractShoppingPlan = contract.ContractShoppingPlan;
+            ContractType = contract.ContractType;
+            ContractSiteId = contract.ContractSiteId;
+            ContractValidityDate = contract.ContractValidityDate;
+            ContractDeadline = contract.ContractDeadline;
+            ContractGoodsDesignation = contract.ContractGoodsDesignation;
+            ContractGoodsCode = contract.ContractGoodsCode;
+            ContractGoodsManufacture = contract.ContractGoodsManufacture;
+            ContractGoodsOrigin = contract.ContractGoodsOrigin;
+            ContractGoodsDesignation1 = contract.ContractGoodsDesignation1;
+            ContractGoodsCode1 = contract.ContractGoodsCode1;
+            ContractGoodsCode2 = contract.ContractGoodsCode2;
+            ContractGoodsSpecies = contract.ContractGoodsSpecies;
+            ContractGoodsNote = contract.ContractGoodsNote;
+            ContractGoodsUnit = contract.ContractGoodsUnit;
+            ContractGoodsUnitPrice = contract.ContractGoodsUnitPrice;
+            ContractGoodsQuantity = contract.ContractGoodsQuantity;
+            ContractGoodsLicenseName = contract.ContractGoodsLicenseName;
+            ContractGoodsLicenseUnitPrice = contract.ContractGoodsLicenseUnitPrice;
+            ContractGuaranteeCreatedDate = contract.ContractGuaranteeCreatedDate;
+            POGuaranteeRatio = contract.POGuaranteeRatio;
+            POGuaranteeValidityPeriod = contract.POGuaranteeValidityPeriod;
+            ContractGuaranteeDeadline = contract.ContractGuaranteeDeadline;
+            AccoutingCode = contract.AccoutingCode;
         }
+        public void SetContractOfPOObj(ContractObj contract)
+        {
+            ContractId = contract.ContractId;
+            ContractCreatedDate = contract.ContractCreatedDate;
+            ContractName = contract.ContractName;
+            ContractShoppingPlan = contract.ContractShoppingPlan;
+            ContractType = contract.ContractType;
+            ContractSiteId = contract.ContractSiteId;
+            ContractValidityDate = contract.ContractValidityDate;
+            ContractDeadline = contract.ContractDeadline;
+            ContractGoodsDesignation = contract.ContractGoodsDesignation;
+            ContractGoodsCode = contract.ContractGoodsCode;
+            ContractGoodsManufacture = contract.ContractGoodsManufacture;
+            ContractGoodsOrigin = contract.ContractGoodsOrigin;
+            ContractGoodsDesignation1 = contract.ContractGoodsDesignation1;
+            ContractGoodsCode1 = contract.ContractGoodsCode1;
+            ContractGoodsCode2 = contract.ContractGoodsCode2;
+            ContractGoodsSpecies = contract.ContractGoodsSpecies;
+            ContractGoodsNote = contract.ContractGoodsNote;
+            ContractGoodsUnit = contract.ContractGoodsUnit;
+            ContractGoodsUnitPrice = contract.ContractGoodsUnitPrice;
+            ContractGoodsQuantity = contract.ContractGoodsQuantity;
+            ContractGoodsLicenseName = contract.ContractGoodsLicenseName;
+            ContractGoodsLicenseUnitPrice = contract.ContractGoodsLicenseUnitPrice;
+            ContractGuaranteeCreatedDate = contract.ContractGuaranteeCreatedDate;
+            POGuaranteeRatio = contract.POGuaranteeRatio;
+            POGuaranteeValidityPeriod = contract.POGuaranteeValidityPeriod;
+            ContractGuaranteeDeadline = contract.ContractGuaranteeDeadline;
+            AccoutingCode = contract.AccoutingCode;
+        }
+        public POObj SetContractOfPOObj(POObj po,ContractObj contract)
+        {
+            po.ContractId = contract.ContractId;
+            po.ContractCreatedDate = contract.ContractCreatedDate;
+            po.ContractName = contract.ContractName;
+            po.ContractShoppingPlan = contract.ContractShoppingPlan;
+            po.ContractType = contract.ContractType;
+            po.ContractSiteId = contract.ContractSiteId;
+            po.ContractValidityDate = contract.ContractValidityDate;
+            po.ContractDeadline = contract.ContractDeadline;
+            po.ContractGoodsDesignation = contract.ContractGoodsDesignation;
+            po.ContractGoodsCode = contract.ContractGoodsCode;
+            po.ContractGoodsManufacture = contract.ContractGoodsManufacture;
+            po.ContractGoodsOrigin = contract.ContractGoodsOrigin;
+            po.ContractGoodsDesignation1 = contract.ContractGoodsDesignation1;
+            po.ContractGoodsCode1 = contract.ContractGoodsCode1;
+            po.ContractGoodsCode2 = contract.ContractGoodsCode2;
+            po.ContractGoodsSpecies = contract.ContractGoodsSpecies;
+            po.ContractGoodsNote = contract.ContractGoodsNote;
+            po.ContractGoodsUnit = contract.ContractGoodsUnit;
+            po.ContractGoodsUnitPrice = contract.ContractGoodsUnitPrice;
+            po.ContractGoodsQuantity = contract.ContractGoodsQuantity;
+            po.ContractGoodsLicenseName = contract.ContractGoodsLicenseName;
+            po.ContractGoodsLicenseUnitPrice = contract.ContractGoodsLicenseUnitPrice;
+            po.ContractGuaranteeCreatedDate = contract.ContractGuaranteeCreatedDate;
+            po.POGuaranteeRatio = contract.POGuaranteeRatio;
+            po.POGuaranteeValidityPeriod = contract.POGuaranteeValidityPeriod;
+            po.ContractGuaranteeDeadline = contract.ContractGuaranteeDeadline;
+            po.AccoutingCode = contract.AccoutingCode;
+            return po;
+        }
+
+
         public POObj(string POId, string POName, double POGoodsQuantity, DateTime POCreatedDate, DateTime POConfirmRequestDeadline, DateTime PODefaultPerformDate, DateTime POPerformDate, DateTime PODeadline, string POConfirmId, DateTime POConfirmCreatedDate, string POAdvanceId,int POAdvancePercentage, DateTime POAdvanceCreatedDate, int POAdvanceGuaranteePercentage, DateTime POAdvanceGuaranteeCreatedDate, string POAdvanceRequestId, DateTime POAdvanceRequestCreatedDate, DateTime POGuaranteeDate)
         {
             this.POId = POId;

@@ -294,12 +294,6 @@ namespace OPM.GUI
 
         private void buttonEdit_Click(object sender, EventArgs e)
         {
-            ContractObj contract = new ContractObj();
-            ContractObj contract1 = new ContractObj();
-            contract1 = contract;
-            contract.ContractId = "contract";
-            contract1.ContractId = "contract1";
-            MessageBox.Show("contract = "+contract.ContractId + " contract1 = " + contract1.ContractId);
         }
     }
 }

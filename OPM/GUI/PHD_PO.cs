@@ -21,7 +21,7 @@ namespace OPM.GUI
             if (iPHD_PO.Check(tsDP, tsPO))
             {
                 dataTable = iPHD_PO.GetInforDP(tsDP, tsPO, "Hàng chính");
-                dataGridView1.DataSource = dataTable;
+                //dataGridView1.DataSource = dataTable;
             }
             else
             {
@@ -51,8 +51,8 @@ namespace OPM.GUI
         {
             if (e.RowIndex > -1)
             {
-                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
-                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                //dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+               // dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
             }
         }
 
@@ -60,15 +60,15 @@ namespace OPM.GUI
         {
             if (e.RowIndex > -1)
             {
-                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
-                dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+               // dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+               // dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
             }
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             IPHD_PO iPHD_PO = new IPHD_PO();
             int index = e.RowIndex;
-            DataGridViewRow row = dataGridView1.Rows[index];
+            DataGridViewRow row = dtgProvinceId.Rows[index];
             //Lấy giá trị Rows vừa Click vào
             string valueprovince = row.Cells[0].Value.ToString();
             string valueid_dp = row.Cells[1].Value.ToString();
