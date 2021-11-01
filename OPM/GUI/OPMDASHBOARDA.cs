@@ -22,6 +22,7 @@ namespace OPM.GUI
                 InitByCurrentNodeName(value);
             }
         }
+        public SiteObj SiteA { get; set; } = new SiteObj();
         public ContractObj Contract { get; set; } = new ContractObj();
         public POObj Po { get; set; } = new POObj();
         public NTKTObj Ntkt { get; set;} = new NTKTObj();
@@ -347,7 +348,7 @@ namespace OPM.GUI
         }
         public void SetIdSiteA(string vl)
         {
-            Contract.ContractSiteId = vl;
+            Contract.SiteId = vl;
         }
         public void TreeViewOPM_DoubleClick(object sender, EventArgs e)
         {

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace OPM.OPMEnginee
 {
-    public class ContractObj
+    public class ContractObj : SiteObj
     {
         string contractId = "XXX-2021/CUVT-ANSV/DTRR-KHMS";
         public string ContractId
@@ -27,7 +27,7 @@ namespace OPM.OPMEnginee
                         ContractName = (row["ContractName"] == null || row["ContractName"] == DBNull.Value) ? "" : row["ContractName"].ToString();
                         ContractShoppingPlan = (row["ContractShoppingPlan"] == null || row["ContractShoppingPlan"] == DBNull.Value) ? "" : row["ContractShoppingPlan"].ToString();
                         ContractType = (row["ContractType"] == null || row["ContractType"] == DBNull.Value) ? "" : row["ContractType"].ToString();
-                        ContractSiteId = (row["ContractSiteId"] == null || row["ContractSiteId"] == DBNull.Value) ? "" : row["ContractSiteId"].ToString();
+                        SiteId = (row["ContractSiteId"] == null || row["ContractSiteId"] == DBNull.Value) ? "" : row["ContractSiteId"].ToString();
                         ContractValidityDate = (row["ContractValidityDate"] == null || row["ContractValidityDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["ContractValidityDate"];
                         ContractDeadline = (row["ContractDeadline"] == null || row["ContractDeadline"] == DBNull.Value) ? DateTime.Now : (DateTime)row["ContractDeadline"];
                         ContractGoodsDesignation = (row["ContractGoodsDesignation"] == null || row["ContractGoodsDesignation"] == DBNull.Value) ? "" : row["ContractGoodsDesignation"].ToString();
@@ -61,7 +61,6 @@ namespace OPM.OPMEnginee
         public string ContractName { get; set; } = @"Mua sắm thiết bị đầu cuối ONT loại (2FE/GE+Wifi singleband)";
         public string ContractShoppingPlan { get; set; } = @"Mua sắm tập trung thiết bị đầu cuối ONT loại (2FE/GE+Wifi singleband) tương thích hệ thống gpon cho nhu cầu năm 2020";
         public string ContractType { get; set; } = @"Theo đơn giá cố định";
-        public string ContractSiteId { get; set; } = @"Trung tâm cung ứng vật tư - Viễn thông TP.HCM";
         public DateTime ContractValidityDate { get; set; } = DateTime.Now.Date;
         public int ContractPeriod => (ContractDeadline - ContractValidityDate).Days;
         public DateTime ContractDeadline { get; set; } = DateTime.Now.Date;
@@ -86,6 +85,43 @@ namespace OPM.OPMEnginee
         public int ContractGuaranteeValidityPeriod { get => (ContractGuaranteeDeadline - ContractGuaranteeCreatedDate).Days; }
         public DateTime ContractGuaranteeDeadline { get; set; } = DateTime.Now.Date;
         public string AccoutingCode { get; set; } = "C01007";
+        private SiteObj siteA;
+
+        public SiteObj GetSiteA()
+        {
+            return siteA;
+        }
+
+        public void SetSiteA(SiteObj value)
+        {
+            siteA = value;
+            this.SiteId = value.SiteId;
+            this.SiteName = value.SiteName;
+            this.SiteProvince = value.SiteProvince;
+            this.SiteType = value.SiteType;
+            this.SiteHeadquater = value.SiteHeadquater;
+            this.SiteAddress = value.SiteAddress;
+            this.SitePhonenumber = value.SitePhonenumber;
+            this.SiteFaxNumber = value.SiteFaxNumber;
+            this.SiteTaxCode = value.SiteTaxCode;
+            this.SiteBankAccount = value.SiteBankAccount;
+            this.SiteNameOfBank = value.SiteNameOfBank;
+            this.SiteRepresentative1 = value.SiteRepresentative1;
+            this.SitePosition1 = value.SitePosition1;
+            this.SiteProxy1 = value.SiteProxy1;
+            this.SiteRepresentative2 = value.SiteRepresentative2;
+            this.SitePosition2 = value.SitePosition2;
+            this.SiteProxy2 = value.SiteProxy2;
+            this.SiteRepresentative3 = value.SiteRepresentative3;
+            this.SitePosition3 = value.SitePosition3;
+            this.SiteProxy3 = value.SiteProxy3;
+        }
+
+        public ContractObj(SiteObj site)
+        {
+            SetSiteA(site);
+        }
+
         public List<POObj> ListPO()
         {
             List<POObj> list = new List<POObj>();
@@ -118,17 +154,17 @@ namespace OPM.OPMEnginee
         public int ContractInsert(string id)
         {
             if (ContractExist(id)) return 0;
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.Contract(ContractId,ContractSignedDate,ContractName,ContractShoppingPlan,ContractType,ContractSiteId,ContractValidityDate,ContractDeadline,ContractGoodsDesignation,ContractGoodsCode,ContractGoodsManufacture,ContractGoodsOrigin,ContractGoodsDesignation1,ContractGoodsCode1,ContractGoodsCode2,ContractGoodsSpecies,ContractGoodsNote,ContractGoodsUnit,ContractGoodsUnitPrice,ContractGoodsQuantity,ContractGoodsLicenseName,ContractGoodsLicenseUnitPrice,ContractGuaranteeCreatedDate,POGuaranteeRatio,POGuaranteeValidityPeriod,ContractGuaranteeDeadline,AccoutingCode)VALUES('{0}','{1}',N'{2}',N'{3}',N'{4}',N'{5}','{6}','{7}',N'{8}','{9}',N'{10}',N'{11}','{12}','{13}','{14}',N'{15}',N'{16}',N'{17}',{18},{19},N'{20}',{21},'{22}',{23},{24},'{25}','{26}')", id, ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractName, ContractShoppingPlan, ContractType, ContractSiteId, ContractValidityDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractGoodsDesignation, ContractGoodsCode, ContractGoodsManufacture, ContractGoodsOrigin, ContractGoodsDesignation1, ContractGoodsCode1, ContractGoodsCode2, ContractGoodsSpecies, ContractGoodsNote, ContractGoodsUnit, ContractGoodsUnitPrice, ContractGoodsQuantity, ContractGoodsLicenseName, ContractGoodsLicenseUnitPrice, ContractGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POGuaranteeRatio, POGuaranteeValidityPeriod, ContractGuaranteeDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), AccoutingCode);
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.Contract(ContractId,ContractSignedDate,ContractName,ContractShoppingPlan,ContractType,ContractSiteId,ContractValidityDate,ContractDeadline,ContractGoodsDesignation,ContractGoodsCode,ContractGoodsManufacture,ContractGoodsOrigin,ContractGoodsDesignation1,ContractGoodsCode1,ContractGoodsCode2,ContractGoodsSpecies,ContractGoodsNote,ContractGoodsUnit,ContractGoodsUnitPrice,ContractGoodsQuantity,ContractGoodsLicenseName,ContractGoodsLicenseUnitPrice,ContractGuaranteeCreatedDate,POGuaranteeRatio,POGuaranteeValidityPeriod,ContractGuaranteeDeadline,AccoutingCode)VALUES('{0}','{1}',N'{2}',N'{3}',N'{4}',N'{5}','{6}','{7}',N'{8}','{9}',N'{10}',N'{11}','{12}','{13}','{14}',N'{15}',N'{16}',N'{17}',{18},{19},N'{20}',{21},'{22}',{23},{24},'{25}','{26}')", id, ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractName, ContractShoppingPlan, ContractType, SiteId, ContractValidityDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractGoodsDesignation, ContractGoodsCode, ContractGoodsManufacture, ContractGoodsOrigin, ContractGoodsDesignation1, ContractGoodsCode1, ContractGoodsCode2, ContractGoodsSpecies, ContractGoodsNote, ContractGoodsUnit, ContractGoodsUnitPrice, ContractGoodsQuantity, ContractGoodsLicenseName, ContractGoodsLicenseUnitPrice, ContractGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POGuaranteeRatio, POGuaranteeValidityPeriod, ContractGuaranteeDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), AccoutingCode);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public int ContractUpdate()
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.Contract SET ContractSignedDate ='{1}', ContractName = N'{2}', ContractShoppingPlan = N'{3}', ContractType = N'{4}', ContractSiteId = N'{5}', ContractValidityDate = '{6}', ContractDeadline = '{7}', ContractGoodsDesignation = N'{8}', ContractGoodsCode = '{9}', ContractGoodsManufacture = N'{10}', ContractGoodsOrigin = N'{11}', ContractGoodsDesignation1 = '{12}', ContractGoodsCode1 = '{13}', ContractGoodsCode2 = '{14}', ContractGoodsSpecies = N'{15}', ContractGoodsNote = N'{16}', ContractGoodsUnit = N'{17}', ContractGoodsUnitPrice = {18}, ContractGoodsQuantity = {19}, ContractGoodsLicenseName = N'{20}', ContractGoodsLicenseUnitPrice = {21}, ContractGuaranteeCreatedDate = '{22}', POGuaranteeRatio = {23}, POGuaranteeValidityPeriod = {24}, ContractGuaranteeDeadline = '{25}', AccoutingCode = '{26}' WHERE ContractId = '{0}'", ContractId, ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractName, ContractShoppingPlan, ContractType, ContractSiteId, ContractValidityDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractGoodsDesignation, ContractGoodsCode, ContractGoodsManufacture, ContractGoodsOrigin, ContractGoodsDesignation1, ContractGoodsCode1, ContractGoodsCode2, ContractGoodsSpecies, ContractGoodsNote, ContractGoodsUnit, ContractGoodsUnitPrice, ContractGoodsQuantity, ContractGoodsLicenseName, ContractGoodsLicenseUnitPrice, ContractGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POGuaranteeRatio, POGuaranteeValidityPeriod, ContractGuaranteeDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), AccoutingCode);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.Contract SET ContractSignedDate ='{1}', ContractName = N'{2}', ContractShoppingPlan = N'{3}', ContractType = N'{4}', ContractSiteId = N'{5}', ContractValidityDate = '{6}', ContractDeadline = '{7}', ContractGoodsDesignation = N'{8}', ContractGoodsCode = '{9}', ContractGoodsManufacture = N'{10}', ContractGoodsOrigin = N'{11}', ContractGoodsDesignation1 = '{12}', ContractGoodsCode1 = '{13}', ContractGoodsCode2 = '{14}', ContractGoodsSpecies = N'{15}', ContractGoodsNote = N'{16}', ContractGoodsUnit = N'{17}', ContractGoodsUnitPrice = {18}, ContractGoodsQuantity = {19}, ContractGoodsLicenseName = N'{20}', ContractGoodsLicenseUnitPrice = {21}, ContractGuaranteeCreatedDate = '{22}', POGuaranteeRatio = {23}, POGuaranteeValidityPeriod = {24}, ContractGuaranteeDeadline = '{25}', AccoutingCode = '{26}' WHERE ContractId = '{0}'", ContractId, ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractName, ContractShoppingPlan, ContractType, SiteId, ContractValidityDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractGoodsDesignation, ContractGoodsCode, ContractGoodsManufacture, ContractGoodsOrigin, ContractGoodsDesignation1, ContractGoodsCode1, ContractGoodsCode2, ContractGoodsSpecies, ContractGoodsNote, ContractGoodsUnit, ContractGoodsUnitPrice, ContractGoodsQuantity, ContractGoodsLicenseName, ContractGoodsLicenseUnitPrice, ContractGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POGuaranteeRatio, POGuaranteeValidityPeriod, ContractGuaranteeDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), AccoutingCode);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public int ContractUpdate(string newId,string oldID)
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.Contract SET ContractId = '{27}', ContractSignedDate ='{1}', ContractName = N'{2}', ContractShoppingPlan = N'{3}', ContractType = N'{4}', ContractSiteId = N'{5}', ContractValidityDate = '{6}', ContractDeadline = '{7}', ContractGoodsDesignation = N'{8}', ContractGoodsCode = '{9}', ContractGoodsManufacture = N'{10}', ContractGoodsOrigin = N'{11}', ContractGoodsDesignation1 = '{12}', ContractGoodsCode1 = '{13}', ContractGoodsCode2 = '{14}', ContractGoodsSpecies = N'{15}', ContractGoodsNote = N'{16}', ContractGoodsUnit = N'{17}', ContractGoodsUnitPrice = {18}, ContractGoodsQuantity = {19}, ContractGoodsLicenseName = N'{20}', ContractGoodsLicenseUnitPrice = {21}, ContractGuaranteeCreatedDate = '{22}', POGuaranteeRatio = {23}, POGuaranteeValidityPeriod = {24}, ContractGuaranteeDeadline = '{25}', AccoutingCode = '{26}' WHERE ContractId = '{0}'", oldID, ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractName, ContractShoppingPlan, ContractType, ContractSiteId, ContractValidityDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractGoodsDesignation, ContractGoodsCode, ContractGoodsManufacture, ContractGoodsOrigin, ContractGoodsDesignation1, ContractGoodsCode1, ContractGoodsCode2, ContractGoodsSpecies, ContractGoodsNote, ContractGoodsUnit, ContractGoodsUnitPrice, ContractGoodsQuantity, ContractGoodsLicenseName, ContractGoodsLicenseUnitPrice, ContractGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POGuaranteeRatio, POGuaranteeValidityPeriod, ContractGuaranteeDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), AccoutingCode, newId);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.Contract SET ContractId = '{27}', ContractSignedDate ='{1}', ContractName = N'{2}', ContractShoppingPlan = N'{3}', ContractType = N'{4}', ContractSiteId = N'{5}', ContractValidityDate = '{6}', ContractDeadline = '{7}', ContractGoodsDesignation = N'{8}', ContractGoodsCode = '{9}', ContractGoodsManufacture = N'{10}', ContractGoodsOrigin = N'{11}', ContractGoodsDesignation1 = '{12}', ContractGoodsCode1 = '{13}', ContractGoodsCode2 = '{14}', ContractGoodsSpecies = N'{15}', ContractGoodsNote = N'{16}', ContractGoodsUnit = N'{17}', ContractGoodsUnitPrice = {18}, ContractGoodsQuantity = {19}, ContractGoodsLicenseName = N'{20}', ContractGoodsLicenseUnitPrice = {21}, ContractGuaranteeCreatedDate = '{22}', POGuaranteeRatio = {23}, POGuaranteeValidityPeriod = {24}, ContractGuaranteeDeadline = '{25}', AccoutingCode = '{26}' WHERE ContractId = '{0}'", oldID, ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractName, ContractShoppingPlan, ContractType, SiteId, ContractValidityDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractGoodsDesignation, ContractGoodsCode, ContractGoodsManufacture, ContractGoodsOrigin, ContractGoodsDesignation1, ContractGoodsCode1, ContractGoodsCode2, ContractGoodsSpecies, ContractGoodsNote, ContractGoodsUnit, ContractGoodsUnitPrice, ContractGoodsQuantity, ContractGoodsLicenseName, ContractGoodsLicenseUnitPrice, ContractGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POGuaranteeRatio, POGuaranteeValidityPeriod, ContractGuaranteeDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), AccoutingCode, newId);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public static int ContractDelete(string contractId)

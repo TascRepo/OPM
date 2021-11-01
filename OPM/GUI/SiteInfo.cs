@@ -1,5 +1,7 @@
-﻿using System;
+﻿using OPM.OPMEnginee;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace OPM.GUI
@@ -14,115 +16,103 @@ namespace OPM.GUI
         public SiteInfo()
         {
             InitializeComponent();
+            LoadData();
+        }
+        void LoadData()
+        {
+            LoadDataGridView();
         }
         void AddSiteBinding()
         {
-            txtSiteId.DataBindings.Clear();
-            txtSiteId.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "SiteId"));
-            txtProvinceId.DataBindings.Clear();
-            txtProvinceId.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "ProvinceId"));
-            txtTypeOfSite.DataBindings.Clear();
-            txtTypeOfSite.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "TypeOfSite"));
+            txtSiteName.DataBindings.Clear();
+            txtSiteName.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteName"));
+            txtSiteProvince.DataBindings.Clear();
+            txtSiteProvince.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteProvince"));
+            txtType.DataBindings.Clear();
+            txtType.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteType"));
             txtHeadquater.DataBindings.Clear();
-            txtHeadquater.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Headquater"));
+            txtHeadquater.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteHeadquater"));
             txtAddress.DataBindings.Clear();
-            txtAddress.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Address"));
+            txtAddress.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteAddress"));
             txtPhoneNumber.DataBindings.Clear();
-            txtPhoneNumber.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Phonenumber"));
+            txtPhoneNumber.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SitePhonenumber"));
             txtFaxNumber.DataBindings.Clear();
-            txtFaxNumber.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "FaxNumber"));
+            txtFaxNumber.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteFaxNumber"));
             txtTaxCode.DataBindings.Clear();
-            txtTaxCode.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "TaxCode"));
+            txtTaxCode.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteTaxCode"));
             txtBankAccount.DataBindings.Clear();
-            txtBankAccount.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "BankAccount"));
+            txtBankAccount.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteBankAccount"));
             txtNameOfBank.DataBindings.Clear();
-            txtNameOfBank.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "NameOfBank"));
+            txtNameOfBank.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteNameOfBank"));
             txtRepresentative1.DataBindings.Clear();
-            txtRepresentative1.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Representative1"));
+            txtRepresentative1.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteRepresentative1"));
             txtRepresentative2.DataBindings.Clear();
-            txtRepresentative2.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Representative2"));
+            txtRepresentative2.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteRepresentative2"));
             txtRepresentative3.DataBindings.Clear();
-            txtRepresentative3.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Representative3"));
+            txtRepresentative3.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteRepresentative3"));
             txtPosition1.DataBindings.Clear();
-            txtPosition1.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Position1"));
+            txtPosition1.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SitePosition1"));
             txtPosition2.DataBindings.Clear();
-            txtPosition2.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Position2"));
+            txtPosition2.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SitePosition2"));
             txtPosition3.DataBindings.Clear();
-            txtPosition3.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Position3"));
+            txtPosition3.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SitePosition3"));
             txtProxy1.DataBindings.Clear();
-            txtProxy1.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Proxy1"));
+            txtProxy1.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteProxy1"));
             txtProxy2.DataBindings.Clear();
-            txtProxy2.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Proxy2"));
+            txtProxy2.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteProxy2"));
             txtProxy3.DataBindings.Clear();
-            txtProxy3.DataBindings.Add(new Binding("Text", dtgvSite.DataSource, "Proxy3"));
+            txtProxy3.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteProxy3"));
         }
         void LoadDataGridView()
         {
-            List<OPMEnginee.SiteObj> sites = OPMEnginee.SiteObj.GetList();
-            dtgvSite.DataSource = sites;
-            dtgvSite.Columns["SiteId"].HeaderText = @"Tên đơn vị";
-            //dtgvSite.Columns["Id"].Width = 250;
-            dtgvSite.Columns["ProvinceId"].HeaderText = @"VNPT tỉnh";
-            dtgvSite.Columns["TypeOfSite"].HeaderText = @"Phân loại";
-            //dtgvSite.Columns["TypeOfSite"].Width = 250;
-            dtgvSite.Columns["TypeOfSite"].Visible = false;
-            dtgvSite.Columns["Headquater"].HeaderText = @"Trụ sở";
-            //dtgvSite.Columns["Headquater"].Width = 250;
-            dtgvSite.Columns["Headquater"].Visible = false;
+            //DataTable table = SiteObj.SiteGetTable();
+            //DataRow row = table.NewRow();
+            List<SiteObj> sites = SiteObj.SiteGetList();
+            SiteObj site = new SiteObj(SiteId);
 
-            dtgvSite.Columns["Address"].HeaderText = @"Địa chỉ";
-            dtgvSite.Columns["Address"].Visible = false;
-            //dtgvSite.Columns["Address"].Width = 250;
-            dtgvSite.Columns["Phonenumber"].HeaderText = @"Điện thoại";
-            dtgvSite.Columns["Phonenumber"].Visible = false;
-            //dtgvSite.Columns["Phonenumber"].Width = 250;
-            dtgvSite.Columns["FaxNumber"].HeaderText = @"Số Fax";
-            dtgvSite.Columns["FaxNumber"].Visible = false;
-            //dtgvSite.Columns["FaxNumber"].Width = 250;
-            dtgvSite.Columns["TaxCode"].HeaderText = @"Mã số thuế";
-            //dtgvSite.Columns["TaxCode"].Width = 250;
-            dtgvSite.Columns["TaxCode"].Visible = false;
-
-            dtgvSite.Columns["BankAccount"].HeaderText = @"Tài khoản";
-            //dtgvSite.Columns["BankAccount"].Width = 250;
-            dtgvSite.Columns["BankAccount"].Visible = false;
-            dtgvSite.Columns["NameOfBank"].HeaderText = @"Nhân hàng";
-            //dtgvSite.Columns["NameOfBank"].Width = 250;
-            dtgvSite.Columns["NameOfBank"].Visible = false;
-
-            dtgvSite.Columns["Representative1"].HeaderText = @"Đại diện 1";
-            dtgvSite.Columns["Representative1"].Visible = false;
-            //dtgvSite.Columns["Representative1"].Width = 250;
-            dtgvSite.Columns["Position1"].HeaderText = @"Chức vụ";
-            dtgvSite.Columns["Position1"].Visible = false;
-            //dtgvSite.Columns["Position1"].Width = 250;
-            dtgvSite.Columns["Proxy1"].HeaderText = @"Văn bản uỷ quyền";
-            //dtgvSite.Columns["Proxy1"].Width = 250;
-            dtgvSite.Columns["Proxy1"].Visible = false;
-
-            dtgvSite.Columns["Representative2"].HeaderText = @"Đại diện 2";
-            //dtgvSite.Columns["Representative2"].Width = 250;
-            dtgvSite.Columns["Representative2"].Visible = false;
-
-            dtgvSite.Columns["Position2"].HeaderText = @"Chức vụ";
-            //dtgvSite.Columns["Position2"].Width = 250;
-            dtgvSite.Columns["Position2"].Visible = false;
-            dtgvSite.Columns["Proxy2"].HeaderText = @"Văn bản uỷ quyền";
-            dtgvSite.Columns["Proxy2"].Visible = false;
-            //dtgvSite.Columns["Proxy2"].Width = 250;
-            dtgvSite.Columns["Representative3"].HeaderText = @"Đại diện 3";
-            dtgvSite.Columns["Representative3"].Visible = false;
-            //dtgvSite.Columns["Representative3"].Width = 250;
-            dtgvSite.Columns["Position3"].HeaderText = @"Chức vụ";
-            dtgvSite.Columns["Position3"].Visible = false;
-            //dtgvSite.Columns["Position3"].Width = 250;
-            dtgvSite.Columns["Proxy3"].HeaderText = @"Văn bản uỷ quyền";
-            dtgvSite.Columns["Proxy3"].Visible = false;
-            //dtgvSite.Columns["Proxy3"].Width = 250;
-            for (int i = 0; i < dtgvSite.RowCount; i++)
+            sites.Insert(0,site);
+            dtgvSiteA.DataSource = sites;
+            dtgvSiteA.Columns["SiteId"].Visible=false;
+            dtgvSiteA.Columns["SiteName"].HeaderText = @"Name";
+            dtgvSiteA.Columns["SiteProvince"].HeaderText = @"VNPT ID";
+            dtgvSiteA.Columns["SiteType"].HeaderText = @"Phân loại";
+            dtgvSiteA.Columns["SiteType"].Visible = false;
+            dtgvSiteA.Columns["SiteHeadquater"].HeaderText = @"Trụ sở";
+            dtgvSiteA.Columns["SiteHeadquater"].Visible = false;
+            dtgvSiteA.Columns["SiteAddress"].HeaderText = @"Địa chỉ";
+            dtgvSiteA.Columns["SiteAddress"].Visible = false;
+            dtgvSiteA.Columns["SitePhonenumber"].HeaderText = @"Điện thoại";
+            dtgvSiteA.Columns["SitePhonenumber"].Visible = false;
+            dtgvSiteA.Columns["SiteFaxNumber"].HeaderText = @"Số Fax";
+            dtgvSiteA.Columns["SiteFaxNumber"].Visible = false;
+            dtgvSiteA.Columns["SiteTaxCode"].HeaderText = @"Mã số thuế";
+            dtgvSiteA.Columns["SiteTaxCode"].Visible = false;
+            dtgvSiteA.Columns["SiteBankAccount"].HeaderText = @"Tài khoản";
+            dtgvSiteA.Columns["SiteBankAccount"].Visible = false;
+            dtgvSiteA.Columns["SiteNameOfBank"].HeaderText = @"Nhân hàng";
+            dtgvSiteA.Columns["SiteNameOfBank"].Visible = false;
+            dtgvSiteA.Columns["SiteRepresentative1"].HeaderText = @"Đại diện 1";
+            dtgvSiteA.Columns["SiteRepresentative1"].Visible = false;
+            dtgvSiteA.Columns["SitePosition1"].HeaderText = @"Chức vụ";
+            dtgvSiteA.Columns["SitePosition1"].Visible = false;
+            dtgvSiteA.Columns["SiteProxy1"].HeaderText = @"Văn bản uỷ quyền";
+            dtgvSiteA.Columns["SiteProxy1"].Visible = false;
+            dtgvSiteA.Columns["SiteRepresentative2"].HeaderText = @"Đại diện 2";
+            dtgvSiteA.Columns["SiteRepresentative2"].Visible = false;
+            dtgvSiteA.Columns["SitePosition2"].HeaderText = @"Chức vụ";
+            dtgvSiteA.Columns["SitePosition2"].Visible = false;
+            dtgvSiteA.Columns["SiteProxy2"].HeaderText = @"Văn bản uỷ quyền";
+            dtgvSiteA.Columns["SiteProxy2"].Visible = false;
+            dtgvSiteA.Columns["SiteRepresentative3"].HeaderText = @"Đại diện 3";
+            dtgvSiteA.Columns["SiteRepresentative3"].Visible = false;
+            dtgvSiteA.Columns["SitePosition3"].HeaderText = @"Chức vụ";
+            dtgvSiteA.Columns["SitePosition3"].Visible = false;
+            dtgvSiteA.Columns["SiteProxy3"].HeaderText = @"Văn bản uỷ quyền";
+            dtgvSiteA.Columns["SiteProxy3"].Visible = false;
+            for (int i = 0; i < dtgvSiteA.RowCount; i++)
             {
-                dtgvSite.Rows[i].Cells[0].Value = i + 1;
-                if (SiteId == dtgvSite.Rows[i].Cells["SiteId"].Value.ToString()) dtgvSite.CurrentCell = dtgvSite.Rows[i].Cells["SiteId"];
+                dtgvSiteA.Rows[i].Cells[0].Value = i + 1;
+                //if (SiteId == dtgvSiteA.Rows[i].Cells["SiteName"].Value.ToString()) dtgvSiteA.CurrentCell = dtgvSiteA.Rows[i].Cells["SiteName"];
             }
             AddSiteBinding();
         }
@@ -130,35 +120,35 @@ namespace OPM.GUI
         {
             var site = new OPMEnginee.SiteObj
             {
-                SiteId = txtSiteId.Text.Trim(),
-                ProvinceId = txtProvinceId.Text.Trim(),
-                Headquater = txtHeadquater.Text.Trim(),
-                Address = txtAddress.Text.Trim(),
-                Phonenumber = txtPhoneNumber.Text.Trim(),
-                FaxNumber = txtFaxNumber.Text.Trim(),
-                TaxCode = txtTaxCode.Text.Trim(),
-                BankAccount = txtBankAccount.Text.Trim(),
-                NameOfBank = txtNameOfBank.Text.Trim(),
-                TypeOfSite = txtTypeOfSite.Text.Trim(),
-                Representative1 = txtRepresentative1.Text.Trim(),
-                Representative2 = txtRepresentative2.Text.Trim(),
-                Representative3 = txtRepresentative3.Text.Trim(),
-                Position1 = txtPosition1.Text.Trim(),
-                Position2 = txtPosition2.Text.Trim(),
-                Position3 = txtPosition3.Text.Trim(),
-                Proxy1 = txtProxy1.Text.Trim(),
-                Proxy2 = txtProxy2.Text.Trim(),
-                Proxy3 = txtProxy3.Text.Trim()
+                SiteName = txtSiteName.Text.Trim(),
+                SiteProvince = txtSiteProvince.Text.Trim(),
+                SiteHeadquater = txtHeadquater.Text.Trim(),
+                SiteAddress = txtAddress.Text.Trim(),
+                SitePhonenumber = txtPhoneNumber.Text.Trim(),
+                SiteFaxNumber = txtFaxNumber.Text.Trim(),
+                SiteTaxCode = txtTaxCode.Text.Trim(),
+                SiteBankAccount = txtBankAccount.Text.Trim(),
+                SiteNameOfBank = txtNameOfBank.Text.Trim(),
+                SiteType = txtType.Text.Trim(),
+                SiteRepresentative1 = txtRepresentative1.Text.Trim(),
+                SiteRepresentative2 = txtRepresentative2.Text.Trim(),
+                SiteRepresentative3 = txtRepresentative3.Text.Trim(),
+                SitePosition1 = txtPosition1.Text.Trim(),
+                SitePosition2 = txtPosition2.Text.Trim(),
+                SitePosition3 = txtPosition3.Text.Trim(),
+                SiteProxy1 = txtProxy1.Text.Trim(),
+                SiteProxy2 = txtProxy2.Text.Trim(),
+                SiteProxy3 = txtProxy3.Text.Trim()
             };
-            if (site.Exist()) site.Update();
-            else site.Insert();
+            if (site.SiteExist()) site.SiteUpdate();
+            else site.SiteInsert();
             LoadDataGridView();
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (OPMEnginee.SiteObj.Exist(txtSiteId.Text.Trim()))
+            if (OPMEnginee.SiteObj.SiteExist(txtSiteName.Text.Trim()))
             {
-                OPMEnginee.SiteObj.Delete(txtSiteId.Text.Trim());
+                OPMEnginee.SiteObj.Delete(txtSiteName.Text.Trim());
                 LoadDataGridView();
             }
             else MessageBox.Show("Site không tồn tại!");
@@ -171,35 +161,35 @@ namespace OPM.GUI
         {
             var site = new OPMEnginee.SiteObj
             {
-                SiteId = txtSiteId.Text.Trim(),
-                ProvinceId = txtProvinceId.Text.Trim(),
-                Headquater = txtHeadquater.Text.Trim(),
-                Address = txtAddress.Text.Trim(),
-                Phonenumber = txtPhoneNumber.Text.Trim(),
-                FaxNumber = txtFaxNumber.Text.Trim(),
-                TaxCode = txtTaxCode.Text.Trim(),
-                BankAccount = txtBankAccount.Text.Trim(),
-                NameOfBank = txtNameOfBank.Text.Trim(),
-                TypeOfSite = txtTypeOfSite.Text.Trim(),
-                Representative1 = txtRepresentative1.Text.Trim(),
-                Representative2 = txtRepresentative2.Text.Trim(),
-                Representative3 = txtRepresentative3.Text.Trim(),
-                Position1 = txtPosition1.Text.Trim(),
-                Position2 = txtPosition2.Text.Trim(),
-                Position3 = txtPosition3.Text.Trim(),
-                Proxy1 = txtProxy1.Text.Trim(),
-                Proxy2 = txtProxy2.Text.Trim(),
-                Proxy3 = txtProxy3.Text.Trim()
+                SiteName = txtSiteName.Text.Trim(),
+                SiteProvince = txtSiteProvince.Text.Trim(),
+                SiteHeadquater = txtHeadquater.Text.Trim(),
+                SiteAddress = txtAddress.Text.Trim(),
+                SitePhonenumber = txtPhoneNumber.Text.Trim(),
+                SiteFaxNumber = txtFaxNumber.Text.Trim(),
+                SiteTaxCode = txtTaxCode.Text.Trim(),
+                SiteBankAccount = txtBankAccount.Text.Trim(),
+                SiteNameOfBank = txtNameOfBank.Text.Trim(),
+                SiteType = txtType.Text.Trim(),
+                SiteRepresentative1 = txtRepresentative1.Text.Trim(),
+                SiteRepresentative2 = txtRepresentative2.Text.Trim(),
+                SiteRepresentative3 = txtRepresentative3.Text.Trim(),
+                SitePosition1 = txtPosition1.Text.Trim(),
+                SitePosition2 = txtPosition2.Text.Trim(),
+                SitePosition3 = txtPosition3.Text.Trim(),
+                SiteProxy1 = txtProxy1.Text.Trim(),
+                SiteProxy2 = txtProxy2.Text.Trim(),
+                SiteProxy3 = txtProxy3.Text.Trim()
             };
-            if (site.Exist()) site.Update();
-            else site.Insert();
+            if (site.SiteExist()) site.SiteUpdate();
+            else site.SiteInsert();
             LoadDataGridView();
             setStringValue(SiteId);
             (Tag as OPMDASHBOARDA).OpenContractForm();
         }
         private void textBoxId_TextChanged(object sender, EventArgs e)
         {
-            SiteId = txtSiteId.Text.Trim();
+            SiteId = txtSiteName.Text.Trim();
         }
     }
 }

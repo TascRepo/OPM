@@ -76,7 +76,7 @@ namespace OPM.OPMEnginee
             ContractName = contract.ContractName;
             ContractShoppingPlan = contract.ContractShoppingPlan;
             ContractType = contract.ContractType;
-            ContractSiteId = contract.ContractSiteId;
+            SiteId = contract.SiteId;
             ContractValidityDate = contract.ContractValidityDate;
             ContractDeadline = contract.ContractDeadline;
             ContractGoodsDesignation = contract.ContractGoodsDesignation;
@@ -106,7 +106,7 @@ namespace OPM.OPMEnginee
             ContractName = contract.ContractName;
             ContractShoppingPlan = contract.ContractShoppingPlan;
             ContractType = contract.ContractType;
-            ContractSiteId = contract.ContractSiteId;
+            SiteId = contract.SiteId;
             ContractValidityDate = contract.ContractValidityDate;
             ContractDeadline = contract.ContractDeadline;
             ContractGoodsDesignation = contract.ContractGoodsDesignation;
@@ -136,7 +136,7 @@ namespace OPM.OPMEnginee
             po.ContractName = contract.ContractName;
             po.ContractShoppingPlan = contract.ContractShoppingPlan;
             po.ContractType = contract.ContractType;
-            po.ContractSiteId = contract.ContractSiteId;
+            po.SiteId = contract.SiteId;
             po.ContractValidityDate = contract.ContractValidityDate;
             po.ContractDeadline = contract.ContractDeadline;
             po.ContractGoodsDesignation = contract.ContractGoodsDesignation;
