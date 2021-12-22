@@ -15,19 +15,6 @@ namespace OPM.GUI
         {
             DataTable dataTable = new DataTable();
             IPHD_PO iPHD_PO = new IPHD_PO();
-            string tsDP = DPInfo.tsDP;
-            string tsPO = DPInfo.tsPO;
-            //load thông tin lên datagrview
-            if (iPHD_PO.Check(tsDP, tsPO))
-            {
-                dataTable = iPHD_PO.GetInforDP(tsDP, tsPO, "Hàng chính");
-                //dataGridView1.DataSource = dataTable;
-            }
-            else
-            {
-                MessageBox.Show("DP mày chưa có thông tin trong CSDL!");
-            }
-            //
         }
 
         private void button1_Click(object sender, EventArgs e)

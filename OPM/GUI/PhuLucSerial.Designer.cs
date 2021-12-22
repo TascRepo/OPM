@@ -143,7 +143,6 @@ namespace OPM.GUI
             this.Controls.Add(this.dataGridView1);
             this.Name = "PhuLucSerial";
             this.Text = "PhuLucSerial";
-            this.Load += new System.EventHandler(this.PhuLucSerial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

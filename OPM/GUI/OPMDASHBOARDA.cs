@@ -253,7 +253,7 @@ namespace OPM.GUI
                     OpenChildForm(purchaseOderInfor);
                     break;
                 case "DP":
-                    DPInfo deliverPartInforDetail = new DPInfo();
+                    DeliveryPlanInfo deliverPartInforDetail = new DeliveryPlanInfo();
                     OpenChildForm(deliverPartInforDetail);
                     break;
                 case "NTKT":
@@ -440,15 +440,15 @@ namespace OPM.GUI
         }
         public void OpenDpForm(string idPO, string idContract, String PONumber)
         {
-            DPInfo deliverPartInforDetail = new DPInfo();
+            DeliveryPlanInfo deliverPartInforDetail = new DeliveryPlanInfo();
             POObj po = new POObj();
             //int retPo = PO.GetObjectPO(idPO, ref po);
             ContractObj contractObj = new ContractObj();
             //int retContract = Contract.GetObjectContract(idContract, ref contractObj);
-            deliverPartInforDetail.setIdPO(idPO);
-            deliverPartInforDetail.setIdcontract(idContract);
-            deliverPartInforDetail.setKHMS(contractObj.ContractShoppingPlan);
-            deliverPartInforDetail.setPoname(PONumber);
+            //deliverPartInforDetail.setIdPO(idPO);
+            //deliverPartInforDetail.setIdcontract(idContract);
+            //deliverPartInforDetail.setKHMS(contractObj.ContractShoppingPlan);
+            //deliverPartInforDetail.setPoname(PONumber);
             OpenChildForm(deliverPartInforDetail);
             return;
         }
