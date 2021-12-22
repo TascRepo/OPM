@@ -17,7 +17,25 @@ namespace OPM.GUI
         }
         void LoadData()
         {
-
+            LoadToDtgDeliveryPlan();
+            LoadToComboBoxProvinceId();
+            DataBindingsFromDtgDeliveryPlanToTextBoxs();
         }
+
+        private void DataBindingsFromDtgDeliveryPlanToTextBoxs()
+        {
+            
+        }
+
+        private void LoadToComboBoxProvinceId()
+        {
+            
+        }
+
+        private void LoadToDtgDeliveryPlan()
+        {
+            
+        }
+
     }
 }

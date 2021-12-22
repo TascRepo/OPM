@@ -96,35 +96,40 @@ namespace OPM.GUI
             // dtgDeliveryPlan
             // 
             this.dtgDeliveryPlan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgDeliveryPlan.Location = new System.Drawing.Point(12, 12);
+            this.dtgDeliveryPlan.Location = new System.Drawing.Point(17, 20);
+            this.dtgDeliveryPlan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtgDeliveryPlan.Name = "dtgDeliveryPlan";
+            this.dtgDeliveryPlan.RowHeadersWidth = 62;
             this.dtgDeliveryPlan.RowTemplate.Height = 25;
-            this.dtgDeliveryPlan.Size = new System.Drawing.Size(529, 585);
+            this.dtgDeliveryPlan.Size = new System.Drawing.Size(756, 945);
             this.dtgDeliveryPlan.TabIndex = 0;
             // 
             // buttonAddProvinceId
             // 
-            this.buttonAddProvinceId.Location = new System.Drawing.Point(288, 11);
+            this.buttonAddProvinceId.Location = new System.Drawing.Point(310, 18);
+            this.buttonAddProvinceId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonAddProvinceId.Name = "buttonAddProvinceId";
-            this.buttonAddProvinceId.Size = new System.Drawing.Size(115, 23);
+            this.buttonAddProvinceId.Size = new System.Drawing.Size(264, 38);
             this.buttonAddProvinceId.TabIndex = 1;
-            this.buttonAddProvinceId.Text = "Thêm tỉnh (thành)";
+            this.buttonAddProvinceId.Text = "Thêm VNPT tỉnh (thành)";
             this.buttonAddProvinceId.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 15);
+            this.label1.Location = new System.Drawing.Point(7, 25);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 15);
+            this.label1.Size = new System.Drawing.Size(110, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "Tổng số đợt";
             // 
             // textBox1DeliveryPlanQuantity
             // 
-            this.textBox1DeliveryPlanQuantity.Location = new System.Drawing.Point(81, 14);
+            this.textBox1DeliveryPlanQuantity.Location = new System.Drawing.Point(116, 23);
+            this.textBox1DeliveryPlanQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1DeliveryPlanQuantity.Name = "textBox1DeliveryPlanQuantity";
-            this.textBox1DeliveryPlanQuantity.Size = new System.Drawing.Size(115, 23);
+            this.textBox1DeliveryPlanQuantity.Size = new System.Drawing.Size(163, 31);
             this.textBox1DeliveryPlanQuantity.TabIndex = 3;
             // 
             // comboBoxPONumberOfPhase
@@ -137,18 +142,20 @@ namespace OPM.GUI
             "4",
             "5",
             "6"});
-            this.comboBoxPONumberOfPhase.Location = new System.Drawing.Point(81, 12);
+            this.comboBoxPONumberOfPhase.Location = new System.Drawing.Point(116, 20);
+            this.comboBoxPONumberOfPhase.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBoxPONumberOfPhase.Name = "comboBoxPONumberOfPhase";
-            this.comboBoxPONumberOfPhase.Size = new System.Drawing.Size(115, 23);
+            this.comboBoxPONumberOfPhase.Size = new System.Drawing.Size(163, 33);
             this.comboBoxPONumberOfPhase.TabIndex = 4;
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.comboBoxPONumberOfPhase);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(551, 21);
+            this.panel1.Location = new System.Drawing.Point(787, 35);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(413, 47);
+            this.panel1.Size = new System.Drawing.Size(590, 78);
             this.panel1.TabIndex = 5;
             // 
             // panel2
@@ -156,35 +163,39 @@ namespace OPM.GUI
             this.panel2.Controls.Add(this.comboBoxProvinceId);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.buttonAddProvinceId);
-            this.panel2.Location = new System.Drawing.Point(551, 82);
+            this.panel2.Location = new System.Drawing.Point(787, 137);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(413, 47);
+            this.panel2.Size = new System.Drawing.Size(590, 78);
             this.panel2.TabIndex = 5;
             // 
             // comboBoxProvinceId
             // 
             this.comboBoxProvinceId.Enabled = false;
             this.comboBoxProvinceId.FormattingEnabled = true;
-            this.comboBoxProvinceId.Location = new System.Drawing.Point(81, 13);
+            this.comboBoxProvinceId.Location = new System.Drawing.Point(116, 22);
+            this.comboBoxProvinceId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBoxProvinceId.Name = "comboBoxProvinceId";
-            this.comboBoxProvinceId.Size = new System.Drawing.Size(115, 23);
+            this.comboBoxProvinceId.Size = new System.Drawing.Size(163, 33);
             this.comboBoxProvinceId.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 15);
+            this.label2.Location = new System.Drawing.Point(7, 25);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 15);
+            this.label2.Size = new System.Drawing.Size(55, 25);
             this.label2.TabIndex = 2;
             this.label2.Text = "VNPT";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 19);
+            this.label3.Location = new System.Drawing.Point(9, 32);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 15);
+            this.label3.Size = new System.Drawing.Size(85, 25);
             this.label3.TabIndex = 2;
             this.label3.Text = "Số lượng";
             // 
@@ -194,26 +205,30 @@ namespace OPM.GUI
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.textBox1DeliveryPlanQuantity);
-            this.groupBox1.Location = new System.Drawing.Point(551, 139);
+            this.groupBox1.Location = new System.Drawing.Point(787, 232);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(413, 45);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Size = new System.Drawing.Size(590, 75);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Đợt 1";
             // 
             // dateTimePicker1DeliveryPlanDate
             // 
-            this.dateTimePicker1DeliveryPlanDate.Location = new System.Drawing.Point(288, 14);
+            this.dateTimePicker1DeliveryPlanDate.Location = new System.Drawing.Point(411, 23);
+            this.dateTimePicker1DeliveryPlanDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dateTimePicker1DeliveryPlanDate.Name = "dateTimePicker1DeliveryPlanDate";
-            this.dateTimePicker1DeliveryPlanDate.Size = new System.Drawing.Size(115, 23);
+            this.dateTimePicker1DeliveryPlanDate.Size = new System.Drawing.Size(163, 31);
             this.dateTimePicker1DeliveryPlanDate.TabIndex = 4;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(218, 19);
+            this.label4.Location = new System.Drawing.Point(311, 32);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 15);
+            this.label4.Size = new System.Drawing.Size(54, 25);
             this.label4.TabIndex = 2;
             this.label4.Text = "Ngày";
             // 
@@ -223,43 +238,49 @@ namespace OPM.GUI
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.textBox2DeliveryPlanQuantity);
-            this.groupBox2.Location = new System.Drawing.Point(551, 190);
+            this.groupBox2.Location = new System.Drawing.Point(787, 317);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(413, 45);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox2.Size = new System.Drawing.Size(590, 75);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Đợt 2";
             // 
             // dateTimePicker2DeliveryPlanDate
             // 
-            this.dateTimePicker2DeliveryPlanDate.Location = new System.Drawing.Point(288, 14);
+            this.dateTimePicker2DeliveryPlanDate.Location = new System.Drawing.Point(411, 23);
+            this.dateTimePicker2DeliveryPlanDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dateTimePicker2DeliveryPlanDate.Name = "dateTimePicker2DeliveryPlanDate";
-            this.dateTimePicker2DeliveryPlanDate.Size = new System.Drawing.Size(115, 23);
+            this.dateTimePicker2DeliveryPlanDate.Size = new System.Drawing.Size(163, 31);
             this.dateTimePicker2DeliveryPlanDate.TabIndex = 4;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(218, 19);
+            this.label5.Location = new System.Drawing.Point(311, 32);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 15);
+            this.label5.Size = new System.Drawing.Size(54, 25);
             this.label5.TabIndex = 2;
             this.label5.Text = "Ngày";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 19);
+            this.label6.Location = new System.Drawing.Point(9, 32);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 15);
+            this.label6.Size = new System.Drawing.Size(85, 25);
             this.label6.TabIndex = 2;
             this.label6.Text = "Số lượng";
             // 
             // textBox2DeliveryPlanQuantity
             // 
-            this.textBox2DeliveryPlanQuantity.Location = new System.Drawing.Point(81, 14);
+            this.textBox2DeliveryPlanQuantity.Location = new System.Drawing.Point(116, 23);
+            this.textBox2DeliveryPlanQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox2DeliveryPlanQuantity.Name = "textBox2DeliveryPlanQuantity";
-            this.textBox2DeliveryPlanQuantity.Size = new System.Drawing.Size(115, 23);
+            this.textBox2DeliveryPlanQuantity.Size = new System.Drawing.Size(163, 31);
             this.textBox2DeliveryPlanQuantity.TabIndex = 3;
             // 
             // groupBox3
@@ -268,43 +289,49 @@ namespace OPM.GUI
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.textBox3DeliveryPlanQuantity);
-            this.groupBox3.Location = new System.Drawing.Point(551, 241);
+            this.groupBox3.Location = new System.Drawing.Point(787, 402);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(413, 45);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox3.Size = new System.Drawing.Size(590, 75);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Đợt 3";
             // 
             // dateTimePicker3DeliveryPlanDate
             // 
-            this.dateTimePicker3DeliveryPlanDate.Location = new System.Drawing.Point(288, 14);
+            this.dateTimePicker3DeliveryPlanDate.Location = new System.Drawing.Point(411, 23);
+            this.dateTimePicker3DeliveryPlanDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dateTimePicker3DeliveryPlanDate.Name = "dateTimePicker3DeliveryPlanDate";
-            this.dateTimePicker3DeliveryPlanDate.Size = new System.Drawing.Size(115, 23);
+            this.dateTimePicker3DeliveryPlanDate.Size = new System.Drawing.Size(163, 31);
             this.dateTimePicker3DeliveryPlanDate.TabIndex = 4;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(218, 19);
+            this.label7.Location = new System.Drawing.Point(311, 32);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 15);
+            this.label7.Size = new System.Drawing.Size(54, 25);
             this.label7.TabIndex = 2;
             this.label7.Text = "Ngày";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 19);
+            this.label8.Location = new System.Drawing.Point(9, 32);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(54, 15);
+            this.label8.Size = new System.Drawing.Size(85, 25);
             this.label8.TabIndex = 2;
             this.label8.Text = "Số lượng";
             // 
             // textBox3DeliveryPlanQuantity
             // 
-            this.textBox3DeliveryPlanQuantity.Location = new System.Drawing.Point(81, 14);
+            this.textBox3DeliveryPlanQuantity.Location = new System.Drawing.Point(116, 23);
+            this.textBox3DeliveryPlanQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox3DeliveryPlanQuantity.Name = "textBox3DeliveryPlanQuantity";
-            this.textBox3DeliveryPlanQuantity.Size = new System.Drawing.Size(115, 23);
+            this.textBox3DeliveryPlanQuantity.Size = new System.Drawing.Size(163, 31);
             this.textBox3DeliveryPlanQuantity.TabIndex = 3;
             // 
             // groupBox4
@@ -313,43 +340,49 @@ namespace OPM.GUI
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.textBox4DeliveryPlanQuantity);
-            this.groupBox4.Location = new System.Drawing.Point(551, 292);
+            this.groupBox4.Location = new System.Drawing.Point(787, 487);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(413, 45);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox4.Size = new System.Drawing.Size(590, 75);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Đợt 4";
             // 
             // dateTimePicker4DeliveryPlanDate
             // 
-            this.dateTimePicker4DeliveryPlanDate.Location = new System.Drawing.Point(288, 14);
+            this.dateTimePicker4DeliveryPlanDate.Location = new System.Drawing.Point(411, 23);
+            this.dateTimePicker4DeliveryPlanDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dateTimePicker4DeliveryPlanDate.Name = "dateTimePicker4DeliveryPlanDate";
-            this.dateTimePicker4DeliveryPlanDate.Size = new System.Drawing.Size(115, 23);
+            this.dateTimePicker4DeliveryPlanDate.Size = new System.Drawing.Size(163, 31);
             this.dateTimePicker4DeliveryPlanDate.TabIndex = 4;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(218, 19);
+            this.label9.Location = new System.Drawing.Point(311, 32);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 15);
+            this.label9.Size = new System.Drawing.Size(54, 25);
             this.label9.TabIndex = 2;
             this.label9.Text = "Ngày";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 19);
+            this.label10.Location = new System.Drawing.Point(9, 32);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(54, 15);
+            this.label10.Size = new System.Drawing.Size(85, 25);
             this.label10.TabIndex = 2;
             this.label10.Text = "Số lượng";
             // 
             // textBox4DeliveryPlanQuantity
             // 
-            this.textBox4DeliveryPlanQuantity.Location = new System.Drawing.Point(81, 14);
+            this.textBox4DeliveryPlanQuantity.Location = new System.Drawing.Point(116, 23);
+            this.textBox4DeliveryPlanQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox4DeliveryPlanQuantity.Name = "textBox4DeliveryPlanQuantity";
-            this.textBox4DeliveryPlanQuantity.Size = new System.Drawing.Size(115, 23);
+            this.textBox4DeliveryPlanQuantity.Size = new System.Drawing.Size(163, 31);
             this.textBox4DeliveryPlanQuantity.TabIndex = 3;
             // 
             // groupBox5
@@ -358,59 +391,67 @@ namespace OPM.GUI
             this.groupBox5.Controls.Add(this.label11);
             this.groupBox5.Controls.Add(this.label12);
             this.groupBox5.Controls.Add(this.textBox5DeliveryPlanQuantity);
-            this.groupBox5.Location = new System.Drawing.Point(551, 343);
+            this.groupBox5.Location = new System.Drawing.Point(787, 572);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(413, 45);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox5.Size = new System.Drawing.Size(590, 75);
             this.groupBox5.TabIndex = 6;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Đợt 5";
             // 
             // dateTimePicker5DeliveryPlanDate
             // 
-            this.dateTimePicker5DeliveryPlanDate.Location = new System.Drawing.Point(288, 14);
+            this.dateTimePicker5DeliveryPlanDate.Location = new System.Drawing.Point(411, 23);
+            this.dateTimePicker5DeliveryPlanDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dateTimePicker5DeliveryPlanDate.Name = "dateTimePicker5DeliveryPlanDate";
-            this.dateTimePicker5DeliveryPlanDate.Size = new System.Drawing.Size(115, 23);
+            this.dateTimePicker5DeliveryPlanDate.Size = new System.Drawing.Size(163, 31);
             this.dateTimePicker5DeliveryPlanDate.TabIndex = 4;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(218, 19);
+            this.label11.Location = new System.Drawing.Point(311, 32);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(35, 15);
+            this.label11.Size = new System.Drawing.Size(54, 25);
             this.label11.TabIndex = 2;
             this.label11.Text = "Ngày";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 19);
+            this.label12.Location = new System.Drawing.Point(9, 32);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(54, 15);
+            this.label12.Size = new System.Drawing.Size(85, 25);
             this.label12.TabIndex = 2;
             this.label12.Text = "Số lượng";
             // 
             // textBox5DeliveryPlanQuantity
             // 
-            this.textBox5DeliveryPlanQuantity.Location = new System.Drawing.Point(81, 14);
+            this.textBox5DeliveryPlanQuantity.Location = new System.Drawing.Point(116, 23);
+            this.textBox5DeliveryPlanQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox5DeliveryPlanQuantity.Name = "textBox5DeliveryPlanQuantity";
-            this.textBox5DeliveryPlanQuantity.Size = new System.Drawing.Size(115, 23);
+            this.textBox5DeliveryPlanQuantity.Size = new System.Drawing.Size(163, 31);
             this.textBox5DeliveryPlanQuantity.TabIndex = 3;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(551, 556);
+            this.btnClose.Location = new System.Drawing.Point(787, 927);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(115, 23);
+            this.btnClose.Size = new System.Drawing.Size(164, 38);
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(839, 556);
+            this.btnAdd.Location = new System.Drawing.Point(1199, 927);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(115, 23);
+            this.btnAdd.Size = new System.Drawing.Size(164, 38);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "AddOrEdit";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -421,58 +462,66 @@ namespace OPM.GUI
             this.groupBox6.Controls.Add(this.label13);
             this.groupBox6.Controls.Add(this.label14);
             this.groupBox6.Controls.Add(this.textBox6DeliveryPlanQuantity);
-            this.groupBox6.Location = new System.Drawing.Point(551, 394);
+            this.groupBox6.Location = new System.Drawing.Point(787, 657);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(413, 45);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox6.Size = new System.Drawing.Size(590, 75);
             this.groupBox6.TabIndex = 6;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Đợt 6";
             // 
             // dateTimePicker6DeliveryPlanDate
             // 
-            this.dateTimePicker6DeliveryPlanDate.Location = new System.Drawing.Point(288, 14);
+            this.dateTimePicker6DeliveryPlanDate.Location = new System.Drawing.Point(411, 23);
+            this.dateTimePicker6DeliveryPlanDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dateTimePicker6DeliveryPlanDate.Name = "dateTimePicker6DeliveryPlanDate";
-            this.dateTimePicker6DeliveryPlanDate.Size = new System.Drawing.Size(115, 23);
+            this.dateTimePicker6DeliveryPlanDate.Size = new System.Drawing.Size(163, 31);
             this.dateTimePicker6DeliveryPlanDate.TabIndex = 4;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(218, 19);
+            this.label13.Location = new System.Drawing.Point(311, 32);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 15);
+            this.label13.Size = new System.Drawing.Size(54, 25);
             this.label13.TabIndex = 2;
             this.label13.Text = "Ngày";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 19);
+            this.label14.Location = new System.Drawing.Point(9, 32);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(54, 15);
+            this.label14.Size = new System.Drawing.Size(85, 25);
             this.label14.TabIndex = 2;
             this.label14.Text = "Số lượng";
             // 
             // textBox6DeliveryPlanQuantity
             // 
-            this.textBox6DeliveryPlanQuantity.Location = new System.Drawing.Point(81, 14);
+            this.textBox6DeliveryPlanQuantity.Location = new System.Drawing.Point(116, 23);
+            this.textBox6DeliveryPlanQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox6DeliveryPlanQuantity.Name = "textBox6DeliveryPlanQuantity";
-            this.textBox6DeliveryPlanQuantity.Size = new System.Drawing.Size(115, 23);
+            this.textBox6DeliveryPlanQuantity.Size = new System.Drawing.Size(163, 31);
             this.textBox6DeliveryPlanQuantity.TabIndex = 3;
             // 
             // textBoxDeliveryPlanQuantity
             // 
-            this.textBoxDeliveryPlanQuantity.Location = new System.Drawing.Point(81, 20);
+            this.textBoxDeliveryPlanQuantity.Location = new System.Drawing.Point(116, 33);
+            this.textBoxDeliveryPlanQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxDeliveryPlanQuantity.Name = "textBoxDeliveryPlanQuantity";
-            this.textBoxDeliveryPlanQuantity.Size = new System.Drawing.Size(115, 23);
+            this.textBoxDeliveryPlanQuantity.Size = new System.Drawing.Size(163, 31);
             this.textBoxDeliveryPlanQuantity.TabIndex = 3;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 25);
+            this.label16.Location = new System.Drawing.Point(9, 42);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(36, 15);
+            this.label16.Size = new System.Drawing.Size(55, 25);
             this.label16.TabIndex = 2;
             this.label16.Text = "VNPT";
             // 
@@ -488,9 +537,11 @@ namespace OPM.GUI
             this.groupBox7.Controls.Add(this.txtRemainingPOGoodsQuantity);
             this.groupBox7.Controls.Add(this.txtPOGoodsQuantity);
             this.groupBox7.Controls.Add(this.textBoxDeliveryPlanQuantity);
-            this.groupBox7.Location = new System.Drawing.Point(551, 445);
+            this.groupBox7.Location = new System.Drawing.Point(787, 742);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(413, 105);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox7.Size = new System.Drawing.Size(590, 175);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Tổng cộng số lượng";
@@ -498,81 +549,90 @@ namespace OPM.GUI
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 76);
+            this.label17.Location = new System.Drawing.Point(9, 127);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(53, 15);
+            this.label17.Size = new System.Drawing.Size(79, 25);
             this.label17.TabIndex = 2;
             this.label17.Text = "Contract";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(218, 76);
+            this.label19.Location = new System.Drawing.Point(311, 127);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(44, 15);
+            this.label19.Size = new System.Drawing.Size(66, 25);
             this.label19.TabIndex = 2;
             this.label19.Text = "Còn lại";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(218, 51);
+            this.label18.Location = new System.Drawing.Point(311, 85);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(44, 15);
+            this.label18.Size = new System.Drawing.Size(66, 25);
             this.label18.TabIndex = 2;
             this.label18.Text = "Còn lại";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 51);
+            this.label15.Location = new System.Drawing.Point(9, 85);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(23, 15);
+            this.label15.Size = new System.Drawing.Size(36, 25);
             this.label15.TabIndex = 2;
             this.label15.Text = "PO";
             // 
             // txtRemainingContractGoodsQuantity
             // 
-            this.txtRemainingContractGoodsQuantity.Location = new System.Drawing.Point(288, 73);
+            this.txtRemainingContractGoodsQuantity.Location = new System.Drawing.Point(411, 122);
+            this.txtRemainingContractGoodsQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtRemainingContractGoodsQuantity.Name = "txtRemainingContractGoodsQuantity";
-            this.txtRemainingContractGoodsQuantity.Size = new System.Drawing.Size(115, 23);
+            this.txtRemainingContractGoodsQuantity.Size = new System.Drawing.Size(163, 31);
             this.txtRemainingContractGoodsQuantity.TabIndex = 3;
             // 
             // txtContractGoodsQuantity
             // 
-            this.txtContractGoodsQuantity.Location = new System.Drawing.Point(81, 71);
+            this.txtContractGoodsQuantity.Location = new System.Drawing.Point(116, 118);
+            this.txtContractGoodsQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtContractGoodsQuantity.Name = "txtContractGoodsQuantity";
-            this.txtContractGoodsQuantity.Size = new System.Drawing.Size(115, 23);
+            this.txtContractGoodsQuantity.Size = new System.Drawing.Size(163, 31);
             this.txtContractGoodsQuantity.TabIndex = 3;
             // 
             // txtRemainingPOGoodsQuantity
             // 
-            this.txtRemainingPOGoodsQuantity.Location = new System.Drawing.Point(288, 48);
+            this.txtRemainingPOGoodsQuantity.Location = new System.Drawing.Point(411, 80);
+            this.txtRemainingPOGoodsQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtRemainingPOGoodsQuantity.Name = "txtRemainingPOGoodsQuantity";
-            this.txtRemainingPOGoodsQuantity.Size = new System.Drawing.Size(115, 23);
+            this.txtRemainingPOGoodsQuantity.Size = new System.Drawing.Size(163, 31);
             this.txtRemainingPOGoodsQuantity.TabIndex = 3;
             // 
             // txtPOGoodsQuantity
             // 
-            this.txtPOGoodsQuantity.Location = new System.Drawing.Point(81, 46);
+            this.txtPOGoodsQuantity.Location = new System.Drawing.Point(116, 77);
+            this.txtPOGoodsQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPOGoodsQuantity.Name = "txtPOGoodsQuantity";
-            this.txtPOGoodsQuantity.Size = new System.Drawing.Size(115, 23);
+            this.txtPOGoodsQuantity.Size = new System.Drawing.Size(163, 31);
             this.txtPOGoodsQuantity.TabIndex = 3;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(698, 556);
+            this.btnDelete.Location = new System.Drawing.Point(997, 927);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(115, 23);
+            this.btnDelete.Size = new System.Drawing.Size(164, 38);
             this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
-            // DeliveryPlan
+            // DeliveryPlanInfo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(981, 609);
+            this.ClientSize = new System.Drawing.Size(1401, 972);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
@@ -586,7 +646,8 @@ namespace OPM.GUI
             this.Controls.Add(this.dtgDeliveryPlan);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "DeliveryPlan";
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Name = "DeliveryPlanInfo";
             this.Text = "DeliveryPlan";
             ((System.ComponentModel.ISupportInitialize)(this.dtgDeliveryPlan)).EndInit();
             this.panel1.ResumeLayout(false);
