@@ -41,7 +41,7 @@ namespace OPM.GUI
             dtpContractValidityDate.Value = (Tag as OPMDASHBOARDA).Contract.ContractValidityDate;
             txtValue.Text = Math.Round((Tag as OPMDASHBOARDA).Contract.ContractValue).ToString();
             txtPOGuaranteeValidityPeriod.Text = (Tag as OPMDASHBOARDA).Contract.POGuaranteeValidityPeriod.ToString();
-            txtIdSiteA.Text = (Tag as OPMDASHBOARDA).Contract.ContractSiteId;
+            txtIdSiteA.Text = (Tag as OPMDASHBOARDA).Contract.SiteId;
             txtGuaranteeDuration.Text = ((Tag as OPMDASHBOARDA).Contract.ContractGuaranteeDeadline - (Tag as OPMDASHBOARDA).Contract.ContractGuaranteeCreatedDate).Days.ToString();
             txbGuaranteeValue.Text = (Tag as OPMDASHBOARDA).Contract.POGuaranteeRatio.ToString();
             dtpGuaranteeDateCreated.Value = (Tag as OPMDASHBOARDA).Contract.ContractGuaranteeCreatedDate;
@@ -161,7 +161,7 @@ namespace OPM.GUI
         }
         private void txtIdSiteA_TextChanged(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).Contract.ContractSiteId = txtIdSiteA.Text.Trim();
+            (Tag as OPMDASHBOARDA).Contract.SiteId = txtIdSiteA.Text.Trim();
         }
         private void dtpGaranteeDateCreated_ValueChanged(object sender, EventArgs e)
         {

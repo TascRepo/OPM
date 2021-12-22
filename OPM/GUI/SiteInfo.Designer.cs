@@ -33,6 +33,9 @@ namespace OPM.GUI
             this.panel11 = new System.Windows.Forms.Panel();
             this.txtRepresentative2 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.txtNameOfBank = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.txtBankAccount = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -67,7 +70,7 @@ namespace OPM.GUI
             this.txtFaxNumber = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtTypeOfSite = new System.Windows.Forms.TextBox();
+            this.txtType = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
             this.txtPosition2 = new System.Windows.Forms.TextBox();
@@ -79,21 +82,19 @@ namespace OPM.GUI
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel17 = new System.Windows.Forms.Panel();
-            this.txtProvinceId = new System.Windows.Forms.TextBox();
+            this.txtSiteProvince = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.panel26 = new System.Windows.Forms.Panel();
-            this.txtSiteId = new System.Windows.Forms.TextBox();
+            this.txtSiteName = new System.Windows.Forms.TextBox();
             this.lblFoodTableSatus = new System.Windows.Forms.Label();
-            this.dtgvSite = new System.Windows.Forms.DataGridView();
+            this.dtgvSiteA = new System.Windows.Forms.DataGridView();
             this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAddOrUpdate = new System.Windows.Forms.Button();
-            this.panel18 = new System.Windows.Forms.Panel();
-            this.txtNameOfBank = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
             this.panel24.SuspendLayout();
             this.panel11.SuspendLayout();
+            this.panel18.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -111,8 +112,7 @@ namespace OPM.GUI
             this.panel4.SuspendLayout();
             this.panel17.SuspendLayout();
             this.panel26.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvSite)).BeginInit();
-            this.panel18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvSiteA)).BeginInit();
             this.SuspendLayout();
             // 
             // panel24
@@ -161,7 +161,6 @@ namespace OPM.GUI
             this.txtRepresentative2.Name = "txtRepresentative2";
             this.txtRepresentative2.Size = new System.Drawing.Size(310, 20);
             this.txtRepresentative2.TabIndex = 11;
-            this.txtRepresentative2.Text = "Ông Vũ Thiện Nhượng";
             // 
             // label11
             // 
@@ -173,6 +172,36 @@ namespace OPM.GUI
             this.label11.Size = new System.Drawing.Size(55, 14);
             this.label11.TabIndex = 1;
             this.label11.Text = "Đại diện 2";
+            // 
+            // panel18
+            // 
+            this.panel18.Controls.Add(this.txtNameOfBank);
+            this.panel18.Controls.Add(this.label18);
+            this.panel18.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.panel18.Location = new System.Drawing.Point(7, 239);
+            this.panel18.Margin = new System.Windows.Forms.Padding(2);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(420, 24);
+            this.panel18.TabIndex = 6;
+            // 
+            // txtNameOfBank
+            // 
+            this.txtNameOfBank.Location = new System.Drawing.Point(100, 2);
+            this.txtNameOfBank.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNameOfBank.Name = "txtNameOfBank";
+            this.txtNameOfBank.Size = new System.Drawing.Size(310, 20);
+            this.txtNameOfBank.TabIndex = 7;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label18.Location = new System.Drawing.Point(5, 7);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(59, 14);
+            this.label18.TabIndex = 1;
+            this.label18.Text = "Ngân hàng";
             // 
             // panel7
             // 
@@ -192,7 +221,6 @@ namespace OPM.GUI
             this.txtBankAccount.Name = "txtBankAccount";
             this.txtBankAccount.Size = new System.Drawing.Size(310, 20);
             this.txtBankAccount.TabIndex = 7;
-            this.txtBankAccount.Text = "0071001103933";
             // 
             // label7
             // 
@@ -253,7 +281,6 @@ namespace OPM.GUI
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(310, 20);
             this.txtAddress.TabIndex = 3;
-            this.txtAddress.Text = "124-Hoàng Quốc Việt-Cầu Giấy- Hà Nội";
             // 
             // label3
             // 
@@ -344,7 +371,6 @@ namespace OPM.GUI
             this.txtTaxCode.Name = "txtTaxCode";
             this.txtTaxCode.Size = new System.Drawing.Size(310, 20);
             this.txtTaxCode.TabIndex = 6;
-            this.txtTaxCode.Text = "0100113871";
             // 
             // label6
             // 
@@ -375,7 +401,6 @@ namespace OPM.GUI
             this.txtHeadquater.Name = "txtHeadquater";
             this.txtHeadquater.Size = new System.Drawing.Size(310, 20);
             this.txtHeadquater.TabIndex = 2;
-            this.txtHeadquater.Text = "124-Hoàng Quốc Việt-Cầu Giấy- Hà Nội";
             // 
             // label2
             // 
@@ -466,7 +491,6 @@ namespace OPM.GUI
             this.txtPosition1.Name = "txtPosition1";
             this.txtPosition1.Size = new System.Drawing.Size(310, 20);
             this.txtPosition1.TabIndex = 9;
-            this.txtPosition1.Text = "Tổng giám đốc";
             // 
             // label9
             // 
@@ -497,7 +521,6 @@ namespace OPM.GUI
             this.txtFaxNumber.Name = "txtFaxNumber";
             this.txtFaxNumber.Size = new System.Drawing.Size(310, 20);
             this.txtFaxNumber.TabIndex = 5;
-            this.txtFaxNumber.Text = "02433861195";
             // 
             // label5
             // 
@@ -513,7 +536,7 @@ namespace OPM.GUI
             // panel1
             // 
             this.panel1.AutoSize = true;
-            this.panel1.Controls.Add(this.txtTypeOfSite);
+            this.panel1.Controls.Add(this.txtType);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.panel1.Location = new System.Drawing.Point(7, 52);
@@ -522,14 +545,13 @@ namespace OPM.GUI
             this.panel1.Size = new System.Drawing.Size(420, 28);
             this.panel1.TabIndex = 1;
             // 
-            // txtTypeOfSite
+            // txtType
             // 
-            this.txtTypeOfSite.Location = new System.Drawing.Point(100, 4);
-            this.txtTypeOfSite.Margin = new System.Windows.Forms.Padding(2);
-            this.txtTypeOfSite.Name = "txtTypeOfSite";
-            this.txtTypeOfSite.Size = new System.Drawing.Size(310, 20);
-            this.txtTypeOfSite.TabIndex = 1;
-            this.txtTypeOfSite.Text = "Site A";
+            this.txtType.Location = new System.Drawing.Point(100, 4);
+            this.txtType.Margin = new System.Windows.Forms.Padding(2);
+            this.txtType.Name = "txtType";
+            this.txtType.Size = new System.Drawing.Size(310, 20);
+            this.txtType.TabIndex = 1;
             // 
             // label1
             // 
@@ -590,7 +612,6 @@ namespace OPM.GUI
             this.txtRepresentative1.Name = "txtRepresentative1";
             this.txtRepresentative1.Size = new System.Drawing.Size(310, 20);
             this.txtRepresentative1.TabIndex = 8;
-            this.txtRepresentative1.Text = "Ông Nguyễn Văn Nam";
             // 
             // label8
             // 
@@ -621,7 +642,6 @@ namespace OPM.GUI
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(310, 20);
             this.txtPhoneNumber.TabIndex = 4;
-            this.txtPhoneNumber.Text = "02438362094";
             // 
             // label4
             // 
@@ -636,7 +656,7 @@ namespace OPM.GUI
             // 
             // panel17
             // 
-            this.panel17.Controls.Add(this.txtProvinceId);
+            this.panel17.Controls.Add(this.txtSiteProvince);
             this.panel17.Controls.Add(this.label17);
             this.panel17.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.panel17.Location = new System.Drawing.Point(7, 26);
@@ -645,15 +665,14 @@ namespace OPM.GUI
             this.panel17.Size = new System.Drawing.Size(420, 24);
             this.panel17.TabIndex = 0;
             // 
-            // txtProvinceId
+            // txtSiteProvince
             // 
-            this.txtProvinceId.Location = new System.Drawing.Point(100, 2);
-            this.txtProvinceId.Margin = new System.Windows.Forms.Padding(2);
-            this.txtProvinceId.Name = "txtProvinceId";
-            this.txtProvinceId.Size = new System.Drawing.Size(310, 20);
-            this.txtProvinceId.TabIndex = 0;
-            this.txtProvinceId.Text = "ANSV";
-            this.txtProvinceId.TextChanged += new System.EventHandler(this.textBoxId_TextChanged);
+            this.txtSiteProvince.Location = new System.Drawing.Point(100, 2);
+            this.txtSiteProvince.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSiteProvince.Name = "txtSiteProvince";
+            this.txtSiteProvince.Size = new System.Drawing.Size(310, 20);
+            this.txtSiteProvince.TabIndex = 0;
+            this.txtSiteProvince.TextChanged += new System.EventHandler(this.textBoxId_TextChanged);
             // 
             // label17
             // 
@@ -668,7 +687,7 @@ namespace OPM.GUI
             // 
             // panel26
             // 
-            this.panel26.Controls.Add(this.txtSiteId);
+            this.panel26.Controls.Add(this.txtSiteName);
             this.panel26.Controls.Add(this.lblFoodTableSatus);
             this.panel26.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.panel26.Location = new System.Drawing.Point(7, 1);
@@ -677,15 +696,14 @@ namespace OPM.GUI
             this.panel26.Size = new System.Drawing.Size(420, 24);
             this.panel26.TabIndex = 0;
             // 
-            // txtSiteId
+            // txtSiteName
             // 
-            this.txtSiteId.Location = new System.Drawing.Point(100, 2);
-            this.txtSiteId.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSiteId.Name = "txtSiteId";
-            this.txtSiteId.Size = new System.Drawing.Size(310, 20);
-            this.txtSiteId.TabIndex = 0;
-            this.txtSiteId.Text = "Công ty TNHH thiết bị viễn thông ANSV";
-            this.txtSiteId.TextChanged += new System.EventHandler(this.textBoxId_TextChanged);
+            this.txtSiteName.Location = new System.Drawing.Point(100, 2);
+            this.txtSiteName.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSiteName.Name = "txtSiteName";
+            this.txtSiteName.Size = new System.Drawing.Size(310, 20);
+            this.txtSiteName.TabIndex = 0;
+            this.txtSiteName.TextChanged += new System.EventHandler(this.textBoxId_TextChanged);
             // 
             // lblFoodTableSatus
             // 
@@ -698,19 +716,19 @@ namespace OPM.GUI
             this.lblFoodTableSatus.TabIndex = 1;
             this.lblFoodTableSatus.Text = "Tên đơn vị";
             // 
-            // dtgvSite
+            // dtgvSiteA
             // 
-            this.dtgvSite.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtgvSite.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvSite.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dtgvSiteA.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvSiteA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvSiteA.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STT});
-            this.dtgvSite.Location = new System.Drawing.Point(17, 7);
-            this.dtgvSite.Margin = new System.Windows.Forms.Padding(2);
-            this.dtgvSite.Name = "dtgvSite";
-            this.dtgvSite.RowHeadersWidth = 62;
-            this.dtgvSite.RowTemplate.Height = 33;
-            this.dtgvSite.Size = new System.Drawing.Size(274, 457);
-            this.dtgvSite.TabIndex = 0;
+            this.dtgvSiteA.Location = new System.Drawing.Point(17, 7);
+            this.dtgvSiteA.Margin = new System.Windows.Forms.Padding(2);
+            this.dtgvSiteA.Name = "dtgvSiteA";
+            this.dtgvSiteA.RowHeadersWidth = 62;
+            this.dtgvSiteA.RowTemplate.Height = 33;
+            this.dtgvSiteA.Size = new System.Drawing.Size(274, 457);
+            this.dtgvSiteA.TabIndex = 0;
             // 
             // STT
             // 
@@ -751,44 +769,13 @@ namespace OPM.GUI
             this.btnAddOrUpdate.UseVisualStyleBackColor = true;
             this.btnAddOrUpdate.Click += new System.EventHandler(this.btnAddOrUpdate_Click);
             // 
-            // panel18
-            // 
-            this.panel18.Controls.Add(this.txtNameOfBank);
-            this.panel18.Controls.Add(this.label18);
-            this.panel18.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.panel18.Location = new System.Drawing.Point(7, 239);
-            this.panel18.Margin = new System.Windows.Forms.Padding(2);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(420, 24);
-            this.panel18.TabIndex = 6;
-            // 
-            // txtNameOfBank
-            // 
-            this.txtNameOfBank.Location = new System.Drawing.Point(100, 2);
-            this.txtNameOfBank.Margin = new System.Windows.Forms.Padding(2);
-            this.txtNameOfBank.Name = "txtNameOfBank";
-            this.txtNameOfBank.Size = new System.Drawing.Size(310, 20);
-            this.txtNameOfBank.TabIndex = 7;
-            this.txtNameOfBank.Text = "MSB";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label18.Location = new System.Drawing.Point(5, 7);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(59, 14);
-            this.label18.TabIndex = 1;
-            this.label18.Text = "Ngân hàng";
-            // 
             // SiteInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 514);
             this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.dtgvSite);
+            this.Controls.Add(this.dtgvSiteA);
             this.Controls.Add(this.panel24);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAddOrUpdate);
@@ -800,6 +787,8 @@ namespace OPM.GUI
             this.panel24.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            this.panel18.ResumeLayout(false);
+            this.panel18.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel16.ResumeLayout(false);
@@ -834,9 +823,7 @@ namespace OPM.GUI
             this.panel17.PerformLayout();
             this.panel26.ResumeLayout(false);
             this.panel26.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvSite)).EndInit();
-            this.panel18.ResumeLayout(false);
-            this.panel18.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvSiteA)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -845,9 +832,9 @@ namespace OPM.GUI
         private System.Windows.Forms.Panel panel24;
         private System.Windows.Forms.Panel panel26;
         private System.Windows.Forms.Label lblFoodTableSatus;
-        private System.Windows.Forms.DataGridView dtgvSite;
+        private System.Windows.Forms.DataGridView dtgvSiteA;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.TextBox txtSiteId;
+        private System.Windows.Forms.TextBox txtSiteName;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.TextBox txtRepresentative2;
         private System.Windows.Forms.Label label11;
@@ -885,7 +872,7 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox txtFaxNumber;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox txtTypeOfSite;
+        private System.Windows.Forms.TextBox txtType;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.TextBox txtPosition2;
@@ -900,7 +887,7 @@ namespace OPM.GUI
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnAddOrUpdate;
         private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.TextBox txtProvinceId;
+        private System.Windows.Forms.TextBox txtSiteProvince;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.TextBox txtNameOfBank;
