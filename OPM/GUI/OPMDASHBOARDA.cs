@@ -416,6 +416,12 @@ namespace OPM.GUI
             Text = string.Format("Hợp đồng số {0}: Bảng hàng hoá", Contract.ContractId);
             OpenChildForm(goodsForm);
         }
+        public void OpenDeliveryPlanForm()
+        {
+            DeliveryPlanInfo deliveryPlanForm = new DeliveryPlanInfo();
+            Text = string.Format("Kê hoạch giao hàng của PO số {0} của hợp đồng số {1}",Po.POName, Contract.ContractId);
+            OpenChildForm(deliveryPlanForm);
+        }
         public void OpenContractForm()
         {
             ContractInfo contractInfo = new ContractInfo();

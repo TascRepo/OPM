@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OPM.DBHandler;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,7 +25,9 @@ namespace OPM.GUI
 
         private void DataBindingsFromDtgDeliveryPlanToTextBoxs()
         {
-            
+            //List<DeliveryPlanObj> deliveryPlans = DeliveryPlanObj.DeliveryPlanGetList((Tag as OPMDASHBOARDA).Po.POId);
+            //dtgDeliveryPlan.DataSource = deliveryPlans;
+            //dtgDeliveryPlan.Columns["ProvinceId"].HeaderText = "Mã tỉnh";
         }
 
         private void LoadToComboBoxProvinceId()

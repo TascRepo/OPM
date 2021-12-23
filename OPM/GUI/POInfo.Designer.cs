@@ -477,7 +477,7 @@ namespace OPM.GUI
             this.btnDeliveryPlan.Name = "btnDeliveryPlan";
             this.btnDeliveryPlan.Size = new System.Drawing.Size(459, 38);
             this.btnDeliveryPlan.TabIndex = 20;
-            this.btnDeliveryPlan.Text = "Import file kế hoạch giao hàng";
+            this.btnDeliveryPlan.Text = "Kế hoạch giao hàng";
             this.btnDeliveryPlan.UseVisualStyleBackColor = true;
             this.btnDeliveryPlan.Click += new System.EventHandler(this.btnDeliveryPlan_Click);
             // 

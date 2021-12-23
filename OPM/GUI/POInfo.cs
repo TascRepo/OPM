@@ -153,28 +153,7 @@ namespace OPM.GUI
 
         private void btnDeliveryPlan_Click(object sender, EventArgs e)
         {
-            //openFileExcel.Multiselect = true;
-            //openFileExcel.Filter = "Excel Files(.xls)|*.xls| Excel Files(.xlsx)| *.xlsx | Excel Files(*.xlsm) | *.xlsm";
-            if (openFileExcel.ShowDialog() == DialogResult.OK)
-            {
-                if (File.Exists(openFileExcel.FileName))
-                {
-                    string filename = openFileExcel.FileName;
-                    int ret = OpmExcelHandler.SaveFileInDelivery_PO(filename, ref dtkhgh);
-                    if (ret == 1)
-                    {
-                        IDVBXN = txtPOConfirmId.Text;
-                        IPPO = txtPOId.Text;
-                        KHGH_PO kHGH_PO = new KHGH_PO();
-                        kHGH_PO.ShowDialog();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Import thất bại");
-                    }
-                }
-
-            }
+            (Tag as OPMDASHBOARDA).OpenDeliveryPlanForm();
         }
         private void txtPOId_TextChanged(object sender, EventArgs e)
         {

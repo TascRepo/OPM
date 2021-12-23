@@ -65,11 +65,8 @@ namespace OPM.GUI
         }
         void LoadDataGridView()
         {
-            //DataTable table = SiteObj.SiteGetTable();
-            //DataRow row = table.NewRow();
             List<SiteObj> sites = SiteObj.SiteGetList();
             SiteObj site = new SiteObj(SiteId);
-
             sites.Insert(0,site);
             dtgvSiteA.DataSource = sites;
             dtgvSiteA.Columns["SiteId"].Visible=false;

@@ -64,13 +64,13 @@ namespace OPM.OPMEnginee
             string query = string.Format("DELETE FROM dbo.DP WHERE DPId = '{0}' AND phase = {2}", DPId, phase);
             OPMDBHandler.ExecuteNonQuery(query);
         }
-        public static void Delete(string idPO)
+        public static void DPDelete(string idPO)
         {
             string query = string.Format("DELETE FROM dbo.DP WHERE DPId = '{0}'", idPO);
             OPMDBHandler.ExecuteNonQuery(query);
         }
 
-        public void Delete()
+        public void DPDelete()
         {
             string query = string.Format("DELETE FROM dbo.DP WHERE idPO_Thanh = '{0}' AND province = N'{1}' AND phase = {2}", dPId, ProvinceId, DPPhase);
             OPMDBHandler.ExecuteNonQuery(query);

@@ -1,5 +1,6 @@
 ﻿using OPM.OPMEnginee;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Windows.Forms;
@@ -156,5 +157,16 @@ namespace OPM.DBHandler
             return OPMDBHandler.ExecuteQuery(query);
         }
 
+        public static List<DeliveryPlanObj> DeliveryPlanGetList(string POId)
+        {
+            List<DeliveryPlanObj> list = new List<DeliveryPlanObj>();
+            DataTable dataTable = DeliveryPlanGetTable(POId);
+            foreach (DataRow item in dataTable.Rows)
+            {
+                DeliveryPlanObj deliveryPlanObj = new DeliveryPlanObj(item);
+                list.Add(deliveryPlanObj);
+            }
+            return list;
+        }
     }
 }
