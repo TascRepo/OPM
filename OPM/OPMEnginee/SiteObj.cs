@@ -137,14 +137,14 @@ namespace OPM.OPMEnginee
             string query = string.Format(@"SELECT  DISTINCT [SiteName],[SiteProvince],[SiteType],[SiteHeadquater],[SiteAddress],[SitePhonenumber],[SiteFaxNumber],[SiteTaxCode],[SiteBankAccount],[SiteNameOfBank],[SiteRepresentative1],[SitePosition1],[SiteProxy1],[SiteRepresentative2],[SitePosition2],[SiteProxy2],[SiteRepresentative3],[SitePosition3],[SiteProxy3] FROM [dbo].[Site]");
             return OPMDBHandler.ExecuteQuery(query);
         }
-        public static DataRow RowSite(SiteObj siteObj)
+        public static DataRow RowSite()
         {
             string query = string.Format(@"SELECT  DISTINCT [SiteName],[SiteProvince],[SiteType],[SiteHeadquater],[SiteAddress],[SitePhonenumber],[SiteFaxNumber],[SiteTaxCode],[SiteBankAccount],[SiteNameOfBank],[SiteRepresentative1],[SitePosition1],[SiteProxy1],[SiteRepresentative2],[SitePosition2],[SiteProxy2],[SiteRepresentative3],[SitePosition3],[SiteProxy3] FROM [dbo].[Site] Where SiteId = ",(new SiteObj()).SiteId);
             OPMDBHandler.ExecuteQuery(query);
 
             return null;
         }
-        public static DataTable SiteGetTableBySiteId(string SiteId)
+        public static DataTable SiteGetTableBySiteId()
         {
             DataTable table = SiteGetTable();
             
@@ -212,5 +212,17 @@ namespace OPM.OPMEnginee
                 MessageBox.Show("Xoá thất bại!");
             }
         }
+        public static List<string> SiteGetListProvinceId()
+        {
+            string query = string.Format("SELECT provinceId FROM dbo.Site");
+            DataTable dataTable = OPMDBHandler.ExecuteQuery(query);
+            List<string> list = new List<string>(); 
+            foreach (string item in dataTable.Rows)
+            {
+                list.Add(item);
+            }
+            return list;
+        }
+
     }
 }

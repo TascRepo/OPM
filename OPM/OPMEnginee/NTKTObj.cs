@@ -33,9 +33,9 @@ namespace OPM.OPMEnginee
                         NTKTLicenseCertificateDate = (row["NTKTLicenseCertificateDate"] == null || row["NTKTLicenseCertificateDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["NTKTLicenseCertificateDate"];
                     }
                 }
-                catch
+                catch (Exception e)
                 {
-
+                    MessageBox.Show("Lỗi khi kết nối bảng NTKT trong CSDL " + e.Message);
                 }
             }
         }
@@ -90,7 +90,7 @@ namespace OPM.OPMEnginee
         }
         public int NTKTInsert(string id)
         {
-            if (POObj.POExist(id)) return 0;
+            if (NTKTObj.NTKTExist(id)) return 0;
             string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.NTKT(NTKTId,POId,NTKTCreatedDate,NTKTPhase,NTKTQuantity,NTKTTestExpectedDate,TechnicalInspectionReportDate,TechnicalAcceptanceReportDate,NTKTLicenseCertificateDate)VALUES('{0}','{1}', '{2}', '{3}', {4}, '{5}', '{6}', '{7}', '{8}')", id, POId, NTKTCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTPhase, NTKTQuantity, NTKTTestExpectedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalInspectionReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalAcceptanceReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTLicenseCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
             return OPMDBHandler.ExecuteNonQuery(query);
         }

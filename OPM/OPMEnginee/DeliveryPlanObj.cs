@@ -1,14 +1,14 @@
 ﻿using OPM.OPMEnginee;
 using System;
 using System.Data;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace OPM.DBHandler
 {
-    public partial class DeliveryPlan : POObj
+    public partial class DeliveryPlanObj : POObj
     {
         string provinceId;
-        public string ProvinceId { get => provinceId; set => provinceId = value; }
         double deliveryPlanQuantity;
         double deliveryPlanQuantity1;
         DateTime deliveryPlanDate1;
@@ -22,7 +22,7 @@ namespace OPM.DBHandler
         DateTime deliveryPlanDate5;
         double deliveryPlanQuantity6;
         DateTime deliveryPlanDate6;
-
+        public string ProvinceId { get => provinceId; set => provinceId = value; }
         public double DeliveryPlanQuantity { get => deliveryPlanQuantity; set => deliveryPlanQuantity = value; }
         public double DeliveryPlanQuantity1 { get => deliveryPlanQuantity1; set => deliveryPlanQuantity1 = value; }
         public DateTime DeliveryPlanDate1 { get => deliveryPlanDate1; set => deliveryPlanDate1 = value; }
@@ -37,7 +37,7 @@ namespace OPM.DBHandler
         public double DeliveryPlanQuantity6 { get => deliveryPlanQuantity6; set => deliveryPlanQuantity6 = value; }
         public DateTime DeliveryPlanDate6 { get => deliveryPlanDate6; set => deliveryPlanDate6 = value; }
 
-        public DeliveryPlan(string ProvinceId, string POId, double DeliveryPlanQuantity, double DeliveryPlanQuantity1, DateTime DeliveryPlanDate1, double DeliveryPlanQuantity2, DateTime DeliveryPlanDate2, double DeliveryPlanQuantity3, DateTime DeliveryPlanDate3, double DeliveryPlanQuantity4, DateTime DeliveryPlanDate4, double DeliveryPlanQuantity5, DateTime DeliveryPlanDate5, double DeliveryPlanQuantity6, DateTime DeliveryPlanDate6)
+        public DeliveryPlanObj(string ProvinceId, string POId, double DeliveryPlanQuantity, double DeliveryPlanQuantity1, DateTime DeliveryPlanDate1, double DeliveryPlanQuantity2, DateTime DeliveryPlanDate2, double DeliveryPlanQuantity3, DateTime DeliveryPlanDate3, double DeliveryPlanQuantity4, DateTime DeliveryPlanDate4, double DeliveryPlanQuantity5, DateTime DeliveryPlanDate5, double DeliveryPlanQuantity6, DateTime DeliveryPlanDate6)
         {
             this.ProvinceId = ProvinceId;
             this.POId = POId;
@@ -55,7 +55,7 @@ namespace OPM.DBHandler
             this.DeliveryPlanQuantity1 = DeliveryPlanQuantity6;
             this.DeliveryPlanDate1 = DeliveryPlanDate6;
         }
-        public DeliveryPlan(string ProvinceId, string POId)
+        public DeliveryPlanObj(string ProvinceId, string POId)
         {
             this.ProvinceId = ProvinceId;
             this.POId = POId;
@@ -86,7 +86,7 @@ namespace OPM.DBHandler
                 MessageBox.Show("Lỗi khi kết nối bảng DeliveryPlan trong CSDL " + e.Message);
             }
         }
-        public DeliveryPlan(DataRow row)
+        public DeliveryPlanObj(DataRow row)
         {
             ProvinceId = (row["ProvinceId"] == null || row["ProvinceId"] == DBNull.Value) ? "" : row["ProvinceId"].ToString();
             POId = (row["POId"] == null || row["POId"] == DBNull.Value) ? "" : row["POId"].ToString();
@@ -103,5 +103,58 @@ namespace OPM.DBHandler
             DeliveryPlanDate5 = (row["DeliveryPlanDate5"] == null || row["DeliveryPlanDate5"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DeliveryPlanDate5"];
             DeliveryPlanQuantity6 = (row["DeliveryPlanQuantity6"] == null || row["DeliveryPlanQuantity6"] == DBNull.Value) ? 0 : (double)row["DeliveryPlanQuantity6"];
         }
+        public bool DeliveryPlanExist()
+        {
+            string query = string.Format("SELECT * FROM dbo.DeliveryPlan WHERE ProvinceId = '{0}' and POId = ", ProvinceId, POId);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            return table.Rows.Count > 0;
+        }
+        public static bool DeliveryPlanExist(string ProvinceId, string POId)
+        {
+            string query = string.Format("SELECT * FROM dbo.DeliveryPlan WHERE ProvinceId = '{0}' and POId = ", ProvinceId, POId);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            return table.Rows.Count > 0;
+        }
+        public int DeliveryPlanInsert(string ProvinceId, string POId)
+        {
+            if (DeliveryPlanObj.DeliveryPlanExist(ProvinceId, POId)) return 0;
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DeliveryPlan(ProvinceId, POId, DeliveryPlanQuantity, DeliveryPlanQuantity1, DeliveryPlanDate1, DeliveryPlanQuantity2, DeliveryPlanDate2, DeliveryPlanQuantity3, DeliveryPlanDate3, DeliveryPlanQuantity4, DeliveryPlanDate4, DeliveryPlanQuantity5, DeliveryPlanDate5, DeliveryPlanQuantity6, DeliveryPlanDate6) VALUES ('{0}','{1}',{2},{3}, '{4}', {5}, '{6}', {7}, '{8}', {9}, '{10}', {11}, '{12}', {13}, '{14}')", ProvinceId, POId, DeliveryPlanQuantity, DeliveryPlanQuantity1, DeliveryPlanDate1.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity2, DeliveryPlanDate2.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity3, DeliveryPlanDate3.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity4, DeliveryPlanDate4.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity5, DeliveryPlanDate5.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity6, DeliveryPlanDate6.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+            return OPMDBHandler.ExecuteNonQuery(query);
+        }
+        public int DeliveryPlanUpdate()
+        {
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DeliveryPlan SET  DeliveryPlanQuantity = {2}, DeliveryPlanQuantity1 = {3}, DeliveryPlanDate1 = '{4}', DeliveryPlanQuantity2 = {5}, DeliveryPlanDate2 = '{6}', DeliveryPlanQuantity3 = {7}, DeliveryPlanDate3 = '{8}', DeliveryPlanQuantity4 = {9}, DeliveryPlanDate4 = '{10}', DeliveryPlanQuantity5 = {11}, DeliveryPlanDate5 = '{12}', DeliveryPlanQuantity6 = {13}, DeliveryPlanDate6 = '{14}' Where ProvinceId = '{0}', POId = '{1}'", ProvinceId, POId, DeliveryPlanQuantity, DeliveryPlanQuantity1, DeliveryPlanDate1.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity2, DeliveryPlanDate2.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity3, DeliveryPlanDate3.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity4, DeliveryPlanDate4.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity5, DeliveryPlanDate5.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity6, DeliveryPlanDate6.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+            return OPMDBHandler.ExecuteNonQuery(query);
+        }
+        public int DeliveryPlanUpdate(string NewProvinceId, string NewPOId, string OldProvinceId, string OldPOId)
+        {
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DeliveryPlan SET NewProvinceId  = '{0}', NewPOId = '{1}',DeliveryPlanQuantity = {2}, DeliveryPlanQuantity1 = {3}, DeliveryPlanDate1 = '{4}', DeliveryPlanQuantity2 = {5}, DeliveryPlanDate2 = '{6}', DeliveryPlanQuantity3 = {7}, DeliveryPlanDate3 = '{8}', DeliveryPlanQuantity4 = {9}, DeliveryPlanDate4 = '{10}', DeliveryPlanQuantity5 = {11}, DeliveryPlanDate5 = '{12}', DeliveryPlanQuantity6 = {13}, DeliveryPlanDate6 = '{14}' Where OldProvinceId = '{15}', OldPOId = '{16}'", ProvinceId, POId, DeliveryPlanQuantity, DeliveryPlanQuantity1, DeliveryPlanDate1.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity2, DeliveryPlanDate2.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity3, DeliveryPlanDate3.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity4, DeliveryPlanDate4.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity5, DeliveryPlanDate5.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity6, DeliveryPlanDate6.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), OldProvinceId, OldPOId);
+            return OPMDBHandler.ExecuteNonQuery(query);
+        }
+
+        public int DeliveryPlanDelete()
+        {
+            string query = string.Format("Delete FROM dbo.DeliveryPlan WHERE ProvinceId  = '{0}', POId = '{1}'", ProvinceId, POId);
+            return OPMDBHandler.ExecuteNonQuery(query);
+        }
+
+        public static int DeliveryPlanDelete(string ProvinceId, string POId)
+        {
+            string query = string.Format("Delete FROM dbo.DeliveryPlan WHERE ProvinceId  = '{0}', POId = '{1}'", ProvinceId, POId);
+            return OPMDBHandler.ExecuteNonQuery(query);
+        }
+
+        public static DataTable DeliveryPlanGetTable()
+        {
+            string query = string.Format(@"SELECT  * FROM dbo.DeliveryPlan");
+            return OPMDBHandler.ExecuteQuery(query);
+        }
+
+        public static DataTable DeliveryPlanGetTable(string POId)
+        {
+            string query = string.Format(@"SELECT ProvinceId,DeliveryPlanQuantity,DeliveryPlanQuantity1,DeliveryPlanDate1,DeliveryPlanQuantity2,DeliveryPlanDate2,DeliveryPlanQuantity3,DeliveryPlanDate3,DeliveryPlanQuantity4,DeliveryPlanDate4,DeliveryPlanQuantity5,DeliveryPlanDate5,DeliveryPlanQuantity6,DeliveryPlanDate6 FROM dbo.DeliveryPlan WHERE ProvinceId  = '{0}', POId = '{1}'", POId);
+            return OPMDBHandler.ExecuteQuery(query);
+        }
+
     }
 }
