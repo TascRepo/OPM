@@ -13,6 +13,7 @@ namespace OPM.GUI
     {
         private string currentNodeName;
         public string CurrentNodeId;
+        public int backSiteFormStatus;
         public string CurrentNodeName 
         {
             get => currentNodeName;
@@ -234,6 +235,7 @@ namespace OPM.GUI
             {
                 case "Contract":
                     Contract =new ContractObj(temp[1]);
+                    SiteA = new SiteObj(Contract.SiteId);
                     Text = string.Format("Hợp đồng số {0}", temp[1]);
                     ContractInfo contractInfo = new ContractInfo();
                     OpenChildForm(contractInfo);
@@ -403,11 +405,8 @@ namespace OPM.GUI
         }
         public void OpenSiteAForm(string idSite)
         {
-            SiteInfo siteForm = new SiteInfo
-            {
-                setStringValue = new SiteInfo.SetStringValue(SetIdSiteA),
-                SiteId = idSite
-            };
+            SiteInfo siteForm = new SiteInfo(idSite);
+            SiteA = new SiteObj(idSite);
             OpenChildForm(siteForm);
         }
         public void OpenGoodsForm()
@@ -418,7 +417,7 @@ namespace OPM.GUI
         }
         public void OpenDeliveryPlanForm()
         {
-            DeliveryPlanInfo deliveryPlanForm = new DeliveryPlanInfo();
+            DeliveryPlanInfo deliveryPlanForm = new DeliveryPlanInfo(Po.POId);
             Text = string.Format("Kê hoạch giao hàng của PO số {0} của hợp đồng số {1}",Po.POName, Contract.ContractId);
             OpenChildForm(deliveryPlanForm);
         }

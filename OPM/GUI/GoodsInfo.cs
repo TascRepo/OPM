@@ -60,6 +60,7 @@ namespace OPM.GUI
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
+            //(Tag as OPMDASHBOARDA).CurrentNodeName = (Tag as OPMDASHBOARDA).OldNodeName;
             (Tag as OPMDASHBOARDA).OpenContractForm();
         }
 

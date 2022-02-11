@@ -49,7 +49,8 @@ namespace OPM.GUI
         //Mở Form thông tin Site A
         private void btnIdSiteA_Click(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).OpenSiteAForm(txtIdSiteA.Text);
+            (Tag as OPMDASHBOARDA).backSiteFormStatus = 0;
+            (Tag as OPMDASHBOARDA).OpenSiteAForm((Tag as OPMDASHBOARDA).SiteA.SiteId);
         }
         //Mở Form PO
         private void btnNewPO_Click(object sender, EventArgs e)
@@ -159,10 +160,6 @@ namespace OPM.GUI
         {
             (Tag as OPMDASHBOARDA).Contract.ContractType = txtType.Text.Trim();
         }
-        private void txtIdSiteA_TextChanged(object sender, EventArgs e)
-        {
-            (Tag as OPMDASHBOARDA).Contract.SiteId = txtIdSiteA.Text.Trim();
-        }
         private void dtpGaranteeDateCreated_ValueChanged(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).Contract.ContractGuaranteeCreatedDate = dtpGuaranteeDateCreated.Value;
@@ -225,5 +222,11 @@ namespace OPM.GUI
             }
         }
 
+        private void txtIdSiteA_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.SiteId = txtIdSiteA.Text.Trim();
+            (Tag as OPMDASHBOARDA).Contract.SetSiteA(new SiteObj(txtIdSiteA.Text.Trim()));
+            (Tag as OPMDASHBOARDA).SiteA = new SiteObj(txtIdSiteA.Text.Trim());
+        }
     }
 }

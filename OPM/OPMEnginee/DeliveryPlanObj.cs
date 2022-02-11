@@ -9,7 +9,7 @@ namespace OPM.DBHandler
 {
     public partial class DeliveryPlanObj : POObj
     {
-        string provinceId;
+        string provinceId = "XXXXXXXX";
         double deliveryPlanQuantity;
         double deliveryPlanQuantity1;
         DateTime deliveryPlanDate1;
@@ -56,6 +56,7 @@ namespace OPM.DBHandler
             this.DeliveryPlanQuantity1 = DeliveryPlanQuantity6;
             this.DeliveryPlanDate1 = DeliveryPlanDate6;
         }
+        public DeliveryPlanObj() { }
         public DeliveryPlanObj(string ProvinceId, string POId)
         {
             this.ProvinceId = ProvinceId;
@@ -122,6 +123,7 @@ namespace OPM.DBHandler
             string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DeliveryPlan(ProvinceId, POId, DeliveryPlanQuantity, DeliveryPlanQuantity1, DeliveryPlanDate1, DeliveryPlanQuantity2, DeliveryPlanDate2, DeliveryPlanQuantity3, DeliveryPlanDate3, DeliveryPlanQuantity4, DeliveryPlanDate4, DeliveryPlanQuantity5, DeliveryPlanDate5, DeliveryPlanQuantity6, DeliveryPlanDate6) VALUES ('{0}','{1}',{2},{3}, '{4}', {5}, '{6}', {7}, '{8}', {9}, '{10}', {11}, '{12}', {13}, '{14}')", ProvinceId, POId, DeliveryPlanQuantity, DeliveryPlanQuantity1, DeliveryPlanDate1.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity2, DeliveryPlanDate2.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity3, DeliveryPlanDate3.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity4, DeliveryPlanDate4.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity5, DeliveryPlanDate5.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity6, DeliveryPlanDate6.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
             return OPMDBHandler.ExecuteNonQuery(query);
         }
+
         public int DeliveryPlanUpdate()
         {
             string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DeliveryPlan SET  DeliveryPlanQuantity = {2}, DeliveryPlanQuantity1 = {3}, DeliveryPlanDate1 = '{4}', DeliveryPlanQuantity2 = {5}, DeliveryPlanDate2 = '{6}', DeliveryPlanQuantity3 = {7}, DeliveryPlanDate3 = '{8}', DeliveryPlanQuantity4 = {9}, DeliveryPlanDate4 = '{10}', DeliveryPlanQuantity5 = {11}, DeliveryPlanDate5 = '{12}', DeliveryPlanQuantity6 = {13}, DeliveryPlanDate6 = '{14}' Where ProvinceId = '{0}', POId = '{1}'", ProvinceId, POId, DeliveryPlanQuantity, DeliveryPlanQuantity1, DeliveryPlanDate1.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity2, DeliveryPlanDate2.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity3, DeliveryPlanDate3.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity4, DeliveryPlanDate4.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity5, DeliveryPlanDate5.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DeliveryPlanQuantity6, DeliveryPlanDate6.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
@@ -153,7 +155,8 @@ namespace OPM.DBHandler
 
         public static DataTable DeliveryPlanGetTable(string POId)
         {
-            string query = string.Format(@"SELECT ProvinceId,DeliveryPlanQuantity,DeliveryPlanQuantity1,DeliveryPlanDate1,DeliveryPlanQuantity2,DeliveryPlanDate2,DeliveryPlanQuantity3,DeliveryPlanDate3,DeliveryPlanQuantity4,DeliveryPlanDate4,DeliveryPlanQuantity5,DeliveryPlanDate5,DeliveryPlanQuantity6,DeliveryPlanDate6 FROM dbo.DeliveryPlan WHERE ProvinceId  = '{0}', POId = '{1}'", POId);
+            string query = string.Format(@"SELECT * FROM dbo.DeliveryPlan WHERE POId = '{0}'", POId);
+            //string query = string.Format(@"SELECT ProvinceId,DeliveryPlanQuantity,DeliveryPlanQuantity1,DeliveryPlanDate1,DeliveryPlanQuantity2,DeliveryPlanDate2,DeliveryPlanQuantity3,DeliveryPlanDate3,DeliveryPlanQuantity4,DeliveryPlanDate4,DeliveryPlanQuantity5,DeliveryPlanDate5,DeliveryPlanQuantity6,DeliveryPlanDate6 FROM dbo.DeliveryPlan WHERE ProvinceId  = '{0}', POId = '{1}'", POId);
             return OPMDBHandler.ExecuteQuery(query);
         }
 

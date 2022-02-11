@@ -8,22 +8,19 @@ namespace OPM.GUI
 {
     public partial class SiteInfo : Form
     {
-        public delegate void SetStringValue(string vl);
-        public SetStringValue setStringValue;
-
-        public string SiteId { get; set; }
-
         public SiteInfo()
         {
             InitializeComponent();
-            LoadData();
         }
-        void LoadData()
+        public SiteInfo(string SiteId)
         {
-            LoadDataGridView();
+            InitializeComponent();
+            LoadDataGridView(SiteId);
         }
         void AddSiteBinding()
         {
+            txtSiteId.DataBindings.Clear();
+            txtSiteId.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteId"));
             txtSiteName.DataBindings.Clear();
             txtSiteName.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteName"));
             txtSiteProvince.DataBindings.Clear();
@@ -63,13 +60,17 @@ namespace OPM.GUI
             txtProxy3.DataBindings.Clear();
             txtProxy3.DataBindings.Add(new Binding("Text", dtgvSiteA.DataSource, "SiteProxy3"));
         }
-        void LoadDataGridView()
+        void LoadDataGridView(string SiteId)
         {
             List<SiteObj> sites = SiteObj.SiteGetList();
+            //SiteInfoId = (Tag as OPMDASHBOARDA).Contract.SiteId;
             SiteObj site = new SiteObj(SiteId);
-            sites.Insert(0,site);
+            if (!SiteObj.SiteExist(SiteId))
+            {
+                sites.Insert(0, site);
+            }
             dtgvSiteA.DataSource = sites;
-            dtgvSiteA.Columns["SiteId"].Visible=false;
+            dtgvSiteA.Columns["SiteId"].HeaderText = @"Mã đơn vị";
             dtgvSiteA.Columns["SiteName"].HeaderText = @"Name";
             dtgvSiteA.Columns["SiteProvince"].HeaderText = @"VNPT ID";
             dtgvSiteA.Columns["SiteType"].HeaderText = @"Phân loại";
@@ -106,17 +107,21 @@ namespace OPM.GUI
             dtgvSiteA.Columns["SitePosition3"].Visible = false;
             dtgvSiteA.Columns["SiteProxy3"].HeaderText = @"Văn bản uỷ quyền";
             dtgvSiteA.Columns["SiteProxy3"].Visible = false;
+            AddSiteBinding();
             for (int i = 0; i < dtgvSiteA.RowCount; i++)
             {
-                dtgvSiteA.Rows[i].Cells[0].Value = i + 1;
-                //if (SiteId == dtgvSiteA.Rows[i].Cells["SiteName"].Value.ToString()) dtgvSiteA.CurrentCell = dtgvSiteA.Rows[i].Cells["SiteName"];
+                //dtgvSiteA.Rows[i].Cells[0].Value = i + 1;
+                if (SiteObj.SiteExist(SiteId))
+                {
+                    if (SiteId == dtgvSiteA.Rows[i].Cells["SiteId"].Value.ToString()) dtgvSiteA.CurrentCell = dtgvSiteA.Rows[i].Cells["SiteId"];
+                }
             }
-            AddSiteBinding();
         }
         private void btnAddOrUpdate_Click(object sender, EventArgs e)
         {
             var site = new OPMEnginee.SiteObj
             {
+                SiteId = txtSiteId.Text.Trim(),
                 SiteName = txtSiteName.Text.Trim(),
                 SiteProvince = txtSiteProvince.Text.Trim(),
                 SiteHeadquater = txtHeadquater.Text.Trim(),
@@ -137,27 +142,27 @@ namespace OPM.GUI
                 SiteProxy2 = txtProxy2.Text.Trim(),
                 SiteProxy3 = txtProxy3.Text.Trim()
             };
-            if (site.SiteExist()) site.SiteUpdate();
-            else site.SiteInsert();
-            LoadDataGridView();
+            if (SiteObj.SiteExist(txtSiteId.Text.Trim()))
+            {
+                site.SiteUpdate(txtSiteId.Text.Trim(), txtSiteId.Text.Trim());
+            }
+            else site.SiteInsert(txtSiteId.Text.Trim());
+            LoadDataGridView(txtSiteId.Text.Trim());
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (OPMEnginee.SiteObj.SiteExist(txtSiteName.Text.Trim()))
+            if (OPMEnginee.SiteObj.SiteExist(txtSiteId.Text.Trim()))
             {
-                OPMEnginee.SiteObj.Delete(txtSiteName.Text.Trim());
-                LoadDataGridView();
+                OPMEnginee.SiteObj.Delete(txtSiteId.Text.Trim());
+                LoadDataGridView((new SiteObj()).SiteId);
             }
             else MessageBox.Show("Site không tồn tại!");
-        }
-        private void SiteForm_Load(object sender, EventArgs e)
-        {
-            LoadDataGridView();
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
             var site = new OPMEnginee.SiteObj
             {
+                SiteId = txtSiteId.Text.Trim(),
                 SiteName = txtSiteName.Text.Trim(),
                 SiteProvince = txtSiteProvince.Text.Trim(),
                 SiteHeadquater = txtHeadquater.Text.Trim(),
@@ -178,15 +183,25 @@ namespace OPM.GUI
                 SiteProxy2 = txtProxy2.Text.Trim(),
                 SiteProxy3 = txtProxy3.Text.Trim()
             };
-            if (site.SiteExist()) site.SiteUpdate();
-            else site.SiteInsert();
-            LoadDataGridView();
-            setStringValue(SiteId);
-            (Tag as OPMDASHBOARDA).OpenContractForm();
+            if (SiteObj.SiteExist(txtSiteId.Text.Trim()))
+            {
+                site.SiteUpdate(txtSiteId.Text.Trim(), txtSiteId.Text.Trim());
+            }
+            else site.SiteInsert(txtSiteId.Text.Trim());
+            (Tag as OPMDASHBOARDA).SiteA.SiteId = txtSiteId.Text.Trim();
+            (Tag as OPMDASHBOARDA).Contract.SiteId = txtSiteId.Text.Trim();
+            if((Tag as OPMDASHBOARDA).backSiteFormStatus == 0)
+            {
+                (Tag as OPMDASHBOARDA).OpenContractForm();
+            }
+            else
+            {
+                (Tag as OPMDASHBOARDA).OpenDeliveryPlanForm();
+            }
         }
         private void textBoxId_TextChanged(object sender, EventArgs e)
         {
-            SiteId = txtSiteName.Text.Trim();
+            (Tag as OPMDASHBOARDA).SiteA.SiteId = txtSiteId.Text.Trim();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace OPM.WordHandler
     class OpmWordHandler
     {
         //Tạo mẫu 37
-        public static string Temp37_BBXNCDLicense(string id)
+        public static string Temp37_BBXNCDLicense(string poid)
         {
             object path = @"D:\OPM\Template\Mẫu 37. Biên bản xác nhận cài đặt License vào hệ thống.docx";
             if (!File.Exists(path.ToString()))
@@ -25,7 +25,7 @@ namespace OPM.WordHandler
             try
             {
                 //NTKT_Thanh ntkt = new NTKT_Thanh(id);
-                POObj po = new POObj(id);
+                POObj po = new POObj(poid);
                 ContractObj contract = new ContractObj(po.ContractId);
                 SiteObj site = new SiteObj(contract.SiteId);
                 object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 37. BBXNCDLicense_{2}.docx", contract.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), po.POId.Replace('/', '-'));
@@ -102,7 +102,7 @@ namespace OPM.WordHandler
             }
         }
         //Tạo mẫu 36
-        public static string Temp36_BBNTLicense(string id)
+        public static string Temp36_BBNTLicense(string poid)
         {
             object path = @"D:\OPM\Template\Mẫu 36. Biên bản nghiệm thu License.docx";
             if (!File.Exists(path.ToString()))
@@ -116,7 +116,7 @@ namespace OPM.WordHandler
             try
             {
                 //NTKT_Thanh ntkt = new NTKT_Thanh(id);
-                POObj po = new POObj(id);
+                POObj po = new POObj(poid);
                 ContractObj contract = new ContractObj(po.ContractId);
                 SiteObj site = new SiteObj(contract.SiteId);
                 object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 36. BBNTLicense_{2}.docx", contract.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), po.POId.Replace('/', '-'));
@@ -189,7 +189,7 @@ namespace OPM.WordHandler
             }
         }
         //Tạo mẫu 24
-        public static string Temp24_CNCLNMTongHop(string id)
+        public static string Temp24_CNCLNMTongHop(string poid)
         {
             object path = @"D:\OPM\Template\Mẫu 24. Giấy CNCL NM tổng hợp.docx";
             if (!File.Exists(path.ToString()))
@@ -203,7 +203,7 @@ namespace OPM.WordHandler
             try
             {
                 //NTKT_Thanh ntkt = new NTKT_Thanh(id);
-                POObj po = new POObj(id);
+                POObj po = new POObj(poid);
                 ContractObj contract = new ContractObj(po.ContractId);
                 //Site_Info site = new Site_Info(contract.Id_siteA);
                 object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 24. CNCLNM_Tong_Hop_{2}.docx", contract.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), po.POId.Replace('/', '-'));
@@ -282,7 +282,7 @@ namespace OPM.WordHandler
         }
 
         //Tạo mẫu 23
-        public static string Temp23_CNCL_TongHop(string id)
+        public static string Temp23_CNCL_TongHop(string poid)
         {
             object path = @"D:\OPM\Template\Mẫu 23. GIAY_CNCL_TONG_HOP.docx";
             if (!File.Exists(path.ToString()))
@@ -296,7 +296,7 @@ namespace OPM.WordHandler
             try
             {
                 //NTKT_Thanh ntkt = new NTKT_Thanh(id);
-                POObj po = new POObj(id);
+                POObj po = new POObj(poid);
                 ContractObj contract = new ContractObj(po.ContractId);
                 SiteObj site = new SiteObj(contract.SiteId);
                 object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 23. CNCL_Tong_Hop_{2}.docx", contract.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), po.POId.Replace('/', '-'));
@@ -372,7 +372,7 @@ namespace OPM.WordHandler
         }
 
         //Tạo mẫu 11
-        public static string Temp11_BBNTKT(string id)
+        public static string Temp11_BBNTKT(string ntktId)
         {
             object path = @"D:\OPM\Template\Mẫu 11. Biên bản nghiệm thu kỹ thuật.docx";
             if (!File.Exists(path.ToString()))
@@ -385,7 +385,7 @@ namespace OPM.WordHandler
             WordOffice.Document myDoc = null;
             try
             {
-                NTKTObj ntkt = new NTKTObj(id);
+                NTKTObj ntkt = new NTKTObj(ntktId);
                 POObj po = new POObj(ntkt.POId);
                 ContractObj contract = new ContractObj(po.ContractId);
                 SiteObj site = new SiteObj(contract.SiteId);
@@ -455,7 +455,7 @@ namespace OPM.WordHandler
             }
         }
         //Tạo mẫu 10
-        public static string Temp10_CNBQPM(string id)
+        public static string Temp10_CNBQPM(string ntktId)
         {
             object path = @"D:\OPM\Template\Mẫu 10. Chứng nhận bản quyền phần mềm.docx";
             if (!File.Exists(path.ToString()))
@@ -467,7 +467,7 @@ namespace OPM.WordHandler
             WordOffice.Document myDoc = null;
             try
             {
-                NTKTObj ntkt = new NTKTObj(id);
+                NTKTObj ntkt = new NTKTObj(ntktId);
                 POObj po = new POObj(ntkt.POId);
                 ContractObj contract = new ContractObj(po.ContractId);
                 SiteObj site = new SiteObj(contract.SiteId);
@@ -541,7 +541,7 @@ namespace OPM.WordHandler
             }
         }
         //Tạo mẫu 9
-        public static string Temp09_BBKTKT(string id)
+        public static string Temp09_BBKTKT(string ntktId)
         {
             object path = @"D:\OPM\Template\Mẫu 9. Biên bản kiểm tra kỹ thuật.docx";
             if (!File.Exists(path.ToString()))
@@ -554,7 +554,7 @@ namespace OPM.WordHandler
             WordOffice.Document myDoc = null;
             try
             {
-                NTKTObj ntkt = new NTKTObj(id);
+                NTKTObj ntkt = new NTKTObj(ntktId);
                 POObj po = new POObj(ntkt.POId);
                 ContractObj contract = new ContractObj(po.ContractId);
                 SiteObj site = new SiteObj(contract.SiteId);
@@ -628,7 +628,7 @@ namespace OPM.WordHandler
             }
         }
         //Tạo mẫu 8
-        public static string Temp08_NTKTRequest(string id)
+        public static string Temp08_NTKTRequest(string ntktId)
         {
             object path = @"D:\OPM\Template\Mẫu 8. De nghi NTKT.docx";
             if (!File.Exists(path.ToString()))
@@ -641,7 +641,7 @@ namespace OPM.WordHandler
             WordOffice.Document myDoc = null;
             try
             {
-                NTKTObj ntkt = new NTKTObj(id);
+                NTKTObj ntkt = new NTKTObj(ntktId);
                 POObj po = new POObj(ntkt.POId);
                 ContractObj contract = new ContractObj(po.ContractId);
                 object filename = string.Format(@"D:\OPM\{0}\{1}\NTKT{2}\Mẫu 8.YCNTKT_{3}.docx", contract.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), ntkt.NTKTPhase, ntkt.NTKTId.Replace('/', '-'));
@@ -763,9 +763,9 @@ namespace OPM.WordHandler
             }
         }
         //Tạo mẫu 6 - Thành
-        public static string Temp6_CreatPOAdvanceReques(string id)
+        public static string Temp6_CreatPOAdvanceReques(string poid)
         {
-            POObj po = new POObj(id);
+            POObj po = new POObj(poid);
             object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 6. Văn bản đề nghị tạm ứng đơn hàng {2}.docx", po.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), po.POId.Replace('/', '-'));
             object path = @"D:\OPM\Template\Mẫu 6. Văn bản đề nghị tạm ứng đơn hàng.docx";
             if (!File.Exists(path.ToString()))
@@ -840,9 +840,9 @@ namespace OPM.WordHandler
         }
 
         //Tạo mẫu 5 - Thành
-        public static string Temp5_CreatPOAdvanceGuarantee(string id)
+        public static string Temp5_CreatPOAdvanceGuarantee(string poid)
         {
-            POObj po = new POObj(id);
+            POObj po = new POObj(poid);
             object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 5. Văn bản mở bảo lãnh tạm ứng đơn hàng {2}.docx", po.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), po.POId.Replace('/', '-'));
             object path = @"D:\OPM\Template\Mẫu 5. Văn bản mở bảo lãnh tạm ứng đơn hàng.docx";
             if (!File.Exists(path.ToString()))
@@ -913,9 +913,9 @@ namespace OPM.WordHandler
         }
 
         //Tạo mẫu 4 - Thành
-        public static string Temp4_CreatPOPerformanceGuarantee(string id)
+        public static string Temp4_CreatPOPerformanceGuarantee(string poid)
         {
-            POObj po = new POObj(id);
+            POObj po = new POObj(poid);
             object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 4. Đề nghị bảo lãnh thực hiện hợp đồng cho đơn hàng {2}.docx", po.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), po.POId.Replace('/', '-'));
             object path = @"D:\OPM\Template\Mẫu 4. Văn bản mở bảo lãnh thực hiện đơn hàng.docx";
             if (!File.Exists(path.ToString()))
@@ -986,9 +986,9 @@ namespace OPM.WordHandler
         }
 
         //Tạo mẫu 3 - Thành
-        public static string Temp3_CreatPOConfirm(string id)
+        public static string Temp3_CreatPOConfirm(string poid)
         {
-            POObj po = new POObj(id);
+            POObj po = new POObj(poid);
             object path = @"D:\OPM\Template\Mẫu 3. Văn bản xác nhận hiệu lực đơn hàng.docx";
             object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 3. Văn bản xác nhận hiệu lực đơn hàng {2}.docx", po.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), po.POId.Replace('/', '-'));
             if (!File.Exists(path.ToString()))
@@ -1052,11 +1052,11 @@ namespace OPM.WordHandler
             }
         }
         //Tạo mẫu 1 - Thành
-        public static string Temp1_CreatContractGuarantee(string id)
+        public static string Temp1_CreatContractGuarantee(string contractId)
         {
             object path = @"D:\OPM\Template\Mẫu 1. Đề nghị mở bảo lãnh thực hiện hợp đồng.docx";
-            object filename = string.Format(@"D:\OPM\{0}\Mẫu 1. Đề nghị mở bảo lãnh thực hiện hợp đồng {0}.docx", id.Trim().Replace('/', '-'));
-            string strPODirectory = string.Format(@"D:\OPM\{0}", id.Trim().Replace('/', '-'));
+            object filename = string.Format(@"D:\OPM\{0}\Mẫu 1. Đề nghị mở bảo lãnh thực hiện hợp đồng {0}.docx", contractId.Trim().Replace('/', '-'));
+            string strPODirectory = string.Format(@"D:\OPM\{0}", contractId.Trim().Replace('/', '-'));
             if (!Directory.Exists(strPODirectory))
             {
                 Directory.CreateDirectory(strPODirectory);
@@ -1072,7 +1072,7 @@ namespace OPM.WordHandler
             WordOffice.Document myDoc = null;
             try
             {
-                ContractObj contract = new ContractObj(id);
+                ContractObj contract = new ContractObj(contractId);
                 object readOnly = true;
                 object isVisible = false;
                 wordApp.Visible = false;
@@ -1093,7 +1093,7 @@ namespace OPM.WordHandler
                 //Tạo file BLHĐ trong thư mục D:\OPM
                 try
                 {
-                    string folder = string.Format(@"D:\OPM\{0}", id.Trim().Replace('/', '-'));
+                    string folder = string.Format(@"D:\OPM\{0}", contractId.Trim().Replace('/', '-'));
                     Directory.CreateDirectory(folder);
                     myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
                                     ref missing, ref missing, ref missing,

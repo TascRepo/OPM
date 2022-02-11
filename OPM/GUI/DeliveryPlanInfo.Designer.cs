@@ -32,43 +32,43 @@ namespace OPM.GUI
             this.dtgDeliveryPlan = new System.Windows.Forms.DataGridView();
             this.buttonAddProvinceId = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1DeliveryPlanQuantity = new System.Windows.Forms.TextBox();
+            this.textBoxDeliveryPlanQuantity1 = new System.Windows.Forms.TextBox();
             this.comboBoxPONumberOfPhase = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.comboBoxProvinceId = new System.Windows.Forms.ComboBox();
+            this.comboBoxProvince = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker1DeliveryPlanDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDeliveryPlanDate1 = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker2DeliveryPlanDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDeliveryPlanDate2 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox2DeliveryPlanQuantity = new System.Windows.Forms.TextBox();
+            this.textBoxDeliveryPlanQuantity2 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker3DeliveryPlanDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDeliveryPlanDate3 = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox3DeliveryPlanQuantity = new System.Windows.Forms.TextBox();
+            this.textBoxDeliveryPlanQuantity3 = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker4DeliveryPlanDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDeliveryPlanDate4 = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox4DeliveryPlanQuantity = new System.Windows.Forms.TextBox();
+            this.textBoxDeliveryPlanQuantity4 = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker5DeliveryPlanDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDeliveryPlanDate5 = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox5DeliveryPlanQuantity = new System.Windows.Forms.TextBox();
+            this.textBoxDeliveryPlanQuantity5 = new System.Windows.Forms.TextBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker6DeliveryPlanDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDeliveryPlanDate6 = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox6DeliveryPlanQuantity = new System.Windows.Forms.TextBox();
+            this.textBoxDeliveryPlanQuantity6 = new System.Windows.Forms.TextBox();
             this.textBoxDeliveryPlanQuantity = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -113,6 +113,7 @@ namespace OPM.GUI
             this.buttonAddProvinceId.TabIndex = 1;
             this.buttonAddProvinceId.Text = "Thêm VNPT tỉnh (thành)";
             this.buttonAddProvinceId.UseVisualStyleBackColor = true;
+            this.buttonAddProvinceId.Click += new System.EventHandler(this.buttonAddProvinceId_Click);
             // 
             // label1
             // 
@@ -124,13 +125,13 @@ namespace OPM.GUI
             this.label1.TabIndex = 2;
             this.label1.Text = "Tổng số đợt";
             // 
-            // textBox1DeliveryPlanQuantity
+            // textBoxDeliveryPlanQuantity1
             // 
-            this.textBox1DeliveryPlanQuantity.Location = new System.Drawing.Point(116, 23);
-            this.textBox1DeliveryPlanQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox1DeliveryPlanQuantity.Name = "textBox1DeliveryPlanQuantity";
-            this.textBox1DeliveryPlanQuantity.Size = new System.Drawing.Size(163, 31);
-            this.textBox1DeliveryPlanQuantity.TabIndex = 3;
+            this.textBoxDeliveryPlanQuantity1.Location = new System.Drawing.Point(116, 23);
+            this.textBoxDeliveryPlanQuantity1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxDeliveryPlanQuantity1.Name = "textBoxDeliveryPlanQuantity1";
+            this.textBoxDeliveryPlanQuantity1.Size = new System.Drawing.Size(163, 31);
+            this.textBoxDeliveryPlanQuantity1.TabIndex = 3;
             // 
             // comboBoxPONumberOfPhase
             // 
@@ -160,7 +161,7 @@ namespace OPM.GUI
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.comboBoxProvinceId);
+            this.panel2.Controls.Add(this.comboBoxProvince);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.buttonAddProvinceId);
             this.panel2.Location = new System.Drawing.Point(787, 137);
@@ -169,15 +170,14 @@ namespace OPM.GUI
             this.panel2.Size = new System.Drawing.Size(590, 78);
             this.panel2.TabIndex = 5;
             // 
-            // comboBoxProvinceId
+            // comboBoxProvince
             // 
-            this.comboBoxProvinceId.Enabled = false;
-            this.comboBoxProvinceId.FormattingEnabled = true;
-            this.comboBoxProvinceId.Location = new System.Drawing.Point(116, 22);
-            this.comboBoxProvinceId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.comboBoxProvinceId.Name = "comboBoxProvinceId";
-            this.comboBoxProvinceId.Size = new System.Drawing.Size(163, 33);
-            this.comboBoxProvinceId.TabIndex = 4;
+            this.comboBoxProvince.FormattingEnabled = true;
+            this.comboBoxProvince.Location = new System.Drawing.Point(116, 22);
+            this.comboBoxProvince.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBoxProvince.Name = "comboBoxProvince";
+            this.comboBoxProvince.Size = new System.Drawing.Size(163, 33);
+            this.comboBoxProvince.TabIndex = 4;
             // 
             // label2
             // 
@@ -201,10 +201,10 @@ namespace OPM.GUI
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dateTimePicker1DeliveryPlanDate);
+            this.groupBox1.Controls.Add(this.dateTimePickerDeliveryPlanDate1);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox1DeliveryPlanQuantity);
+            this.groupBox1.Controls.Add(this.textBoxDeliveryPlanQuantity1);
             this.groupBox1.Location = new System.Drawing.Point(787, 232);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
@@ -214,18 +214,18 @@ namespace OPM.GUI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Đợt 1";
             // 
-            // dateTimePicker1DeliveryPlanDate
+            // dateTimePickerDeliveryPlanDate1
             // 
-            this.dateTimePicker1DeliveryPlanDate.Location = new System.Drawing.Point(411, 23);
-            this.dateTimePicker1DeliveryPlanDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dateTimePicker1DeliveryPlanDate.Name = "dateTimePicker1DeliveryPlanDate";
-            this.dateTimePicker1DeliveryPlanDate.Size = new System.Drawing.Size(163, 31);
-            this.dateTimePicker1DeliveryPlanDate.TabIndex = 4;
+            this.dateTimePickerDeliveryPlanDate1.Location = new System.Drawing.Point(411, 23);
+            this.dateTimePickerDeliveryPlanDate1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateTimePickerDeliveryPlanDate1.Name = "dateTimePickerDeliveryPlanDate1";
+            this.dateTimePickerDeliveryPlanDate1.Size = new System.Drawing.Size(163, 31);
+            this.dateTimePickerDeliveryPlanDate1.TabIndex = 4;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(311, 32);
+            this.label4.Location = new System.Drawing.Point(311, 25);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 25);
@@ -234,10 +234,10 @@ namespace OPM.GUI
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dateTimePicker2DeliveryPlanDate);
+            this.groupBox2.Controls.Add(this.dateTimePickerDeliveryPlanDate2);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.textBox2DeliveryPlanQuantity);
+            this.groupBox2.Controls.Add(this.textBoxDeliveryPlanQuantity2);
             this.groupBox2.Location = new System.Drawing.Point(787, 317);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
@@ -247,18 +247,18 @@ namespace OPM.GUI
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Đợt 2";
             // 
-            // dateTimePicker2DeliveryPlanDate
+            // dateTimePickerDeliveryPlanDate2
             // 
-            this.dateTimePicker2DeliveryPlanDate.Location = new System.Drawing.Point(411, 23);
-            this.dateTimePicker2DeliveryPlanDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dateTimePicker2DeliveryPlanDate.Name = "dateTimePicker2DeliveryPlanDate";
-            this.dateTimePicker2DeliveryPlanDate.Size = new System.Drawing.Size(163, 31);
-            this.dateTimePicker2DeliveryPlanDate.TabIndex = 4;
+            this.dateTimePickerDeliveryPlanDate2.Location = new System.Drawing.Point(411, 23);
+            this.dateTimePickerDeliveryPlanDate2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateTimePickerDeliveryPlanDate2.Name = "dateTimePickerDeliveryPlanDate2";
+            this.dateTimePickerDeliveryPlanDate2.Size = new System.Drawing.Size(163, 31);
+            this.dateTimePickerDeliveryPlanDate2.TabIndex = 4;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(311, 32);
+            this.label5.Location = new System.Drawing.Point(311, 25);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(54, 25);
@@ -275,20 +275,20 @@ namespace OPM.GUI
             this.label6.TabIndex = 2;
             this.label6.Text = "Số lượng";
             // 
-            // textBox2DeliveryPlanQuantity
+            // textBoxDeliveryPlanQuantity2
             // 
-            this.textBox2DeliveryPlanQuantity.Location = new System.Drawing.Point(116, 23);
-            this.textBox2DeliveryPlanQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox2DeliveryPlanQuantity.Name = "textBox2DeliveryPlanQuantity";
-            this.textBox2DeliveryPlanQuantity.Size = new System.Drawing.Size(163, 31);
-            this.textBox2DeliveryPlanQuantity.TabIndex = 3;
+            this.textBoxDeliveryPlanQuantity2.Location = new System.Drawing.Point(116, 23);
+            this.textBoxDeliveryPlanQuantity2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxDeliveryPlanQuantity2.Name = "textBoxDeliveryPlanQuantity2";
+            this.textBoxDeliveryPlanQuantity2.Size = new System.Drawing.Size(163, 31);
+            this.textBoxDeliveryPlanQuantity2.TabIndex = 3;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.dateTimePicker3DeliveryPlanDate);
+            this.groupBox3.Controls.Add(this.dateTimePickerDeliveryPlanDate3);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.textBox3DeliveryPlanQuantity);
+            this.groupBox3.Controls.Add(this.textBoxDeliveryPlanQuantity3);
             this.groupBox3.Location = new System.Drawing.Point(787, 402);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox3.Name = "groupBox3";
@@ -298,18 +298,18 @@ namespace OPM.GUI
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Đợt 3";
             // 
-            // dateTimePicker3DeliveryPlanDate
+            // dateTimePickerDeliveryPlanDate3
             // 
-            this.dateTimePicker3DeliveryPlanDate.Location = new System.Drawing.Point(411, 23);
-            this.dateTimePicker3DeliveryPlanDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dateTimePicker3DeliveryPlanDate.Name = "dateTimePicker3DeliveryPlanDate";
-            this.dateTimePicker3DeliveryPlanDate.Size = new System.Drawing.Size(163, 31);
-            this.dateTimePicker3DeliveryPlanDate.TabIndex = 4;
+            this.dateTimePickerDeliveryPlanDate3.Location = new System.Drawing.Point(411, 23);
+            this.dateTimePickerDeliveryPlanDate3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateTimePickerDeliveryPlanDate3.Name = "dateTimePickerDeliveryPlanDate3";
+            this.dateTimePickerDeliveryPlanDate3.Size = new System.Drawing.Size(163, 31);
+            this.dateTimePickerDeliveryPlanDate3.TabIndex = 4;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(311, 32);
+            this.label7.Location = new System.Drawing.Point(311, 25);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(54, 25);
@@ -326,20 +326,20 @@ namespace OPM.GUI
             this.label8.TabIndex = 2;
             this.label8.Text = "Số lượng";
             // 
-            // textBox3DeliveryPlanQuantity
+            // textBoxDeliveryPlanQuantity3
             // 
-            this.textBox3DeliveryPlanQuantity.Location = new System.Drawing.Point(116, 23);
-            this.textBox3DeliveryPlanQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox3DeliveryPlanQuantity.Name = "textBox3DeliveryPlanQuantity";
-            this.textBox3DeliveryPlanQuantity.Size = new System.Drawing.Size(163, 31);
-            this.textBox3DeliveryPlanQuantity.TabIndex = 3;
+            this.textBoxDeliveryPlanQuantity3.Location = new System.Drawing.Point(116, 23);
+            this.textBoxDeliveryPlanQuantity3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxDeliveryPlanQuantity3.Name = "textBoxDeliveryPlanQuantity3";
+            this.textBoxDeliveryPlanQuantity3.Size = new System.Drawing.Size(163, 31);
+            this.textBoxDeliveryPlanQuantity3.TabIndex = 3;
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.dateTimePicker4DeliveryPlanDate);
+            this.groupBox4.Controls.Add(this.dateTimePickerDeliveryPlanDate4);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.textBox4DeliveryPlanQuantity);
+            this.groupBox4.Controls.Add(this.textBoxDeliveryPlanQuantity4);
             this.groupBox4.Location = new System.Drawing.Point(787, 487);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox4.Name = "groupBox4";
@@ -349,18 +349,18 @@ namespace OPM.GUI
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Đợt 4";
             // 
-            // dateTimePicker4DeliveryPlanDate
+            // dateTimePickerDeliveryPlanDate4
             // 
-            this.dateTimePicker4DeliveryPlanDate.Location = new System.Drawing.Point(411, 23);
-            this.dateTimePicker4DeliveryPlanDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dateTimePicker4DeliveryPlanDate.Name = "dateTimePicker4DeliveryPlanDate";
-            this.dateTimePicker4DeliveryPlanDate.Size = new System.Drawing.Size(163, 31);
-            this.dateTimePicker4DeliveryPlanDate.TabIndex = 4;
+            this.dateTimePickerDeliveryPlanDate4.Location = new System.Drawing.Point(411, 23);
+            this.dateTimePickerDeliveryPlanDate4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateTimePickerDeliveryPlanDate4.Name = "dateTimePickerDeliveryPlanDate4";
+            this.dateTimePickerDeliveryPlanDate4.Size = new System.Drawing.Size(163, 31);
+            this.dateTimePickerDeliveryPlanDate4.TabIndex = 4;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(311, 32);
+            this.label9.Location = new System.Drawing.Point(311, 25);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(54, 25);
@@ -377,20 +377,20 @@ namespace OPM.GUI
             this.label10.TabIndex = 2;
             this.label10.Text = "Số lượng";
             // 
-            // textBox4DeliveryPlanQuantity
+            // textBoxDeliveryPlanQuantity4
             // 
-            this.textBox4DeliveryPlanQuantity.Location = new System.Drawing.Point(116, 23);
-            this.textBox4DeliveryPlanQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox4DeliveryPlanQuantity.Name = "textBox4DeliveryPlanQuantity";
-            this.textBox4DeliveryPlanQuantity.Size = new System.Drawing.Size(163, 31);
-            this.textBox4DeliveryPlanQuantity.TabIndex = 3;
+            this.textBoxDeliveryPlanQuantity4.Location = new System.Drawing.Point(116, 23);
+            this.textBoxDeliveryPlanQuantity4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxDeliveryPlanQuantity4.Name = "textBoxDeliveryPlanQuantity4";
+            this.textBoxDeliveryPlanQuantity4.Size = new System.Drawing.Size(163, 31);
+            this.textBoxDeliveryPlanQuantity4.TabIndex = 3;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.dateTimePicker5DeliveryPlanDate);
+            this.groupBox5.Controls.Add(this.dateTimePickerDeliveryPlanDate5);
             this.groupBox5.Controls.Add(this.label11);
             this.groupBox5.Controls.Add(this.label12);
-            this.groupBox5.Controls.Add(this.textBox5DeliveryPlanQuantity);
+            this.groupBox5.Controls.Add(this.textBoxDeliveryPlanQuantity5);
             this.groupBox5.Location = new System.Drawing.Point(787, 572);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox5.Name = "groupBox5";
@@ -400,18 +400,18 @@ namespace OPM.GUI
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Đợt 5";
             // 
-            // dateTimePicker5DeliveryPlanDate
+            // dateTimePickerDeliveryPlanDate5
             // 
-            this.dateTimePicker5DeliveryPlanDate.Location = new System.Drawing.Point(411, 23);
-            this.dateTimePicker5DeliveryPlanDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dateTimePicker5DeliveryPlanDate.Name = "dateTimePicker5DeliveryPlanDate";
-            this.dateTimePicker5DeliveryPlanDate.Size = new System.Drawing.Size(163, 31);
-            this.dateTimePicker5DeliveryPlanDate.TabIndex = 4;
+            this.dateTimePickerDeliveryPlanDate5.Location = new System.Drawing.Point(411, 23);
+            this.dateTimePickerDeliveryPlanDate5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateTimePickerDeliveryPlanDate5.Name = "dateTimePickerDeliveryPlanDate5";
+            this.dateTimePickerDeliveryPlanDate5.Size = new System.Drawing.Size(163, 31);
+            this.dateTimePickerDeliveryPlanDate5.TabIndex = 4;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(311, 32);
+            this.label11.Location = new System.Drawing.Point(311, 25);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(54, 25);
@@ -428,13 +428,13 @@ namespace OPM.GUI
             this.label12.TabIndex = 2;
             this.label12.Text = "Số lượng";
             // 
-            // textBox5DeliveryPlanQuantity
+            // textBoxDeliveryPlanQuantity5
             // 
-            this.textBox5DeliveryPlanQuantity.Location = new System.Drawing.Point(116, 23);
-            this.textBox5DeliveryPlanQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox5DeliveryPlanQuantity.Name = "textBox5DeliveryPlanQuantity";
-            this.textBox5DeliveryPlanQuantity.Size = new System.Drawing.Size(163, 31);
-            this.textBox5DeliveryPlanQuantity.TabIndex = 3;
+            this.textBoxDeliveryPlanQuantity5.Location = new System.Drawing.Point(116, 23);
+            this.textBoxDeliveryPlanQuantity5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxDeliveryPlanQuantity5.Name = "textBoxDeliveryPlanQuantity5";
+            this.textBoxDeliveryPlanQuantity5.Size = new System.Drawing.Size(163, 31);
+            this.textBoxDeliveryPlanQuantity5.TabIndex = 3;
             // 
             // btnClose
             // 
@@ -445,6 +445,7 @@ namespace OPM.GUI
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnAdd
             // 
@@ -458,10 +459,10 @@ namespace OPM.GUI
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.dateTimePicker6DeliveryPlanDate);
+            this.groupBox6.Controls.Add(this.dateTimePickerDeliveryPlanDate6);
             this.groupBox6.Controls.Add(this.label13);
             this.groupBox6.Controls.Add(this.label14);
-            this.groupBox6.Controls.Add(this.textBox6DeliveryPlanQuantity);
+            this.groupBox6.Controls.Add(this.textBoxDeliveryPlanQuantity6);
             this.groupBox6.Location = new System.Drawing.Point(787, 657);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox6.Name = "groupBox6";
@@ -471,18 +472,18 @@ namespace OPM.GUI
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Đợt 6";
             // 
-            // dateTimePicker6DeliveryPlanDate
+            // dateTimePickerDeliveryPlanDate6
             // 
-            this.dateTimePicker6DeliveryPlanDate.Location = new System.Drawing.Point(411, 23);
-            this.dateTimePicker6DeliveryPlanDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dateTimePicker6DeliveryPlanDate.Name = "dateTimePicker6DeliveryPlanDate";
-            this.dateTimePicker6DeliveryPlanDate.Size = new System.Drawing.Size(163, 31);
-            this.dateTimePicker6DeliveryPlanDate.TabIndex = 4;
+            this.dateTimePickerDeliveryPlanDate6.Location = new System.Drawing.Point(411, 23);
+            this.dateTimePickerDeliveryPlanDate6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateTimePickerDeliveryPlanDate6.Name = "dateTimePickerDeliveryPlanDate6";
+            this.dateTimePickerDeliveryPlanDate6.Size = new System.Drawing.Size(163, 31);
+            this.dateTimePickerDeliveryPlanDate6.TabIndex = 4;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(311, 32);
+            this.label13.Location = new System.Drawing.Point(311, 25);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(54, 25);
@@ -499,13 +500,13 @@ namespace OPM.GUI
             this.label14.TabIndex = 2;
             this.label14.Text = "Số lượng";
             // 
-            // textBox6DeliveryPlanQuantity
+            // textBoxDeliveryPlanQuantity6
             // 
-            this.textBox6DeliveryPlanQuantity.Location = new System.Drawing.Point(116, 23);
-            this.textBox6DeliveryPlanQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox6DeliveryPlanQuantity.Name = "textBox6DeliveryPlanQuantity";
-            this.textBox6DeliveryPlanQuantity.Size = new System.Drawing.Size(163, 31);
-            this.textBox6DeliveryPlanQuantity.TabIndex = 3;
+            this.textBoxDeliveryPlanQuantity6.Location = new System.Drawing.Point(116, 23);
+            this.textBoxDeliveryPlanQuantity6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxDeliveryPlanQuantity6.Name = "textBoxDeliveryPlanQuantity6";
+            this.textBoxDeliveryPlanQuantity6.Size = new System.Drawing.Size(163, 31);
+            this.textBoxDeliveryPlanQuantity6.TabIndex = 3;
             // 
             // textBoxDeliveryPlanQuantity
             // 
@@ -677,43 +678,43 @@ namespace OPM.GUI
         private System.Windows.Forms.DataGridView dtgDeliveryPlan;
         private System.Windows.Forms.Button buttonAddProvinceId;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1DeliveryPlanQuantity;
+        private System.Windows.Forms.TextBox textBoxDeliveryPlanQuantity1;
         private System.Windows.Forms.ComboBox comboBoxPONumberOfPhase;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox comboBoxProvinceId;
+        private System.Windows.Forms.ComboBox comboBoxProvince;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1DeliveryPlanDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDeliveryPlanDate1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2DeliveryPlanDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDeliveryPlanDate2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox2DeliveryPlanQuantity;
+        private System.Windows.Forms.TextBox textBoxDeliveryPlanQuantity2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3DeliveryPlanDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDeliveryPlanDate3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox3DeliveryPlanQuantity;
+        private System.Windows.Forms.TextBox textBoxDeliveryPlanQuantity3;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker4DeliveryPlanDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDeliveryPlanDate4;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox4DeliveryPlanQuantity;
+        private System.Windows.Forms.TextBox textBoxDeliveryPlanQuantity4;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.DateTimePicker dateTimePicker5DeliveryPlanDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDeliveryPlanDate5;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox5DeliveryPlanQuantity;
+        private System.Windows.Forms.TextBox textBoxDeliveryPlanQuantity5;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker6DeliveryPlanDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDeliveryPlanDate6;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox6DeliveryPlanQuantity;
+        private System.Windows.Forms.TextBox textBoxDeliveryPlanQuantity6;
         private System.Windows.Forms.TextBox textBoxDeliveryPlanQuantity;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.GroupBox groupBox7;

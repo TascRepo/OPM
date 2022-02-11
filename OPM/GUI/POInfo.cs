@@ -153,6 +153,7 @@ namespace OPM.GUI
 
         private void btnDeliveryPlan_Click(object sender, EventArgs e)
         {
+            (Tag as OPMDASHBOARDA).backSiteFormStatus = 1;
             (Tag as OPMDASHBOARDA).OpenDeliveryPlanForm();
         }
         private void txtPOId_TextChanged(object sender, EventArgs e)

@@ -9,12 +9,12 @@ namespace OPM.OPMEnginee
 {
     public class ContractObj : SiteObj
     {
-        string contractId = "XXX-2021/CUVT-ANSV/DTRR-KHMS";
+        private string contractId = "XXX-2022/CUVT-ANSV/DTRR-KHMS";
         public string ContractId
         {
             get => contractId;
             set
-            { 
+            {
                 contractId = value;
                 try
                 {
@@ -51,7 +51,7 @@ namespace OPM.OPMEnginee
                         AccoutingCode = (row["AccoutingCode"] == null || row["AccoutingCode"] == DBNull.Value) ? "" : row["AccoutingCode"].ToString();
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     MessageBox.Show("Lỗi khi kết nối bảng Contract trong CSDL " + e.Message);
                 }
@@ -138,6 +138,45 @@ namespace OPM.OPMEnginee
         public ContractObj(string contractId)
         {
             ContractId = contractId;
+            try
+            {
+                string query = string.Format("SELECT * FROM dbo.Contract WHERE ContractId = '{0}'", contractId);
+                DataTable table = OPMDBHandler.ExecuteQuery(query);
+                if (table.Rows.Count > 0)
+                {
+                    DataRow row = table.Rows[0];
+                    ContractCreatedDate = (row["ContractSignedDate"] == null || row["ContractSignedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["ContractSignedDate"];
+                    ContractName = (row["ContractName"] == null || row["ContractName"] == DBNull.Value) ? "" : row["ContractName"].ToString();
+                    ContractShoppingPlan = (row["ContractShoppingPlan"] == null || row["ContractShoppingPlan"] == DBNull.Value) ? "" : row["ContractShoppingPlan"].ToString();
+                    ContractType = (row["ContractType"] == null || row["ContractType"] == DBNull.Value) ? "" : row["ContractType"].ToString();
+                    SiteId = (row["ContractSiteId"] == null || row["ContractSiteId"] == DBNull.Value) ? "" : row["ContractSiteId"].ToString();
+                    ContractValidityDate = (row["ContractValidityDate"] == null || row["ContractValidityDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["ContractValidityDate"];
+                    ContractDeadline = (row["ContractDeadline"] == null || row["ContractDeadline"] == DBNull.Value) ? DateTime.Now : (DateTime)row["ContractDeadline"];
+                    ContractGoodsDesignation = (row["ContractGoodsDesignation"] == null || row["ContractGoodsDesignation"] == DBNull.Value) ? "" : row["ContractGoodsDesignation"].ToString();
+                    ContractGoodsCode = (row["ContractGoodsCode"] == null || row["ContractGoodsCode"] == DBNull.Value) ? "" : row["ContractGoodsCode"].ToString();
+                    ContractGoodsManufacture = (row["ContractGoodsManufacture"] == null || row["ContractGoodsManufacture"] == DBNull.Value) ? "" : row["ContractGoodsManufacture"].ToString();
+                    ContractGoodsOrigin = (row["ContractGoodsOrigin"] == null || row["ContractGoodsOrigin"] == DBNull.Value) ? "" : row["ContractGoodsOrigin"].ToString();
+                    ContractGoodsDesignation1 = (row["ContractGoodsDesignation1"] == null || row["ContractGoodsDesignation1"] == DBNull.Value) ? "" : row["ContractGoodsDesignation1"].ToString();
+                    ContractGoodsCode1 = (row["ContractGoodsCode1"] == null || row["ContractGoodsCode1"] == DBNull.Value) ? "" : row["ContractGoodsCode1"].ToString();
+                    ContractGoodsCode2 = (row["ContractGoodsCode2"] == null || row["ContractGoodsCode2"] == DBNull.Value) ? "" : row["ContractGoodsCode2"].ToString();
+                    ContractGoodsSpecies = (row["ContractGoodsSpecies"] == null || row["ContractGoodsSpecies"] == DBNull.Value) ? "" : row["ContractGoodsSpecies"].ToString();
+                    ContractGoodsNote = (row["ContractGoodsNote"] == null || row["ContractGoodsNote"] == DBNull.Value) ? "" : row["ContractGoodsNote"].ToString();
+                    ContractGoodsUnit = (row["ContractGoodsUnit"] == null || row["ContractGoodsUnit"] == DBNull.Value) ? "" : row["ContractGoodsUnit"].ToString();
+                    ContractGoodsUnitPrice = (row["ContractGoodsUnitPrice"] == null || row["ContractGoodsUnitPrice"] == DBNull.Value) ? 0 : (double)row["ContractGoodsUnitPrice"];
+                    ContractGoodsQuantity = (row["ContractGoodsQuantity"] == null || row["ContractGoodsQuantity"] == DBNull.Value) ? 0 : (double)row["ContractGoodsQuantity"];
+                    ContractGoodsLicenseName = (row["ContractGoodsLicenseName"] == null || row["ContractGoodsLicenseName"] == DBNull.Value) ? "" : row["ContractGoodsLicenseName"].ToString();
+                    ContractGoodsLicenseUnitPrice = (row["ContractGoodsLicenseUnitPrice"] == null || row["ContractGoodsLicenseUnitPrice"] == DBNull.Value) ? 0 : (double)row["ContractGoodsLicenseUnitPrice"];
+                    ContractGuaranteeCreatedDate = (row["ContractGuaranteeCreatedDate"] == null || row["ContractGuaranteeCreatedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["ContractGuaranteeCreatedDate"];
+                    POGuaranteeRatio = (row["POGuaranteeRatio"] == null || row["POGuaranteeRatio"] == DBNull.Value) ? 0 : (int)row["POGuaranteeRatio"];
+                    POGuaranteeValidityPeriod = (row["POGuaranteeValidityPeriod"] == null || row["POGuaranteeValidityPeriod"] == DBNull.Value) ? 0 : (int)row["POGuaranteeValidityPeriod"];
+                    ContractGuaranteeDeadline = (row["ContractGuaranteeDeadline"] == null || row["ContractGuaranteeDeadline"] == DBNull.Value) ? DateTime.Now : (DateTime)row["ContractGuaranteeDeadline"];
+                    AccoutingCode = (row["AccoutingCode"] == null || row["AccoutingCode"] == DBNull.Value) ? "" : row["AccoutingCode"].ToString();
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Lỗi khi kết nối bảng Contract trong CSDL " + e.Message);
+            }
         }
         public bool ContractExist()
         {
