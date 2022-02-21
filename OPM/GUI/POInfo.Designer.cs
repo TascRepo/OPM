@@ -65,7 +65,6 @@ namespace OPM.GUI
             this.dtpPOAdvanceGuaranteeCreatedDate = new System.Windows.Forms.DateTimePicker();
             this.label21 = new System.Windows.Forms.Label();
             this.dtpPOPerformDate = new System.Windows.Forms.DateTimePicker();
-            this.label22 = new System.Windows.Forms.Label();
             this.btnDeliveryPlan = new System.Windows.Forms.Button();
             this.txtPOAdvanceRequestId = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
@@ -88,14 +87,36 @@ namespace OPM.GUI
             this.txtPOGuaranteeRatio = new System.Windows.Forms.TextBox();
             this.dtpPOGuaranteeDate = new System.Windows.Forms.DateTimePicker();
             this.label29 = new System.Windows.Forms.Label();
+            this.txtContractGoodsQuantity = new System.Windows.Forms.TextBox();
+            this.txtRemainingContractGoodsQuantity = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.lblContractGoodsUnit = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.panel16 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(370, 706);
+            this.btnSave.Location = new System.Drawing.Point(422, 846);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(101, 38);
+            this.btnSave.Size = new System.Drawing.Size(130, 40);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -103,17 +124,17 @@ namespace OPM.GUI
             // 
             // txtPOId
             // 
-            this.txtPOId.Location = new System.Drawing.Point(221, 13);
+            this.txtPOId.Location = new System.Drawing.Point(365, 13);
             this.txtPOId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPOId.Name = "txtPOId";
-            this.txtPOId.Size = new System.Drawing.Size(457, 31);
+            this.txtPOId.Size = new System.Drawing.Size(725, 31);
             this.txtPOId.TabIndex = 1;
             this.txtPOId.TextChanged += new System.EventHandler(this.txtPOId_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 22);
+            this.label1.Location = new System.Drawing.Point(217, 16);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(140, 25);
@@ -122,10 +143,10 @@ namespace OPM.GUI
             // 
             // btnNewDP
             // 
-            this.btnNewDP.Location = new System.Drawing.Point(602, 706);
+            this.btnNewDP.Location = new System.Drawing.Point(954, 846);
             this.btnNewDP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnNewDP.Name = "btnNewDP";
-            this.btnNewDP.Size = new System.Drawing.Size(101, 38);
+            this.btnNewDP.Size = new System.Drawing.Size(130, 40);
             this.btnNewDP.TabIndex = 3;
             this.btnNewDP.Text = "New DP";
             this.btnNewDP.UseVisualStyleBackColor = true;
@@ -134,7 +155,7 @@ namespace OPM.GUI
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 70);
+            this.label3.Location = new System.Drawing.Point(290, 79);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 25);
@@ -143,17 +164,17 @@ namespace OPM.GUI
             // 
             // txtPOName
             // 
-            this.txtPOName.Location = new System.Drawing.Point(221, 67);
+            this.txtPOName.Location = new System.Drawing.Point(365, 73);
             this.txtPOName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPOName.Name = "txtPOName";
-            this.txtPOName.Size = new System.Drawing.Size(124, 31);
+            this.txtPOName.Size = new System.Drawing.Size(272, 31);
             this.txtPOName.TabIndex = 1;
             this.txtPOName.TextChanged += new System.EventHandler(this.TxtPOName_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(401, 70);
+            this.label4.Location = new System.Drawing.Point(669, 73);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 25);
@@ -163,26 +184,26 @@ namespace OPM.GUI
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 263);
+            this.label5.Location = new System.Drawing.Point(183, 314);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(145, 25);
+            this.label5.Size = new System.Drawing.Size(174, 25);
             this.label5.TabIndex = 2;
-            this.label5.Text = "Số lượng thiết bị";
+            this.label5.Text = "Số lượng thiết bị PO";
             // 
             // txtPOGoodsQuantity
             // 
-            this.txtPOGoodsQuantity.Location = new System.Drawing.Point(221, 263);
+            this.txtPOGoodsQuantity.Location = new System.Drawing.Point(365, 311);
             this.txtPOGoodsQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPOGoodsQuantity.Name = "txtPOGoodsQuantity";
-            this.txtPOGoodsQuantity.Size = new System.Drawing.Size(124, 31);
+            this.txtPOGoodsQuantity.Size = new System.Drawing.Size(272, 31);
             this.txtPOGoodsQuantity.TabIndex = 1;
             this.txtPOGoodsQuantity.TextChanged += new System.EventHandler(this.txtPOGoodsQuantity_TextChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 108);
+            this.label6.Location = new System.Drawing.Point(208, 133);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(149, 25);
@@ -191,10 +212,10 @@ namespace OPM.GUI
             // 
             // txtPOConfirmRequestDuration
             // 
-            this.txtPOConfirmRequestDuration.Location = new System.Drawing.Point(221, 108);
+            this.txtPOConfirmRequestDuration.Location = new System.Drawing.Point(365, 133);
             this.txtPOConfirmRequestDuration.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPOConfirmRequestDuration.Name = "txtPOConfirmRequestDuration";
-            this.txtPOConfirmRequestDuration.Size = new System.Drawing.Size(124, 31);
+            this.txtPOConfirmRequestDuration.Size = new System.Drawing.Size(272, 31);
             this.txtPOConfirmRequestDuration.TabIndex = 1;
             this.txtPOConfirmRequestDuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPOConfirmRequestDuration.TextChanged += new System.EventHandler(this.txtPOConfirmRequestDuration_TextChanged);
@@ -202,7 +223,7 @@ namespace OPM.GUI
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 162);
+            this.label7.Location = new System.Drawing.Point(175, 199);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(182, 25);
@@ -214,27 +235,27 @@ namespace OPM.GUI
             this.dtpPOConfirmRequestDeadline.CustomFormat = "dd/MM/yyyy";
             this.dtpPOConfirmRequestDeadline.Enabled = false;
             this.dtpPOConfirmRequestDeadline.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPOConfirmRequestDeadline.Location = new System.Drawing.Point(464, 107);
+            this.dtpPOConfirmRequestDeadline.Location = new System.Drawing.Point(726, 133);
             this.dtpPOConfirmRequestDeadline.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpPOConfirmRequestDeadline.Name = "dtpPOConfirmRequestDeadline";
-            this.dtpPOConfirmRequestDeadline.Size = new System.Drawing.Size(214, 31);
+            this.dtpPOConfirmRequestDeadline.Size = new System.Drawing.Size(362, 31);
             this.dtpPOConfirmRequestDeadline.TabIndex = 4;
             // 
             // dtpPODefaultPerformDate
             // 
             this.dtpPODefaultPerformDate.CustomFormat = "dd/MM/yyyy";
             this.dtpPODefaultPerformDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPODefaultPerformDate.Location = new System.Drawing.Point(464, 158);
+            this.dtpPODefaultPerformDate.Location = new System.Drawing.Point(726, 193);
             this.dtpPODefaultPerformDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpPODefaultPerformDate.Name = "dtpPODefaultPerformDate";
-            this.dtpPODefaultPerformDate.Size = new System.Drawing.Size(214, 31);
+            this.dtpPODefaultPerformDate.Size = new System.Drawing.Size(362, 31);
             this.dtpPODefaultPerformDate.TabIndex = 4;
             this.dtpPODefaultPerformDate.ValueChanged += new System.EventHandler(this.dtpPODefaultPerformDate_ValueChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 217);
+            this.label9.Location = new System.Drawing.Point(192, 253);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(165, 25);
@@ -246,18 +267,18 @@ namespace OPM.GUI
             this.dtpPODeadline.CustomFormat = "dd/MM/yyyy";
             this.dtpPODeadline.Enabled = false;
             this.dtpPODeadline.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPODeadline.Location = new System.Drawing.Point(464, 215);
+            this.dtpPODeadline.Location = new System.Drawing.Point(726, 253);
             this.dtpPODeadline.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpPODeadline.Name = "dtpPODeadline";
-            this.dtpPODeadline.Size = new System.Drawing.Size(214, 31);
+            this.dtpPODeadline.Size = new System.Drawing.Size(362, 31);
             this.dtpPODeadline.TabIndex = 4;
             // 
             // txtPODuration
             // 
-            this.txtPODuration.Location = new System.Drawing.Point(221, 217);
+            this.txtPODuration.Location = new System.Drawing.Point(365, 250);
             this.txtPODuration.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPODuration.Name = "txtPODuration";
-            this.txtPODuration.Size = new System.Drawing.Size(124, 31);
+            this.txtPODuration.Size = new System.Drawing.Size(272, 31);
             this.txtPODuration.TabIndex = 1;
             this.txtPODuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPODuration.TextChanged += new System.EventHandler(this.txtPODuration_TextChanged);
@@ -265,39 +286,39 @@ namespace OPM.GUI
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(361, 268);
+            this.label11.Location = new System.Drawing.Point(665, 317);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(87, 25);
+            this.label11.Size = new System.Drawing.Size(58, 25);
             this.label11.TabIndex = 2;
-            this.label11.Text = "Giá trị PO";
+            this.label11.Text = "Giá trị";
             // 
             // txtPOTotalValue
             // 
             this.txtPOTotalValue.Enabled = false;
-            this.txtPOTotalValue.Location = new System.Drawing.Point(464, 263);
+            this.txtPOTotalValue.Location = new System.Drawing.Point(726, 313);
             this.txtPOTotalValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPOTotalValue.Name = "txtPOTotalValue";
-            this.txtPOTotalValue.Size = new System.Drawing.Size(164, 31);
+            this.txtPOTotalValue.Size = new System.Drawing.Size(290, 31);
             this.txtPOTotalValue.TabIndex = 1;
             // 
             // dtpPOCreatedDate
             // 
             this.dtpPOCreatedDate.CustomFormat = "dd/MM/yyyy";
             this.dtpPOCreatedDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPOCreatedDate.Location = new System.Drawing.Point(464, 67);
+            this.dtpPOCreatedDate.Location = new System.Drawing.Point(726, 73);
             this.dtpPOCreatedDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpPOCreatedDate.Name = "dtpPOCreatedDate";
-            this.dtpPOCreatedDate.Size = new System.Drawing.Size(214, 31);
+            this.dtpPOCreatedDate.Size = new System.Drawing.Size(362, 31);
             this.dtpPOCreatedDate.TabIndex = 4;
             this.dtpPOCreatedDate.ValueChanged += new System.EventHandler(this.dtpPOCreatedDate_ValueChanged);
             // 
             // txtPOAdvancePercentage
             // 
-            this.txtPOAdvancePercentage.Location = new System.Drawing.Point(221, 592);
+            this.txtPOAdvancePercentage.Location = new System.Drawing.Point(365, 733);
             this.txtPOAdvancePercentage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPOAdvancePercentage.Name = "txtPOAdvancePercentage";
-            this.txtPOAdvancePercentage.Size = new System.Drawing.Size(124, 31);
+            this.txtPOAdvancePercentage.Size = new System.Drawing.Size(272, 31);
             this.txtPOAdvancePercentage.TabIndex = 6;
             this.txtPOAdvancePercentage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPOAdvancePercentage.TextChanged += new System.EventHandler(this.txtPOAdvancePercentage_TextChanged);
@@ -305,7 +326,7 @@ namespace OPM.GUI
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(17, 596);
+            this.label12.Location = new System.Drawing.Point(226, 733);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(131, 25);
@@ -316,7 +337,7 @@ namespace OPM.GUI
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label13.Location = new System.Drawing.Point(359, 501);
+            this.label13.Location = new System.Drawing.Point(639, 612);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(33, 31);
@@ -325,10 +346,10 @@ namespace OPM.GUI
             // 
             // btnNewNTKT
             // 
-            this.btnNewNTKT.Location = new System.Drawing.Point(486, 706);
+            this.btnNewNTKT.Location = new System.Drawing.Point(821, 846);
             this.btnNewNTKT.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnNewNTKT.Name = "btnNewNTKT";
-            this.btnNewNTKT.Size = new System.Drawing.Size(101, 38);
+            this.btnNewNTKT.Size = new System.Drawing.Size(130, 40);
             this.btnNewNTKT.TabIndex = 9;
             this.btnNewNTKT.Text = "New NTKT";
             this.btnNewNTKT.UseVisualStyleBackColor = true;
@@ -336,10 +357,10 @@ namespace OPM.GUI
             // 
             // btnNewPO
             // 
-            this.btnNewPO.Location = new System.Drawing.Point(138, 706);
+            this.btnNewPO.Location = new System.Drawing.Point(156, 846);
             this.btnNewPO.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnNewPO.Name = "btnNewPO";
-            this.btnNewPO.Size = new System.Drawing.Size(101, 38);
+            this.btnNewPO.Size = new System.Drawing.Size(130, 40);
             this.btnNewPO.TabIndex = 10;
             this.btnNewPO.Text = "NewPO";
             this.btnNewPO.UseVisualStyleBackColor = true;
@@ -347,10 +368,10 @@ namespace OPM.GUI
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(255, 706);
+            this.btnDelete.Location = new System.Drawing.Point(289, 846);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(101, 38);
+            this.btnDelete.Size = new System.Drawing.Size(130, 40);
             this.btnDelete.TabIndex = 13;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -359,7 +380,7 @@ namespace OPM.GUI
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(17, 501);
+            this.label10.Location = new System.Drawing.Point(148, 615);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(205, 25);
@@ -368,10 +389,10 @@ namespace OPM.GUI
             // 
             // txtPOAdvanceGuaranteePercentage
             // 
-            this.txtPOAdvanceGuaranteePercentage.Location = new System.Drawing.Point(221, 501);
+            this.txtPOAdvanceGuaranteePercentage.Location = new System.Drawing.Point(365, 613);
             this.txtPOAdvanceGuaranteePercentage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPOAdvanceGuaranteePercentage.Name = "txtPOAdvanceGuaranteePercentage";
-            this.txtPOAdvanceGuaranteePercentage.Size = new System.Drawing.Size(124, 31);
+            this.txtPOAdvanceGuaranteePercentage.Size = new System.Drawing.Size(272, 31);
             this.txtPOAdvanceGuaranteePercentage.TabIndex = 6;
             this.txtPOAdvanceGuaranteePercentage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPOAdvanceGuaranteePercentage.TextChanged += new System.EventHandler(this.txtPOAdvanceGuaranteePercentage_TextChanged);
@@ -380,7 +401,7 @@ namespace OPM.GUI
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(359, 596);
+            this.label14.Location = new System.Drawing.Point(639, 731);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(33, 31);
@@ -390,7 +411,7 @@ namespace OPM.GUI
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(636, 272);
+            this.label17.Location = new System.Drawing.Point(1038, 317);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(49, 25);
@@ -400,7 +421,7 @@ namespace OPM.GUI
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(384, 646);
+            this.label19.Location = new System.Drawing.Point(673, 791);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(54, 25);
@@ -411,17 +432,17 @@ namespace OPM.GUI
             // 
             this.dtpPOAdvanceCreatedDate.CustomFormat = "dd/MM/yyyy";
             this.dtpPOAdvanceCreatedDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPOAdvanceCreatedDate.Location = new System.Drawing.Point(464, 642);
+            this.dtpPOAdvanceCreatedDate.Location = new System.Drawing.Point(726, 787);
             this.dtpPOAdvanceCreatedDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpPOAdvanceCreatedDate.Name = "dtpPOAdvanceCreatedDate";
-            this.dtpPOAdvanceCreatedDate.Size = new System.Drawing.Size(214, 31);
+            this.dtpPOAdvanceCreatedDate.Size = new System.Drawing.Size(361, 31);
             this.dtpPOAdvanceCreatedDate.TabIndex = 4;
             this.dtpPOAdvanceCreatedDate.ValueChanged += new System.EventHandler(this.dtpAdvanceCreatedDate_ValueChanged);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(400, 506);
+            this.label20.Location = new System.Drawing.Point(669, 557);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(54, 25);
@@ -432,17 +453,17 @@ namespace OPM.GUI
             // 
             this.dtpPOAdvanceGuaranteeCreatedDate.CustomFormat = "dd/MM/yyyy";
             this.dtpPOAdvanceGuaranteeCreatedDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPOAdvanceGuaranteeCreatedDate.Location = new System.Drawing.Point(466, 497);
+            this.dtpPOAdvanceGuaranteeCreatedDate.Location = new System.Drawing.Point(727, 613);
             this.dtpPOAdvanceGuaranteeCreatedDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpPOAdvanceGuaranteeCreatedDate.Name = "dtpPOAdvanceGuaranteeCreatedDate";
-            this.dtpPOAdvanceGuaranteeCreatedDate.Size = new System.Drawing.Size(214, 31);
+            this.dtpPOAdvanceGuaranteeCreatedDate.Size = new System.Drawing.Size(362, 31);
             this.dtpPOAdvanceGuaranteeCreatedDate.TabIndex = 4;
             this.dtpPOAdvanceGuaranteeCreatedDate.ValueChanged += new System.EventHandler(this.dtpAdvanceGuaranteeCreatedDate_ValueChanged);
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(16, 363);
+            this.label21.Location = new System.Drawing.Point(163, 498);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(194, 25);
@@ -453,40 +474,30 @@ namespace OPM.GUI
             // 
             this.dtpPOPerformDate.CustomFormat = "dd/MM/yyyy";
             this.dtpPOPerformDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPOPerformDate.Location = new System.Drawing.Point(464, 358);
+            this.dtpPOPerformDate.Location = new System.Drawing.Point(726, 493);
             this.dtpPOPerformDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpPOPerformDate.Name = "dtpPOPerformDate";
-            this.dtpPOPerformDate.Size = new System.Drawing.Size(214, 31);
+            this.dtpPOPerformDate.Size = new System.Drawing.Size(362, 31);
             this.dtpPOPerformDate.TabIndex = 4;
             this.dtpPOPerformDate.ValueChanged += new System.EventHandler(this.dtpPOPerformDate_ValueChanged);
             // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(17, 403);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(199, 25);
-            this.label22.TabIndex = 21;
-            this.label22.Text = "File kế hoạch giao hàng";
-            // 
             // btnDeliveryPlan
             // 
-            this.btnDeliveryPlan.Location = new System.Drawing.Point(221, 400);
+            this.btnDeliveryPlan.Location = new System.Drawing.Point(688, 846);
             this.btnDeliveryPlan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDeliveryPlan.Name = "btnDeliveryPlan";
-            this.btnDeliveryPlan.Size = new System.Drawing.Size(459, 38);
+            this.btnDeliveryPlan.Size = new System.Drawing.Size(130, 40);
             this.btnDeliveryPlan.TabIndex = 20;
-            this.btnDeliveryPlan.Text = "Kế hoạch giao hàng";
+            this.btnDeliveryPlan.Text = "KH giao hàng";
             this.btnDeliveryPlan.UseVisualStyleBackColor = true;
             this.btnDeliveryPlan.Click += new System.EventHandler(this.btnDeliveryPlan_Click);
             // 
             // txtPOAdvanceRequestId
             // 
-            this.txtPOAdvanceRequestId.Location = new System.Drawing.Point(221, 544);
+            this.txtPOAdvanceRequestId.Location = new System.Drawing.Point(365, 673);
             this.txtPOAdvanceRequestId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPOAdvanceRequestId.Name = "txtPOAdvanceRequestId";
-            this.txtPOAdvanceRequestId.Size = new System.Drawing.Size(124, 31);
+            this.txtPOAdvanceRequestId.Size = new System.Drawing.Size(272, 31);
             this.txtPOAdvanceRequestId.TabIndex = 23;
             this.txtPOAdvanceRequestId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPOAdvanceRequestId.TextChanged += new System.EventHandler(this.txtIdAdvanceRequest_TextChanged);
@@ -494,19 +505,19 @@ namespace OPM.GUI
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(19, 546);
+            this.label23.Location = new System.Drawing.Point(104, 676);
             this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(184, 25);
+            this.label23.Size = new System.Drawing.Size(249, 25);
             this.label23.TabIndex = 22;
-            this.label23.Text = "Số công văn tạm ứng";
+            this.label23.Text = "Số công văn đề nghị tạm ứng";
             // 
             // txtPOConfirmId
             // 
-            this.txtPOConfirmId.Location = new System.Drawing.Point(221, 315);
+            this.txtPOConfirmId.Location = new System.Drawing.Point(365, 435);
             this.txtPOConfirmId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPOConfirmId.Name = "txtPOConfirmId";
-            this.txtPOConfirmId.Size = new System.Drawing.Size(124, 31);
+            this.txtPOConfirmId.Size = new System.Drawing.Size(272, 31);
             this.txtPOConfirmId.TabIndex = 6;
             this.txtPOConfirmId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPOConfirmId.TextChanged += new System.EventHandler(this.txtPOConfirmId_TextChanged);
@@ -514,7 +525,7 @@ namespace OPM.GUI
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(401, 320);
+            this.label18.Location = new System.Drawing.Point(669, 438);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(54, 25);
@@ -524,7 +535,7 @@ namespace OPM.GUI
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(16, 318);
+            this.label16.Location = new System.Drawing.Point(172, 438);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(185, 25);
@@ -535,17 +546,17 @@ namespace OPM.GUI
             // 
             this.dtpPOConfirmCreatedDate.CustomFormat = "dd/MM/yyyy";
             this.dtpPOConfirmCreatedDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPOConfirmCreatedDate.Location = new System.Drawing.Point(464, 310);
+            this.dtpPOConfirmCreatedDate.Location = new System.Drawing.Point(726, 433);
             this.dtpPOConfirmCreatedDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpPOConfirmCreatedDate.Name = "dtpPOConfirmCreatedDate";
-            this.dtpPOConfirmCreatedDate.Size = new System.Drawing.Size(214, 31);
+            this.dtpPOConfirmCreatedDate.Size = new System.Drawing.Size(362, 31);
             this.dtpPOConfirmCreatedDate.TabIndex = 4;
             this.dtpPOConfirmCreatedDate.ValueChanged += new System.EventHandler(this.dtpPOConfirmCreatedDate_ValueChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(401, 544);
+            this.label2.Location = new System.Drawing.Point(669, 615);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 25);
@@ -556,17 +567,17 @@ namespace OPM.GUI
             // 
             this.dtpPOAdvanceRequestCreatedDate.CustomFormat = "dd/MM/yyyy";
             this.dtpPOAdvanceRequestCreatedDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPOAdvanceRequestCreatedDate.Location = new System.Drawing.Point(467, 542);
+            this.dtpPOAdvanceRequestCreatedDate.Location = new System.Drawing.Point(728, 673);
             this.dtpPOAdvanceRequestCreatedDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpPOAdvanceRequestCreatedDate.Name = "dtpPOAdvanceRequestCreatedDate";
-            this.dtpPOAdvanceRequestCreatedDate.Size = new System.Drawing.Size(214, 31);
+            this.dtpPOAdvanceRequestCreatedDate.Size = new System.Drawing.Size(362, 31);
             this.dtpPOAdvanceRequestCreatedDate.TabIndex = 4;
             this.dtpPOAdvanceRequestCreatedDate.ValueChanged += new System.EventHandler(this.dtpAdvanceRequestDate_ValueChanged);
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(401, 220);
+            this.label15.Location = new System.Drawing.Point(669, 256);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(54, 25);
@@ -576,7 +587,7 @@ namespace OPM.GUI
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(401, 163);
+            this.label24.Location = new System.Drawing.Point(669, 197);
             this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(54, 25);
@@ -586,7 +597,7 @@ namespace OPM.GUI
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(401, 108);
+            this.label25.Location = new System.Drawing.Point(669, 135);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(54, 25);
@@ -595,10 +606,10 @@ namespace OPM.GUI
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(22, 706);
+            this.btnBack.Location = new System.Drawing.Point(23, 846);
             this.btnBack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(101, 38);
+            this.btnBack.Size = new System.Drawing.Size(130, 40);
             this.btnBack.TabIndex = 0;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -606,10 +617,10 @@ namespace OPM.GUI
             // 
             // btnCreatDoc
             // 
-            this.btnCreatDoc.Location = new System.Drawing.Point(370, 754);
+            this.btnCreatDoc.Location = new System.Drawing.Point(555, 846);
             this.btnCreatDoc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCreatDoc.Name = "btnCreatDoc";
-            this.btnCreatDoc.Size = new System.Drawing.Size(101, 38);
+            this.btnCreatDoc.Size = new System.Drawing.Size(130, 40);
             this.btnCreatDoc.TabIndex = 0;
             this.btnCreatDoc.Text = "CreateDoc";
             this.btnCreatDoc.UseVisualStyleBackColor = true;
@@ -617,10 +628,10 @@ namespace OPM.GUI
             // 
             // txtPOAdvanceId
             // 
-            this.txtPOAdvanceId.Location = new System.Drawing.Point(221, 642);
+            this.txtPOAdvanceId.Location = new System.Drawing.Point(365, 789);
             this.txtPOAdvanceId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPOAdvanceId.Name = "txtPOAdvanceId";
-            this.txtPOAdvanceId.Size = new System.Drawing.Size(124, 31);
+            this.txtPOAdvanceId.Size = new System.Drawing.Size(272, 31);
             this.txtPOAdvanceId.TabIndex = 6;
             this.txtPOAdvanceId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPOAdvanceId.TextChanged += new System.EventHandler(this.txtPOAdvanceId_TextChanged);
@@ -628,20 +639,20 @@ namespace OPM.GUI
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(16, 646);
+            this.label26.Location = new System.Drawing.Point(17, 790);
             this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(111, 25);
+            this.label26.Size = new System.Drawing.Size(340, 25);
             this.label26.TabIndex = 2;
-            this.label26.Text = "Số công văn";
+            this.label26.Text = "Số công văn đề nghị thanh toán tạm ứng";
             // 
             // txtPOAdvanceValue
             // 
             this.txtPOAdvanceValue.Enabled = false;
-            this.txtPOAdvanceValue.Location = new System.Drawing.Point(466, 592);
+            this.txtPOAdvanceValue.Location = new System.Drawing.Point(728, 733);
             this.txtPOAdvanceValue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPOAdvanceValue.Name = "txtPOAdvanceValue";
-            this.txtPOAdvanceValue.Size = new System.Drawing.Size(164, 31);
+            this.txtPOAdvanceValue.Size = new System.Drawing.Size(288, 31);
             this.txtPOAdvanceValue.TabIndex = 6;
             this.txtPOAdvanceValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPOAdvanceValue.TextChanged += new System.EventHandler(this.txtPOAdvancePercentage_TextChanged);
@@ -649,7 +660,7 @@ namespace OPM.GUI
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(634, 597);
+            this.label27.Location = new System.Drawing.Point(1038, 733);
             this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(49, 25);
@@ -659,7 +670,7 @@ namespace OPM.GUI
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(17, 454);
+            this.label28.Location = new System.Drawing.Point(192, 557);
             this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(161, 25);
@@ -669,10 +680,10 @@ namespace OPM.GUI
             // txtPOGuaranteeRatio
             // 
             this.txtPOGuaranteeRatio.Enabled = false;
-            this.txtPOGuaranteeRatio.Location = new System.Drawing.Point(223, 454);
+            this.txtPOGuaranteeRatio.Location = new System.Drawing.Point(365, 551);
             this.txtPOGuaranteeRatio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPOGuaranteeRatio.Name = "txtPOGuaranteeRatio";
-            this.txtPOGuaranteeRatio.Size = new System.Drawing.Size(124, 31);
+            this.txtPOGuaranteeRatio.Size = new System.Drawing.Size(272, 31);
             this.txtPOGuaranteeRatio.TabIndex = 6;
             this.txtPOGuaranteeRatio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPOGuaranteeRatio.TextChanged += new System.EventHandler(this.txtPOAdvanceId_TextChanged);
@@ -681,29 +692,200 @@ namespace OPM.GUI
             // 
             this.dtpPOGuaranteeDate.CustomFormat = "dd/MM/yyyy";
             this.dtpPOGuaranteeDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPOGuaranteeDate.Location = new System.Drawing.Point(464, 454);
+            this.dtpPOGuaranteeDate.Location = new System.Drawing.Point(725, 553);
             this.dtpPOGuaranteeDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpPOGuaranteeDate.Name = "dtpPOGuaranteeDate";
-            this.dtpPOGuaranteeDate.Size = new System.Drawing.Size(214, 31);
+            this.dtpPOGuaranteeDate.Size = new System.Drawing.Size(362, 31);
             this.dtpPOGuaranteeDate.TabIndex = 4;
             this.dtpPOGuaranteeDate.ValueChanged += new System.EventHandler(this.dtpPOGuaranteeDate_ValueChanged);
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(401, 457);
+            this.label29.Location = new System.Drawing.Point(669, 494);
             this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(54, 25);
             this.label29.TabIndex = 2;
             this.label29.Text = "Ngày";
             // 
+            // txtContractGoodsQuantity
+            // 
+            this.txtContractGoodsQuantity.Enabled = false;
+            this.txtContractGoodsQuantity.Location = new System.Drawing.Point(365, 370);
+            this.txtContractGoodsQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtContractGoodsQuantity.Name = "txtContractGoodsQuantity";
+            this.txtContractGoodsQuantity.Size = new System.Drawing.Size(272, 31);
+            this.txtContractGoodsQuantity.TabIndex = 1;
+            this.txtContractGoodsQuantity.TextChanged += new System.EventHandler(this.txtPOGoodsQuantity_TextChanged);
+            // 
+            // txtRemainingContractGoodsQuantity
+            // 
+            this.txtRemainingContractGoodsQuantity.Enabled = false;
+            this.txtRemainingContractGoodsQuantity.Location = new System.Drawing.Point(726, 373);
+            this.txtRemainingContractGoodsQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtRemainingContractGoodsQuantity.Name = "txtRemainingContractGoodsQuantity";
+            this.txtRemainingContractGoodsQuantity.Size = new System.Drawing.Size(290, 31);
+            this.txtRemainingContractGoodsQuantity.TabIndex = 1;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(200, 376);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(157, 25);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Số lượng Contract";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(657, 376);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(66, 25);
+            this.label22.TabIndex = 2;
+            this.label22.Text = "Còn lại";
+            // 
+            // lblContractGoodsUnit
+            // 
+            this.lblContractGoodsUnit.AutoSize = true;
+            this.lblContractGoodsUnit.Location = new System.Drawing.Point(1038, 379);
+            this.lblContractGoodsUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblContractGoodsUnit.Name = "lblContractGoodsUnit";
+            this.lblContractGoodsUnit.Size = new System.Drawing.Size(33, 25);
+            this.lblContractGoodsUnit.TabIndex = 17;
+            this.lblContractGoodsUnit.Text = "Bộ";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(669, 678);
+            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(54, 25);
+            this.label30.TabIndex = 2;
+            this.label30.Text = "Ngày";
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(13, 7);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1083, 46);
+            this.panel1.TabIndex = 24;
+            // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(13, 67);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1083, 46);
+            this.panel2.TabIndex = 24;
+            // 
+            // panel3
+            // 
+            this.panel3.Location = new System.Drawing.Point(13, 126);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1083, 46);
+            this.panel3.TabIndex = 24;
+            // 
+            // panel4
+            // 
+            this.panel4.Location = new System.Drawing.Point(13, 186);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1083, 46);
+            this.panel4.TabIndex = 24;
+            // 
+            // panel5
+            // 
+            this.panel5.Location = new System.Drawing.Point(13, 244);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1083, 46);
+            this.panel5.TabIndex = 24;
+            // 
+            // panel6
+            // 
+            this.panel6.Location = new System.Drawing.Point(13, 304);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1083, 46);
+            this.panel6.TabIndex = 24;
+            // 
+            // panel7
+            // 
+            this.panel7.Location = new System.Drawing.Point(13, 363);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1083, 46);
+            this.panel7.TabIndex = 24;
+            // 
+            // panel8
+            // 
+            this.panel8.Location = new System.Drawing.Point(13, 427);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1083, 46);
+            this.panel8.TabIndex = 24;
+            // 
+            // panel9
+            // 
+            this.panel9.Location = new System.Drawing.Point(13, 487);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(1083, 46);
+            this.panel9.TabIndex = 24;
+            // 
+            // panel10
+            // 
+            this.panel10.Location = new System.Drawing.Point(13, 546);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(1083, 46);
+            this.panel10.TabIndex = 24;
+            // 
+            // panel11
+            // 
+            this.panel11.Location = new System.Drawing.Point(13, 605);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(1083, 46);
+            this.panel11.TabIndex = 24;
+            // 
+            // panel12
+            // 
+            this.panel12.Location = new System.Drawing.Point(13, 730);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(1083, 46);
+            this.panel12.TabIndex = 24;
+            // 
+            // panel13
+            // 
+            this.panel13.Location = new System.Drawing.Point(17, 668);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(1083, 46);
+            this.panel13.TabIndex = 24;
+            // 
+            // panel14
+            // 
+            this.panel14.Location = new System.Drawing.Point(13, 668);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(1083, 46);
+            this.panel14.TabIndex = 24;
+            // 
+            // panel15
+            // 
+            this.panel15.Location = new System.Drawing.Point(13, 782);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(1083, 46);
+            this.panel15.TabIndex = 24;
+            // 
+            // panel16
+            // 
+            this.panel16.Location = new System.Drawing.Point(13, 843);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(1083, 46);
+            this.panel16.TabIndex = 24;
+            // 
             // POInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightYellow;
-            this.ClientSize = new System.Drawing.Size(711, 802);
+            this.ClientSize = new System.Drawing.Size(1100, 900);
             this.Controls.Add(this.dtpPOConfirmCreatedDate);
             this.Controls.Add(this.txtPOAdvanceRequestId);
             this.Controls.Add(this.label28);
@@ -717,9 +899,9 @@ namespace OPM.GUI
             this.Controls.Add(this.txtPOGuaranteeRatio);
             this.Controls.Add(this.txtPOAdvanceId);
             this.Controls.Add(this.txtPOConfirmId);
-            this.Controls.Add(this.label22);
             this.Controls.Add(this.btnDeliveryPlan);
             this.Controls.Add(this.label27);
+            this.Controls.Add(this.lblContractGoodsUnit);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnNewPO);
@@ -736,6 +918,7 @@ namespace OPM.GUI
             this.Controls.Add(this.dtpPOPerformDate);
             this.Controls.Add(this.dtpPOCreatedDate);
             this.Controls.Add(this.dtpPOConfirmRequestDeadline);
+            this.Controls.Add(this.label30);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnNewDP);
             this.Controls.Add(this.label20);
@@ -746,16 +929,20 @@ namespace OPM.GUI
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
+            this.Controls.Add(this.label22);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtPODuration);
             this.Controls.Add(this.txtPOConfirmRequestDuration);
+            this.Controls.Add(this.txtRemainingContractGoodsQuantity);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtContractGoodsQuantity);
             this.Controls.Add(this.txtPOTotalValue);
             this.Controls.Add(this.txtPOGoodsQuantity);
             this.Controls.Add(this.txtPOName);
@@ -763,6 +950,22 @@ namespace OPM.GUI
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnCreatDoc);
             this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.panel15);
+            this.Controls.Add(this.panel14);
+            this.Controls.Add(this.panel13);
+            this.Controls.Add(this.panel16);
+            this.Controls.Add(this.panel12);
+            this.Controls.Add(this.panel11);
+            this.Controls.Add(this.panel10);
+            this.Controls.Add(this.panel9);
+            this.Controls.Add(this.panel8);
+            this.Controls.Add(this.panel7);
+            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "POInfo";
@@ -811,7 +1014,6 @@ namespace OPM.GUI
         private System.Windows.Forms.DateTimePicker dtpPOAdvanceGuaranteeCreatedDate;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.DateTimePicker dtpPOPerformDate;
-        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button btnDeliveryPlan;
         private System.Windows.Forms.TextBox txtPOAdvanceRequestId;
         private System.Windows.Forms.Label label23;
@@ -834,5 +1036,27 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox txtPOGuaranteeRatio;
         private System.Windows.Forms.DateTimePicker dtpPOGuaranteeDate;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox txtContractGoodsQuantity;
+        private System.Windows.Forms.TextBox txtRemainingContractGoodsQuantity;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label lblContractGoodsUnit;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Panel panel16;
     }
 }

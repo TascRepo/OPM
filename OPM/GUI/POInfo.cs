@@ -1,4 +1,5 @@
-﻿using OPM.ExcelHandler;
+﻿using OPM.DBHandler;
+using OPM.ExcelHandler;
 using OPM.OPMEnginee;
 using System;
 using System.Data;
@@ -24,6 +25,9 @@ namespace OPM.GUI
             dtpPOCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.POCreatedDate;
             txtPODuration.Text = ((Tag as OPMDASHBOARDA).Po.PODeadline.Date - (Tag as OPMDASHBOARDA).Po.POPerformDate.Date).TotalDays.ToString();
             txtPOGoodsQuantity.Text = (Tag as OPMDASHBOARDA).Po.POGoodsQuantity.ToString();
+            txtContractGoodsQuantity.Text = (Tag as OPMDASHBOARDA).Po.ContractGoodsQuantity.ToString();
+            txtRemainingContractGoodsQuantity.Text = ((Tag as OPMDASHBOARDA).Po.ContractGoodsQuantity - POObj.POGoodsQuantityTotalByContractId((Tag as OPMDASHBOARDA).Po.ContractId)).ToString();
+            lblContractGoodsUnit.Text = (Tag as OPMDASHBOARDA).Po.ContractGoodsUnit;
             txtPOConfirmRequestDuration.Text = ((Tag as OPMDASHBOARDA).Po.POConfirmRequestDeadline.Date - (Tag as OPMDASHBOARDA).Po.POCreatedDate.Date).Days.ToString();
             dtpPODefaultPerformDate.Value = (Tag as OPMDASHBOARDA).Po.PODefaultPerformDate;
             txtPOTotalValue.Text = (Tag as OPMDASHBOARDA).Po.POTotalValue.ToString();
@@ -64,12 +68,20 @@ namespace OPM.GUI
         }
         private void btnNewDP_Click(object sender, EventArgs e)
         {
-            if (!POObj.POExist(txtPOId.Text))
+            if ((Tag as OPMDASHBOARDA).Po.POExist())
             {
-                MessageBox.Show("PO chưa tồn tại trong CSDL!");
+                if(DeliveryPlanObj.DeliveryPlanExist((Tag as OPMDASHBOARDA).Po.POId))
+                {
+                    (Tag as OPMDASHBOARDA).CurrentNodeName = "DP_" + (new DPObj()).DPId;
+                }
+                else
+                {
+                    MessageBox.Show(string.Format("Vẫn chưa tạo kế hoạch giao hàng của PO số {0}", (Tag as OPMDASHBOARDA).Po.POId), "Thông báo");
+                }
             }
             else
             {
+                MessageBox.Show(string.Format("Vẫn chưa lưu PO số {0}", (Tag as OPMDASHBOARDA).Po.POId), "Thông báo");
             }
         }
         private void btnDelete_Click(object sender, EventArgs e)
@@ -153,8 +165,12 @@ namespace OPM.GUI
 
         private void btnDeliveryPlan_Click(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).backSiteFormStatus = 1;
-            (Tag as OPMDASHBOARDA).OpenDeliveryPlanForm();
+            if(POObj.POExist((Tag as OPMDASHBOARDA).Po.POId))
+            {
+                (Tag as OPMDASHBOARDA).backSiteFormStatus = 1;
+                (Tag as OPMDASHBOARDA).OpenDeliveryPlanForm();
+            }
+            else MessageBox.Show("Không tồn tại PO số: ", (Tag as OPMDASHBOARDA).Po.POId);
         }
         private void txtPOId_TextChanged(object sender, EventArgs e)
         {
@@ -328,5 +344,6 @@ namespace OPM.GUI
         {
             (Tag as OPMDASHBOARDA).Po.POGuaranteeDate = dtpPOGuaranteeDate.Value;
         }
+
     }
 }

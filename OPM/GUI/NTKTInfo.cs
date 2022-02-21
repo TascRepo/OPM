@@ -22,6 +22,11 @@ namespace OPM.GUI
             dtpTechnicalAcceptanceReportDate.Value = (Tag as OPMDASHBOARDA).Ntkt.TechnicalAcceptanceReportDate;
             dtpNTKTLicenseCertificateDate.Value = (Tag as OPMDASHBOARDA).Ntkt.NTKTLicenseCertificateDate;
             txtNTKTQuantity.Text = (Tag as OPMDASHBOARDA).Ntkt.NTKTQuantity.ToString();
+            lblContractGoodsUnit.Text = (Tag as OPMDASHBOARDA).Ntkt.ContractGoodsUnit;
+            lblContractGoodsUnit1.Text = (Tag as OPMDASHBOARDA).Ntkt.ContractGoodsUnit;
+            lblContractGoodsUnit2.Text = (Tag as OPMDASHBOARDA).Ntkt.ContractGoodsUnit;
+            txtPOGoodsQuantity.Text = (Tag as OPMDASHBOARDA).Ntkt.POGoodsQuantity.ToString();
+            txtRemainingNTKTGoodsQuantity.Text = ((Tag as OPMDASHBOARDA).Ntkt.POGoodsQuantity - NTKTObj.NTKTGoodsQuantityTotalByPOId((Tag as OPMDASHBOARDA).Ntkt.POId)).ToString();
             //txtNTKTExtraQuantity.Text = (Tag as OPMDASHBOARDA).Ntkt.NTKTExtraQuantity.ToString();
         }
         private void btnSave_Click(object sender, EventArgs e)
@@ -46,6 +51,7 @@ namespace OPM.GUI
                     {
                         (Tag as OPMDASHBOARDA).Ntkt.NTKTQuantity = double.Parse(txtNTKTQuantity.Text.Trim());
                         txtNTKTExtraQuantity.Text = Math.Round(double.Parse(txtNTKTQuantity.Text.Trim()) / 50, 0, MidpointRounding.AwayFromZero).ToString();
+                        txtRemainingNTKTGoodsQuantity.Text = (double.Parse(txtNTKTQuantity.Text.Trim()) - NTKTObj.NTKTGoodsQuantityTotalByPOId((Tag as OPMDASHBOARDA).Ntkt.POId)).ToString();
                     }
                 }
                 catch

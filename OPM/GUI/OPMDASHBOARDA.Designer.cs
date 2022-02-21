@@ -43,11 +43,11 @@ namespace OPM.GUI
             this.toolStripMenuNewContract = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuNewPO = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuNewNTKT = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuNewDP = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuNewPL = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuSave = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuCreatDoc = new System.Windows.Forms.ToolStripMenuItem();
             this.panContent = new System.Windows.Forms.Panel();
-            this.toolStripMenuNewDP = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuNewPL = new System.Windows.Forms.ToolStripMenuItem();
             this.panHeader.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabSearch.SuspendLayout();
@@ -139,7 +139,7 @@ namespace OPM.GUI
             this.panCatalog.Location = new System.Drawing.Point(13, 167);
             this.panCatalog.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panCatalog.Name = "panCatalog";
-            this.panCatalog.Size = new System.Drawing.Size(351, 1254);
+            this.panCatalog.Size = new System.Drawing.Size(351, 1187);
             this.panCatalog.TabIndex = 1;
             // 
             // treeViewOPM
@@ -151,10 +151,10 @@ namespace OPM.GUI
             this.treeViewOPM.ContextMenuStrip = this.contextMenuStrip;
             this.treeViewOPM.ItemHeight = 20;
             this.treeViewOPM.LabelEdit = true;
-            this.treeViewOPM.Location = new System.Drawing.Point(0, 0);
+            this.treeViewOPM.Location = new System.Drawing.Point(0, 11);
             this.treeViewOPM.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.treeViewOPM.Name = "treeViewOPM";
-            this.treeViewOPM.Size = new System.Drawing.Size(350, 1250);
+            this.treeViewOPM.Size = new System.Drawing.Size(350, 750);
             this.treeViewOPM.TabIndex = 0;
             this.treeViewOPM.DoubleClick += new System.EventHandler(this.TreeViewOPM_DoubleClick);
             // 
@@ -192,6 +192,18 @@ namespace OPM.GUI
             this.toolStripMenuNewNTKT.Size = new System.Drawing.Size(237, 32);
             this.toolStripMenuNewNTKT.Text = "Tạo mới NTKT";
             // 
+            // toolStripMenuNewDP
+            // 
+            this.toolStripMenuNewDP.Name = "toolStripMenuNewDP";
+            this.toolStripMenuNewDP.Size = new System.Drawing.Size(237, 32);
+            this.toolStripMenuNewDP.Text = "Tạo mới DP";
+            // 
+            // toolStripMenuNewPL
+            // 
+            this.toolStripMenuNewPL.Name = "toolStripMenuNewPL";
+            this.toolStripMenuNewPL.Size = new System.Drawing.Size(237, 32);
+            this.toolStripMenuNewPL.Text = "Tạo mới PL";
+            // 
             // toolStripMenuSave
             // 
             this.toolStripMenuSave.Name = "toolStripMenuSave";
@@ -210,29 +222,17 @@ namespace OPM.GUI
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panContent.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panContent.Location = new System.Drawing.Point(373, 8);
+            this.panContent.Location = new System.Drawing.Point(372, 28);
             this.panContent.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panContent.Name = "panContent";
-            this.panContent.Size = new System.Drawing.Size(1474, 1411);
+            this.panContent.Size = new System.Drawing.Size(1100, 900);
             this.panContent.TabIndex = 2;
-            // 
-            // toolStripMenuNewDP
-            // 
-            this.toolStripMenuNewDP.Name = "toolStripMenuNewDP";
-            this.toolStripMenuNewDP.Size = new System.Drawing.Size(237, 32);
-            this.toolStripMenuNewDP.Text = "Tạo mới DP";
-            // 
-            // toolStripMenuNewPL
-            // 
-            this.toolStripMenuNewPL.Name = "toolStripMenuNewPL";
-            this.toolStripMenuNewPL.Size = new System.Drawing.Size(237, 32);
-            this.toolStripMenuNewPL.Text = "Tạo mới PL";
             // 
             // OPMDASHBOARDA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1370, 1011);
+            this.ClientSize = new System.Drawing.Size(1478, 944);
             this.Controls.Add(this.panContent);
             this.Controls.Add(this.panCatalog);
             this.Controls.Add(this.panHeader);

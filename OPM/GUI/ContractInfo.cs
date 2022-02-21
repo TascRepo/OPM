@@ -33,7 +33,7 @@ namespace OPM.GUI
             txtContractId.Text = (Tag as OPMDASHBOARDA).Contract.ContractId;
             txtContractId.Tag = txtContractId.Text;
             txtContractName.Text = (Tag as OPMDASHBOARDA).Contract.ContractName;
-            txtAccoutingCode.Text = (Tag as OPMDASHBOARDA).Contract.AccoutingCode;
+            txtAccoutingCode.Text = (Tag as OPMDASHBOARDA).Contract.ContractAccoutingCode;
             dtpDateSigned.Value = (Tag as OPMDASHBOARDA).Contract.ContractCreatedDate;
             dtpContractDeadline.Value = dtpDateSigned.Value.AddDays(Convert.ToInt32((Tag as OPMDASHBOARDA).Contract.ContractPeriod));
             txtType.Text = (Tag as OPMDASHBOARDA).Contract.ContractType;
@@ -150,7 +150,7 @@ namespace OPM.GUI
         }
         private void txtAccountingCode_TextChanged(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).Contract.AccoutingCode = txtAccoutingCode.Text.Trim();
+            (Tag as OPMDASHBOARDA).Contract.ContractAccoutingCode = txtAccoutingCode.Text.Trim();
         }
         private void dtpDateSigned_ValueChanged(object sender, EventArgs e)
         {

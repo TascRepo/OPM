@@ -2,103 +2,70 @@
 using OPM.OPMEnginee;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace OPM.GUI
 {
     public partial class DeliveryPlanInfo : Form
     {
+        public List<SiteObj> sites = SiteObj.SiteGetListProvince();
         public DeliveryPlanInfo()
         {
             InitializeComponent();
         }
-        public DeliveryPlanInfo(string POId)
+        void LoadData(string VNPTId = "ANSV")
         {
-            InitializeComponent();
-            LoadData(POId);
-        }
-        void LoadData(string POId)
-        {
-            POObj pO = new POObj(POId);
-            ContractObj contract = new ContractObj(pO.ContractId);
-            txtPOGoodsQuantity.Text = pO.POGoodsQuantity.ToString();
-            txtContractGoodsQuantity.Text = contract.ContractGoodsQuantity.ToString();
-            LoadToDtgDeliveryPlan(POId);
+            (Tag as OPMDASHBOARDA).DeliveryPlans = DeliveryPlanObj.DeliveryPlanGetList((Tag as OPMDASHBOARDA).Po.POId);
+            txtRemainingContractGoodsQuantity.Text = ((Tag as OPMDASHBOARDA).Po.ContractGoodsQuantity - POObj.POGoodsQuantityTotalByContractId((Tag as OPMDASHBOARDA).Po.ContractId)).ToString();
+            txtRemainingPOGoodsQuantity.Text = ((Tag as OPMDASHBOARDA).Po.POGoodsQuantity - DeliveryPlanObj.DeliveryPlanTotalQuantityByPOId((Tag as OPMDASHBOARDA).Po.POId)).ToString();
+            LoadToDtgDeliveryPlan(VNPTId);
             LoadToComboBoxProvince();
-            DataBindingsFromDtgDeliveryPlanToTextBoxs(POId);
+            DataBindingsFromDtgDeliveryPlanToTextBoxs((Tag as OPMDASHBOARDA).Po.POId);
         }
 
         private void DataBindingsFromDtgDeliveryPlanToTextBoxs(string POId)
         {
-            textBoxDeliveryPlanQuantity.DataBindings.Clear();
-            textBoxDeliveryPlanQuantity.DataBindings.Add(new Binding("Text", dtgDeliveryPlan.DataSource, "DeliveryPlanQuantity"));
-            textBoxDeliveryPlanQuantity1.DataBindings.Clear();
-            textBoxDeliveryPlanQuantity1.DataBindings.Add(new Binding("Text", dtgDeliveryPlan.DataSource, "DeliveryPlanQuantity1"));
-            //dateTimePickerDeliveryPlanDate1.DataBindings.Clear();
-            //dateTimePickerDeliveryPlanDate1.DataBindings.Add(new Binding("Value", dtgDeliveryPlan.DataSource, "DeliveryPlanDate1"));
-            textBoxDeliveryPlanQuantity2.DataBindings.Clear();
-            textBoxDeliveryPlanQuantity2.DataBindings.Add(new Binding("Text", dtgDeliveryPlan.DataSource, "DeliveryPlanQuantity2"));
-            //dateTimePickerDeliveryPlanDate2.DataBindings.Clear();
-            //dateTimePickerDeliveryPlanDate2.DataBindings.Add(new Binding("Value", dtgDeliveryPlan.DataSource, "DeliveryPlanDate2"));
-            textBoxDeliveryPlanQuantity3.DataBindings.Clear();
-            textBoxDeliveryPlanQuantity3.DataBindings.Add(new Binding("Text", dtgDeliveryPlan.DataSource, "DeliveryPlanQuantity3"));
-            //dateTimePickerDeliveryPlanDate3.DataBindings.Clear();
-            //dateTimePickerDeliveryPlanDate3.DataBindings.Add(new Binding("Value", dtgDeliveryPlan.DataSource, "DeliveryPlanDate3"));
-            textBoxDeliveryPlanQuantity4.DataBindings.Clear();
-            textBoxDeliveryPlanQuantity4.DataBindings.Add(new Binding("Text", dtgDeliveryPlan.DataSource, "DeliveryPlanQuantity4"));
-            //dateTimePickerDeliveryPlanDate4.DataBindings.Clear();
-            //dateTimePickerDeliveryPlanDate4.DataBindings.Add(new Binding("Value", dtgDeliveryPlan.DataSource, "DeliveryPlanDate4"));
-            textBoxDeliveryPlanQuantity5.DataBindings.Clear();
-            textBoxDeliveryPlanQuantity5.DataBindings.Add(new Binding("Text", dtgDeliveryPlan.DataSource, "DeliveryPlanQuantity5"));
-            //dateTimePickerDeliveryPlanDate5.DataBindings.Clear();
-            //dateTimePickerDeliveryPlanDate5.DataBindings.Add(new Binding("Value", dtgDeliveryPlan.DataSource, "DeliveryPlanDate5"));
-            textBoxDeliveryPlanQuantity6.DataBindings.Clear();
-            textBoxDeliveryPlanQuantity6.DataBindings.Add(new Binding("Text", dtgDeliveryPlan.DataSource, "DeliveryPlanQuantity6"));
-            //dateTimePickerDeliveryPlanDate6.DataBindings.Clear();
-            //dateTimePickerDeliveryPlanDate6.DataBindings.Add(new Binding("Value", dtgDeliveryPlan.DataSource, "DeliveryPlanDate6"));
+            txtContractGoodsQuantity.DataBindings.Clear();
+            txtContractGoodsQuantity.DataBindings.Add(new Binding("Text", dtgDeliveryPlan.DataSource, "ContractGoodsQuantity"));
+            txtPOGoodsQuantity.DataBindings.Clear();
+            txtPOGoodsQuantity.DataBindings.Add(new Binding("Text", dtgDeliveryPlan.DataSource, "POGoodsQuantity"));
+            txtDeliveryPlanId.DataBindings.Clear();
+            txtDeliveryPlanId.DataBindings.Add(new Binding("Text", dtgDeliveryPlan.DataSource, "DeliveryPlanId"));
+            txtVNPTId.DataBindings.Clear();
+            txtVNPTId.DataBindings.Add(new Binding("Text", dtgDeliveryPlan.DataSource, "VNPTId"));
+            txtDeliveryPlanQuantity.DataBindings.Clear();
+            txtDeliveryPlanQuantity.DataBindings.Add(new Binding("Text", dtgDeliveryPlan.DataSource, "DeliveryPlanQuantity"));
+            dtpDeliveryPlanDate.DataBindings.Clear();
+            dtpDeliveryPlanDate.DataBindings.Add(new Binding("Value", dtgDeliveryPlan.DataSource, "DeliveryPlanDate"));
         }
 
         private void LoadToComboBoxProvince()
         {
-            List<SiteObj> sites = SiteObj.SiteGetListProvince();
-            comboBoxProvince.DataSource = sites;
-            comboBoxProvince.DisplayMember = "SiteProvince";
+            comboBoxVNPTId.DataSource = sites;
+            comboBoxVNPTId.DisplayMember = "SiteId";
         }
 
-        private void LoadToDtgDeliveryPlan(string POId)
+        private void LoadToDtgDeliveryPlan(string VNPTId = "ANSV")
         {
-            List<DeliveryPlanObj> deliveryPlans = DeliveryPlanObj.DeliveryPlanGetList(POId);
-            if (deliveryPlans.Count == 0)
+            if ((Tag as OPMDASHBOARDA).DeliveryPlans.Count == 0)
             {
-                DeliveryPlanObj deliveryPlan = new DeliveryPlanObj();
-                deliveryPlans.Insert(0, deliveryPlan);
+                (Tag as OPMDASHBOARDA).DeliveryPlans.Insert(0, (Tag as OPMDASHBOARDA).DeliveryPlan);
             }
-            dtgDeliveryPlan.DataSource = deliveryPlans;
+            dtgDeliveryPlan.DataSource = (Tag as OPMDASHBOARDA).DeliveryPlans;
+            dtgDeliveryPlan.Columns["DeliveryPlanId"].HeaderText = @"ID";
+            dtgDeliveryPlan.Columns["DeliveryPlanId"].Visible = false;
             dtgDeliveryPlan.Columns["POId"].Visible = false;
-            dtgDeliveryPlan.Columns["ProvinceId"].HeaderText = @"Mã tỉnh";
-            dtgDeliveryPlan.Columns["DeliveryPlanQuantity"].HeaderText = @"Tổng số";
-            dtgDeliveryPlan.Columns["DeliveryPlanQuantity1"].HeaderText = @"Đợt 1";
-            dtgDeliveryPlan.Columns["DeliveryPlanDate1"].HeaderText = @"Ngày 1";
-            dtgDeliveryPlan.Columns["DeliveryPlanQuantity2"].HeaderText = @"Đợt 2";
-            dtgDeliveryPlan.Columns["DeliveryPlanDate2"].HeaderText = @"Ngày 2";
-            dtgDeliveryPlan.Columns["DeliveryPlanQuantity3"].HeaderText = @"Đợt 3";
-            dtgDeliveryPlan.Columns["DeliveryPlanDate3"].HeaderText = @"Ngày 3";
-            dtgDeliveryPlan.Columns["DeliveryPlanQuantity4"].HeaderText = @"Đợt 4";
-            dtgDeliveryPlan.Columns["DeliveryPlanQuantity4"].Visible = false;
-            dtgDeliveryPlan.Columns["DeliveryPlanDate4"].HeaderText = @"Ngày 4";
-            dtgDeliveryPlan.Columns["DeliveryPlanDate4"].Visible = false;
-            dtgDeliveryPlan.Columns["DeliveryPlanQuantity5"].HeaderText = @"Đợt 5";
-            dtgDeliveryPlan.Columns["DeliveryPlanQuantity5"].Visible = false;
-            dtgDeliveryPlan.Columns["DeliveryPlanDate5"].HeaderText = @"Ngày 5";
-            dtgDeliveryPlan.Columns["DeliveryPlanDate5"].Visible = false;
-            dtgDeliveryPlan.Columns["DeliveryPlanQuantity6"].HeaderText = @"Đợt 6";
-            dtgDeliveryPlan.Columns["DeliveryPlanQuantity6"].Visible = false;
-            dtgDeliveryPlan.Columns["DeliveryPlanDate6"].HeaderText = @"Ngày 6";
-            dtgDeliveryPlan.Columns["DeliveryPlanDate6"].Visible = false;
+            dtgDeliveryPlan.Columns["VNPTId"].HeaderText = @"Mã tỉnh";
+            dtgDeliveryPlan.Columns["DeliveryPlanQuantity"].HeaderText = @"Số lượng";
+            dtgDeliveryPlan.Columns["DeliveryPlanDate"].HeaderText = @"Ngày";
+            foreach (DataGridViewRow row in dtgDeliveryPlan.Rows)
+            {
+                if(row.Cells["VNPTId"].Value.ToString() == VNPTId)
+                {
+                    dtgDeliveryPlan.CurrentCell = row.Cells["VNPTId"];
+                    return;
+                }
+            }
         }
 
         private void buttonAddProvinceId_Click(object sender, EventArgs e)
@@ -109,6 +76,63 @@ namespace OPM.GUI
         private void btnClose_Click(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).OpenPOForm();
+        }
+
+        private void comboBoxVNPTId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            if (comboBox.SelectedItem == null) return;
+            SiteObj selected = comboBox.SelectedItem as SiteObj;
+            (Tag as OPMDASHBOARDA).DeliveryPlan.VNPTId = selected.SiteId;
+            if (DeliveryPlanObj.DeliveryPlanExist((Tag as OPMDASHBOARDA).DeliveryPlan.POId, selected.SiteId))
+            {
+                //textBoxRemainingDeliveryPlanQuantity.Text = (double.Parse(textBoxDeliveryPlanTotalQuantity.Text.Trim()) - DeliveryPlanObj.DeliveryPlanTotalQuantityByPOIdAndVNPTIdDetail((Tag as OPMDASHBOARDA).DeliveryPlan.POId, selected.SiteId)).ToString();
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            DeliveryPlanObj deliveryPlan = new DeliveryPlanObj
+            {
+                POId = (Tag as OPMDASHBOARDA).Po.POId,
+                VNPTId = (comboBoxVNPTId.SelectedItem as SiteObj).SiteId,
+                DeliveryPlanQuantity = double.Parse(textBoxDeliveryPlanQuantity.Text.Trim()),
+                DeliveryPlanDate = dateTimePickerDeliveryPlanDate.Value
+            };
+            deliveryPlan.DeliveryPlanInsert();
+            //txtRemainingPOGoodsQuantity.Text = (deliveryPlan.POGoodsQuantity - DeliveryPlanObj.DeliveryPlanTotalQuantityByPOIdAndVNPTIdDetail(deliveryPlan.POId)).ToString();
+            LoadData(deliveryPlan.VNPTId);
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DeliveryPlanObj.DeliveryPlanDelete(int.Parse(txtDeliveryPlanId.Text.Trim()));
+            LoadData(txtVNPTId.Text.Trim());
+        }
+
+        private void textBoxDeliveryPlanQuantity_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).DeliveryPlan.DeliveryPlanQuantity = double.Parse(textBoxDeliveryPlanQuantity.Text.Trim());
+        }
+
+        private void dateTimePickerDeliveryPlanDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).DeliveryPlan.DeliveryPlanDate = dateTimePickerDeliveryPlanDate.Value;
+        }
+
+        private void DeliveryPlanInfo_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void dtgDeliveryPlan_SelectionChanged(object sender, EventArgs e)
+        {
+            //textBoxDeliveryPlanId.Text = dtgDeliveryPlan.SelectedRows[0].Cells["DeliveryPlanId"].ToString();
+        }
+
+        private void txtVNPTId_TextChanged(object sender, EventArgs e)
+        {
+            txtDeliveryPlanTotalQuantity.Text = DeliveryPlanObj.DeliveryPlanTotalQuantityByPOIdAndVNPTIdDetail((Tag as OPMDASHBOARDA).Po.POId, txtVNPTId.Text.Trim()).ToString();
         }
     }
 }

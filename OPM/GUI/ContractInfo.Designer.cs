@@ -82,7 +82,7 @@ namespace OPM.GUI
             // 
             // btnIdSiteA
             // 
-            this.btnIdSiteA.Location = new System.Drawing.Point(573, 410);
+            this.btnIdSiteA.Location = new System.Drawing.Point(906, 405);
             this.btnIdSiteA.Margin = new System.Windows.Forms.Padding(4);
             this.btnIdSiteA.Name = "btnIdSiteA";
             this.btnIdSiteA.Size = new System.Drawing.Size(141, 38);
@@ -94,28 +94,28 @@ namespace OPM.GUI
             // txtContractId
             // 
             this.txtContractId.BackColor = System.Drawing.SystemColors.Window;
-            this.txtContractId.Location = new System.Drawing.Point(248, 8);
+            this.txtContractId.Location = new System.Drawing.Point(295, 6);
             this.txtContractId.Margin = new System.Windows.Forms.Padding(4);
             this.txtContractId.Name = "txtContractId";
-            this.txtContractId.Size = new System.Drawing.Size(464, 31);
+            this.txtContractId.Size = new System.Drawing.Size(752, 31);
             this.txtContractId.TabIndex = 2;
             this.txtContractId.TextChanged += new System.EventHandler(this.txtContractId_TextChanged);
             // 
             // txtContractName
             // 
-            this.txtContractName.Location = new System.Drawing.Point(248, 84);
+            this.txtContractName.Location = new System.Drawing.Point(295, 82);
             this.txtContractName.Margin = new System.Windows.Forms.Padding(4);
             this.txtContractName.Name = "txtContractName";
-            this.txtContractName.Size = new System.Drawing.Size(464, 31);
+            this.txtContractName.Size = new System.Drawing.Size(752, 31);
             this.txtContractName.TabIndex = 3;
             this.txtContractName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // txtAccoutingCode
             // 
-            this.txtAccoutingCode.Location = new System.Drawing.Point(248, 478);
+            this.txtAccoutingCode.Location = new System.Drawing.Point(295, 476);
             this.txtAccoutingCode.Margin = new System.Windows.Forms.Padding(4);
             this.txtAccoutingCode.Name = "txtAccoutingCode";
-            this.txtAccoutingCode.Size = new System.Drawing.Size(464, 31);
+            this.txtAccoutingCode.Size = new System.Drawing.Size(752, 31);
             this.txtAccoutingCode.TabIndex = 4;
             this.txtAccoutingCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAccoutingCode.TextChanged += new System.EventHandler(this.txtAccountingCode_TextChanged);
@@ -223,20 +223,20 @@ namespace OPM.GUI
             // 
             // txtDuration
             // 
-            this.txtDuration.Location = new System.Drawing.Point(248, 296);
+            this.txtDuration.Location = new System.Drawing.Point(295, 294);
             this.txtDuration.Margin = new System.Windows.Forms.Padding(4);
             this.txtDuration.Name = "txtDuration";
-            this.txtDuration.Size = new System.Drawing.Size(97, 31);
+            this.txtDuration.Size = new System.Drawing.Size(295, 31);
             this.txtDuration.TabIndex = 8;
             this.txtDuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtDuration.TextChanged += new System.EventHandler(this.txtDuration_TextChanged);
             // 
             // txtType
             // 
-            this.txtType.Location = new System.Drawing.Point(248, 177);
+            this.txtType.Location = new System.Drawing.Point(295, 175);
             this.txtType.Margin = new System.Windows.Forms.Padding(4);
             this.txtType.Name = "txtType";
-            this.txtType.Size = new System.Drawing.Size(464, 31);
+            this.txtType.Size = new System.Drawing.Size(752, 31);
             this.txtType.TabIndex = 7;
             this.txtType.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtType.TextChanged += new System.EventHandler(this.txtType_TextChanged);
@@ -244,19 +244,19 @@ namespace OPM.GUI
             // txtValue
             // 
             this.txtValue.Enabled = false;
-            this.txtValue.Location = new System.Drawing.Point(248, 352);
+            this.txtValue.Location = new System.Drawing.Point(295, 350);
             this.txtValue.Margin = new System.Windows.Forms.Padding(4);
             this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(260, 31);
+            this.txtValue.Size = new System.Drawing.Size(548, 31);
             this.txtValue.TabIndex = 8;
             this.txtValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtPOGuaranteeValidityPeriod
             // 
-            this.txtPOGuaranteeValidityPeriod.Location = new System.Drawing.Point(248, 112);
+            this.txtPOGuaranteeValidityPeriod.Location = new System.Drawing.Point(295, 116);
             this.txtPOGuaranteeValidityPeriod.Margin = new System.Windows.Forms.Padding(4);
             this.txtPOGuaranteeValidityPeriod.Name = "txtPOGuaranteeValidityPeriod";
-            this.txtPOGuaranteeValidityPeriod.Size = new System.Drawing.Size(97, 31);
+            this.txtPOGuaranteeValidityPeriod.Size = new System.Drawing.Size(295, 31);
             this.txtPOGuaranteeValidityPeriod.TabIndex = 14;
             this.txtPOGuaranteeValidityPeriod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPOGuaranteeValidityPeriod.TextChanged += new System.EventHandler(this.txtDurationPO_TextChanged);
@@ -264,19 +264,19 @@ namespace OPM.GUI
             // txtIdSiteA
             // 
             this.txtIdSiteA.Enabled = false;
-            this.txtIdSiteA.Location = new System.Drawing.Point(248, 412);
+            this.txtIdSiteA.Location = new System.Drawing.Point(295, 412);
             this.txtIdSiteA.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdSiteA.Name = "txtIdSiteA";
-            this.txtIdSiteA.Size = new System.Drawing.Size(318, 31);
+            this.txtIdSiteA.Size = new System.Drawing.Size(548, 31);
             this.txtIdSiteA.TabIndex = 9;
             this.txtIdSiteA.TextChanged += new System.EventHandler(this.txtIdSiteA_TextChanged);
             // 
             // btnNewPO
             // 
-            this.btnNewPO.Location = new System.Drawing.Point(660, 765);
+            this.btnNewPO.Location = new System.Drawing.Point(952, 835);
             this.btnNewPO.Margin = new System.Windows.Forms.Padding(4);
             this.btnNewPO.Name = "btnNewPO";
-            this.btnNewPO.Size = new System.Drawing.Size(94, 44);
+            this.btnNewPO.Size = new System.Drawing.Size(130, 40);
             this.btnNewPO.TabIndex = 17;
             this.btnNewPO.Text = "New PO";
             this.btnNewPO.UseVisualStyleBackColor = true;
@@ -284,10 +284,10 @@ namespace OPM.GUI
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(272, 765);
+            this.btnEdit.Location = new System.Drawing.Point(385, 835);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(98, 44);
+            this.btnEdit.Size = new System.Drawing.Size(130, 40);
             this.btnEdit.TabIndex = 18;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -295,10 +295,10 @@ namespace OPM.GUI
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(141, 765);
+            this.btnDelete.Location = new System.Drawing.Point(196, 835);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(98, 44);
+            this.btnDelete.Size = new System.Drawing.Size(130, 40);
             this.btnDelete.TabIndex = 19;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -306,10 +306,10 @@ namespace OPM.GUI
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(402, 765);
+            this.btnSave.Location = new System.Drawing.Point(574, 835);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(98, 44);
+            this.btnSave.Size = new System.Drawing.Size(130, 40);
             this.btnSave.TabIndex = 16;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -317,10 +317,10 @@ namespace OPM.GUI
             // 
             // txbGuaranteeValue
             // 
-            this.txbGuaranteeValue.Location = new System.Drawing.Point(248, 64);
+            this.txbGuaranteeValue.Location = new System.Drawing.Point(295, 68);
             this.txbGuaranteeValue.Margin = new System.Windows.Forms.Padding(4);
             this.txbGuaranteeValue.Name = "txbGuaranteeValue";
-            this.txbGuaranteeValue.Size = new System.Drawing.Size(97, 31);
+            this.txbGuaranteeValue.Size = new System.Drawing.Size(295, 31);
             this.txbGuaranteeValue.TabIndex = 13;
             this.txbGuaranteeValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txbGuaranteeValue.TextChanged += new System.EventHandler(this.txbGaranteeValue_TextChanged);
@@ -349,7 +349,7 @@ namespace OPM.GUI
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label14.Location = new System.Drawing.Point(368, 70);
+            this.label14.Location = new System.Drawing.Point(611, 74);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(31, 30);
@@ -360,10 +360,10 @@ namespace OPM.GUI
             // 
             this.dtpDateSigned.CustomFormat = "dd/mm/yyyy";
             this.dtpDateSigned.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDateSigned.Location = new System.Drawing.Point(428, 44);
+            this.dtpDateSigned.Location = new System.Drawing.Point(678, 42);
             this.dtpDateSigned.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDateSigned.Name = "dtpDateSigned";
-            this.dtpDateSigned.Size = new System.Drawing.Size(284, 31);
+            this.dtpDateSigned.Size = new System.Drawing.Size(369, 31);
             this.dtpDateSigned.TabIndex = 5;
             this.dtpDateSigned.ValueChanged += new System.EventHandler(this.dtpDateSigned_ValueChanged);
             // 
@@ -372,19 +372,19 @@ namespace OPM.GUI
             this.dtpContractDeadline.CustomFormat = "d-m-y";
             this.dtpContractDeadline.Enabled = false;
             this.dtpContractDeadline.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpContractDeadline.Location = new System.Drawing.Point(428, 296);
+            this.dtpContractDeadline.Location = new System.Drawing.Point(678, 294);
             this.dtpContractDeadline.Margin = new System.Windows.Forms.Padding(4);
             this.dtpContractDeadline.Name = "dtpContractDeadline";
-            this.dtpContractDeadline.Size = new System.Drawing.Size(284, 31);
+            this.dtpContractDeadline.Size = new System.Drawing.Size(369, 31);
             this.dtpContractDeadline.TabIndex = 8;
             // 
             // dtpContractValidityDate
             // 
             this.dtpContractValidityDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpContractValidityDate.Location = new System.Drawing.Point(428, 228);
+            this.dtpContractValidityDate.Location = new System.Drawing.Point(678, 226);
             this.dtpContractValidityDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpContractValidityDate.Name = "dtpContractValidityDate";
-            this.dtpContractValidityDate.Size = new System.Drawing.Size(284, 31);
+            this.dtpContractValidityDate.Size = new System.Drawing.Size(369, 31);
             this.dtpContractValidityDate.TabIndex = 6;
             this.dtpContractValidityDate.ValueChanged += new System.EventHandler(this.dtpActiveDate_ValueChanged);
             // 
@@ -400,17 +400,17 @@ namespace OPM.GUI
             // 
             // txtContractShoppingPlan
             // 
-            this.txtContractShoppingPlan.Location = new System.Drawing.Point(248, 130);
+            this.txtContractShoppingPlan.Location = new System.Drawing.Point(295, 128);
             this.txtContractShoppingPlan.Margin = new System.Windows.Forms.Padding(4);
             this.txtContractShoppingPlan.Name = "txtContractShoppingPlan";
-            this.txtContractShoppingPlan.Size = new System.Drawing.Size(464, 31);
+            this.txtContractShoppingPlan.Size = new System.Drawing.Size(752, 31);
             this.txtContractShoppingPlan.TabIndex = 1;
             this.txtContractShoppingPlan.TextChanged += new System.EventHandler(this.txtContractShoppingPlan_TextChanged);
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(522, 362);
+            this.label17.Location = new System.Drawing.Point(857, 353);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(49, 25);
@@ -420,7 +420,7 @@ namespace OPM.GUI
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(360, 300);
+            this.label18.Location = new System.Drawing.Point(611, 297);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(54, 25);
@@ -431,18 +431,18 @@ namespace OPM.GUI
             // 
             this.dtpGuaranteeDeadline.Enabled = false;
             this.dtpGuaranteeDeadline.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpGuaranteeDeadline.Location = new System.Drawing.Point(428, 165);
+            this.dtpGuaranteeDeadline.Location = new System.Drawing.Point(678, 170);
             this.dtpGuaranteeDeadline.Margin = new System.Windows.Forms.Padding(4);
             this.dtpGuaranteeDeadline.Name = "dtpGuaranteeDeadline";
-            this.dtpGuaranteeDeadline.Size = new System.Drawing.Size(284, 31);
+            this.dtpGuaranteeDeadline.Size = new System.Drawing.Size(369, 31);
             this.dtpGuaranteeDeadline.TabIndex = 14;
             // 
             // txtGuaranteeDuration
             // 
-            this.txtGuaranteeDuration.Location = new System.Drawing.Point(246, 164);
+            this.txtGuaranteeDuration.Location = new System.Drawing.Point(293, 168);
             this.txtGuaranteeDuration.Margin = new System.Windows.Forms.Padding(4);
             this.txtGuaranteeDuration.Name = "txtGuaranteeDuration";
-            this.txtGuaranteeDuration.Size = new System.Drawing.Size(98, 31);
+            this.txtGuaranteeDuration.Size = new System.Drawing.Size(296, 31);
             this.txtGuaranteeDuration.TabIndex = 15;
             this.txtGuaranteeDuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtGuaranteeDuration.TextChanged += new System.EventHandler(this.txtGuaranteeDuration_TextChanged);
@@ -450,7 +450,7 @@ namespace OPM.GUI
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(363, 170);
+            this.label15.Location = new System.Drawing.Point(611, 174);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(54, 25);
@@ -484,15 +484,15 @@ namespace OPM.GUI
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.txtDuration);
             this.panel1.Controls.Add(this.txtType);
-            this.panel1.Location = new System.Drawing.Point(10, 4);
+            this.panel1.Location = new System.Drawing.Point(10, 23);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(748, 528);
+            this.panel1.Size = new System.Drawing.Size(1077, 528);
             this.panel1.TabIndex = 17;
             // 
             // btnAnnex
             // 
-            this.btnAnnex.Location = new System.Drawing.Point(573, 350);
+            this.btnAnnex.Location = new System.Drawing.Point(906, 346);
             this.btnAnnex.Margin = new System.Windows.Forms.Padding(4);
             this.btnAnnex.Name = "btnAnnex";
             this.btnAnnex.Size = new System.Drawing.Size(141, 38);
@@ -515,19 +515,19 @@ namespace OPM.GUI
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.label14);
-            this.panel2.Location = new System.Drawing.Point(10, 542);
+            this.panel2.Location = new System.Drawing.Point(10, 583);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(748, 208);
+            this.panel2.Size = new System.Drawing.Size(1077, 208);
             this.panel2.TabIndex = 17;
             // 
             // dtpGuaranteeDateCreated
             // 
             this.dtpGuaranteeDateCreated.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpGuaranteeDateCreated.Location = new System.Drawing.Point(428, 10);
+            this.dtpGuaranteeDateCreated.Location = new System.Drawing.Point(678, 10);
             this.dtpGuaranteeDateCreated.Margin = new System.Windows.Forms.Padding(4);
             this.dtpGuaranteeDateCreated.Name = "dtpGuaranteeDateCreated";
-            this.dtpGuaranteeDateCreated.Size = new System.Drawing.Size(284, 31);
+            this.dtpGuaranteeDateCreated.Size = new System.Drawing.Size(369, 31);
             this.dtpGuaranteeDateCreated.TabIndex = 12;
             this.dtpGuaranteeDateCreated.ValueChanged += new System.EventHandler(this.dtpGaranteeDateCreated_ValueChanged);
             // 
@@ -544,19 +544,19 @@ namespace OPM.GUI
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(368, 116);
+            this.label19.Location = new System.Drawing.Point(611, 120);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(51, 25);
+            this.label19.Size = new System.Drawing.Size(54, 25);
             this.label19.TabIndex = 13;
-            this.label19.Text = "ngày";
+            this.label19.Text = "Ngày";
             // 
             // btnCreatDocument
             // 
-            this.btnCreatDocument.Location = new System.Drawing.Point(532, 765);
+            this.btnCreatDocument.Location = new System.Drawing.Point(763, 835);
             this.btnCreatDocument.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreatDocument.Name = "btnCreatDocument";
-            this.btnCreatDocument.Size = new System.Drawing.Size(94, 44);
+            this.btnCreatDocument.Size = new System.Drawing.Size(130, 40);
             this.btnCreatDocument.TabIndex = 16;
             this.btnCreatDocument.Text = "CreatDoc";
             this.btnCreatDocument.UseVisualStyleBackColor = true;
@@ -564,10 +564,10 @@ namespace OPM.GUI
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(10, 762);
+            this.btnNew.Location = new System.Drawing.Point(10, 835);
             this.btnNew.Margin = new System.Windows.Forms.Padding(4);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(98, 44);
+            this.btnNew.Size = new System.Drawing.Size(130, 40);
             this.btnNew.TabIndex = 19;
             this.btnNew.Text = "New";
             this.btnNew.UseVisualStyleBackColor = true;
@@ -580,7 +580,7 @@ namespace OPM.GUI
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(792, 820);
+            this.ClientSize = new System.Drawing.Size(1100, 900);
             this.Controls.Add(this.btnCreatDocument);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnNew);

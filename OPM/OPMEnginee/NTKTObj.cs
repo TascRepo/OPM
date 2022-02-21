@@ -16,9 +16,9 @@ namespace OPM.OPMEnginee
             set
             {
                 ntktId = value;
+                string query = string.Format("SELECT * FROM dbo.NTKT WHERE NTKTId = '{0}'", value);
                 try
                 {
-                    string query = string.Format("SELECT * FROM dbo.NTKT WHERE NTKTId = '{0}'", value);
                     DataTable table = OPMDBHandler.ExecuteQuery(query);
                     if (table.Rows.Count > 0)
                     {
@@ -35,7 +35,7 @@ namespace OPM.OPMEnginee
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Lỗi khi kết nối bảng NTKT trong CSDL " + e.Message);
+                    MessageBox.Show("Lỗi khi kết nối bảng NTKT trong CSDL " +query+ e.Message);
                 }
             }
         }
@@ -116,5 +116,13 @@ namespace OPM.OPMEnginee
             string query = string.Format("Delete FROM dbo.NTKT WHERE NTKTId = '{0}'", id);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
+        public static double NTKTGoodsQuantityTotalByPOId(string POId)
+        {
+            string query = string.Format(@"SELECT SUM(NTKTQuantity) FROM NTKT WHERE POId = '{0}'", POId);
+            var tem1 = OPMDBHandler.ExecuteScalar(query);
+            double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
+            return tem;
+        }
+
     }
 }

@@ -43,7 +43,7 @@ namespace OPM.DBHandler
                 catch (Exception e)
                 {
                     connection.Close();
-                    MessageBox.Show("Không kết nối được CSDL vì lỗi " + e.Message);
+                    MessageBox.Show("Không kết nối được CSDL vì lỗi " + query + e.Message);
                 }
             }
             return data;
@@ -76,7 +76,7 @@ namespace OPM.DBHandler
                 catch (Exception e)
                 {
                     connection.Close();
-                    MessageBox.Show("Không kết nối được CSDL vì lỗi " + e.Message);
+                    MessageBox.Show("Không kết nối được CSDL vì lỗi " + query + e.Message);
                 }
             }
             return data;
@@ -110,7 +110,7 @@ namespace OPM.DBHandler
                 {
                     connection.Close();
 
-                    MessageBox.Show("Không kết nối được CSDL vì lỗi " + e.Message);
+                    MessageBox.Show("Không kết nối được CSDL vì lỗi " + query + e.Message + query);
                 }
             }
             return data;
@@ -132,7 +132,7 @@ namespace OPM.DBHandler
             catch (Exception e)
             {
                 CloseConnection(con);
-                MessageBox.Show("Không kết nối được CSDL vì lỗi " + e.Message);
+                MessageBox.Show("Không kết nối được CSDL vì lỗi " + strSqlCommand + e.Message);
                 return 0;
             }
         }
@@ -163,7 +163,7 @@ namespace OPM.DBHandler
             {
                 adapter.Dispose();
                 CloseConnection(con);
-                MessageBox.Show("Không kết nối được CSDL vì lỗi " + e.Message);
+                MessageBox.Show("Không kết nối được CSDL vì lỗi " + strQuerry + e.Message);
                 return 0;
             }
         }

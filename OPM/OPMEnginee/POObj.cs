@@ -97,7 +97,7 @@ namespace OPM.OPMEnginee
             POGuaranteeRatio = contract.POGuaranteeRatio;
             POGuaranteeValidityPeriod = contract.POGuaranteeValidityPeriod;
             ContractGuaranteeDeadline = contract.ContractGuaranteeDeadline;
-            AccoutingCode = contract.AccoutingCode;
+            ContractAccoutingCode = contract.ContractAccoutingCode;
         }
         public void SetContractOfPOObj(ContractObj contract)
         {
@@ -127,7 +127,7 @@ namespace OPM.OPMEnginee
             POGuaranteeRatio = contract.POGuaranteeRatio;
             POGuaranteeValidityPeriod = contract.POGuaranteeValidityPeriod;
             ContractGuaranteeDeadline = contract.ContractGuaranteeDeadline;
-            AccoutingCode = contract.AccoutingCode;
+            ContractAccoutingCode = contract.ContractAccoutingCode;
         }
         public POObj SetContractOfPOObj(POObj po,ContractObj contract)
         {
@@ -157,7 +157,7 @@ namespace OPM.OPMEnginee
             po.POGuaranteeRatio = contract.POGuaranteeRatio;
             po.POGuaranteeValidityPeriod = contract.POGuaranteeValidityPeriod;
             po.ContractGuaranteeDeadline = contract.ContractGuaranteeDeadline;
-            po.AccoutingCode = contract.AccoutingCode;
+            po.ContractAccoutingCode = contract.ContractAccoutingCode;
             return po;
         }
 
@@ -304,5 +304,13 @@ namespace OPM.OPMEnginee
             string query = string.Format("DELETE FROM dbo.PO WHERE POId = '{0}'", id);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
+        public static double POGoodsQuantityTotalByContractId(string ContractId)
+        {
+            string query = string.Format(@"SELECT SUM(POGoodsQuantity) FROM PO WHERE ContractId = '{0}'", ContractId);
+            var tem1 = OPMDBHandler.ExecuteScalar(query);
+            double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
+            return tem;
+        }
+
     }
 }
