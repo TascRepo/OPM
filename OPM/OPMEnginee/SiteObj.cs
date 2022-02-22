@@ -208,9 +208,22 @@ namespace OPM.OPMEnginee
         }
         public static List<SiteObj> SiteGetListProvince()
         {
-            string query = string.Format("SELECT * FROM dbo.Site ORDER BY SiteProvince");
+            string query = string.Format("SELECT * FROM dbo.Site ORDER BY SiteId,SiteProvince");
             DataTable dataTable = OPMDBHandler.ExecuteQuery(query);
             List<SiteObj> list = new List<SiteObj>(); 
+            foreach (DataRow item in dataTable.Rows)
+            {
+                SiteObj site = new SiteObj(item);
+                list.Add(site);
+            }
+            return list;
+        }
+        public static List<SiteObj> SiteGetListProvince(string POId, string DPId)
+        {
+            //string query = string.Format("SELECT * FROM dbo.Site AS s WHERE s.SiteId IN (SELECT DISTINCT VNPTId FROM dbo.DeliveryPlan WHERE POId = '{0}')",POId);
+            string query = string.Format("SELECT * FROM dbo.Site AS s WHERE s.SiteId IN (SELECT DISTINCT VNPTId FROM dbo.DeliveryPlan WHERE POId = '{0}')  AND s.SiteId NOT IN (SELECT VNPTId FROM dbo.DPs WHERE DPId = '{1}')", POId, DPId);
+            DataTable dataTable = OPMDBHandler.ExecuteQuery(query);
+            List<SiteObj> list = new List<SiteObj>();
             foreach (DataRow item in dataTable.Rows)
             {
                 SiteObj site = new SiteObj(item);

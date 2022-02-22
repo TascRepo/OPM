@@ -65,15 +65,10 @@ namespace OPM.OPMEnginee
             return table.Rows.Count > 0;
         }
 
-        public static void DPDelete(int DPId)
+        public static int DPDelete(string DPId)
         {
-            string query = string.Format("SELECT * FROM dbo.DP WHERE DPId = '{0}'", DPId);
-            OPMDBHandler.ExecuteNonQuery(query);
-        }
-        public static void DPDelete(string POId)
-        {
-            string query = string.Format("DELETE FROM dbo.DP WHERE POId = '{0}'", POId);
-            OPMDBHandler.ExecuteNonQuery(query);
+            string query = string.Format("DELETE FROM dbo.DP WHERE DPId = '{0}'", DPId);
+            return OPMDBHandler.ExecuteNonQuery(query);
         }
 
         public void DPDelete()
@@ -125,10 +120,21 @@ namespace OPM.OPMEnginee
             string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}' WHERE DPId = '{0}'", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
             OPMDBHandler.ExecuteNonQuery(query);
         }
-        public void DPInsert()
+        public int DPUpdate(string newId, string oldId)
+        {
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}' WHERE DPId = '{3}'", newId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")),oldId);
+            return OPMDBHandler.ExecuteNonQuery(query);
+        }
+        public int DPInsert()
         {
             string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate) VALUES('{0}','{1}','{2}')",DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-            OPMDBHandler.ExecuteNonQuery(query);
+            return OPMDBHandler.ExecuteNonQuery(query);
+        }
+        public int DPInsert(string id)
+        {
+            if (DPObj.DPExist(id)) return 0;
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate) VALUES('{0}','{1}','{2}')", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+            return OPMDBHandler.ExecuteNonQuery(query);
         }
     }
 }

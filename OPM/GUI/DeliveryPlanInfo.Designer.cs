@@ -40,9 +40,10 @@ namespace OPM.GUI
             this.btnAdd = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
-            this.txtDeliveryPlanTotalQuantity = new System.Windows.Forms.TextBox();
+            this.txtDeliveryPlanVNPTIdTotalQuantity = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.lblWarning = new System.Windows.Forms.Label();
             this.dtpDeliveryPlanDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -130,6 +131,7 @@ namespace OPM.GUI
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Aqua;
             this.groupBox1.Controls.Add(this.buttonAddProvinceId);
             this.groupBox1.Controls.Add(this.dateTimePickerDeliveryPlanDate);
             this.groupBox1.Controls.Add(this.btnAdd);
@@ -142,7 +144,7 @@ namespace OPM.GUI
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(545, 249);
+            this.groupBox1.Size = new System.Drawing.Size(545, 262);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thêm hàng trên DataGridView";
@@ -188,14 +190,14 @@ namespace OPM.GUI
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // txtDeliveryPlanTotalQuantity
+            // txtDeliveryPlanVNPTIdTotalQuantity
             // 
-            this.txtDeliveryPlanTotalQuantity.Enabled = false;
-            this.txtDeliveryPlanTotalQuantity.Location = new System.Drawing.Point(398, 206);
-            this.txtDeliveryPlanTotalQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtDeliveryPlanTotalQuantity.Name = "txtDeliveryPlanTotalQuantity";
-            this.txtDeliveryPlanTotalQuantity.Size = new System.Drawing.Size(130, 31);
-            this.txtDeliveryPlanTotalQuantity.TabIndex = 3;
+            this.txtDeliveryPlanVNPTIdTotalQuantity.Enabled = false;
+            this.txtDeliveryPlanVNPTIdTotalQuantity.Location = new System.Drawing.Point(398, 206);
+            this.txtDeliveryPlanVNPTIdTotalQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtDeliveryPlanVNPTIdTotalQuantity.Name = "txtDeliveryPlanVNPTIdTotalQuantity";
+            this.txtDeliveryPlanVNPTIdTotalQuantity.Size = new System.Drawing.Size(130, 31);
+            this.txtDeliveryPlanVNPTIdTotalQuantity.TabIndex = 3;
             // 
             // label16
             // 
@@ -209,6 +211,8 @@ namespace OPM.GUI
             // 
             // groupBox7
             // 
+            this.groupBox7.BackColor = System.Drawing.Color.Aqua;
+            this.groupBox7.Controls.Add(this.lblWarning);
             this.groupBox7.Controls.Add(this.dtpDeliveryPlanDate);
             this.groupBox7.Controls.Add(this.label1);
             this.groupBox7.Controls.Add(this.btnDelete);
@@ -226,16 +230,26 @@ namespace OPM.GUI
             this.groupBox7.Controls.Add(this.txtRemainingPOGoodsQuantity);
             this.groupBox7.Controls.Add(this.txtPOGoodsQuantity);
             this.groupBox7.Controls.Add(this.txtRemainingContractGoodsQuantity);
-            this.groupBox7.Controls.Add(this.txtDeliveryPlanTotalQuantity);
+            this.groupBox7.Controls.Add(this.txtDeliveryPlanVNPTIdTotalQuantity);
             this.groupBox7.Controls.Add(this.txtContractGoodsQuantity);
             this.groupBox7.Location = new System.Drawing.Point(531, 84);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox7.Size = new System.Drawing.Size(545, 417);
+            this.groupBox7.Size = new System.Drawing.Size(545, 442);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Chi tiết số lượng từng hàng trên DataGridView";
+            // 
+            // lblWarning
+            // 
+            this.lblWarning.AutoSize = true;
+            this.lblWarning.ForeColor = System.Drawing.Color.Red;
+            this.lblWarning.Location = new System.Drawing.Point(311, 157);
+            this.lblWarning.Name = "lblWarning";
+            this.lblWarning.Size = new System.Drawing.Size(226, 25);
+            this.lblWarning.TabIndex = 5;
+            this.lblWarning.Text = "! Vẫn chưa phân bổ hết PO";
             // 
             // dtpDeliveryPlanDate
             // 
@@ -369,11 +383,13 @@ namespace OPM.GUI
             // txtRemainingPOGoodsQuantity
             // 
             this.txtRemainingPOGoodsQuantity.Enabled = false;
+            this.txtRemainingPOGoodsQuantity.ForeColor = System.Drawing.Color.Red;
             this.txtRemainingPOGoodsQuantity.Location = new System.Drawing.Point(398, 100);
             this.txtRemainingPOGoodsQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtRemainingPOGoodsQuantity.Name = "txtRemainingPOGoodsQuantity";
             this.txtRemainingPOGoodsQuantity.Size = new System.Drawing.Size(130, 31);
             this.txtRemainingPOGoodsQuantity.TabIndex = 3;
+            this.txtRemainingPOGoodsQuantity.TextChanged += new System.EventHandler(this.txtRemainingPOGoodsQuantity_TextChanged);
             // 
             // txtPOGoodsQuantity
             // 
@@ -406,6 +422,7 @@ namespace OPM.GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Aqua;
             this.ClientSize = new System.Drawing.Size(1078, 878);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox7);
@@ -437,7 +454,7 @@ namespace OPM.GUI
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.TextBox txtDeliveryPlanTotalQuantity;
+        private System.Windows.Forms.TextBox txtDeliveryPlanVNPTIdTotalQuantity;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Label label17;
@@ -457,5 +474,6 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox txtDeliveryPlanQuantity;
         private System.Windows.Forms.TextBox txtVNPTId;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblWarning;
     }
 }

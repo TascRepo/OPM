@@ -2,13 +2,13 @@
 using OPM.OPMEnginee;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace OPM.GUI
 {
     public partial class DeliveryPlanInfo : Form
     {
-        public List<SiteObj> sites = SiteObj.SiteGetListProvince();
         public DeliveryPlanInfo()
         {
             InitializeComponent();
@@ -20,10 +20,10 @@ namespace OPM.GUI
             txtRemainingPOGoodsQuantity.Text = ((Tag as OPMDASHBOARDA).Po.POGoodsQuantity - DeliveryPlanObj.DeliveryPlanTotalQuantityByPOId((Tag as OPMDASHBOARDA).Po.POId)).ToString();
             LoadToDtgDeliveryPlan(VNPTId);
             LoadToComboBoxProvince();
-            DataBindingsFromDtgDeliveryPlanToTextBoxs((Tag as OPMDASHBOARDA).Po.POId);
+            DataBindingsFromDtgDeliveryPlanToTextBoxs();
         }
 
-        private void DataBindingsFromDtgDeliveryPlanToTextBoxs(string POId)
+        private void DataBindingsFromDtgDeliveryPlanToTextBoxs()
         {
             txtContractGoodsQuantity.DataBindings.Clear();
             txtContractGoodsQuantity.DataBindings.Add(new Binding("Text", dtgDeliveryPlan.DataSource, "ContractGoodsQuantity"));
@@ -41,7 +41,8 @@ namespace OPM.GUI
 
         private void LoadToComboBoxProvince()
         {
-            comboBoxVNPTId.DataSource = sites;
+            (Tag as OPMDASHBOARDA).Sites = SiteObj.SiteGetListProvince();
+            comboBoxVNPTId.DataSource = (Tag as OPMDASHBOARDA).Sites;
             comboBoxVNPTId.DisplayMember = "SiteId";
         }
 
@@ -75,7 +76,14 @@ namespace OPM.GUI
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).OpenPOForm();
+            if (txtRemainingPOGoodsQuantity.Text == "0")
+            {
+                (Tag as OPMDASHBOARDA).OpenPOForm();
+            }
+            else
+            {
+                if (DialogResult.No == MessageBox.Show("! Vẫn chưa phân bổ hết PO", "Cảnh báo!", MessageBoxButtons.YesNo, MessageBoxIcon.Question)) return;
+            }
         }
 
         private void comboBoxVNPTId_SelectedIndexChanged(object sender, EventArgs e)
@@ -112,7 +120,19 @@ namespace OPM.GUI
 
         private void textBoxDeliveryPlanQuantity_TextChanged(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).DeliveryPlan.DeliveryPlanQuantity = double.Parse(textBoxDeliveryPlanQuantity.Text.Trim());
+            try
+            {
+                if (!string.IsNullOrEmpty(textBoxDeliveryPlanQuantity.Text.Trim()))
+                {
+                    (Tag as OPMDASHBOARDA).DeliveryPlan.DeliveryPlanQuantity = double.Parse(textBoxDeliveryPlanQuantity.Text.Trim());
+                }
+                else
+                    (Tag as OPMDASHBOARDA).DeliveryPlan.DeliveryPlanQuantity = 0;
+            }
+            catch
+            {
+                MessageBox.Show("Nhập lại DeliveryPlanQuantity dạng số!");
+            }
         }
 
         private void dateTimePickerDeliveryPlanDate_ValueChanged(object sender, EventArgs e)
@@ -132,7 +152,23 @@ namespace OPM.GUI
 
         private void txtVNPTId_TextChanged(object sender, EventArgs e)
         {
-            txtDeliveryPlanTotalQuantity.Text = DeliveryPlanObj.DeliveryPlanTotalQuantityByPOIdAndVNPTIdDetail((Tag as OPMDASHBOARDA).Po.POId, txtVNPTId.Text.Trim()).ToString();
+            txtDeliveryPlanVNPTIdTotalQuantity.Text = DeliveryPlanObj.DeliveryPlanTotalQuantityByPOIdAndVNPTIdDetail((Tag as OPMDASHBOARDA).Po.POId, txtVNPTId.Text.Trim()).ToString();
+        }
+
+        private void txtRemainingPOGoodsQuantity_TextChanged(object sender, EventArgs e)
+        {
+            if (txtRemainingPOGoodsQuantity.Text == "0")
+            {
+                txtRemainingPOGoodsQuantity.ForeColor = Color.Black;
+                lblWarning.ForeColor = Color.Black;
+                lblWarning.Text = "Đã phân bổ hết PO!";
+            }
+            else
+            {
+                txtRemainingPOGoodsQuantity.ForeColor = Color.Red;
+                lblWarning.ForeColor = Color.Red;
+                lblWarning.Text = "! Vẫn chưa phân bổ hết PO";
+            }
         }
     }
 }

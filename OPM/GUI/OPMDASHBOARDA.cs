@@ -36,6 +36,8 @@ namespace OPM.GUI
         public List<DeliveryPlanObj> DeliveryPlans { get; set; } = new List<DeliveryPlanObj>();
         public DPObj Dp { get; set; } = new DPObj();
         public List<DPObj> Dps { get; set; } = new List<DPObj>();
+        public DPsObj DPs { get; set; } = new DPsObj();
+        public List<DPsObj> DPss { get; set; } = new List<DPsObj>();
         public OPMDASHBOARDA()
         {
             InitializeComponent();
@@ -122,6 +124,15 @@ namespace OPM.GUI
                         }
                         break;
                     case "DP":
+                        if (DPObj.DPDelete(temp[1]) > 0)
+                        {
+                            MessageBox.Show("Xoá thành công DP số " + temp[1]);
+                            CurrentNodeName = "DP_" + (new DPObj()).DPId;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Xoá thất bại vì chưa có NTKT số " + temp[1]);
+                        }
                         break;
                     case "NTKT":
                         if (NTKTObj.NTKTDelete(temp[1]) > 0)
@@ -202,6 +213,31 @@ namespace OPM.GUI
                     }
                     break;
                 case "DP":
+                    if (!DPObj.DPExist(temp[1]))
+                    {
+                        if (Dp.DPInsert(CurrentNodeId) > 0)
+                        {
+                            MessageBox.Show("Tạo mới thành công DP số " + CurrentNodeId);
+                            CurrentNodeName = "DP_" + CurrentNodeId;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Tạo mới thất bại vì đã có DP số " + CurrentNodeId);
+                            CurrentNodeName = "DP_" + (new NTKTObj()).NTKTId;
+                        }
+                    }
+                    else
+                    {
+                        if (Dp.DPUpdate(CurrentNodeId, temp[1]) > 0)
+                        {
+                            MessageBox.Show("Cập nhật thành công DP số " + CurrentNodeId);
+                            CurrentNodeName = "DP_" + CurrentNodeId;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cập nhật thất bại vì đã có DP số " + CurrentNodeId);
+                        }
+                    }
                     break;
                 case "NTKT":
                     if (!NTKTObj.NTKTExist(temp[1]))

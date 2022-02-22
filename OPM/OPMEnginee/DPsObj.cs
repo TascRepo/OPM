@@ -38,11 +38,12 @@ namespace OPM.OPMEnginee
         public double DPQuantity { get; set; } = 0;
 
         public DPsObj() { }
-        public DPsObj(int DPsId, string DPId, DateTime DPDate)
+        public DPsObj(int DPsId, string DPId, string VNPTId, double DPQuantity)
         {
             this.DPsId = DPsId;
-            this.POId = DPId;
-            this.DPDate = DPDate;
+            this.DPId = DPId;
+            this.VNPTId = VNPTId;
+            this.DPQuantity = DPQuantity;
         }
         public DPsObj(int id)
         {
@@ -50,7 +51,7 @@ namespace OPM.OPMEnginee
         }
         public DPsObj(DataRow row)
         {
-            DPsId = (row["DPId"] == null || row["DPId"] == DBNull.Value) ? -1 : (int)row["DPId"];
+            DPsId = (row["DPsId"] == null || row["DPsId"] == DBNull.Value) ? -1 : (int)row["DPsId"];
             DPId = (row["DPId"] == null || row["DPId"] == DBNull.Value) ? "XXXX/2022" : row["DPId"].ToString();
             VNPTId = (row["VNPTId"] == null || row["VNPTId"] == DBNull.Value) ? "ANSV" : row["VNPTId"].ToString();
             DPQuantity = (row["DPQuantity"] == null || row["DPQuantity"] == DBNull.Value) ? 0 : (double)row["DPQuantity"];
@@ -89,11 +90,6 @@ namespace OPM.OPMEnginee
             string query = string.Format("SELECT * FROM dbo.DPs Where VNPTId = '{0}' Order By DPId", VNPTId);
             return OPMDBHandler.ExecuteQuery(query); ;
         }
-        public static DataTable DPsGetTableByPOId(string POId)
-        {
-            string query = string.Format("SELECT * FROM dbo.DPs Where POId = '{0}' Order By VNPTId", POId);
-            return OPMDBHandler.ExecuteQuery(query);
-        }
         public static List<DPObj> DPsGetListByVNPTId(string VNPTId)
         {
             List<DPObj> list = new List<DPObj>();
@@ -106,15 +102,20 @@ namespace OPM.OPMEnginee
             }
             return list;
         }
-        public static List<DPObj> DPsGetListByPOId(string POId)
+
+        public static DataTable DPsGetTableByDPId(string DPId)
         {
-            List<DPObj> list = new List<DPObj>();
-            string query = string.Format("SELECT * FROM dbo.DPs Where POId = '{0}' Order By VNPTId", POId);
-            DataTable dataTable = OPMDBHandler.ExecuteQuery(query);
+            string query = string.Format("SELECT * FROM dbo.DPs Where DPId = '{0}' Order By VNPTId", DPId);
+            return OPMDBHandler.ExecuteQuery(query);
+        }
+        public static List<DPsObj> DPsGetListByDPId(string DPId)
+        {
+            List<DPsObj> list = new List<DPsObj>();
+            DataTable dataTable = DPsGetTableByDPId(DPId);
             foreach (DataRow item in dataTable.Rows)
             {
-                DPObj dp = new DPObj(item);
-                list.Add(dp);
+                DPsObj DPs = new DPsObj(item);
+                list.Add(DPs);
             }
             return list;
         }
@@ -137,18 +138,32 @@ namespace OPM.OPMEnginee
         }
         public void DPsUpdate()
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DPs SET DPsId = {0}, DPId = '{1}', VNPTId = '{2}', DPQuantity = {3} WHERE DPId = {0}", DPsId, DPId, VNPTId, DPQuantity);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DPs SET DPsId = {0}, DPId = '{1}', VNPTId = '{2}', DPQuantity = {3} WHERE DPsId = {0}", DPsId, DPId, VNPTId, DPQuantity);
             OPMDBHandler.ExecuteNonQuery(query);
         }
-        public void DPsUpdate(int DPId)
+        public void DPsUpdate(int DPsId)
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DPs SET DPsId = {0}, DPId = '{1}', VNPTId = '{2}', DPQuantity = {3} WHERE DPId = {0}", DPsId, DPId, VNPTId, DPQuantity);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DPs SET DPsId = {0}, DPId = '{1}', VNPTId = '{2}', DPQuantity = {3} WHERE DPsId = {0}", DPsId, DPId, VNPTId, DPQuantity);
             OPMDBHandler.ExecuteNonQuery(query);
         }
         public void DPsInsert()
         {
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DPs(POId,VNPTId,DPQuantity) VALUES({0},'{1}','{2}')", DPId, VNPTId, DPQuantity);
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DPs(DPId,VNPTId,DPQuantity) VALUES('{0}','{1}',{2})", DPId, VNPTId, DPQuantity);
             OPMDBHandler.ExecuteNonQuery(query);
+        }
+        public static double DPTotalQuantityByPOIdAndVNPTIdDetail(string POId, string VNPTId)
+        {
+            string query = string.Format(@"SELECT SUM(DPQuantity) FROM dbo.DPs,DP WHERE DPs.DPId = DP.DPId AND POId = '{0}' and DPs.VNPTId = '{1}'", POId, VNPTId);
+            var tem1 = OPMDBHandler.ExecuteScalar(query);
+            double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
+            return tem;
+        }
+        public static double DPTotalQuantityByPOId(string POId)
+        {
+            string query = string.Format(@"SELECT SUM(DPQuantity) FROM dbo.DPs,DP WHERE DPs.DPId = DP.DPId AND DP.POId = '{0}'", POId);
+            var tem1 = OPMDBHandler.ExecuteScalar(query);
+            double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
+            return tem;
         }
     }
 }
