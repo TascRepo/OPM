@@ -9,13 +9,13 @@ using System.Windows.Forms;
 
 namespace OPM.GUI
 {
-    
+
     public partial class OPMDASHBOARDA : Form
     {
         private string currentNodeName;
         public string CurrentNodeId;
         public int backSiteFormStatus;
-        public string CurrentNodeName 
+        public string CurrentNodeName
         {
             get => currentNodeName;
             set
@@ -30,7 +30,7 @@ namespace OPM.GUI
         public List<ContractObj> Contracts { get; set; } = new List<ContractObj>();
         public POObj Po { get; set; } = new POObj();
         public List<POObj> Pos { get; set; } = new List<POObj>();
-        public NTKTObj Ntkt { get; set;} = new NTKTObj();
+        public NTKTObj Ntkt { get; set; } = new NTKTObj();
         public List<NTKTObj> Ntkts { get; set; } = new List<NTKTObj>();
         public DeliveryPlanObj DeliveryPlan = new DeliveryPlanObj();
         public List<DeliveryPlanObj> DeliveryPlans { get; set; } = new List<DeliveryPlanObj>();
@@ -44,7 +44,7 @@ namespace OPM.GUI
         }
         private void OPMDASHBOARDA_Load(object sender, EventArgs e)
         {
-            CurrentNodeName= "Contract_" + (new ContractObj()).ContractId;
+            CurrentNodeName = "Contract_" + (new ContractObj()).ContractId;
         }
         public void CreatDocumentByNodeName()
         {
@@ -113,7 +113,7 @@ namespace OPM.GUI
                         }
                         break;
                     case "PO":
-                        if (POObj.PODelete(temp[1])>0)
+                        if (POObj.PODelete(temp[1]) > 0)
                         {
                             MessageBox.Show("Xoá thành công PO số " + temp[1]);
                             CurrentNodeName = "PO_" + (new POObj()).POId;
@@ -161,7 +161,7 @@ namespace OPM.GUI
                 case "Contract":
                     if (!ContractObj.ContractExist(temp[1]))
                     {
-                        if(Contract.ContractInsert(CurrentNodeId) >0)
+                        if (Contract.ContractInsert(CurrentNodeId) > 0)
                         {
                             MessageBox.Show("Tạo mới thành công hợp đồng số " + CurrentNodeId);
                             CurrentNodeName = "Contract_" + CurrentNodeId;
@@ -169,7 +169,7 @@ namespace OPM.GUI
                         else
                         {
                             MessageBox.Show("Tạo mới thất bại vì đã có hợp đồng số " + CurrentNodeId);
-                            CurrentNodeName = "Contract_"+(new ContractObj()).ContractId; ;
+                            CurrentNodeName = "Contract_" + (new ContractObj()).ContractId; ;
                         }
                     }
                     else
@@ -273,13 +273,13 @@ namespace OPM.GUI
                     break;
             }
         }
-        void OpenChildFormByNodeName(string currentNodeName) 
+        void OpenChildFormByNodeName(string currentNodeName)
         {
             string[] temp = currentNodeName.Split('_', 2);
             switch (temp[0])
             {
                 case "Contract":
-                    Contract =new ContractObj(temp[1]);
+                    Contract = new ContractObj(temp[1]);
                     SiteA = new SiteObj(Contract.SiteId);
                     Text = string.Format("Hợp đồng số {0}", temp[1]);
                     ContractInfo contractInfo = new ContractInfo();
@@ -300,7 +300,7 @@ namespace OPM.GUI
                     OpenChildForm(pOInfo);
                     break;
                 case "DP":
-                    Dp = new DPObj(temp[1]); 
+                    Dp = new DPObj(temp[1]);
                     if (DPObj.DPExist(temp[1]))
                     {
                         Po.POId = Dp.POId;
@@ -472,7 +472,7 @@ namespace OPM.GUI
         }
         public void OpenSiteAForm(string idSite)
         {
-            if(backSiteFormStatus == 0)
+            if (backSiteFormStatus == 0)
             {
                 Text = string.Format("Hợp đồng số {0}: Bảng lựa chọn chi tiết bên A", Contract.ContractId);
 
@@ -494,7 +494,7 @@ namespace OPM.GUI
         public void OpenDeliveryPlanForm()
         {
             DeliveryPlanInfo deliveryPlanForm = new DeliveryPlanInfo();
-            Text = string.Format("Kê hoạch giao hàng của PO số {0} của hợp đồng số {1}",Po.POName, Contract.ContractId);
+            Text = string.Format("Kê hoạch giao hàng của PO số {0} của hợp đồng số {1}", Po.POName, Contract.ContractId);
             DeliveryPlan.POId = Po.POId;
             OpenChildForm(deliveryPlanForm);
         }
@@ -509,7 +509,7 @@ namespace OPM.GUI
             POInfo purchaseOderInfor = new POInfo();
             Text = string.Format("Hợp đồng số {0} - {1}", Contract.ContractId, Po.POName);
             Po.ContractId = Contract.ContractId;
-            CurrentNodeName = "PO_" + Po.POId; 
+            CurrentNodeName = "PO_" + Po.POId;
             OpenChildForm(purchaseOderInfor);
         }
         public void OpenNTKTForm()
@@ -517,7 +517,7 @@ namespace OPM.GUI
             NTKTInfo nTKTInfor = new NTKTInfo();
             Text = string.Format(@"Hợp đồng số {2} - {1} - Đợt NTKT{0}", Ntkt.NTKTPhase, Po.POName, Contract.ContractId);
             Ntkt.POId = Po.POId;
-            CurrentNodeName = "NTKT_" + Ntkt.NTKTId; 
+            CurrentNodeName = "NTKT_" + Ntkt.NTKTId;
             OpenChildForm(nTKTInfor);
         }
         public void OpenDPForm()

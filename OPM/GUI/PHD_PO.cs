@@ -1,7 +1,6 @@
 ﻿using OPM.DBHandler;
 using System;
 using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 namespace OPM.GUI
 {
@@ -39,7 +38,7 @@ namespace OPM.GUI
             if (e.RowIndex > -1)
             {
                 //dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
-               // dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                // dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
             }
         }
 
@@ -47,8 +46,8 @@ namespace OPM.GUI
         {
             if (e.RowIndex > -1)
             {
-               // dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
-               // dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
+                // dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGreen;
+                // dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Red;
             }
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

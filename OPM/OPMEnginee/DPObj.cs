@@ -7,11 +7,11 @@ using System.Windows.Forms;
 
 namespace OPM.OPMEnginee
 {
-    public class DPObj:POObj
+    public class DPObj : POObj
     {
         private string dPId = @"XXXX/2022";
-        public string DPId 
-        { 
+        public string DPId
+        {
             get => dPId;
             set
             {
@@ -29,7 +29,7 @@ namespace OPM.OPMEnginee
                         DPRemarks = (row["DPRemarks"] == null || row["DPRemarks"] == DBNull.Value) ? "" : row["DPRemarks"].ToString();
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     MessageBox.Show("Lỗi khi kết nối bảng DP trong CSDL " + query + e.Message);
                 }

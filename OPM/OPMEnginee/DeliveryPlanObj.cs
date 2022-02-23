@@ -139,7 +139,7 @@ namespace OPM.DBHandler
         public static List<DeliveryPlanObj> DeliveryPlanGetList(string POId, string VNPTId)
         {
             List<DeliveryPlanObj> list = new List<DeliveryPlanObj>();
-            DataTable dataTable = DeliveryPlanGetTable(POId,VNPTId);
+            DataTable dataTable = DeliveryPlanGetTable(POId, VNPTId);
             foreach (DataRow item in dataTable.Rows)
             {
                 DeliveryPlanObj deliveryPlanObj = new DeliveryPlanObj(item);

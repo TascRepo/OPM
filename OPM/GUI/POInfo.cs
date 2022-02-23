@@ -70,7 +70,7 @@ namespace OPM.GUI
         {
             if ((Tag as OPMDASHBOARDA).Po.POExist())
             {
-                if(DeliveryPlanObj.DeliveryPlanExist((Tag as OPMDASHBOARDA).Po.POId))
+                if (DeliveryPlanObj.DeliveryPlanExist((Tag as OPMDASHBOARDA).Po.POId))
                 {
                     (Tag as OPMDASHBOARDA).CurrentNodeName = "DP_" + (new DPObj()).DPId;
                 }
@@ -165,7 +165,7 @@ namespace OPM.GUI
 
         private void btnDeliveryPlan_Click(object sender, EventArgs e)
         {
-            if(POObj.POExist((Tag as OPMDASHBOARDA).Po.POId))
+            if (POObj.POExist((Tag as OPMDASHBOARDA).Po.POId))
             {
                 (Tag as OPMDASHBOARDA).backSiteFormStatus = 1;
                 (Tag as OPMDASHBOARDA).OpenDeliveryPlanForm();

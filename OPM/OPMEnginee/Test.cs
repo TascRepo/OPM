@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OPM.OPMEnginee
+﻿namespace OPM.OPMEnginee
 {
-    class Test:ContractObj
+    class Test : ContractObj
     {
         string a;
         ContractObj b;

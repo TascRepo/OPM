@@ -764,7 +764,7 @@ namespace OPM.ExcelHandler
                 int colCount = xlRange.Columns.Count;
                 //Hiển thị xem có tổng cộng bao nhiêu cột
                 //MessageBox.Show(colCount.ToString()); 82
-                int[] arrcolum = { 1,2,3,4,5,6,7,8,9,10};
+                int[] arrcolum = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
                 int rowCounter;
                 int StartCells = 1;
                 int CountCells = 0;
@@ -877,7 +877,7 @@ namespace OPM.ExcelHandler
                 int colCount = xlRange.Columns.Count;
                 //Hiển thị xem có tổng cộng bao nhiêu cột
                 //MessageBox.Show(colCount.ToString()); 82
-                int[] arrcolum = { 1,2,3,4,5,6,7 };
+                int[] arrcolum = { 1, 2, 3, 4, 5, 6, 7 };
                 int rowCounter;
                 int StartCells = 0;
                 int CountCells = 0;

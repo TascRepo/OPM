@@ -1,7 +1,6 @@
 ﻿using OPM.DBHandler;
 using OPM.OPMEnginee;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -61,7 +60,7 @@ namespace OPM.GUI
             dtgDeliveryPlan.Columns["DeliveryPlanDate"].HeaderText = @"Ngày";
             foreach (DataGridViewRow row in dtgDeliveryPlan.Rows)
             {
-                if(row.Cells["VNPTId"].Value.ToString() == VNPTId)
+                if (row.Cells["VNPTId"].Value.ToString() == VNPTId)
                 {
                     dtgDeliveryPlan.CurrentCell = row.Cells["VNPTId"];
                     return;

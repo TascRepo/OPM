@@ -1,7 +1,6 @@
 ﻿using OPM.DBHandler;
 using OPM.OPMEnginee;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace OPM.GUI
@@ -21,7 +20,7 @@ namespace OPM.GUI
             LoadToDtgDP(VNPTId);
             DataBindingsFromDtgDPToTextBoxs();
             LoadToComboBoxVNPIId();
-            if((Tag as OPMDASHBOARDA).Dp.DPType == 0)
+            if ((Tag as OPMDASHBOARDA).Dp.DPType == 0)
             {
                 txtContractGoodsQuantity.Text = (Tag as OPMDASHBOARDA).Po.ContractGoodsQuantity.ToString();
                 txtRemainingContractGoodsQuantity.Text = ((Tag as OPMDASHBOARDA).Po.ContractGoodsQuantity - POObj.POGoodsQuantityTotalByContractId((Tag as OPMDASHBOARDA).Po.ContractId)).ToString();
@@ -35,7 +34,7 @@ namespace OPM.GUI
                 txtContractGoodsQuantity.Text = (Tag as OPMDASHBOARDA).Po.ContractSpareGoodsQuantity.ToString();
                 txtRemainingContractGoodsQuantity.Text = ((Tag as OPMDASHBOARDA).Po.ContractSpareGoodsQuantity - POObj.POSpareGoodsQuantityTotalByContractId((Tag as OPMDASHBOARDA).Po.ContractId)).ToString();
                 txtPOGoodsQuantity.Text = (Tag as OPMDASHBOARDA).Po.POSpareGoodsQuantity.ToString();
-                txtRemainingPOGoodsQuantity.Text = ((Tag as OPMDASHBOARDA).Po.POSpareGoodsQuantity - DPsObj.DPTotalQuantityByPOId((Tag as OPMDASHBOARDA).Po.POId,1)).ToString();
+                txtRemainingPOGoodsQuantity.Text = ((Tag as OPMDASHBOARDA).Po.POSpareGoodsQuantity - DPsObj.DPTotalQuantityByPOId((Tag as OPMDASHBOARDA).Po.POId, 1)).ToString();
                 textBoxVNPTIdTotalQuantity.Text = DeliveryPlanObj.DeliveryPlanTotalSpareQuantityByPOIdAndVNPTIdDetail((Tag as OPMDASHBOARDA).Po.POId, txtVNPTId.Text).ToString();
                 txtRemainingVNPTTotalQuantity.Text = (DeliveryPlanObj.DeliveryPlanTotalSpareQuantityByPOIdAndVNPTIdDetail((Tag as OPMDASHBOARDA).Po.POId, txtVNPTId.Text) - DPsObj.DPTotalQuantityByPOIdAndVNPTIdDetail((Tag as OPMDASHBOARDA).Po.POId, txtVNPTId.Text, 1)).ToString();
             }

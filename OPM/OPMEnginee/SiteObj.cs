@@ -30,7 +30,7 @@ namespace OPM.OPMEnginee
         public string SiteProxy3 { get; set; } = "";
 
         public SiteObj() { }
-        public SiteObj(string SiteId, string SiteName, string SiteProvince, string SiteType, string SiteHeadquater, string SiteAddress, string SitePhonenumber, string SiteFaxNumber, string SiteTaxCode, string SiteBankAccount, string SiteNameOfBank,string SiteRepresentative1, string SitePosition1, string SiteProxy1, string SiteRepresentative2, string SitePosition2, string SiteProxy2, string SiteRepresentative3, string SitePosition3, string SiteProxy3)
+        public SiteObj(string SiteId, string SiteName, string SiteProvince, string SiteType, string SiteHeadquater, string SiteAddress, string SitePhonenumber, string SiteFaxNumber, string SiteTaxCode, string SiteBankAccount, string SiteNameOfBank, string SiteRepresentative1, string SitePosition1, string SiteProxy1, string SiteRepresentative2, string SitePosition2, string SiteProxy2, string SiteRepresentative3, string SitePosition3, string SiteProxy3)
         {
             this.SiteId = SiteId;
             this.SiteName = SiteName;
@@ -133,7 +133,7 @@ namespace OPM.OPMEnginee
         }
         public static DataRow RowSite()
         {
-            string query = string.Format(@"SELECT  DISTINCT [SiteName],[SiteProvince],[SiteType],[SiteHeadquater],[SiteAddress],[SitePhonenumber],[SiteFaxNumber],[SiteTaxCode],[SiteBankAccount],[SiteNameOfBank],[SiteRepresentative1],[SitePosition1],[SiteProxy1],[SiteRepresentative2],[SitePosition2],[SiteProxy2],[SiteRepresentative3],[SitePosition3],[SiteProxy3] FROM [dbo].[Site] Where SiteId = ",(new SiteObj()).SiteId);
+            string query = string.Format(@"SELECT  DISTINCT [SiteName],[SiteProvince],[SiteType],[SiteHeadquater],[SiteAddress],[SitePhonenumber],[SiteFaxNumber],[SiteTaxCode],[SiteBankAccount],[SiteNameOfBank],[SiteRepresentative1],[SitePosition1],[SiteProxy1],[SiteRepresentative2],[SitePosition2],[SiteProxy2],[SiteRepresentative3],[SitePosition3],[SiteProxy3] FROM [dbo].[Site] Where SiteId = ", (new SiteObj()).SiteId);
             OPMDBHandler.ExecuteQuery(query);
 
             return null;
@@ -141,7 +141,7 @@ namespace OPM.OPMEnginee
         public static DataTable SiteGetTableBySiteId()
         {
             DataTable table = SiteGetTable();
-            
+
             return table;
         }
         public static List<SiteObj> SiteGetList()
@@ -161,7 +161,7 @@ namespace OPM.OPMEnginee
             return OPMDBHandler.ExecuteNonQuery(query);
         }
 
-        public int SiteUpdate(string NewId,string OldId)
+        public int SiteUpdate(string NewId, string OldId)
         {
             string query = string.Format("UPDATE dbo.Site SET SiteId = '{0}', SiteProvince = N'{1}', SiteName = N'{2}', SiteType = N'{3}', SiteHeadquater = N'{4}', Siteaddress= N'{5}', Sitephonenumber = '{6}', Sitefaxnumber = '{7}', SitetaxCode= '{8}', SiteBankAccount = '{9}', SiteNameOfBank = N'{10}', Siterepresentative1 = N'{11}', Siteposition1 = N'{12}', Siteproxy1 = N'{13}', Siterepresentative2 = N'{14}', Siteposition2 = N'{15}', Siteproxy2 = N'{16}', Siterepresentative3 = N'{17}', Siteposition3 = N'{18}', Siteproxy3 = N'{19}' WHERE SiteId = '{20}'", NewId, SiteName, SiteProvince, SiteType, SiteHeadquater, SiteAddress, SitePhonenumber, SiteFaxNumber, SiteTaxCode, SiteBankAccount, SiteNameOfBank, SiteRepresentative1, SitePosition1, SiteProxy1, SiteRepresentative2, SitePosition2, SiteProxy2, SiteRepresentative3, SitePosition3, SiteProxy3, OldId);
             return OPMDBHandler.ExecuteNonQuery(query);
@@ -210,7 +210,7 @@ namespace OPM.OPMEnginee
         {
             string query = string.Format("SELECT * FROM dbo.Site ORDER BY SiteId,SiteProvince");
             DataTable dataTable = OPMDBHandler.ExecuteQuery(query);
-            List<SiteObj> list = new List<SiteObj>(); 
+            List<SiteObj> list = new List<SiteObj>();
             foreach (DataRow item in dataTable.Rows)
             {
                 SiteObj site = new SiteObj(item);

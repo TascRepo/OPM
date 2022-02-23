@@ -1,7 +1,5 @@
-﻿using OPM.DBHandler;
-using OPM.OPMEnginee;
+﻿using OPM.OPMEnginee;
 using System;
-using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -802,7 +800,7 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<POCreatedDate>", po.POCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 OpmWordHandler.FindAndReplace(wordApp, "<POPerformDate>", po.POPerformDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 OpmWordHandler.FindAndReplace(wordApp, "<POAdvanceGuaranteeCreatedDate>", po.POAdvanceGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-                OpmWordHandler.FindAndReplace(wordApp, "<POTotalValue>", string.Format(new CultureInfo("vi-VN"), "{0:#,##0.##}", (po.POTotalValue/100) * po.POAdvanceGuaranteePercentage));
+                OpmWordHandler.FindAndReplace(wordApp, "<POTotalValue>", string.Format(new CultureInfo("vi-VN"), "{0:#,##0.##}", (po.POTotalValue / 100) * po.POAdvanceGuaranteePercentage));
                 //OpmWordHandler.FindAndReplace(wordApp, "<POTotalValueString>", NumberToString(Math.Round(((po.POTotalValue / 100) * po.POAdvanceGuaranteePercentage), 0, MidpointRounding.AwayFromZero).ToString()));
                 OpmWordHandler.FindAndReplace(wordApp, "<POTotalValueString>", NumberToString((po.POTotalValue / 100) * po.POAdvanceGuaranteePercentage).ToString());
                 OpmWordHandler.FindAndReplace(wordApp, "<POAdvanceGuaranteePercentage>", po.POAdvanceGuaranteePercentage.ToString());

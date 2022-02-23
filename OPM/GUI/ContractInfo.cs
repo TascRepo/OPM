@@ -1,5 +1,4 @@
 ﻿using OPM.OPMEnginee;
-using OPM.WordHandler;
 using System;
 using System.Windows.Forms;
 namespace OPM.GUI
@@ -103,7 +102,7 @@ namespace OPM.GUI
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtContractId.Text.Trim()) || txtContractId.Text.Trim() == (new ContractObj()).ContractId) 
+            if (string.IsNullOrEmpty(txtContractId.Text.Trim()) || txtContractId.Text.Trim() == (new ContractObj()).ContractId)
             {
                 MessageBox.Show("Nhập đúng số hợp đồng!");
                 return;
@@ -135,9 +134,9 @@ namespace OPM.GUI
         {
             (Tag as OPMDASHBOARDA).CurrentNodeId = txtContractId.Text.Trim();
             (Tag as OPMDASHBOARDA).SetNameOfSelectNode(txtContractId.Text.Trim());
-            if (ContractObj.ContractExist(txtContractId.Text.Trim())) 
+            if (ContractObj.ContractExist(txtContractId.Text.Trim()))
             {
-                if(("Contract_"+txtContractId.Text.Trim())!= (Tag as OPMDASHBOARDA).CurrentNodeName)
+                if (("Contract_" + txtContractId.Text.Trim()) != (Tag as OPMDASHBOARDA).CurrentNodeName)
                 {
                     MessageBox.Show("Đã tồn tại hợp đồng số " + txtContractId.Text.Trim());
                 }

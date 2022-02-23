@@ -35,7 +35,7 @@ namespace OPM.OPMEnginee
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Lỗi khi kết nối bảng NTKT trong CSDL " +query+ e.Message);
+                    MessageBox.Show("Lỗi khi kết nối bảng NTKT trong CSDL " + query + e.Message);
                 }
             }
         }
@@ -96,12 +96,12 @@ namespace OPM.OPMEnginee
         }
         public int NTKTUpdate()
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.NTKT SET  POId = '{1}', NTKTCreatedDate = '{2}', NTKTPhase = '{3}', NTKTQuantity = {4}, NTKTTestExpectedDate = '{5}', TechnicalInspectionReportDate = '{6}', TechnicalAcceptanceReportDate = '{7}', NTKTLicenseCertificateDate = '{8}' Where NTKTId = '{0}'", NTKTId, POId, NTKTCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTPhase, NTKTQuantity,NTKTTestExpectedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalInspectionReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalAcceptanceReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTLicenseCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.NTKT SET  POId = '{1}', NTKTCreatedDate = '{2}', NTKTPhase = '{3}', NTKTQuantity = {4}, NTKTTestExpectedDate = '{5}', TechnicalInspectionReportDate = '{6}', TechnicalAcceptanceReportDate = '{7}', NTKTLicenseCertificateDate = '{8}' Where NTKTId = '{0}'", NTKTId, POId, NTKTCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTPhase, NTKTQuantity, NTKTTestExpectedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalInspectionReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalAcceptanceReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTLicenseCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
             return OPMDBHandler.ExecuteNonQuery(query);
         }
-        public int NTKTUpdate(string newId,string oldId)
+        public int NTKTUpdate(string newId, string oldId)
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.NTKT SET NTKTId = '{0}', POId = '{1}', NTKTCreatedDate = '{2}', NTKTPhase = '{3}', NTKTQuantity = {4}, NTKTTestExpectedDate = '{5}', TechnicalInspectionReportDate = '{6}', TechnicalAcceptanceReportDate = '{7}', NTKTLicenseCertificateDate = '{8}' Where NTKTId = '{9}'", newId, POId, NTKTCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTPhase, NTKTQuantity,NTKTTestExpectedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalInspectionReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalAcceptanceReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTLicenseCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")),oldId);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.NTKT SET NTKTId = '{0}', POId = '{1}', NTKTCreatedDate = '{2}', NTKTPhase = '{3}', NTKTQuantity = {4}, NTKTTestExpectedDate = '{5}', TechnicalInspectionReportDate = '{6}', TechnicalAcceptanceReportDate = '{7}', NTKTLicenseCertificateDate = '{8}' Where NTKTId = '{9}'", newId, POId, NTKTCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTPhase, NTKTQuantity, NTKTTestExpectedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalInspectionReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), TechnicalAcceptanceReportDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), NTKTLicenseCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), oldId);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
 

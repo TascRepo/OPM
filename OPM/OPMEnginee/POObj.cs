@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace OPM.OPMEnginee
 {
-    public partial class POObj:ContractObj
+    public partial class POObj : ContractObj
     {
         private string pOId = "XXXX/CUVT-KV";
         public string POId
@@ -130,7 +130,7 @@ namespace OPM.OPMEnginee
             ContractGuaranteeDeadline = contract.ContractGuaranteeDeadline;
             ContractAccoutingCode = contract.ContractAccoutingCode;
         }
-        public POObj SetContractOfPOObj(POObj po,ContractObj contract)
+        public POObj SetContractOfPOObj(POObj po, ContractObj contract)
         {
             po.ContractId = contract.ContractId;
             po.ContractCreatedDate = contract.ContractCreatedDate;
@@ -163,7 +163,7 @@ namespace OPM.OPMEnginee
         }
 
 
-        public POObj(string POId, string POName, double POGoodsQuantity, DateTime POCreatedDate, DateTime POConfirmRequestDeadline, DateTime PODefaultPerformDate, DateTime POPerformDate, DateTime PODeadline, string POConfirmId, DateTime POConfirmCreatedDate, string POAdvanceId,int POAdvancePercentage, DateTime POAdvanceCreatedDate, int POAdvanceGuaranteePercentage, DateTime POAdvanceGuaranteeCreatedDate, string POAdvanceRequestId, DateTime POAdvanceRequestCreatedDate, DateTime POGuaranteeDate)
+        public POObj(string POId, string POName, double POGoodsQuantity, DateTime POCreatedDate, DateTime POConfirmRequestDeadline, DateTime PODefaultPerformDate, DateTime POPerformDate, DateTime PODeadline, string POConfirmId, DateTime POConfirmCreatedDate, string POAdvanceId, int POAdvancePercentage, DateTime POAdvanceCreatedDate, int POAdvanceGuaranteePercentage, DateTime POAdvanceGuaranteeCreatedDate, string POAdvanceRequestId, DateTime POAdvanceRequestCreatedDate, DateTime POGuaranteeDate)
         {
             this.POId = POId;
             this.POName = POName;
@@ -198,7 +198,7 @@ namespace OPM.OPMEnginee
             POConfirmId = (row["POConfirmId"] == null || row["POConfirmId"] == DBNull.Value) ? "" : row["POConfirmId"].ToString();
             POConfirmCreatedDate = (row["POConfirmCreatedDate"] == null || row["POConfirmCreatedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["POConfirmCreatedDate"];
             POAdvancePercentage = (row["POAdvancePercentage"] == null || row["POAdvancePercentage"] == DBNull.Value) ? 0 : (int)row["POAdvancePercentage"];
-            POAdvanceId= (row["POAdvanceId"] == null || row["POAdvanceId"] == DBNull.Value) ? "" : row["POAdvanceId"].ToString();
+            POAdvanceId = (row["POAdvanceId"] == null || row["POAdvanceId"] == DBNull.Value) ? "" : row["POAdvanceId"].ToString();
             POAdvanceCreatedDate = (row["POAdvanceCreatedDate"] == null || row["POAdvanceCreatedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["POAdvanceCreatedDate"];
             POAdvanceGuaranteePercentage = (row["AdvanceGuaranteePercentage"] == null || row["AdvanceGuaranteePercentage"] == DBNull.Value) ? 0 : (int)row["AdvanceGuaranteePercentage"];
             POAdvanceGuaranteeCreatedDate = (row["POAdvanceGuaranteeCreatedDate"] == null || row["POAdvanceGuaranteeCreatedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["POAdvanceGuaranteeCreatedDate"];
@@ -317,7 +317,7 @@ namespace OPM.OPMEnginee
             string query = string.Format(@"SELECT SUM(POGoodsQuantity) FROM PO WHERE ContractId = '{0}'", ContractId);
             var tem1 = OPMDBHandler.ExecuteScalar(query);
             double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
-            return Math.Round(tem * 0.02, 0, MidpointRounding.AwayFromZero); 
+            return Math.Round(tem * 0.02, 0, MidpointRounding.AwayFromZero);
         }
 
     }

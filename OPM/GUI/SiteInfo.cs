@@ -1,7 +1,6 @@
 ﻿using OPM.OPMEnginee;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Windows.Forms;
 
 namespace OPM.GUI
@@ -195,7 +194,7 @@ namespace OPM.GUI
             else site.SiteInsert(txtSiteId.Text.Trim());
             (Tag as OPMDASHBOARDA).SiteA.SiteId = txtSiteId.Text.Trim();
             (Tag as OPMDASHBOARDA).Contract.SiteId = txtSiteId.Text.Trim();
-            if((Tag as OPMDASHBOARDA).backSiteFormStatus == 0)
+            if ((Tag as OPMDASHBOARDA).backSiteFormStatus == 0)
             {
                 (Tag as OPMDASHBOARDA).OpenContractForm();
             }

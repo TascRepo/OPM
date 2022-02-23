@@ -1,5 +1,4 @@
 ﻿using OPM.OPMEnginee;
-using OPM.WordHandler;
 using System;
 using System.Windows.Forms;
 
@@ -61,7 +60,7 @@ namespace OPM.GUI
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).DeleteSQLByNodeName(); 
+            (Tag as OPMDASHBOARDA).DeleteSQLByNodeName();
         }
 
         private void buttonCreatDocument_Click(object sender, EventArgs e)
@@ -71,7 +70,7 @@ namespace OPM.GUI
 
         private void txtNTKTId_TextChanged(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).CurrentNodeId = txtNTKTId.Text.Trim(); 
+            (Tag as OPMDASHBOARDA).CurrentNodeId = txtNTKTId.Text.Trim();
             if (NTKTObj.NTKTExist(txtNTKTId.Text.Trim()))
             {
                 if (("NTKT_" + txtNTKTId.Text.Trim()) != (Tag as OPMDASHBOARDA).CurrentNodeName)
