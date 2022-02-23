@@ -91,29 +91,6 @@ namespace OPM.GUI
 
         public OpenFileDialog openFileExcel = new OpenFileDialog();
         public string sConnectionString = null;
-        private void importPO_Click(object sender, EventArgs e)
-        {
-            if (openFileExcel.ShowDialog() == DialogResult.OK)
-            {
-                if (File.Exists(openFileExcel.FileName))
-                {
-                    //txbnamefilePO.Text = openFileExcel.FileName;
-                    string filename = openFileExcel.FileName;
-                    DataTable dt = new DataTable();
-                    int ret = OpmExcelHandler.fReadExcelFilePO2(filename, ref dt);
-                    if (ret == 1)
-                    {
-                        //dataGridViewPO.DataSource = dt;
-                        MessageBox.Show("Import thành công!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Import Không thành công!");
-                    }
-                }
-
-            }
-        }
         private void txtPOConfirmRequestDuration_TextChanged(object sender, EventArgs e)
         {
             try
