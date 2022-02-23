@@ -155,6 +155,14 @@ namespace OPM.DBHandler
             double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
             return tem;
         }
+        public static double DeliveryPlanTotalSpareQuantityByPOIdAndVNPTIdDetail(string POId, string VNPTId)
+        {
+            string query = string.Format(@"SELECT SUM(DeliveryPlanQuantity) FROM dbo.DeliveryPlan WHERE POId = '{0}' and VNPTId = '{1}'", POId, VNPTId);
+            var tem1 = OPMDBHandler.ExecuteScalar(query);
+            double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
+            return Math.Round(tem * 0.02, 0, MidpointRounding.AwayFromZero);
+        }
+
         public static double DeliveryPlanTotalQuantityByPOId(string POId)
         {
             //string query = string.Format(@"SELECT SUM(tam.DeliveryPlanQuantity) FROM (SELECT DISTINCT VNPTId, DeliveryPlanQuantity FROM dbo.DeliveryPlan WHERE POId = '{0}') tam", POId);
@@ -162,6 +170,14 @@ namespace OPM.DBHandler
             var tem1 = OPMDBHandler.ExecuteScalar(query);
             double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
             return tem;
+        }
+        public static double DeliveryPlanTotalSpareQuantityByPOId(string POId)
+        {
+            //string query = string.Format(@"SELECT SUM(tam.DeliveryPlanQuantity) FROM (SELECT DISTINCT VNPTId, DeliveryPlanQuantity FROM dbo.DeliveryPlan WHERE POId = '{0}') tam", POId);
+            string query = string.Format(@"SELECT SUM(DeliveryPlanQuantity) FROM dbo.DeliveryPlan WHERE POId = '{0}'", POId);
+            var tem1 = OPMDBHandler.ExecuteScalar(query);
+            double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
+            return Math.Round(tem * 0.02, 0, MidpointRounding.AwayFromZero);
         }
 
     }

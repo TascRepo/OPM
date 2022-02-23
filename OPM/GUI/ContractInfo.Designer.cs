@@ -49,7 +49,7 @@ namespace OPM.GUI
             this.txtType = new System.Windows.Forms.TextBox();
             this.txtValue = new System.Windows.Forms.TextBox();
             this.txtPOGuaranteeValidityPeriod = new System.Windows.Forms.TextBox();
-            this.txtIdSiteA = new System.Windows.Forms.TextBox();
+            this.txtSiteId = new System.Windows.Forms.TextBox();
             this.btnNewPO = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -124,7 +124,7 @@ namespace OPM.GUI
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(22, 12);
+            this.label1.Location = new System.Drawing.Point(149, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(127, 25);
@@ -134,7 +134,7 @@ namespace OPM.GUI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 96);
+            this.label2.Location = new System.Drawing.Point(163, 93);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 25);
@@ -144,7 +144,7 @@ namespace OPM.GUI
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 486);
+            this.label3.Location = new System.Drawing.Point(173, 479);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(103, 25);
@@ -154,7 +154,7 @@ namespace OPM.GUI
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 54);
+            this.label4.Location = new System.Drawing.Point(199, 51);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 25);
@@ -164,7 +164,7 @@ namespace OPM.GUI
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(22, 300);
+            this.label5.Location = new System.Drawing.Point(109, 297);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(167, 25);
@@ -174,7 +174,7 @@ namespace OPM.GUI
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(22, 186);
+            this.label6.Location = new System.Drawing.Point(142, 183);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(134, 25);
@@ -184,7 +184,7 @@ namespace OPM.GUI
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(22, 234);
+            this.label7.Location = new System.Drawing.Point(149, 231);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(127, 25);
@@ -194,7 +194,7 @@ namespace OPM.GUI
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(22, 363);
+            this.label8.Location = new System.Drawing.Point(136, 353);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(140, 25);
@@ -204,7 +204,7 @@ namespace OPM.GUI
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(18, 116);
+            this.label9.Location = new System.Drawing.Point(48, 116);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(228, 25);
@@ -214,7 +214,7 @@ namespace OPM.GUI
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(22, 424);
+            this.label10.Location = new System.Drawing.Point(223, 412);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(53, 25);
@@ -261,15 +261,15 @@ namespace OPM.GUI
             this.txtPOGuaranteeValidityPeriod.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPOGuaranteeValidityPeriod.TextChanged += new System.EventHandler(this.txtDurationPO_TextChanged);
             // 
-            // txtIdSiteA
+            // txtSiteId
             // 
-            this.txtIdSiteA.Enabled = false;
-            this.txtIdSiteA.Location = new System.Drawing.Point(295, 412);
-            this.txtIdSiteA.Margin = new System.Windows.Forms.Padding(4);
-            this.txtIdSiteA.Name = "txtIdSiteA";
-            this.txtIdSiteA.Size = new System.Drawing.Size(548, 31);
-            this.txtIdSiteA.TabIndex = 9;
-            this.txtIdSiteA.TextChanged += new System.EventHandler(this.txtIdSiteA_TextChanged);
+            this.txtSiteId.Enabled = false;
+            this.txtSiteId.Location = new System.Drawing.Point(295, 412);
+            this.txtSiteId.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSiteId.Name = "txtSiteId";
+            this.txtSiteId.Size = new System.Drawing.Size(548, 31);
+            this.txtSiteId.TabIndex = 9;
+            this.txtSiteId.TextChanged += new System.EventHandler(this.txtIdSiteA_TextChanged);
             // 
             // btnNewPO
             // 
@@ -328,7 +328,7 @@ namespace OPM.GUI
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(18, 74);
+            this.label12.Location = new System.Drawing.Point(72, 74);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(204, 25);
@@ -338,7 +338,7 @@ namespace OPM.GUI
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(18, 168);
+            this.label13.Location = new System.Drawing.Point(84, 168);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(192, 25);
@@ -391,7 +391,7 @@ namespace OPM.GUI
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(22, 138);
+            this.label16.Location = new System.Drawing.Point(109, 135);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(167, 25);
@@ -469,7 +469,7 @@ namespace OPM.GUI
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.txtContractName);
             this.panel1.Controls.Add(this.dtpDateSigned);
-            this.panel1.Controls.Add(this.txtIdSiteA);
+            this.panel1.Controls.Add(this.txtSiteId);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.btnIdSiteA);
@@ -534,7 +534,7 @@ namespace OPM.GUI
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(18, 10);
+            this.label20.Location = new System.Drawing.Point(117, 10);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(159, 25);
@@ -622,7 +622,7 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox txtType;
         private System.Windows.Forms.TextBox txtValue;
         private System.Windows.Forms.TextBox txtPOGuaranteeValidityPeriod;
-        private System.Windows.Forms.TextBox txtIdSiteA;
+        private System.Windows.Forms.TextBox txtSiteId;
   //      private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Button btnNewPO;
         private System.Windows.Forms.Button btnEdit;

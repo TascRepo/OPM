@@ -142,6 +142,11 @@ namespace OPM.GUI
                 SiteProxy2 = txtProxy2.Text.Trim(),
                 SiteProxy3 = txtProxy3.Text.Trim()
             };
+            if (string.IsNullOrEmpty(txtSiteId.Text.Trim()) || txtSiteId.Text.Trim() == (new SiteObj()).SiteId)
+            {
+                MessageBox.Show("Nhập đúng chi tiết SiteA!");
+                return;
+            }
             if (SiteObj.SiteExist(txtSiteId.Text.Trim()))
             {
                 site.SiteUpdate(txtSiteId.Text.Trim(), txtSiteId.Text.Trim());

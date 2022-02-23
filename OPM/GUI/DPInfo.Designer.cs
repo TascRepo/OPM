@@ -38,10 +38,13 @@ namespace OPM.GUI
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txtVNPTId = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboBoxDPType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnDPsDelete = new System.Windows.Forms.Button();
             this.btnNewDP = new System.Windows.Forms.Button();
+            this.textBoxDPRemarks = new System.Windows.Forms.TextBox();
             this.btnDeleteDP = new System.Windows.Forms.Button();
             this.btnSaveDP = new System.Windows.Forms.Button();
             this.textBoxDPsId = new System.Windows.Forms.TextBox();
@@ -61,6 +64,7 @@ namespace OPM.GUI
             this.txtRemainingContractGoodsQuantity = new System.Windows.Forms.TextBox();
             this.txtDPQuantity = new System.Windows.Forms.TextBox();
             this.txtContractGoodsQuantity = new System.Windows.Forms.TextBox();
+            this.btnDPsDelete = new System.Windows.Forms.Button();
             this.comboBoxVNPTId = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -102,7 +106,7 @@ namespace OPM.GUI
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(576, 788);
+            this.btnClose.Location = new System.Drawing.Point(574, 846);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(130, 40);
@@ -113,7 +117,7 @@ namespace OPM.GUI
             // 
             // btnDPsAdd
             // 
-            this.btnDPsAdd.Location = new System.Drawing.Point(948, 788);
+            this.btnDPsAdd.Location = new System.Drawing.Point(946, 846);
             this.btnDPsAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDPsAdd.Name = "btnDPsAdd";
             this.btnDPsAdd.Size = new System.Drawing.Size(130, 40);
@@ -125,7 +129,7 @@ namespace OPM.GUI
             // textBoxVNPTIdTotalQuantity
             // 
             this.textBoxVNPTIdTotalQuantity.Enabled = false;
-            this.textBoxVNPTIdTotalQuantity.Location = new System.Drawing.Point(148, 362);
+            this.textBoxVNPTIdTotalQuantity.Location = new System.Drawing.Point(146, 460);
             this.textBoxVNPTIdTotalQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxVNPTIdTotalQuantity.Name = "textBoxVNPTIdTotalQuantity";
             this.textBoxVNPTIdTotalQuantity.Size = new System.Drawing.Size(130, 31);
@@ -134,7 +138,7 @@ namespace OPM.GUI
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(287, 302);
+            this.label16.Location = new System.Drawing.Point(285, 403);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(85, 25);
@@ -144,9 +148,13 @@ namespace OPM.GUI
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.txtVNPTId);
+            this.groupBox7.Controls.Add(this.label10);
+            this.groupBox7.Controls.Add(this.label9);
+            this.groupBox7.Controls.Add(this.comboBoxDPType);
             this.groupBox7.Controls.Add(this.label1);
             this.groupBox7.Controls.Add(this.label4);
             this.groupBox7.Controls.Add(this.btnNewDP);
+            this.groupBox7.Controls.Add(this.textBoxDPRemarks);
             this.groupBox7.Controls.Add(this.btnDeleteDP);
             this.groupBox7.Controls.Add(this.btnSaveDP);
             this.groupBox7.Controls.Add(this.textBoxDPsId);
@@ -172,7 +180,7 @@ namespace OPM.GUI
             this.groupBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox7.Size = new System.Drawing.Size(525, 554);
+            this.groupBox7.Size = new System.Drawing.Size(525, 631);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Thao tác với bảng DP";
@@ -180,17 +188,51 @@ namespace OPM.GUI
             // txtVNPTId
             // 
             this.txtVNPTId.Enabled = false;
-            this.txtVNPTId.Location = new System.Drawing.Point(149, 299);
+            this.txtVNPTId.Location = new System.Drawing.Point(147, 401);
             this.txtVNPTId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtVNPTId.Name = "txtVNPTId";
             this.txtVNPTId.Size = new System.Drawing.Size(130, 31);
             this.txtVNPTId.TabIndex = 6;
             this.txtVNPTId.TextChanged += new System.EventHandler(this.txtVNPTId_TextChanged);
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(57, 345);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(71, 25);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Ghi chú";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(44, 286);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(84, 25);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Phân loại";
+            // 
+            // comboBoxDPType
+            // 
+            this.comboBoxDPType.FormattingEnabled = true;
+            this.comboBoxDPType.Items.AddRange(new object[] {
+            "Hàng chính",
+            "Hàng dự phòng 2%"});
+            this.comboBoxDPType.Location = new System.Drawing.Point(146, 283);
+            this.comboBoxDPType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBoxDPType.Name = "comboBoxDPType";
+            this.comboBoxDPType.Size = new System.Drawing.Size(363, 33);
+            this.comboBoxDPType.TabIndex = 4;
+            this.comboBoxDPType.Text = "Hàng chính";
+            this.comboBoxDPType.SelectedIndexChanged += new System.EventHandler(this.comboBoxDPType_SelectedIndexChanged);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(72, 428);
+            this.label1.Location = new System.Drawing.Point(70, 522);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 25);
@@ -200,27 +242,16 @@ namespace OPM.GUI
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(61, 302);
+            this.label4.Location = new System.Drawing.Point(59, 404);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 25);
             this.label4.TabIndex = 5;
             this.label4.Text = "VNPTId";
             // 
-            // btnDPsDelete
-            // 
-            this.btnDPsDelete.Location = new System.Drawing.Point(762, 788);
-            this.btnDPsDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnDPsDelete.Name = "btnDPsDelete";
-            this.btnDPsDelete.Size = new System.Drawing.Size(130, 40);
-            this.btnDPsDelete.TabIndex = 1;
-            this.btnDPsDelete.Text = "DPs Delete";
-            this.btnDPsDelete.UseVisualStyleBackColor = true;
-            this.btnDPsDelete.Click += new System.EventHandler(this.btnDPsDelete_Click);
-            // 
             // btnNewDP
             // 
-            this.btnNewDP.Location = new System.Drawing.Point(8, 488);
+            this.btnNewDP.Location = new System.Drawing.Point(6, 581);
             this.btnNewDP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnNewDP.Name = "btnNewDP";
             this.btnNewDP.Size = new System.Drawing.Size(130, 40);
@@ -229,9 +260,18 @@ namespace OPM.GUI
             this.btnNewDP.UseVisualStyleBackColor = true;
             this.btnNewDP.Click += new System.EventHandler(this.btnNewDP_Click);
             // 
+            // textBoxDPRemarks
+            // 
+            this.textBoxDPRemarks.Location = new System.Drawing.Point(145, 339);
+            this.textBoxDPRemarks.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxDPRemarks.Name = "textBoxDPRemarks";
+            this.textBoxDPRemarks.Size = new System.Drawing.Size(363, 31);
+            this.textBoxDPRemarks.TabIndex = 3;
+            this.textBoxDPRemarks.TextChanged += new System.EventHandler(this.textBoxDPRemarks_TextChanged);
+            // 
             // btnDeleteDP
             // 
-            this.btnDeleteDP.Location = new System.Drawing.Point(194, 488);
+            this.btnDeleteDP.Location = new System.Drawing.Point(192, 581);
             this.btnDeleteDP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnDeleteDP.Name = "btnDeleteDP";
             this.btnDeleteDP.Size = new System.Drawing.Size(130, 40);
@@ -242,7 +282,7 @@ namespace OPM.GUI
             // 
             // btnSaveDP
             // 
-            this.btnSaveDP.Location = new System.Drawing.Point(380, 488);
+            this.btnSaveDP.Location = new System.Drawing.Point(378, 581);
             this.btnSaveDP.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSaveDP.Name = "btnSaveDP";
             this.btnSaveDP.Size = new System.Drawing.Size(130, 40);
@@ -254,7 +294,7 @@ namespace OPM.GUI
             // textBoxDPsId
             // 
             this.textBoxDPsId.Enabled = false;
-            this.textBoxDPsId.Location = new System.Drawing.Point(148, 425);
+            this.textBoxDPsId.Location = new System.Drawing.Point(146, 519);
             this.textBoxDPsId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxDPsId.Name = "textBoxDPsId";
             this.textBoxDPsId.Size = new System.Drawing.Size(363, 31);
@@ -262,7 +302,7 @@ namespace OPM.GUI
             // 
             // dateTimePickerDPDate
             // 
-            this.dateTimePickerDPDate.Location = new System.Drawing.Point(148, 236);
+            this.dateTimePickerDPDate.Location = new System.Drawing.Point(148, 224);
             this.dateTimePickerDPDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dateTimePickerDPDate.Name = "dateTimePickerDPDate";
             this.dateTimePickerDPDate.Size = new System.Drawing.Size(363, 31);
@@ -271,7 +311,7 @@ namespace OPM.GUI
             // 
             // textBoxDPId
             // 
-            this.textBoxDPId.Location = new System.Drawing.Point(148, 173);
+            this.textBoxDPId.Location = new System.Drawing.Point(148, 165);
             this.textBoxDPId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxDPId.Name = "textBoxDPId";
             this.textBoxDPId.Size = new System.Drawing.Size(363, 31);
@@ -281,7 +321,7 @@ namespace OPM.GUI
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(49, 239);
+            this.label6.Location = new System.Drawing.Point(49, 227);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(82, 25);
@@ -301,7 +341,7 @@ namespace OPM.GUI
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(81, 176);
+            this.label5.Location = new System.Drawing.Point(81, 168);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 25);
@@ -311,7 +351,7 @@ namespace OPM.GUI
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(306, 364);
+            this.label21.Location = new System.Drawing.Point(304, 463);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(66, 25);
@@ -331,7 +371,7 @@ namespace OPM.GUI
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(306, 116);
+            this.label18.Location = new System.Drawing.Point(307, 109);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(66, 25);
@@ -341,7 +381,7 @@ namespace OPM.GUI
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 365);
+            this.label7.Location = new System.Drawing.Point(4, 463);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(125, 25);
@@ -351,7 +391,7 @@ namespace OPM.GUI
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(25, 113);
+            this.label15.Location = new System.Drawing.Point(25, 109);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(106, 25);
@@ -361,7 +401,7 @@ namespace OPM.GUI
             // txtRemainingPOGoodsQuantity
             // 
             this.txtRemainingPOGoodsQuantity.Enabled = false;
-            this.txtRemainingPOGoodsQuantity.Location = new System.Drawing.Point(381, 110);
+            this.txtRemainingPOGoodsQuantity.Location = new System.Drawing.Point(381, 106);
             this.txtRemainingPOGoodsQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtRemainingPOGoodsQuantity.Name = "txtRemainingPOGoodsQuantity";
             this.txtRemainingPOGoodsQuantity.Size = new System.Drawing.Size(130, 31);
@@ -370,7 +410,7 @@ namespace OPM.GUI
             // txtPOGoodsQuantity
             // 
             this.txtPOGoodsQuantity.Enabled = false;
-            this.txtPOGoodsQuantity.Location = new System.Drawing.Point(148, 110);
+            this.txtPOGoodsQuantity.Location = new System.Drawing.Point(148, 106);
             this.txtPOGoodsQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPOGoodsQuantity.Name = "txtPOGoodsQuantity";
             this.txtPOGoodsQuantity.Size = new System.Drawing.Size(130, 31);
@@ -379,7 +419,7 @@ namespace OPM.GUI
             // txtRemainingVNPTTotalQuantity
             // 
             this.txtRemainingVNPTTotalQuantity.Enabled = false;
-            this.txtRemainingVNPTTotalQuantity.Location = new System.Drawing.Point(381, 362);
+            this.txtRemainingVNPTTotalQuantity.Location = new System.Drawing.Point(379, 460);
             this.txtRemainingVNPTTotalQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtRemainingVNPTTotalQuantity.Name = "txtRemainingVNPTTotalQuantity";
             this.txtRemainingVNPTTotalQuantity.Size = new System.Drawing.Size(130, 31);
@@ -397,7 +437,7 @@ namespace OPM.GUI
             // txtDPQuantity
             // 
             this.txtDPQuantity.Enabled = false;
-            this.txtDPQuantity.Location = new System.Drawing.Point(381, 299);
+            this.txtDPQuantity.Location = new System.Drawing.Point(379, 401);
             this.txtDPQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtDPQuantity.Name = "txtDPQuantity";
             this.txtDPQuantity.Size = new System.Drawing.Size(130, 31);
@@ -411,6 +451,17 @@ namespace OPM.GUI
             this.txtContractGoodsQuantity.Name = "txtContractGoodsQuantity";
             this.txtContractGoodsQuantity.Size = new System.Drawing.Size(130, 31);
             this.txtContractGoodsQuantity.TabIndex = 3;
+            // 
+            // btnDPsDelete
+            // 
+            this.btnDPsDelete.Location = new System.Drawing.Point(760, 846);
+            this.btnDPsDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnDPsDelete.Name = "btnDPsDelete";
+            this.btnDPsDelete.Size = new System.Drawing.Size(130, 40);
+            this.btnDPsDelete.TabIndex = 1;
+            this.btnDPsDelete.Text = "DPs Delete";
+            this.btnDPsDelete.UseVisualStyleBackColor = true;
+            this.btnDPsDelete.Click += new System.EventHandler(this.btnDPsDelete_Click);
             // 
             // comboBoxVNPTId
             // 
@@ -440,7 +491,7 @@ namespace OPM.GUI
             this.groupBox1.Controls.Add(this.comboBoxVNPTId);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.textBoxRemainingVNPTTotalQuantity);
-            this.groupBox1.Location = new System.Drawing.Point(568, 584);
+            this.groupBox1.Location = new System.Drawing.Point(567, 661);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -532,5 +583,9 @@ namespace OPM.GUI
         private System.Windows.Forms.Button btnNewDP;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBoxRemainingVNPTTotalQuantity;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comboBoxDPType;
+        private System.Windows.Forms.TextBox textBoxDPRemarks;
     }
 }

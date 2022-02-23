@@ -151,16 +151,16 @@ namespace OPM.OPMEnginee
             string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DPs(DPId,VNPTId,DPQuantity) VALUES('{0}','{1}',{2})", DPId, VNPTId, DPQuantity);
             OPMDBHandler.ExecuteNonQuery(query);
         }
-        public static double DPTotalQuantityByPOIdAndVNPTIdDetail(string POId, string VNPTId)
+        public static double DPTotalQuantityByPOIdAndVNPTIdDetail(string POId, string VNPTId, int DPType = 0)
         {
-            string query = string.Format(@"SELECT SUM(DPQuantity) FROM dbo.DPs,DP WHERE DPs.DPId = DP.DPId AND POId = '{0}' and DPs.VNPTId = '{1}'", POId, VNPTId);
+            string query = string.Format(@"SELECT SUM(DPQuantity) FROM dbo.DPs,DP WHERE DPs.DPId = DP.DPId AND POId = '{0}' and DPs.VNPTId = '{1}' AND DP.DPType =  {2}", POId, VNPTId, DPType);
             var tem1 = OPMDBHandler.ExecuteScalar(query);
             double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
             return tem;
         }
-        public static double DPTotalQuantityByPOId(string POId)
+        public static double DPTotalQuantityByPOId(string POId, int DPType = 0)
         {
-            string query = string.Format(@"SELECT SUM(DPQuantity) FROM dbo.DPs,DP WHERE DPs.DPId = DP.DPId AND DP.POId = '{0}'", POId);
+            string query = string.Format(@"SELECT SUM(DPQuantity) FROM dbo.DPs,DP WHERE DPs.DPId = DP.DPId AND DP.POId = '{0}' AND DP.DPType =  {1}", POId, DPType);
             var tem1 = OPMDBHandler.ExecuteScalar(query);
             double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
             return tem;

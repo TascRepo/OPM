@@ -21,7 +21,7 @@ namespace OPM.GUI
             txtPOGuaranteeValidityPeriod.ReadOnly = state;
             txbGuaranteeValue.ReadOnly = state;
             txtGuaranteeDuration.ReadOnly = state;
-            txtIdSiteA.ReadOnly = state;
+            txtSiteId.ReadOnly = state;
             dtpContractValidityDate.Enabled = !state;
             dtpDateSigned.Enabled = !state;
             dtpGuaranteeDateCreated.Enabled = !state;
@@ -41,7 +41,7 @@ namespace OPM.GUI
             dtpContractValidityDate.Value = (Tag as OPMDASHBOARDA).Contract.ContractValidityDate;
             txtValue.Text = Math.Round((Tag as OPMDASHBOARDA).Contract.ContractValue).ToString();
             txtPOGuaranteeValidityPeriod.Text = (Tag as OPMDASHBOARDA).Contract.POGuaranteeValidityPeriod.ToString();
-            txtIdSiteA.Text = (Tag as OPMDASHBOARDA).Contract.SiteId;
+            txtSiteId.Text = (Tag as OPMDASHBOARDA).Contract.SiteId;
             txtGuaranteeDuration.Text = ((Tag as OPMDASHBOARDA).Contract.ContractGuaranteeDeadline - (Tag as OPMDASHBOARDA).Contract.ContractGuaranteeCreatedDate).Days.ToString();
             txbGuaranteeValue.Text = (Tag as OPMDASHBOARDA).Contract.POGuaranteeRatio.ToString();
             dtpGuaranteeDateCreated.Value = (Tag as OPMDASHBOARDA).Contract.ContractGuaranteeCreatedDate;
@@ -106,6 +106,11 @@ namespace OPM.GUI
             if (string.IsNullOrEmpty(txtContractId.Text.Trim()) || txtContractId.Text.Trim() == (new ContractObj()).ContractId) 
             {
                 MessageBox.Show("Nhập đúng số hợp đồng!");
+                return;
+            }
+            if (string.IsNullOrEmpty(txtSiteId.Text.Trim()) || txtSiteId.Text.Trim() == (new SiteObj()).SiteId)
+            {
+                MessageBox.Show("Nhập đúng chi tiết SiteA!");
                 return;
             }
             (Tag as OPMDASHBOARDA).SaveSQLByNodeName();
@@ -224,9 +229,9 @@ namespace OPM.GUI
 
         private void txtIdSiteA_TextChanged(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).Contract.SiteId = txtIdSiteA.Text.Trim();
-            (Tag as OPMDASHBOARDA).Contract.SetSiteA(new SiteObj(txtIdSiteA.Text.Trim()));
-            (Tag as OPMDASHBOARDA).SiteA = new SiteObj(txtIdSiteA.Text.Trim());
+            (Tag as OPMDASHBOARDA).Contract.SiteId = txtSiteId.Text.Trim();
+            (Tag as OPMDASHBOARDA).Contract.SetSiteA(new SiteObj(txtSiteId.Text.Trim()));
+            (Tag as OPMDASHBOARDA).SiteA = new SiteObj(txtSiteId.Text.Trim());
         }
     }
 }

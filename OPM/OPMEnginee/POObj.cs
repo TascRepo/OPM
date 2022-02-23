@@ -52,6 +52,7 @@ namespace OPM.OPMEnginee
         public string POName { get; set; } = "POX";
         public DateTime POCreatedDate { get; set; } = DateTime.Now;
         public double POGoodsQuantity { get; set; } = 0;
+        public double POSpareGoodsQuantity => Math.Round(POGoodsQuantity * 0.02, 0, MidpointRounding.AwayFromZero);
         public DateTime POConfirmRequestDeadline { get; set; } = DateTime.Now;
         public DateTime PODefaultPerformDate { get; set; } = DateTime.Now;
         public DateTime POPerformDate { get; set; } = DateTime.Now;
@@ -310,6 +311,13 @@ namespace OPM.OPMEnginee
             var tem1 = OPMDBHandler.ExecuteScalar(query);
             double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
             return tem;
+        }
+        public static double POSpareGoodsQuantityTotalByContractId(string ContractId)
+        {
+            string query = string.Format(@"SELECT SUM(POGoodsQuantity) FROM PO WHERE ContractId = '{0}'", ContractId);
+            var tem1 = OPMDBHandler.ExecuteScalar(query);
+            double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
+            return Math.Round(tem * 0.02, 0, MidpointRounding.AwayFromZero); 
         }
 
     }

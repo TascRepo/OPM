@@ -23,8 +23,10 @@ namespace OPM.OPMEnginee
                     if (table.Rows.Count > 0)
                     {
                         DataRow row = table.Rows[0];
-                        POId = (row["POId"] == null || row["POId"] == DBNull.Value) ? "" : row["POId"].ToString();
+                        POId = (row["POId"] == null || row["POId"] == DBNull.Value) ? "XXXX/CUVT-KV" : row["POId"].ToString();
                         DPDate = (row["DPDate"] == null || row["DPDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPDate"];
+                        DPType = (row["DPType"] == null || row["DPType"] == DBNull.Value) ? 0 : (int)row["DPType"];
+                        DPRemarks = (row["DPRemarks"] == null || row["DPRemarks"] == DBNull.Value) ? "" : row["DPRemarks"].ToString();
                     }
                 }
                 catch(Exception e)
@@ -34,13 +36,17 @@ namespace OPM.OPMEnginee
             }
         }
         public DateTime DPDate { get; set; } = DateTime.Now;
+        public int DPType { get; set; } = 0;
+        public string DPRemarks { get; set; } = "";
 
         public DPObj() { }
-        public DPObj(string DPId, string POId, DateTime DPDate)
+        public DPObj(string DPId, string POId, DateTime DPDate, int DPType, string DPRemarks)
         {
             this.DPId = DPId;
             this.POId = POId;
             this.DPDate = DPDate;
+            this.DPType = DPType;
+            this.DPRemarks = DPRemarks;
         }
         public DPObj(string id)
         {
@@ -49,8 +55,10 @@ namespace OPM.OPMEnginee
         public DPObj(DataRow row)
         {
             DPId = (row["DPId"] == null || row["DPId"] == DBNull.Value) ? @"XXXX/2021" : row["DPId"].ToString();
-            POId = (row["POId"] == null || row["POId"] == DBNull.Value) ? @"XXXX/CUVT-KV" : row["POId"].ToString();
+            POId = (row["POId"] == null || row["POId"] == DBNull.Value) ? "XXXX/CUVT-KV" : row["POId"].ToString();
             DPDate = (row["DPDate"] == null || row["DPDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPDate"];
+            DPType = (row["DPType"] == null || row["DPType"] == DBNull.Value) ? 0 : (int)row["DPType"];
+            DPRemarks = (row["DPRemarks"] == null || row["DPRemarks"] == DBNull.Value) ? "" : row["DPRemarks"].ToString();
         }
         public bool DPExist()
         {
@@ -71,10 +79,10 @@ namespace OPM.OPMEnginee
             return OPMDBHandler.ExecuteNonQuery(query);
         }
 
-        public void DPDelete()
+        public int DPDelete()
         {
-            string query = string.Format("DELETE FROM dbo.DP WHERE DPNumber = '{0}'", DPId);
-            OPMDBHandler.ExecuteNonQuery(query);
+            string query = string.Format("DELETE FROM dbo.DP WHERE DPId = '{0}'", DPId);
+            return OPMDBHandler.ExecuteNonQuery(query);
         }
         public static DataTable DPGetTableByPOId(string POId)
         {
@@ -112,28 +120,28 @@ namespace OPM.OPMEnginee
         }
         public void DPUpdate()
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}' WHERE DPId = '{0}'", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPRemarks = N'{4}' WHERE DPId = '{0}'", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPRemarks);
             OPMDBHandler.ExecuteNonQuery(query);
         }
         public void DPUpdate(int DPId)
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}' WHERE DPId = '{0}'", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPRemarks = N'{4}' WHERE DPId = '{0}'", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPRemarks);
             OPMDBHandler.ExecuteNonQuery(query);
         }
         public int DPUpdate(string newId, string oldId)
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}' WHERE DPId = '{3}'", newId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")),oldId);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPRemarks = N'{4}' WHERE DPId = '{5}'", newId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPRemarks, oldId);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public int DPInsert()
         {
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate) VALUES('{0}','{1}','{2}')",DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate,DPType,DPRemarks) VALUES('{0}','{1}','{2}',{3},N'{4}')", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPRemarks);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public int DPInsert(string id)
         {
             if (DPObj.DPExist(id)) return 0;
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate) VALUES('{0}','{1}','{2}')", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate,DPType,DPRemarks) VALUES('{0}','{1}','{2}',{3},N'{4}')", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPRemarks);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
     }
