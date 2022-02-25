@@ -26,6 +26,7 @@ namespace OPM.OPMEnginee
                         POId = (row["POId"] == null || row["POId"] == DBNull.Value) ? "XXXX/CUVT-KV" : row["POId"].ToString();
                         DPDate = (row["DPDate"] == null || row["DPDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPDate"];
                         DPType = (row["DPType"] == null || row["DPType"] == DBNull.Value) ? 0 : (int)row["DPType"];
+                        DPQuantity = (row["DPQuantity"] == null || row["DPQuantity"] == DBNull.Value) ? 0 : (double)row["DPQuantity"];
                         DPRemarks = (row["DPRemarks"] == null || row["DPRemarks"] == DBNull.Value) ? "" : row["DPRemarks"].ToString();
                     }
                 }
@@ -37,15 +38,17 @@ namespace OPM.OPMEnginee
         }
         public DateTime DPDate { get; set; } = DateTime.Now;
         public int DPType { get; set; } = 0;
+        public double DPQuantity { get; set; } = 0;
         public string DPRemarks { get; set; } = "";
 
         public DPObj() { }
-        public DPObj(string DPId, string POId, DateTime DPDate, int DPType, string DPRemarks)
+        public DPObj(string DPId, string POId, DateTime DPDate, int DPType, float DPQuantity, string DPRemarks)
         {
             this.DPId = DPId;
             this.POId = POId;
             this.DPDate = DPDate;
             this.DPType = DPType;
+            this.DPQuantity = DPQuantity;
             this.DPRemarks = DPRemarks;
         }
         public DPObj(string id)
@@ -58,6 +61,7 @@ namespace OPM.OPMEnginee
             POId = (row["POId"] == null || row["POId"] == DBNull.Value) ? "XXXX/CUVT-KV" : row["POId"].ToString();
             DPDate = (row["DPDate"] == null || row["DPDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPDate"];
             DPType = (row["DPType"] == null || row["DPType"] == DBNull.Value) ? 0 : (int)row["DPType"];
+            DPQuantity = (row["DPQuantity"] == null || row["DPQuantity"] == DBNull.Value) ? 0 : (float)row["DPQuantity"];
             DPRemarks = (row["DPRemarks"] == null || row["DPRemarks"] == DBNull.Value) ? "" : row["DPRemarks"].ToString();
         }
         public bool DPExist()
@@ -101,6 +105,21 @@ namespace OPM.OPMEnginee
             }
             return list;
         }
+        public static double DPGetTotalQuantityByPOId(string POId)
+        {
+            string query = string.Format(@"SELECT SUM(DPQuantity) FROM dbo.DP WHERE DPType = 0 AND POId = '{0}'", POId);
+            var tem1 = OPMDBHandler.ExecuteScalar(query);
+            double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
+            return tem;
+        }
+        public static double DPGetTotalSpareQuantityByPOId(string POId)
+        {
+            string query = string.Format(@"SELECT SUM(DPQuantity) FROM dbo.DP WHERE DPType = 1 AND POId = '{0}'", POId);
+            var tem1 = OPMDBHandler.ExecuteScalar(query);
+            double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
+            return tem;
+        }
+
         public static void DPInsertOrUpdateList(List<DPObj> DPs)
         {
             foreach (DPObj dp in DPs)
@@ -120,28 +139,28 @@ namespace OPM.OPMEnginee
         }
         public void DPUpdate()
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPRemarks = N'{4}' WHERE DPId = '{0}'", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPRemarks);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPQuantity = {4}, DPRemarks = N'{5}' WHERE DPId = '{0}'", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPRemarks);
             OPMDBHandler.ExecuteNonQuery(query);
         }
         public void DPUpdate(int DPId)
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPRemarks = N'{4}' WHERE DPId = '{0}'", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPRemarks);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPQuantity = {4}, DPRemarks = N'{5}' WHERE DPId = '{0}'", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")),  DPQuantity,DPType, DPQuantity, DPRemarks);
             OPMDBHandler.ExecuteNonQuery(query);
         }
         public int DPUpdate(string newId, string oldId)
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPRemarks = N'{4}' WHERE DPId = '{5}'", newId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPRemarks, oldId);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPQuantity = {4}, DPRemarks = N'{5}' WHERE DPId = '{6}'", newId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPRemarks, oldId);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public int DPInsert()
         {
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate,DPType,DPRemarks) VALUES('{0}','{1}','{2}',{3},N'{4}')", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPRemarks);
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate,DPType, DPQuantity,DPRemarks) VALUES('{0}','{1}','{2}',{3},{4},N'{5}')", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPRemarks);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public int DPInsert(string id)
         {
             if (DPObj.DPExist(id)) return 0;
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate,DPType,DPRemarks) VALUES('{0}','{1}','{2}',{3},N'{4}')", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPRemarks);
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate,DPType, DPQuantity,DPRemarks) VALUES('{0}','{1}','{2}',{3},{4},N'{5}')", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPRemarks);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
     }

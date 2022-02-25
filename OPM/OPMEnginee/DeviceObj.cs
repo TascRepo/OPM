@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace OPM.OPMEnginee
 {
-    public partial class DeviceObj : CaseObj
+    public partial class DeviceObj : PLObj
     {
         private string deviceSerial = "XXXXXXXXXXXXXXX";
 
@@ -23,7 +23,7 @@ namespace OPM.OPMEnginee
                     if (table.Rows.Count > 0)
                     {
                         DataRow row = table.Rows[0];
-                        CaseId = row["CaseId"].ToString();
+                        PLId = row["CaseId"].ToString();
                         DeviceMAC = row["DeviceMAC"].ToString();
                         DeviceSerialGpon = row["DeviceSerialGpon"].ToString();
                         DeviceBoxNumber = row["DeviceBoxNumber"].ToString();
@@ -38,16 +38,18 @@ namespace OPM.OPMEnginee
         public string DeviceMAC { get; set; } = "XXXXXXXXXXXX";
         public string DeviceSerialGpon { get; set; } = "VNPTXXXXXXXX";
         public string DeviceBoxNumber { get; set; } = "XXXXXXX_XXXXXX";
-        public DeviceObj(string CaseId, string PLId, double CaseQuantity)
+        public DeviceObj(string DeviceSerial, string PLId, string DeviceMAC, string DeviceSerialGpon, string DeviceBoxNumber)
         {
-            this.DeviceSerial = CaseId;
+            this.DeviceSerial = DeviceSerial;
             this.PLId = PLId;
-            this.CaseQuantity = CaseQuantity;
+            this.DeviceMAC = DeviceMAC;
+            this.DeviceSerialGpon = DeviceSerialGpon;
+            this.DeviceBoxNumber = DeviceBoxNumber;
         }
         public DeviceObj(DataRow row)
         {
             DeviceSerial = row["DeviceSerial"].ToString();
-            CaseId = row["CaseId"].ToString();
+            PLId = row["PLId"].ToString();
             DeviceMAC = row["DeviceMAC"].ToString();
             DeviceSerialGpon = row["DeviceSerialGpon"].ToString();
             DeviceBoxNumber = row["DeviceBoxNumber"].ToString();
@@ -71,18 +73,18 @@ namespace OPM.OPMEnginee
         }
         public int DeviceInsert(string DeviceSerial)
         {
-            if (CaseObj.CaseExist(DeviceSerial)) return 0;
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.Device(DeviceSerial,CaseId,DeviceMAC,DeviceSerialGpon,DeviceBoxNumber)VALUES('{0}', '{1}', '{2}', '{3}', '{4}')", DeviceSerial, CaseId, DeviceMAC, DeviceSerialGpon, DeviceBoxNumber);
+            if (DeviceObj.DeviceExist(DeviceSerial)) return 0;
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.Device(DeviceSerial,PLId,DeviceMAC,DeviceSerialGpon,DeviceBoxNumber)VALUES('{0}', '{1}', '{2}', '{3}', '{4}')", DeviceSerial, PLId, DeviceMAC, DeviceSerialGpon, DeviceBoxNumber);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public int DeviceUpdate()
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.Device SET CaseId = '{1}', DeviceMAC = '{2}' , DeviceSerialGpon = '{3}', DeviceBoxNumber = '{4}' Where DeviceSerial = '{0}'", DeviceSerial, CaseId, DeviceMAC, DeviceSerialGpon, DeviceBoxNumber);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.Device SET PLId = '{1}', DeviceMAC = '{2}' , DeviceSerialGpon = '{3}', DeviceBoxNumber = '{4}' Where DeviceSerial = '{0}'", DeviceSerial, PLId, DeviceMAC, DeviceSerialGpon, DeviceBoxNumber);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public int DeviceUpdate(string newId, string oldId)
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.Device SET DeviceSerial = '{0}', CaseId = '{1}', DeviceMAC = '{2}' , DeviceSerialGpon = '{3}', DeviceBoxNumber = '{4}'  Where DeviceSerial = '{5}'", newId, CaseId, DeviceMAC, DeviceSerialGpon, DeviceBoxNumber, oldId);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.Device SET DeviceSerial = '{0}', PLId = '{1}', DeviceMAC = '{2}' , DeviceSerialGpon = '{3}', DeviceBoxNumber = '{4}'  Where DeviceSerial = '{5}'", newId, PLId, DeviceMAC, DeviceSerialGpon, DeviceBoxNumber, oldId);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
 
@@ -94,7 +96,7 @@ namespace OPM.OPMEnginee
 
         public static int DeviceDelete(string DeviceSerial)
         {
-            string query = string.Format("Delete FROM dbo.Device WHERE CaseId = '{0}'", DeviceSerial);
+            string query = string.Format("Delete FROM dbo.Device WHERE DeviceSerial = '{0}'", DeviceSerial);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
     }

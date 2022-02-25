@@ -36,8 +36,11 @@ namespace OPM.GUI
         public List<DeliveryPlanObj> DeliveryPlans { get; set; } = new List<DeliveryPlanObj>();
         public DPObj Dp { get; set; } = new DPObj();
         public List<DPObj> Dps { get; set; } = new List<DPObj>();
-        public DPsObj DPs { get; set; } = new DPsObj();
-        public List<DPsObj> DPss { get; set; } = new List<DPsObj>();
+        public PLObj Pl { get; set; } = new PLObj();
+        public List<PLObj> Pls { get; set; } = new List<PLObj>();
+        public DeviceObj Device { get; set; } = new DeviceObj();
+        public List<DeviceObj> Devices { get; set; } = new List<DeviceObj>();
+
         public OPMDASHBOARDA()
         {
             InitializeComponent();
@@ -146,6 +149,16 @@ namespace OPM.GUI
                         }
                         break;
                     case "PL":
+                        if (PLObj.PLDelete(temp[1]) > 0)
+                        {
+                            MessageBox.Show("Xoá thành công PL số " + temp[1]);
+                            CurrentNodeName = "PL_" + (new PLObj()).PLId;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Xoá thất bại vì chưa có PL số " + temp[1]);
+                        }
+
                         break;
                     default:
                         MessageBox.Show("Invalid grade");
@@ -223,7 +236,7 @@ namespace OPM.GUI
                         else
                         {
                             MessageBox.Show("Tạo mới thất bại vì đã có DP số " + CurrentNodeId);
-                            CurrentNodeName = "DP_" + (new NTKTObj()).NTKTId;
+                            CurrentNodeName = "DP_" + (new DPObj()).DPId;
                         }
                     }
                     else
@@ -267,6 +280,32 @@ namespace OPM.GUI
                     }
                     break;
                 case "PL":
+                    if (!PLObj.PLExist(temp[1]))
+                    {
+                        if (Pl.PLInsert(CurrentNodeId) > 0)
+                        {
+                            MessageBox.Show("Tạo mới thành công PL số " + CurrentNodeId);
+                            CurrentNodeName = "PL_" + CurrentNodeId;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Tạo mới thất bại vì đã có PL số " + CurrentNodeId);
+                            CurrentNodeName = "PL_" + (new PLObj()).PLId;
+                        }
+                    }
+                    else
+                    {
+                        if (Pl.PLUpdate(CurrentNodeId, temp[1]) > 0)
+                        {
+                            MessageBox.Show("Cập nhật thành công PL số " + CurrentNodeId);
+                            CurrentNodeName = "PL_" + CurrentNodeId;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cập nhật thất bại vì đã có PL số " + CurrentNodeId);
+                        }
+                    }
+
                     break;
                 default:
                     MessageBox.Show("Invalid grade");
@@ -325,13 +364,25 @@ namespace OPM.GUI
                     {
                         Ntkt.POId = Po.POId;
                     }
-                    Text = string.Format(@"Hợp đồng số {2} - {1} - Đợt NTKT{0}", Ntkt.NTKTPhase, Po.POName, Contract.ContractId);
+                    Text = string.Format(@"Hợp đồng số {2} - {1} - Đợt NTKT {0}", Ntkt.NTKTPhase, Po.POName, Contract.ContractId);
                     NTKTInfo nTKTInfor = new NTKTInfo();
                     OpenChildForm(nTKTInfor);
                     break;
                 case "PL":
-                    PLInfo packageListInfor = new PLInfo();
-                    OpenChildForm(packageListInfor);
+                    Pl = new PLObj(temp[1]);
+                    if (NTKTObj.NTKTExist(temp[1]))
+                    {
+                        Dp.DPId = Pl.DPId;
+                        Po.POId = Dp.POId;
+                        Contract.ContractId = Po.ContractId;
+                    }
+                    else
+                    {
+                        Pl.DPId = Dp.DPId;
+                    }
+                    Text = string.Format(@"Hợp đồng số {2} - {1} - DP {3} - PL {0}", Pl.VNPTId, Po.POName, Contract.ContractId, Dp.DPId);
+                    PLInfo plInfor = new PLInfo();
+                    OpenChildForm(plInfor);
                     break;
                 default:
                     MessageBox.Show("Invalid grade");
@@ -366,6 +417,13 @@ namespace OPM.GUI
                 row["ctlParent"] = "PO_" + Po.POId;
                 table.Rows.Add(row);
             }
+            if (currentNodeName == "PL_" + (new PLObj()).PLId)
+            {
+                row["ctlName"] = "PL " + Pl.VNPTId;
+                row["ctlParent"] = "DP_" + Dp.DPId;
+                table.Rows.Add(row);
+            }
+
 
             treeViewOPM.Nodes.Clear();
             InitCatalogAdmin(null, null, table);
@@ -450,11 +508,13 @@ namespace OPM.GUI
                 {
                     CurrentNodeName = "DP_" + (new DPObj()).DPId;
                 }
-
             }
             else if (e.ClickedItem.Name == "toolStripMenuNewPL")
             {
-                //Do Something
+                if (Dp.DPExist())
+                {
+                    CurrentNodeName = "PL_" + (new PLObj()).DPId;
+                }
             }
             else if (e.ClickedItem.Name == "toolStripMenuSave")
             {
