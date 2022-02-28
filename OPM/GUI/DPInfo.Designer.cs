@@ -650,7 +650,6 @@ namespace OPM.GUI
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBoxDPQuantity;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBoxRemainingDPQuantity;
     }
 }

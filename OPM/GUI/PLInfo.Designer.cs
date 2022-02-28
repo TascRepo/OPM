@@ -58,10 +58,13 @@ namespace OPM.GUI
             this.txtPLVolume = new System.Windows.Forms.TextBox();
             this.txtPLDimension = new System.Windows.Forms.TextBox();
             this.btnDeletePL = new System.Windows.Forms.Button();
+            this.buttonAddSerial = new System.Windows.Forms.Button();
             this.btnSavePL = new System.Windows.Forms.Button();
             this.dateTimePickerPLDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtCaseQuantity = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.txtPLQuantity = new System.Windows.Forms.TextBox();
             this.txtPLId = new System.Windows.Forms.TextBox();
@@ -69,11 +72,6 @@ namespace OPM.GUI
             this.dtgPL = new System.Windows.Forms.DataGridView();
             this.btnDPsDelete = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.txtCaseQuantity = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.buttonAddSerial = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPL)).BeginInit();
@@ -81,12 +79,10 @@ namespace OPM.GUI
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox4);
             this.groupBox1.Controls.Add(this.textBoxVNPTId);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label8);
@@ -111,11 +107,11 @@ namespace OPM.GUI
             // textBoxVNPTId
             // 
             this.textBoxVNPTId.Enabled = false;
-            this.textBoxVNPTId.Location = new System.Drawing.Point(115, 122);
+            this.textBoxVNPTId.Location = new System.Drawing.Point(115, 188);
             this.textBoxVNPTId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxVNPTId.Multiline = true;
             this.textBoxVNPTId.Name = "textBoxVNPTId";
-            this.textBoxVNPTId.Size = new System.Drawing.Size(390, 102);
+            this.textBoxVNPTId.Size = new System.Drawing.Size(390, 140);
             this.textBoxVNPTId.TabIndex = 6;
             // 
             // textBox1
@@ -124,14 +120,14 @@ namespace OPM.GUI
             this.textBox1.Location = new System.Drawing.Point(116, 32);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(130, 31);
+            this.textBox1.Size = new System.Drawing.Size(388, 31);
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = "20111819-001";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(250, 408);
+            this.label14.Location = new System.Drawing.Point(250, 404);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(113, 25);
@@ -151,7 +147,7 @@ namespace OPM.GUI
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(11, 408);
+            this.label13.Location = new System.Drawing.Point(11, 403);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(96, 25);
@@ -161,7 +157,7 @@ namespace OPM.GUI
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 167);
+            this.label3.Location = new System.Drawing.Point(22, 245);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 25);
@@ -171,7 +167,7 @@ namespace OPM.GUI
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(283, 362);
+            this.label8.Location = new System.Drawing.Point(283, 353);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(73, 25);
@@ -181,16 +177,16 @@ namespace OPM.GUI
             // textBoxCaseQuantity
             // 
             this.textBoxCaseQuantity.Enabled = false;
-            this.textBoxCaseQuantity.Location = new System.Drawing.Point(374, 34);
+            this.textBoxCaseQuantity.Location = new System.Drawing.Point(116, 84);
             this.textBoxCaseQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxCaseQuantity.Name = "textBoxCaseQuantity";
-            this.textBoxCaseQuantity.Size = new System.Drawing.Size(130, 31);
+            this.textBoxCaseQuantity.Size = new System.Drawing.Size(388, 31);
             this.textBoxCaseQuantity.TabIndex = 3;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 362);
+            this.label7.Location = new System.Drawing.Point(12, 351);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(95, 25);
@@ -200,7 +196,7 @@ namespace OPM.GUI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 79);
+            this.label2.Location = new System.Drawing.Point(6, 139);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 25);
@@ -210,7 +206,7 @@ namespace OPM.GUI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(282, 36);
+            this.label1.Location = new System.Drawing.Point(22, 86);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 25);
@@ -219,7 +215,7 @@ namespace OPM.GUI
             // 
             // textBoxPLGrossWeight
             // 
-            this.textBoxPLGrossWeight.Location = new System.Drawing.Point(374, 405);
+            this.textBoxPLGrossWeight.Location = new System.Drawing.Point(374, 401);
             this.textBoxPLGrossWeight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxPLGrossWeight.Name = "textBoxPLGrossWeight";
             this.textBoxPLGrossWeight.Size = new System.Drawing.Size(130, 31);
@@ -227,7 +223,7 @@ namespace OPM.GUI
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(116, 76);
+            this.textBox3.Location = new System.Drawing.Point(116, 136);
             this.textBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(389, 31);
@@ -236,7 +232,7 @@ namespace OPM.GUI
             // 
             // textBoxPLDimension
             // 
-            this.textBoxPLDimension.Location = new System.Drawing.Point(116, 359);
+            this.textBoxPLDimension.Location = new System.Drawing.Point(116, 349);
             this.textBoxPLDimension.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxPLDimension.Name = "textBoxPLDimension";
             this.textBoxPLDimension.Size = new System.Drawing.Size(130, 31);
@@ -244,7 +240,7 @@ namespace OPM.GUI
             // 
             // textBoxPLNetWeight
             // 
-            this.textBoxPLNetWeight.Location = new System.Drawing.Point(116, 405);
+            this.textBoxPLNetWeight.Location = new System.Drawing.Point(116, 401);
             this.textBoxPLNetWeight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxPLNetWeight.Name = "textBoxPLNetWeight";
             this.textBoxPLNetWeight.Size = new System.Drawing.Size(130, 31);
@@ -252,7 +248,7 @@ namespace OPM.GUI
             // 
             // textBoxPLVolume
             // 
-            this.textBoxPLVolume.Location = new System.Drawing.Point(374, 359);
+            this.textBoxPLVolume.Location = new System.Drawing.Point(374, 349);
             this.textBoxPLVolume.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxPLVolume.Name = "textBoxPLVolume";
             this.textBoxPLVolume.Size = new System.Drawing.Size(130, 31);
@@ -396,6 +392,17 @@ namespace OPM.GUI
             this.btnDeletePL.UseVisualStyleBackColor = true;
             this.btnDeletePL.Click += new System.EventHandler(this.btnDeletePL_Click);
             // 
+            // buttonAddSerial
+            // 
+            this.buttonAddSerial.Location = new System.Drawing.Point(374, 309);
+            this.buttonAddSerial.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonAddSerial.Name = "buttonAddSerial";
+            this.buttonAddSerial.Size = new System.Drawing.Size(130, 40);
+            this.buttonAddSerial.TabIndex = 1;
+            this.buttonAddSerial.Text = "AddSerial";
+            this.buttonAddSerial.UseVisualStyleBackColor = true;
+            this.buttonAddSerial.Click += new System.EventHandler(this.btnSavePL_Click);
+            // 
             // btnSavePL
             // 
             this.btnSavePL.Location = new System.Drawing.Point(191, 309);
@@ -436,6 +443,24 @@ namespace OPM.GUI
             this.label17.Size = new System.Drawing.Size(46, 25);
             this.label17.TabIndex = 2;
             this.label17.Text = "PLId";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(245, 149);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(124, 25);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "Quantity/Case";
+            // 
+            // txtCaseQuantity
+            // 
+            this.txtCaseQuantity.Location = new System.Drawing.Point(374, 146);
+            this.txtCaseQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCaseQuantity.Name = "txtCaseQuantity";
+            this.txtCaseQuantity.Size = new System.Drawing.Size(130, 31);
+            this.txtCaseQuantity.TabIndex = 3;
             // 
             // label16
             // 
@@ -507,55 +532,6 @@ namespace OPM.GUI
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // txtCaseQuantity
-            // 
-            this.txtCaseQuantity.Location = new System.Drawing.Point(374, 146);
-            this.txtCaseQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCaseQuantity.Name = "txtCaseQuantity";
-            this.txtCaseQuantity.Size = new System.Drawing.Size(130, 31);
-            this.txtCaseQuantity.TabIndex = 3;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(245, 149);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(124, 25);
-            this.label15.TabIndex = 2;
-            this.label15.Text = "Quantity/Case";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(21, 279);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(85, 25);
-            this.label18.TabIndex = 5;
-            this.label18.Text = "Dải Serial";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(114, 240);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(390, 102);
-            this.textBox4.TabIndex = 6;
-            // 
-            // buttonAddSerial
-            // 
-            this.buttonAddSerial.Location = new System.Drawing.Point(374, 309);
-            this.buttonAddSerial.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonAddSerial.Name = "buttonAddSerial";
-            this.buttonAddSerial.Size = new System.Drawing.Size(130, 40);
-            this.buttonAddSerial.TabIndex = 1;
-            this.buttonAddSerial.Text = "AddSerial";
-            this.buttonAddSerial.UseVisualStyleBackColor = true;
-            this.buttonAddSerial.Click += new System.EventHandler(this.btnSavePL_Click);
-            // 
             // PLInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -597,7 +573,6 @@ namespace OPM.GUI
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtPLQuantity;
-        private System.Windows.Forms.TextBox txtContractGoodsQuantity;
         private System.Windows.Forms.Button btnDPsAdd;
         private System.Windows.Forms.DataGridView dtgPL;
         private System.Windows.Forms.Button btnDPsDelete;
@@ -625,8 +600,6 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox txtPLId;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtCaseQuantity;
         private System.Windows.Forms.Button buttonAddSerial;
