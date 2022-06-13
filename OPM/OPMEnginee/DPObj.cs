@@ -26,7 +26,7 @@ namespace OPM.OPMEnginee
                         POId = (row["POId"] == null || row["POId"] == DBNull.Value) ? "XXXX/CUVT-KV" : row["POId"].ToString();
                         DPDate = (row["DPDate"] == null || row["DPDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPDate"];
                         DPType = (row["DPType"] == null || row["DPType"] == DBNull.Value) ? 0 : (int)row["DPType"];
-                        DPQuantity = (row["DPQuantity"] == null || row["DPQuantity"] == DBNull.Value) ? 0 : (double)row["DPQuantity"];
+                        DPQuantity = (row["DPQuantity"] == null || row["DPQuantity"] == DBNull.Value) ? 0 : (int)row["DPQuantity"];
                         DPRemarks = (row["DPRemarks"] == null || row["DPRemarks"] == DBNull.Value) ? "" : row["DPRemarks"].ToString();
                     }
                 }
@@ -38,11 +38,11 @@ namespace OPM.OPMEnginee
         }
         public DateTime DPDate { get; set; } = DateTime.Now;
         public int DPType { get; set; } = 0;
-        public double DPQuantity { get; set; } = 0;
+        public int DPQuantity { get; set; } = 0;
         public string DPRemarks { get; set; } = "";
 
         public DPObj() { }
-        public DPObj(string DPId, string POId, DateTime DPDate, int DPType, float DPQuantity, string DPRemarks)
+        public DPObj(string DPId, string POId, DateTime DPDate, int DPType, int DPQuantity, string DPRemarks)
         {
             this.DPId = DPId;
             this.POId = POId;
@@ -61,7 +61,7 @@ namespace OPM.OPMEnginee
             POId = (row["POId"] == null || row["POId"] == DBNull.Value) ? "XXXX/CUVT-KV" : row["POId"].ToString();
             DPDate = (row["DPDate"] == null || row["DPDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPDate"];
             DPType = (row["DPType"] == null || row["DPType"] == DBNull.Value) ? 0 : (int)row["DPType"];
-            DPQuantity = (row["DPQuantity"] == null || row["DPQuantity"] == DBNull.Value) ? 0 : (float)row["DPQuantity"];
+            DPQuantity = (row["DPQuantity"] == null || row["DPQuantity"] == DBNull.Value) ? 0 : (int)row["DPQuantity"];
             DPRemarks = (row["DPRemarks"] == null || row["DPRemarks"] == DBNull.Value) ? "" : row["DPRemarks"].ToString();
         }
         public bool DPExist()
@@ -109,14 +109,14 @@ namespace OPM.OPMEnginee
         {
             string query = string.Format(@"SELECT SUM(DPQuantity) FROM dbo.DP WHERE DPType = 0 AND POId = '{0}'", POId);
             var tem1 = OPMDBHandler.ExecuteScalar(query);
-            double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
+            int tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (int)tem1;
             return tem;
         }
         public static double DPGetTotalSpareQuantityByPOId(string POId)
         {
             string query = string.Format(@"SELECT SUM(DPQuantity) FROM dbo.DP WHERE DPType = 1 AND POId = '{0}'", POId);
             var tem1 = OPMDBHandler.ExecuteScalar(query);
-            double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
+            int tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (int)tem1;
             return tem;
         }
 

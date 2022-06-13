@@ -157,7 +157,7 @@ namespace OPM.GUI
             pl.DPId = textBoxDPId.Text.Trim();
             pl.VNPTId = (comboBoxVNPTId.SelectedItem as SiteObj).SiteId;
             //pl.PLId = pl.DPId + "_" + pl.VNPTId;
-            pl.PLQuantity = double.Parse(textBoxPLQuantity.Text.Trim());
+            pl.PLQuantity = int.Parse(textBoxPLQuantity.Text.Trim());
             pl.PLInsert(pl.DPId + "_" + pl.VNPTId);
             //txtRemainingPOGoodsQuantity.Text = (deliveryPlan.POGoodsQuantity - DeliveryPlanObj.DeliveryPlanTotalQuantityByPOIdAndVNPTIdDetail(deliveryPlan.POId)).ToString();
             LoadData(pl.VNPTId);

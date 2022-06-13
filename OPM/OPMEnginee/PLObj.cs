@@ -27,10 +27,10 @@ namespace OPM.OPMEnginee
                         DPId = row["DPId"].ToString();
                         VNPTId = row["VNPTId"].ToString();
                         PLDate = (row["PLDate"] == null || row["PLDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["PLDate"];
-                        PLQuantity = (row["PLQuantity"] == null || row["PLQuantity"] == DBNull.Value) ? 0 : (double)row["PLQuantity"];
-                        CaseQuantity = (row["CaseQuantity"] == null || row["CaseQuantity"] == DBNull.Value) ? 20 : (double)row["CaseQuantity"];
+                        PLQuantity = (row["PLQuantity"] == null || row["PLQuantity"] == DBNull.Value) ? 0 : (int)row["PLQuantity"];
+                        CaseQuantity = (row["CaseQuantity"] == null || row["CaseQuantity"] == DBNull.Value) ? 20 : (int)row["CaseQuantity"];
                         PLDimension = (row["PLDimension"] == null || row["PLDimension"] == DBNull.Value) ? "55x45x31" : row["PLDimension"].ToString();
-                        PLVolume = (row["PLVolume"] == null || row["PLVolume"] == DBNull.Value) ? 0.076 : (double)row["PLVolume"];
+                        PLVolume = (row["PLVolume"] == null || row["PLVolume"] == DBNull.Value) ? @"0.076" : row["PLVolume"].ToString();
                         PLNetWeight = (row["PLNetWeight"] == null || row["PLNetWeight"] == DBNull.Value) ? 15 : (double)row["PLNetWeight"];
                         PLGrossWeight = (row["PLGrossWeight"] == null || row["PLGrossWeight"] == DBNull.Value) ? 16 : (double)row["PLGrossWeight"];
                     }
@@ -43,13 +43,13 @@ namespace OPM.OPMEnginee
         }
         public string VNPTId { get; set; } = "XXXXXXXX";
         public DateTime PLDate { get; set; } = DateTime.Now;
-        public double PLQuantity { get; set; } = 0;
+        public int PLQuantity { get; set; } = 0;
         public double CaseQuantity { get; set; } = 20;
         public string PLDimension { get; set; } = "55x45x31";
-        public double PLVolume { get; set; } = 0.076;
+        public string PLVolume { get; set; } = @"0.076";
         public double PLNetWeight { get; set; } = 15;
         public double PLGrossWeight { get; set; } = 16;
-        public PLObj(string PLId, string VNPTId, DateTime PLDate, double PLQuantity, double CaseQuantity, string PLDimension, double PLVolume, double PLNetWeight, double PLGrossWeight)
+        public PLObj(string PLId, string VNPTId, DateTime PLDate, int PLQuantity, double CaseQuantity, string PLDimension, string PLVolume, double PLNetWeight, double PLGrossWeight)
         {
             this.PLId = PLId;
             this.VNPTId = VNPTId; 
@@ -67,10 +67,10 @@ namespace OPM.OPMEnginee
             DPId = row["DPId"].ToString();
             VNPTId = row["VNPTId"].ToString();
             PLDate = (row["PLDate"] == null || row["PLDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["PLDate"];
-            PLQuantity = (row["PLQuantity"] == null || row["PLQuantity"] == DBNull.Value) ? 0 : (double)row["PLQuantity"];
-            CaseQuantity = (row["CaseQuantity"] == null || row["CaseQuantity"] == DBNull.Value) ? 20 : (double)row["CaseQuantity"];
+            PLQuantity = (row["PLQuantity"] == null || row["PLQuantity"] == DBNull.Value) ? 0 : (int)row["PLQuantity"];
+            CaseQuantity = (row["CaseQuantity"] == null || row["CaseQuantity"] == DBNull.Value) ? 20 : (int)row["CaseQuantity"];
             PLDimension = (row["PLDimension"] == null || row["PLDimension"] == DBNull.Value) ? "55x45x31" : row["PLDimension"].ToString();
-            PLVolume = (row["PLVolume"] == null || row["PLVolume"] == DBNull.Value) ? 0.076 : (double)row["PLVolume"];
+            PLVolume = (row["PLVolume"] == null || row["PLVolume"] == DBNull.Value) ? @"0.076" : row["PLVolume"].ToString();
             PLNetWeight = (row["PLNetWeight"] == null || row["PLNetWeight"] == DBNull.Value) ? 15 : (double)row["PLNetWeight"];
             PLGrossWeight = (row["PLGrossWeight"] == null || row["PLGrossWeight"] == DBNull.Value) ? 16 : (double)row["PLGrossWeight"];
         }
@@ -94,23 +94,27 @@ namespace OPM.OPMEnginee
         public int PLInsert()
         {
             if (PLObj.PLExist(PLId)) return 0;
+            PLVolume = PLVolume.Replace(',', '.');
             string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.PL(PLId,DPId,VNPTId,PLDate,PLQuantity,CaseQuantity,PLDimension,PLVolume,PLNetWeight,PLGrossWeight)VALUES('{0}','{1}', '{2}', '{3}', {4}, {5}, '{6}',{7}, {8}, {9})", PLId, DPId, VNPTId, PLDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQuantity, CaseQuantity, PLDimension, PLVolume, PLNetWeight, PLGrossWeight);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
 
-        public int PLInsert(string id)
+        public int PLInsert(string pLId)
         {
-            if (PLObj.PLExist(id)) return 0;
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.PL(PLId,DPId,VNPTId,PLDate,PLQuantity,CaseQuantity,PLDimension,PLVolume,PLNetWeight,PLGrossWeight)VALUES('{0}','{1}', '{2}', '{3}', {4}, {5}, '{6}',{7}, {8}, {9})", id, DPId, VNPTId, PLDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQuantity, CaseQuantity, PLDimension, PLVolume, PLNetWeight, PLGrossWeight);
+            if (PLObj.PLExist(pLId)) return 0;
+            PLVolume = PLVolume.Replace(',', '.');
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.PL(PLId,DPId,VNPTId,PLDate,PLQuantity,CaseQuantity,PLDimension,PLVolume,PLNetWeight,PLGrossWeight)VALUES('{0}','{1}', '{2}', '{3}', {4}, {5}, '{6}',{7}, {8}, {9})", pLId, DPId, VNPTId, PLDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQuantity, CaseQuantity, PLDimension, PLVolume, PLNetWeight, PLGrossWeight);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public int PLUpdate()
         {
+            PLVolume = PLVolume.Replace(',', '.');
             string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.PL SET PLId = '{0}', DPId = '{1}', VNPTId = '{2}', PLDate = '{3}', PLQuantity = {4}, CaseQuantity = {5}, PLDimension = '{6}', PLVolume = {7}, PLNetWeight = {8}, PLGrossWeight = {9} Where PLId = '{0}'", PLId, DPId, VNPTId, PLDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQuantity, CaseQuantity, PLDimension, PLVolume, PLNetWeight, PLGrossWeight);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public int PLUpdate(string newId, string oldId)
         {
+            PLVolume = PLVolume.Replace(',', '.');
             string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.PL SET PLId = '{0}', DPId = '{1}', VNPTId = '{2}', PLDate = '{3}', PLQuantity = {4}, CaseQuantity = {5}, PLDimension = '{6}', PLVolume = {7}, PLNetWeight = {8}, PLGrossWeight = {9} Where PLId = '{10}'", newId, DPId, VNPTId, PLDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQuantity, CaseQuantity, PLDimension, PLVolume, PLNetWeight, PLGrossWeight,oldId);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
@@ -146,21 +150,21 @@ namespace OPM.OPMEnginee
         {
             string query = string.Format(@"SELECT SUM(PL.PLQuantity) FROM dbo.PL,dbo.DP WHERE DPType = 0 AND PL.DPId = DP.DPId AND POId = '{0}' AND VNPTId = '{1}'", POId, VNPTId);
             var tem1 = OPMDBHandler.ExecuteScalar(query);
-            double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
+            double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (int)tem1;
             return tem;
         }
         public static double PLGetTotalSpareQuantityByPOIdAndVNPTId(string POId, string VNPTId)
         {
             string query = string.Format(@"SELECT SUM(PL.PLQuantity) FROM dbo.PL,dbo.DP WHERE DPType = 1 AND PL.DPId = DP.DPId AND POId = '{0}' AND VNPTId = '{1}'", POId, VNPTId);
             var tem1 = OPMDBHandler.ExecuteScalar(query);
-            double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
+            int tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (int)tem1;
             return tem;
         }
-        public static double PLGetTotalQuantityByDPIddAndNotEqualVNPTId(string DPId, string VNPTId)
+        public static int PLGetTotalQuantityByDPIddAndNotEqualVNPTId(string DPId, string VNPTId)
         {
             string query = string.Format(@"SELECT SUM(PL.PLQuantity) FROM dbo.PL WHERE DPId  = '{0}' AND VNPTId != '{1}'", DPId, VNPTId);
             var tem1 = OPMDBHandler.ExecuteScalar(query);
-            double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
+            int tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (int)tem1;
             return tem;
         }
 

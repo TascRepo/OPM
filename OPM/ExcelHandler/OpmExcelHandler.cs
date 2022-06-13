@@ -4,6 +4,7 @@ using OPM.OPMEnginee;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -28,7 +29,192 @@ namespace OPM.ExcelHandler
         ~OpmExcelHandler()
         { }
 
+        public static string GetNameOfExcelFile()
+        {
+            OpenFileDialog openFileExcel = new OpenFileDialog();
+            openFileExcel.Multiselect = false;
+            openFileExcel.Filter = "Excel Files(.xls)|*.xls|Excel Files(.xlsx)|*.xlsx|Excel Files(*.xlsm)|*.xlsm";
+            openFileExcel.FilterIndex = 2;
+            if (openFileExcel.ShowDialog() == DialogResult.OK)
+                if (File.Exists(openFileExcel.FileName))
+                    return openFileExcel.FileName;
+            return null;
+        }
+        public static System.Data.DataTable ReadExcelToDataTable(string nameOfExcelFile, int indexWorksheet, int indexHeaderLine, int indexStartColumn)
+        {
+            System.Data.DataTable dataTable = new System.Data.DataTable();
+            Microsoft.Office.Interop.Excel.Application excel = null;
+            Microsoft.Office.Interop.Excel.Workbook workbook = null;
+            Microsoft.Office.Interop.Excel.Worksheet sheet = null;
+            Microsoft.Office.Interop.Excel.Range range = null;
+            try
+            {
+                // Get Application object.
+                excel = new Microsoft.Office.Interop.Excel.Application
+                {
+                    Visible = false,
+                    DisplayAlerts = false
+                };
+                // Open Workbook
+                object m = Type.Missing;
+                workbook = excel.Workbooks.Open(nameOfExcelFile, m, false, m, m, m, m, m, m, m, m, m, m, m, m);
+                // Worksheet
+                sheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets.Item[indexWorksheet];
+                range = sheet.UsedRange;
+                if (range.Rows.Count < indexHeaderLine || range.Columns.Count < indexStartColumn)
+                {
+                    MessageBox.Show(string.Format("Giá trị indexHeaderLine và indexStartColumn không phù hợp với File Excel"));
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    Marshal.ReleaseComObject(range);
+                    Marshal.ReleaseComObject(sheet);
+                    workbook.Close();
+                    Marshal.ReleaseComObject(workbook);
+                    excel.Quit();
+                    Marshal.ReleaseComObject(excel);
+                    return null;
+                }
+                int countOfColumns = range.Columns.Count;
+                // Tổng số dòng
+                int countOfRows = range.Rows.Count; ;
+                //Tạo Headder cho Datatable (Kiểu là String)
+                for (int j = indexStartColumn; j <= countOfColumns; j++)
+                {
+                    dataTable.Columns.Add(Convert.ToString((range.Cells[indexHeaderLine, j] as Microsoft.Office.Interop.Excel.Range).Value2), typeof(string));
+                }
+                //filling the table from  excel file                
+                for (int i = indexHeaderLine + 1; i <= countOfRows; i++)
+                {
+                    DataRow dr = dataTable.NewRow();
+                    for (int j = indexStartColumn; j <= countOfColumns; j++)
+                    {
 
+                        dr[j - indexStartColumn] = Convert.ToString((range.Cells[i, j] as Microsoft.Office.Interop.Excel.Range).Value2);
+                    }
+
+                    dataTable.Rows.InsertAt(dr, dataTable.Rows.Count + 1);
+                }
+
+                //now close the workbook and make the function return the data table
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                Marshal.ReleaseComObject(range);
+                Marshal.ReleaseComObject(sheet);
+                workbook.Close();
+                Marshal.ReleaseComObject(workbook);
+                excel.Quit();
+                Marshal.ReleaseComObject(excel);
+                return dataTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                Marshal.ReleaseComObject(range);
+                Marshal.ReleaseComObject(sheet);
+                workbook.Close();
+                Marshal.ReleaseComObject(workbook);
+                excel.Quit();
+                Marshal.ReleaseComObject(excel);
+                return null;
+            }
+        }
+        public static int GetIndexDataRowInDataTable(System.Data.DataTable table, string identifying)
+        {
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                if ((table.Rows[i][0].ToString() == identifying)) return (i + 1);
+            }
+            return 0;
+        }
+        public static System.Data.DataTable DataTableSerialFromExcelFile(string nameOfExcelFile)
+        {
+            System.Data.DataTable dataTable = new System.Data.DataTable();
+            Microsoft.Office.Interop.Excel.Application excel = null;
+            Microsoft.Office.Interop.Excel.Workbook workbook = null;
+            Microsoft.Office.Interop.Excel.Worksheet sheet = null;
+            Microsoft.Office.Interop.Excel.Range range = null;
+            try
+            {
+                // Get Application object.
+                excel = new Microsoft.Office.Interop.Excel.Application
+                {
+                    Visible = false,
+                    DisplayAlerts = false
+                };
+                // Open Workbook
+                object m = Type.Missing;
+                workbook = excel.Workbooks.Open(nameOfExcelFile, m, false, m, m, m, m, m, m, m, m, m, m, m, m);
+                // Worksheet
+                sheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets.Item[1];
+                range = sheet.UsedRange;
+                int indexHeaderRows = 1;
+                int countOfColumns = range.Columns.Count;
+                // Tổng số dòng
+                int countOfRows = range.Rows.Count;
+                //Tạo Headder cho Datatable DeliveryPlan
+                dataTable.Columns.Add("CaseNumber", typeof(string));
+                dataTable.Columns.Add("ProductionBoxNumber", typeof(string));
+                dataTable.Columns.Add("Srial", typeof(string));
+                dataTable.Columns.Add("Mac", typeof(string));
+                dataTable.Columns.Add("SeriGPON", typeof(string));
+                dataTable.Columns.Add("SrialOfBox", typeof(string));
+                //filling the table from  excel file                
+                for (int i = indexHeaderRows + 1; i < countOfRows; i++)
+                {
+                    DataRow row = dataTable.NewRow();
+                    row["Province"] = (range.Cells[i, 2] as Microsoft.Office.Interop.Excel.Range).Value2;
+                    row["Phase"] = 0;
+                    row["ExpectedQuantity"] = (range.Cells[i, 3] as Microsoft.Office.Interop.Excel.Range).Value2;
+                    dataTable.Rows.Add(row);
+                    for (int j = 1; 2 * j <= (countOfColumns - 3); j++)
+                    {
+                        row = dataTable.NewRow();
+                        row["Province"] = (range.Cells[i, 2] as Microsoft.Office.Interop.Excel.Range).Value2;
+                        row["Phase"] = j;
+                        row["ExpectedQuantity"] = ((range.Cells[i, 2 + 2 * j] as Microsoft.Office.Interop.Excel.Range).Value2 == null) ? DBNull.Value : (range.Cells[i, 2 + 2 * j] as Microsoft.Office.Interop.Excel.Range).Value2;
+                        if (((range.Cells[i, 3 + 2 * j] as Microsoft.Office.Interop.Excel.Range).Value2 == null))
+                        {
+                            row["ExpectedDate"] = DBNull.Value;
+                        }
+                        else
+                        {
+                            row["ExpectedDate"] = DateTime.FromOADate((double)((range.Cells[i, 3 + 2 * j] as Microsoft.Office.Interop.Excel.Range).Value2)).ToString("d", CultureInfo.CreateSpecificCulture("en-NZ"));
+                        }
+                        //row["ExpectedDate"] =((range.Cells[i, 3 + 2 * j] as Microsoft.Office.Interop.Excel.Range).Value2 == null)? DBNull.Value : (range.Cells[i, 3 + 2 * j] as Microsoft.Office.Interop.Excel.Range).Value2;
+                        dataTable.Rows.Add(row);
+
+                        //row[j - 1] = ((range.Cells[i, j] as Microsoft.Office.Interop.Excel.Range).Value2 == null) ? null : (range.Cells[i, j] as Microsoft.Office.Interop.Excel.Range).Value2.ToString();
+                        //dr[j - 1] = Convert.ToString((range.Cells[i, j] as Microsoft.Office.Interop.Excel.Range).Value2);
+                    }
+
+                }
+                //now close the workbook and make the function return the data table
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                Marshal.ReleaseComObject(range);
+                Marshal.ReleaseComObject(sheet);
+                workbook.Close();
+                Marshal.ReleaseComObject(workbook);
+                excel.Quit();
+                Marshal.ReleaseComObject(excel);
+                return dataTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                Marshal.ReleaseComObject(range);
+                Marshal.ReleaseComObject(sheet);
+                workbook.Close();
+                Marshal.ReleaseComObject(workbook);
+                excel.Quit();
+                Marshal.ReleaseComObject(excel);
+                return null;
+            }
+        }
         public static int fReadExcelFile(string fname)
         {
             ExcelOffice.Range xlRange = null;
@@ -525,8 +711,8 @@ namespace OPM.ExcelHandler
             {
                 xlApp = new ExcelOffice.Application();
                 xlWorkbook = xlApp.Workbooks.Open(fname);
-                //Hiện giờ chỉ có 1 sheet đầu tiên nên Sheet[1]
-                xlWorksheet = (ExcelOffice._Worksheet)xlWorkbook.Sheets[1];
+                //Hiện giờ có 06 sheet đầu tiên nên Sheet[3] trong mẫu 17.PL
+                xlWorksheet = (ExcelOffice._Worksheet)xlWorkbook.Sheets["Serial-Mac"];
                 xlRange = xlWorksheet.UsedRange;
                 string xName = xlWorksheet.Name.ToString();
                 int rowCount = xlRange.Rows.Count;
@@ -539,16 +725,13 @@ namespace OPM.ExcelHandler
                 int rowCounter;
                 int StartCells = 1;
                 int CountCells = 0;
-                dt.Columns.Add("STT1");
-                dt.Columns.Add("Serial1");
-                dt.Columns.Add("STT2");
-                dt.Columns.Add("Serial2");
-                dt.Columns.Add("STT3");
-                dt.Columns.Add("Serial3");
-                dt.Columns.Add("STT4");
-                dt.Columns.Add("Serial4");
-                dt.Columns.Add("STT5");
-                dt.Columns.Add("Serial5");
+                dt.Columns.Add("STT");
+                dt.Columns.Add("Kiện số");
+                dt.Columns.Add("Thùng sản phẩm số");
+                dt.Columns.Add("Serial");
+                dt.Columns.Add("Mac");
+                dt.Columns.Add("SeriGPON");
+                dt.Columns.Add("Serial theo thùng");
                 //Tim tong so hang can hien thi len man hinh
                 for (int i = StartCells; i <= rowCount; i++)
                 {

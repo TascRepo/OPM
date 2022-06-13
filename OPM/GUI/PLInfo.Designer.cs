@@ -30,22 +30,14 @@ namespace OPM.GUI
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxVNPTId = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.textBoxPackingListSerialNumberRange = new System.Windows.Forms.TextBox();
+            this.textBoxDeviceCaseNumber = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.textBoxCaseQuantity = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxPLGrossWeight = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBoxPLDimension = new System.Windows.Forms.TextBox();
-            this.textBoxPLNetWeight = new System.Windows.Forms.TextBox();
-            this.textBoxPLVolume = new System.Windows.Forms.TextBox();
+            this.textBoxDeviceBoxNumber = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txtVNPTId = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -68,10 +60,10 @@ namespace OPM.GUI
             this.label16 = new System.Windows.Forms.Label();
             this.txtPLQuantity = new System.Windows.Forms.TextBox();
             this.txtPLId = new System.Windows.Forms.TextBox();
-            this.btnDPsAdd = new System.Windows.Forms.Button();
+            this.btnAddPackingList = new System.Windows.Forms.Button();
             this.dtgPL = new System.Windows.Forms.DataGridView();
-            this.btnDPsDelete = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPL)).BeginInit();
@@ -79,22 +71,14 @@ namespace OPM.GUI
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBoxVNPTId);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.textBoxPackingListSerialNumberRange);
+            this.groupBox1.Controls.Add(this.textBoxDeviceCaseNumber);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.textBoxCaseQuantity);
-            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBoxPLGrossWeight);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBoxPLDimension);
-            this.groupBox1.Controls.Add(this.textBoxPLNetWeight);
-            this.groupBox1.Controls.Add(this.textBoxPLVolume);
+            this.groupBox1.Controls.Add(this.textBoxDeviceBoxNumber);
             this.groupBox1.Location = new System.Drawing.Point(563, 375);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
@@ -104,99 +88,59 @@ namespace OPM.GUI
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thao tác với bảng Device";
             // 
-            // textBoxVNPTId
+            // textBoxPackingListSerialNumberRange
             // 
-            this.textBoxVNPTId.Enabled = false;
-            this.textBoxVNPTId.Location = new System.Drawing.Point(115, 188);
-            this.textBoxVNPTId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBoxVNPTId.Multiline = true;
-            this.textBoxVNPTId.Name = "textBoxVNPTId";
-            this.textBoxVNPTId.Size = new System.Drawing.Size(390, 140);
-            this.textBoxVNPTId.TabIndex = 6;
+            this.textBoxPackingListSerialNumberRange.Enabled = false;
+            this.textBoxPackingListSerialNumberRange.Location = new System.Drawing.Point(115, 141);
+            this.textBoxPackingListSerialNumberRange.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxPackingListSerialNumberRange.Multiline = true;
+            this.textBoxPackingListSerialNumberRange.Name = "textBoxPackingListSerialNumberRange";
+            this.textBoxPackingListSerialNumberRange.Size = new System.Drawing.Size(390, 307);
+            this.textBoxPackingListSerialNumberRange.TabIndex = 6;
             // 
-            // textBox1
+            // textBoxDeviceCaseNumber
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(116, 32);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(388, 31);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "20111819-001";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(250, 404);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(113, 25);
-            this.label14.TabIndex = 2;
-            this.label14.Text = "GrossWeight";
+            this.textBoxDeviceCaseNumber.Cursor = System.Windows.Forms.Cursors.SizeAll;
+            this.textBoxDeviceCaseNumber.Enabled = false;
+            this.textBoxDeviceCaseNumber.Location = new System.Drawing.Point(116, 29);
+            this.textBoxDeviceCaseNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxDeviceCaseNumber.Name = "textBoxDeviceCaseNumber";
+            this.textBoxDeviceCaseNumber.Size = new System.Drawing.Size(388, 31);
+            this.textBoxDeviceCaseNumber.TabIndex = 3;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(42, 35);
+            this.label12.Location = new System.Drawing.Point(42, 32);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 25);
             this.label12.TabIndex = 2;
             this.label12.Text = "CaseId";
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(11, 403);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(96, 25);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "NetWeight";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 245);
+            this.label3.Location = new System.Drawing.Point(22, 278);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(85, 25);
             this.label3.TabIndex = 5;
             this.label3.Text = "Dải Serial";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(283, 353);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 25);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Thể tích";
-            // 
             // textBoxCaseQuantity
             // 
             this.textBoxCaseQuantity.Enabled = false;
-            this.textBoxCaseQuantity.Location = new System.Drawing.Point(116, 84);
+            this.textBoxCaseQuantity.Location = new System.Drawing.Point(374, 84);
             this.textBoxCaseQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxCaseQuantity.Name = "textBoxCaseQuantity";
-            this.textBoxCaseQuantity.Size = new System.Drawing.Size(388, 31);
+            this.textBoxCaseQuantity.Size = new System.Drawing.Size(130, 31);
             this.textBoxCaseQuantity.TabIndex = 3;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 351);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(95, 25);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Kích thước";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 139);
+            this.label2.Location = new System.Drawing.Point(5, 87);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 25);
@@ -206,53 +150,20 @@ namespace OPM.GUI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 86);
+            this.label1.Location = new System.Drawing.Point(280, 86);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "Số lượng";
             // 
-            // textBoxPLGrossWeight
+            // textBoxDeviceBoxNumber
             // 
-            this.textBoxPLGrossWeight.Location = new System.Drawing.Point(374, 401);
-            this.textBoxPLGrossWeight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBoxPLGrossWeight.Name = "textBoxPLGrossWeight";
-            this.textBoxPLGrossWeight.Size = new System.Drawing.Size(130, 31);
-            this.textBoxPLGrossWeight.TabIndex = 3;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(116, 136);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(389, 31);
-            this.textBox3.TabIndex = 3;
-            this.textBox3.Text = "0052201_003773";
-            // 
-            // textBoxPLDimension
-            // 
-            this.textBoxPLDimension.Location = new System.Drawing.Point(116, 349);
-            this.textBoxPLDimension.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBoxPLDimension.Name = "textBoxPLDimension";
-            this.textBoxPLDimension.Size = new System.Drawing.Size(130, 31);
-            this.textBoxPLDimension.TabIndex = 3;
-            // 
-            // textBoxPLNetWeight
-            // 
-            this.textBoxPLNetWeight.Location = new System.Drawing.Point(116, 401);
-            this.textBoxPLNetWeight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBoxPLNetWeight.Name = "textBoxPLNetWeight";
-            this.textBoxPLNetWeight.Size = new System.Drawing.Size(130, 31);
-            this.textBoxPLNetWeight.TabIndex = 3;
-            // 
-            // textBoxPLVolume
-            // 
-            this.textBoxPLVolume.Location = new System.Drawing.Point(374, 349);
-            this.textBoxPLVolume.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBoxPLVolume.Name = "textBoxPLVolume";
-            this.textBoxPLVolume.Size = new System.Drawing.Size(130, 31);
-            this.textBoxPLVolume.TabIndex = 3;
+            this.textBoxDeviceBoxNumber.Location = new System.Drawing.Point(115, 84);
+            this.textBoxDeviceBoxNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxDeviceBoxNumber.Name = "textBoxDeviceBoxNumber";
+            this.textBoxDeviceBoxNumber.Size = new System.Drawing.Size(160, 31);
+            this.textBoxDeviceBoxNumber.TabIndex = 3;
             // 
             // groupBox7
             // 
@@ -277,7 +188,7 @@ namespace OPM.GUI
             this.groupBox7.Controls.Add(this.label16);
             this.groupBox7.Controls.Add(this.txtPLQuantity);
             this.groupBox7.Controls.Add(this.txtPLId);
-            this.groupBox7.Location = new System.Drawing.Point(563, 17);
+            this.groupBox7.Location = new System.Drawing.Point(569, 17);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -401,7 +312,7 @@ namespace OPM.GUI
             this.buttonAddSerial.TabIndex = 1;
             this.buttonAddSerial.Text = "AddSerial";
             this.buttonAddSerial.UseVisualStyleBackColor = true;
-            this.buttonAddSerial.Click += new System.EventHandler(this.btnSavePL_Click);
+            this.buttonAddSerial.Click += new System.EventHandler(this.buttonAddSerial_Click);
             // 
             // btnSavePL
             // 
@@ -490,15 +401,16 @@ namespace OPM.GUI
             this.txtPLId.TabIndex = 3;
             this.txtPLId.TextChanged += new System.EventHandler(this.txtPLId_TextChanged);
             // 
-            // btnDPsAdd
+            // btnAddPackingList
             // 
-            this.btnDPsAdd.Location = new System.Drawing.Point(938, 843);
-            this.btnDPsAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnDPsAdd.Name = "btnDPsAdd";
-            this.btnDPsAdd.Size = new System.Drawing.Size(130, 40);
-            this.btnDPsAdd.TabIndex = 8;
-            this.btnDPsAdd.Text = "DPs Add";
-            this.btnDPsAdd.UseVisualStyleBackColor = true;
+            this.btnAddPackingList.Location = new System.Drawing.Point(760, 843);
+            this.btnAddPackingList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAddPackingList.Name = "btnAddPackingList";
+            this.btnAddPackingList.Size = new System.Drawing.Size(130, 40);
+            this.btnAddPackingList.TabIndex = 8;
+            this.btnAddPackingList.Text = "PackingList";
+            this.btnAddPackingList.UseVisualStyleBackColor = true;
+            this.btnAddPackingList.Click += new System.EventHandler(this.btnAddPackingList_Click);
             // 
             // dtgPL
             // 
@@ -508,18 +420,8 @@ namespace OPM.GUI
             this.dtgPL.Name = "dtgPL";
             this.dtgPL.RowHeadersWidth = 62;
             this.dtgPL.RowTemplate.Height = 25;
-            this.dtgPL.Size = new System.Drawing.Size(542, 866);
+            this.dtgPL.Size = new System.Drawing.Size(543, 866);
             this.dtgPL.TabIndex = 7;
-            // 
-            // btnDPsDelete
-            // 
-            this.btnDPsDelete.Location = new System.Drawing.Point(754, 846);
-            this.btnDPsDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnDPsDelete.Name = "btnDPsDelete";
-            this.btnDPsDelete.Size = new System.Drawing.Size(130, 40);
-            this.btnDPsDelete.TabIndex = 9;
-            this.btnDPsDelete.Text = "DPs Delete";
-            this.btnDPsDelete.UseVisualStyleBackColor = true;
             // 
             // btnClose
             // 
@@ -532,6 +434,17 @@ namespace OPM.GUI
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(943, 843);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(130, 40);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // PLInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -540,10 +453,10 @@ namespace OPM.GUI
             this.ClientSize = new System.Drawing.Size(1100, 900);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox7);
-            this.Controls.Add(this.btnDPsAdd);
+            this.Controls.Add(this.btnAddPackingList);
             this.Controls.Add(this.dtgPL);
-            this.Controls.Add(this.btnDPsDelete);
             this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "PLInfo";
@@ -573,9 +486,8 @@ namespace OPM.GUI
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtPLQuantity;
-        private System.Windows.Forms.Button btnDPsAdd;
+        private System.Windows.Forms.Button btnAddPackingList;
         private System.Windows.Forms.DataGridView dtgPL;
-        private System.Windows.Forms.Button btnDPsDelete;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
@@ -584,8 +496,8 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox txtPLNetWeight;
         private System.Windows.Forms.TextBox txtPLVolume;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBoxVNPTId;
+        private System.Windows.Forms.TextBox textBoxCaseId;
+        private System.Windows.Forms.TextBox textBoxPackingListSerialNumberRange;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label3;
@@ -599,9 +511,13 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox textBoxPLVolume;
         private System.Windows.Forms.TextBox txtPLId;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxDeviceBoxNumber;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtCaseQuantity;
         private System.Windows.Forms.Button buttonAddSerial;
+        private System.Windows.Forms.TextBox textBoxPackingListMacNumberRange;
+        private System.Windows.Forms.TextBox textBoxPackingListSeriGPONRange;
+        private System.Windows.Forms.TextBox textBoxDeviceCaseNumber;
+        private System.Windows.Forms.Button button1;
     }
 }
