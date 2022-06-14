@@ -1,6 +1,8 @@
 ﻿using OPM.DBHandler;
+using OPM.OPMWordHandler;
 using OPM.OPMEnginee;
 using System;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -107,7 +109,6 @@ namespace OPM.GUI
                 DeliveryPlanDate = dateTimePickerDeliveryPlanDate.Value
             };
             deliveryPlan.DeliveryPlanInsert();
-            //txtRemainingPOGoodsQuantity.Text = (deliveryPlan.POGoodsQuantity - DeliveryPlanObj.DeliveryPlanTotalQuantityByPOIdAndVNPTIdDetail(deliveryPlan.POId)).ToString();
             LoadData(deliveryPlan.VNPTId);
         }
 
@@ -168,6 +169,13 @@ namespace OPM.GUI
                 lblWarning.ForeColor = Color.Red;
                 lblWarning.Text = "! Vẫn chưa phân bổ hết PO";
             }
+        }
+
+        private void buttonDeliveryPlanDataTable_Click(object sender, EventArgs e)
+        {
+            DataTable dataTable = DeliveryPlanObj.DeliveryPlanDataTable((Tag as OPMDASHBOARDA).Po.POId);
+            dtgDeliveryPlan.DataSource = dataTable;
+            dtgDeliveryPlan.Columns["SiteId"].Visible = false;
         }
     }
 }

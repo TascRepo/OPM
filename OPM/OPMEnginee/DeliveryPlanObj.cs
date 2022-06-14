@@ -84,7 +84,7 @@ namespace OPM.DBHandler
 
         public int DeliveryPlanInsert()
         {
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DeliveryPlan(POId, VNPTId, DeliveryPlanQuantity, DeliveryPlanDate) VALUES ('{0}','{1}',{2},'{3}')", POId, VNPTId, DeliveryPlanQuantity, DeliveryPlanDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DeliveryPlan(POId, VNPTId, DeliveryPlanQuantity, DeliveryPlanDate) VALUES ('{0}','{1}',{2},'{3}')", POId, VNPTId, DeliveryPlanQuantity, DeliveryPlanDate.Date.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
             return OPMDBHandler.ExecuteNonQuery(query);
         }
 
@@ -179,6 +179,10 @@ namespace OPM.DBHandler
             double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
             return Math.Round(tem * 0.02, 0, MidpointRounding.AwayFromZero);
         }
-
+        public static DataTable DeliveryPlanDataTable(string POId)
+        {
+            string query = string.Format(@"SELECT dbo.Site.SiteId, dbo.Site.SiteName as [Tên Viễn Thông Tỉnh/Thành], dbo.DeliveryPlan.DeliveryPlanQuantity, dbo.DeliveryPlan.DeliveryPlanDate FROM dbo.DeliveryPlan,dbo.Site WHERE POId = '{0}' AND SiteId = VNPTId ORDER BY dbo.Site.SiteId", POId);
+            return OPMDBHandler.ExecuteQuery(query);
+        }
     }
 }

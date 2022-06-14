@@ -1,34 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="GUI\ConfirmPOInfor.cs">
+    <Compile Update="GUI\ContractInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="GUI\ContractInfoChildForm.cs">
+    <Compile Update="GUI\DeliveryPlanInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="GUI\DeliverPartInforDetail.cs">
+    <Compile Update="GUI\DPInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="GUI\DescriptionSiteForm.cs">
+    <Compile Update="GUI\GoodsInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="GUI\HandlerExcel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="GUI\NewItem.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="GUI\NTKTInfor.cs">
+    <Compile Update="GUI\NTKTInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="GUI\OPMDASHBOARDA.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="GUI\PackageListInfor.cs">
+    <Compile Update="GUI\PLInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="GUI\PurchaseOderInfor.cs">
+    <Compile Update="GUI\POInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\SiteInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\TestInfo.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

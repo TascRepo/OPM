@@ -16,6 +16,7 @@ namespace OPM
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new OPMDASHBOARDA());
+            //Application.Run(new TestInfo());
         }
     }
 }

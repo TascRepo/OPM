@@ -40,6 +40,67 @@ namespace OPM.ExcelHandler
                     return openFileExcel.FileName;
             return null;
         }
+        public static void ExportDataTableToExcel(System.Data.DataTable dataTable, string nameOfExcelFile, int indexWorksheet, int indexHeaderLine, int indexStartColumn)
+        {
+            Microsoft.Office.Interop.Excel.Application excel = null;
+            Microsoft.Office.Interop.Excel.Workbook excelworkBook = null;
+            Microsoft.Office.Interop.Excel.Worksheet excelSheet = null;
+            Microsoft.Office.Interop.Excel.Range excelCellrange = null;
+            try
+            {
+                // Get Application object.
+                // Start Excel and get Application object.  
+                excel = new Microsoft.Office.Interop.Excel.Application();
+                // for making Excel visible  
+                excel.Visible = false;
+                excel.DisplayAlerts = false;
+                // Creation a new Workbook  
+                excelworkBook = excel.Workbooks.Add(Type.Missing);
+                // Workk sheet  
+                excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelworkBook.ActiveSheet;
+                excelSheet.Name = "Test work sheet";
+                //Test
+                excelSheet.Cells[5, 1] = 1;
+                excelSheet.Cells[6, 1] = 2;
+
+                //int countOfColumns = dataTable.Columns.Count;
+                //// Tổng số dòng
+                //int countOfRows = dataTable.Rows.Count; ;
+                ////filling the table from  excel file                
+                //for (int i = 0; i < countOfRows; i++)
+                //{
+                //    for (int j = 0; j <countOfColumns; j++)
+                //    {
+                //        range.Cells[i + indexHeaderLine, j + indexStartColumn] = dataTable.Rows[i].ItemArray[j];
+                //    }
+
+                //}
+
+                //now close the workbook and make the function return the data table
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                Marshal.ReleaseComObject(excelCellrange);
+                Marshal.ReleaseComObject(excelSheet);
+                excelworkBook.Close();
+                Marshal.ReleaseComObject(excelworkBook);
+                excel.Quit();
+                Marshal.ReleaseComObject(excel);
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                Marshal.ReleaseComObject(excelCellrange);
+                Marshal.ReleaseComObject(excelSheet);
+                excelworkBook.Close();
+                Marshal.ReleaseComObject(excelworkBook);
+                excel.Quit();
+                Marshal.ReleaseComObject(excel);
+                return;
+            }
+        }
         public static System.Data.DataTable ReadExcelToDataTable(string nameOfExcelFile, int indexWorksheet, int indexHeaderLine, int indexStartColumn)
         {
             System.Data.DataTable dataTable = new System.Data.DataTable();
@@ -931,5 +992,6 @@ namespace OPM.ExcelHandler
                 return 0;
             }
         }
+
     }
 }

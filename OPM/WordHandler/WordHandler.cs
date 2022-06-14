@@ -1,11 +1,13 @@
-﻿using OPM.OPMEnginee;
+﻿using OPM.DBHandler;
+using OPM.OPMEnginee;
 using System;
+using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using WordOffice = Microsoft.Office.Interop.Word;
-namespace OPM.WordHandler
+using Word = Microsoft.Office.Interop.Word;
+namespace OPM.OPMWordHandler
 {
     class OpmWordHandler
     {
@@ -18,8 +20,8 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
-            WordOffice.Application wordApp = new WordOffice.Application();
-            WordOffice.Document myDoc = null;
+            Word.Application wordApp = new Word.Application();
+            Word.Document myDoc = null;
             try
             {
                 //NTKT_Thanh ntkt = new NTKT_Thanh(id);
@@ -108,9 +110,9 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
-            WordOffice.Application wordApp = new WordOffice.Application();
+            Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
+            Word.Document myDoc = null;
             try
             {
                 //NTKT_Thanh ntkt = new NTKT_Thanh(id);
@@ -195,9 +197,9 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
-            WordOffice.Application wordApp = new WordOffice.Application();
+            Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
+            Word.Document myDoc = null;
             try
             {
                 //NTKT_Thanh ntkt = new NTKT_Thanh(id);
@@ -288,9 +290,9 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
-            WordOffice.Application wordApp = new WordOffice.Application();
+            Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
+            Word.Document myDoc = null;
             try
             {
                 //NTKT_Thanh ntkt = new NTKT_Thanh(id);
@@ -378,9 +380,9 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
-            WordOffice.Application wordApp = new WordOffice.Application();
+            Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
+            Word.Document myDoc = null;
             try
             {
                 NTKTObj ntkt = new NTKTObj(ntktId);
@@ -461,8 +463,8 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
-            WordOffice.Application wordApp = new WordOffice.Application();
-            WordOffice.Document myDoc = null;
+            Word.Application wordApp = new Word.Application();
+            Word.Document myDoc = null;
             try
             {
                 NTKTObj ntkt = new NTKTObj(ntktId);
@@ -547,9 +549,9 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
-            WordOffice.Application wordApp = new WordOffice.Application();
+            Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
+            Word.Document myDoc = null;
             try
             {
                 NTKTObj ntkt = new NTKTObj(ntktId);
@@ -634,9 +636,9 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
-            WordOffice.Application wordApp = new WordOffice.Application();
+            Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
+            Word.Document myDoc = null;
             try
             {
                 NTKTObj ntkt = new NTKTObj(ntktId);
@@ -717,9 +719,9 @@ namespace OPM.WordHandler
             }
             object filename = strPODirectory + @"\3.Bao lanh PO.docx";
             //object filename = string.Format(DriveName + @"\OPM\{0}\{1}\XacnhanPO_{2}.docx", contract.Id.Trim().Replace('/', '-'), po.Po_number.Replace('/', '-'), po.Id.Replace('/', '-'));
-            WordOffice.Application wordApp = new WordOffice.Application();
+            Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
+            Word.Document myDoc = null;
             //
             object path = DriveName + @"\OPM\Template\Mau 4. Van ban mo thuc hien bao lanh PO.docx";
             if (File.Exists(path.ToString()))
@@ -771,9 +773,9 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
-            WordOffice.Application wordApp = new WordOffice.Application();
+            Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
+            Word.Document myDoc = null;
             try
             {
                 object readOnly = true;
@@ -848,9 +850,9 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
-            WordOffice.Application wordApp = new WordOffice.Application();
+            Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
+            Word.Document myDoc = null;
             try
             {
                 object readOnly = true;
@@ -921,9 +923,9 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
-            WordOffice.Application wordApp = new WordOffice.Application();
+            Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
+            Word.Document myDoc = null;
             try
             {
                 object readOnly = true;
@@ -994,9 +996,9 @@ namespace OPM.WordHandler
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
-            WordOffice.Application wordApp = new WordOffice.Application();
+            Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
+            Word.Document myDoc = null;
             try
             {
                 object readOnly = true;
@@ -1020,7 +1022,24 @@ namespace OPM.WordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<POConfirmId>", po.POConfirmId);
                 OpmWordHandler.FindAndReplace(wordApp, "<POCreatedDate>", po.POCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 OpmWordHandler.FindAndReplace(wordApp, "<POPerformDate>", po.POPerformDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-
+                //Tạo bảng phụ lục kế hoạch giao hàng dự kiến
+                DataTable dataTable = DeliveryPlanObj.DeliveryPlanDataTable(poid);
+                int rowCount = dataTable.Rows.Count;
+                int columnCount = dataTable.Columns.Count;
+                int i;
+                Word.Table table = myDoc.Tables[3];
+                for (i = 0; i < rowCount; i++)
+                {
+                    table.Rows.Add();
+                    table.Cell(i + 2, 1).Range.Text = (i+1).ToString();
+                    table.Cell(i + 2, 2).Range.Text = dataTable.Rows[i].ItemArray[1].ToString(); 
+                    table.Cell(i + 2, 3).Range.Text = dataTable.Rows[i].ItemArray[2].ToString();
+                    table.Cell(i + 2, 4).Range.Text = dataTable.Rows[i].ItemArray[3].ToString();
+                }
+                OpmWordHandler.FindAndReplace(wordApp, "12:00:00 SA", "");
+                MessageBox.Show(i.ToString());
+                table.Cell(i + 2, 2).Range.Text = "TỔNG CỘNG";
+                table.Cell(i + 2, 3).Range.Text = po.POGoodsQuantity.ToString();
                 //Tạo file BLHĐ trong thư mục D:\OPM
                 try
                 {
@@ -1065,9 +1084,9 @@ namespace OPM.WordHandler
                 return string.Format(@"Không tìm thấy {0}", path.ToString());
             }
 
-            WordOffice.Application wordApp = new WordOffice.Application();
+            Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
+            Word.Document myDoc = null;
             try
             {
                 ContractObj contract = new ContractObj(contractId);
@@ -1116,7 +1135,7 @@ namespace OPM.WordHandler
                 return e.Message;
             }
         }
-        public static void FindAndReplace(WordOffice.Application wordApp, object ToFindText, object replaceWithText)
+        public static void FindAndReplace(Word.Application wordApp, object ToFindText, object replaceWithText)
         {
             object matchCase = true;
             object matchWholeWord = true;
@@ -1163,9 +1182,9 @@ namespace OPM.WordHandler
                 Directory.CreateDirectory(strPODirectory);
             }
             object filename = strPODirectory + @"\Kiem tra CL_" + diaChi + ".docx";
-            WordOffice.Application wordApp = new WordOffice.Application();
+            Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
+            Word.Document myDoc = null;
             //
             object path = DriveName + @"\OPM\Template\Mau 19. Giay CNCL NM gui tinh.docx";
             if (File.Exists(path.ToString()))
@@ -1224,9 +1243,9 @@ namespace OPM.WordHandler
                 Directory.CreateDirectory(strPODirectory);
             }
             object filename = strPODirectory + @"\Phieu bao hanh_" + diaChi + ".docx";
-            WordOffice.Application wordApp = new WordOffice.Application();
+            Word.Application wordApp = new Word.Application();
             object missing = Missing.Value;
-            WordOffice.Document myDoc = null;
+            Word.Document myDoc = null;
             //
             object path = DriveName + @"\OPM\Template\Mau22. Mau phieu bao hanh.docx";
             if (File.Exists(path.ToString()))
@@ -1375,5 +1394,7 @@ namespace OPM.WordHandler
 
             return doc;
         }
+
+
     }
 }

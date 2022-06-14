@@ -61,6 +61,7 @@ namespace OPM.GUI
             this.txtPOGoodsQuantity = new System.Windows.Forms.TextBox();
             this.txtRemainingContractGoodsQuantity = new System.Windows.Forms.TextBox();
             this.txtContractGoodsQuantity = new System.Windows.Forms.TextBox();
+            this.buttonDeliveryPlanDataTable = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDeliveryPlan)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -181,7 +182,7 @@ namespace OPM.GUI
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(702, 824);
+            this.btnClose.Location = new System.Drawing.Point(548, 824);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(130, 40);
@@ -254,6 +255,7 @@ namespace OPM.GUI
             // dtpDeliveryPlanDate
             // 
             this.dtpDeliveryPlanDate.Enabled = false;
+            this.dtpDeliveryPlanDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDeliveryPlanDate.Location = new System.Drawing.Point(171, 310);
             this.dtpDeliveryPlanDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dtpDeliveryPlanDate.Name = "dtpDeliveryPlanDate";
@@ -418,6 +420,17 @@ namespace OPM.GUI
             this.txtContractGoodsQuantity.Size = new System.Drawing.Size(130, 31);
             this.txtContractGoodsQuantity.TabIndex = 3;
             // 
+            // buttonDeliveryPlanDataTable
+            // 
+            this.buttonDeliveryPlanDataTable.Location = new System.Drawing.Point(760, 824);
+            this.buttonDeliveryPlanDataTable.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonDeliveryPlanDataTable.Name = "buttonDeliveryPlanDataTable";
+            this.buttonDeliveryPlanDataTable.Size = new System.Drawing.Size(300, 40);
+            this.buttonDeliveryPlanDataTable.TabIndex = 1;
+            this.buttonDeliveryPlanDataTable.Text = "Bảng Phụ lục Kế hoạch giao hàng";
+            this.buttonDeliveryPlanDataTable.UseVisualStyleBackColor = true;
+            this.buttonDeliveryPlanDataTable.Click += new System.EventHandler(this.buttonDeliveryPlanDataTable_Click);
+            // 
             // DeliveryPlanInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -427,6 +440,7 @@ namespace OPM.GUI
             this.ControlBox = false;
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.buttonDeliveryPlanDataTable);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.dtgDeliveryPlan);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -475,5 +489,6 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox txtVNPTId;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblWarning;
+        private System.Windows.Forms.Button buttonDeliveryPlanDataTable;
     }
 }

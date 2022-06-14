@@ -1,4 +1,6 @@
 ﻿using Microsoft.Office.Interop.Excel;
+using OPM.DBHandler;
+using OPM.ExcelHandler;
 using System;
 using System.Data;
 using System.Globalization;
@@ -285,14 +287,22 @@ namespace OPM.GUI
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-
-            string str = GetNameOfExcelFile();
-            System.Data.DataTable dataTable = DataTableDeliveryPlanFromExcelFile(str);
+            DataTable dataTable = DeliveryPlanObj.DeliveryPlanDataTable("3579/CUVT-KV");
             dataGridViewTest.DataSource = dataTable;
+            dataGridViewTest.Columns["SiteId"].Visible = false;
+            OpmExcelHandler.ExportDataTableToExcel(dataTable, @"D:\TestOPM\Mẫu 2B.xlsx", 1, 4, 1);
+        }
+        private void ProvinceInSertToSite()
+        {
+            string str = GetNameOfExcelFile();
+            System.Data.DataTable dataTable = ReadExcelToDataTable(str, 1, 1, 1);
+            dataGridViewTest.DataSource = dataTable;
+            foreach (DataRow item in dataTable.Rows)
+            {
+                string query = string.Format("INSERT INTO dbo.Site(SiteId,SiteName,SiteProvince,SiteType) VALUES ('{0}',N'{1}',N'{2}',N'{3}')", item.ItemArray[2], "Viễn Thông " + item.ItemArray[1], item.ItemArray[1], "Đơn vị sử dụng");
+                OPMDBHandler.ExecuteNonQuery(query);
+            }
         }
 
-        private void buttonEdit_Click(object sender, EventArgs e)
-        {
-        }
     }
 }
