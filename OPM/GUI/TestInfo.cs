@@ -290,7 +290,7 @@ namespace OPM.GUI
             DataTable dataTable = DeliveryPlanObj.DeliveryPlanDataTable("3579/CUVT-KV");
             dataGridViewTest.DataSource = dataTable;
             dataGridViewTest.Columns["SiteId"].Visible = false;
-            OpmExcelHandler.ExportDataTableToExcel(dataTable, @"D:\TestOPM\Mẫu 2B.xlsx", 1, 4, 1);
+            //OpmExcelHandler.ExportDataTableToExcel(dataTable, @"D:\TestOPM\Mẫu 2B.xlsx", 1, 4, 1);
         }
         private void ProvinceInSertToSite()
         {

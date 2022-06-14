@@ -11,23 +11,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using ExcelOffice = Microsoft.Office.Interop.Excel;
+using Syncfusion.XlsIO;
 
 namespace OPM.ExcelHandler
 {
     class OpmExcelHandler
     {
-        private string _strFileName;
-
-
-        public string FileName
-        {
-            set { _strFileName = value; }
-            get { return _strFileName; }
-        }
-        public OpmExcelHandler()
-        { }
-        ~OpmExcelHandler()
-        { }
 
         public static string GetNameOfExcelFile()
         {
@@ -40,65 +29,102 @@ namespace OPM.ExcelHandler
                     return openFileExcel.FileName;
             return null;
         }
-        public static void ExportDataTableToExcel(System.Data.DataTable dataTable, string nameOfExcelFile, int indexWorksheet, int indexHeaderLine, int indexStartColumn)
+        //Mẫu 7 - Thành
+        public static string Temp7_CreatPODistributionTable(string poid)
         {
-            Microsoft.Office.Interop.Excel.Application excel = null;
-            Microsoft.Office.Interop.Excel.Workbook excelworkBook = null;
-            Microsoft.Office.Interop.Excel.Worksheet excelSheet = null;
-            Microsoft.Office.Interop.Excel.Range excelCellrange = null;
+            POObj po = new POObj(poid);
+            ContractObj contract = new ContractObj(po.ContractId);
+            SiteObj site = new SiteObj(contract.SiteId);
+            object path = @"D:\OPM\Template\Mẫu 7. Bảng phần bổ giá trị tạm ứng đơn hàng.xlsx";
+            if (!File.Exists(path.ToString()))
+            {
+                MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                return string.Format(@"Không tìm thấy {0}", path.ToString());
+            }
+            object m = Type.Missing;
+            ExcelOffice.Range xlRange = null;
+            ExcelOffice.Workbook xlWorkbook = null;
+            ExcelOffice.Application xlApp = null;
+            ExcelOffice._Worksheet xlWorksheet = null;
+
             try
             {
-                // Get Application object.
-                // Start Excel and get Application object.  
-                excel = new Microsoft.Office.Interop.Excel.Application();
-                // for making Excel visible  
-                excel.Visible = false;
-                excel.DisplayAlerts = false;
-                // Creation a new Workbook  
-                excelworkBook = excel.Workbooks.Add(Type.Missing);
-                // Workk sheet  
-                excelSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelworkBook.ActiveSheet;
-                excelSheet.Name = "Test work sheet";
-                //Test
-                excelSheet.Cells[5, 1] = 1;
-                excelSheet.Cells[6, 1] = 2;
 
-                //int countOfColumns = dataTable.Columns.Count;
-                //// Tổng số dòng
-                //int countOfRows = dataTable.Rows.Count; ;
-                ////filling the table from  excel file                
-                //for (int i = 0; i < countOfRows; i++)
-                //{
-                //    for (int j = 0; j <countOfColumns; j++)
-                //    {
-                //        range.Cells[i + indexHeaderLine, j + indexStartColumn] = dataTable.Rows[i].ItemArray[j];
-                //    }
+                xlApp = new ExcelOffice.Application();
+                xlWorkbook = xlApp.Workbooks.Open(path.ToString(), m, false, m, m, m, m, m, m, m, m, m, m, m, m);
+                xlWorksheet = (ExcelOffice._Worksheet)xlWorkbook.Sheets[1];
+                xlRange = xlWorksheet.UsedRange;
+                //Rellace theo từng cell
+                bool success = (bool)xlRange.Replace("<POAdvanceRequestId>", po.POAdvanceRequestId.ToString(), XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success1 = (bool)xlRange.Replace("<Ngày tháng năm>", string.Format("Hà Nội, ngày {0} tháng {1} năm {2}", po.POAdvanceRequestCreatedDate.Day, po.POAdvanceRequestCreatedDate.Month, po.POAdvanceRequestCreatedDate.Year), XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                string temp = @"Hợp đồng: " + po.ContractId + " ngày " + po.ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")) + " giữa " + po.SiteId + " và Công ty TNHH Thiết bị Viễn thông ANSV";
+                bool success2 = (bool)xlRange.Replace("<ghi chú>", temp, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                //bool success3 = (bool)xlRange.Replace("<ContractSiteId>", po.SiteId, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                //bool success4 = (bool)xlRange.Replace("<ContractCreatedDate>", po.ContractCreatedDate, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                //ExcelOffice._Worksheet xlWorksheet2 = (ExcelOffice._Worksheet)xlWorkbook.Sheets[2];
+                //ExcelOffice.Range xlRange2 = xlWorksheet.UsedRange;
 
-                //}
+                //Lấy bảng dữ liệu từ DataTable
+                System.Data.DataTable dataTable = POObj.PODeliveryPlanQuantity(po.POId);
+                int rowCount = dataTable.Rows.Count;
+                for(int i = 0; i < rowCount; i++)
+                {
+                    xlWorksheet.Cells[10 + i, 1] = i + 1;
+                    xlWorksheet.Cells[10 + i, 2] = dataTable.Rows[i].ItemArray[0].ToString();
+                    xlWorksheet.Cells[10 + i, 3] = dataTable.Rows[i].ItemArray[1];
+                    xlWorksheet.Cells[10 + i, 4] = dataTable.Rows[i].ItemArray[2];
+                    double tam = double.Parse(dataTable.Rows[i].ItemArray[1].ToString()) * int.Parse(dataTable.Rows[i].ItemArray[2].ToString());
+                    xlWorksheet.Cells[10 + i, 5] = tam;
+                    xlWorksheet.Cells[10 + i, 6] = tam/2;
+                }
 
-                //now close the workbook and make the function return the data table
+                string folder = string.Format(@"D:\OPM\{0}\{1}", po.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'));
+                Directory.CreateDirectory(folder);
+                object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 7. Bảng phần bổ giá trị tạm ứng đơn hàng.xlsx", po.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), po.POId.Replace('/', '-'));
+                xlWorkbook.SaveAs(filename, Type.Missing, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, XlSaveAsAccessMode.xlExclusive,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
-                Marshal.ReleaseComObject(excelCellrange);
-                Marshal.ReleaseComObject(excelSheet);
-                excelworkBook.Close();
-                Marshal.ReleaseComObject(excelworkBook);
-                excel.Quit();
-                Marshal.ReleaseComObject(excel);
-                return;
+                //rule of thumb for releasing com objects:  
+                //  never use two dots, all COM objects must be referenced and released individually  
+                //  ex: [somthing].[something].[something] is bad  
+
+                //release com objects to fully kill excel process from running in the background  
+                Marshal.ReleaseComObject(xlRange);
+                Marshal.ReleaseComObject(xlWorksheet);
+
+                //close and release  
+                xlWorkbook.Close();
+                Marshal.ReleaseComObject(xlWorkbook);
+
+                //quit and release  
+                xlApp.Quit();
+                Marshal.ReleaseComObject(xlApp);
+
+                return filename.ToString();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
-                Marshal.ReleaseComObject(excelCellrange);
-                Marshal.ReleaseComObject(excelSheet);
-                excelworkBook.Close();
-                Marshal.ReleaseComObject(excelworkBook);
-                excel.Quit();
-                Marshal.ReleaseComObject(excel);
-                return;
+                //rule of thumb for releasing com objects:  
+                //  never use two dots, all COM objects must be referenced and released individually  
+                //  ex: [somthing].[something].[something] is bad  
+
+                //release com objects to fully kill excel process from running in the background  
+                Marshal.ReleaseComObject(xlRange);
+                Marshal.ReleaseComObject(xlWorksheet);
+
+                //close and release  
+                xlWorkbook.Close();
+                Marshal.ReleaseComObject(xlWorkbook);
+
+                //quit and release  
+                xlApp.Quit();
+                Marshal.ReleaseComObject(xlApp);
+                return "Lỗi, không tạo được file Excel!";
             }
         }
         public static System.Data.DataTable ReadExcelToDataTable(string nameOfExcelFile, int indexWorksheet, int indexHeaderLine, int indexStartColumn)

@@ -1,4 +1,5 @@
 ﻿using OPM.DBHandler;
+using OPM.ExcelHandler;
 using OPM.OPMEnginee;
 using OPM.OPMWordHandler;
 using System;
@@ -68,14 +69,15 @@ namespace OPM.GUI
                     if (POObj.POExist(temp[1]))
                     {
                         //Tạo mẫu 7
-                        OpmWordHandler.Temp3_CreatPOConfirm(temp[1]);
-                        OpmWordHandler.Temp4_CreatPOPerformanceGuarantee(temp[1]);
-                        OpmWordHandler.Temp5_CreatPOAdvanceGuarantee(temp[1]);
-                        OpmWordHandler.Temp6_CreatPOAdvanceReques(temp[1]);
-                        OpmWordHandler.Temp23_CNCL_TongHop(temp[1]);
-                        OpmWordHandler.Temp24_CNCLNMTongHop(temp[1]);
-                        OpmWordHandler.Temp36_BBNTLicense(temp[1]);
-                        OpmWordHandler.Temp37_BBXNCDLicense(temp[1]);
+                        //OpmWordHandler.Temp3_CreatPOConfirm(temp[1]);
+                        //OpmWordHandler.Temp4_CreatPOPerformanceGuarantee(temp[1]);
+                        //OpmWordHandler.Temp5_CreatPOAdvanceGuarantee(temp[1]);
+                        //OpmWordHandler.Temp6_CreatPOAdvanceReques(temp[1]);
+                        OpmExcelHandler.Temp7_CreatPODistributionTable(temp[1]); 
+                        //OpmWordHandler.Temp23_CNCL_TongHop(temp[1]);
+                        //OpmWordHandler.Temp24_CNCLNMTongHop(temp[1]);
+                        //OpmWordHandler.Temp36_BBNTLicense(temp[1]);
+                        //OpmWordHandler.Temp37_BBXNCDLicense(temp[1]);
                     }
                     else
                     {

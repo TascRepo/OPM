@@ -139,6 +139,34 @@
           }
         }
       },
+      "Syncfusion.Compression.Base/20.1.0.59": {
+        "runtime": {
+          "lib/netcoreapp3.1/Syncfusion.Compression.Base.dll": {
+            "assemblyVersion": "20.1310.0.59",
+            "fileVersion": "20.1310.0.59"
+          }
+        }
+      },
+      "Syncfusion.Licensing/20.1.0.59": {
+        "runtime": {
+          "lib/netcoreapp3.1/Syncfusion.Licensing.dll": {
+            "assemblyVersion": "20.1.0.59",
+            "fileVersion": "20.1.0.59"
+          }
+        }
+      },
+      "Syncfusion.XlsIO.WinForms/20.1.0.59": {
+        "dependencies": {
+          "Syncfusion.Compression.Base": "20.1.0.59",
+          "Syncfusion.Licensing": "20.1.0.59"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Syncfusion.XlsIO.Base.dll": {
+            "assemblyVersion": "20.1310.0.59",
+            "fileVersion": "20.1310.0.59"
+          }
+        }
+      },
       "System.Data.SqlClient/4.8.2": {
         "dependencies": {
           "Microsoft.Win32.Registry": "4.7.0",
@@ -392,6 +420,27 @@
       "sha512": "sha512-WoSAw6kBR7ohxaSH8GGZotLXlzLZYTAJE+UFw+2WY0vKmRRefebv1iIYEAPNfbZmMQ9vF4kWS7HfZh+kF8+2Tg==",
       "path": "spire.office/7.5.4",
       "hashPath": "spire.office.7.5.4.nupkg.sha512"
+    },
+    "Syncfusion.Compression.Base/20.1.0.59": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-R340t9z+l1kjaNjmgefOx7KuLthdrHqN0HagtDMj7fnEFTllasfnRewaSxnMJifJX0Q0UW/ey8fzsKA00sTPnA==",
+      "path": "syncfusion.compression.base/20.1.0.59",
+      "hashPath": "syncfusion.compression.base.20.1.0.59.nupkg.sha512"
+    },
+    "Syncfusion.Licensing/20.1.0.59": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-W8SzUDmLaX8Ivs9f7FYbxJGNkbjrYxjVOB3+dzQtk8UfhPwH3K8zD2WhNE61WRpB9ecTfe9YAmk2KnfapbOdEw==",
+      "path": "syncfusion.licensing/20.1.0.59",
+      "hashPath": "syncfusion.licensing.20.1.0.59.nupkg.sha512"
+    },
+    "Syncfusion.XlsIO.WinForms/20.1.0.59": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4GvOOTR0irSVonGMQCj9x/t6rd9SadrhEjfuDC0yQM+cX2Rr62fmjqlKXjjXABaStkXNcYeX51GivINCh0MF1A==",
+      "path": "syncfusion.xlsio.winforms/20.1.0.59",
+      "hashPath": "syncfusion.xlsio.winforms.20.1.0.59.nupkg.sha512"
     },
     "System.Data.SqlClient/4.8.2": {
       "type": "package",

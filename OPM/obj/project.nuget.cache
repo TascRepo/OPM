@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kYJJ1UqoXRfmeItDg54xM0X5fB/1NW3jEJF90zX6sAOUtFyqhGY29FasJFyStr2GIQRYpeLQVNmx4RvCegXniA==",
+  "dgSpecHash": "Iksk75/WPt3G0gWI0AZFvmJrcuyY/+PPE8x0K5w2H2AX/LvrLfDqBRRxl1IUAL1j0LRCZqabHyaYnSDSKpKSyg==",
   "success": true,
   "projectFilePath": "D:\\OPM\\OPM\\OPM.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,9 @@
     "C:\\Users\\thanh\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\thanh\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\thanh\\.nuget\\packages\\spire.office\\7.5.4\\spire.office.7.5.4.nupkg.sha512",
+    "C:\\Users\\thanh\\.nuget\\packages\\syncfusion.compression.base\\20.1.0.59\\syncfusion.compression.base.20.1.0.59.nupkg.sha512",
+    "C:\\Users\\thanh\\.nuget\\packages\\syncfusion.licensing\\20.1.0.59\\syncfusion.licensing.20.1.0.59.nupkg.sha512",
+    "C:\\Users\\thanh\\.nuget\\packages\\syncfusion.xlsio.winforms\\20.1.0.59\\syncfusion.xlsio.winforms.20.1.0.59.nupkg.sha512",
     "C:\\Users\\thanh\\.nuget\\packages\\system.data.sqlclient\\4.8.2\\system.data.sqlclient.4.8.2.nupkg.sha512",
     "C:\\Users\\thanh\\.nuget\\packages\\system.drawing.common\\4.5.0\\system.drawing.common.4.5.0.nupkg.sha512",
     "C:\\Users\\thanh\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.0\\system.runtime.compilerservices.unsafe.4.5.0.nupkg.sha512",

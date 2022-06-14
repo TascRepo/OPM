@@ -319,6 +319,10 @@ namespace OPM.OPMEnginee
             double tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (double)tem1;
             return Math.Round(tem * 0.02, 0, MidpointRounding.AwayFromZero);
         }
-
+        public static DataTable PODeliveryPlanQuantity(string POId)
+        {
+            string query = string.Format(@"SELECT VNPTId, SUM(DeliveryPlanQuantity) AS DeliveryPlanQuantity, (SELECT dbo.Contract.ContractGoodsUnitPrice FROM dbo.Contract, dbo.PO WHERE po.POId = '{0}' AND dbo.PO.ContractId = dbo.Contract.ContractId) AS ContractGoodsUnitPrice FROM DeliveryPlan WHERE POId = '3579/CUVT-KV' GROUP BY VNPTId", POId);
+            return OPMDBHandler.ExecuteQuery(query);
+        }
     }
 }
