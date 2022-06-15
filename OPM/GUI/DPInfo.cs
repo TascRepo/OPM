@@ -236,6 +236,14 @@ namespace OPM.GUI
                 if (!string.IsNullOrEmpty(textBoxPLQuantity.Text.Trim()))
                 {
                     tem = double.Parse(textBoxPLQuantity.Text.Trim());
+                    if(tem > double.Parse(textBoxRemainingVNPTTotalQuantity.Text))
+                    {
+                        MessageBox.Show(string.Format("Nhập giá trị nằm trong khoảng từ 1 đến {0}", double.Parse(textBoxRemainingVNPTTotalQuantity.Text)));
+                    }
+                    if(tem > double.Parse(textBoxRemainingDPQuantity.Text))
+                    {
+                        MessageBox.Show(string.Format("Nhập giá trị nằm trong khoảng từ 1 đến {0}", double.Parse(textBoxRemainingDPQuantity.Text)));
+                    }
                 }
                 else
                 { 
@@ -245,6 +253,7 @@ namespace OPM.GUI
             catch
             {
                 MessageBox.Show("Nhập lại DPQuantity dạng số!");
+                return;
             }
             if ((Tag as OPMDASHBOARDA).Dp.DPType == 0)
             {

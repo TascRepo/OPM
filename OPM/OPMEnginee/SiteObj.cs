@@ -220,14 +220,19 @@ namespace OPM.OPMEnginee
         }
         public static List<SiteObj> SiteGetListProvince(string POId, string DPId)
         {
-            //string query = string.Format("SELECT * FROM dbo.Site AS s WHERE s.SiteId IN (SELECT DISTINCT VNPTId FROM dbo.DeliveryPlan WHERE POId = '{0}')",POId);
+            DPObj dP = new DPObj(DPId);
             string query = string.Format("SELECT * FROM dbo.Site AS s WHERE s.SiteId IN (SELECT DISTINCT VNPTId FROM dbo.DeliveryPlan WHERE POId = '{0}')  AND s.SiteId NOT IN (SELECT VNPTId FROM dbo.PL WHERE DPId = '{1}')", POId, DPId);
             DataTable dataTable = OPMDBHandler.ExecuteQuery(query);
             List<SiteObj> list = new List<SiteObj>();
             foreach (DataRow item in dataTable.Rows)
             {
                 SiteObj site = new SiteObj(item);
-                list.Add(site);
+                double temp1 = PLObj.PLGetTotalQuantityByPOIdAndVNPTId(POId, item.ItemArray[0].ToString());
+                double temp2 = DeliveryPlanObj.DeliveryPlanTotalQuantityByPOIdAndVNPTIdDetail(POId, item.ItemArray[0].ToString());
+                if (temp1 != temp2)
+                {
+                    list.Add(site);
+                }
             }
             return list;
         }
