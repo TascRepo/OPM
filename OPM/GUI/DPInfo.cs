@@ -66,12 +66,20 @@ namespace OPM.GUI
             textBoxDPId.DataBindings.Add(new Binding("Text", dtgDP.DataSource, "DPId"));
             dateTimePickerDPDate.DataBindings.Clear();
             dateTimePickerDPDate.DataBindings.Add(new Binding("Value", dtgDP.DataSource, "DPDate"));
+            dateTimePickerDPRequestDate.DataBindings.Clear();
+            dateTimePickerDPRequestDate.DataBindings.Add(new Binding("Value", dtgDP.DataSource, "DPRequestDate"));
+            dateTimePickerDPResponseDate.DataBindings.Clear();
+            dateTimePickerDPResponseDate.DataBindings.Add(new Binding("Value", dtgDP.DataSource, "DPResponseDate"));
+            dateTimePickerDPRefundDate.DataBindings.Clear();
+            dateTimePickerDPRefundDate.DataBindings.Add(new Binding("Value", dtgDP.DataSource, "DPRefundDate"));
             textBoxDPRemarks.DataBindings.Clear();
             textBoxDPRemarks.DataBindings.Add(new Binding("Text", dtgDP.DataSource, "DPRemarks"));
             comboBoxDPType.DataBindings.Clear();
             comboBoxDPType.DataBindings.Add(new Binding("SelectedIndex", dtgDP.DataSource, "DPType"));
             textBoxDPQuantity.DataBindings.Clear();
             textBoxDPQuantity.DataBindings.Add(new Binding("Text", dtgDP.DataSource, "DPQuantity"));
+            textBoxDPQuantity1.DataBindings.Clear();
+            textBoxDPQuantity1.DataBindings.Add(new Binding("Text", dtgDP.DataSource, "DPQuantity1"));
             txtVNPTId.DataBindings.Clear();
             txtVNPTId.DataBindings.Add(new Binding("Text", dtgDP.DataSource, "VNPTId"));
             textBoxPLId.DataBindings.Clear();
@@ -266,5 +274,41 @@ namespace OPM.GUI
 
         }
 
+        private void buttonCreateDoc_Click(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).CreatDocumentByNodeName();
+        }
+
+        private void textBoxDPQuantity1_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(textBoxDPQuantity1.Text.Trim()))
+                {
+                    (Tag as OPMDASHBOARDA).Dp.DPQuantity1 = int.Parse(textBoxDPQuantity1.Text.Trim());
+                }
+                else
+                    (Tag as OPMDASHBOARDA).Dp.DPQuantity1 = 0;
+            }
+            catch
+            {
+                MessageBox.Show("Nhập lại DPQuantity dạng số!");
+            }
+        }
+
+        private void dateTimePickerDPRequestDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Dp.DPRequestDate = dateTimePickerDPRequestDate.Value;
+        }
+
+        private void dateTimePickerDPResponseDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Dp.DPResponseDate = dateTimePickerDPResponseDate.Value;
+        }
+
+        private void dateTimePickerDPRefundDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Dp.DPRefundDate = dateTimePickerDPRefundDate.Value;
+        }
     }
 }

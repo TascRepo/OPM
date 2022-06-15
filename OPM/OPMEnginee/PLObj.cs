@@ -167,6 +167,10 @@ namespace OPM.OPMEnginee
             int tem = (tem1 == null || tem1 == DBNull.Value) ? 0 : (int)tem1;
             return tem;
         }
-
+        public static DataTable GetDataTableByDPId(string DPId)
+        {
+            string query = string.Format("SELECT dbo.PL.VNPTId, dbo.Site.SiteName, PLQuantity FROM dbo.PL,dbo.Site WHERE dbo.PL.DPId='{0}' AND dbo.PL.VNPTId = dbo.Site.SiteId", DPId);
+            return OPMDBHandler.ExecuteQuery(query);
+        }
     }
 }

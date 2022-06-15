@@ -68,16 +68,15 @@ namespace OPM.GUI
                 case "PO":
                     if (POObj.POExist(temp[1]))
                     {
-                        //Tạo mẫu 7
-                        //OpmWordHandler.Temp3_CreatPOConfirm(temp[1]);
-                        //OpmWordHandler.Temp4_CreatPOPerformanceGuarantee(temp[1]);
-                        //OpmWordHandler.Temp5_CreatPOAdvanceGuarantee(temp[1]);
-                        //OpmWordHandler.Temp6_CreatPOAdvanceReques(temp[1]);
-                        OpmExcelHandler.Temp7_CreatPODistributionTable(temp[1]); 
-                        //OpmWordHandler.Temp23_CNCL_TongHop(temp[1]);
-                        //OpmWordHandler.Temp24_CNCLNMTongHop(temp[1]);
-                        //OpmWordHandler.Temp36_BBNTLicense(temp[1]);
-                        //OpmWordHandler.Temp37_BBXNCDLicense(temp[1]);
+                        OpmWordHandler.Temp3_CreatPOConfirm(temp[1]);
+                        OpmWordHandler.Temp4_CreatPOPerformanceGuarantee(temp[1]);
+                        OpmWordHandler.Temp5_CreatPOAdvanceGuarantee(temp[1]);
+                        OpmWordHandler.Temp6_CreatPOAdvanceReques(temp[1]);
+                        OpmExcelHandler.Temp7_CreatPODistributionTable(temp[1]);
+                        OpmWordHandler.Temp23_CNCL_TongHop(temp[1]);
+                        OpmWordHandler.Temp24_CNCLNMTongHop(temp[1]);
+                        OpmWordHandler.Temp36_BBNTLicense(temp[1]);
+                        OpmWordHandler.Temp37_BBXNCDLicense(temp[1]);
                     }
                     else
                     {
@@ -85,12 +84,29 @@ namespace OPM.GUI
                     }
                     break;
                 case "DP":
+                    if (DPObj.DPExist(temp[1]))
+                    {
+                        //OpmExcelHandler.Temp12_CreatedbyOPM_DP(temp[1]);
+                        //OpmExcelHandler.Temp13_ExportRequestForm_ANSV(temp[1]);
+                        OpmExcelHandler.Temp14_CreatedbyANSV_DP(temp[1]);
+                    }
+                    else
+                    {
+                        MessageBox.Show(string.Format(@"Không có DP số '{0}'", temp[1]));
+                    }
                     break;
                 case "NTKT":
-                    OpmWordHandler.Temp08_NTKTRequest(temp[1]);
-                    OpmWordHandler.Temp09_BBKTKT(temp[1]);
-                    OpmWordHandler.Temp10_CNBQPM(temp[1]);
-                    OpmWordHandler.Temp11_BBNTKT(temp[1]);
+                    if (NTKTObj.NTKTExist(temp[1]))
+                    {
+                        OpmWordHandler.Temp08_NTKTRequest(temp[1]);
+                        OpmWordHandler.Temp09_BBKTKT(temp[1]);
+                        OpmWordHandler.Temp10_CNBQPM(temp[1]);
+                        OpmWordHandler.Temp11_BBNTKT(temp[1]);
+                    }
+                    else
+                    {
+                        MessageBox.Show(string.Format(@"Không có NTKT số '{0}'", temp[1]));
+                    }
                     break;
                 case "PL":
                     break;

@@ -27,6 +27,10 @@ namespace OPM.OPMEnginee
                         DPDate = (row["DPDate"] == null || row["DPDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPDate"];
                         DPType = (row["DPType"] == null || row["DPType"] == DBNull.Value) ? 0 : (int)row["DPType"];
                         DPQuantity = (row["DPQuantity"] == null || row["DPQuantity"] == DBNull.Value) ? 0 : (int)row["DPQuantity"];
+                        DPQuantity1 = (row["DPQuantity1"] == null || row["DPQuantity1"] == DBNull.Value) ? 0 : (int)row["DPQuantity1"];
+                        DPRequestDate = (row["DPRequestDate"] == null || row["DPRequestDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPRequestDate"];
+                        DPResponseDate = (row["DPResponseDate"] == null || row["DPResponseDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPResponseDate"];
+                        DPRefundDate = (row["DPRefundDate"] == null || row["DPRefundDate"] == DBNull.Value) ? DateTime.Parse("01/01/2000") : (DateTime)row["DPRefundDate"];
                         DPRemarks = (row["DPRemarks"] == null || row["DPRemarks"] == DBNull.Value) ? "" : row["DPRemarks"].ToString();
                     }
                 }
@@ -39,6 +43,10 @@ namespace OPM.OPMEnginee
         public DateTime DPDate { get; set; } = DateTime.Now;
         public int DPType { get; set; } = 0;
         public int DPQuantity { get; set; } = 0;
+        public int DPQuantity1 { get; set; } = 0;
+        public DateTime DPRequestDate { get; set; } = DateTime.Now;
+        public DateTime DPResponseDate { get; set; } = DateTime.Now;
+        public DateTime DPRefundDate { get; set; } = DateTime.MinValue;
         public string DPRemarks { get; set; } = "";
 
         public DPObj() { }
@@ -57,11 +65,14 @@ namespace OPM.OPMEnginee
         }
         public DPObj(DataRow row)
         {
-            DPId = (row["DPId"] == null || row["DPId"] == DBNull.Value) ? @"XXXX/2021" : row["DPId"].ToString();
             POId = (row["POId"] == null || row["POId"] == DBNull.Value) ? "XXXX/CUVT-KV" : row["POId"].ToString();
             DPDate = (row["DPDate"] == null || row["DPDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPDate"];
             DPType = (row["DPType"] == null || row["DPType"] == DBNull.Value) ? 0 : (int)row["DPType"];
             DPQuantity = (row["DPQuantity"] == null || row["DPQuantity"] == DBNull.Value) ? 0 : (int)row["DPQuantity"];
+            DPQuantity1 = (row["DPQuantity1"] == null || row["DPQuantity1"] == DBNull.Value) ? 0 : (int)row["DPQuantity1"];
+            DPRequestDate = (row["DPRequestDate"] == null || row["DPRequestDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPRequestDate"];
+            DPResponseDate = (row["DPResponseDate"] == null || row["DPResponseDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPResponseDate"];
+            DPRefundDate = (row["DPRefundDate"] == null || row["DPRefundDate"] == DBNull.Value) ? DateTime.Parse("01/01/2000") : (DateTime)row["DPRefundDate"];
             DPRemarks = (row["DPRemarks"] == null || row["DPRemarks"] == DBNull.Value) ? "" : row["DPRemarks"].ToString();
         }
         public bool DPExist()
@@ -139,28 +150,28 @@ namespace OPM.OPMEnginee
         }
         public void DPUpdate()
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPQuantity = {4}, DPRemarks = N'{5}' WHERE DPId = '{0}'", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPRemarks);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPQuantity = {4}, DPQuantity1 = {5}, DPRequestDate = '{6}', DPResponseDate = '{7}', DPRefundDate = '{8}', DPRemarks = N'{9}' WHERE DPId = '{0}'", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPQuantity1, DPRequestDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPResponseDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRefundDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRemarks);
             OPMDBHandler.ExecuteNonQuery(query);
         }
         public void DPUpdate(int DPId)
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPQuantity = {4}, DPRemarks = N'{5}' WHERE DPId = '{0}'", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")),  DPQuantity,DPType, DPQuantity, DPRemarks);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPQuantity = {4}, DPQuantity1 = {5}, DPRequestDate = '{6}', DPResponseDate = '{7}', DPRefundDate = '{8}', DPRemarks = N'{9}' WHERE DPId = '{0}'", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPQuantity1, DPRequestDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPResponseDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRefundDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRemarks);
             OPMDBHandler.ExecuteNonQuery(query);
         }
         public int DPUpdate(string newId, string oldId)
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPQuantity = {4}, DPRemarks = N'{5}' WHERE DPId = '{6}'", newId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPRemarks, oldId);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPQuantity = {4}, DPQuantity1 = {5}, DPRequestDate = '{6}', DPResponseDate = '{7}', DPRefundDate = '{8}', DPRemarks = N'{9}' WHERE DPId = '{10}'", newId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPQuantity1, DPRequestDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPResponseDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRefundDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRemarks, oldId);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public int DPInsert()
         {
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate,DPType, DPQuantity,DPRemarks) VALUES('{0}','{1}','{2}',{3},{4},N'{5}')", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPRemarks);
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate,DPType,DPQuantity,DPRemarks) VALUES('{0}','{1}','{2}',{3},{4},{5},'{6}','{7}','{8}',N'{9}')", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPQuantity1, DPRequestDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPResponseDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRefundDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRemarks);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
-        public int DPInsert(string id)
+        public int DPInsert(string DPId)
         {
-            if (DPObj.DPExist(id)) return 0;
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate,DPType, DPQuantity,DPRemarks) VALUES('{0}','{1}','{2}',{3},{4},N'{5}')", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPRemarks);
+            if (DPObj.DPExist(DPId)) return 0;
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate,DPType,DPQuantity,DPRemarks) VALUES('{0}','{1}','{2}',{3},{4},{5},'{6}','{7}','{8}',N'{9}'))", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPQuantity1, DPRequestDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPResponseDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRefundDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRemarks);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
     }
