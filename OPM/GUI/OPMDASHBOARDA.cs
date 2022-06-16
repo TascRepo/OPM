@@ -112,9 +112,10 @@ namespace OPM.GUI
                 case "PL":
                     if (PLObj.PLExist(temp[1]))
                     {
-                        //OpmWordHandler.Temp18_GoodsDeliveryRecord(temp[1]);
+                        OpmWordHandler.Temp18_GoodsDeliveryRecord(temp[1]);
                         OpmWordHandler.Temp19_QualityInspectionCertificateInFactory(temp[1]);
                         OpmWordHandler.Temp20_QualityInspectionCertificate(temp[1]);
+                        OpmWordHandler.Temp22_Warranty(temp[1]);
                     }
                     else
                     {
