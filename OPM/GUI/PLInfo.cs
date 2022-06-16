@@ -32,6 +32,8 @@ namespace OPM.GUI
             txtPLVolume.Text = pl.PLVolume.ToString();
             txtPLNetWeight.Text = pl.PLNetWeight.ToString();
             txtPLGrossWeight.Text = pl.PLGrossWeight.ToString();
+            dateTimePickerPLQualityInspectionCertificateInFactoryDate.Value = pl.PLQualityInspectionCertificateInFactoryDate;
+            dateTimePickerPLQualityInspectionCertificateDate.Value = pl.PLQualityInspectionCertificateDate;
             DataTable dataTable = DeviceObj.DeviceGetDataTableByPLId(pl.PLId);
             dtgPL.DataSource = dataTable;
             DataBindingsFromDtgPLToTextBoxsPL();
@@ -236,6 +238,16 @@ namespace OPM.GUI
         private void buttonCreatDoc_Click(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).CreatDocumentByNodeName();
+        }
+
+        private void dateTimePickerPLQualityInspectionCertificateInFactoryDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Pl.PLQualityInspectionCertificateInFactoryDate = dateTimePickerPLQualityInspectionCertificateInFactoryDate.Value;
+        }
+
+        private void dateTimePickerPLQualityInspectionCertificateDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Pl.PLQualityInspectionCertificateDate = dateTimePickerPLQualityInspectionCertificateDate.Value;
         }
     }
 }

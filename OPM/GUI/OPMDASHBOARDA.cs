@@ -114,6 +114,7 @@ namespace OPM.GUI
                     {
                         //OpmWordHandler.Temp18_GoodsDeliveryRecord(temp[1]);
                         OpmWordHandler.Temp19_QualityInspectionCertificateInFactory(temp[1]);
+                        OpmWordHandler.Temp20_QualityInspectionCertificate(temp[1]);
                     }
                     else
                     {

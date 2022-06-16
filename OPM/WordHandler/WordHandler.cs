@@ -370,6 +370,92 @@ namespace OPM.OPMWordHandler
                 return e.Message;
             }
         }
+        //Tạo mẫu 20: Giấy chứng nhận chất lượng
+        public static string Temp20_QualityInspectionCertificate(string PLId)
+        {
+            object path = @"D:\OPM\Template\Mẫu 20. Giấy CNCL gửi tỉnh.docx";
+            if (!File.Exists(path.ToString()))
+            {
+                MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                return string.Format(@"Không tìm thấy {0}", path.ToString());
+            }
+            Word.Application wordApp = new Word.Application();
+            object missing = Missing.Value;
+            Word.Document myDoc = null;
+            try
+            {
+                PLObj pl = new PLObj(PLId);
+                SiteObj vnpt = new SiteObj(pl.VNPTId);
+                object filename = string.Format(@"D:\OPM\{0}\{1}\DP{2}\Mẫu 20. Giấy CNCL gửi tỉnh_{3}.docx", pl.ContractId.Trim().Replace('/', '-'), pl.POName.Replace('/', '-'), pl.DPId.Replace('/', '-'), pl.VNPTId.Replace('/', '-'));
+                object readOnly = true;
+                //object isVisible = false;
+                wordApp.Visible = false;
+
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                //find and replace
+                OpmWordHandler.FindAndReplace(wordApp, "<DPVNPTTechANSVContractNumber>", pl.DPVNPTTechANSVContractNumber);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractId>", pl.ContractId);
+                //OpmWordHandler.FindAndReplace(wordApp, "<ContractCreatedDate>", pl.ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<SiteName>", pl.SiteName);
+                //OpmWordHandler.FindAndReplace(wordApp, "<ContractShoppingPlan>", pl.ContractShoppingPlan);
+                OpmWordHandler.FindAndReplace(wordApp, "<POName>", pl.POName);
+                //OpmWordHandler.FindAndReplace(wordApp, "<POId>", pl.POId);
+                //OpmWordHandler.FindAndReplace(wordApp, "<POCreatedDate>", pl.POCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                //OpmWordHandler.FindAndReplace(wordApp, "<PLDate>", pl.PLDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteName>", vnpt.SiteName);
+                //OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteAddress>", vnpt.SiteAddress);
+                //OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SitePhonenumber>", vnpt.SitePhonenumber);
+                //OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteFaxNumber>", vnpt.SiteFaxNumber);
+                //OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteRepresentative1>", vnpt.SiteRepresentative1);
+                //OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteProxy1>", vnpt.SiteProxy1);
+                //OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteRepresentative2>", vnpt.SiteRepresentative1);
+                //OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteProxy2>", vnpt.SiteProxy1);
+                //OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteRepresentative3>", vnpt.SiteRepresentative1);
+                //OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteProxy3>", vnpt.SiteProxy1);
+                //OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsDesignation1>", pl.ContractGoodsDesignation1);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsDesignation>", pl.ContractGoodsDesignation);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsUnit>", pl.ContractGoodsUnit);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsCode>", pl.ContractGoodsCode);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsManufacture>", pl.ContractGoodsManufacture);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsOrigin>", pl.ContractGoodsOrigin);
+                OpmWordHandler.FindAndReplace(wordApp, "<PLQuantity>", pl.PLQuantity);
+                OpmWordHandler.FindAndReplace(wordApp, "<PLQuantity1>", Math.Round(pl.PLQuantity * 0.02));
+                OpmWordHandler.FindAndReplace(wordApp, "<PLQuantityTotal>", pl.PLQuantity + Math.Round(pl.PLQuantity * 0.02));
+                OpmWordHandler.FindAndReplace(wordApp, "<PLQualityInspectionCertificateDate>", pl.PLQualityInspectionCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                
+                //OpmWordHandler.FindAndReplace(wordApp, "<DPId>", pl.DPId);
+                //OpmWordHandler.FindAndReplace(wordApp, "<DeviceCaseNumberRange>", DeviceObj.DeviceCaseNumberRange(PLId));
+                //OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsUnitPrice>", pl.ContractGoodsUnitPrice);
+                //OpmWordHandler.FindAndReplace(wordApp, "<TotalPreVAT>", pl.PLQuantity * pl.ContractGoodsUnitPrice);
+                //OpmWordHandler.FindAndReplace(wordApp, "<VAT>", 0.1 * pl.PLQuantity * pl.ContractGoodsUnitPrice);
+                //OpmWordHandler.FindAndReplace(wordApp, "<TotalAfterVAT>", pl.PLQuantity * pl.ContractGoodsUnitPrice * 1.1);
+
+                //Tạo file BLHĐ trong thư mục D:\OPM
+                string folder = string.Format(@"D:\OPM\{0}\{1}\DP{2}", pl.ContractId.Trim().Replace('/', '-'), pl.POName.Replace('/', '-'), pl.DPId.Replace('/', '-'), pl.VNPTId.Replace('/', '-'));
+                Directory.CreateDirectory(folder);
+                myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing);
+                MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                myDoc.Close();
+                wordApp.Quit();
+                return filename.ToString();
+            }
+            catch (Exception e)
+            {
+                myDoc.Close();
+                wordApp.Quit();
+                MessageBox.Show(e.Message);
+                return e.Message;
+            }
+        }
         //Tạo mẫu 19: Giấy chứng nhận chất lượng từ nhà máy
         public static string Temp19_QualityInspectionCertificateInFactory(string PLId)
         {
@@ -425,6 +511,7 @@ namespace OPM.OPMWordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<PLQuantity1>", Math.Round(pl.PLQuantity * 0.02));
                 OpmWordHandler.FindAndReplace(wordApp, "<DPId>", pl.DPId);
                 OpmWordHandler.FindAndReplace(wordApp, "<DeviceCaseNumberRange>", DeviceObj.DeviceCaseNumberRange(PLId));
+                OpmWordHandler.FindAndReplace(wordApp, "<PLQualityInspectionCertificateInFactoryDate>", pl.PLQualityInspectionCertificateInFactoryDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 //OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsUnitPrice>", pl.ContractGoodsUnitPrice);
                 //OpmWordHandler.FindAndReplace(wordApp, "<TotalPreVAT>", pl.PLQuantity * pl.ContractGoodsUnitPrice);
                 //OpmWordHandler.FindAndReplace(wordApp, "<VAT>", 0.1 * pl.PLQuantity * pl.ContractGoodsUnitPrice);

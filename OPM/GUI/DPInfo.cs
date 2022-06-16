@@ -86,6 +86,10 @@ namespace OPM.GUI
             textBoxPLId.DataBindings.Add(new Binding("Text", dtgDP.DataSource, "PLId"));
             txtPLQuantity.DataBindings.Clear();
             txtPLQuantity.DataBindings.Add(new Binding("Text", dtgDP.DataSource, "PLQuantity"));
+            textBoxDPVNPTTechANSVContractNumber.DataBindings.Clear();
+            textBoxDPVNPTTechANSVContractNumber.DataBindings.Add(new Binding("Text", dtgDP.DataSource, "DPVNPTTechANSVContractNumber"));
+            textBoxDPContractAccoutingCode.DataBindings.Clear();
+            textBoxDPContractAccoutingCode.DataBindings.Add(new Binding("Text", dtgDP.DataSource, "DPContractAccoutingCode"));
         }
 
         private void LoadToComboBoxVNPIId()
@@ -309,6 +313,16 @@ namespace OPM.GUI
         private void dateTimePickerDPRefundDate_ValueChanged(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).Dp.DPRefundDate = dateTimePickerDPRefundDate.Value;
+        }
+
+        private void textBoxDPVNPTTechANSVContractNumber_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Dp.DPVNPTTechANSVContractNumber = textBoxDPVNPTTechANSVContractNumber.Text.Trim();
+        }
+
+        private void textBoxDPContractAccoutingCode_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Dp.DPContractAccoutingCode = textBoxDPContractAccoutingCode.Text.Trim();
         }
     }
 }
