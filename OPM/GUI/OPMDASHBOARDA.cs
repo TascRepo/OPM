@@ -110,6 +110,14 @@ namespace OPM.GUI
                     }
                     break;
                 case "PL":
+                    if (PLObj.PLExist(temp[1]))
+                    {
+                        OpmWordHandler.Temp18_GoodsDeliveryRecord(temp[1]);
+                    }
+                    else
+                    {
+                        MessageBox.Show(string.Format(@"Không có NTKT số '{0}'", temp[1]));
+                    }
                     break;
                 default:
                     MessageBox.Show("Invalid grade");

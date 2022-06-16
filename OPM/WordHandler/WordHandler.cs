@@ -370,8 +370,86 @@ namespace OPM.OPMWordHandler
                 return e.Message;
             }
         }
+        //Tạo mẫu 18: Biên bản giao nhận hàng hoá
+        public static string Temp18_GoodsDeliveryRecord(string PLId)
+        {
+            object path = @"D:\OPM\Template\Mẫu 18.  Biên bản giao nhận hàng hóa.docx";
+            if (!File.Exists(path.ToString()))
+            {
+                MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                return string.Format(@"Không tìm thấy {0}", path.ToString());
+            }
+            Word.Application wordApp = new Word.Application();
+            object missing = Missing.Value;
+            Word.Document myDoc = null;
+            try
+            {
+                PLObj pl = new PLObj(PLId);
+                SiteObj vnpt = new SiteObj(pl.VNPTId);
+                object filename = string.Format(@"D:\OPM\{0}\{1}\DP{2}\Mẫu 18.  Biên bản giao nhận hàng hóa_{3}.docx", pl.ContractId.Trim().Replace('/', '-'), pl.POName.Replace('/', '-'), pl.DPId.Replace('/', '-'),pl.VNPTId.Replace('/', '-'));
+                object readOnly = true;
+                //object isVisible = false;
+                wordApp.Visible = false;
 
-        //Tạo mẫu 11
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                //find and replace
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractId>", pl.ContractId);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractCreatedDate>", pl.ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<SiteName>", pl.SiteName);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractShoppingPlan>", pl.ContractShoppingPlan);
+                OpmWordHandler.FindAndReplace(wordApp, "<POName>", pl.POName);
+                OpmWordHandler.FindAndReplace(wordApp, "<POId>", pl.POId);
+                OpmWordHandler.FindAndReplace(wordApp, "<POCreatedDate>", pl.POCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<PLDate>", pl.PLDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteName>", vnpt.SiteName);
+                OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteAddress>", vnpt.SiteAddress);
+                OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SitePhonenumber>", vnpt.SitePhonenumber);
+                OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteFaxNumber>", vnpt.SiteFaxNumber);
+                OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteRepresentative1>", vnpt.SiteRepresentative1);
+                OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteProxy1>", vnpt.SiteProxy1);
+                OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteRepresentative2>", vnpt.SiteRepresentative1);
+                OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteProxy2>", vnpt.SiteProxy1);
+                OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteRepresentative3>", vnpt.SiteRepresentative1);
+                OpmWordHandler.FindAndReplace(wordApp, "<vnpt.SiteProxy3>", vnpt.SiteProxy1);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsDesignation>", pl.ContractGoodsDesignation);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsUnit>", pl.ContractGoodsUnit);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsCode>", pl.ContractGoodsCode);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsOrigin>", pl.ContractGoodsOrigin);
+                OpmWordHandler.FindAndReplace(wordApp, "<PLQuantity>", pl.PLQuantity);
+                OpmWordHandler.FindAndReplace(wordApp, "<PLQuantity1>", Math.Round(pl.PLQuantity*0.02));
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsUnitPrice>", pl.ContractGoodsUnitPrice);
+                OpmWordHandler.FindAndReplace(wordApp, "<TotalPreVAT>", pl.PLQuantity *pl.ContractGoodsUnitPrice);
+                OpmWordHandler.FindAndReplace(wordApp, "<VAT>", 0.1*pl.PLQuantity * pl.ContractGoodsUnitPrice);
+                OpmWordHandler.FindAndReplace(wordApp, "<TotalAfterVAT>", pl.PLQuantity * pl.ContractGoodsUnitPrice*1.1);
+
+                //Tạo file BLHĐ trong thư mục D:\OPM
+                string folder = string.Format(@"D:\OPM\{0}\{1}\DP{2}", pl.ContractId.Trim().Replace('/', '-'), pl.POName.Replace('/', '-'), pl.DPId.Replace('/', '-'), pl.VNPTId.Replace('/', '-'));
+                Directory.CreateDirectory(folder);
+                myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing);
+                MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                myDoc.Close();
+                wordApp.Quit();
+                return filename.ToString();
+            }
+            catch (Exception e)
+            {
+                myDoc.Close();
+                wordApp.Quit();
+                MessageBox.Show(e.Message);
+                return e.Message;
+            }
+        }
+
+        //Tạo mẫu 11: Biên bản nghiệm thu kỹ thuật
         public static string Temp11_BBNTKT(string ntktId)
         {
             object path = @"D:\OPM\Template\Mẫu 11. Biên bản nghiệm thu kỹ thuật.docx";
@@ -454,7 +532,7 @@ namespace OPM.OPMWordHandler
                 return e.Message;
             }
         }
-        //Tạo mẫu 10
+        //Tạo mẫu 10: Chứng nhận bản quyền phần mềm
         public static string Temp10_CNBQPM(string ntktId)
         {
             object path = @"D:\OPM\Template\Mẫu 10. Chứng nhận bản quyền phần mềm.docx";

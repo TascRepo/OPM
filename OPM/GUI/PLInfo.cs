@@ -232,5 +232,10 @@ namespace OPM.GUI
         {
             DeviceObj.DeviceUpdateByBoxNumber(textBoxDeviceBoxNumber.Text.Trim(), textBoxDeviceCaseNumber.Text.Trim());
         }
+
+        private void buttonCreatDoc_Click(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).CreatDocumentByNodeName();
+        }
     }
 }

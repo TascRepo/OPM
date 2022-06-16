@@ -64,6 +64,7 @@ namespace OPM.GUI
             this.dtgPL = new System.Windows.Forms.DataGridView();
             this.btnClose = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.buttonCreatDoc = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPL)).BeginInit();
@@ -79,11 +80,11 @@ namespace OPM.GUI
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBoxDeviceBoxNumber);
-            this.groupBox1.Location = new System.Drawing.Point(563, 375);
+            this.groupBox1.Location = new System.Drawing.Point(508, 375);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(525, 458);
+            this.groupBox1.Size = new System.Drawing.Size(580, 458);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thao tác với bảng Device";
@@ -95,7 +96,7 @@ namespace OPM.GUI
             this.textBoxPackingListSerialNumberRange.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxPackingListSerialNumberRange.Multiline = true;
             this.textBoxPackingListSerialNumberRange.Name = "textBoxPackingListSerialNumberRange";
-            this.textBoxPackingListSerialNumberRange.Size = new System.Drawing.Size(390, 307);
+            this.textBoxPackingListSerialNumberRange.Size = new System.Drawing.Size(442, 307);
             this.textBoxPackingListSerialNumberRange.TabIndex = 6;
             // 
             // textBoxDeviceCaseNumber
@@ -105,7 +106,7 @@ namespace OPM.GUI
             this.textBoxDeviceCaseNumber.Location = new System.Drawing.Point(116, 29);
             this.textBoxDeviceCaseNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxDeviceCaseNumber.Name = "textBoxDeviceCaseNumber";
-            this.textBoxDeviceCaseNumber.Size = new System.Drawing.Size(388, 31);
+            this.textBoxDeviceCaseNumber.Size = new System.Drawing.Size(441, 31);
             this.textBoxDeviceCaseNumber.TabIndex = 3;
             // 
             // label12
@@ -131,7 +132,7 @@ namespace OPM.GUI
             // textBoxCaseQuantity
             // 
             this.textBoxCaseQuantity.Enabled = false;
-            this.textBoxCaseQuantity.Location = new System.Drawing.Point(374, 84);
+            this.textBoxCaseQuantity.Location = new System.Drawing.Point(427, 84);
             this.textBoxCaseQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxCaseQuantity.Name = "textBoxCaseQuantity";
             this.textBoxCaseQuantity.Size = new System.Drawing.Size(130, 31);
@@ -150,7 +151,7 @@ namespace OPM.GUI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(280, 86);
+            this.label1.Location = new System.Drawing.Point(333, 86);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 25);
@@ -178,6 +179,7 @@ namespace OPM.GUI
             this.groupBox7.Controls.Add(this.txtPLVolume);
             this.groupBox7.Controls.Add(this.txtPLDimension);
             this.groupBox7.Controls.Add(this.btnDeletePL);
+            this.groupBox7.Controls.Add(this.buttonCreatDoc);
             this.groupBox7.Controls.Add(this.buttonAddSerial);
             this.groupBox7.Controls.Add(this.btnSavePL);
             this.groupBox7.Controls.Add(this.dateTimePickerPLDate);
@@ -188,11 +190,11 @@ namespace OPM.GUI
             this.groupBox7.Controls.Add(this.label16);
             this.groupBox7.Controls.Add(this.txtPLQuantity);
             this.groupBox7.Controls.Add(this.txtPLId);
-            this.groupBox7.Location = new System.Drawing.Point(569, 17);
+            this.groupBox7.Location = new System.Drawing.Point(508, 17);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox7.Size = new System.Drawing.Size(525, 359);
+            this.groupBox7.Size = new System.Drawing.Size(586, 359);
             this.groupBox7.TabIndex = 12;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Thao tác với bảng PL";
@@ -209,7 +211,7 @@ namespace OPM.GUI
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(254, 261);
+            this.label10.Location = new System.Drawing.Point(307, 261);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(113, 25);
@@ -229,7 +231,7 @@ namespace OPM.GUI
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(294, 205);
+            this.label5.Location = new System.Drawing.Point(347, 205);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 25);
@@ -258,7 +260,7 @@ namespace OPM.GUI
             // 
             // txtPLGrossWeight
             // 
-            this.txtPLGrossWeight.Location = new System.Drawing.Point(374, 258);
+            this.txtPLGrossWeight.Location = new System.Drawing.Point(427, 258);
             this.txtPLGrossWeight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPLGrossWeight.Name = "txtPLGrossWeight";
             this.txtPLGrossWeight.Size = new System.Drawing.Size(130, 31);
@@ -276,7 +278,7 @@ namespace OPM.GUI
             // 
             // txtPLVolume
             // 
-            this.txtPLVolume.Location = new System.Drawing.Point(374, 202);
+            this.txtPLVolume.Location = new System.Drawing.Point(427, 202);
             this.txtPLVolume.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPLVolume.Name = "txtPLVolume";
             this.txtPLVolume.Size = new System.Drawing.Size(130, 31);
@@ -305,7 +307,7 @@ namespace OPM.GUI
             // 
             // buttonAddSerial
             // 
-            this.buttonAddSerial.Location = new System.Drawing.Point(374, 309);
+            this.buttonAddSerial.Location = new System.Drawing.Point(300, 308);
             this.buttonAddSerial.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonAddSerial.Name = "buttonAddSerial";
             this.buttonAddSerial.Size = new System.Drawing.Size(130, 40);
@@ -316,7 +318,7 @@ namespace OPM.GUI
             // 
             // btnSavePL
             // 
-            this.btnSavePL.Location = new System.Drawing.Point(191, 309);
+            this.btnSavePL.Location = new System.Drawing.Point(154, 308);
             this.btnSavePL.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSavePL.Name = "btnSavePL";
             this.btnSavePL.Size = new System.Drawing.Size(130, 40);
@@ -358,7 +360,7 @@ namespace OPM.GUI
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(245, 149);
+            this.label15.Location = new System.Drawing.Point(298, 149);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(124, 25);
@@ -367,7 +369,7 @@ namespace OPM.GUI
             // 
             // txtCaseQuantity
             // 
-            this.txtCaseQuantity.Location = new System.Drawing.Point(374, 146);
+            this.txtCaseQuantity.Location = new System.Drawing.Point(427, 146);
             this.txtCaseQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCaseQuantity.Name = "txtCaseQuantity";
             this.txtCaseQuantity.Size = new System.Drawing.Size(130, 31);
@@ -376,7 +378,7 @@ namespace OPM.GUI
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(279, 93);
+            this.label16.Location = new System.Drawing.Point(332, 93);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(85, 25);
@@ -386,7 +388,7 @@ namespace OPM.GUI
             // txtPLQuantity
             // 
             this.txtPLQuantity.Enabled = false;
-            this.txtPLQuantity.Location = new System.Drawing.Point(374, 90);
+            this.txtPLQuantity.Location = new System.Drawing.Point(427, 90);
             this.txtPLQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPLQuantity.Name = "txtPLQuantity";
             this.txtPLQuantity.Size = new System.Drawing.Size(130, 31);
@@ -397,7 +399,7 @@ namespace OPM.GUI
             this.txtPLId.Location = new System.Drawing.Point(116, 34);
             this.txtPLId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPLId.Name = "txtPLId";
-            this.txtPLId.Size = new System.Drawing.Size(388, 31);
+            this.txtPLId.Size = new System.Drawing.Size(441, 31);
             this.txtPLId.TabIndex = 3;
             this.txtPLId.TextChanged += new System.EventHandler(this.txtPLId_TextChanged);
             // 
@@ -420,7 +422,7 @@ namespace OPM.GUI
             this.dtgPL.Name = "dtgPL";
             this.dtgPL.RowHeadersWidth = 62;
             this.dtgPL.RowTemplate.Height = 25;
-            this.dtgPL.Size = new System.Drawing.Size(543, 866);
+            this.dtgPL.Size = new System.Drawing.Size(488, 866);
             this.dtgPL.TabIndex = 7;
             // 
             // btnClose
@@ -444,6 +446,17 @@ namespace OPM.GUI
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // buttonCreatDoc
+            // 
+            this.buttonCreatDoc.Location = new System.Drawing.Point(446, 308);
+            this.buttonCreatDoc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonCreatDoc.Name = "buttonCreatDoc";
+            this.buttonCreatDoc.Size = new System.Drawing.Size(130, 40);
+            this.buttonCreatDoc.TabIndex = 1;
+            this.buttonCreatDoc.Text = "CreatDoc";
+            this.buttonCreatDoc.UseVisualStyleBackColor = true;
+            this.buttonCreatDoc.Click += new System.EventHandler(this.buttonCreatDoc_Click);
             // 
             // PLInfo
             // 
@@ -519,5 +532,6 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox textBoxPackingListSeriGPONRange;
         private System.Windows.Forms.TextBox textBoxDeviceCaseNumber;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonCreatDoc;
     }
 }
