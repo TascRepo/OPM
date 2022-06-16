@@ -17,6 +17,131 @@ namespace OPM.ExcelHandler
 {
     class OpmExcelHandler
     {
+        //Mẫu 16 - Phiếu yêu cầu xuất kho ANSV
+        public static string Temp16_ExportRequestForm_VNPTTech(string DPId)
+        {
+            DPObj dP = new DPObj(DPId);
+            POObj po = new POObj(dP.POId);
+            ContractObj contract = new ContractObj(po.ContractId);
+            SiteObj site = new SiteObj(contract.SiteId);
+            object path = @"D:\OPM\Template\Mẫu 16. Phiếu YCXK. TECH.xlsx";
+            if (!File.Exists(path.ToString()))
+            {
+                MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                return string.Format(@"Không tìm thấy {0}", path.ToString());
+            }
+            object m = Type.Missing;
+            ExcelOffice.Range xlRange = null;
+            ExcelOffice.Workbook xlWorkbook = null;
+            ExcelOffice.Application xlApp = null;
+            ExcelOffice._Worksheet xlWorksheet = null;
+
+            try
+            {
+
+                xlApp = new ExcelOffice.Application();
+                xlWorkbook = xlApp.Workbooks.Open(path.ToString(), m, false, m, m, m, m, m, m, m, m, m, m, m, m);
+                xlWorksheet = (ExcelOffice._Worksheet)xlWorkbook.Sheets[1];
+                xlRange = xlWorksheet.UsedRange;
+                //Rellace theo từng cell
+                bool success0 = (bool)xlRange.Replace("<DPId>", dP.DPId, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success1 = (bool)xlRange.Replace("<DPVNPTTechANSVContractNumber>", dP.DPVNPTTechANSVContractNumber, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success2 = (bool)xlRange.Replace("<SiteName>", dP.SiteName, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success3 = (bool)xlRange.Replace("<DPRequestDate>", dP.DPRequestDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success4 = (bool)xlRange.Replace("<DPResponseDate>", dP.DPResponseDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success5 = (bool)xlRange.Replace("<SiteAddress>", dP.SiteAddress, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                if (dP.DPRefundDate.ToString() != @"01/01/2000")
+                {
+                    bool success6 = (bool)xlRange.Replace("<DPRefundDate>", dP.DPRefundDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                }
+                else
+                {
+                    bool success6 = (bool)xlRange.Replace("<DPRefundDate>", "", XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                }
+                bool success7 = (bool)xlRange.Replace("<DPContractAccoutingCode>", dP.DPContractAccoutingCode, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success8 = (bool)xlRange.Replace("<ContractGoodsCode>", dP.ContractGoodsCode, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success9 = (bool)xlRange.Replace("<ContractGoodsDesignation>", dP.ContractGoodsDesignation, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success10 = (bool)xlRange.Replace("<ContractGoodsUnit>", dP.ContractGoodsUnit, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success11 = (bool)xlRange.Replace("<DPQuantity>", dP.DPQuantity, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success111 = (bool)xlRange.Replace("<DPQuantity1>", dP.DPQuantity1, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success12 = (bool)xlRange.Replace("<DPType>", dP.DPType, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success13 = (bool)xlRange.Replace("<DPSpareQuantity>", Math.Round(dP.DPQuantity * 0.02), XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success14 = (bool)xlRange.Replace("<DPSpareQuantity1>", Math.Round(dP.DPQuantity1 * 0.02), XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success15 = (bool)xlRange.Replace("<DPRemarks>", dP.DPRemarks, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success16 = (bool)xlRange.Replace("<DPDate>", dP.DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                bool success17 = (bool)xlRange.Replace("<DPRemarks1>", dP.DPRemarks + @" Hàng dự phòng 2%", XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                //bool success1 = (bool)xlRange.Replace("<Ngày tháng năm>", string.Format("Hà Nội, ngày {0} tháng {1} năm {2}", po.POAdvanceRequestCreatedDate.Day, po.POAdvanceRequestCreatedDate.Month, po.POAdvanceRequestCreatedDate.Year), XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                //string temp = @"Hợp đồng: " + po.ContractId + " ngày " + po.ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")) + " giữa " + po.SiteId + " và Công ty TNHH Thiết bị Viễn thông ANSV";
+                //bool success2 = (bool)xlRange.Replace("<ghi chú>", temp, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                //bool success3 = (bool)xlRange.Replace("<ContractSiteId>", po.SiteId, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                //bool success4 = (bool)xlRange.Replace("<ContractCreatedDate>", po.ContractCreatedDate, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                //ExcelOffice._Worksheet xlWorksheet2 = (ExcelOffice._Worksheet)xlWorkbook.Sheets[2];
+                //ExcelOffice.Range xlRange2 = xlWorksheet.UsedRange;
+
+                //Lấy bảng dữ liệu từ DataTable
+                //System.Data.DataTable dataTable = PLObj.GetDataTableByDPId(DPId);
+                //int rowCount = dataTable.Rows.Count;
+                //for (int i = 0; i < rowCount; i++)
+                //{
+                //    xlWorksheet.Cells[16 + i, 1] = i + 1;
+                //    xlWorksheet.Cells[16 + i, 2] = dataTable.Rows[i].ItemArray[1].ToString();
+                //    xlWorksheet.Cells[16 + i, 3] = dataTable.Rows[i].ItemArray[2];
+                //    //xlWorksheet.Cells[1 + i, 4] = dataTable.Rows[i].ItemArray[2];
+                //    //double tam = double.Parse(dataTable.Rows[i].ItemArray[1].ToString()) * int.Parse(dataTable.Rows[i].ItemArray[2].ToString());
+                //    //xlWorksheet.Cells[10 + i, 5] = tam;
+                //    //xlWorksheet.Cells[10 + i, 6] = tam / 2;
+                //}
+                //xlWorksheet.Cells[16 + rowCount, 2] = "TỔNG CỘNG";
+                //xlWorksheet.Cells[16 + rowCount, 3] = dP.DPQuantity;
+                string folder = string.Format(@"D:\OPM\{0}\{1}\DP{2}", dP.ContractId.Trim().Replace('/', '-'), dP.POName.Replace('/', '-'), dP.DPId).Replace('/', '-');
+                Directory.CreateDirectory(folder);
+                object filename = string.Format(@"D:\OPM\{0}\{1}\DP{2}\Mẫu 16. Phiếu YCXK. TECH.xlsx", dP.ContractId.Trim().Replace('/', '-'), dP.POName.Replace('/', '-'), dP.DPId.Replace('/', '-'));
+                xlWorkbook.SaveAs(filename, Type.Missing, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, XlSaveAsAccessMode.xlExclusive,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                //rule of thumb for releasing com objects:  
+                //  never use two dots, all COM objects must be referenced and released individually  
+                //  ex: [somthing].[something].[something] is bad  
+
+                //release com objects to fully kill excel process from running in the background  
+                Marshal.ReleaseComObject(xlRange);
+                Marshal.ReleaseComObject(xlWorksheet);
+
+                //close and release  
+                xlWorkbook.Close();
+                Marshal.ReleaseComObject(xlWorkbook);
+
+                //quit and release  
+                xlApp.Quit();
+                Marshal.ReleaseComObject(xlApp);
+
+                return filename.ToString();
+            }
+            catch (Exception)
+            {
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                //rule of thumb for releasing com objects:  
+                //  never use two dots, all COM objects must be referenced and released individually  
+                //  ex: [somthing].[something].[something] is bad  
+
+                //release com objects to fully kill excel process from running in the background  
+                Marshal.ReleaseComObject(xlRange);
+                Marshal.ReleaseComObject(xlWorksheet);
+
+                //close and release  
+                xlWorkbook.Close();
+                Marshal.ReleaseComObject(xlWorkbook);
+
+                //quit and release  
+                xlApp.Quit();
+                Marshal.ReleaseComObject(xlApp);
+                return "Lỗi, không tạo được file Excel!";
+            }
+        }
         //Mẫu 14 - DP do ANSV tạo
         public static string Temp14_CreatedbyANSV_DP(string DPId)
         {
@@ -170,6 +295,10 @@ namespace OPM.ExcelHandler
                 if (dP.DPRefundDate.ToString() != @"01/01/2000")
                 {
                     bool success6 = (bool)xlRange.Replace("<DPRefundDate>", dP.DPRefundDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
+                }
+                else
+                {
+                    bool success6 = (bool)xlRange.Replace("<DPRefundDate>", "", XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
                 }
                 bool success7 = (bool)xlRange.Replace("<ContractAccoutingCode>", dP.ContractAccoutingCode, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
                 bool success8 = (bool)xlRange.Replace("<ContractGoodsCode>", dP.ContractGoodsCode, XlLookAt.xlWhole, XlSearchOrder.xlByColumns, true, m, m, m);
