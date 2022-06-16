@@ -86,9 +86,9 @@ namespace OPM.GUI
                 case "DP":
                     if (DPObj.DPExist(temp[1]))
                     {
-                        //OpmExcelHandler.Temp12_CreatedbyOPM_DP(temp[1]);
-                        //OpmExcelHandler.Temp13_ExportRequestForm_ANSV(temp[1]);
-                        //OpmExcelHandler.Temp14_CreatedbyANSV_DP(temp[1]);
+                        OpmExcelHandler.Temp12_CreatedbyOPM_DP(temp[1]);
+                        OpmExcelHandler.Temp13_ExportRequestForm_ANSV(temp[1]);
+                        OpmExcelHandler.Temp14_CreatedbyANSV_DP(temp[1]);
                         OpmExcelHandler.Temp16_ExportRequestForm_VNPTTech(temp[1]);
                     }
                     else
@@ -112,7 +112,8 @@ namespace OPM.GUI
                 case "PL":
                     if (PLObj.PLExist(temp[1]))
                     {
-                        OpmWordHandler.Temp18_GoodsDeliveryRecord(temp[1]);
+                        //OpmWordHandler.Temp18_GoodsDeliveryRecord(temp[1]);
+                        OpmWordHandler.Temp19_QualityInspectionCertificateInFactory(temp[1]);
                     }
                     else
                     {

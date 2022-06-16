@@ -181,5 +181,16 @@ namespace OPM.OPMEnginee
             }
             return list;
         }
+        public static string DeviceCaseNumberRange(string PLId)
+        {
+            string temp = "";
+            string query = string.Format("SELECT DISTINCT DeviceCaseNumber FROM dbo.Device WHERE PLId = '{0}'", PLId);
+            DataTable table = OPMDBHandler.ExecuteQuery(query);
+            foreach(DataRow item in table.Rows)
+            {
+                temp = temp + item.ItemArray[0].ToString() + @"; ";
+            }
+            return temp;
+        }
     }
 }
