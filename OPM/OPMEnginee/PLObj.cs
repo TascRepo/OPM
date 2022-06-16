@@ -35,6 +35,7 @@ namespace OPM.OPMEnginee
                         PLGrossWeight = (row["PLGrossWeight"] == null || row["PLGrossWeight"] == DBNull.Value) ? 16 : (double)row["PLGrossWeight"];
                         PLQualityInspectionCertificateInFactoryDate = (row["PLQualityInspectionCertificateInFactoryDate"] == null || row["PLQualityInspectionCertificateInFactoryDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["PLQualityInspectionCertificateInFactoryDate"];
                         PLQualityInspectionCertificateDate = (row["PLQualityInspectionCertificateDate"] == null || row["PLQualityInspectionCertificateDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["PLQualityInspectionCertificateDate"];
+                        PLReportForDeliveryNumber = (row["PLReportForDeliveryNumber"] == null || row["PLReportForDeliveryNumber"] == DBNull.Value) ? "BBBG" : row["PLReportForDeliveryNumber"].ToString();
                     }
                 }
                 catch (Exception e)
@@ -53,6 +54,7 @@ namespace OPM.OPMEnginee
         public double PLGrossWeight { get; set; } = 16;
         public DateTime PLQualityInspectionCertificateInFactoryDate { get; set; } = DateTime.Now;
         public DateTime PLQualityInspectionCertificateDate { get; set; } = DateTime.Now;
+        public string PLReportForDeliveryNumber { get; set; } = "BBBG";
 
         public PLObj(string PLId, string VNPTId, DateTime PLDate, int PLQuantity, double CaseQuantity, string PLDimension, string PLVolume, double PLNetWeight, double PLGrossWeight)
         {
@@ -80,6 +82,7 @@ namespace OPM.OPMEnginee
             PLGrossWeight = (row["PLGrossWeight"] == null || row["PLGrossWeight"] == DBNull.Value) ? 16 : (double)row["PLGrossWeight"];
             PLQualityInspectionCertificateInFactoryDate = (row["PLQualityInspectionCertificateInFactoryDate"] == null || row["PLQualityInspectionCertificateInFactoryDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["PLQualityInspectionCertificateInFactoryDate"];
             PLQualityInspectionCertificateDate = (row["PLQualityInspectionCertificateDate"] == null || row["PLQualityInspectionCertificateDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["PLQualityInspectionCertificateDate"];
+            PLReportForDeliveryNumber = (row["PLReportForDeliveryNumber"] == null || row["PLReportForDeliveryNumber"] == DBNull.Value) ? "BBBG" : row["PLReportForDeliveryNumber"].ToString();
         }
         public PLObj(string PLId)
         {
@@ -102,7 +105,7 @@ namespace OPM.OPMEnginee
         {
             if (PLObj.PLExist(PLId)) return 0;
             PLVolume = PLVolume.Replace(',', '.');
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.PL(PLId,DPId,VNPTId,PLDate,PLQuantity,CaseQuantity,PLDimension,PLVolume,PLNetWeight,PLGrossWeight,PLQualityInspectionCertificateInFactoryDate,PLQualityInspectionCertificateDate)VALUES('{0}','{1}', '{2}', '{3}', {4}, {5}, '{6}',{7}, {8}, {9},'{10}', '{11}')", PLId, DPId, VNPTId, PLDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQuantity, CaseQuantity, PLDimension, PLVolume, PLNetWeight, PLGrossWeight, PLQualityInspectionCertificateInFactoryDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQualityInspectionCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.PL(PLId,DPId,VNPTId,PLDate,PLQuantity,CaseQuantity,PLDimension,PLVolume,PLNetWeight,PLGrossWeight,PLQualityInspectionCertificateInFactoryDate,PLQualityInspectionCertificateDate,PLReportForDeliveryNumber)VALUES('{0}','{1}', '{2}', '{3}', {4}, {5}, '{6}',{7}, {8}, {9},'{10}', '{11}', '{12}')", PLId, DPId, VNPTId, PLDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQuantity, CaseQuantity, PLDimension, PLVolume, PLNetWeight, PLGrossWeight, PLQualityInspectionCertificateInFactoryDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQualityInspectionCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLReportForDeliveryNumber);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
 
@@ -110,19 +113,19 @@ namespace OPM.OPMEnginee
         {
             if (PLObj.PLExist(pLId)) return 0;
             PLVolume = PLVolume.Replace(',', '.');
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.PL(PLId,DPId,VNPTId,PLDate,PLQuantity,CaseQuantity,PLDimension,PLVolume,PLNetWeight,PLGrossWeight,PLQualityInspectionCertificateInFactoryDate,PLQualityInspectionCertificateDate)VALUES('{0}','{1}', '{2}', '{3}', {4}, {5}, '{6}',{7}, {8}, {9},'{10}', '{11}'))", pLId, DPId, VNPTId, PLDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQuantity, CaseQuantity, PLDimension, PLVolume, PLNetWeight, PLGrossWeight, PLQualityInspectionCertificateInFactoryDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQualityInspectionCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.PL(PLId,DPId,VNPTId,PLDate,PLQuantity,CaseQuantity,PLDimension,PLVolume,PLNetWeight,PLGrossWeight,PLQualityInspectionCertificateInFactoryDate,PLQualityInspectionCertificateDate,PLReportForDeliveryNumber)VALUES('{0}','{1}', '{2}', '{3}', {4}, {5}, '{6}',{7}, {8}, {9},'{10}', '{11}', '{12}')", PLId, DPId, VNPTId, PLDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQuantity, CaseQuantity, PLDimension, PLVolume, PLNetWeight, PLGrossWeight, PLQualityInspectionCertificateInFactoryDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQualityInspectionCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLReportForDeliveryNumber);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public int PLUpdate()
         {
             PLVolume = PLVolume.Replace(',', '.');
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.PL SET PLId = '{0}', DPId = '{1}', VNPTId = '{2}', PLDate = '{3}', PLQuantity = {4}, CaseQuantity = {5}, PLDimension = '{6}', PLVolume = {7}, PLNetWeight = {8}, PLGrossWeight = {9}, PLQualityInspectionCertificateInFactoryDate = '{10}', PLQualityInspectionCertificateDate = '{11}' Where PLId = '{0}'", PLId, DPId, VNPTId, PLDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQuantity, CaseQuantity, PLDimension, PLVolume, PLNetWeight, PLGrossWeight, PLQualityInspectionCertificateInFactoryDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQualityInspectionCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.PL SET PLId = '{0}', DPId = '{1}', VNPTId = '{2}', PLDate = '{3}', PLQuantity = {4}, CaseQuantity = {5}, PLDimension = '{6}', PLVolume = {7}, PLNetWeight = {8}, PLGrossWeight = {9}, PLQualityInspectionCertificateInFactoryDate = '{10}', PLQualityInspectionCertificateDate = '{11}',PLReportForDeliveryNumber = '{12}' Where PLId = '{0}'", PLId, DPId, VNPTId, PLDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQuantity, CaseQuantity, PLDimension, PLVolume, PLNetWeight, PLGrossWeight, PLQualityInspectionCertificateInFactoryDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQualityInspectionCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLReportForDeliveryNumber);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public int PLUpdate(string newId, string oldId)
         {
             PLVolume = PLVolume.Replace(',', '.');
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.PL SET PLId = '{0}', DPId = '{1}', VNPTId = '{2}', PLDate = '{3}', PLQuantity = {4}, CaseQuantity = {5}, PLDimension = '{6}', PLVolume = {7}, PLNetWeight = {8}, PLGrossWeight = {9}, PLQualityInspectionCertificateInFactoryDate = '{10}', PLQualityInspectionCertificateDate = '{11}' Where PLId = '{12}'", newId, DPId, VNPTId, PLDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQuantity, CaseQuantity, PLDimension, PLVolume, PLNetWeight, PLGrossWeight, PLQualityInspectionCertificateInFactoryDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQualityInspectionCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), oldId);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.PL SET PLId = '{0}', DPId = '{1}', VNPTId = '{2}', PLDate = '{3}', PLQuantity = {4}, CaseQuantity = {5}, PLDimension = '{6}', PLVolume = {7}, PLNetWeight = {8}, PLGrossWeight = {9}, PLQualityInspectionCertificateInFactoryDate = '{10}', PLQualityInspectionCertificateDate = '{11}',PLReportForDeliveryNumber = '{12}' Where PLId = '{13}'", newId, DPId, VNPTId, PLDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQuantity, CaseQuantity, PLDimension, PLVolume, PLNetWeight, PLGrossWeight, PLQualityInspectionCertificateInFactoryDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQualityInspectionCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLReportForDeliveryNumber, oldId);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
 
