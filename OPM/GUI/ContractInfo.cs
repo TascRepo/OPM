@@ -46,6 +46,8 @@ namespace OPM.GUI
             txbGuaranteeValue.Text = contract.POGuaranteeRatio.ToString();
             dtpGuaranteeDateCreated.Value = contract.ContractGuaranteeCreatedDate;
             dateTimePickerContractReportOfConpletedVolumeDate.Value = contract.ContractReportOfConpletedVolumeDate;
+            dateTimePickerContractLiquidationRecordsDate.Value = contract.ContractLiquidationRecordsDate;
+            textBoxContractTotalAmountPaid.Text = contract.ContractTotalAmountPaid.ToString();
         }
         //Mở Form thông tin Site A
         private void btnIdSiteA_Click(object sender, EventArgs e)
@@ -238,6 +240,27 @@ namespace OPM.GUI
         private void dateTimePickerContractReportOfConpletedVolumeDate_ValueChanged(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).Contract.ContractReportOfConpletedVolumeDate = dateTimePickerContractReportOfConpletedVolumeDate.Value;
+        }
+
+        private void dateTimePickerContractLiquidationRecordsDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.ContractLiquidationRecordsDate = dateTimePickerContractLiquidationRecordsDate.Value;
+        }
+
+        private void textBoxContractTotalAmountPaid_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(textBoxContractTotalAmountPaid.Text.Trim()))
+                {
+                    if(double.Parse(textBoxContractTotalAmountPaid.Text.Trim())<0) MessageBox.Show("Nhập lại dạng số Tổng số tiền bên A đã thanh toán trong hợp đồng phải >= 0!");
+                    else (Tag as OPMDASHBOARDA).Contract.ContractTotalAmountPaid = double.Parse(textBoxContractTotalAmountPaid.Text.Trim());
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Nhập lại dạng số Tổng số tiền bên A đã thanh toán trong hợp đồng!");
+            }
         }
     }
 }

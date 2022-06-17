@@ -59,7 +59,8 @@ namespace OPM.GUI
                     if (ContractObj.ContractExist(temp[1]))
                     {
                         //OpmWordHandler.Temp1_CreatContractGuarantee(temp[1]);
-                        OpmWordHandler.Temp29_ReportOfConpletedVolume(temp[1]);
+                        //OpmWordHandler.Temp29_ReportOfConpletedVolume(temp[1]);
+                        OpmWordHandler.Temp30_LiquidationRecords(temp[1]);
                     }
                     else
                     {
@@ -69,16 +70,16 @@ namespace OPM.GUI
                 case "PO":
                     if (POObj.POExist(temp[1]))
                     {
-                        //OpmWordHandler.Temp3_CreatPOConfirm(temp[1]);
-                        //OpmWordHandler.Temp4_CreatPOPerformanceGuarantee(temp[1]);
-                        //OpmWordHandler.Temp5_CreatPOAdvanceGuarantee(temp[1]);
-                        //OpmWordHandler.Temp6_CreatPOAdvanceReques(temp[1]);
-                        //OpmExcelHandler.Temp7_CreatPODistributionTable(temp[1]);
-                        //OpmWordHandler.Temp23_CNCL_TongHop(temp[1]);
-                        //OpmWordHandler.Temp24_CNCLNMTongHop(temp[1]);
-                        //OpmWordHandler.Temp28_ReportOfAcceptanceAndHandlingOfGoods(temp[1]);
-                        //OpmWordHandler.Temp36_BBNTLicense(temp[1]);
-                        //OpmWordHandler.Temp37_BBXNCDLicense(temp[1]);
+                        OpmWordHandler.Temp3_CreatPOConfirm(temp[1]);
+                        OpmWordHandler.Temp4_CreatPOPerformanceGuarantee(temp[1]);
+                        OpmWordHandler.Temp5_CreatPOAdvanceGuarantee(temp[1]);
+                        OpmWordHandler.Temp6_CreatPOAdvanceReques(temp[1]);
+                        OpmExcelHandler.Temp7_CreatPODistributionTable(temp[1]);
+                        OpmWordHandler.Temp23_CNCL_TongHop(temp[1]);
+                        OpmWordHandler.Temp24_CNCLNMTongHop(temp[1]);
+                        OpmWordHandler.Temp28_ReportOfAcceptanceAndHandlingOfGoods(temp[1]);
+                        OpmWordHandler.Temp36_BBNTLicense(temp[1]);
+                        OpmWordHandler.Temp37_BBXNCDLicense(temp[1]);
                     }
                     else
                     {

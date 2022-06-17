@@ -202,7 +202,7 @@ namespace OPM.OPMEnginee
             POAdvancePercentage = (row["POAdvancePercentage"] == null || row["POAdvancePercentage"] == DBNull.Value) ? 0 : (int)row["POAdvancePercentage"];
             POAdvanceId = (row["POAdvanceId"] == null || row["POAdvanceId"] == DBNull.Value) ? "" : row["POAdvanceId"].ToString();
             POAdvanceCreatedDate = (row["POAdvanceCreatedDate"] == null || row["POAdvanceCreatedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["POAdvanceCreatedDate"];
-            POAdvanceGuaranteePercentage = (row["AdvanceGuaranteePercentage"] == null || row["AdvanceGuaranteePercentage"] == DBNull.Value) ? 0 : (int)row["AdvanceGuaranteePercentage"];
+            POAdvanceGuaranteePercentage = (row["POAdvanceGuaranteePercentage"] == null || row["POAdvanceGuaranteePercentage"] == DBNull.Value) ? 0 : (int)row["POAdvanceGuaranteePercentage"];
             POAdvanceGuaranteeCreatedDate = (row["POAdvanceGuaranteeCreatedDate"] == null || row["POAdvanceGuaranteeCreatedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["POAdvanceGuaranteeCreatedDate"];
             POAdvanceRequestId = (row["POAdvanceRequestId"] == null || row["POAdvanceRequestId"] == DBNull.Value) ? "" : row["POAdvanceRequestId"].ToString();
             POAdvanceRequestCreatedDate = (row["POAdvanceRequestCreatedDate"] == null || row["POAdvanceRequestCreatedDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["POAdvanceRequestCreatedDate"];
@@ -287,18 +287,6 @@ namespace OPM.OPMEnginee
             string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.PO SET POId = '{0}', ContractId = '{1}', POName = '{2}', POCreatedDate = '{3}', POGoodsQuantity = {4},POConfirmRequestDeadline = '{5}',PODefaultPerformDate = '{6}',POPerformDate = '{7}',PODeadline = '{8}',POConfirmId = '{9}',POConfirmCreatedDate = '{10}',POAdvanceId = '{11}',POAdvanceCreatedDate = '{12}', POAdvancePercentage = {13}, POAdvanceGuaranteeCreatedDate = '{14}', POAdvanceGuaranteePercentage = {15}, POAdvanceRequestId = '{16}', POAdvanceRequestCreatedDate= '{17}',POGuaranteeDate='{18}',POReportOfAcceptanceAndHandlingOfGoodsDate='{19}' WHERE POId = '{20}'", newId, ContractId, POName, POCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POGoodsQuantity, POConfirmRequestDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PODefaultPerformDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POPerformDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PODeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POConfirmId, POConfirmCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POAdvanceId, POAdvanceCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POAdvancePercentage, POAdvanceGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POAdvanceGuaranteePercentage, POAdvanceRequestId, POAdvanceRequestCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POGuaranteeDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POReportOfAcceptanceAndHandlingOfGoodsDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), oldId);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
-        public static List<POObj> POGetList()
-        {
-            List<POObj> list = new List<POObj>();
-            string query = string.Format("SELECT * FROM dbo.PO");
-            DataTable dataTable = OPMDBHandler.ExecuteQuery(query);
-            foreach (DataRow item in dataTable.Rows)
-            {
-                POObj po = new POObj(item);
-                list.Add(po);
-            }
-            return list;
-        }
         public int PODelete()
         {
             string query = string.Format("DELETE FROM dbo.PO WHERE POId = '{0}'", POId);
@@ -328,5 +316,30 @@ namespace OPM.OPMEnginee
             string query = string.Format(@"SELECT VNPTId, SUM(DeliveryPlanQuantity) AS DeliveryPlanQuantity, (SELECT dbo.Contract.ContractGoodsUnitPrice FROM dbo.Contract, dbo.PO WHERE po.POId = '{0}' AND dbo.PO.ContractId = dbo.Contract.ContractId) AS ContractGoodsUnitPrice FROM DeliveryPlan WHERE POId = '{0}' GROUP BY VNPTId", POId);
             return OPMDBHandler.ExecuteQuery(query);
         }
+        public static List<POObj> POGetList()
+        {
+            List<POObj> list = new List<POObj>();
+            string query = string.Format("SELECT * FROM dbo.PO");
+            DataTable dataTable = OPMDBHandler.ExecuteQuery(query);
+            foreach (DataRow item in dataTable.Rows)
+            {
+                POObj po = new POObj(item);
+                list.Add(po);
+            }
+            return list;
+        }
+        public static List<POObj> POGetListByContractId(string contractId)
+        {
+            List<POObj> list = new List<POObj>();
+            string query = string.Format("SELECT * FROM dbo.PO Where ContractId = '{0}' Order By POName", contractId);
+            DataTable dataTable = OPMDBHandler.ExecuteQuery(query);
+            foreach (DataRow item in dataTable.Rows)
+            {
+                POObj po = new POObj(item);
+                list.Add(po);
+            }
+            return list;
+        }
+
     }
 }
