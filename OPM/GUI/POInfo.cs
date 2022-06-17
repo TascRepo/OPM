@@ -46,6 +46,7 @@ namespace OPM.GUI
             dtpPOGuaranteeDate.Value = po.POGuaranteeDate;
             txtPOGuaranteeRatio.Text = po.POGuaranteeRatio.ToString();
             dateTimePickerPOReportOfAcceptanceAndHandlingOfGoodsDate.Value = po.POReportOfAcceptanceAndHandlingOfGoodsDate;
+            dateTimePickerPOOfferToGuaranteePOWarrantyDate.Value = po.POOfferToGuaranteePOWarrantyDate;
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -328,6 +329,11 @@ namespace OPM.GUI
         private void dateTimePickerPOReportOfAcceptanceAndHandlingOfGoodsDate_ValueChanged(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).Po.POReportOfAcceptanceAndHandlingOfGoodsDate = dateTimePickerPOReportOfAcceptanceAndHandlingOfGoodsDate.Value;
+        }
+
+        private void dateTimePickerPOOfferToGuaranteePOWarrantyDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Po.POOfferToGuaranteePOWarrantyDate = dateTimePickerPOOfferToGuaranteePOWarrantyDate.Value;
         }
     }
 }
