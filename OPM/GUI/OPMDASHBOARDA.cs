@@ -68,15 +68,16 @@ namespace OPM.GUI
                 case "PO":
                     if (POObj.POExist(temp[1]))
                     {
-                        OpmWordHandler.Temp3_CreatPOConfirm(temp[1]);
-                        OpmWordHandler.Temp4_CreatPOPerformanceGuarantee(temp[1]);
-                        OpmWordHandler.Temp5_CreatPOAdvanceGuarantee(temp[1]);
-                        OpmWordHandler.Temp6_CreatPOAdvanceReques(temp[1]);
-                        OpmExcelHandler.Temp7_CreatPODistributionTable(temp[1]);
-                        OpmWordHandler.Temp23_CNCL_TongHop(temp[1]);
-                        OpmWordHandler.Temp24_CNCLNMTongHop(temp[1]);
-                        OpmWordHandler.Temp36_BBNTLicense(temp[1]);
-                        OpmWordHandler.Temp37_BBXNCDLicense(temp[1]);
+                        //OpmWordHandler.Temp3_CreatPOConfirm(temp[1]);
+                        //OpmWordHandler.Temp4_CreatPOPerformanceGuarantee(temp[1]);
+                        //OpmWordHandler.Temp5_CreatPOAdvanceGuarantee(temp[1]);
+                        //OpmWordHandler.Temp6_CreatPOAdvanceReques(temp[1]);
+                        //OpmExcelHandler.Temp7_CreatPODistributionTable(temp[1]);
+                        //OpmWordHandler.Temp23_CNCL_TongHop(temp[1]);
+                        //OpmWordHandler.Temp24_CNCLNMTongHop(temp[1]);
+                        OpmWordHandler.Temp28_ReportOfAcceptanceAndHandlingOfGoods(temp[1]);
+                        //OpmWordHandler.Temp36_BBNTLicense(temp[1]);
+                        //OpmWordHandler.Temp37_BBXNCDLicense(temp[1]);
                     }
                     else
                     {
@@ -112,16 +113,16 @@ namespace OPM.GUI
                 case "PL":
                     if (PLObj.PLExist(temp[1]))
                     {
-                        //OpmWordHandler.Temp18_GoodsDeliveryRecord(temp[1]);
-                        //OpmWordHandler.Temp19_QualityInspectionCertificateInFactory(temp[1]);
-                        //OpmWordHandler.Temp20_QualityInspectionCertificate(temp[1]);
-                        //OpmWordHandler.Temp22_Warranty(temp[1]);
+                        OpmWordHandler.Temp18_GoodsDeliveryRecord(temp[1]);
+                        OpmWordHandler.Temp19_QualityInspectionCertificateInFactory(temp[1]);
+                        OpmWordHandler.Temp20_QualityInspectionCertificate(temp[1]);
+                        OpmWordHandler.Temp22_Warranty(temp[1]);
                         OpmExcelHandler.Temp27_ReportForDelivery(temp[1]);
 
                     }
                     else
                     {
-                        MessageBox.Show(string.Format(@"Không có NTKT số '{0}'", temp[1]));
+                        MessageBox.Show(string.Format(@"Không có PL số '{0}'", temp[1]));
                     }
                     break;
                 default:

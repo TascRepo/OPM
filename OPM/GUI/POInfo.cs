@@ -19,31 +19,33 @@ namespace OPM.GUI
         }
         void LoadData()
         {
-            txtPOId.Text = (Tag as OPMDASHBOARDA).Po.POId;
-            txtPOId.Tag = (Tag as OPMDASHBOARDA).Po.POId;     //Lưu lại Id khi cần vì txtIdPO.Text có thể thay đổi khi Edit
-            txtPOName.Text = (Tag as OPMDASHBOARDA).Po.POName;
-            dtpPOCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.POCreatedDate;
-            txtPODuration.Text = ((Tag as OPMDASHBOARDA).Po.PODeadline.Date - (Tag as OPMDASHBOARDA).Po.POPerformDate.Date).TotalDays.ToString();
-            txtPOGoodsQuantity.Text = (Tag as OPMDASHBOARDA).Po.POGoodsQuantity.ToString();
-            txtContractGoodsQuantity.Text = (Tag as OPMDASHBOARDA).Po.ContractGoodsQuantity.ToString();
-            txtRemainingContractGoodsQuantity.Text = ((Tag as OPMDASHBOARDA).Po.ContractGoodsQuantity - POObj.POGoodsQuantityTotalByContractId((Tag as OPMDASHBOARDA).Po.ContractId)).ToString();
-            lblContractGoodsUnit.Text = (Tag as OPMDASHBOARDA).Po.ContractGoodsUnit;
-            txtPOConfirmRequestDuration.Text = ((Tag as OPMDASHBOARDA).Po.POConfirmRequestDeadline.Date - (Tag as OPMDASHBOARDA).Po.POCreatedDate.Date).Days.ToString();
-            dtpPODefaultPerformDate.Value = (Tag as OPMDASHBOARDA).Po.PODefaultPerformDate;
-            txtPOTotalValue.Text = (Tag as OPMDASHBOARDA).Po.POTotalValue.ToString();
-            txtPOConfirmId.Text = (Tag as OPMDASHBOARDA).Po.POConfirmId.ToString();
-            dtpPOConfirmCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.POConfirmCreatedDate;
-            dtpPOPerformDate.Value = (Tag as OPMDASHBOARDA).Po.POPerformDate;
+            POObj po = (Tag as OPMDASHBOARDA).Po;
+            txtPOId.Text = po.POId;
+            txtPOId.Tag = po.POId;     //Lưu lại Id khi cần vì txtIdPO.Text có thể thay đổi khi Edit
+            txtPOName.Text = po.POName;
+            dtpPOCreatedDate.Value = po.POCreatedDate;
+            txtPODuration.Text = (po.PODeadline.Date - po.POPerformDate.Date).TotalDays.ToString();
+            txtPOGoodsQuantity.Text = po.POGoodsQuantity.ToString();
+            txtContractGoodsQuantity.Text = po.ContractGoodsQuantity.ToString();
+            txtRemainingContractGoodsQuantity.Text = (po.ContractGoodsQuantity - POObj.POGoodsQuantityTotalByContractId(po.ContractId)).ToString();
+            lblContractGoodsUnit.Text = po.ContractGoodsUnit;
+            txtPOConfirmRequestDuration.Text = (po.POConfirmRequestDeadline.Date - po.POCreatedDate.Date).Days.ToString();
+            dtpPODefaultPerformDate.Value = po.PODefaultPerformDate;
+            txtPOTotalValue.Text = po.POTotalValue.ToString();
+            txtPOConfirmId.Text = po.POConfirmId.ToString();
+            dtpPOConfirmCreatedDate.Value = po.POConfirmCreatedDate;
+            dtpPOPerformDate.Value = po.POPerformDate;
             //dtpDeadline.Value = (Tag as OPMDASHBOARDA).PO.Deadline;
-            txtPOAdvanceId.Text = (Tag as OPMDASHBOARDA).Po.POAdvanceId;
-            txtPOAdvancePercentage.Text = (Tag as OPMDASHBOARDA).Po.POAdvancePercentage.ToString();
-            dtpPOAdvanceCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.POAdvanceCreatedDate;
-            txtPOAdvanceGuaranteePercentage.Text = (Tag as OPMDASHBOARDA).Po.POAdvanceGuaranteePercentage.ToString();
-            dtpPOAdvanceGuaranteeCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.POAdvanceGuaranteeCreatedDate;
-            txtPOAdvanceRequestId.Text = (Tag as OPMDASHBOARDA).Po.POAdvanceRequestId;
-            dtpPOAdvanceRequestCreatedDate.Value = (Tag as OPMDASHBOARDA).Po.POAdvanceRequestCreatedDate;
-            dtpPOGuaranteeDate.Value = (Tag as OPMDASHBOARDA).Po.POGuaranteeDate;
-            txtPOGuaranteeRatio.Text = (Tag as OPMDASHBOARDA).Po.POGuaranteeRatio.ToString();
+            txtPOAdvanceId.Text = po.POAdvanceId;
+            txtPOAdvancePercentage.Text = po.POAdvancePercentage.ToString();
+            dtpPOAdvanceCreatedDate.Value = po.POAdvanceCreatedDate;
+            txtPOAdvanceGuaranteePercentage.Text = po.POAdvanceGuaranteePercentage.ToString();
+            dtpPOAdvanceGuaranteeCreatedDate.Value = po.POAdvanceGuaranteeCreatedDate;
+            txtPOAdvanceRequestId.Text = po.POAdvanceRequestId;
+            dtpPOAdvanceRequestCreatedDate.Value = po.POAdvanceRequestCreatedDate;
+            dtpPOGuaranteeDate.Value = po.POGuaranteeDate;
+            txtPOGuaranteeRatio.Text = po.POGuaranteeRatio.ToString();
+            dateTimePickerPOReportOfAcceptanceAndHandlingOfGoodsDate.Value = po.POReportOfAcceptanceAndHandlingOfGoodsDate;
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -169,6 +171,7 @@ namespace OPM.GUI
         }
         private void txtPOGoodsQuantity_TextChanged(object sender, EventArgs e)
         {
+            
             try
             {
                 if (!string.IsNullOrEmpty(txtPOGoodsQuantity.Text.Trim()))
@@ -322,5 +325,9 @@ namespace OPM.GUI
             (Tag as OPMDASHBOARDA).Po.POGuaranteeDate = dtpPOGuaranteeDate.Value;
         }
 
+        private void dateTimePickerPOReportOfAcceptanceAndHandlingOfGoodsDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Po.POReportOfAcceptanceAndHandlingOfGoodsDate = dateTimePickerPOReportOfAcceptanceAndHandlingOfGoodsDate.Value;
+        }
     }
 }
