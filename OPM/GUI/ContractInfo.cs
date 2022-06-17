@@ -28,22 +28,24 @@ namespace OPM.GUI
         //Tải các thông số ContractForm với Contract tương ứng
         private void LoadData()
         {
-            txtContractShoppingPlan.Text = (Tag as OPMDASHBOARDA).Contract.ContractShoppingPlan;
-            txtContractId.Text = (Tag as OPMDASHBOARDA).Contract.ContractId;
+            ContractObj contract = (Tag as OPMDASHBOARDA).Contract;
+            txtContractShoppingPlan.Text = contract.ContractShoppingPlan;
+            txtContractId.Text = contract.ContractId;
             txtContractId.Tag = txtContractId.Text;
-            txtContractName.Text = (Tag as OPMDASHBOARDA).Contract.ContractName;
-            txtAccoutingCode.Text = (Tag as OPMDASHBOARDA).Contract.ContractAccoutingCode;
-            dtpDateSigned.Value = (Tag as OPMDASHBOARDA).Contract.ContractCreatedDate;
-            dtpContractDeadline.Value = dtpDateSigned.Value.AddDays(Convert.ToInt32((Tag as OPMDASHBOARDA).Contract.ContractPeriod));
-            txtType.Text = (Tag as OPMDASHBOARDA).Contract.ContractType;
-            txtDuration.Text = (Tag as OPMDASHBOARDA).Contract.ContractPeriod.ToString();
-            dtpContractValidityDate.Value = (Tag as OPMDASHBOARDA).Contract.ContractValidityDate;
-            txtValue.Text = Math.Round((Tag as OPMDASHBOARDA).Contract.ContractValue).ToString();
-            txtPOGuaranteeValidityPeriod.Text = (Tag as OPMDASHBOARDA).Contract.POGuaranteeValidityPeriod.ToString();
-            txtSiteId.Text = (Tag as OPMDASHBOARDA).Contract.SiteId;
-            txtGuaranteeDuration.Text = ((Tag as OPMDASHBOARDA).Contract.ContractGuaranteeDeadline - (Tag as OPMDASHBOARDA).Contract.ContractGuaranteeCreatedDate).Days.ToString();
-            txbGuaranteeValue.Text = (Tag as OPMDASHBOARDA).Contract.POGuaranteeRatio.ToString();
-            dtpGuaranteeDateCreated.Value = (Tag as OPMDASHBOARDA).Contract.ContractGuaranteeCreatedDate;
+            txtContractName.Text = contract.ContractName;
+            txtAccoutingCode.Text = contract.ContractAccoutingCode;
+            dtpDateSigned.Value = contract.ContractCreatedDate;
+            dtpContractDeadline.Value = dtpDateSigned.Value.AddDays(Convert.ToInt32(contract.ContractPeriod));
+            txtType.Text = contract.ContractType;
+            txtDuration.Text = contract.ContractPeriod.ToString();
+            dtpContractValidityDate.Value = contract.ContractValidityDate;
+            txtValue.Text = Math.Round(contract.ContractValue).ToString();
+            txtPOGuaranteeValidityPeriod.Text = contract.POGuaranteeValidityPeriod.ToString();
+            txtSiteId.Text = contract.SiteId;
+            txtGuaranteeDuration.Text = (contract.ContractGuaranteeDeadline - contract.ContractGuaranteeCreatedDate).Days.ToString();
+            txbGuaranteeValue.Text = contract.POGuaranteeRatio.ToString();
+            dtpGuaranteeDateCreated.Value = contract.ContractGuaranteeCreatedDate;
+            dateTimePickerContractReportOfConpletedVolumeDate.Value = contract.ContractReportOfConpletedVolumeDate;
         }
         //Mở Form thông tin Site A
         private void btnIdSiteA_Click(object sender, EventArgs e)
@@ -231,6 +233,11 @@ namespace OPM.GUI
             (Tag as OPMDASHBOARDA).Contract.SiteId = txtSiteId.Text.Trim();
             (Tag as OPMDASHBOARDA).Contract.SetSiteA(new SiteObj(txtSiteId.Text.Trim()));
             (Tag as OPMDASHBOARDA).SiteA = new SiteObj(txtSiteId.Text.Trim());
+        }
+
+        private void dateTimePickerContractReportOfConpletedVolumeDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.ContractReportOfConpletedVolumeDate = dateTimePickerContractReportOfConpletedVolumeDate.Value;
         }
     }
 }

@@ -76,6 +76,8 @@ namespace OPM.GUI
             this.label19 = new System.Windows.Forms.Label();
             this.btnCreatDocument = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dateTimePickerContractReportOfConpletedVolumeDate = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -112,7 +114,7 @@ namespace OPM.GUI
             // 
             // txtAccoutingCode
             // 
-            this.txtAccoutingCode.Location = new System.Drawing.Point(295, 476);
+            this.txtAccoutingCode.Location = new System.Drawing.Point(295, 468);
             this.txtAccoutingCode.Margin = new System.Windows.Forms.Padding(4);
             this.txtAccoutingCode.Name = "txtAccoutingCode";
             this.txtAccoutingCode.Size = new System.Drawing.Size(752, 31);
@@ -144,7 +146,7 @@ namespace OPM.GUI
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(173, 479);
+            this.label3.Location = new System.Drawing.Point(173, 471);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(103, 25);
@@ -462,6 +464,7 @@ namespace OPM.GUI
             this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.dtpContractDeadline);
+            this.panel1.Controls.Add(this.dateTimePickerContractReportOfConpletedVolumeDate);
             this.panel1.Controls.Add(this.dtpContractValidityDate);
             this.panel1.Controls.Add(this.txtContractShoppingPlan);
             this.panel1.Controls.Add(this.btnAnnex);
@@ -481,13 +484,14 @@ namespace OPM.GUI
             this.panel1.Controls.Add(this.txtContractId);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.txtDuration);
             this.panel1.Controls.Add(this.txtType);
             this.panel1.Location = new System.Drawing.Point(10, 23);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1077, 528);
+            this.panel1.Size = new System.Drawing.Size(1077, 572);
             this.panel1.TabIndex = 17;
             // 
             // btnAnnex
@@ -515,7 +519,7 @@ namespace OPM.GUI
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.label14);
-            this.panel2.Location = new System.Drawing.Point(10, 583);
+            this.panel2.Location = new System.Drawing.Point(10, 612);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1077, 208);
@@ -572,6 +576,26 @@ namespace OPM.GUI
             this.btnNew.Text = "New";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(48, 529);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(388, 25);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "Ngày biên bản xác nhận khối lượng hoàn thành";
+            // 
+            // dateTimePickerContractReportOfConpletedVolumeDate
+            // 
+            this.dateTimePickerContractReportOfConpletedVolumeDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerContractReportOfConpletedVolumeDate.Location = new System.Drawing.Point(678, 524);
+            this.dateTimePickerContractReportOfConpletedVolumeDate.Margin = new System.Windows.Forms.Padding(4);
+            this.dateTimePickerContractReportOfConpletedVolumeDate.Name = "dateTimePickerContractReportOfConpletedVolumeDate";
+            this.dateTimePickerContractReportOfConpletedVolumeDate.Size = new System.Drawing.Size(369, 31);
+            this.dateTimePickerContractReportOfConpletedVolumeDate.TabIndex = 6;
+            this.dateTimePickerContractReportOfConpletedVolumeDate.ValueChanged += new System.EventHandler(this.dateTimePickerContractReportOfConpletedVolumeDate_ValueChanged);
             // 
             // ContractInfo
             // 
@@ -650,5 +674,7 @@ namespace OPM.GUI
         private System.Windows.Forms.Button btnCreatDocument;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.DateTimePicker dateTimePickerContractReportOfConpletedVolumeDate;
+        private System.Windows.Forms.Label label11;
     }
 }

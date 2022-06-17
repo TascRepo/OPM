@@ -188,6 +188,78 @@ namespace OPM.OPMWordHandler
                 return e.Message;
             }
         }
+        //Mẫu 29: Biên bản xác nhận khối lượng hoàn thành
+        public static string Temp29_ReportOfConpletedVolume(string contractId)
+        {
+            object path = @"D:\OPM\Template\Mẫu 29. Biên bản xác nhận khối lượng hoàn thành.docx";
+            if (!File.Exists(path.ToString()))
+            {
+                MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                return string.Format(@"Không tìm thấy {0}", path.ToString());
+            }
+            Word.Application wordApp = new Word.Application();
+            object missing = Missing.Value;
+            Word.Document myDoc = null;
+            try
+            {
+                ContractObj contract = new ContractObj(contractId);
+                object filename = string.Format(@"D:\OPM\{0}\Mẫu 29. Biên bản xác nhận khối lượng hoàn thành {0}.docx", contract.ContractId.Trim().Replace('/', '-'));
+                object readOnly = true;
+                //object isVisible = false;
+                wordApp.Visible = false;
+
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                //find and replace
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractId>", contract.ContractId);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractCreatedDate>", contract.ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<ngày tháng năm>", string.Format("ngày {0} tháng {1} năm {2}", contract.ContractReportOfConpletedVolumeDate.Day, contract.ContractReportOfConpletedVolumeDate.Month, contract.ContractReportOfConpletedVolumeDate.Year));
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractShoppingPlan>", contract.ContractShoppingPlan);
+                //OpmWordHandler.FindAndReplace(wordApp, "<contract.Namecontract>", contract.ContractName);
+                OpmWordHandler.FindAndReplace(wordApp, "<SiteName>", contract.SiteName);
+                OpmWordHandler.FindAndReplace(wordApp, "<SiteAddress>", contract.SiteAddress);
+                OpmWordHandler.FindAndReplace(wordApp, "<SitePhonenumber>", contract.SitePhonenumber);
+                OpmWordHandler.FindAndReplace(wordApp, "<SiteFaxNumber>", contract.SiteFaxNumber);
+                OpmWordHandler.FindAndReplace(wordApp, "<SiteRepresentative1>", contract.SiteRepresentative1);
+                OpmWordHandler.FindAndReplace(wordApp, "<SitePosition1>", contract.SitePosition1);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsCode>", contract.ContractGoodsCode);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsDesignation>", contract.ContractGoodsDesignation);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsManufacture>", contract.ContractGoodsManufacture);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsOrigin>", contract.ContractGoodsOrigin);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsUnit>", contract.ContractGoodsUnit);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsNote>", contract.ContractGoodsNote);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsQuantity>", contract.ContractGoodsQuantity);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsUnitPrice>", contract.ContractGoodsUnitPrice);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractValue>", contract.ContractValue);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractVAT>", Math.Round(contract.ContractValue*0.1));
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractAfterVATValue>", Math.Round(contract.ContractValue * 1.1));
+                OpmWordHandler.FindAndReplace(wordApp, "<Số tiền bằng chữ>", NumberToString(Math.Round(contract.ContractValue * 1.1)));
+                //Tạo file BLHĐ trong thư mục D:\OPM
+                string folder = string.Format(@"D:\OPM\{0}", contract.ContractId.Trim().Replace('/', '-'));
+                Directory.CreateDirectory(folder);
+                myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing);
+                MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                myDoc.Close();
+                wordApp.Quit();
+                return filename.ToString();
+
+            }
+            catch (Exception e)
+            {
+                myDoc.Close();
+                wordApp.Quit();
+                MessageBox.Show(e.Message);
+                return e.Message;
+            }
+        }
         //Mẫu 28: Biên bản nghiệm thu và bàn giao hàng hoá
         public static string Temp28_ReportOfAcceptanceAndHandlingOfGoods(string poid)
         {

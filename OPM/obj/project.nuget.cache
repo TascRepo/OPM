@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Iksk75/WPt3G0gWI0AZFvmJrcuyY/+PPE8x0K5w2H2AX/LvrLfDqBRRxl1IUAL1j0LRCZqabHyaYnSDSKpKSyg==",
+  "dgSpecHash": "HtqoLz7DVeZUkKxdl5g3InOJgfuzPdIvKHcdx0dMTsSSmQEZA38o973y9OqC7pXdkr7DPJDZC+U0+Z7YaU/xqg==",
   "success": true,
   "projectFilePath": "D:\\OPM\\OPM\\OPM.csproj",
   "expectedPackageFiles": [
@@ -26,7 +26,8 @@
     "C:\\Users\\thanh\\.nuget\\packages\\system.security.cryptography.xml\\4.5.0\\system.security.cryptography.xml.4.5.0.nupkg.sha512",
     "C:\\Users\\thanh\\.nuget\\packages\\system.security.permissions\\4.5.0\\system.security.permissions.4.5.0.nupkg.sha512",
     "C:\\Users\\thanh\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
-    "C:\\Users\\thanh\\.nuget\\packages\\system.text.encoding.codepages\\4.5.0\\system.text.encoding.codepages.4.5.0.nupkg.sha512"
+    "C:\\Users\\thanh\\.nuget\\packages\\system.text.encoding.codepages\\4.5.0\\system.text.encoding.codepages.4.5.0.nupkg.sha512",
+    "C:\\Users\\thanh\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.25\\microsoft.netcore.app.host.win-x64.3.1.25.nupkg.sha512"
   ],
   "logs": []
 }

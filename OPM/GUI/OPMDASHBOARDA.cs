@@ -58,7 +58,8 @@ namespace OPM.GUI
                 case "Contract":
                     if (ContractObj.ContractExist(temp[1]))
                     {
-                        OpmWordHandler.Temp1_CreatContractGuarantee(temp[1]);
+                        //OpmWordHandler.Temp1_CreatContractGuarantee(temp[1]);
+                        OpmWordHandler.Temp29_ReportOfConpletedVolume(temp[1]);
                     }
                     else
                     {
@@ -75,7 +76,7 @@ namespace OPM.GUI
                         //OpmExcelHandler.Temp7_CreatPODistributionTable(temp[1]);
                         //OpmWordHandler.Temp23_CNCL_TongHop(temp[1]);
                         //OpmWordHandler.Temp24_CNCLNMTongHop(temp[1]);
-                        OpmWordHandler.Temp28_ReportOfAcceptanceAndHandlingOfGoods(temp[1]);
+                        //OpmWordHandler.Temp28_ReportOfAcceptanceAndHandlingOfGoods(temp[1]);
                         //OpmWordHandler.Temp36_BBNTLicense(temp[1]);
                         //OpmWordHandler.Temp37_BBXNCDLicense(temp[1]);
                     }
