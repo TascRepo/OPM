@@ -230,7 +230,7 @@ namespace OPM.GUI
             DataBindingsFromDtgPLToTextBoxsPackingList();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonSave_Click(object sender, EventArgs e)
         {
             DeviceObj.DeviceUpdateByBoxNumber(textBoxDeviceBoxNumber.Text.Trim(), textBoxDeviceCaseNumber.Text.Trim());
         }

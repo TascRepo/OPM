@@ -58,9 +58,10 @@ namespace OPM.GUI
                 case "Contract":
                     if (ContractObj.ContractExist(temp[1]))
                     {
-                        OpmWordHandler.Temp1_CreatContractGuarantee(temp[1]);
-                        OpmWordHandler.Temp29_ReportOfConpletedVolume(temp[1]);
-                        OpmWordHandler.Temp30_LiquidationRecords(temp[1]);
+                        OpenContractCreatDocForm(temp[1]);
+                        //OpmWordHandler.Temp1_ContractGuarantee(temp[1]);
+                        //OpmWordHandler.Temp29_ContractReportOfConpletedVolume(temp[1]);
+                        //OpmWordHandler.Temp30_ContractLiquidationRecords(temp[1]);
                     }
                     else
                     {
@@ -70,17 +71,7 @@ namespace OPM.GUI
                 case "PO":
                     if (POObj.POExist(temp[1]))
                     {
-                        //OpmWordHandler.Temp3_CreatPOConfirm(temp[1]);
-                        //OpmWordHandler.Temp4_CreatPOPerformanceGuarantee(temp[1]);
-                        //OpmWordHandler.Temp5_CreatPOAdvanceGuarantee(temp[1]);
-                        //OpmWordHandler.Temp6_CreatPOAdvanceReques(temp[1]);
-                        //OpmExcelHandler.Temp7_CreatPODistributionTable(temp[1]);
-                        //OpmWordHandler.Temp23_CNCL_TongHop(temp[1]);
-                        //OpmWordHandler.Temp24_CNCLNMTongHop(temp[1]);
-                        //OpmWordHandler.Temp28_ReportOfAcceptanceAndHandlingOfGoods(temp[1]);
-                        OpmWordHandler.Temp33_OfferToGuaranteePOWarranty(temp[1]);
-                        //OpmWordHandler.Temp36_BBNTLicense(temp[1]);
-                        //OpmWordHandler.Temp37_BBXNCDLicense(temp[1]);
+                        OpenPOCreatDocForm(temp[1]);
                     }
                     else
                     {
@@ -90,10 +81,7 @@ namespace OPM.GUI
                 case "DP":
                     if (DPObj.DPExist(temp[1]))
                     {
-                        OpmExcelHandler.Temp12_CreatedbyOPM_DP(temp[1]);
-                        OpmExcelHandler.Temp13_ExportRequestForm_ANSV(temp[1]);
-                        OpmExcelHandler.Temp14_CreatedbyANSV_DP(temp[1]);
-                        OpmExcelHandler.Temp16_ExportRequestForm_VNPTTech(temp[1]);
+                        OpenDPCreatDocForm(temp[1]);
                     }
                     else
                     {
@@ -103,10 +91,11 @@ namespace OPM.GUI
                 case "NTKT":
                     if (NTKTObj.NTKTExist(temp[1]))
                     {
-                        OpmWordHandler.Temp08_NTKTRequest(temp[1]);
-                        OpmWordHandler.Temp09_BBKTKT(temp[1]);
-                        OpmWordHandler.Temp10_CNBQPM(temp[1]);
-                        OpmWordHandler.Temp11_BBNTKT(temp[1]);
+                        OpenNTKTCreatDocForm(temp[1]);
+                        //OpmWordHandler.Temp08_NTKTRequest(temp[1]);
+                        //OpmWordHandler.Temp09_NTKTBBKTKT(temp[1]);
+                        //OpmWordHandler.Temp10_NTKTCNBQPM(temp[1]);
+                        //OpmWordHandler.Temp11_NTKTBBNTKT(temp[1]);
                     }
                     else
                     {
@@ -116,11 +105,12 @@ namespace OPM.GUI
                 case "PL":
                     if (PLObj.PLExist(temp[1]))
                     {
-                        OpmWordHandler.Temp18_GoodsDeliveryRecord(temp[1]);
-                        OpmWordHandler.Temp19_QualityInspectionCertificateInFactory(temp[1]);
-                        OpmWordHandler.Temp20_QualityInspectionCertificate(temp[1]);
-                        OpmWordHandler.Temp22_Warranty(temp[1]);
-                        OpmExcelHandler.Temp27_ReportForDelivery(temp[1]);
+                        OpenPLCreatDocForm(temp[1]);
+                        //OpmWordHandler.Temp18_PLGoodsDeliveryRecord(temp[1]);
+                        //OpmWordHandler.Temp19_PLQualityInspectionCertificateInFactory(temp[1]);
+                        //OpmWordHandler.Temp20_PLQualityInspectionCertificate(temp[1]);
+                        //OpmWordHandler.Temp22_PLWarranty(temp[1]);
+                        //OpmExcelHandler.Temp27_PLReportForDelivery(temp[1]);
 
                     }
                     else
@@ -565,6 +555,41 @@ namespace OPM.GUI
                 //Do Something
 
             }
+        }
+        public void OpenContractCreatDocForm(string contractId)
+        {
+            ContractCreatDocInfo form = new ContractCreatDocInfo();
+            form.ContractId = contractId;
+            Text = string.Format("Hợp đồng số {0}: Tạo văn bản", contractId);
+            OpenChildForm(form);
+        }
+        public void OpenPOCreatDocForm(string POId)
+        {
+            POCreatDocInfo form = new POCreatDocInfo();
+            form.POId = POId;
+            Text = string.Format("Đơn hàng PO số {0}: Tạo văn bản", POId);
+            OpenChildForm(form);
+        }
+        public void OpenDPCreatDocForm(string DPId)
+        {
+            DPCreatDocInfo form = new DPCreatDocInfo();
+            form.DPId = DPId;
+            Text = string.Format("Giao hàng DP số {0}: Tạo văn bản", DPId);
+            OpenChildForm(form);
+        }
+        public void OpenNTKTCreatDocForm(string NTKTId)
+        {
+            NTKTCreatDocInfo form = new NTKTCreatDocInfo();
+            form.NTKTId = NTKTId;
+            Text = string.Format("Nghiệm thu kỹ thuật số {0}: Tạo văn bản", NTKTId);
+            OpenChildForm(form);
+        }
+        public void OpenPLCreatDocForm(string PLId)
+        {
+            PLCreatDocInfo form = new PLCreatDocInfo();
+            form.PLId = PLId;
+            Text = string.Format("Packing List số {0}: Tạo văn bản", PLId);
+            OpenChildForm(form);
         }
         public void OpenSiteAForm(string idSite)
         {

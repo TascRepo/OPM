@@ -12,8 +12,86 @@ namespace OPM.OPMWordHandler
 {
     class OpmWordHandler
     {
+        //Mẫu 39. Công văn xác nhận điều chỉnh hợp đồng
+        public static string Temp39_POAdjustmentConfirmation(string poid)
+        {
+            POObj po = new POObj(poid);
+            object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 39. Công văn xác nhận điều chỉnh đơn hàng {2}.docx", po.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), po.POId.Replace('/', '-'));
+            object path = @"D:\OPM\Template\Mẫu 39. Công văn xác nhận điều chỉnh đơn hàng.docx";
+            if (!File.Exists(path.ToString()))
+            {
+                MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                return string.Format(@"Không tìm thấy {0}", path.ToString());
+            }
+            Word.Application wordApp = new Word.Application();
+            object missing = Missing.Value;
+            Word.Document myDoc = null;
+            try
+            {
+                object readOnly = true;
+                //object isVisible = false;
+                wordApp.Visible = false;
+
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                //find and replace
+                OpmWordHandler.FindAndReplace(wordApp, "<Ngày tháng năm 1>", string.Format("ngày {0} tháng {1} năm {2}", po.POAdjustmentConfirmationDate.Day, po.POAdjustmentConfirmationDate.Month, po.POAdjustmentConfirmationDate.Year));
+                OpmWordHandler.FindAndReplace(wordApp, "<POAdjustmentConfirmationNumber>", po.POAdjustmentConfirmationNumber);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractId>", po.ContractId);
+                OpmWordHandler.FindAndReplace(wordApp, "<SiteName>", po.SiteName);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractName>", po.ContractName);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractShoppingPlan>", po.ContractShoppingPlan);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractCreatedDate>", po.ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<POId>", po.POId);
+                OpmWordHandler.FindAndReplace(wordApp, "<POName>", po.POName);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsDesignation>", po.ContractGoodsDesignation);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsUnit>", po.ContractGoodsUnit);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsQuantity>", po.ContractGoodsQuantity);
+                OpmWordHandler.FindAndReplace(wordApp, "<POGoodQuantityAfterAdjustment>", po.POGoodQuantityAfterAdjustment);
+                //OpmWordHandler.FindAndReplace(wordApp, "<Ngày tháng năm>", string.Format("ngày {0} tháng {1} năm {2}", po.POConfirmCreatedDate.Day, po.POConfirmCreatedDate.Month, po.POConfirmCreatedDate.Year));
+                //OpmWordHandler.FindAndReplace(wordApp, "<POConfirmId>", po.POConfirmId);
+                //OpmWordHandler.FindAndReplace(wordApp, "<POCreatedDate>", po.POCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                //OpmWordHandler.FindAndReplace(wordApp, "<POPerformDate>", po.POPerformDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                //OpmWordHandler.FindAndReplace(wordApp, "<POAdvanceGuaranteeCreatedDate>", po.POAdvanceGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                //OpmWordHandler.FindAndReplace(wordApp, "<POTotalValue>", string.Format(new CultureInfo("vi-VN"), "{0:#,##0.##}", po.POTotalValue * 1.1));
+                //OpmWordHandler.FindAndReplace(wordApp, "<POGuaranteeRatio>", po.POGuaranteeRatio.ToString());
+                //OpmWordHandler.FindAndReplace(wordApp, "<POGuaranteeValidityPeriod>", po.POGuaranteeValidityPeriod.ToString());
+
+                //Tạo file BLHĐ trong thư mục D:\OPM
+                try
+                {
+                    string folder = string.Format(@"D:\OPM\{0}\{1}", po.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'));
+                    Directory.CreateDirectory(folder);
+                    myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing);
+                    MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(string.Format(@"Không tạo được file {0} do lỗi ", filename.ToString()) + e.Message);
+                }
+                myDoc.Close();
+                wordApp.Quit();
+                return filename.ToString();
+            }
+            catch (Exception e)
+            {
+                myDoc.Close();
+                wordApp.Quit();
+                MessageBox.Show(string.Format(@"Không đọc được file {0} do lỗi ", path.ToString()) + e.Message);
+                return e.Message;
+            }
+        }
         //Tạo mẫu 37
-        public static string Temp37_BBXNCDLicense(string poid)
+        public static string Temp37_POBBXNCDLicense(string poid)
         {
             object path = @"D:\OPM\Template\Mẫu 37. Biên bản xác nhận cài đặt License vào hệ thống.docx";
             if (!File.Exists(path.ToString()))
@@ -103,7 +181,7 @@ namespace OPM.OPMWordHandler
             }
         }
         //Tạo mẫu 36
-        public static string Temp36_BBNTLicense(string poid)
+        public static string Temp36_POBBNTLicense(string poid)
         {
             object path = @"D:\OPM\Template\Mẫu 36. Biên bản nghiệm thu License.docx";
             if (!File.Exists(path.ToString()))
@@ -190,7 +268,7 @@ namespace OPM.OPMWordHandler
             }
         }
         //Mẫu 33: Đề nghị bảo lãnh bảo hành hợp đồng theo đơn hàng
-        public static string Temp33_OfferToGuaranteePOWarranty(string poid)
+        public static string Temp33_POOfferToGuaranteeWarranty(string poid)
         {
             object path = @"D:\OPM\Template\Mẫu 33. Văn bản đề nghị mở BLBH PO.docx";
             if (!File.Exists(path.ToString()))
@@ -263,7 +341,7 @@ namespace OPM.OPMWordHandler
             }
         }
         //Mẫu 30: Biên bản thanh lý hợp đồng
-        public static string Temp30_LiquidationRecords(string contractId)
+        public static string Temp30_ContractLiquidationRecords(string contractId)
         {
             object path = @"D:\OPM\Template\Mẫu 30. Biên bản thanh lý hợp đồng.docx";
             if (!File.Exists(path.ToString()))
@@ -367,7 +445,7 @@ namespace OPM.OPMWordHandler
             }
         }
         //Mẫu 29: Biên bản xác nhận khối lượng hoàn thành
-        public static string Temp29_ReportOfConpletedVolume(string contractId)
+        public static string Temp29_ContractReportOfConpletedVolume(string contractId)
         {
             object path = @"D:\OPM\Template\Mẫu 29. Biên bản xác nhận khối lượng hoàn thành.docx";
             if (!File.Exists(path.ToString()))
@@ -439,7 +517,7 @@ namespace OPM.OPMWordHandler
             }
         }
         //Mẫu 28: Biên bản nghiệm thu và bàn giao hàng hoá
-        public static string Temp28_ReportOfAcceptanceAndHandlingOfGoods(string poid)
+        public static string Temp28_POReportOfAcceptanceAndHandlingOfGoods(string poid)
         {
             object path = @"D:\OPM\Template\Mẫu 28. Biên bản nghiệm thu bàn giao hàng hóa.docx";
             if (!File.Exists(path.ToString()))
@@ -512,7 +590,7 @@ namespace OPM.OPMWordHandler
             }
         }
         //Tạo mẫu 24
-        public static string Temp24_CNCLNMTongHop(string poid)
+        public static string Temp24_POCNCLNMTongHop(string poid)
         {
             object path = @"D:\OPM\Template\Mẫu 24. Giấy CNCL NM tổng hợp.docx";
             if (!File.Exists(path.ToString()))
@@ -605,7 +683,7 @@ namespace OPM.OPMWordHandler
         }
 
         //Tạo mẫu 23
-        public static string Temp23_CNCL_TongHop(string poid)
+        public static string Temp23_POCNCL_TongHop(string poid)
         {
             object path = @"D:\OPM\Template\Mẫu 23. GIAY_CNCL_TONG_HOP.docx";
             if (!File.Exists(path.ToString()))
@@ -694,7 +772,7 @@ namespace OPM.OPMWordHandler
             }
         }
         //Tạo mẫu 22: Phiếu bảo hành
-        public static string Temp22_Warranty(string PLId)
+        public static string Temp22_PLWarranty(string PLId)
         {
             object path = @"D:\OPM\Template\Mẫu 22. Mẫu phiếu bảo hành.docx";
             if (!File.Exists(path.ToString()))
@@ -780,7 +858,7 @@ namespace OPM.OPMWordHandler
             }
         }
         //Tạo mẫu 20: Giấy chứng nhận chất lượng
-        public static string Temp20_QualityInspectionCertificate(string PLId)
+        public static string Temp20_PLQualityInspectionCertificate(string PLId)
         {
             object path = @"D:\OPM\Template\Mẫu 20. Giấy CNCL gửi tỉnh.docx";
             if (!File.Exists(path.ToString()))
@@ -866,7 +944,7 @@ namespace OPM.OPMWordHandler
             }
         }
         //Tạo mẫu 19: Giấy chứng nhận chất lượng từ nhà máy
-        public static string Temp19_QualityInspectionCertificateInFactory(string PLId)
+        public static string Temp19_PLQualityInspectionCertificateInFactory(string PLId)
         {
             object path = @"D:\OPM\Template\Mẫu 19. Giấy CNCL NM gửi tỉnh.docx";
             if (!File.Exists(path.ToString()))
@@ -948,7 +1026,7 @@ namespace OPM.OPMWordHandler
             }
         }
         //Tạo mẫu 18: Biên bản giao nhận hàng hoá
-        public static string Temp18_GoodsDeliveryRecord(string PLId)
+        public static string Temp18_PLGoodsDeliveryRecord(string PLId)
         {
             object path = @"D:\OPM\Template\Mẫu 18.  Biên bản giao nhận hàng hóa.docx";
             if (!File.Exists(path.ToString()))
@@ -1027,7 +1105,7 @@ namespace OPM.OPMWordHandler
         }
 
         //Tạo mẫu 11: Biên bản nghiệm thu kỹ thuật
-        public static string Temp11_BBNTKT(string ntktId)
+        public static string Temp11_NTKTBBNTKT(string ntktId)
         {
             object path = @"D:\OPM\Template\Mẫu 11. Biên bản nghiệm thu kỹ thuật.docx";
             if (!File.Exists(path.ToString()))
@@ -1110,7 +1188,7 @@ namespace OPM.OPMWordHandler
             }
         }
         //Tạo mẫu 10: Chứng nhận bản quyền phần mềm
-        public static string Temp10_CNBQPM(string ntktId)
+        public static string Temp10_NTKTCNBQPM(string ntktId)
         {
             object path = @"D:\OPM\Template\Mẫu 10. Chứng nhận bản quyền phần mềm.docx";
             if (!File.Exists(path.ToString()))
@@ -1196,7 +1274,7 @@ namespace OPM.OPMWordHandler
             }
         }
         //Tạo mẫu 9
-        public static string Temp09_BBKTKT(string ntktId)
+        public static string Temp09_NTKTBBKTKT(string ntktId)
         {
             object path = @"D:\OPM\Template\Mẫu 9. Biên bản kiểm tra kỹ thuật.docx";
             if (!File.Exists(path.ToString()))
@@ -1418,7 +1496,7 @@ namespace OPM.OPMWordHandler
             }
         }
         //Tạo mẫu 6 - Thành
-        public static string Temp6_CreatPOAdvanceReques(string poid)
+        public static string Temp6_POAdvanceRequest(string poid)
         {
             POObj po = new POObj(poid);
             object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 6. Văn bản đề nghị tạm ứng đơn hàng {2}.docx", po.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), po.POId.Replace('/', '-'));
@@ -1494,8 +1572,8 @@ namespace OPM.OPMWordHandler
             }
         }
 
-        //Tạo mẫu 5 - Thành
-        public static string Temp5_CreatPOAdvanceGuarantee(string poid)
+        //Tạo mẫu 5 - Văn bản mở bảo lãnh tạm ứng cho đơn hàng
+        public static string Temp5_POAdvanceGuarantee(string poid)
         {
             POObj po = new POObj(poid);
             object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 5. Văn bản mở bảo lãnh tạm ứng đơn hàng {2}.docx", po.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), po.POId.Replace('/', '-'));
@@ -1567,8 +1645,8 @@ namespace OPM.OPMWordHandler
             }
         }
 
-        //Tạo mẫu 4 - Thành
-        public static string Temp4_CreatPOPerformanceGuarantee(string poid)
+        //Tạo mẫu 4 - Đề nghị bảo lãnh thực hiện hợp đồng cho đơn hàng
+        public static string Temp4_POPerformanceGuarantee(string poid)
         {
             POObj po = new POObj(poid);
             object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 4. Đề nghị bảo lãnh thực hiện hợp đồng cho đơn hàng {2}.docx", po.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), po.POId.Replace('/', '-'));
@@ -1595,18 +1673,18 @@ namespace OPM.OPMWordHandler
                 myDoc.Activate();
                 //find and replace
                 OpmWordHandler.FindAndReplace(wordApp, "<ContractId>", po.ContractId);
-                OpmWordHandler.FindAndReplace(wordApp, "<ContractSiteId>", po.SiteId);
+                OpmWordHandler.FindAndReplace(wordApp, "<SiteName>", po.SiteName);
                 OpmWordHandler.FindAndReplace(wordApp, "<ContractName>", po.ContractName);
-                OpmWordHandler.FindAndReplace(wordApp, "<ContractShoppingPlan>", po.ContractShoppingPlan);
+                //OpmWordHandler.FindAndReplace(wordApp, "<ContractShoppingPlan>", po.ContractShoppingPlan);
                 OpmWordHandler.FindAndReplace(wordApp, "<ContractCreatedDate>", po.ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-                OpmWordHandler.FindAndReplace(wordApp, "<POId>", po.POId);
+                //OpmWordHandler.FindAndReplace(wordApp, "<POId>", po.POId);
                 OpmWordHandler.FindAndReplace(wordApp, "<POName>", po.POName);
                 OpmWordHandler.FindAndReplace(wordApp, "<Ngày tháng năm>", string.Format("ngày {0} tháng {1} năm {2}", po.POConfirmCreatedDate.Day, po.POConfirmCreatedDate.Month, po.POConfirmCreatedDate.Year));
-                OpmWordHandler.FindAndReplace(wordApp, "<POConfirmId>", po.POConfirmId);
+                //OpmWordHandler.FindAndReplace(wordApp, "<POConfirmId>", po.POConfirmId);
                 OpmWordHandler.FindAndReplace(wordApp, "<POCreatedDate>", po.POCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-                OpmWordHandler.FindAndReplace(wordApp, "<POPerformDate>", po.POPerformDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                //OpmWordHandler.FindAndReplace(wordApp, "<POPerformDate>", po.POPerformDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 OpmWordHandler.FindAndReplace(wordApp, "<POAdvanceGuaranteeCreatedDate>", po.POAdvanceGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-                OpmWordHandler.FindAndReplace(wordApp, "<POTotalValue>", string.Format(new CultureInfo("vi-VN"), "{0:#,##0.##}", po.POTotalValue * 1.1));
+                //OpmWordHandler.FindAndReplace(wordApp, "<POTotalValue>", string.Format(new CultureInfo("vi-VN"), "{0:#,##0.##}", po.POTotalValue * 1.1));
                 OpmWordHandler.FindAndReplace(wordApp, "<POGuaranteeRatio>", po.POGuaranteeRatio.ToString());
                 OpmWordHandler.FindAndReplace(wordApp, "<POGuaranteeValidityPeriod>", po.POGuaranteeValidityPeriod.ToString());
 
@@ -1640,8 +1718,8 @@ namespace OPM.OPMWordHandler
             }
         }
 
-        //Tạo mẫu 3 - Thành
-        public static string Temp3_CreatPOConfirm(string poid)
+        //Tạo mẫu 3 - Văn bản xác nhận hiệu lực đơn hàng và phụ lục kế hạch giao hàng
+        public static string Temp3_POConfirm(string poid)
         {
             POObj po = new POObj(poid);
             object path = @"D:\OPM\Template\Mẫu 3. Văn bản xác nhận hiệu lực đơn hàng.docx";
@@ -1667,7 +1745,7 @@ namespace OPM.OPMWordHandler
                 myDoc.Activate();
                 //find and replace
                 OpmWordHandler.FindAndReplace(wordApp, "<ContractId>", po.ContractId);
-                OpmWordHandler.FindAndReplace(wordApp, "<ContractSiteId>", po.SiteId);
+                OpmWordHandler.FindAndReplace(wordApp, "<SiteName>", po.SiteName);
                 OpmWordHandler.FindAndReplace(wordApp, "<ContractName>", po.ContractName);
                 OpmWordHandler.FindAndReplace(wordApp, "<ContractShoppingPlan>", po.ContractShoppingPlan);
                 OpmWordHandler.FindAndReplace(wordApp, "<ContractCreatedDate>", po.ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
@@ -1692,7 +1770,7 @@ namespace OPM.OPMWordHandler
                     table.Cell(i + 2, 4).Range.Text = dataTable.Rows[i].ItemArray[3].ToString();
                 }
                 OpmWordHandler.FindAndReplace(wordApp, "12:00:00 SA", "");
-                MessageBox.Show(i.ToString());
+                //MessageBox.Show(i.ToString());
                 table.Cell(i + 2, 2).Range.Text = "TỔNG CỘNG";
                 table.Cell(i + 2, 3).Range.Text = po.POGoodsQuantity.ToString();
                 //Tạo file BLHĐ trong thư mục D:\OPM
@@ -1723,8 +1801,8 @@ namespace OPM.OPMWordHandler
                 return e.Message;
             }
         }
-        //Tạo mẫu 1 - Thành
-        public static string Temp1_CreatContractGuarantee(string contractId)
+        //Tạo mẫu 1 - Đề nghị mở bảo lãnh thực hiện hợp đồng
+        public static string Temp1_ContractGuarantee(string contractId)
         {
             object path = @"D:\OPM\Template\Mẫu 1. Đề nghị mở bảo lãnh thực hiện hợp đồng.docx";
             object filename = string.Format(@"D:\OPM\{0}\Mẫu 1. Đề nghị mở bảo lãnh thực hiện hợp đồng {0}.docx", contractId.Trim().Replace('/', '-'));
@@ -1759,7 +1837,7 @@ namespace OPM.OPMWordHandler
                 OpmWordHandler.FindAndReplace(wordApp, "<ContractGuaranteeCreatedDate>", contract.ContractGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
                 OpmWordHandler.FindAndReplace(wordApp, "<ContractName>", contract.ContractName);
                 OpmWordHandler.FindAndReplace(wordApp, "<ContractSignedDate>", contract.ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
-                OpmWordHandler.FindAndReplace(wordApp, "<ContractSiteId>", contract.SiteId);
+                OpmWordHandler.FindAndReplace(wordApp, "<SiteName>", contract.SiteName);
                 OpmWordHandler.FindAndReplace(wordApp, "<POGuaranteeRatio>", contract.POGuaranteeRatio);
                 OpmWordHandler.FindAndReplace(wordApp, "<POGuaranteeValidityPeriod>", contract.POGuaranteeValidityPeriod);
                 //Tạo file BLHĐ trong thư mục D:\OPM

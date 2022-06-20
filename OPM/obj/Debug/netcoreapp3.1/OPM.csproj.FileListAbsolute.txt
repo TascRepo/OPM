@@ -263,3 +263,8 @@ D:\OPM\OPM\bin\Debug\netcoreapp3.1\Spire.XLS.dll
 D:\OPM\OPM\bin\Debug\netcoreapp3.1\Syncfusion.Compression.Base.dll
 D:\OPM\OPM\bin\Debug\netcoreapp3.1\Syncfusion.Licensing.dll
 D:\OPM\OPM\bin\Debug\netcoreapp3.1\Syncfusion.XlsIO.Base.dll
+D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.ContractCreatDocInfo.resources
+D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.POCreatDocInfo.resources
+D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.DPCreatDocInfo.resources
+D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.NTKTCreatDocInfo.resources
+D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.PLCreatDocInfo.resources

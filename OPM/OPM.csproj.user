@@ -1,10 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="GUI\ContractCreatDocInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="GUI\ContractInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="GUI\DeliveryPlanInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\DPCreatDocInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="GUI\DPInfo.cs">
@@ -16,13 +22,22 @@
     <Compile Update="GUI\HandlerExcel.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="GUI\NTKTCreatDocInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="GUI\NTKTInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="GUI\OPMDASHBOARDA.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="GUI\PLCreatDocInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="GUI\PLInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\POCreatDocInfo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="GUI\POInfo.cs">

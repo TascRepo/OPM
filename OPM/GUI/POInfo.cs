@@ -47,6 +47,10 @@ namespace OPM.GUI
             txtPOGuaranteeRatio.Text = po.POGuaranteeRatio.ToString();
             dateTimePickerPOReportOfAcceptanceAndHandlingOfGoodsDate.Value = po.POReportOfAcceptanceAndHandlingOfGoodsDate;
             dateTimePickerPOOfferToGuaranteePOWarrantyDate.Value = po.POOfferToGuaranteePOWarrantyDate;
+            textBoxPOGoodQuantityAfterAdjustment.Text = po.POGoodQuantityAfterAdjustment.ToString();
+            dateTimePickerPOAdjustmentConfirmationDate.Value = po.POAdjustmentConfirmationDate;
+            textBoxPOAdjustmentConfirmationNumber.Text = po.POAdjustmentConfirmationNumber;
+            textBoxPOValueAfterAdjustment.Text = po.POTotalValueAfterAdjustment.ToString();
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -172,7 +176,6 @@ namespace OPM.GUI
         }
         private void txtPOGoodsQuantity_TextChanged(object sender, EventArgs e)
         {
-            
             try
             {
                 if (!string.IsNullOrEmpty(txtPOGoodsQuantity.Text.Trim()))
@@ -334,6 +337,34 @@ namespace OPM.GUI
         private void dateTimePickerPOOfferToGuaranteePOWarrantyDate_ValueChanged(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).Po.POOfferToGuaranteePOWarrantyDate = dateTimePickerPOOfferToGuaranteePOWarrantyDate.Value;
+        }
+
+        private void textBoxPOAdjustmentConfirmationNumber_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Po.POAdjustmentConfirmationNumber = textBoxPOAdjustmentConfirmationNumber.Text.Trim();
+        }
+
+        private void textBoxPOQuantityAfterAdjustment_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(textBoxPOGoodQuantityAfterAdjustment.Text.Trim()))
+                {
+                    (Tag as OPMDASHBOARDA).Po.POGoodQuantityAfterAdjustment = int.Parse(textBoxPOGoodQuantityAfterAdjustment.Text.Trim());
+                    textBoxPOValueAfterAdjustment.Text = (Tag as OPMDASHBOARDA).Po.POTotalValueAfterAdjustment.ToString();
+                }
+                else
+                    (Tag as OPMDASHBOARDA).Po.POGoodsQuantity = 0;
+            }
+            catch
+            {
+                MessageBox.Show("Nhập lại POGoodsQuantity dạng số!");
+            }
+        }
+
+        private void dateTimePickerPOAdjustmentConfirmationDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Po.POAdjustmentConfirmationDate = dateTimePickerPOAdjustmentConfirmationDate.Value;
         }
     }
 }

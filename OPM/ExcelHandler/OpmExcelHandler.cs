@@ -18,7 +18,7 @@ namespace OPM.ExcelHandler
     class OpmExcelHandler
     {
         //Mẫu 27 - Biên bản bàn giao hàng hoá PL
-        public static string Temp27_ReportForDelivery(string PLId)
+        public static string Temp27_PLReportForDelivery(string PLId)
         {
             PLObj pl = new PLObj(PLId);
             object path = @"D:\OPM\Template\Mẫu 27. Biên bản bàn giao HH kho ANSV.xlsx";
@@ -127,7 +127,7 @@ namespace OPM.ExcelHandler
             }
         }
         //Mẫu 16 - Phiếu yêu cầu xuất kho ANSV
-        public static string Temp16_ExportRequestForm_VNPTTech(string DPId)
+        public static string Temp16_DPExportRequestForm_VNPTTech(string DPId)
         {
             DPObj dP = new DPObj(DPId);
             POObj po = new POObj(dP.POId);
@@ -252,7 +252,7 @@ namespace OPM.ExcelHandler
             }
         }
         //Mẫu 14 - DP do ANSV tạo
-        public static string Temp14_CreatedbyANSV_DP(string DPId)
+        public static string Temp14_DPCreatedbyANSV(string DPId)
         {
             DPObj dP = new DPObj(DPId);
             POObj po = new POObj(dP.POId);
@@ -369,7 +369,7 @@ namespace OPM.ExcelHandler
             }
         }
         //Mẫu 13 - Phiếu yêu cầu xuất kho ANSV
-        public static string Temp13_ExportRequestForm_ANSV(string DPId)
+        public static string Temp13_DPExportRequestForm_ANSV(string DPId)
         {
             DPObj dP = new DPObj(DPId);
             POObj po = new POObj(dP.POId);
@@ -493,7 +493,7 @@ namespace OPM.ExcelHandler
             }
         }
         //Mẫu 12 - DP do OPM tạo
-        public static string Temp12_CreatedbyOPM_DP(string DPId)
+        public static string Temp12_DPCreatedbyOPM(string DPId)
         {
             DPObj dP = new DPObj(DPId);
             POObj po = new POObj(dP.POId);
@@ -610,7 +610,7 @@ namespace OPM.ExcelHandler
             }
         }
         //Mẫu 7 - Bảng dự kiến phân bổ đơn hàng
-        public static string Temp7_CreatPODistributionTable(string poid)
+        public static string Temp7_PODistributionTable(string poid)
         {
             POObj po = new POObj(poid);
             ContractObj contract = new ContractObj(po.ContractId);

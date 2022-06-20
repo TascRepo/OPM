@@ -53,8 +53,12 @@ namespace OPM.GUI
             this.buttonCreatDoc = new System.Windows.Forms.Button();
             this.buttonAddSerial = new System.Windows.Forms.Button();
             this.btnSavePL = new System.Windows.Forms.Button();
+            this.dateTimePickerPLQualityInspectionCertificateDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerPLQualityInspectionCertificateInFactoryDate = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerPLDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.txtCaseQuantity = new System.Windows.Forms.TextBox();
@@ -64,11 +68,7 @@ namespace OPM.GUI
             this.btnAddPackingList = new System.Windows.Forms.Button();
             this.dtgPL = new System.Windows.Forms.DataGridView();
             this.btnClose = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.dateTimePickerPLQualityInspectionCertificateInFactoryDate = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerPLQualityInspectionCertificateDate = new System.Windows.Forms.DateTimePicker();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgPL)).BeginInit();
@@ -346,6 +346,26 @@ namespace OPM.GUI
             this.btnSavePL.UseVisualStyleBackColor = true;
             this.btnSavePL.Click += new System.EventHandler(this.btnSavePL_Click);
             // 
+            // dateTimePickerPLQualityInspectionCertificateDate
+            // 
+            this.dateTimePickerPLQualityInspectionCertificateDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerPLQualityInspectionCertificateDate.Location = new System.Drawing.Point(427, 308);
+            this.dateTimePickerPLQualityInspectionCertificateDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateTimePickerPLQualityInspectionCertificateDate.Name = "dateTimePickerPLQualityInspectionCertificateDate";
+            this.dateTimePickerPLQualityInspectionCertificateDate.Size = new System.Drawing.Size(130, 31);
+            this.dateTimePickerPLQualityInspectionCertificateDate.TabIndex = 4;
+            this.dateTimePickerPLQualityInspectionCertificateDate.ValueChanged += new System.EventHandler(this.dateTimePickerPLQualityInspectionCertificateDate_ValueChanged);
+            // 
+            // dateTimePickerPLQualityInspectionCertificateInFactoryDate
+            // 
+            this.dateTimePickerPLQualityInspectionCertificateInFactoryDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerPLQualityInspectionCertificateInFactoryDate.Location = new System.Drawing.Point(116, 308);
+            this.dateTimePickerPLQualityInspectionCertificateInFactoryDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateTimePickerPLQualityInspectionCertificateInFactoryDate.Name = "dateTimePickerPLQualityInspectionCertificateInFactoryDate";
+            this.dateTimePickerPLQualityInspectionCertificateInFactoryDate.Size = new System.Drawing.Size(130, 31);
+            this.dateTimePickerPLQualityInspectionCertificateInFactoryDate.TabIndex = 4;
+            this.dateTimePickerPLQualityInspectionCertificateInFactoryDate.ValueChanged += new System.EventHandler(this.dateTimePickerPLQualityInspectionCertificateInFactoryDate_ValueChanged);
+            // 
             // dateTimePickerPLDate
             // 
             this.dateTimePickerPLDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -365,6 +385,26 @@ namespace OPM.GUI
             this.label6.Size = new System.Drawing.Size(72, 25);
             this.label6.TabIndex = 2;
             this.label6.Text = "PL Date";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(365, 312);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(55, 25);
+            this.label19.TabIndex = 2;
+            this.label19.Text = "CNCL";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(17, 312);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(89, 25);
+            this.label18.TabIndex = 2;
+            this.label18.Text = "CNCL NM";
             // 
             // label17
             // 
@@ -455,56 +495,16 @@ namespace OPM.GUI
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // button1
+            // buttonSave
             // 
-            this.button1.Location = new System.Drawing.Point(943, 843);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 40);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(17, 312);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(89, 25);
-            this.label18.TabIndex = 2;
-            this.label18.Text = "CNCL NM";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(365, 312);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(55, 25);
-            this.label19.TabIndex = 2;
-            this.label19.Text = "CNCL";
-            // 
-            // dateTimePickerPLQualityInspectionCertificateInFactoryDate
-            // 
-            this.dateTimePickerPLQualityInspectionCertificateInFactoryDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerPLQualityInspectionCertificateInFactoryDate.Location = new System.Drawing.Point(116, 308);
-            this.dateTimePickerPLQualityInspectionCertificateInFactoryDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dateTimePickerPLQualityInspectionCertificateInFactoryDate.Name = "dateTimePickerPLQualityInspectionCertificateInFactoryDate";
-            this.dateTimePickerPLQualityInspectionCertificateInFactoryDate.Size = new System.Drawing.Size(130, 31);
-            this.dateTimePickerPLQualityInspectionCertificateInFactoryDate.TabIndex = 4;
-            this.dateTimePickerPLQualityInspectionCertificateInFactoryDate.ValueChanged += new System.EventHandler(this.dateTimePickerPLQualityInspectionCertificateInFactoryDate_ValueChanged);
-            // 
-            // dateTimePickerPLQualityInspectionCertificateDate
-            // 
-            this.dateTimePickerPLQualityInspectionCertificateDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerPLQualityInspectionCertificateDate.Location = new System.Drawing.Point(427, 308);
-            this.dateTimePickerPLQualityInspectionCertificateDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dateTimePickerPLQualityInspectionCertificateDate.Name = "dateTimePickerPLQualityInspectionCertificateDate";
-            this.dateTimePickerPLQualityInspectionCertificateDate.Size = new System.Drawing.Size(130, 31);
-            this.dateTimePickerPLQualityInspectionCertificateDate.TabIndex = 4;
-            this.dateTimePickerPLQualityInspectionCertificateDate.ValueChanged += new System.EventHandler(this.dateTimePickerPLQualityInspectionCertificateDate_ValueChanged);
+            this.buttonSave.Location = new System.Drawing.Point(943, 843);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(130, 40);
+            this.buttonSave.TabIndex = 1;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // PLInfo
             // 
@@ -517,7 +517,7 @@ namespace OPM.GUI
             this.Controls.Add(this.btnAddPackingList);
             this.Controls.Add(this.dtgPL);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonSave);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "PLInfo";
@@ -579,7 +579,7 @@ namespace OPM.GUI
         private System.Windows.Forms.TextBox textBoxPackingListMacNumberRange;
         private System.Windows.Forms.TextBox textBoxPackingListSeriGPONRange;
         private System.Windows.Forms.TextBox textBoxDeviceCaseNumber;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCreatDoc;
         private System.Windows.Forms.DateTimePicker dateTimePickerPLQualityInspectionCertificateDate;
         private System.Windows.Forms.DateTimePicker dateTimePickerPLQualityInspectionCertificateInFactoryDate;

@@ -287,9 +287,9 @@ namespace OPM.GUI
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            DataTable dataTable = DeliveryPlanObj.DeliveryPlanDataTable("3579/CUVT-KV");
-            dataGridViewTest.DataSource = dataTable;
-            dataGridViewTest.Columns["SiteId"].Visible = false;
+            DataTable plTable = OpmExcelHandler.ReadExcelToDataTable(@"D:\OPM\Template\Mẫu 17. PL.xlsx", 3, 1, 1);
+            dataGridViewTest.DataSource = plTable;
+            //dataGridViewTest.Columns["SiteId"].Visible = false;
             //OpmExcelHandler.ExportDataTableToExcel(dataTable, @"D:\TestOPM\Mẫu 2B.xlsx", 1, 4, 1);
         }
         private void ProvinceInSertToSite()

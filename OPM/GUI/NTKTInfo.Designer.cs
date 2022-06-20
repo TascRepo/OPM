@@ -75,7 +75,7 @@ namespace OPM.GUI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 33);
+            this.label2.Location = new System.Drawing.Point(10, 30);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(341, 25);
@@ -85,7 +85,7 @@ namespace OPM.GUI
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(144, 124);
+            this.label3.Location = new System.Drawing.Point(144, 122);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(207, 25);
@@ -95,7 +95,7 @@ namespace OPM.GUI
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(68, 670);
+            this.label4.Location = new System.Drawing.Point(68, 665);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(283, 25);
@@ -105,7 +105,7 @@ namespace OPM.GUI
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(68, 215);
+            this.label6.Location = new System.Drawing.Point(68, 214);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(283, 25);
@@ -123,7 +123,7 @@ namespace OPM.GUI
             // 
             // txtNTKTPhase
             // 
-            this.txtNTKTPhase.Location = new System.Drawing.Point(361, 118);
+            this.txtNTKTPhase.Location = new System.Drawing.Point(361, 119);
             this.txtNTKTPhase.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNTKTPhase.Name = "txtNTKTPhase";
             this.txtNTKTPhase.Size = new System.Drawing.Size(279, 31);
@@ -132,7 +132,7 @@ namespace OPM.GUI
             // 
             // txtNTKTQuantity
             // 
-            this.txtNTKTQuantity.Location = new System.Drawing.Point(361, 664);
+            this.txtNTKTQuantity.Location = new System.Drawing.Point(361, 662);
             this.txtNTKTQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNTKTQuantity.Name = "txtNTKTQuantity";
             this.txtNTKTQuantity.Size = new System.Drawing.Size(251, 31);
@@ -162,7 +162,7 @@ namespace OPM.GUI
             // 
             // txtNTKTExtraQuantity
             // 
-            this.txtNTKTExtraQuantity.Location = new System.Drawing.Point(361, 763);
+            this.txtNTKTExtraQuantity.Location = new System.Drawing.Point(361, 758);
             this.txtNTKTExtraQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNTKTExtraQuantity.Name = "txtNTKTExtraQuantity";
             this.txtNTKTExtraQuantity.Size = new System.Drawing.Size(632, 31);
@@ -182,7 +182,7 @@ namespace OPM.GUI
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(647, 119);
+            this.label17.Location = new System.Drawing.Point(647, 122);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(59, 25);
@@ -220,7 +220,7 @@ namespace OPM.GUI
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(58, 488);
+            this.label9.Location = new System.Drawing.Point(58, 490);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(293, 25);
@@ -239,7 +239,7 @@ namespace OPM.GUI
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(35, 397);
+            this.label10.Location = new System.Drawing.Point(35, 398);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(316, 25);
@@ -291,7 +291,7 @@ namespace OPM.GUI
             // lblContractGoodsUnit1
             // 
             this.lblContractGoodsUnit1.AutoSize = true;
-            this.lblContractGoodsUnit1.Location = new System.Drawing.Point(1011, 677);
+            this.lblContractGoodsUnit1.Location = new System.Drawing.Point(1011, 665);
             this.lblContractGoodsUnit1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblContractGoodsUnit1.Name = "lblContractGoodsUnit1";
             this.lblContractGoodsUnit1.Size = new System.Drawing.Size(33, 25);
@@ -301,7 +301,7 @@ namespace OPM.GUI
             // lblContractGoodsUnit2
             // 
             this.lblContractGoodsUnit2.AutoSize = true;
-            this.lblContractGoodsUnit2.Location = new System.Drawing.Point(1011, 768);
+            this.lblContractGoodsUnit2.Location = new System.Drawing.Point(1011, 761);
             this.lblContractGoodsUnit2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblContractGoodsUnit2.Name = "lblContractGoodsUnit2";
             this.lblContractGoodsUnit2.Size = new System.Drawing.Size(33, 25);
@@ -349,7 +349,7 @@ namespace OPM.GUI
             // txtRemainingNTKTGoodsQuantity
             // 
             this.txtRemainingNTKTGoodsQuantity.Enabled = false;
-            this.txtRemainingNTKTGoodsQuantity.Location = new System.Drawing.Point(703, 671);
+            this.txtRemainingNTKTGoodsQuantity.Location = new System.Drawing.Point(703, 662);
             this.txtRemainingNTKTGoodsQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtRemainingNTKTGoodsQuantity.Name = "txtRemainingNTKTGoodsQuantity";
             this.txtRemainingNTKTGoodsQuantity.Size = new System.Drawing.Size(290, 31);

@@ -109,9 +109,9 @@ namespace OPM.OPMEnginee
             return OPMDBHandler.ExecuteNonQuery(query);
         }
 
-        public int PLInsert(string pLId)
+        public int PLInsert(string PLId)
         {
-            if (PLObj.PLExist(pLId)) return 0;
+            if (PLObj.PLExist(PLId)) return 0;
             PLVolume = PLVolume.Replace(',', '.');
             string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.PL(PLId,DPId,VNPTId,PLDate,PLQuantity,CaseQuantity,PLDimension,PLVolume,PLNetWeight,PLGrossWeight,PLQualityInspectionCertificateInFactoryDate,PLQualityInspectionCertificateDate,PLReportForDeliveryNumber)VALUES('{0}','{1}', '{2}', '{3}', {4}, {5}, '{6}',{7}, {8}, {9},'{10}', '{11}', '{12}')", PLId, DPId, VNPTId, PLDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQuantity, CaseQuantity, PLDimension, PLVolume, PLNetWeight, PLGrossWeight, PLQualityInspectionCertificateInFactoryDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLQualityInspectionCertificateDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), PLReportForDeliveryNumber);
             return OPMDBHandler.ExecuteNonQuery(query);
