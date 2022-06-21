@@ -82,6 +82,9 @@ namespace OPM.GUI
             this.label19 = new System.Windows.Forms.Label();
             this.btnCreatDocument = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
+            this.textBoxContractTotalAmountPaidCurrency = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -429,6 +432,8 @@ namespace OPM.GUI
             // panel1
             // 
             this.panel1.Controls.Add(this.label18);
+            this.panel1.Controls.Add(this.label24);
+            this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.dtpContractDeadline);
             this.panel1.Controls.Add(this.dateTimePickerContractLiquidationRecordsDate);
@@ -438,6 +443,7 @@ namespace OPM.GUI
             this.panel1.Controls.Add(this.btnAnnex);
             this.panel1.Controls.Add(this.label22);
             this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.textBoxContractTotalAmountPaidCurrency);
             this.panel1.Controls.Add(this.textBoxContractTotalAmountPaid);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.txtContractName);
@@ -505,7 +511,7 @@ namespace OPM.GUI
             // 
             this.textBoxContractTotalAmountPaid.Location = new System.Drawing.Point(197, 353);
             this.textBoxContractTotalAmountPaid.Name = "textBoxContractTotalAmountPaid";
-            this.textBoxContractTotalAmountPaid.Size = new System.Drawing.Size(503, 23);
+            this.textBoxContractTotalAmountPaid.Size = new System.Drawing.Size(198, 23);
             this.textBoxContractTotalAmountPaid.TabIndex = 3;
             this.textBoxContractTotalAmountPaid.TextChanged += new System.EventHandler(this.textBoxContractTotalAmountPaid_TextChanged);
             // 
@@ -593,6 +599,32 @@ namespace OPM.GUI
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
+            // textBoxContractTotalAmountPaidCurrency
+            // 
+            this.textBoxContractTotalAmountPaidCurrency.Location = new System.Drawing.Point(452, 354);
+            this.textBoxContractTotalAmountPaidCurrency.Name = "textBoxContractTotalAmountPaidCurrency";
+            this.textBoxContractTotalAmountPaidCurrency.Size = new System.Drawing.Size(198, 23);
+            this.textBoxContractTotalAmountPaidCurrency.TabIndex = 3;
+            this.textBoxContractTotalAmountPaidCurrency.TextChanged += new System.EventHandler(this.textBoxContractTotalAmountPaid_TextChanged);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(668, 358);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(31, 15);
+            this.label23.TabIndex = 13;
+            this.label23.Text = "VND";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(416, 358);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(15, 15);
+            this.label24.TabIndex = 13;
+            this.label24.Text = "=";
+            // 
             // ContractInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -675,5 +707,8 @@ namespace OPM.GUI
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox textBoxContractTotalAmountPaid;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox textBoxContractTotalAmountPaidCurrency;
+        private System.Windows.Forms.Label label24;
     }
 }

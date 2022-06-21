@@ -49,7 +49,7 @@ namespace OPM.GUI
             dtpGuaranteeDateCreated.Value = contract.ContractGuaranteeCreatedDate;
             dateTimePickerContractReportOfConpletedVolumeDate.Value = contract.ContractReportOfConpletedVolumeDate;
             dateTimePickerContractLiquidationRecordsDate.Value = contract.ContractLiquidationRecordsDate;
-            textBoxContractTotalAmountPaid.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", contract.ContractTotalAmountPaid);
+            textBoxContractTotalAmountPaid.Text = contract.ContractTotalAmountPaid.ToString();
         }
         //Mở Form thông tin Site A
         private void btnIdSiteA_Click(object sender, EventArgs e)
@@ -257,6 +257,7 @@ namespace OPM.GUI
                 {
                     if(double.Parse(textBoxContractTotalAmountPaid.Text.Trim())<0) MessageBox.Show("Nhập lại dạng số Tổng số tiền bên A đã thanh toán trong hợp đồng phải >= 0!");
                     else (Tag as OPMDASHBOARDA).Contract.ContractTotalAmountPaid = double.Parse(textBoxContractTotalAmountPaid.Text.Trim());
+                    textBoxContractTotalAmountPaidCurrency.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", double.Parse(textBoxContractTotalAmountPaid.Text.Trim()));
                 }
             }
             catch (Exception)

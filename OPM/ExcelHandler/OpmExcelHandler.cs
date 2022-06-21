@@ -133,7 +133,7 @@ namespace OPM.ExcelHandler
             POObj po = new POObj(dP.POId);
             ContractObj contract = new ContractObj(po.ContractId);
             SiteObj site = new SiteObj(contract.SiteId);
-            object path = @"D:\OPM\Template\Mẫu 16. Phiếu YCXK. TECH.xlsx";
+            object path = @"D:\OPM\Template\Mẫu 16. Phiếu yêu cầu xuất kho TECH.xlsx";
             if (!File.Exists(path.ToString()))
             {
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
@@ -204,7 +204,7 @@ namespace OPM.ExcelHandler
                 //xlWorksheet.Cells[16 + rowCount, 3] = dP.DPQuantity;
                 string folder = string.Format(@"D:\OPM\{0}\{1}\DP{2}", dP.ContractId.Trim().Replace('/', '-'), dP.POName.Replace('/', '-'), dP.DPId).Replace('/', '-');
                 Directory.CreateDirectory(folder);
-                object filename = string.Format(@"D:\OPM\{0}\{1}\DP{2}\Mẫu 16. Phiếu YCXK. TECH.xlsx", dP.ContractId.Trim().Replace('/', '-'), dP.POName.Replace('/', '-'), dP.DPId.Replace('/', '-'));
+                object filename = string.Format(@"D:\OPM\{0}\{1}\DP{2}\Mẫu 16. Phiếu yêu cầu xuất kho TECH_{2}.xlsx", dP.ContractId.Trim().Replace('/', '-'), dP.POName.Replace('/', '-'), dP.DPId.Replace('/', '-'));
                 xlWorkbook.SaveAs(filename, Type.Missing, Type.Missing,
                 Type.Missing, Type.Missing, Type.Missing, XlSaveAsAccessMode.xlExclusive,
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
@@ -321,7 +321,7 @@ namespace OPM.ExcelHandler
                 //xlWorksheet.Cells[16 + rowCount, 3] = dP.DPQuantity;
                 string folder = string.Format(@"D:\OPM\{0}\{1}\DP{2}", dP.ContractId.Trim().Replace('/', '-'), dP.POName.Replace('/', '-'), dP.DPId).Replace('/', '-');
                 Directory.CreateDirectory(folder);
-                object filename = string.Format(@"D:\OPM\{0}\{1}\DP{2}\Mẫu 14. DP do ANSV tạo.xlsx", dP.ContractId.Trim().Replace('/', '-'), dP.POName.Replace('/', '-'), dP.DPId.Replace('/', '-'));
+                object filename = string.Format(@"D:\OPM\{0}\{1}\DP{2}\Mẫu 14. DP do ANSV tạo_{2}.xlsx", dP.ContractId.Trim().Replace('/', '-'), dP.POName.Replace('/', '-'), dP.DPId.Replace('/', '-'));
                 xlWorkbook.SaveAs(filename, Type.Missing, Type.Missing,
                 Type.Missing, Type.Missing, Type.Missing, XlSaveAsAccessMode.xlExclusive,
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
@@ -375,7 +375,7 @@ namespace OPM.ExcelHandler
             POObj po = new POObj(dP.POId);
             ContractObj contract = new ContractObj(po.ContractId);
             SiteObj site = new SiteObj(contract.SiteId);
-            object path = @"D:\OPM\Template\Mẫu 13. Phiếu YCXK. ANSV.xlsx";
+            object path = @"D:\OPM\Template\Mẫu 13. Phiếu yêu cầu xuất kho ANSV.xlsx";
             if (!File.Exists(path.ToString()))
             {
                 MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
@@ -445,7 +445,7 @@ namespace OPM.ExcelHandler
                 //xlWorksheet.Cells[16 + rowCount, 3] = dP.DPQuantity;
                 string folder = string.Format(@"D:\OPM\{0}\{1}\DP{2}", dP.ContractId.Trim().Replace('/', '-'), dP.POName.Replace('/', '-'), dP.DPId).Replace('/', '-');
                 Directory.CreateDirectory(folder);
-                object filename = string.Format(@"D:\OPM\{0}\{1}\DP{2}\Mẫu 13. Phiếu YCXK. ANSV.xlsx", dP.ContractId.Trim().Replace('/', '-'), dP.POName.Replace('/', '-'), dP.DPId.Replace('/', '-'));
+                object filename = string.Format(@"D:\OPM\{0}\{1}\DP{2}\Mẫu 13. Phiếu yêu cầu xuất kho ANSV_{2}.xlsx", dP.ContractId.Trim().Replace('/', '-'), dP.POName.Replace('/', '-'), dP.DPId.Replace('/', '-'));
                 xlWorkbook.SaveAs(filename, Type.Missing, Type.Missing,
                 Type.Missing, Type.Missing, Type.Missing, XlSaveAsAccessMode.xlExclusive,
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
@@ -562,7 +562,7 @@ namespace OPM.ExcelHandler
                 xlWorksheet.Cells[16 + rowCount, 3] = dP.DPQuantity;
                 string folder = string.Format(@"D:\OPM\{0}\{1}\DP{2}", dP.ContractId.Trim().Replace('/', '-'), dP.POName.Replace('/', '-'),dP.DPId).Replace('/', '-');
                 Directory.CreateDirectory(folder);
-                object filename = string.Format(@"D:\OPM\{0}\{1}\DP{2}\Mẫu 12. DP do OPM tạo.xlsx", dP.ContractId.Trim().Replace('/', '-'), dP.POName.Replace('/', '-'), dP.DPId.Replace('/', '-'));
+                object filename = string.Format(@"D:\OPM\{0}\{1}\DP{2}\Mẫu 12. DP do OPM tạo_{2}.xlsx", dP.ContractId.Trim().Replace('/', '-'), dP.POName.Replace('/', '-'), dP.DPId.Replace('/', '-'));
                 xlWorkbook.SaveAs(filename, Type.Missing, Type.Missing,
                 Type.Missing, Type.Missing, Type.Missing, XlSaveAsAccessMode.xlExclusive,
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);

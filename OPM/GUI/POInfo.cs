@@ -52,6 +52,10 @@ namespace OPM.GUI
             dateTimePickerPOAdjustmentConfirmationDate.Value = po.POAdjustmentConfirmationDate;
             textBoxPOAdjustmentConfirmationNumber.Text = po.POAdjustmentConfirmationNumber;
             textBoxPOValueAfterAdjustment.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", po.POTotalValueAfterAdjustment);
+            dateTimePickerPOQualityCertificationDate.Value = po.POQualityCertificationDate;
+            dateTimePickerPOFactoryQualityCertificationDate.Value = po.POFactoryQualityCertificationDate;
+            dateTimePickerPOInstallLicenseDate.Value = po.POInstallLicenseDate;
+            dateTimePickerPOAcceptanceLicenceDate.Value = po.POAcceptanceLicenceDate;
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -368,6 +372,26 @@ namespace OPM.GUI
         private void dateTimePickerPOAdjustmentConfirmationDate_ValueChanged(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).Po.POAdjustmentConfirmationDate = dateTimePickerPOAdjustmentConfirmationDate.Value;
+        }
+
+        private void dateTimePickerPOQualityCertificationDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Po.POQualityCertificationDate = dateTimePickerPOQualityCertificationDate.Value;
+        }
+
+        private void dateTimePickerPOFactoryQualityCertificationDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Po.POFactoryQualityCertificationDate = dateTimePickerPOFactoryQualityCertificationDate.Value;
+        }
+
+        private void dateTimePickerPOAcceptanceLicenceDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Po.POAcceptanceLicenceDate = dateTimePickerPOAcceptanceLicenceDate.Value;
+        }
+
+        private void dateTimePickerPOInstallLicenseDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Po.POInstallLicenseDate = dateTimePickerPOInstallLicenseDate.Value;
         }
     }
 }
