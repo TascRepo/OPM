@@ -130,9 +130,6 @@ namespace OPM.ExcelHandler
         public static string Temp16_DPExportRequestForm_VNPTTech(string DPId)
         {
             DPObj dP = new DPObj(DPId);
-            POObj po = new POObj(dP.POId);
-            ContractObj contract = new ContractObj(po.ContractId);
-            SiteObj site = new SiteObj(contract.SiteId);
             object path = @"D:\OPM\Template\Mẫu 16. Phiếu yêu cầu xuất kho TECH.xlsx";
             if (!File.Exists(path.ToString()))
             {
@@ -255,9 +252,6 @@ namespace OPM.ExcelHandler
         public static string Temp14_DPCreatedbyANSV(string DPId)
         {
             DPObj dP = new DPObj(DPId);
-            POObj po = new POObj(dP.POId);
-            ContractObj contract = new ContractObj(po.ContractId);
-            SiteObj site = new SiteObj(contract.SiteId);
             object path = @"D:\OPM\Template\Mẫu 14. DP do ANSV tạo.xlsx";
             if (!File.Exists(path.ToString()))
             {
@@ -372,9 +366,6 @@ namespace OPM.ExcelHandler
         public static string Temp13_DPExportRequestForm_ANSV(string DPId)
         {
             DPObj dP = new DPObj(DPId);
-            POObj po = new POObj(dP.POId);
-            ContractObj contract = new ContractObj(po.ContractId);
-            SiteObj site = new SiteObj(contract.SiteId);
             object path = @"D:\OPM\Template\Mẫu 13. Phiếu yêu cầu xuất kho ANSV.xlsx";
             if (!File.Exists(path.ToString()))
             {
@@ -496,9 +487,6 @@ namespace OPM.ExcelHandler
         public static string Temp12_DPCreatedbyOPM(string DPId)
         {
             DPObj dP = new DPObj(DPId);
-            POObj po = new POObj(dP.POId);
-            ContractObj contract = new ContractObj(po.ContractId);
-            SiteObj site = new SiteObj(contract.SiteId);
             object path = @"D:\OPM\Template\Mẫu 12. DP do OPM tạo.xlsx";
             if (!File.Exists(path.ToString()))
             {
@@ -613,8 +601,6 @@ namespace OPM.ExcelHandler
         public static string Temp7_PODistributionTable(string poid)
         {
             POObj po = new POObj(poid);
-            ContractObj contract = new ContractObj(po.ContractId);
-            SiteObj site = new SiteObj(contract.SiteId);
             object path = @"D:\OPM\Template\Mẫu 7. Bảng phần bổ giá trị tạm ứng đơn hàng.xlsx";
             if (!File.Exists(path.ToString()))
             {
