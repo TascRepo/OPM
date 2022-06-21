@@ -647,6 +647,7 @@ namespace OPM.ExcelHandler
                 //Lấy bảng dữ liệu từ DataTable
                 System.Data.DataTable dataTable = POObj.PODeliveryPlanQuantity(po.POId);
                 int rowCount = dataTable.Rows.Count;
+                double tongcong = 0;
                 for(int i = 0; i < rowCount; i++)
                 {
                     xlWorksheet.Cells[10 + i, 1] = i + 1;
@@ -656,11 +657,14 @@ namespace OPM.ExcelHandler
                     double tam = double.Parse(dataTable.Rows[i].ItemArray[1].ToString()) * int.Parse(dataTable.Rows[i].ItemArray[2].ToString());
                     xlWorksheet.Cells[10 + i, 5] = tam;
                     xlWorksheet.Cells[10 + i, 6] = tam/2;
+                    tongcong += tam;
                 }
-
+                xlWorksheet.Cells[10 + rowCount, 4] = "Tổng cộng:";
+                xlWorksheet.Cells[10 + rowCount, 5] = tongcong;
+                xlWorksheet.Cells[10 + rowCount, 6] = tongcong/2;
                 string folder = string.Format(@"D:\OPM\{0}\{1}", po.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'));
                 Directory.CreateDirectory(folder);
-                object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 7. Bảng phần bổ giá trị tạm ứng đơn hàng.xlsx", po.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), po.POId.Replace('/', '-'));
+                object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 7. Bảng phần bổ giá trị tạm ứng đơn hàng_{2}.xlsx", po.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), po.POId.Replace('/', '-'));
                 xlWorkbook.SaveAs(filename, Type.Missing, Type.Missing,
                 Type.Missing, Type.Missing, Type.Missing, XlSaveAsAccessMode.xlExclusive,
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
@@ -670,6 +674,7 @@ namespace OPM.ExcelHandler
                 //rule of thumb for releasing com objects:  
                 //  never use two dots, all COM objects must be referenced and released individually  
                 //  ex: [somthing].[something].[something] is bad  
+
 
                 //release com objects to fully kill excel process from running in the background  
                 Marshal.ReleaseComObject(xlRange);

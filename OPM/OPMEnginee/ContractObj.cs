@@ -52,6 +52,7 @@ namespace OPM.OPMEnginee
                         ContractReportOfConpletedVolumeDate = (row["ContractReportOfConpletedVolumeDate"] == null || row["ContractReportOfConpletedVolumeDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["ContractReportOfConpletedVolumeDate"];
                         ContractLiquidationRecordsDate = (row["ContractLiquidationRecordsDate"] == null || row["ContractLiquidationRecordsDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["ContractLiquidationRecordsDate"];
                         ContractTotalAmountPaid = (row["ContractTotalAmountPaid"] == null || row["ContractTotalAmountPaid"] == DBNull.Value) ? 0 : (double)row["ContractTotalAmountPaid"];
+                        ContractConformityCertificateNumber = (row["ContractConformityCertificateNumber"] == null || row["ContractConformityCertificateNumber"] == DBNull.Value) ? "" : row["ContractConformityCertificateNumber"].ToString();
                     }
                 }
                 catch (Exception e)
@@ -93,7 +94,7 @@ namespace OPM.OPMEnginee
         public DateTime ContractLiquidationRecordsDate { get; set; } = DateTime.Now.Date;
         public double ContractTotalAmountPaid { get; set; } = 0;
 
-
+        public string ContractConformityCertificateNumber { get; set; } = "";
         private SiteObj siteA;
 
         public SiteObj GetSiteA()
@@ -126,23 +127,6 @@ namespace OPM.OPMEnginee
             this.SiteProxy3 = value.SiteProxy3;
         }
 
-        public ContractObj(SiteObj site)
-        {
-            SetSiteA(site);
-        }
-
-        public List<POObj> ListPO()
-        {
-            List<POObj> list = new List<POObj>();
-            string query = string.Format("SELECT * FROM dbo.PO Where id_contract = {0} Order By id", ContractId);
-            DataTable dataTable = OPMDBHandler.ExecuteQuery(query);
-            foreach (DataRow item in dataTable.Rows)
-            {
-                POObj po = new POObj(item);
-                list.Add(po);
-            }
-            return list;
-        }
         public ContractObj() { }
         public ContractObj(string contractId)
         {
@@ -183,6 +167,7 @@ namespace OPM.OPMEnginee
                     ContractReportOfConpletedVolumeDate = (row["ContractReportOfConpletedVolumeDate"] == null || row["ContractReportOfConpletedVolumeDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["ContractReportOfConpletedVolumeDate"];
                     ContractLiquidationRecordsDate = (row["ContractLiquidationRecordsDate"] == null || row["ContractLiquidationRecordsDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["ContractLiquidationRecordsDate"];
                     ContractTotalAmountPaid = (row["ContractTotalAmountPaid"] == null || row["ContractTotalAmountPaid"] == DBNull.Value) ? 0 : (double)row["ContractTotalAmountPaid"];
+                    ContractConformityCertificateNumber = (row["ContractConformityCertificateNumber"] == null || row["ContractConformityCertificateNumber"] == DBNull.Value) ? "" : row["ContractConformityCertificateNumber"].ToString();
                 }
             }
             catch (Exception e)
@@ -205,27 +190,17 @@ namespace OPM.OPMEnginee
         public int ContractInsert(string id)
         {
             if (ContractExist(id)) return 0;
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.Contract(ContractId,ContractSignedDate,ContractName,ContractShoppingPlan,ContractType,SiteId,ContractValidityDate,ContractDeadline,ContractGoodsDesignation,ContractGoodsCode,ContractGoodsManufacture,ContractGoodsOrigin,ContractGoodsDesignation1,ContractGoodsCode1,ContractGoodsCode2,ContractGoodsSpecies,ContractGoodsNote,ContractGoodsUnit,ContractGoodsUnitPrice,ContractGoodsQuantity,ContractGoodsLicenseName,ContractGoodsLicenseUnitPrice,ContractGuaranteeCreatedDate,POGuaranteeRatio,POGuaranteeValidityPeriod,ContractGuaranteeDeadline,AccoutingCode,ContractReportOfConpletedVolumeDate,ContractLiquidationRecordsDate,ContractTotalAmountPaid)VALUES('{0}','{1}',N'{2}',N'{3}',N'{4}','{5}','{6}','{7}',N'{8}','{9}',N'{10}',N'{11}','{12}','{13}','{14}',N'{15}',N'{16}',N'{17}',{18},{19},N'{20}',{21},'{22}',{23},{24},'{25}','{26}','{27}','{28}',{29})", id, ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractName, ContractShoppingPlan, ContractType, SiteId, ContractValidityDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractGoodsDesignation, ContractGoodsCode, ContractGoodsManufacture, ContractGoodsOrigin, ContractGoodsDesignation1, ContractGoodsCode1, ContractGoodsCode2, ContractGoodsSpecies, ContractGoodsNote, ContractGoodsUnit, ContractGoodsUnitPrice, ContractGoodsQuantity, ContractGoodsLicenseName, ContractGoodsLicenseUnitPrice, ContractGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POGuaranteeRatio, POGuaranteeValidityPeriod, ContractGuaranteeDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractAccoutingCode, ContractReportOfConpletedVolumeDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractLiquidationRecordsDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractTotalAmountPaid);
-            return OPMDBHandler.ExecuteNonQuery(query);
-        }
-        public int ContractUpdate()
-        {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.Contract SET ContractSignedDate ='{1}', ContractName = N'{2}', ContractShoppingPlan = N'{3}', ContractType = N'{4}', SiteId = '{5}', ContractValidityDate = '{6}', ContractDeadline = '{7}', ContractGoodsDesignation = N'{8}', ContractGoodsCode = '{9}', ContractGoodsManufacture = N'{10}', ContractGoodsOrigin = N'{11}', ContractGoodsDesignation1 = '{12}', ContractGoodsCode1 = '{13}', ContractGoodsCode2 = '{14}', ContractGoodsSpecies = N'{15}', ContractGoodsNote = N'{16}', ContractGoodsUnit = N'{17}', ContractGoodsUnitPrice = {18}, ContractGoodsQuantity = {19}, ContractGoodsLicenseName = N'{20}', ContractGoodsLicenseUnitPrice = {21}, ContractGuaranteeCreatedDate = '{22}', POGuaranteeRatio = {23}, POGuaranteeValidityPeriod = {24}, ContractGuaranteeDeadline = '{25}', AccoutingCode = '{26}',ContractReportOfConpletedVolumeDate = '{27}',ContractLiquidationRecordsDate = '{28}',ContractTotalAmountPaid = {29} WHERE ContractId = '{0}'", ContractId, ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractName, ContractShoppingPlan, ContractType, SiteId, ContractValidityDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractGoodsDesignation, ContractGoodsCode, ContractGoodsManufacture, ContractGoodsOrigin, ContractGoodsDesignation1, ContractGoodsCode1, ContractGoodsCode2, ContractGoodsSpecies, ContractGoodsNote, ContractGoodsUnit, ContractGoodsUnitPrice, ContractGoodsQuantity, ContractGoodsLicenseName, ContractGoodsLicenseUnitPrice, ContractGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POGuaranteeRatio, POGuaranteeValidityPeriod, ContractGuaranteeDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractAccoutingCode, ContractReportOfConpletedVolumeDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractLiquidationRecordsDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractTotalAmountPaid);
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.Contract(ContractId,ContractSignedDate,ContractName,ContractShoppingPlan,ContractType,SiteId,ContractValidityDate,ContractDeadline,ContractGoodsDesignation,ContractGoodsCode,ContractGoodsManufacture,ContractGoodsOrigin,ContractGoodsDesignation1,ContractGoodsCode1,ContractGoodsCode2,ContractGoodsSpecies,ContractGoodsNote,ContractGoodsUnit,ContractGoodsUnitPrice,ContractGoodsQuantity,ContractGoodsLicenseName,ContractGoodsLicenseUnitPrice,ContractGuaranteeCreatedDate,POGuaranteeRatio,POGuaranteeValidityPeriod,ContractGuaranteeDeadline,AccoutingCode,ContractReportOfConpletedVolumeDate,ContractLiquidationRecordsDate,ContractTotalAmountPaid,ContractConformityCertificateNumber)VALUES('{0}','{1}',N'{2}',N'{3}',N'{4}','{5}','{6}','{7}',N'{8}','{9}',N'{10}',N'{11}','{12}','{13}','{14}',N'{15}',N'{16}',N'{17}',{18},{19},N'{20}',{21},'{22}',{23},{24},'{25}','{26}','{27}','{28}',{29},'{30}')", id, ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractName, ContractShoppingPlan, ContractType, SiteId, ContractValidityDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractGoodsDesignation, ContractGoodsCode, ContractGoodsManufacture, ContractGoodsOrigin, ContractGoodsDesignation1, ContractGoodsCode1, ContractGoodsCode2, ContractGoodsSpecies, ContractGoodsNote, ContractGoodsUnit, ContractGoodsUnitPrice, ContractGoodsQuantity, ContractGoodsLicenseName, ContractGoodsLicenseUnitPrice, ContractGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POGuaranteeRatio, POGuaranteeValidityPeriod, ContractGuaranteeDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractAccoutingCode, ContractReportOfConpletedVolumeDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractLiquidationRecordsDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractTotalAmountPaid, ContractConformityCertificateNumber);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public int ContractUpdate(string newId, string oldID)
         {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.Contract SET ContractId = '{30}', ContractSignedDate ='{1}', ContractName = N'{2}', ContractShoppingPlan = N'{3}', ContractType = N'{4}', SiteId = '{5}', ContractValidityDate = '{6}', ContractDeadline = '{7}', ContractGoodsDesignation = N'{8}', ContractGoodsCode = '{9}', ContractGoodsManufacture = N'{10}', ContractGoodsOrigin = N'{11}', ContractGoodsDesignation1 = '{12}', ContractGoodsCode1 = '{13}', ContractGoodsCode2 = '{14}', ContractGoodsSpecies = N'{15}', ContractGoodsNote = N'{16}', ContractGoodsUnit = N'{17}', ContractGoodsUnitPrice = {18}, ContractGoodsQuantity = {19}, ContractGoodsLicenseName = N'{20}', ContractGoodsLicenseUnitPrice = {21}, ContractGuaranteeCreatedDate = '{22}', POGuaranteeRatio = {23}, POGuaranteeValidityPeriod = {24}, ContractGuaranteeDeadline = '{25}', AccoutingCode = '{26}',ContractReportOfConpletedVolumeDate = '{27}',ContractLiquidationRecordsDate = '{28}',ContractTotalAmountPaid = {29} WHERE ContractId = '{0}'", oldID, ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractName, ContractShoppingPlan, ContractType, SiteId, ContractValidityDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractGoodsDesignation, ContractGoodsCode, ContractGoodsManufacture, ContractGoodsOrigin, ContractGoodsDesignation1, ContractGoodsCode1, ContractGoodsCode2, ContractGoodsSpecies, ContractGoodsNote, ContractGoodsUnit, ContractGoodsUnitPrice, ContractGoodsQuantity, ContractGoodsLicenseName, ContractGoodsLicenseUnitPrice, ContractGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POGuaranteeRatio, POGuaranteeValidityPeriod, ContractGuaranteeDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractAccoutingCode, ContractReportOfConpletedVolumeDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractLiquidationRecordsDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractTotalAmountPaid, newId);
+            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.Contract SET ContractId = '{31}', ContractSignedDate ='{1}', ContractName = N'{2}', ContractShoppingPlan = N'{3}', ContractType = N'{4}', SiteId = '{5}', ContractValidityDate = '{6}', ContractDeadline = '{7}', ContractGoodsDesignation = N'{8}', ContractGoodsCode = '{9}', ContractGoodsManufacture = N'{10}', ContractGoodsOrigin = N'{11}', ContractGoodsDesignation1 = '{12}', ContractGoodsCode1 = '{13}', ContractGoodsCode2 = '{14}', ContractGoodsSpecies = N'{15}', ContractGoodsNote = N'{16}', ContractGoodsUnit = N'{17}', ContractGoodsUnitPrice = {18}, ContractGoodsQuantity = {19}, ContractGoodsLicenseName = N'{20}', ContractGoodsLicenseUnitPrice = {21}, ContractGuaranteeCreatedDate = '{22}', POGuaranteeRatio = {23}, POGuaranteeValidityPeriod = {24}, ContractGuaranteeDeadline = '{25}', AccoutingCode = '{26}',ContractReportOfConpletedVolumeDate = '{27}',ContractLiquidationRecordsDate = '{28}',ContractTotalAmountPaid = {29},ContractConformityCertificateNumber = '{30}' WHERE ContractId = '{0}'", oldID, ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractName, ContractShoppingPlan, ContractType, SiteId, ContractValidityDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractGoodsDesignation, ContractGoodsCode, ContractGoodsManufacture, ContractGoodsOrigin, ContractGoodsDesignation1, ContractGoodsCode1, ContractGoodsCode2, ContractGoodsSpecies, ContractGoodsNote, ContractGoodsUnit, ContractGoodsUnitPrice, ContractGoodsQuantity, ContractGoodsLicenseName, ContractGoodsLicenseUnitPrice, ContractGuaranteeCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), POGuaranteeRatio, POGuaranteeValidityPeriod, ContractGuaranteeDeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractAccoutingCode, ContractReportOfConpletedVolumeDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractLiquidationRecordsDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), ContractTotalAmountPaid, ContractConformityCertificateNumber, newId);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public static int ContractDelete(string contractId)
         {
             string query = string.Format("DELETE FROM dbo.Contract WHERE ContractId = '{0}'", contractId);
-            return OPMDBHandler.ExecuteNonQuery(query);
-        }
-        public int ContractDelete()
-        {
-            string query = string.Format("DELETE FROM dbo.Contract WHERE ContractId = '{0}'", ContractId);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
     }

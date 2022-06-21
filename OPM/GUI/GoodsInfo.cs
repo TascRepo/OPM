@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OPM.OPMEnginee;
+using System;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace OPM.GUI
@@ -11,28 +13,30 @@ namespace OPM.GUI
         }
         void LoadData()
         {
-            txtContractGoodsDesignation.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsDesignation;
-            txtContractGoodsDesignation1.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsDesignation1;
-            txtContractGoodsCode.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsCode;
-            txtContractGoodsCode1.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsCode1;
-            txtContractGoodsCode2.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsCode2;
-            txtContractGoodsManufacture.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsManufacture;
-            txtContractGoodsOrigin.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsOrigin;
-            txtContractGoodsSpecies.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsSpecies;
-            txtContractGoodsNote.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsNote;
-            txtContractGoodsUnit.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsUnit;
-            txtContractGoodsUnitPrice.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsUnitPrice.ToString();
-            txtContractGoodsQuantity.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsQuantity.ToString();
-            txtPreTaxContractPrice.Text = ((Tag as OPMDASHBOARDA).Contract.ContractGoodsUnitPrice * (Tag as OPMDASHBOARDA).Contract.ContractGoodsQuantity).ToString();
-            txtContractGoodsLicenseName.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsLicenseName;
-            txtContractGoodsLicenseUnitPrice.Text = (Tag as OPMDASHBOARDA).Contract.ContractGoodsLicenseUnitPrice.ToString();
+            ContractObj contract = (Tag as OPMDASHBOARDA).Contract;
+            txtContractGoodsDesignation.Text = contract.ContractGoodsDesignation;
+            txtContractGoodsDesignation1.Text = contract.ContractGoodsDesignation1;
+            txtContractGoodsCode.Text = contract.ContractGoodsCode;
+            txtContractGoodsCode1.Text = contract.ContractGoodsCode1;
+            txtContractGoodsCode2.Text = contract.ContractGoodsCode2;
+            txtContractGoodsManufacture.Text = contract.ContractGoodsManufacture;
+            txtContractGoodsOrigin.Text = contract.ContractGoodsOrigin;
+            txtContractGoodsSpecies.Text = contract.ContractGoodsSpecies;
+            txtContractGoodsNote.Text = contract.ContractGoodsNote;
+            txtContractGoodsUnit.Text = contract.ContractGoodsUnit;
+            txtContractGoodsUnitPrice.Text = contract.ContractGoodsUnitPrice.ToString();
+            txtContractGoodsQuantity.Text = contract.ContractGoodsQuantity.ToString();
+            txtPreTaxContractPrice.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", contract.ContractGoodsUnitPrice * contract.ContractGoodsQuantity);
+            txtContractGoodsLicenseName.Text = contract.ContractGoodsLicenseName;
+            txtContractGoodsLicenseUnitPrice.Text = contract.ContractGoodsLicenseUnitPrice.ToString();
         }
         private void txtContractGoodsUnitPrice_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 (Tag as OPMDASHBOARDA).Contract.ContractGoodsUnitPrice = string.IsNullOrEmpty(txtContractGoodsUnitPrice.Text.Trim()) ? 0 : double.Parse(txtContractGoodsUnitPrice.Text.Trim());
-                txtPreTaxContractPrice.Text = ((string.IsNullOrEmpty(txtContractGoodsUnitPrice.Text.Trim()) ? 0 : double.Parse(txtContractGoodsUnitPrice.Text.Trim()) * (string.IsNullOrEmpty(txtContractGoodsQuantity.Text.Trim()) ? 0 : int.Parse(txtContractGoodsQuantity.Text.Trim())))).ToString();
+                double value = (string.IsNullOrEmpty(txtContractGoodsUnitPrice.Text.Trim()) ? 0 : double.Parse(txtContractGoodsUnitPrice.Text.Trim()) * (string.IsNullOrEmpty(txtContractGoodsQuantity.Text.Trim()) ? 0 : int.Parse(txtContractGoodsQuantity.Text.Trim())));
+                txtPreTaxContractPrice.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", value);
             }
             catch
             {
@@ -44,7 +48,8 @@ namespace OPM.GUI
             try
             {
                 (Tag as OPMDASHBOARDA).Contract.ContractGoodsQuantity = string.IsNullOrEmpty(txtContractGoodsQuantity.Text.Trim()) ? 0 : int.Parse(txtContractGoodsQuantity.Text.Trim());
-                txtPreTaxContractPrice.Text = ((string.IsNullOrEmpty(txtContractGoodsUnitPrice.Text.Trim()) ? 0 : double.Parse(txtContractGoodsUnitPrice.Text.Trim()) * (string.IsNullOrEmpty(txtContractGoodsQuantity.Text.Trim()) ? 0 : int.Parse(txtContractGoodsQuantity.Text.Trim())))).ToString();
+                double value = (string.IsNullOrEmpty(txtContractGoodsUnitPrice.Text.Trim()) ? 0 : double.Parse(txtContractGoodsUnitPrice.Text.Trim()) * (string.IsNullOrEmpty(txtContractGoodsQuantity.Text.Trim()) ? 0 : int.Parse(txtContractGoodsQuantity.Text.Trim())));
+                txtPreTaxContractPrice.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", value);
             }
             catch
             {
@@ -130,6 +135,11 @@ namespace OPM.GUI
             {
                 MessageBox.Show(string.Format("Nhập thông tin LicenseUnitPrice ở dạng số"));
             }
+        }
+
+        private void textBoxConformityCertificateNumber_TextChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Contract.ContractConformityCertificateNumber = textBoxContractConformityCertificateNumber.Text;
         }
     }
 }

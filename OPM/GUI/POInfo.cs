@@ -3,6 +3,7 @@ using OPM.ExcelHandler;
 using OPM.OPMEnginee;
 using System;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 namespace OPM.GUI
@@ -31,7 +32,7 @@ namespace OPM.GUI
             lblContractGoodsUnit.Text = po.ContractGoodsUnit;
             txtPOConfirmRequestDuration.Text = (po.POConfirmRequestDeadline.Date - po.POCreatedDate.Date).Days.ToString();
             dtpPODefaultPerformDate.Value = po.PODefaultPerformDate;
-            txtPOTotalValue.Text = po.POTotalValue.ToString();
+            txtPOTotalValue.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", po.POTotalValue);
             txtPOConfirmId.Text = po.POConfirmId.ToString();
             dtpPOConfirmCreatedDate.Value = po.POConfirmCreatedDate;
             dtpPOPerformDate.Value = po.POPerformDate;
@@ -50,7 +51,7 @@ namespace OPM.GUI
             textBoxPOGoodQuantityAfterAdjustment.Text = po.POGoodQuantityAfterAdjustment.ToString();
             dateTimePickerPOAdjustmentConfirmationDate.Value = po.POAdjustmentConfirmationDate;
             textBoxPOAdjustmentConfirmationNumber.Text = po.POAdjustmentConfirmationNumber;
-            textBoxPOValueAfterAdjustment.Text = po.POTotalValueAfterAdjustment.ToString();
+            textBoxPOValueAfterAdjustment.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", po.POTotalValueAfterAdjustment);
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -181,8 +182,10 @@ namespace OPM.GUI
                 if (!string.IsNullOrEmpty(txtPOGoodsQuantity.Text.Trim()))
                 {
                     (Tag as OPMDASHBOARDA).Po.POGoodsQuantity = int.Parse(txtPOGoodsQuantity.Text.Trim());
-                    txtPOTotalValue.Text = (Tag as OPMDASHBOARDA).Po.POTotalValue.ToString();
-                    txtPOAdvanceValue.Text = (0.01 * (Tag as OPMDASHBOARDA).Po.POAdvancePercentage * (Tag as OPMDASHBOARDA).Po.POTotalValue).ToString();
+                    double value = (Tag as OPMDASHBOARDA).Po.POTotalValue;
+                    txtPOTotalValue.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", value);
+                    value = (0.01 * (Tag as OPMDASHBOARDA).Po.POAdvancePercentage * (Tag as OPMDASHBOARDA).Po.POTotalValue);
+                    txtPOAdvanceValue.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", value);
                 }
                 else
                     (Tag as OPMDASHBOARDA).Po.POGoodsQuantity = 0;
@@ -246,7 +249,7 @@ namespace OPM.GUI
                     if (0 <= int.Parse(txtPOAdvancePercentage.Text.Trim()) && int.Parse(txtPOAdvancePercentage.Text.Trim()) <= 100)
                     {
                         (Tag as OPMDASHBOARDA).Po.POAdvancePercentage = int.Parse(txtPOAdvancePercentage.Text.Trim());
-                        txtPOAdvanceValue.Text = (0.01 * (Tag as OPMDASHBOARDA).Po.POAdvancePercentage * (Tag as OPMDASHBOARDA).Po.POTotalValue).ToString();
+                        txtPOAdvanceValue.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", 0.01 * (Tag as OPMDASHBOARDA).Po.POAdvancePercentage * (Tag as OPMDASHBOARDA).Po.POTotalValue);
                     }
                     else
                     {
@@ -351,7 +354,7 @@ namespace OPM.GUI
                 if (!string.IsNullOrEmpty(textBoxPOGoodQuantityAfterAdjustment.Text.Trim()))
                 {
                     (Tag as OPMDASHBOARDA).Po.POGoodQuantityAfterAdjustment = int.Parse(textBoxPOGoodQuantityAfterAdjustment.Text.Trim());
-                    textBoxPOValueAfterAdjustment.Text = (Tag as OPMDASHBOARDA).Po.POTotalValueAfterAdjustment.ToString();
+                    textBoxPOValueAfterAdjustment.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", (Tag as OPMDASHBOARDA).Po.POTotalValueAfterAdjustment);
                 }
                 else
                     (Tag as OPMDASHBOARDA).Po.POGoodsQuantity = 0;

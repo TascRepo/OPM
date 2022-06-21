@@ -1,5 +1,6 @@
 ﻿using OPM.OPMEnginee;
 using System;
+using System.Globalization;
 using System.Windows.Forms;
 namespace OPM.GUI
 {
@@ -39,7 +40,8 @@ namespace OPM.GUI
             txtType.Text = contract.ContractType;
             txtDuration.Text = contract.ContractPeriod.ToString();
             dtpContractValidityDate.Value = contract.ContractValidityDate;
-            txtValue.Text = Math.Round(contract.ContractValue).ToString();
+            //txtValue.Text = Math.Round(contract.ContractValue).ToString();
+            txtValue.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", contract.ContractValue);
             txtPOGuaranteeValidityPeriod.Text = contract.POGuaranteeValidityPeriod.ToString();
             txtSiteId.Text = contract.SiteId;
             txtGuaranteeDuration.Text = (contract.ContractGuaranteeDeadline - contract.ContractGuaranteeCreatedDate).Days.ToString();
@@ -47,7 +49,7 @@ namespace OPM.GUI
             dtpGuaranteeDateCreated.Value = contract.ContractGuaranteeCreatedDate;
             dateTimePickerContractReportOfConpletedVolumeDate.Value = contract.ContractReportOfConpletedVolumeDate;
             dateTimePickerContractLiquidationRecordsDate.Value = contract.ContractLiquidationRecordsDate;
-            textBoxContractTotalAmountPaid.Text = contract.ContractTotalAmountPaid.ToString();
+            textBoxContractTotalAmountPaid.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", contract.ContractTotalAmountPaid);
         }
         //Mở Form thông tin Site A
         private void btnIdSiteA_Click(object sender, EventArgs e)
