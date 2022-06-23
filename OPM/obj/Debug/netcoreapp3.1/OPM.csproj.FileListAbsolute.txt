@@ -228,7 +228,6 @@ D:\OPM\OPM\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.Sq
 D:\OPM\OPM\bin\Debug\netcoreapp3.1\Interop.Microsoft.Office.Core.dll
 D:\OPM\OPM\bin\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Word.dll
 D:\OPM\OPM\bin\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Excel.dll
-D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.csproj.AssemblyReference.cache
 D:\OPM\OPM\obj\Debug\netcoreapp3.1\Interop.Microsoft.Office.Core.dll
 D:\OPM\OPM\obj\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Word.dll
 D:\OPM\OPM\obj\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Excel.dll
@@ -268,3 +267,4 @@ D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.POCreatDocInfo.resources
 D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.DPCreatDocInfo.resources
 D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.NTKTCreatDocInfo.resources
 D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.PLCreatDocInfo.resources
+D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.csproj.AssemblyReference.cache

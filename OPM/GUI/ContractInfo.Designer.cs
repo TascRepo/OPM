@@ -58,7 +58,7 @@ namespace OPM.GUI
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.dtpDateSigned = new System.Windows.Forms.DateTimePicker();
+            this.dtpContractCreatedDate = new System.Windows.Forms.DateTimePicker();
             this.dtpContractDeadline = new System.Windows.Forms.DateTimePicker();
             this.dtpContractValidityDate = new System.Windows.Forms.DateTimePicker();
             this.label16 = new System.Windows.Forms.Label();
@@ -340,13 +340,13 @@ namespace OPM.GUI
             // 
             // dtpDateSigned
             // 
-            this.dtpDateSigned.CustomFormat = "dd/mm/yyyy";
-            this.dtpDateSigned.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDateSigned.Location = new System.Drawing.Point(452, 28);
-            this.dtpDateSigned.Name = "dtpDateSigned";
-            this.dtpDateSigned.Size = new System.Drawing.Size(247, 23);
-            this.dtpDateSigned.TabIndex = 5;
-            this.dtpDateSigned.ValueChanged += new System.EventHandler(this.dtpDateSigned_ValueChanged);
+            this.dtpContractCreatedDate.CustomFormat = "dd/mm/yyyy";
+            this.dtpContractCreatedDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpContractCreatedDate.Location = new System.Drawing.Point(452, 28);
+            this.dtpContractCreatedDate.Name = "dtpDateSigned";
+            this.dtpContractCreatedDate.Size = new System.Drawing.Size(247, 23);
+            this.dtpContractCreatedDate.TabIndex = 5;
+            this.dtpContractCreatedDate.ValueChanged += new System.EventHandler(this.dtpDateSigned_ValueChanged);
             // 
             // dtpContractDeadline
             // 
@@ -447,7 +447,7 @@ namespace OPM.GUI
             this.panel1.Controls.Add(this.textBoxContractTotalAmountPaid);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.txtContractName);
-            this.panel1.Controls.Add(this.dtpDateSigned);
+            this.panel1.Controls.Add(this.dtpContractCreatedDate);
             this.panel1.Controls.Add(this.txtSiteId);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label16);
@@ -683,7 +683,7 @@ namespace OPM.GUI
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.DateTimePicker dtpDateSigned;
+        private System.Windows.Forms.DateTimePicker dtpContractCreatedDate;
         private System.Windows.Forms.DateTimePicker dtpContractDeadline;
         private System.Windows.Forms.DateTimePicker dtpContractValidityDate;
         private System.Windows.Forms.Label label16;

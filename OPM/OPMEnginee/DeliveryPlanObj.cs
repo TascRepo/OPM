@@ -84,7 +84,7 @@ namespace OPM.DBHandler
 
         public int DeliveryPlanInsert()
         {
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DeliveryPlan(POId, VNPTId, DeliveryPlanQuantity, DeliveryPlanDate) VALUES ('{0}','{1}',{2},'{3}')", POId, VNPTId, DeliveryPlanQuantity, DeliveryPlanDate.Date.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DeliveryPlan(POId, VNPTId, DeliveryPlanQuantity, DeliveryPlanDate) VALUES ('{0}','{1}',{2},'{3}')", POId, VNPTId, DeliveryPlanQuantity, DeliveryPlanDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
             return OPMDBHandler.ExecuteNonQuery(query);
         }
 
@@ -184,5 +184,11 @@ namespace OPM.DBHandler
             string query = string.Format(@"SELECT dbo.Site.SiteId, dbo.Site.SiteName as [Tên Viễn Thông Tỉnh/Thành], dbo.DeliveryPlan.DeliveryPlanQuantity, dbo.DeliveryPlan.DeliveryPlanDate FROM dbo.DeliveryPlan,dbo.Site WHERE POId = '{0}' AND SiteId = VNPTId ORDER BY dbo.Site.SiteId", POId);
             return OPMDBHandler.ExecuteQuery(query);
         }
+        public static DataTable InvoicingRequestDataTable(string POId)
+        {
+            string query = string.Format(@"SELECT SiteName, sum(DeliveryPlanQuantity) AS POQuantity, MAX(DeliveryPlanDate) AS LastDeliveryDate FROM dbo.DeliveryPlan, dbo.Site WHERE dbo.DeliveryPlan.VNPTId = dbo.Site.SiteId AND POId = '{0}' GROUP BY SiteName ORDER BY SiteName,LastDeliveryDate", POId);
+            return OPMDBHandler.ExecuteQuery(query);
+        }
+
     }
 }

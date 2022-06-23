@@ -48,6 +48,10 @@ namespace OPM.GUI
             {
                 OpmWordHandler.Temp24_POCNCLNMTongHop(POId);
             }
+            if (checkBoxTemp25_InvoicingRequestPO.Checked == true)
+            {
+                OpmWordHandler.Temp25_InvoicingRequestPO(POId);
+            }
             if (checkBoxTemp28_POReportOfAcceptanceAndHandlingOfGoods.Checked == true)
             {
                 OpmWordHandler.Temp28_POReportOfAcceptanceAndHandlingOfGoods(POId);

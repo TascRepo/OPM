@@ -37,20 +37,5 @@ namespace OPM.GUI
         {
             (Tag as OPMDASHBOARDA).CurrentNodeName = "Contract_" + ContractId;
         }
-
-        private void checkBoxTemp30_ContractLiquidationRecords_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBoxTemp29_ContractReportOfConpletedVolume_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBoxTemp1_ContractGuarantee_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

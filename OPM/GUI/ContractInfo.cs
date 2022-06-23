@@ -23,7 +23,7 @@ namespace OPM.GUI
             txtGuaranteeDuration.ReadOnly = state;
             txtSiteId.ReadOnly = state;
             dtpContractValidityDate.Enabled = !state;
-            dtpDateSigned.Enabled = !state;
+            dtpContractCreatedDate.Enabled = !state;
             dtpGuaranteeDateCreated.Enabled = !state;
         }
         //Tải các thông số ContractForm với Contract tương ứng
@@ -35,8 +35,8 @@ namespace OPM.GUI
             txtContractId.Tag = txtContractId.Text;
             txtContractName.Text = contract.ContractName;
             txtAccoutingCode.Text = contract.ContractAccoutingCode;
-            dtpDateSigned.Value = contract.ContractCreatedDate;
-            dtpContractDeadline.Value = dtpDateSigned.Value.AddDays(Convert.ToInt32(contract.ContractPeriod));
+            dtpContractCreatedDate.Value = contract.ContractCreatedDate;
+            dtpContractDeadline.Value = dtpContractCreatedDate.Value.AddDays(Convert.ToInt32(contract.ContractPeriod));
             txtType.Text = contract.ContractType;
             txtDuration.Text = contract.ContractPeriod.ToString();
             dtpContractValidityDate.Value = contract.ContractValidityDate;
@@ -164,7 +164,7 @@ namespace OPM.GUI
         }
         private void dtpDateSigned_ValueChanged(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).Contract.ContractCreatedDate = dtpDateSigned.Value;
+            (Tag as OPMDASHBOARDA).Contract.ContractCreatedDate = dtpContractCreatedDate.Value;
         }
         private void txtType_TextChanged(object sender, EventArgs e)
         {

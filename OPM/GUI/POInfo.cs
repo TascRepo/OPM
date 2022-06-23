@@ -56,6 +56,7 @@ namespace OPM.GUI
             dateTimePickerPOFactoryQualityCertificationDate.Value = po.POFactoryQualityCertificationDate;
             dateTimePickerPOInstallLicenseDate.Value = po.POInstallLicenseDate;
             dateTimePickerPOAcceptanceLicenceDate.Value = po.POAcceptanceLicenceDate;
+            dateTimePickerPOInvoicingRequestDate.Value = po.POInvoicingRequestDate;
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -392,6 +393,11 @@ namespace OPM.GUI
         private void dateTimePickerPOInstallLicenseDate_ValueChanged(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).Po.POInstallLicenseDate = dateTimePickerPOInstallLicenseDate.Value;
+        }
+
+        private void dateTimePickerPOInvoicingRequestDate_ValueChanged(object sender, EventArgs e)
+        {
+            (Tag as OPMDASHBOARDA).Po.POInvoicingRequestDate = dateTimePickerPOInvoicingRequestDate.Value;
         }
     }
 }
