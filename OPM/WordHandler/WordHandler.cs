@@ -588,7 +588,96 @@ namespace OPM.OPMWordHandler
                 return e.Message;
             }
         }
-        //Tạo mẫu 25
+        //Tạo mẫu 26 - Biên bản xác nhận tiến độ thực hiện giao hàng
+        public static string Temp26_MinutesConfirmingDeliveryProgressPO(string poid)
+        {
+            Word.Application wordApp = new Word.Application();
+            object missing = Missing.Value;
+            Word.Document myDoc = null;
+            try
+            {
+                POObj po = new POObj(poid);
+                object path = @"D:\OPM\Template\Mẫu 25. Đề nghị phát hoá đơn cho các viễn thông tỉnh theo PO.docx";
+                if (!File.Exists(path.ToString()))
+                {
+                    MessageBox.Show(string.Format(@"Không tìm thấy {0}", path.ToString()));
+                    return string.Format(@"Không tìm thấy {0}", path.ToString());
+                }
+
+                object filename = string.Format(@"D:\OPM\{0}\{1}\Mẫu 25. Đề nghị phát hoá đơn cho các viễn thông tỉnh theo PO_{2}.docx", po.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'), po.POId.Replace('/', '-'));
+                object readOnly = true;
+                //object isVisible = false;
+                wordApp.Visible = false;
+
+                myDoc = wordApp.Documents.Open(ref path, ref missing, ref readOnly,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing);
+                myDoc.Activate();
+                //find and replace
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractCreatedDate>", po.ContractCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractId>", po.ContractId);
+                OpmWordHandler.FindAndReplace(wordApp, "<SiteName>", po.SiteName);
+                OpmWordHandler.FindAndReplace(wordApp, "<ContractShoppingPlan>", po.ContractShoppingPlan);
+                OpmWordHandler.FindAndReplace(wordApp, "<POName>", po.POName);
+                OpmWordHandler.FindAndReplace(wordApp, "<POId>", po.POId);
+                OpmWordHandler.FindAndReplace(wordApp, "<POCreatedDate>", po.POCreatedDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<POPerformDate>", po.POPerformDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                OpmWordHandler.FindAndReplace(wordApp, "<PODeadline>", po.PODeadline.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")));
+                //OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsDesignation>", po.ContractGoodsDesignation);
+                //OpmWordHandler.FindAndReplace(wordApp, "<ContractGoodsUnit>", po.ContractGoodsUnit);
+                //OpmWordHandler.FindAndReplace(wordApp, "<POGoodsQuantity>", po.POGoodsQuantity);
+                //OpmWordHandler.FindAndReplace(wordApp, "<POGoodsQuantity1>", Math.Round(po.POGoodsQuantity * 0.02, 0, MidpointRounding.AwayFromZero));
+
+                //Tạo bảng phụ lục yêu cầu phát hoá đơn
+                DataTable dataTable = DeliveryPlanObj.InvoicingRequestDataTable(poid);
+                int rowCount = dataTable.Rows.Count;
+                int columnCount = dataTable.Columns.Count;
+                int i;
+                Word.Table table = myDoc.Tables[3];
+                for (i = 0; i < rowCount; i++)
+                {
+                    table.Rows.Add();
+                    table.Cell(i + 2, 1).Range.Text = (i + 1).ToString();
+                    table.Cell(i + 2, 2).Range.Text = dataTable.Rows[i].ItemArray[0].ToString();
+                    string temp = dataTable.Rows[i].ItemArray[1].ToString();
+                    double temp1 = double.Parse(temp);
+                    table.Cell(i + 2, 3).Range.Text = temp;
+                    table.Cell(i + 2, 4).Range.Text = (Math.Round(temp1 * 0.02, 0, MidpointRounding.AwayFromZero)).ToString();
+                    table.Cell(i + 2, 5).Range.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", po.ContractGoodsUnitPrice);
+                    table.Cell(i + 2, 6).Range.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", temp1 * po.ContractGoodsUnitPrice);
+                    table.Cell(i + 2, 7).Range.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", temp1 * 0.02 * po.ContractGoodsUnitPrice);
+                    table.Cell(i + 2, 8).Range.Text = dataTable.Rows[i].ItemArray[2].ToString();
+                }
+                OpmWordHandler.FindAndReplace(wordApp, "12:00:00 SA", "");
+                //MessageBox.Show(i.ToString());
+                //table.Cell(i + 2, 2).Range.Text = "TỔNG CỘNG";
+                //table.Cell(i + 2, 3).Range.Text = po.POGoodsQuantity.ToString();
+                //Tạo file BLHĐ trong thư mục D:\OPM
+                string folder = string.Format(@"D:\OPM\{0}\{1}", po.ContractId.Trim().Replace('/', '-'), po.POName.Replace('/', '-'));
+                Directory.CreateDirectory(folder);
+                myDoc.SaveAs2(ref filename, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing);
+                MessageBox.Show(string.Format("Đã tạo file {0}", filename.ToString()));
+                myDoc.Close();
+                wordApp.Quit();
+                return filename.ToString();
+
+            }
+            catch (Exception e)
+            {
+                myDoc.Close();
+                wordApp.Quit();
+                MessageBox.Show(e.Message);
+                return e.Message;
+            }
+        }
+
+        //Tạo mẫu 25 - Đề nghị phát hoá đơn cho các viễn thông tỉnh theo PO
         public static string Temp25_InvoicingRequestPO(string poid)
         {
             object path = @"D:\OPM\Template\Mẫu 25. Đề nghị phát hoá đơn cho các viễn thông tỉnh theo PO.docx";

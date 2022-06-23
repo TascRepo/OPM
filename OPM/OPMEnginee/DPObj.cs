@@ -30,7 +30,7 @@ namespace OPM.OPMEnginee
                         DPQuantity1 = (row["DPQuantity1"] == null || row["DPQuantity1"] == DBNull.Value) ? 0 : (int)row["DPQuantity1"];
                         DPRequestDate = (row["DPRequestDate"] == null || row["DPRequestDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPRequestDate"];
                         DPResponseDate = (row["DPResponseDate"] == null || row["DPResponseDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPResponseDate"];
-                        DPRefundDate = (row["DPRefundDate"] == null || row["DPRefundDate"] == DBNull.Value) ? DateTime.Parse("01/01/2000") : (DateTime)row["DPRefundDate"];
+                        DPRefundDate = (row["DPRefundDate"] == null || row["DPRefundDate"] == DBNull.Value) ? DateTime.Parse("01/01/1900") : (DateTime)row["DPRefundDate"];
                         DPRemarks = (row["DPRemarks"] == null || row["DPRemarks"] == DBNull.Value) ? "" : row["DPRemarks"].ToString();
                         DPVNPTTechANSVContractNumber = (row["DPVNPTTechANSVContractNumber"] == null || row["DPVNPTTechANSVContractNumber"] == DBNull.Value) ? "" : row["DPVNPTTechANSVContractNumber"].ToString();
                         DPContractAccoutingCode = (row["DPContractAccoutingCode"] == null || row["DPContractAccoutingCode"] == DBNull.Value) ? "" : row["DPContractAccoutingCode"].ToString();
@@ -48,7 +48,7 @@ namespace OPM.OPMEnginee
         public int DPQuantity1 { get; set; } = 0;
         public DateTime DPRequestDate { get; set; } = DateTime.Now;
         public DateTime DPResponseDate { get; set; } = DateTime.Now;
-        public DateTime DPRefundDate { get; set; } = DateTime.MinValue;
+        public DateTime DPRefundDate { get; set; } = DateTime.Parse("01/01/1900");
         public string DPRemarks { get; set; } = "";
         public string DPVNPTTechANSVContractNumber { get; set; } = "";
         public string DPContractAccoutingCode { get; set; } = "";
@@ -76,7 +76,7 @@ namespace OPM.OPMEnginee
             DPQuantity1 = (row["DPQuantity1"] == null || row["DPQuantity1"] == DBNull.Value) ? 0 : (int)row["DPQuantity1"];
             DPRequestDate = (row["DPRequestDate"] == null || row["DPRequestDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPRequestDate"];
             DPResponseDate = (row["DPResponseDate"] == null || row["DPResponseDate"] == DBNull.Value) ? DateTime.Now : (DateTime)row["DPResponseDate"];
-            DPRefundDate = (row["DPRefundDate"] == null || row["DPRefundDate"] == DBNull.Value) ? DateTime.Parse("01/01/2000") : (DateTime)row["DPRefundDate"];
+            DPRefundDate = (row["DPRefundDate"] == null || row["DPRefundDate"] == DBNull.Value) ? DateTime.Parse("01/01/1900") : (DateTime)row["DPRefundDate"];
             DPRemarks = (row["DPRemarks"] == null || row["DPRemarks"] == DBNull.Value) ? "" : row["DPRemarks"].ToString();
             DPVNPTTechANSVContractNumber = (row["DPVNPTTechANSVContractNumber"] == null || row["DPVNPTTechANSVContractNumber"] == DBNull.Value) ? "" : row["DPVNPTTechANSVContractNumber"].ToString();
             DPContractAccoutingCode = (row["DPContractAccoutingCode"] == null || row["DPContractAccoutingCode"] == DBNull.Value) ? "" : row["DPContractAccoutingCode"].ToString();
@@ -159,11 +159,6 @@ namespace OPM.OPMEnginee
             string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPQuantity = {4}, DPQuantity1 = {5}, DPRequestDate = '{6}', DPResponseDate = '{7}', DPRefundDate = '{8}', DPRemarks = N'{9}', DPVNPTTechANSVContractNumber = '{10}', DPContractAccoutingCode = '{11}' WHERE DPId = '{0}'", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPQuantity1, DPRequestDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPResponseDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRefundDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRemarks, DPVNPTTechANSVContractNumber, DPContractAccoutingCode);
             OPMDBHandler.ExecuteNonQuery(query);
         }
-        public void DPUpdate(int DPId)
-        {
-            string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPQuantity = {4}, DPQuantity1 = {5}, DPRequestDate = '{6}', DPResponseDate = '{7}', DPRefundDate = '{8}', DPRemarks = N'{9}', DPVNPTTechANSVContractNumber = '{10}', DPContractAccoutingCode = '{11}' WHERE DPId = '{0}'", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPQuantity1, DPRequestDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPResponseDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRefundDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRemarks, DPVNPTTechANSVContractNumber, DPContractAccoutingCode);
-            OPMDBHandler.ExecuteNonQuery(query);
-        }
         public int DPUpdate(string newId, string oldId)
         {
             string query = string.Format("SET DATEFORMAT DMY UPDATE dbo.DP SET DPId = '{0}', POId = '{1}', DPDate = '{2}', DPType = {3}, DPQuantity = {4}, DPQuantity1 = {5}, DPRequestDate = '{6}', DPResponseDate = '{7}', DPRefundDate = '{8}', DPRemarks = N'{9}' , DPVNPTTechANSVContractNumber = '{10}', DPContractAccoutingCode = '{11}' WHERE DPId = '{12}'", newId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPQuantity1, DPRequestDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPResponseDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRefundDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRemarks, DPVNPTTechANSVContractNumber, DPContractAccoutingCode, oldId);
@@ -171,13 +166,13 @@ namespace OPM.OPMEnginee
         }
         public int DPInsert()
         {
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate,DPType,DPQuantity,DPRemarks, DPVNPTTechANSVContractNumber, DPContractAccoutingCode) VALUES('{0}','{1}','{2}',{3},{4},{5},'{6}','{7}','{8}',N'{9}','{10}','{11}')", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPQuantity1, DPRequestDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPResponseDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRefundDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRemarks, DPVNPTTechANSVContractNumber, DPContractAccoutingCode);
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate,DPType,DPQuantity,DPQuantity1,DPRemarks, DPVNPTTechANSVContractNumber, DPContractAccoutingCode) VALUES('{0}','{1}','{2}',{3},{4},{5},'{6}','{7}','{8}',N'{9}','{10}','{11}')", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPQuantity1, DPRequestDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPResponseDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRefundDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRemarks, DPVNPTTechANSVContractNumber, DPContractAccoutingCode);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
         public int DPInsert(string DPId)
         {
             if (DPObj.DPExist(DPId)) return 0;
-            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate,DPType,DPQuantity,DPRemarks, DPVNPTTechANSVContractNumber, DPContractAccoutingCode) VALUES('{0}','{1}','{2}',{3},{4},{5},'{6}','{7}','{8}',N'{9}','{10}','{11}')", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPQuantity1, DPRequestDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPResponseDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRefundDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRemarks, DPVNPTTechANSVContractNumber, DPContractAccoutingCode);
+            string query = string.Format(@"SET DATEFORMAT DMY INSERT INTO dbo.DP(DPId,POId,DPDate,DPType,DPQuantity,DPQuantity1,DPRequestDate,DPResponseDate,DPRefundDate,DPRemarks, DPVNPTTechANSVContractNumber, DPContractAccoutingCode) VALUES('{0}','{1}','{2}',{3},{4},{5},'{6}','{7}','{8}',N'{9}','{10}','{11}')", DPId, POId, DPDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPType, DPQuantity, DPQuantity1, DPRequestDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPResponseDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRefundDate.ToString("d", CultureInfo.CreateSpecificCulture("en-NZ")), DPRemarks, DPVNPTTechANSVContractNumber, DPContractAccoutingCode);
             return OPMDBHandler.ExecuteNonQuery(query);
         }
     }
