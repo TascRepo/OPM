@@ -52,6 +52,10 @@ namespace OPM.GUI
             {
                 OpmWordHandler.Temp25_InvoicingRequestPO(POId);
             }
+            if (checkBoxTemp26_MinutesConfirmingDeliveryProgressPO.Checked == true)
+            {
+                OpmWordHandler.Temp26_MinutesConfirmingDeliveryProgressPO(POId);
+            }
             if (checkBoxTemp28_POReportOfAcceptanceAndHandlingOfGoods.Checked == true)
             {
                 OpmWordHandler.Temp28_POReportOfAcceptanceAndHandlingOfGoods(POId);

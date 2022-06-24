@@ -182,5 +182,10 @@ namespace OPM.OPMEnginee
             string query = string.Format("SELECT dbo.PL.VNPTId, dbo.Site.SiteName, PLQuantity FROM dbo.PL,dbo.Site WHERE dbo.PL.DPId='{0}' AND dbo.PL.VNPTId = dbo.Site.SiteId", DPId);
             return OPMDBHandler.ExecuteQuery(query);
         }
-    }
+        public static DataTable GetDataTableByPOIdAndVNPTId(string POId,string VNPTId)
+        {
+            string query = string.Format("SELECT POId,DP.DPId,VNPTId,PLQuantity,DPResponseDate FROM dbo.PL LEFT JOIN dbo.DP ON DP.DPId = PL.DPId WHERE POId = '{0}' AND VNPTId = '{1}' ORDER BY DPResponseDate", POId,VNPTId);
+            return OPMDBHandler.ExecuteQuery(query);
+        }
+   }
 }

@@ -44,6 +44,7 @@ namespace OPM.GUI
             this.checkBoxTemp37_POBBXNCDLicense = new System.Windows.Forms.CheckBox();
             this.checkBoxTemp39_POAdjustmentConfirmation = new System.Windows.Forms.CheckBox();
             this.checkBoxTemp25_InvoicingRequestPO = new System.Windows.Forms.CheckBox();
+            this.checkBoxTemp26_MinutesConfirmingDeliveryProgressPO = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // buttonClose
@@ -71,7 +72,7 @@ namespace OPM.GUI
             // checkBoxTemp5_POAdvanceGuarantee
             // 
             this.checkBoxTemp5_POAdvanceGuarantee.AutoSize = true;
-            this.checkBoxTemp5_POAdvanceGuarantee.Location = new System.Drawing.Point(39, 95);
+            this.checkBoxTemp5_POAdvanceGuarantee.Location = new System.Drawing.Point(39, 93);
             this.checkBoxTemp5_POAdvanceGuarantee.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxTemp5_POAdvanceGuarantee.Name = "checkBoxTemp5_POAdvanceGuarantee";
             this.checkBoxTemp5_POAdvanceGuarantee.Size = new System.Drawing.Size(298, 19);
@@ -82,7 +83,7 @@ namespace OPM.GUI
             // checkBoxTemp4_POPerformanceGuarantee
             // 
             this.checkBoxTemp4_POPerformanceGuarantee.AutoSize = true;
-            this.checkBoxTemp4_POPerformanceGuarantee.Location = new System.Drawing.Point(39, 61);
+            this.checkBoxTemp4_POPerformanceGuarantee.Location = new System.Drawing.Point(39, 60);
             this.checkBoxTemp4_POPerformanceGuarantee.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxTemp4_POPerformanceGuarantee.Name = "checkBoxTemp4_POPerformanceGuarantee";
             this.checkBoxTemp4_POPerformanceGuarantee.Size = new System.Drawing.Size(303, 19);
@@ -104,7 +105,7 @@ namespace OPM.GUI
             // checkBoxTemp6_POAdvanceRequest
             // 
             this.checkBoxTemp6_POAdvanceRequest.AutoSize = true;
-            this.checkBoxTemp6_POAdvanceRequest.Location = new System.Drawing.Point(39, 125);
+            this.checkBoxTemp6_POAdvanceRequest.Location = new System.Drawing.Point(39, 126);
             this.checkBoxTemp6_POAdvanceRequest.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxTemp6_POAdvanceRequest.Name = "checkBoxTemp6_POAdvanceRequest";
             this.checkBoxTemp6_POAdvanceRequest.Size = new System.Drawing.Size(223, 19);
@@ -115,7 +116,7 @@ namespace OPM.GUI
             // checkBoxTemp7_PODistributionTable
             // 
             this.checkBoxTemp7_PODistributionTable.AutoSize = true;
-            this.checkBoxTemp7_PODistributionTable.Location = new System.Drawing.Point(39, 158);
+            this.checkBoxTemp7_PODistributionTable.Location = new System.Drawing.Point(39, 159);
             this.checkBoxTemp7_PODistributionTable.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxTemp7_PODistributionTable.Name = "checkBoxTemp7_PODistributionTable";
             this.checkBoxTemp7_PODistributionTable.Size = new System.Drawing.Size(220, 19);
@@ -126,7 +127,7 @@ namespace OPM.GUI
             // checkBoxTemp23_POCNCL_TongHop
             // 
             this.checkBoxTemp23_POCNCL_TongHop.AutoSize = true;
-            this.checkBoxTemp23_POCNCL_TongHop.Location = new System.Drawing.Point(39, 189);
+            this.checkBoxTemp23_POCNCL_TongHop.Location = new System.Drawing.Point(39, 192);
             this.checkBoxTemp23_POCNCL_TongHop.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxTemp23_POCNCL_TongHop.Name = "checkBoxTemp23_POCNCL_TongHop";
             this.checkBoxTemp23_POCNCL_TongHop.Size = new System.Drawing.Size(292, 19);
@@ -148,7 +149,7 @@ namespace OPM.GUI
             // checkBoxTemp28_POReportOfAcceptanceAndHandlingOfGoods
             // 
             this.checkBoxTemp28_POReportOfAcceptanceAndHandlingOfGoods.AutoSize = true;
-            this.checkBoxTemp28_POReportOfAcceptanceAndHandlingOfGoods.Location = new System.Drawing.Point(39, 301);
+            this.checkBoxTemp28_POReportOfAcceptanceAndHandlingOfGoods.Location = new System.Drawing.Point(39, 324);
             this.checkBoxTemp28_POReportOfAcceptanceAndHandlingOfGoods.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxTemp28_POReportOfAcceptanceAndHandlingOfGoods.Name = "checkBoxTemp28_POReportOfAcceptanceAndHandlingOfGoods";
             this.checkBoxTemp28_POReportOfAcceptanceAndHandlingOfGoods.Size = new System.Drawing.Size(318, 19);
@@ -159,7 +160,7 @@ namespace OPM.GUI
             // checkBoxTemp33_POOfferToGuaranteeWarranty
             // 
             this.checkBoxTemp33_POOfferToGuaranteeWarranty.AutoSize = true;
-            this.checkBoxTemp33_POOfferToGuaranteeWarranty.Location = new System.Drawing.Point(39, 343);
+            this.checkBoxTemp33_POOfferToGuaranteeWarranty.Location = new System.Drawing.Point(39, 357);
             this.checkBoxTemp33_POOfferToGuaranteeWarranty.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxTemp33_POOfferToGuaranteeWarranty.Name = "checkBoxTemp33_POOfferToGuaranteeWarranty";
             this.checkBoxTemp33_POOfferToGuaranteeWarranty.Size = new System.Drawing.Size(298, 19);
@@ -170,7 +171,7 @@ namespace OPM.GUI
             // checkBoxTemp36_POBBNTLicense
             // 
             this.checkBoxTemp36_POBBNTLicense.AutoSize = true;
-            this.checkBoxTemp36_POBBNTLicense.Location = new System.Drawing.Point(39, 381);
+            this.checkBoxTemp36_POBBNTLicense.Location = new System.Drawing.Point(39, 390);
             this.checkBoxTemp36_POBBNTLicense.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxTemp36_POBBNTLicense.Name = "checkBoxTemp36_POBBNTLicense";
             this.checkBoxTemp36_POBBNTLicense.Size = new System.Drawing.Size(243, 19);
@@ -181,7 +182,7 @@ namespace OPM.GUI
             // checkBoxTemp37_POBBXNCDLicense
             // 
             this.checkBoxTemp37_POBBXNCDLicense.AutoSize = true;
-            this.checkBoxTemp37_POBBXNCDLicense.Location = new System.Drawing.Point(39, 417);
+            this.checkBoxTemp37_POBBXNCDLicense.Location = new System.Drawing.Point(39, 423);
             this.checkBoxTemp37_POBBXNCDLicense.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxTemp37_POBBXNCDLicense.Name = "checkBoxTemp37_POBBXNCDLicense";
             this.checkBoxTemp37_POBBXNCDLicense.Size = new System.Drawing.Size(340, 19);
@@ -203,13 +204,24 @@ namespace OPM.GUI
             // checkBoxTemp25_InvoicingRequestPO
             // 
             this.checkBoxTemp25_InvoicingRequestPO.AutoSize = true;
-            this.checkBoxTemp25_InvoicingRequestPO.Location = new System.Drawing.Point(38, 260);
+            this.checkBoxTemp25_InvoicingRequestPO.Location = new System.Drawing.Point(39, 258);
             this.checkBoxTemp25_InvoicingRequestPO.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxTemp25_InvoicingRequestPO.Name = "checkBoxTemp25_InvoicingRequestPO";
             this.checkBoxTemp25_InvoicingRequestPO.Size = new System.Drawing.Size(333, 19);
             this.checkBoxTemp25_InvoicingRequestPO.TabIndex = 18;
             this.checkBoxTemp25_InvoicingRequestPO.Text = "Mẫu 25. Đề nghị phát hoá đơn cho các viễn thông tỉnh PO";
             this.checkBoxTemp25_InvoicingRequestPO.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxTemp26_MinutesConfirmingDeliveryProgressPO
+            // 
+            this.checkBoxTemp26_MinutesConfirmingDeliveryProgressPO.AutoSize = true;
+            this.checkBoxTemp26_MinutesConfirmingDeliveryProgressPO.Location = new System.Drawing.Point(39, 291);
+            this.checkBoxTemp26_MinutesConfirmingDeliveryProgressPO.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBoxTemp26_MinutesConfirmingDeliveryProgressPO.Name = "checkBoxTemp26_MinutesConfirmingDeliveryProgressPO";
+            this.checkBoxTemp26_MinutesConfirmingDeliveryProgressPO.Size = new System.Drawing.Size(208, 19);
+            this.checkBoxTemp26_MinutesConfirmingDeliveryProgressPO.TabIndex = 18;
+            this.checkBoxTemp26_MinutesConfirmingDeliveryProgressPO.Text = "Mẫu 26. Biên bản xác nhận tiến độ";
+            this.checkBoxTemp26_MinutesConfirmingDeliveryProgressPO.UseVisualStyleBackColor = true;
             // 
             // POCreatDocInfo
             // 
@@ -225,6 +237,7 @@ namespace OPM.GUI
             this.Controls.Add(this.checkBoxTemp36_POBBNTLicense);
             this.Controls.Add(this.checkBoxTemp33_POOfferToGuaranteeWarranty);
             this.Controls.Add(this.checkBoxTemp28_POReportOfAcceptanceAndHandlingOfGoods);
+            this.Controls.Add(this.checkBoxTemp26_MinutesConfirmingDeliveryProgressPO);
             this.Controls.Add(this.checkBoxTemp25_InvoicingRequestPO);
             this.Controls.Add(this.checkBoxTemp24_POCNCLNMTongHop);
             this.Controls.Add(this.checkBoxTemp23_POCNCL_TongHop);
@@ -258,5 +271,6 @@ namespace OPM.GUI
         private System.Windows.Forms.CheckBox checkBoxTemp37_POBBXNCDLicense;
         private System.Windows.Forms.CheckBox checkBoxTemp39_POAdjustmentConfirmation;
         private System.Windows.Forms.CheckBox checkBoxTemp25_InvoicingRequestPO;
+        private System.Windows.Forms.CheckBox checkBoxTemp26_MinutesConfirmingDeliveryProgressPO;
     }
 }
