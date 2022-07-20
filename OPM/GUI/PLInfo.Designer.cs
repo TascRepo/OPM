@@ -135,10 +135,10 @@ namespace OPM.GUI
             // 
             // textBoxCaseQuantity
             // 
-            this.textBoxCaseQuantity.Enabled = false;
             this.textBoxCaseQuantity.Location = new System.Drawing.Point(427, 78);
             this.textBoxCaseQuantity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxCaseQuantity.Name = "textBoxCaseQuantity";
+            this.textBoxCaseQuantity.ReadOnly = true;
             this.textBoxCaseQuantity.Size = new System.Drawing.Size(130, 31);
             this.textBoxCaseQuantity.TabIndex = 3;
             // 

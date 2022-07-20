@@ -65,9 +65,9 @@ namespace OPM.GUI
             this.checkBoxTemp22_PLWarranty.AutoSize = true;
             this.checkBoxTemp22_PLWarranty.Location = new System.Drawing.Point(56, 216);
             this.checkBoxTemp22_PLWarranty.Name = "checkBoxTemp22_PLWarranty";
-            this.checkBoxTemp22_PLWarranty.Size = new System.Drawing.Size(419, 29);
+            this.checkBoxTemp22_PLWarranty.Size = new System.Drawing.Size(360, 29);
             this.checkBoxTemp22_PLWarranty.TabIndex = 29;
-            this.checkBoxTemp22_PLWarranty.Text = "Mẫu 22. Giấy chứng nhận chất lượng gửi tỉnh PL";
+            this.checkBoxTemp22_PLWarranty.Text = "Mẫu 22. Mẫu phiếu bảo hành gửi tỉnh PL";
             this.checkBoxTemp22_PLWarranty.UseVisualStyleBackColor = true;
             // 
             // checkBoxTemp20_PLQualityInspectionCertificate
@@ -85,9 +85,9 @@ namespace OPM.GUI
             this.checkBoxTemp19_PLQualityInspectionCertificateInFactory.AutoSize = true;
             this.checkBoxTemp19_PLQualityInspectionCertificateInFactory.Location = new System.Drawing.Point(56, 101);
             this.checkBoxTemp19_PLQualityInspectionCertificateInFactory.Name = "checkBoxTemp19_PLQualityInspectionCertificateInFactory";
-            this.checkBoxTemp19_PLQualityInspectionCertificateInFactory.Size = new System.Drawing.Size(488, 29);
+            this.checkBoxTemp19_PLQualityInspectionCertificateInFactory.Size = new System.Drawing.Size(492, 29);
             this.checkBoxTemp19_PLQualityInspectionCertificateInFactory.TabIndex = 31;
-            this.checkBoxTemp19_PLQualityInspectionCertificateInFactory.Text = "Mẫu 19. Giấy chứng nhận chất lượng nhà máy gử tỉnh PL";
+            this.checkBoxTemp19_PLQualityInspectionCertificateInFactory.Text = "Mẫu 19. Giấy chứng nhận chất lượng nhà máy gửi tỉnh PL";
             this.checkBoxTemp19_PLQualityInspectionCertificateInFactory.UseVisualStyleBackColor = true;
             // 
             // checkBoxTemp18_PLGoodsDeliveryRecord
