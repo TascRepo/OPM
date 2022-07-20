@@ -204,6 +204,9 @@ namespace OPM.GUI
             textBoxDeviceBoxNumber.DataBindings.Add(new Binding("Text", dtgPL.DataSource, "DeviceBoxNumber"));
             textBoxPackingListSerialNumberRange.DataBindings.Clear();
             textBoxPackingListSerialNumberRange.DataBindings.Add(new Binding("Text", dtgPL.DataSource, "DeviceSerialRange"));
+            textBoxCaseQuantity.DataBindings.Clear();
+            textBoxCaseQuantity.DataBindings.Add(new Binding("Text", dtgPL.DataSource, "DeviceNumberOfCase"));
+
         }
         private void DataBindingsFromDtgPLToTextBoxsPackingList()
         {
