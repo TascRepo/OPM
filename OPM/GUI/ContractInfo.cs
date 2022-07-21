@@ -44,6 +44,7 @@ namespace OPM.GUI
             txtValue.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", contract.ContractValue);
             txtPOGuaranteeValidityPeriod.Text = contract.POGuaranteeValidityPeriod.ToString();
             txtSiteId.Text = contract.SiteId;
+            //txtSiteId.Text = contract.SiteName;
             txtGuaranteeDuration.Text = (contract.ContractGuaranteeDeadline - contract.ContractGuaranteeCreatedDate).Days.ToString();
             txbGuaranteeValue.Text = contract.POGuaranteeRatio.ToString();
             dtpGuaranteeDateCreated.Value = contract.ContractGuaranteeCreatedDate;
@@ -234,9 +235,9 @@ namespace OPM.GUI
 
         private void txtIdSiteA_TextChanged(object sender, EventArgs e)
         {
-            (Tag as OPMDASHBOARDA).Contract.SiteId = txtSiteId.Text.Trim();
-            (Tag as OPMDASHBOARDA).Contract.SetSiteA(new SiteObj(txtSiteId.Text.Trim()));
-            (Tag as OPMDASHBOARDA).SiteA = new SiteObj(txtSiteId.Text.Trim());
+            //(Tag as OPMDASHBOARDA).Contract.SiteId = txtSiteId.Text.Trim();
+            //(Tag as OPMDASHBOARDA).Contract.SetSiteA(new SiteObj(txtSiteId.Text.Trim()));
+            //(Tag as OPMDASHBOARDA).SiteA = new SiteObj(txtSiteId.Text.Trim());
         }
 
         private void dateTimePickerContractReportOfConpletedVolumeDate_ValueChanged(object sender, EventArgs e)

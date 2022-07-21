@@ -164,7 +164,7 @@ namespace OPM.GUI
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
-            var site = new OPMEnginee.SiteObj
+            SiteObj site = new OPMEnginee.SiteObj
             {
                 SiteId = txtSiteId.Text.Trim(),
                 SiteName = txtSiteName.Text.Trim(),

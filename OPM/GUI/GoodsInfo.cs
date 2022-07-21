@@ -29,6 +29,8 @@ namespace OPM.GUI
             txtPreTaxContractPrice.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", contract.ContractGoodsUnitPrice * contract.ContractGoodsQuantity);
             txtContractGoodsLicenseName.Text = contract.ContractGoodsLicenseName;
             txtContractGoodsLicenseUnitPrice.Text = contract.ContractGoodsLicenseUnitPrice.ToString();
+            textBoxContractConformityCertificateNumber.Text = contract.ContractConformityCertificateNumber;
+
         }
         private void txtContractGoodsUnitPrice_TextChanged(object sender, EventArgs e)
         {
