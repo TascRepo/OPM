@@ -242,7 +242,6 @@ D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.OPMDASHBOARDA.resources
 D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.PLInfo.resources
 D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.POInfo.resources
 D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.SiteInfo.resources
-D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.TestInfo.resources
 D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.Properties.Resources.resources
 D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.csproj.GenerateResource.cache
 D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GeneratedMSBuildEditorConfig.editorconfig
@@ -267,4 +266,3 @@ D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.POCreatDocInfo.resources
 D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.DPCreatDocInfo.resources
 D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.NTKTCreatDocInfo.resources
 D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.GUI.PLCreatDocInfo.resources
-D:\OPM\OPM\obj\Debug\netcoreapp3.1\OPM.csproj.AssemblyReference.cache

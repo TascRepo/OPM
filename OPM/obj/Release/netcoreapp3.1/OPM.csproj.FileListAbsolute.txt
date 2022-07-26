@@ -44,7 +44,6 @@ D:\OPM\OPM\obj\Release\netcoreapp3.1\OPM.GUI.PLInfo.resources
 D:\OPM\OPM\obj\Release\netcoreapp3.1\OPM.GUI.POCreatDocInfo.resources
 D:\OPM\OPM\obj\Release\netcoreapp3.1\OPM.GUI.POInfo.resources
 D:\OPM\OPM\obj\Release\netcoreapp3.1\OPM.GUI.SiteInfo.resources
-D:\OPM\OPM\obj\Release\netcoreapp3.1\OPM.GUI.TestInfo.resources
 D:\OPM\OPM\obj\Release\netcoreapp3.1\OPM.Properties.Resources.resources
 D:\OPM\OPM\obj\Release\netcoreapp3.1\OPM.csproj.GenerateResource.cache
 D:\OPM\OPM\obj\Release\netcoreapp3.1\OPM.GeneratedMSBuildEditorConfig.editorconfig

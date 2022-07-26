@@ -142,7 +142,7 @@ namespace OPM.GUI
 
         private void buttonAddSerial_Click(object sender, EventArgs e)
         {
-            // Mở file Mẫu 17.PL
+             // Mở file Mẫu 17.PL
             //string nameOfExcelFile = OpmExcelHandler.GetNameOfExcelFile();
             // Đọc file Mẫu 17.PL;
             //DataTable plTable = OpmExcelHandler.ReadExcelToDataTable(nameOfExcelFile, 3, 1, 1);
