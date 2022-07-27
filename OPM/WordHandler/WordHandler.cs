@@ -750,7 +750,7 @@ namespace OPM.OPMWordHandler
                     }
                     else
                     {
-                        MessageBox.Show(string.Format("Vẫn chưa giao hết số lượng của đơn hàng {0}, {4} yêu cầu giao {1}, đã giao {2} tính đến ngày {3}", po.POName, list[n].PODeliveryProgressDeliveryQuantity, list[n].PODeliveryProgressDeliveredQuantity, list[n].PODeliveryProgressLastDeliveredDate), list[n].PODeliveryProgressVNPTName);
+                        MessageBox.Show(string.Format("Vẫn chưa giao hết số lượng của đơn hàng {0}, {1} yêu cầu giao {2}, đã giao {3} tính đến ngày {4}", po.POName, list[n].PODeliveryProgressVNPTName, list[n].PODeliveryProgressDeliveryQuantity, list[n].PODeliveryProgressDeliveredQuantity, list[n].PODeliveryProgressLastDeliveredDate));
                     }
 
                 }
