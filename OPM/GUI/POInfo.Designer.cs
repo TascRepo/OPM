@@ -717,6 +717,7 @@ namespace OPM.GUI
             // dateTimePickerPOAdjustmentConfirmationDate
             // 
             this.dateTimePickerPOAdjustmentConfirmationDate.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePickerPOAdjustmentConfirmationDate.Enabled = false;
             this.dateTimePickerPOAdjustmentConfirmationDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerPOAdjustmentConfirmationDate.Location = new System.Drawing.Point(769, 763);
             this.dateTimePickerPOAdjustmentConfirmationDate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -788,6 +789,7 @@ namespace OPM.GUI
             // 
             // textBoxPOGoodQuantityAfterAdjustment
             // 
+            this.textBoxPOGoodQuantityAfterAdjustment.Enabled = false;
             this.textBoxPOGoodQuantityAfterAdjustment.Location = new System.Drawing.Point(334, 802);
             this.textBoxPOGoodQuantityAfterAdjustment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxPOGoodQuantityAfterAdjustment.Name = "textBoxPOGoodQuantityAfterAdjustment";

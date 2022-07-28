@@ -48,9 +48,9 @@ namespace OPM.GUI
             txtPOGuaranteeRatio.Text = po.POGuaranteeRatio.ToString();
             dateTimePickerPOReportOfAcceptanceAndHandlingOfGoodsDate.Value = po.POReportOfAcceptanceAndHandlingOfGoodsDate;
             dateTimePickerPOOfferToGuaranteePOWarrantyDate.Value = po.POOfferToGuaranteePOWarrantyDate;
+            textBoxPOAdjustmentConfirmationNumber.Text = po.POAdjustmentConfirmationNumber;
             textBoxPOGoodQuantityAfterAdjustment.Text = po.POGoodQuantityAfterAdjustment.ToString();
             dateTimePickerPOAdjustmentConfirmationDate.Value = po.POAdjustmentConfirmationDate;
-            textBoxPOAdjustmentConfirmationNumber.Text = po.POAdjustmentConfirmationNumber;
             textBoxPOValueAfterAdjustment.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", po.POTotalValueAfterAdjustment);
             dateTimePickerPOQualityCertificationDate.Value = po.POQualityCertificationDate;
             dateTimePickerPOFactoryQualityCertificationDate.Value = po.POFactoryQualityCertificationDate;
@@ -350,23 +350,54 @@ namespace OPM.GUI
         private void textBoxPOAdjustmentConfirmationNumber_TextChanged(object sender, EventArgs e)
         {
             (Tag as OPMDASHBOARDA).Po.POAdjustmentConfirmationNumber = textBoxPOAdjustmentConfirmationNumber.Text.Trim();
+            if (string.IsNullOrEmpty(textBoxPOAdjustmentConfirmationNumber.Text.Trim()))
+            {
+                dateTimePickerPOAdjustmentConfirmationDate.Enabled = false;
+                textBoxPOGoodQuantityAfterAdjustment.Text = string.Empty;
+                textBoxPOGoodQuantityAfterAdjustment.Enabled = false;
+                textBoxPOValueAfterAdjustment.Text = string.Empty;
+                textBoxPOValueAfterAdjustment.Enabled = false;
+            }
+            else
+            {
+                textBoxPOGoodQuantityAfterAdjustment.Enabled = true;
+                //textBoxPOValueAfterAdjustment.Enabled = true;
+                dateTimePickerPOAdjustmentConfirmationDate.Enabled = true;
+            }
         }
 
         private void textBoxPOQuantityAfterAdjustment_TextChanged(object sender, EventArgs e)
         {
             try
             {
+                if (string.IsNullOrEmpty(textBoxPOAdjustmentConfirmationNumber.Text.Trim()))
+                {
+                    dateTimePickerPOAdjustmentConfirmationDate.Enabled = false;
+                    textBoxPOGoodQuantityAfterAdjustment.Text = string.Empty;
+                    textBoxPOGoodQuantityAfterAdjustment.Enabled = false;
+                    textBoxPOValueAfterAdjustment.Text = string.Empty;
+                    textBoxPOValueAfterAdjustment.Enabled = false;
+                }
+                else
+                {
+                    textBoxPOGoodQuantityAfterAdjustment.Enabled = true;
+                    //textBoxPOValueAfterAdjustment.Enabled = true;
+                    dateTimePickerPOAdjustmentConfirmationDate.Enabled = true;
+                }
+
                 if (!string.IsNullOrEmpty(textBoxPOGoodQuantityAfterAdjustment.Text.Trim()))
                 {
                     (Tag as OPMDASHBOARDA).Po.POGoodQuantityAfterAdjustment = int.Parse(textBoxPOGoodQuantityAfterAdjustment.Text.Trim());
                     textBoxPOValueAfterAdjustment.Text = string.Format(new CultureInfo("vi-VN"), "{0:#,##}", (Tag as OPMDASHBOARDA).Po.POTotalValueAfterAdjustment);
+                    (Tag as OPMDASHBOARDA).Po.POGoodsQuantity = (Tag as OPMDASHBOARDA).Po.POGoodQuantityAfterAdjustment;
+                    txtPOGoodsQuantity.Text = (Tag as OPMDASHBOARDA).Po.POGoodsQuantity.ToString();
                 }
                 else
-                    (Tag as OPMDASHBOARDA).Po.POGoodsQuantity = 0;
+                    (Tag as OPMDASHBOARDA).Po.POGoodQuantityAfterAdjustment = 0;
             }
             catch
             {
-                MessageBox.Show("Nhập lại POGoodsQuantity dạng số!");
+                MessageBox.Show("Nhập lại POGoodQuantityAfterAdjustment dạng số!");
             }
         }
 
